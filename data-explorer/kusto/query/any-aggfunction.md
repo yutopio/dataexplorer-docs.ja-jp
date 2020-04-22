@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0726b185c22cd84c93e28601a823a35d9685d96d
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 2a0b2aed48c9c5aa9d5b99bdb6cab68375827d2c
+ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663945"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "82030211"
 ---
 # <a name="any-aggregation-function"></a>any() (集計関数)
 
@@ -50,7 +50,7 @@ ms.locfileid: "81663945"
 Continents | summarize any(Continent)
 ```
 
-:::image type="content" source="images/aggregations/any1.png" alt-text="任意の 1":::
+:::image type="content" source="images/aggfunction/any1.png" alt-text="任意の 1":::
 
 ランダムレコードのすべての詳細を表示します。
 
@@ -58,7 +58,7 @@ Continents | summarize any(Continent)
 Continents | summarize any(*)
 ```
 
-:::image type="content" source="images/aggregations/any2.png" alt-text="任意の2":::
+:::image type="content" source="images/aggfunction/any2.png" alt-text="任意の2":::
 
 各ランダム大陸のすべての詳細を表示します。
 
@@ -66,4 +66,4 @@ Continents | summarize any(*)
 Continents | summarize any(*) by Continent
 ```
 
-:::image type="content" source="images/aggregations/any3.png" alt-text="任意の3":::
+:::image type="content" source="images/aggfunction/any3.png" alt-text="任意の3":::

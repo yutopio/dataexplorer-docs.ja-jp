@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 49d024d1deecd8e0c7bf16eda9917cd237fe6319
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 460ad9cfca4f97e6735d30a4d47d6384581e7af7
+ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523275"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "82029991"
 ---
 # <a name="data-purge"></a>データの消去
 
@@ -90,6 +90,7 @@ Purge コマンドは、さまざまな使用シナリオで次の 2 つの方�
 1. プログラムによる呼び出し: アプリケーションによって呼び出されることを意図した単一ステップ。 このコマンドを直接呼び出すと、実行シーケンスの削除がトリガーされます。
 
     **構文**
+
      ```kusto
      .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
      ```
@@ -101,6 +102,7 @@ Purge コマンドは、さまざまな使用シナリオで次の 2 つの方�
     <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
 
      **構文**
+
      ```kusto
      // Step #1 - retrieve a verification token (no records will be purged until step #2 is executed)
      .purge table [TableName] records in database [DatabaseName] <| [Predicate]
@@ -256,8 +258,6 @@ Status = 'Completed' は、削除操作の最初のフェーズが正常に完�
 * クライアント要求 ID - DM パージ要求のクライアント アクティビティ ID。 
 * プリンシパル - パージ コマンド発行者の ID。
 
-
-
 ## <a name="purging-an-entire-table"></a>テーブル全体の削除
 テーブルのパージには、テーブルの削除と、パージ プロセスで説明されているハード削除プロセスが実行されるように[パージ](#purge-process)済みとしてマークすることが含まれます。 削除せずにテーブルを削除しても、そのテーブルのストレージ アーティファクトがすべて削除されるわけではありません (最初にテーブルに設定されたハード保持ポリシーに従って削除されます)。 コマンド`purge table allrecords`は迅速かつ効率的であり、シナリオに該当する場合は、レコードのパージ プロセスよりも優れています。 
 
@@ -270,6 +270,7 @@ Status = 'Completed' は、削除操作の最初のフェーズが正常に完�
 1. プログラムによる呼び出し (シングルステップ):
 
      **構文**
+
      ```kusto
      .purge table [TableName] in database [DatabaseName] allrecords with (noregrets='true')
      ```
@@ -277,6 +278,7 @@ Status = 'Completed' は、削除操作の最初のフェーズが正常に完�
 2. 人間の呼び出し(2段階):
 
      **構文**
+
      ```kusto
      // Step #1 - retrieve a verification token (the table will not be purged until step #2 is executed)
      .purge table [TableName] in database [DatabaseName] allrecords
@@ -312,6 +314,7 @@ Status = 'Completed' は、削除操作の最初のフェーズが正常に完�
     .purge table MyTable in database MyDatabase allrecords 
     with (verificationtoken='eyJTZXJ2aWNlTmFtZSI6IkVuZ2luZS1pdHNhZ3VpIiwiRGF0YWJhc2VOYW1lIjoiQXp1cmVTdG9yYWdlTG9ncyIsIlRhYmxlTmFtZSI6IkF6dXJlU3RvcmFnZUxvZ3MiLCJQcmVkaWNhdGUiOiIgd2hlcmUgU2VydmVyTGF0ZW5jeSA9PSAyNSJ9')
     ```
+    
     出力は '.show tables' コマンド出力と同じです (パージされたテーブルなしで返されます)。
 
     **出力**

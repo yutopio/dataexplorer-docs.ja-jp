@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-zone_pivot_group_filename: kusto/zone-pivot-groups.json
+zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 495eb15c13a5691df8b0a2f3c2996c5aac58eb0a
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 4c3db23128c47c86639f15286cbcbcb748157386
+ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663808"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "81765912"
 ---
 # <a name="find-operator"></a>find 演算子
 
@@ -110,7 +110,7 @@ find 演算子の出力には、常にソース テーブル名を持つ*source_
 
 find 演算子は`* has`*用語*の代替構文をサポートし、*用語*のみを使用すると、すべての入力列にわたって用語を検索します。
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>メモ
 
 * 句が`project`複数のテーブルに含まれる列を参照し、複数の型を持つ場合、型は project 句のこの列参照に従う必要があります。
 * 列が複数のテーブルに表示され、複数の型`project-smart`を持ち、使用されている場合は`find`[、's](./unionoperator.md)の結果に対応する列が 's の結果に含まれます。
@@ -195,17 +195,17 @@ find "Kusto"
 
 |Session_Id|Level|イベントテキスト|Version
 |---|---|---|---|
-|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|一部のテキスト1|v1.0.0
+|acbd207d-51aa-4df7-bfa7-be70eb68f04e|情報|一部のテキスト1|v1.0.0
 |acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|一部のテキスト2|v1.0.0
 |28b8e46e-3c31-43cf-83cb-48921c3986fc|Error|一部のテキスト3|v1.0.1
-|8f057b11-3281-45c3-a856-05ebb18a3c59|Information|一部のテキスト4|v1.1.0
+|8f057b11-3281-45c3-a856-05ebb18a3c59|情報|一部のテキスト4|v1.1.0
 
 ### <a name="eventstable2"></a>イベントテーブル2
 
 |Session_Id|Level|イベントテキスト|EventName
 |---|---|---|---|
-|f7d5f95f-f580-4ea6-830b-5776c8d64fd|Information|その他のテキスト1|イベント1
-|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|その他のテキスト2|イベント2
+|f7d5f95f-f580-4ea6-830b-5776c8d64fd|情報|その他のテキスト1|イベント1
+|acbd207d-51aa-4df7-bfa7-be70eb68f04e|情報|その他のテキスト2|イベント2
 |acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|その他のテキスト3|イベント3
 |15eeaab5-8576-4b58-8fc6-478f75d8fee4|Error|その他のテキスト4|イベント4
 
@@ -246,9 +246,9 @@ find Session_Id == 'acbd207d-51aa-4df7-bfa7-be70eb68f04e'
 
 |source_|Session_Id|Level|イベントテキスト|pack_|
 |---|---|---|---|---|
-|イベントテーブル1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|一部のテキスト1|{"バージョン":"v1.0.0"}
+|イベントテーブル1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|情報|一部のテキスト1|{"バージョン":"v1.0.0"}
 |イベントテーブル1|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|一部のテキスト2|{"バージョン":"v1.0.0"}
-|イベントテーブル2|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Information|その他のテキスト2|{"イベント名":"イベント2"}
+|イベントテーブル2|acbd207d-51aa-4df7-bfa7-be70eb68f04e|情報|その他のテキスト2|{"イベント名":"イベント2"}
 |イベントテーブル2|acbd207d-51aa-4df7-bfa7-be70eb68f04e|Error|その他のテキスト3|{"イベント名":"イベント3"}
 
 

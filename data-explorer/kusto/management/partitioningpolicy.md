@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 857756b5be76746c65f58d0d8269c341e6217564
-ms.sourcegitcommit: 2e63c7c668c8a6200f99f18e39c3677fcba01453
+ms.openlocfilehash: ad255c6930e76628a5187fa8d321e3445dbb5f99
+ms.sourcegitcommit: fbe298e88542c0dcea0f491bb53ac427f850f729
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 04/24/2020
-ms.locfileid: "82117677"
+ms.locfileid: "82138868"
 ---
 # <a name="data-partitioning-policy-preview"></a>データのパーティション分割ポリシー (プレビュー)
 
@@ -25,7 +25,8 @@ ms.locfileid: "82117677"
 ポリシーの主な目的は、パーティション分割された列の値の小さなサブセットに絞り込まれることがわかっているクエリのパフォーマンスを向上させることです。
 2つ目の利点は、データの圧縮が優れていることです。
 
-ポリシーを定義できるテーブルの量には、ハードコーディングされた制限はありませんが、追加のテーブルごとに、クラスターのノードで実行されているバックグラウンドデータパーティション処理のオーバーヘッドが増加し、クラスターからの追加リソースが必要になる場合があります。詳細については、[以下](#capacity)を参照してください。
+> [!WARNING]
+> ポリシーを定義できるテーブルの量には、ハードコーディングされた制限はありませんが、追加のテーブルごとに、クラスターのノードで実行されているバックグラウンドデータパーティション処理のオーバーヘッドが増加し、クラスターからの追加リソースが必要になる場合があります。「[容量](#capacity)」を参照してください。
 
 ## <a name="partition-keys"></a>パーティション キー
 
@@ -202,8 +203,8 @@ ms.locfileid: "82117677"
 
 #### <a name="capacity"></a>容量
 
-* データのパーティション分割プロセスによってより多くのエクステントが作成されるため、[エクステント](../management/extents-overview.md)のマージ処理が最大になるように、クラスターの[エクステントのマージ容量](../management/capacitypolicy.md#extents-merge-capacity)を増やすことが必要になる場合があります。
-* 必要に応じて (たとえば、大量のインジェストが発生した場合や、パーティション分割が必要なテーブルの数が多い場合など)、クラスターの[エクステントパーティション容量](../management/capacitypolicy.md#extents-partition-capacity)を増やして、より多くの同時パーティション分割操作を実行できるようにすることができます。
+* データのパーティション分割プロセスによってより多くのエクステントが作成されるため、[エクステント](../management/extents-overview.md)のマージ処理が最大になるように、クラスターの[エクステントのマージ容量](../management/capacitypolicy.md#extents-merge-capacity)を徐々に増やすことが必要になる場合があります。
+* 必要な場合 (たとえば、大量のインジェストが発生した場合や、パーティション分割が必要なテーブルの数が多い場合など) は、クラスターの[エクステントパーティション容量](../management/capacitypolicy.md#extents-partition-capacity)を (徐々に直線的に) 増加させて、同時実行のパーティション分割操作の数を増やすことができます。
   * パーティション分割を増やすと、クラスターのリソースの使用が大幅に増加する場合は、手動で、または自動スケールを有効にして、クラスターをスケールアップ/スケールアウトします。
 
 ### <a name="outliers-in-partitioned-columns"></a>パーティション分割された列の外れ値

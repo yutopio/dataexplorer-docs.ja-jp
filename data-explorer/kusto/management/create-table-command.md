@@ -1,6 +1,6 @@
 ---
-title: .create テーブル - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの .create テーブルについて説明します。
+title: . create table-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでテーブルを作成する方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/06/2020
-ms.openlocfilehash: 1c84b9b6cec5a5bb7ab620871f59c188bf71cef4
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 25554b5485562179d849e846fc5e71c587815e86
+ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744237"
+ms.lasthandoff: 04/23/2020
+ms.locfileid: "82108424"
 ---
 # <a name="create-table"></a>.create テーブル
 
@@ -21,13 +21,13 @@ ms.locfileid: "81744237"
 
 コマンドは、特定のデータベースのコンテキストで実行する必要があります。
 
-[データベース ユーザーのアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
+[データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 **構文**
 
-`.create``table`*テーブル名*([列名:列タイプ]、.) [`with` `(``docstring``=`*ドキュメント*]`,` `folder` `=` [`)`*フォルダ名*] ]
+`.create``table` *TableName* ([columnName: columnType],...) [`with` `(`[`docstring` `=` *FolderName* *Documentation*`,`ドキュメント] [ `folder` FolderName] `)`] `=`
 
-テーブルが既に存在する場合、コマンドは成功を返します。
+テーブルが既に存在する場合、コマンドは success を返します。
 
 **例** 
 
@@ -37,31 +37,31 @@ ms.locfileid: "81744237"
  
 **出力を返す**
 
-次の場合と同じ JSON 形式でテーブルのスキーマを返します。
+次のように、テーブルのスキーマを JSON 形式で返します。
 
 ```kusto
 .show table MyLogs schema as json
 ```
 
 > [!NOTE]
-> 複数のテーブルを作成する場合は、クラスターのパフォーマンスを向上させ、負荷を軽減するために[、.create tables](/create-tables.md)コマンドを使用します。
+> 複数のテーブルを作成する場合は、[[テーブルの作成](create-tables-command.md)] コマンドを使用して、クラスターのパフォーマンスを向上させ、負荷を軽減します。
 
-## <a name="create-merge-table"></a>作成-マージ テーブル
+## <a name="create-merge-table"></a>. create-merge テーブル
 
 新しいテーブルを作成するか、既存のテーブルを拡張します。 
 
 コマンドは、特定のデータベースのコンテキストで実行する必要があります。 
 
-[データベース ユーザーのアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
+[データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 **構文**
 
-`.create-merge``table`*テーブル名*([列名:列タイプ]、.) [`with` `(``docstring``=`*ドキュメント*]`,` `folder` `=` [`)`*フォルダ名*] ]
+`.create-merge``table` *TableName* ([columnName: columnType],...) [`with` `(`[`docstring` `=` *FolderName* *Documentation*`,`ドキュメント] [ `folder` FolderName] `)`] `=`
 
-テーブルが存在しない場合は、".create table" コマンドとまったく同じように機能します。
+テーブルが存在しない場合、は ". create table" コマンドとまったく同じように機能します。
 
-テーブル T が存在し、".create-merge テーブル T<columns specification>( )" コマンドを送信した場合は、次のようにします。
+テーブル T が存在し、". create-merge table T (<columns specification>)" コマンドを送信する場合は、次のようになります。
 
-* T に<columns specification>以前存在しなかった列は、T のスキーマの末尾に追加されます。
-* T の列が存在<columns specification>しない場合は、T から削除されません。
-* T に<columns specification>存在する列が、データ型が異なっている場合は、コマンドが失敗します。
+* 以前に T <columns specification>に存在していなかったの列は、t のスキーマの末尾に追加されます。
+* に含ま<columns specification>れていない t の列は、t から削除されません。
+* の<columns specification>列が T に存在するが、データ型が異なる場合、コマンドは失敗します。

@@ -1,6 +1,6 @@
 ---
-title: シャッフル クエリ - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのシャッフル クエリについて説明します。
+title: シャッフルクエリ-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのシャッフルクエリについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,20 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c687d495a41a5f73ac8dbca15d93729f2132a556
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 600e561937b779ff9dd10d5d82f5522d204466a0
+ms.sourcegitcommit: 2e63c7c668c8a6200f99f18e39c3677fcba01453
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81662971"
+ms.lasthandoff: 04/24/2020
+ms.locfileid: "82117694"
 ---
-# <a name="shuffle-query"></a>シャッフル クエリ
+# <a name="shuffle-query"></a>クエリのシャッフル
 
-シャッフル クエリは、実際のデータに応じてパフォーマンスが大幅に向上するシャッフル戦略をサポートする一連の演算子のセマンティックを保持する変換です。
+シャッフルクエリは、実際のデータによってはパフォーマンスを大幅に向上させることができる、シャッフル戦略をサポートする一連のオペレーターに対するセマンティック保持変換です。
 
-Kusto でのシャッフルをサポートするオペレーターは、[結合](joinoperator.md)、[要約](summarizeoperator.md)、[およびメイクシリーズ です](make-seriesoperator.md)。
+Kusto でシャッフルをサポートする演算子は、[結合](joinoperator.md)、[集計](summarizeoperator.md)、および[系列](make-seriesoperator.md)です。
 
-シャッフル クエリストラテジーは、クエリ`hint.strategy = shuffle`パラメータ`hint.shufflekey = <key>`または .
+シャッフルクエリ戦略は、クエリパラメーター `hint.strategy = shuffle`または`hint.shufflekey = <key>`を使用して設定できます。
+
+テーブルに[データパーティション分割ポリシー](../management/partitioningpolicy.md)を定義する方法についても説明します。 `shufflekey`がテーブルのハッシュパーティションキーでもあるクエリは、クラスターノード間の移動に必要なデータの量が大幅に削減されるため、パフォーマンスが向上します。
 
 **構文**
 
@@ -43,13 +45,13 @@ T
 | make-series hint.shufflekey = Fruit PriceAvg=avg(Price) default=0  on Purchase from datetime(2016-09-10) to datetime(2016-09-13) step 1d by Supplier, Fruit
 ```
 
-この戦略は、各ノードがデータの 1 つのパーティションを処理するすべてのクラスター ノードで負荷を共有します。
-キー (`join`キー、キー、キー)`summarize``make-series`の基数が高い場合は、通常のクエリ戦略がクエリの制限に達する場合は、シャッフル クエリ戦略を使用すると便利です。
+この戦略では、各ノードがデータの1つのパーティションを処理するすべてのクラスターノードの負荷を共有します。
+キー (`join`キー、キー、 `summarize`または`make-series`キー) に大きなカーディナリティがあり、通常のクエリ方法によってクエリの制限がヒットする場合は、シャッフルクエリ戦略を使用すると便利です。
 
-**ヒント戦略=シャッフルとヒント.シャッフルキーの違い = キー**
+**ヒントの相違点。方法 = シャッフルとヒント. shufflekey = キー**
 
-`hint.strategy=shuffle`は、シャッフルされたオペレータがすべてのキーでシャッフルされることを意味します。
-たとえば、次のクエリを使用します。
+`hint.strategy=shuffle`は、シャッフルされた演算子がすべてのキーでシャッフルされることを意味します。
+たとえば、次のクエリでは次のようになります。
 
 ```kusto
 T | where Event=="Start" | project ActivityId, Started=Timestamp
@@ -59,9 +61,9 @@ T | where Event=="Start" | project ActivityId, Started=Timestamp
 | summarize avg(Duration)
 ```
 
-データをシャッフルするハッシュ関数は、ActivityId キーと ProcessId キーの両方を使用します。
+データをシャッフルするハッシュ関数は、ActivityId と ProcessId の両方のキーを使用します。
 
-上記のクエリは、 と同じです。
+上記のクエリは、次の場合と同じです。
 
 ```kusto
 T | where Event=="Start" | project ActivityId, Started=Timestamp
@@ -71,8 +73,8 @@ T | where Event=="Start" | project ActivityId, Started=Timestamp
 | summarize avg(Duration)
 ```
 
-このヒントは、複合キーが一意ではありますが、各キーが十分に一意ではないため、シャッフルされたオペレータのすべてのキーでデータをシャッフルする場合に使用できます。
-シャッフルされた演算子に、 または`summarize``join`のような他のシャッフル可能な演算子がある場合、クエリはより複雑になり、hint.strategy= shuffle は適用されません。
+このヒントは、複合キーが一意であるにもかかわらず、各キーが一意ではないため、シャッフルされた演算子のすべてのキーによってデータをシャッフルする場合に使用できます。
+シャッフルされた演算子に`summarize`や`join`などの他の shufflable 演算子がある場合、クエリはより複雑になり、ヒントになります。方法 = シャッフルは適用されません。
 
 例えば：
 
@@ -91,11 +93,11 @@ on ActivityId, numeric_column
 | summarize avg(Duration)
 ```
 
-この場合`hint.strategy=shuffle`、(クエリ計画中にストラテジーを無視するのではなく)を適用し、複合キー [`ActivityId`]`numeric_column`でデータをシャッフルすると、結果は正しくなりません。
-は`summarize`、キーのサブセットによって`join`グルーブの`join`左側にあります。 `ActivityId` これは、データが`summarize`複合キー [ `ActivityId` `ActivityId`, `numeric_column`] で分割されている間に、キーによってグループ化されることを意味します。
-複合キー [`ActivityId`, `numeric_column`] でシャッフルすることは、それが Key ActivityId の有効なシャッフルであり、結果が正しくない可能性があることを意味しません。
+この場合、 `hint.strategy=shuffle` (クエリの計画時に戦略を無視するのではなく) を適用し、複合キー [`ActivityId`, `numeric_column`] によってデータをシャッフルすると、結果は正しくありません。
+`summarize` `join`が`ActivityId`のキーのサブセットによって`join` groubs の左側にある。 つまり、は、 `summarize`複合キー [`ActivityId`, `numeric_column`] `ActivityId`によってデータがパーティション分割されている間に、キーによってグループ化されることを意味します。
+複合キー [`ActivityId`, `numeric_column`] によるシャッフルは、それがキー ActivityId の有効なシャッフルであるという意味ではなく、結果が正しくない可能性があります。
 
-この例では、複合キーに使用されるハッシュ関数が`binary_xor(hash(key1, 100) , hash(key2, 100))`
+次の例では、複合キーに使用されるハッシュ関数がであることを前提としています。`binary_xor(hash(key1, 100) , hash(key2, 100))`
 
 ```kusto
 
@@ -107,17 +109,17 @@ datatable(ActivityId:string, NumericColumn:long)
 | extend hash_by_key = binary_xor(hash(ActivityId, 100) , hash(NumericColumn, 100))
 ```
 
-|ActivityId|数値列|hash_by_key|
+|ActivityId|NumericColumn|hash_by_key|
 |---|---|---|
-|アクティビティ1|2|56|
-|アクティビティ1|1|65|
+|activity1|2|56|
+|activity1|1|65|
 
 
 
-両方のレコードの複合キーが異なるパーティション 56 と 65 にマップされているのを見`ActivityId`てわかるように`summarize`、これらの 2 つのレコードの値は同`join`じで、同じパーティション内`ActivityId`に列の類似値が存在すると想定される左側の値は、間違った結果を生成します。
+両方のレコードの複合キーが異なるパーティション56と65にマップされていますが、これらの2つの`ActivityId`レコードの値が`summarize`同じである場合、の`join`左側のは同じパーティションにある`ActivityId`列の類似した値を期待しているので、defintely によって誤った結果が生成されます。
 
-この場合、`hint.shufflekey`すべてのシャッフル可能な演算子の共通キー`hint.shufflekey = ActivityId`である結合にシャッフル キーを指定することで、この問題を解決します。
-この場合、シャッフルは安全で、両方とも`join`同じキー`summarize`でシャッフルするので、すべての類似した値が同じパーティションに間違いなく結果が正しいようにします。
+この場合、は`hint.shufflekey` 、結合`hint.shufflekey = ActivityId`のシャッフルキーを指定することによって、この問題を解決します。これは、すべての shuffelable 演算子の共通キーです。
+この場合、シャッフルは安全であり、両方`join`と`summarize`も同じキーによってシャッフルされるため、類似したすべての値が同じパーティションに defintely されるため、結果は正しいものになります。
 
 ```kusto
 T
@@ -134,24 +136,24 @@ on ActivityId, numeric_column
 | summarize avg(Duration)
 ```
 
-|ActivityId|数値列|hash_by_key|
+|ActivityId|NumericColumn|hash_by_key|
 |---|---|---|
-|アクティビティ1|2|56|
-|アクティビティ1|1|65|
+|activity1|2|56|
+|activity1|1|65|
 
-シャッフル クエリでは、デフォルトのパーティション番号はクラスター ノード番号です。 この数は、パーティションの数を制御する`hint.num_partitions = total_partitions`構文を使用して上書きできます。
+シャッフルクエリでは、既定のパーティション番号がクラスターノード数になります。 この数値は、パーティションの数を制御`hint.num_partitions = total_partitions`する構文を使用してオーバーライドできます。
 
-このヒントは、クラスターに含まれるクラスター ノードの数が少なくて、デフォルトのパーティション番号も小さくなり、クエリが失敗したり実行に時間がかかる場合に役立ちます。
+このヒントは、クラスターに少数のクラスターノードがあり、既定のパーティション番号が小さくなり、クエリが引き続き失敗するか、実行時間が長い場合に便利です。
 
-多数のパーティションを設定すると、パフォーマンスが低下し、より多くのクラスタ リソースが消費される可能性があるため、パーティション番号を慎重に選択することをお勧めします (hint.strategy = シャッフルから開始し、パーティションを徐々に増やしてください)。
+多くのパーティションを設定すると、パフォーマンスが低下し、より多くのクラスターリソースを消費する可能性があるので、パーティション番号を慎重に選択することをお勧めします (ヒントから始めて、パーティションを徐々に増やし始めます)。
 
-**使用例**
+**例**
 
 次の例は、シャッフル`summarize`によってパフォーマンスが大幅に向上する方法を示しています。
 
-ソーステーブルには150Mのレコードがあり、キーによるグループのカーディナリティは10Mで、10のクラスタノードに分散されます。
+ソーステーブルには、150 m レコードがあり、group by キーのカーディナリティは10個のクラスターノードに分散されています。
 
-通常`summarize`のストラテジーを実行すると、クエリは 1:08 以降終了し、メモリ使用量のピークは約 3 GB になります。
+通常`summarize`の方法を実行すると、クエリは1:08 より後に終了し、メモリ使用量は最大 3 gb になります。
 
 ```kusto
 orders
@@ -164,7 +166,7 @@ orders
 |---|
 |1086|
 
-シャッフル`summarize`ストラテジを使用している間、クエリは約7秒後に終了し、メモリ使用量のピークは0.43GBです。
+シャッフル`summarize`戦略を使用している間、クエリは最大7秒後に終了し、メモリ使用量は 0.43 gb になります。
 
 ```kusto
 orders
@@ -177,9 +179,9 @@ orders
 |---|
 |1086|
 
-次の例は、2 つのクラスター・ノードを持つクラスターの改善を示し、表には 60M レコードがあり、グループのカーディナリティーは 2M です。
+次の例は、2つのクラスターノードを持つクラスターでの改善点を示しています。テーブルには60M レコードがあり、group by キーのカーディナリティは2M です。
 
-クエリを実行せずに`hint.num_partitions`(クラスタ ノード番号として) 2 つのパーティションのみを使用し、次のクエリには約 1:10 分かかります。
+を指定せず`hint.num_partitions`にクエリを実行すると、2つのパーティション (クラスターノードの数) のみが使用され、次のクエリは約1:10 分かかります。
 
 ```kusto
 lineitem    
@@ -187,7 +189,7 @@ lineitem
 | consume
 ```
 
-パーティション番号を 10 に設定すると、クエリは 23 秒後に終了します。 
+パーティション数を10に設定すると、クエリは23秒後に終了します。 
 
 ```kusto
 lineitem    
@@ -197,10 +199,10 @@ lineitem
 
 次の例は、シャッフル`join`によってパフォーマンスが大幅に向上する方法を示しています。
 
-この例は、データがこれらすべてのノードに分散される 10 ノードのクラスターでサンプリングされました。
+これらの例は、ノードが10個あるクラスターでサンプリングされており、これらのノードのすべてにデータが分散しています。
 
-左のテーブルには、`join`キーのカーディナリティーが~14M、右側`join`が150Mレコード、キーのカーディナリティが10Mである15Mレコードが`join`含まれます。
-の通常の戦略を`join`実行すると、クエリは約 28 秒後に終了し、メモリ使用量のピークは 1.43 GB になります。
+左テーブルには、 `join`キーのカーディナリティが ~ 14m である15,000,000 回レコードがあります`join` 。の右側には、150 m レコードが`join`あり、キーのカーディナリティは10万です。
+の通常の戦略を実行`join`すると、クエリは最大28秒後に終了し、メモリ使用量は 1.43 gb になります。
 
 ```kusto
 customer
@@ -210,7 +212,7 @@ on $left.c_custkey == $right.o_custkey
 | summarize sum(c_acctbal) by c_nationkey
 ```
 
-シャッフル`join`ストラテジーを使用している間、クエリは約4秒後に終了し、メモリ使用量のピークは0.3GBになります。
+シャッフル`join`戦略を使用している間、クエリは約4秒後に終了し、メモリ使用量のピークは 0.3 gb になります。
 
 ```kusto
 customer
@@ -220,14 +222,14 @@ on $left.c_custkey == $right.o_custkey
 | summarize sum(c_acctbal) by c_nationkey
 ```
 
-より大きなデータセットで同じクエリを実行すると`join`、左辺が 150M、キーのカーディナリティーが 148M、右側`join`が 1.5B、キーのカーディナリティが約 100M になります。
+大規模なデータセットに対して同じクエリを実行し`join`ようとしたときに、の左側が 150 m で、キーの`join`カーディナリティが148M である場合、の右側は 1.5 b で、キーのカーディナリティは約100m です。
 
-既定`join`の戦略を使用したクエリは、4 分後に kusto の制限とタイムアウトに達します。
-シャッフル`join`方式を使用している間、クエリは約 34 秒後に終了し、メモリ使用量のピークは 1.23 GB です。
+既定`join`の戦略を使用したクエリは、4分後に kusto の制限とタイムアウトに達します。
+シャッフル`join`戦略を使用している間、クエリは約34秒後に終了し、メモリ使用量は 1.23 gb になります。
 
 
-次の例は、2 つのクラスターノードを持つクラスターでの改善を示し、表には 60M`join`レコードがあり、キーのカーディナリティーは 2M です。
-クエリを実行せずに`hint.num_partitions`(クラスタ ノード番号として) 2 つのパーティションのみを使用し、次のクエリには約 1:10 分かかります。
+次の例は、2つのクラスターノードを持つクラスターでの改善点を示しています。テーブルには`join` 60m レコードがあり、キーのカーディナリティは2m です。
+を指定せず`hint.num_partitions`にクエリを実行すると、2つのパーティション (クラスターノードの数) のみが使用され、次のクエリは約1:10 分かかります。
 
 ```kusto
 lineitem
@@ -238,7 +240,7 @@ on $left.l_partkey == $right.p_partkey
 | consume
 ```
 
-パーティション番号を 10 に設定すると、クエリは 23 秒後に終了します。 
+パーティション数を10に設定すると、クエリは23秒後に終了します。 
 
 ```kusto
 lineitem

@@ -7,12 +7,12 @@ ms.reviewer: michazag
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 1/14/2020
-ms.openlocfilehash: 0c8d1add5f5f72ad96475df67ec2ff20bc9364c0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 6e7879948fb7683210859c84970f31bc5adb4a90
+ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492391"
+ms.lasthandoff: 04/23/2020
+ms.locfileid: "82108322"
 ---
 # <a name="azure-data-explorer-connector-for-apache-spark"></a>Apache Spark 用の Azure Data Explorer コネクタ
 
@@ -103,9 +103,9 @@ mvn clean install
 
 Azure Data Explorer Spark コネクタを使用すると、次のいずれかの方法を使用して Azure Active Directory (Azure AD) で認証することができます。
 * [Azure AD アプリケーション](#azure-ad-application-authentication)
-* [Azure AD アクセス トークン](https://github.com/Azure/azure-kusto-spark/blob/dev/docs/Authentication.md#direct-authentication-with-access-token)
-* [デバイス認証](https://github.com/Azure/azure-kusto-spark/blob/dev/docs/Authentication.md#device-authentication) (非運用環境シナリオの場合)
-* [Azure Key Vault](https://github.com/Azure/azure-kusto-spark/blob/dev/docs/Authentication.md#key-vault)。Key Vault リソースにアクセスするには、azure-keyvault パッケージをインストールし、アプリケーションの資格情報を提供します。
+* [Azure AD アクセス トークン](https://github.com/Azure/azure-kusto-spark/blob/master/docs/Authentication.md#direct-authentication-with-access-token)
+* [デバイス認証](https://github.com/Azure/azure-kusto-spark/blob/master/docs/Authentication.md#device-authentication) (非運用環境シナリオの場合)
+* [Azure Key Vault](https://github.com/Azure/azure-kusto-spark/blob/master/docs/Authentication.md#key-vault)。Key Vault リソースにアクセスするには、azure-keyvault パッケージをインストールし、アプリケーションの資格情報を提供します。
 
 ### <a name="azure-ad-application-authentication"></a>Azure AD アプリケーション認証
 

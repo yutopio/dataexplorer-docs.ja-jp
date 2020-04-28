@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: 530fc02c58b719f29ef43b118fad1ce8f207337b
-ms.sourcegitcommit: 653bfb3edf32553c52ef36b339c8b80713a601b0
+ms.openlocfilehash: 93451dd1237905754ac834cb335f5d8a02157ac7
+ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81494551"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "82030057"
 ---
 # <a name="data-formats-supported-by-azure-data-explorer-for-ingestion"></a>インジェスト用に Azure Data Explorer でサポートされているデータ形式
 
@@ -50,7 +50,7 @@ BLOB またはファイルの名前に拡張子を追加して、圧縮を示し
 * `MyData.csv.zip` は、BLOB、または CSV として書式設定されたファイルが ZIP (アーカイブまたは単一ファイル) で圧縮されていることを示します
 * `MyData.csv.gz` は、BLOB、または CSV として書式設定されたファイルが GZip で圧縮されていることを示します
 
-形式拡張子がなく圧縮のみが含まれている BLOB またはファイルの名前 (例: ) もサポートされています。 この場合、ファイル形式は推測されないため、インジェスト プロパティとして指定する必要があります。
+形式拡張子がなく圧縮のみが含まれている BLOB またはファイルの名前 (例: `MyData.zip`) もサポートされています。 この場合、ファイル形式は推測されないため、インジェスト プロパティとして指定する必要があります。
 
 > [!NOTE]
 > 一部の圧縮形式では、元のファイル拡張子が圧縮ストリームの一部として追跡されます。 この拡張子は通常、ファイル形式の判別では無視されます。 (圧縮された) BLOB またはファイルの名前からファイル形式を判別できない場合は、`format` インジェスト プロパティを使用して指定する必要があります。

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 5ceafde1361c87d368237d0f8c71ad8d0708aec1
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 6b33ee0ed9535d512c909dd8de124fc8b1770cee
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108509"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618991"
 ---
 # <a name="python-plugin"></a>Python プラグイン
 
@@ -92,7 +92,8 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 )
 | render linechart 
 ```
-:::image type="content" source="images/samples/sine-demo.png" alt-text="サインのデモ":::
+
+:::image type="content" source="images/plugin/sine-demo.png" alt-text="サインのデモ" border="false":::
 
 ```kusto
 print "This is an example for using 'external_artifacts'"
@@ -176,7 +177,7 @@ print "This is an example for using 'external_artifacts'"
 
 1. 1回限りの前提条件:
   
-  a。 パッケージをホストする blob コンテナーを作成します。可能であれば、クラスターと同じリージョンで作成します。
+  a. パッケージをホストする blob コンテナーを作成します。可能であれば、クラスターと同じリージョンで作成します。
     * 例: ( `https://artifcatswestus.blob.core.windows.net/python`クラスターが米国西部にあることを前提としています)
   
   b. クラスターの[コールアウトポリシー](../management/calloutpolicy.md)を変更して、その場所にアクセスできるようにします。

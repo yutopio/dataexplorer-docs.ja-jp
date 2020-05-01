@@ -1,6 +1,6 @@
 ---
-title: R プラグイン (プレビュー) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの R プラグイン (プレビュー) について説明します。
+title: R プラグイン (プレビュー)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの R プラグイン (プレビュー) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,59 +10,59 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: d815a75b241f7779a5f4ee9cae626c38ed54f9f4
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 514c67133980c9ab1c38b65cc51e4592dcb15eda
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765998"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618966"
 ---
 # <a name="r-plugin-preview"></a>R プラグイン (プレビュー)
 
 ::: zone pivot="azuredataexplorer"
 
-R プラグインは、R スクリプトを使用してユーザー定義関数 (UDF) を実行します。 R スクリプトは、入力として表形式のデータを取得し、表形式の出力を生成することが期待されます。
-プラグインのランタイムは、クラスターのノードで実行される隔離された安全な環境である[サンドボックス](../concepts/sandboxes.md)でホストされます。
+R プラグインは、R スクリプトを使用してユーザー定義関数 (UDF) を実行します。 R スクリプトは、表形式のデータを入力として取得し、表形式の出力を生成することが想定されています。
+プラグインのランタイムは、クラスターのノード上で実行される分離された安全な環境である[サンドボックス](../concepts/sandboxes.md)でホストされます。
 
 ### <a name="syntax"></a>構文
 
-*T* `|` `=` `single` | `per_node` `r(` *output_schema* `,` *script* `,` [ ] ( ) output_schema スクリプト [ script_parameters ] *script_parameters* `evaluate` `hint.distribution``)`
+*T* `|` `per_node``,` *script_parameters* *output_schema* *script* [`hint.distribution` (`single`)] `r(`output_schema`,`スクリプト [script_parameters] `evaluate` `=`  | `)`
 
 
 ### <a name="arguments"></a>引数
 
-* *output_schema*: `type` R コードによって返される表形式データの出力スキーマを定義するリテラル。
-    * 形式`typeof(`*は次のとおりです*`:`*ColumnType*。`)`、たとえば: `typeof(col1:string, col2:long)`。
-    * 入力スキーマを拡張するには、次の構文を使用`typeof(*, col1:string, col2:long)`します。
-* *script*:`string`実行される有効な R スクリプトであるリテラル。
-* *script_parameters*:`dynamic`予約された`kargs`ディクショナリとして R スクリプトに渡される名前/値ペアのプロパティ バッグであるオプションのリテラルです ([予約済み R 変数](#reserved-r-variables)を参照)。
-* *hint.distribution*: プラグインの実行を複数のクラスタノードに分散するためのオプションのヒント。
-   既定値: `single`。
-    * `single`: スクリプトの単一インスタンスがクエリ データ全体にわたって実行されます。
-    * `per_node`: R ブロックの前のクエリが分散されている場合、スクリプトのインスタンスは、スクリプトに含まれるデータ上の各ノードで実行されます。
+* *output_schema*: R `type`コードによって返される表形式データの出力スキーマを定義するリテラル。
+    * 形式は次の`typeof(`とおりです: *ColumnName* `:` *ColumnType* [,...]`)`(例: `typeof(col1:string, col2:long)`)。
+    * 入力スキーマを拡張するには、という`typeof(*, col1:string, col2:long)`構文を使用します。
+* *script*: 実行`string`する有効な R スクリプトであるリテラル。
+* *script_parameters*: 予約`kargs`さ`dynamic`れたディクショナリとして r スクリプトに渡される名前と値のペアのプロパティバッグである省略可能なリテラル (「[予約済み R 変数](#reserved-r-variables)」を参照)。
+* *ヒント: distribution*: プラグインの実行を複数のクラスターノードに分散するための省略可能なヒントです。
+   既定値:`single`。
+    * `single`: スクリプトの1つのインスタンスがクエリデータ全体で実行されます。
+    * `per_node`: R ブロックの前にクエリが分散されている場合、スクリプトのインスタンスは、含まれているデータを介して各ノードで実行されます。
 
 
 ### <a name="reserved-r-variables"></a>予約済み R 変数
 
-次の変数は、Kusto クエリ言語と R コードの間の相互作用のために予約されています。
+次の変数は、Kusto クエリ言語と R コード間のやり取りのために予約されています。
 
-* `df`: R データ フレームとしての入力`T`表形式データ (上記の値)。
-* `kargs`: r ディクショナリとして*script_parameters*引数の値。
-* `result`: R スクリプトによって作成された R データフレームで、その値は、プラグインに続く Kusto クエリ演算子に送信される表形式のデータになります。
+* `df`: 入力表形式のデータ (上記の`T`値) は、R データフレームとして指定します。
+* `kargs`: R ディクショナリとしての*script_parameters*引数の値。
+* `result`: R スクリプトによって作成された R データフレーム。その値は、プラグインに従う任意の Kusto クエリ演算子に送信される表形式のデータになります。
 
 ### <a name="onboarding"></a>オンボード
 
 
-* プラグインはデフォルトで無効になっています。
-    * *クラスターでプラグインを有効にすることに興味がありますか?*
+* プラグインは既定で無効になっています。
+    * *クラスターでプラグインを有効にすることに関心がありますか?*
         
-        * Azure ポータルの Azure データ エクスプローラー クラスターで、左側のメニューで **[新しいサポート要求**] を選択します。
-        * プラグインを無効にする場合も、サポートチケットを開く必要があります。
+        * Azure portal の Azure データエクスプローラークラスター内で、左側のメニューの [**新しいサポート要求**] を選択します。
+        * プラグインを無効にするには、サポートチケットも開く必要があります。
 
-### <a name="notes-and-limitations"></a>注意事項と制限事項
+### <a name="notes-and-limitations"></a>メモと制限事項
 
-* R サンドボックス イメージは*R 3.4.4 for Windows*に基づいており、[アナコンダの R Essentials バンドル](https://docs.anaconda.com/anaconda/packages/r-language-pkg-docs/)のパッケージが含まれています。
-* R サンドボックスはネットワークへのアクセスを制限するため、R コードはイメージに含まれていない追加のパッケージを動的にインストールできません。特定のパッケージが必要な場合は、Azure ポータルで**新しいサポート 要求**を開きます。
+* R sandbox イメージは*r 3.4.4 For Windows*に基づいており、 [Anaconda の r Essentials バンドル](https://docs.anaconda.com/anaconda/packages/r-language-pkg-docs/)のパッケージが含まれています。
+* R サンドボックスはネットワークへのアクセスを制限するため、R コードでは、イメージに含まれていない追加のパッケージを動的にインストールすることはできません。特定のパッケージが必要な場合は、Azure portal で**新しいサポート要求**を開きます。
 
 
 ### <a name="examples"></a>例
@@ -84,16 +84,16 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 | render linechart 
 ```
 
-:::image type="content" source="images/samples/sine-demo.png" alt-text="新しいデモ":::
+:::image type="content" source="images/plugin/sine-demo.png" alt-text="サインのデモ" border="false":::
 
 ### <a name="performance-tips"></a>パフォーマンスに関するヒント
 
-* プラグインの入力データ・セットを、必要な最小量 (列/行) まで減らします。
-    * ソース データセットに対して、可能な場合は Kusto クエリ言語を使用してフィルターを使用します。
-    * ソース列のサブセットに対して計算を実行するには、プラグインを呼び出す前に、それらの列だけを射出します。
-* スクリプト`hint.distribution = per_node`内のロジックが配布可能な場合は必ず使用します。
-    * また、[パーティション演算子](partitionoperator.md)を使用して、入力データ・セットをパーティション化することもできます。
-* 可能な場合は、Kusto クエリ言語を使用して、R スクリプトのロジックを実装します。
+* プラグインの入力データセットを必要な最小量 (列/行) に減らします。
+    * 可能であれば、Kusto クエリ言語を使用して、ソースデータセットのフィルターを使用します。
+    * ソース列のサブセットに対して計算を実行するには、プラグインを呼び出す前に、その列だけをプロジェクトに含めます。
+* スクリプト`hint.distribution = per_node`内のロジックが再頒布可能な場合は常にを使用します。
+    * 入力データセットをパーティション分割するために、 [partition 演算子](partitionoperator.md)を使用することもできます。
+* 可能な場合は常に Kusto クエリ言語を使用して、R スクリプトのロジックを実装します。
 
     次に例を示します。
 
@@ -111,8 +111,8 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 
 ### <a name="usage-tips"></a>使用上のヒント
 
-* Kusto 文字列の区切り文字と R の区切り文字の間の競合を避`'`けるため、Kusto クエリでは Kusto 文字列リテラルには一重引用符`"`( ) 、R スクリプトでは R 文字列リテラルには二重引用符 ( ) を使用することをお勧めします。
-* [外部データ オペレーター](externaldata-operator.md)を使用して、Azure BLOB ストレージ、パブリック GitHub リポジトリなど、外部の場所に保存したスクリプトのコンテンツを取得します。
+* Kusto 文字列の区切り記号と R の文字の間の競合を避けるために、kusto クエリの Kusto 文字列リテラルには単一引用符 (`'`) を使用し`"`、R スクリプトでは r 文字列リテラルに二重引用符文字 () を使用することをお勧めします。
+* [Externaldata オペレーター](externaldata-operator.md)を使用して、Azure blob storage、パブリック GitHub リポジトリなどの外部の場所に格納したスクリプトの内容を取得します。
   
   次に例を示します。
 
@@ -135,7 +135,7 @@ typeof(*, fx:double),               //  Output schema: append a new fx column to
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+これは、ではサポートされていません Azure Monitor
 
 ::: zone-end
 

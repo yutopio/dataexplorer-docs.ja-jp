@@ -1,6 +1,6 @@
 ---
-title: session_countプラグイン - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーsession_countプラグインについて説明します。
+title: session_count プラグイン-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの session_count プラグインについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 76ce6ca3be1859aba0a94ae155c60342be3f1ad1
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 7ebbbc401f8fdee79aaa328d45c7758d9acb931e
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663144"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82619051"
 ---
 # <a name="session_count-plugin"></a>session_count プラグイン
 
@@ -25,42 +25,42 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 
 **構文**
 
-*T* `| evaluate` `,` *Start* `,` `,` *Bin* `,` `,` `,` *IdColumn* `,` *TimelineColumn* `,` *LookBackWindow* *End* *dim1* *dim2* IdColumn タイムラインコラム開始エンドビンルックバックウィンドウ [dim1 dim2.] `session_count(``)`
+*T* `| evaluate` *End* `,` *dim2* *Start* `,` *dim1* *TimelineColumn* `,` *IdColumn* `,` *Bin* `,` *LookBackWindow* idcolumn`,` TimelineColumn`,` Start`,` Bin look backwindow [dim1 dim2...] `session_count(``)`
 
 **引数**
 
-* *T*: 入力表形式の式。
-* *IdColumn*: ユーザー アクティビティを表す ID 値を持つ列の名前。 
-* *タイムライン列*: タイムラインを表す列の名前。
-* *開始*: 分析開始期間の値を持つスカラー。
-* *終了*: 分析終了期間の値を持つスカラー。
+* *T*: 入力テーブル式。
+* *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
+* *TimelineColumn*: タイムラインを表す列の名前。
+* *Start*: 分析の開始期間の値を使用したスカラー。
+* *End*: 分析終了期間の値を使用したスカラー。
 * *Bin*: セッション分析ステップ期間のスカラー定数値。
-* *ルックバックウィンドウ*: セッションルックバック期間を表すスカラー定数値。 id がタイム`IdColumn`ウィンドウ内`LookBackWindow`に表示されている場合、セッションは既存と見なされます。
-* セッションカウントの計算をスライスするディメンション列の*dim1* *、dim2*、.:(オプション)リスト。
+* ルックバック*ウィンドウ*: セッションのルックバック期間を表すスカラー定数値。 から`IdColumn`の id が内`LookBackWindow`の時間枠に表示される場合、セッションは既存のものと見なされます。そうでない場合、セッションは新しいものと見なされます。
+* *dim1*、 *dim2*、...: (省略可能) セッション数の計算をスライスするディメンション列の一覧です。
 
 **戻り値**
 
-各タイムライン期間および既存のディメンションの組み合わせのセッション数の値を持つテーブルを返します。
+各タイムラインの期間と、既存のディメンションの組み合わせごとにセッション数の値を含むテーブルを返します。
 
 出力テーブルスキーマは次のとおりです。
 
-|*タイムライン列*|薄暗い1|..|dim_n|count_sessions|
+|*TimelineColumn*|dim1|..|dim_n|count_sessions|
 |---|---|---|---|---|--|--|--|--|--|--|
-|タイプ:*タイムライン列の時点*|..|..|..|long|
+|型: as of *TimelineColumn*|..|..|..|long|
 
 
 **使用例**
 
 
-例を挙すると、データの確定性を実現します。
-- タイムライン: 1 から 10,000 までのランニング番号
-- ID: 1 から 50 までのユーザーの ID
+この例では、データを決定的にするために、2つの列を含むテーブルを作成します。
+- Timeline: 1 ~ 1万の実行数
+- Id: 1 ~ 50 のユーザーの Id
 
-`Id`が (タイムライン`Timeline`% ID = 0) の区切りである場合は、特定の`Timeline`スロットに表示されます。
+`Id`(タイムライン% `Timeline` Id = = 0) の区分`Timeline`線の場合は、特定のスロットに表示されます。
 
-これは、イベントが任意`Id==1``Timeline`のスロットに表示され、イベントが`Id==2`2`Timeline`番目のスロットごとに表示されることを意味します。
+これは、を持つ`Id==1`イベントは任意`Timeline`のスロット、2番`Id==2`目`Timeline`のスロットごとにイベントが表示されることを意味します。
 
-ここでは、データの数20行があります:
+次の20行のデータがあります。
 
 ```kusto
 let _data = range Timeline from 1 to 10000 step 1
@@ -97,9 +97,9 @@ _data
 |8|4|
 |8|8|
 
-次の用語でセッションを定義してみましょう: セッション`Id`の時間スロットが 100 タイムスロットの時間枠で少なくとも 1 回表示されている間、アクティブであると見なされるセッションは 41 タイムスロットです。
+次に、セッションを定義してみましょう。ユーザー (`Id`) が100の時間帯に少なくとも1回、またはセッションの参照元ウィンドウが41の時間帯である限り、セッションはアクティブと見なされます。
 
-次のクエリは、上記の定義に従ってアクティブなセッションの数を示します。
+次のクエリは、上記の定義に従ってアクティブなセッションの数を示しています。
 
 ```kusto
 let _data = range Timeline from 1 to 9999 step 1
@@ -113,4 +113,4 @@ _data
 | render linechart 
 ```
 
-:::image type="content" source="images/queries/example-session-count.png" alt-text="セッション数の例":::
+:::image type="content" source="images/session-count-plugin/example-session-count.png" alt-text="セッション数の例" border="false":::

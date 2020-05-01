@@ -1,6 +1,6 @@
 ---
-title: series_decompose_forecast() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの series_decompose_forecast() について説明します。
+title: series_decompose_forecast ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの series_decompose_forecast () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,51 +8,51 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 67f464949bbc432e73932c4d8bff8290ef8f0f8f
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 97f87a7390ab099886e84642b2eb46a8087b6da9
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663537"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618847"
 ---
 # <a name="series_decompose_forecast"></a>series_decompose_forecast()
 
-シリーズ分解に基づく予測。
+系列分解に基づく予測。
 
-系列 (動的数値配列) を含む式を入力として受け取り、最後の末尾のポイントの値を予測します (分解方法の詳細については[、series_decompose](series-decomposefunction.md)を参照)。
+系列 (動的な数値配列) を含む式を入力として受け取り、最後の末尾の点の値を予測します (分解メソッドの詳細については、 [series_decompose](series-decomposefunction.md)を参照してください)。
  
 **構文**
 
-`series_decompose_forecast(`*系列*`,`*ポイント*`,`*Seasonality_threshold**Seasonality*`,`季節性*トレンド*Seasonality_threshold `[,``])`
+`series_decompose_forecast(`*系列* `,` *ポイント*`,` *Trend* `,` *Seasonality_threshold*の季節性の傾向 Seasonality_threshold *Seasonality* `[,``])`
 
 **引数**
 
-* *系列*: 数値の配列である動的配列セル。 通常、[結果として生成される出力は、系列または](make-seriesoperator.md)[make_list](makelist-aggfunction.md)演算子です。
-* *ポイント*: 予測する系列の終点のポイント数を指定する整数(予測)。 これらの点は学習(回帰)プロセスから除外されます。
-* *季節性*: 次のいずれかを含む季節分析を制御する整数。
-    * -1: [series_periods_detect](series-periods-detectfunction.md)を使用して季節性を自動検出する (デフォルト)。 
-    * ピリオド: 正の整数で、予想される期間をビン数で指定します。たとえば、系列が 1h ビンの場合、週単位の期間は 168 ビンです。
-    * 0: 季節性なし(この成分の抽出をスキップ)。   
-* *トレンド*: トレンド分析を制御する文字列で、次のいずれかを含みます。
-    * 「ラインフィット」:線形回帰(デフォルト)を使用してトレンド成分を抽出します。    
-    * "avg": トレンド成分を average(x) として定義します。
-    * "none": トレンドなし、このコンポーネントの抽出をスキップします。   
-* *Seasonality_threshold*: 季節性が自動検出に設定されている場合の*季節性*スコアのしきい値は、既定の`0.6`スコアしきい値は です。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
+* *Series*: 数値の配列である動的配列セル。 通常、結果として得られるのは、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の出力です。
+* *Points*: 予測する系列の末尾の点の数を指定する整数 (予測)。 これらのポイントは、learning (回帰) プロセスから除外されます。
+* *季節*性: 次のいずれかを含む季節分析を制御する整数。
+    * -1: [series_periods_detect](series-periods-detectfunction.md) (既定) を使用して季節性を自動検出します。 
+    * period: 区間数を指定する正の整数。たとえば、系列が1h ビンにある場合、週単位の期間は168ビンになります。
+    * 0: 季節性はありません (このコンポーネントの抽出をスキップします)。   
+* *傾向*: 次のいずれかを含む傾向分析を制御する文字列。
+    * "linefit": 線形回帰 (既定値) を使用して傾向コンポーネントを抽出します。    
+    * "avg": 傾向コンポーネントを平均 (x) として定義します。
+    * "none": 傾向がありません。このコンポーネントの抽出をスキップします。   
+* *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値`0.6`は、既定のスコアしきい値はです。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
 
-**返す**
+**返し**
 
- 予測シリーズを含む動的配列
+ 予測系列を含む動的配列
   
 
 **メモ**
 
-* 元の入力系列の動的配列には、予測される数*ポイント*スロットが含まれている必要があり、これは通常[、make-series を](make-seriesoperator.md)使用して、予測する期間を含む範囲の終了時間を指定することによって行われます。
+* 元の入力系列の動的配列には、予測する数値*ポイント*スロットが含ま[れている](make-seriesoperator.md)必要があります。通常、これは、予測する期間を含む範囲内の終了時間を指定することによって行われます。
     
-* 季節性やトレンドを有効にする必要があり、それ以外の場合は関数が冗長で、ゼロで満たされた系列を返すだけです。
+* 季節性と傾向のどちらか一方または両方を有効にする必要があります。そうしないと、関数は冗長になり、ゼロで塗りつぶされた系列を返します。
 
 **例**
 
-次の例では、週次季節性と小さな上昇傾向を持つ毎時の穀物で一連の 4`make-series`週間を生成し、次に、系列に別の空の週を使用して追加します。 `series_decompose_forecast`は週(24*7ポイント)で呼び出され、季節性とトレンドを自動的に検出し、5週間の予報を生成します。 
+次の例では、週単位の季節性と小さな上昇傾向を使用して、1時間ごとの粒度で`make-series` 4 週間のシリーズを生成します。その後、を使用して、系列に空の週を追加します。 `series_decompose_forecast`は週 (24 * 7 ポイント) で呼び出され、季節性と傾向を自動的に検出し、5週間の期間全体の予測を生成します。 
 
 ```kusto
 let ts=range t from 1 to 24*7*4 step 1 // generate 4 weeks of hourly data
@@ -66,4 +66,4 @@ ts
 | render timechart 
 ```
 
-:::image type="content" source="images/samples/series-decompose-forecast.png" alt-text="シリーズ分解予測":::
+:::image type="content" source="images/series-decompose-forecastfunction/series-decompose-forecast.png" alt-text="シリーズ分解予測":::

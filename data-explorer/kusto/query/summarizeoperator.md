@@ -1,6 +1,6 @@
 ---
-title: 集計オペレーター - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの集計演算子について説明します。
+title: 演算子の概要-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの演算子の概要について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: ed1808f173d0f779c84f9405987d7395de833120
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: e81afc50c752ac1b673bcaac38a77c2712ce9ff4
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663219"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82619017"
 ---
 # <a name="summarize-operator"></a>summarize 演算子
 
@@ -23,7 +23,7 @@ ms.locfileid: "81663219"
 T | summarize count(), avg(price) by fruit, supplier
 ```
 
-各サプライヤーからの各果物の数と平均価格を示す表。 果物とサプライヤーのそれぞれの異なる組み合わせの出力に行があります。 出力列には、カウント、平均価格、果物、サプライヤーが表示されます。 他のすべての入力列は無視されます。
+各仕入先の各果物の数と平均価格を示すテーブル。 果物と supplier の個別の組み合わせごとに、出力に行があります。 出力列には、count、average price、果物、および supplier が表示されます。 他のすべての入力列は無視されます。
 
 ```kusto
 T | summarize count() by price_range=bin(price, 10.0)
@@ -33,71 +33,71 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 **構文**
 
-*T* `| summarize` [[*列*`=`]`,`*集計*[ .]][`by` [*列*`=`]`,` *グループ式*[ .]]
+*T* `| summarize` [[*列* `=`]*集計*[`,` ...]][`by` [*列* `=`] *groupexpression* [`,` ...]]
 
 **引数**
 
 * *Column:* 結果列の省略可能な名前。 既定値は式から派生した名前です。
-* *集約:* 列名を引数として使用する、 `count()` `avg()`または などの[集計関数](summarizeoperator.md#list-of-aggregation-functions)の呼び出し。 [集計関数のリスト](summarizeoperator.md#list-of-aggregation-functions)を参照してください。
+* *集計:* 列名を引数として持つ`count()` 、 `avg()`やなどの[集計関数](summarizeoperator.md#list-of-aggregation-functions)の呼び出し。 [集計関数のリスト](summarizeoperator.md#list-of-aggregation-functions)を参照してください。
 * *GroupExpression:* 列に対する式です。個別の値のセットを示します。 通常は、限られた値のセットが既に指定されている列名か、引数として数値列または時間列が指定されている `bin()` になります。 
 
 > [!NOTE]
-> 入力テーブルが空の場合、出力は*GroupExpression*が使用されているかどうかによって異なります。
+> 入力テーブルが空の場合、出力は*Groupexpression*が使用されているかどうかによって異なります。
 >
-> * *GroupExpression*が指定されていない場合、出力は 1 つの (空の) 行になります。
-> * *グループ式*が指定されている場合、出力には行がありません。
+> * *Groupexpression*が指定されていない場合、出力は単一の (空の) 行になります。
+> * *Groupexpression*を指定した場合、出力には行が含まれません。
 
 **戻り値**
 
 入力列は、`by` 式の同じ値を持つグループにまとめられます。 次に、指定された集計関数によってグループごとに計算が行われ、各グループに対応する行が生成されます。 結果には、`by` 列のほか、計算された各集計に対応する 1 つ以上の列も含まれます (一部の集計関数は複数の列を返します)。
 
-結果には、値の異なる組み合わせがある`by`(ゼロになる可能性があります) と同じ数の行が含まれます。 グループ キーが指定されていない場合、結果は 1 つのレコードになります。
+結果には、値の個別の組み合わせ (ゼロ) `by`と同じ数の行があります。 グループキーが指定されていない場合、結果には1つのレコードが含まれます。
 
-数値の範囲を集計`bin()`するには、範囲を不連続値に減らします。
+数値の範囲を集計するには、 `bin()`を使用して範囲を不連続値に減らします。
 
 > [!NOTE]
 > * 集計式とグループ化式の両方に任意の式を指定できますが、単純な列名を使用するか、 `bin()` を数値列に適用する方がより効率的です。
-> * 日時列の自動時給ビンはサポートされなくなりました。 代わりに明示的なビンを使用してください。 たとえば、「 `summarize by bin(timestamp, 1h)` 」のように入力します。
+> * Datetime 列の自動時間単位ビンはサポートされなくなりました。 代わりに、明示的なビン分割を使用してください。 たとえば、「 `summarize by bin(timestamp, 1h)` 」のように入力します。
 
 ## <a name="list-of-aggregation-functions"></a>集計関数の一覧
 
 |機能|説明|
 |--------|-----------|
-|[any()](any-aggfunction.md)|グループの空でない値をランダムに返します。|
-|[anyif()](anyif-aggfunction.md)|グループの空でない値をランダムに返します (述語付き)|
-|[arg_max()](arg-max-aggfunction.md)|引数が最大化されたときに 1 つ以上の式を返します。|
-|[arg_min()](arg-min-aggfunction.md)|引数が最小化されている場合に 1 つ以上の式を返します。|
-|[avg()](avg-aggfunction.md)|グループ全体の平均値を返します。|
-|[avgif()](avgif-aggfunction.md)|グループ全体の平均値を返します (述語付き)|
+|[any ()](any-aggfunction.md)|グループの空でないランダムな値を返します|
+|[anyif()](anyif-aggfunction.md)|グループに対して空でないランダムな値 (述語を含む) を返します。|
+|[arg_max()](arg-max-aggfunction.md)|引数が最大化されている場合に1つ以上の式を返します|
+|[arg_min()](arg-min-aggfunction.md)|引数が最小化されている場合に1つ以上の式を返します|
+|[avg ()](avg-aggfunction.md)|グループ全体の平均値を返します|
+|[avgif()](avgif-aggfunction.md)|グループ全体の平均値を返します (述語を含む)|
 |[binary_all_and](binary-all-and-aggfunction.md)|グループのバイナリ`AND`を使用して集計値を返します。|
 |[binary_all_or](binary-all-or-aggfunction.md)|グループのバイナリ`OR`を使用して集計値を返します。|
 |[binary_all_xor](binary-all-xor-aggfunction.md)|グループのバイナリ`XOR`を使用して集計値を返します。|
-|[buildschema()](buildschema-aggfunction.md)|入力のすべての値を受け入れた最小スキーマ`dynamic`を返します。|
-|[count()](count-aggfunction.md)|グループのカウントを返します。|
-|[countif()](countif-aggfunction.md)|グループの述語を持つカウントを返します。|
-|[dcount()](dcount-aggfunction.md)|グループ要素のおおよその個別のカウントを返します。|
-|[dcountif()](dcountif-aggfunction.md)|グループ要素の概算別のカウントを返します (述語付き)|
-|[make_bag()](make-bag-aggfunction.md)|グループ内の動的な値のプロパティ バッグを返します。|
-|[make_bag_if()](make-bag-if-aggfunction.md)|グループ内の動的な値のプロパティ バッグを返します (述語付き)|
-|[make_list()](makelist-aggfunction.md)|グループ内のすべての値のリストを返します。|
-|[make_list_if()](makelistif-aggfunction.md)|グループ内のすべての値のリストを返します (述語付き)|
-|[make_list_with_nulls()](make-list-with-nulls-aggfunction.md)|グループ内のすべての値のリストを返します。(NULL 値を含む)|
-|[make_set()](makeset-aggfunction.md)|グループ内の一連の個別値を返します。|
-|[make_set_if()](makesetif-aggfunction.md)|グループ内の一連の個別値を返します (述語付き)|
-|[max()](max-aggfunction.md)|グループ全体の最大値を返します。|
-|[maxif()](maxif-aggfunction.md)|グループ全体の最大値を返します (述語付き)|
-|[min()](min-aggfunction.md)|グループ全体の最小値を返します。|
-|[minif()](minif-aggfunction.md)|グループ全体の最小値を返します (述語付き)|
-|[percentiles()](percentiles-aggfunction.md)|グループの百分位概数を返します。|
-|[percentiles_array()](percentiles-aggfunction.md)|グループの百分位数の近似値を返します。|
-|[パーセンタイルw()](percentiles-aggfunction.md)|グループの重み付けされた百分位数近似値を返します。|
-|[percentilesw_array()](percentiles-aggfunction.md)|グループの重み付けされた百分位数の近似値を返します。|
-|[stdev()](stdev-aggfunction.md)|グループ全体の標準偏差を返します。|
-|[stdevif()](stdevif-aggfunction.md)|グループ全体の標準偏差を返します (述語付き)|
-|[sum()](sum-aggfunction.md)|グループを使用する要素の合計を返します。|
-|[sumif()](sumif-aggfunction.md)|グループを持つ要素の合計を返します (述語付き)|
-|[variance()](variance-aggfunction.md)|グループ全体の分散を返します。|
-|[varianceif()](varianceif-aggfunction.md)|グループ全体の分散を返します (述語付き)|
+|[buildschema()](buildschema-aggfunction.md)|`dynamic`入力のすべての値を制御する最小限のスキーマを返します。|
+|[count ()](count-aggfunction.md)|グループの数を返します|
+|[countif()](countif-aggfunction.md)|グループの述語を使用してカウントを返します。|
+|[dcount()](dcount-aggfunction.md)|グループ要素の概数を返します。|
+|[dcountif()](dcountif-aggfunction.md)|グループ要素の概数を返します (述語を含む)|
+|[make_bag()](make-bag-aggfunction.md)|グループ内の動的な値のプロパティバッグを返します。|
+|[make_bag_if()](make-bag-if-aggfunction.md)|グループ内の動的な値のプロパティバッグを返します (述語を含む)|
+|[make_list()](makelist-aggfunction.md)|グループ内のすべての値の一覧を返します。|
+|[make_list_if()](makelistif-aggfunction.md)|グループ内のすべての値の一覧を返します (述語を含む)|
+|[make_list_with_nulls()](make-list-with-nulls-aggfunction.md)|Null 値を含む、グループ内のすべての値の一覧を返します。|
+|[make_set()](makeset-aggfunction.md)|グループ内の個別の値のセットを返します。|
+|[make_set_if()](makesetif-aggfunction.md)|グループ内の個別の値のセットを返します (述語を含む)|
+|[max ()](max-aggfunction.md)|グループ全体の最大値を返します|
+|[maxif()](maxif-aggfunction.md)|グループ全体の最大値を返します (述語を含む)|
+|[min ()](min-aggfunction.md)|グループ全体の最小値を返します|
+|[minif()](minif-aggfunction.md)|グループ全体の最小値を返します (述語を含む)|
+|[percentiles()](percentiles-aggfunction.md)|グループのパーセンタイルの概数を返します|
+|[percentiles_array ()](percentiles-aggfunction.md)|グループのパーセンタイル近似を返します。|
+|[percentilesw()](percentiles-aggfunction.md)|グループの加重パーセンタイルの概数を返します|
+|[percentilesw_array ()](percentiles-aggfunction.md)|グループの加重パーセンタイル近似を返します。|
+|[stdev ()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
+|[stdevif()](stdevif-aggfunction.md)|グループ全体の標準偏差を返します (述語を含む)|
+|[sum ()](sum-aggfunction.md)|グループので要素の合計を返します。|
+|[sumif()](sumif-aggfunction.md)|グループので要素の合計を返します (述語を含む)|
+|[分散 ()](variance-aggfunction.md)|グループ間の分散を返します。|
+|[varianceif()](varianceif-aggfunction.md)|グループ間の分散を返します (述語を含む)|
 
 ## <a name="aggregates-default-values"></a>既定値の集計
 
@@ -109,15 +109,15 @@ T | summarize count() by price_range=bin(price, 10.0)
  `make_bag()`, `make_bag_if()`, `make_list()`, `make_list_if()`, `make_set()`, `make_set_if()` |    空の動的配列 ([])          
  その他すべて          |   null                           
 
- null 値を含むエンティティに対してこれらの集計を使用する場合、NULL 値は無視され、計算に参加しません (下記の例を参照)。
+ Null 値を含むエンティティに対してこれらの集計を使用する場合、null 値は無視され、計算には含まれません (以下の例を参照)。
 
 ## <a name="examples"></a>例
 
-![alt text](./Images/aggregations/01.png "01")
+:::image type="content" source="images/summarizeoperator/summarize-price-by-supplier.png" alt-text="果物とサプライヤー別の価格の集計":::
 
 **例**
 
-テーブル内の`ActivityType`一意の組`CompletionStatus`み合わせと、テーブル内に存在する一意の組み合わせを決定します。 集計関数はなく、グループ化キーだけです。 出力には、これらの結果の列が表示されます。
+テーブルに含まれると`ActivityType`の`CompletionStatus`一意の組み合わせを確認します。 集計関数はありません。グループ化キーだけです。 出力には、これらの結果の列のみが表示されます。
 
 ```kusto
 Activities | summarize by ActivityType, completionStatus
@@ -132,7 +132,7 @@ Activities | summarize by ActivityType, completionStatus
 
 **例**
 
-[アクティビティ] テーブルのすべてのレコードのタイムスタンプの最小値と最大値を検索します。 group by 句はないため、以下のように出力には行が 1 つしかありません。
+アクティビティテーブル内のすべてのレコードの最小タイムスタンプと最大タイムスタンプを検索します。 group by 句はないため、以下のように出力には行が 1 つしかありません。
 
 ```kusto
 Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
@@ -144,7 +144,7 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 
 **例**
 
-各大陸の行を作成し、活動が発生する都市の数を示します。 "大陸" の値が少ないため、'by' 句にグループ化関数は必要ありません。
+大陸ごとに1行を作成し、アクティビティが発生した都市の数を示します。 "大陸" にはいくつかの値があるため、' by ' 句にはグループ化関数は必要ありません。
 
     Activities | summarize cities=dcount(city) by continent
 
@@ -157,7 +157,7 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 
 **例**
 
-次の例では、アクティビティの種類ごとにヒストグラムを計算します。 値`Duration`は多いため、10 分間隔に値をグループ化するために使用`bin`します。
+次の例では、各アクティビティの種類のヒストグラムを計算します。 に`Duration`は多くの値が`bin`あるため、を使用して、その値を10分間隔でグループ化します。
 
 ```kusto
 Activities | summarize count() by ActivityType, length=bin(Duration, 10m)
@@ -175,9 +175,9 @@ Activities | summarize count() by ActivityType, length=bin(Duration, 10m)
 
 **集計の既定値の例**
 
-演算子の`summarize`入力に少なくとも 1 つの空の group-by キーがある場合、結果も空になります。
+演算子の`summarize`入力に少なくとも1つの空のグループキーがある場合、結果は空になります。
 
-operator の`summarize`入力に空の group-by キーがない場合、結果は で使用される集計の既定値になります`summarize`。
+演算子の`summarize`入力に空のグループ化キーがない場合、結果はで使用される集計の既定値になり`summarize`ます。
 
 ```kusto
 range x from 1 to 10 step 1
@@ -209,7 +209,7 @@ range x from 1 to 10 step 1
 |---|---|
 |[]|[]|
 
-この集計は、すべての非 NULL を合計し、計算に参加した値のみをカウントします (NULL は考慮されません)。
+集計では、null 以外のすべての値が集計され、計算に参加した値のみがカウントされます (null 値は考慮されません)。
 
 ```kusto
 range x from 1 to 2 step 1
@@ -221,7 +221,7 @@ range x from 1 to 2 step 1
 |---|---|
 |5|5|
 
-通常のカウントは null をカウントします。 
+通常のカウントでは、null がカウントされます。 
 
 ```kusto
 range x from 1 to 2 step 1

@@ -1,6 +1,6 @@
 ---
-title: データ パーティション ポリシー管理 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのデータ パーティションポリシーの管理について説明します。
+title: データのパーティション分割ポリシーの管理-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのデータのパーティション分割ポリシーの管理について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/04/2020
-ms.openlocfilehash: 0e1ff783195f26adf7f98e511ca155f43609098c
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 1ad9b359422b51084f1be1c64d27d656313d9296
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663964"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616322"
 ---
-# <a name="data-partitioning-policy-management"></a>データ・パーティション・ポリシー管理
+# <a name="data-partitioning-policy-management"></a>データのパーティション分割ポリシーの管理
 
-データのパーティション分割ポリシーについては[、ここで詳しく説明](../management/partitioningpolicy.md)します。
+データのパーティション分割ポリシーの詳細については、[こちら](../management/partitioningpolicy.md)を参照してください。
 
-## <a name="show-policy"></a>ポリシーを表示する
+## <a name="show-policy"></a>ポリシーの表示
 
 ```kusto
 .show table [table_name] policy partitioning
 ```
 
-この`.show`コマンドは、テーブルに適用されているパーティション化ポリシーを表示します。
+コマンド`.show`は、テーブルに適用されているパーティション分割ポリシーを表示します。
 
 ### <a name="output"></a>出力
 
 |ポリシー名 | エンティティ名 | ポリシー | 子エンティティ | エンティティの種類
 |---|---|---|---|---
-|データのパーティション分割 | テーブル名 | ポリシー オブジェクトの JSON シリアル化 | null | テーブル
+|DataPartitioning | テーブル名 | ポリシーオブジェクトの JSON シリアル化 | null | テーブル
 
-## <a name="alter-and-alter-merge-policy"></a>変更および変更マージポリシー
+## <a name="alter-and-alter-merge-policy"></a>alter および alter-merge ポリシー
 
 ```kusto
 .alter table [table_name] policy partitioning @'policy object, serialized as JSON'
@@ -41,15 +41,15 @@ ms.locfileid: "81663964"
 .alter-merge table [table_name] policy partitioning @'partial policy object, serialized as JSON'
 ```
 
-この`.alter`コマンドを使用すると、テーブルに適用されるパーティション・ポリシーを変更できます。
+この`.alter`コマンドでは、テーブルに適用されているパーティション分割ポリシーを変更できます。
 
-コマンドには[データベース管理者の](access-control/role-based-authorization.md)アクセス許可が必要です。
+コマンドには[databaseadmin](access-control/role-based-authorization.md)のアクセス許可が必要です。
 
-ポリシーの変更が有効になるには、最大で 1 時間かかる場合があります。
+ポリシーに対する変更は、有効になるまで最大1時間かかる場合があります。
 
 ### <a name="examples"></a>例
 
-#### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>ポリシーのすべてのプロパティをテーブル レベルで明示的に設定する
+#### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>テーブルレベルでポリシーのすべてのプロパティを明示的に設定する
 
 ```kusto
 .alter table [table_name] policy partitioning @'{'
@@ -74,12 +74,12 @@ ms.locfileid: "81663964"
 '}'
 ```
 
-#### <a name="setting-a-specific-property-of-the-policy-explicitly-at-table-level"></a>ポリシーの特定のプロパティをテーブル レベルで明示的に設定する
+#### <a name="setting-a-specific-property-of-the-policy-explicitly-at-table-level"></a>テーブルレベルでポリシーの特定のプロパティを明示的に設定する
 
-ポリシーの`EffectiveDateTime`を別の値に設定するには、次のコマンドを使用します。
+ポリシー `EffectiveDateTime`のを別の値に設定するには、次のコマンドを使用します。
 
 ```kusto
-.alter table [table_name] policy partitioning @'{"EffectiveDateTime":"2020-01-01"}'
+.alter-merge table [table_name] policy partitioning @'{"EffectiveDateTime":"2020-01-01"}'
 ```
 
 ## <a name="delete-policy"></a>ポリシーの削除
@@ -88,4 +88,4 @@ ms.locfileid: "81663964"
 .delete table [table_name] policy partitioning
 ```
 
-この`.delete`コマンドは、指定された表のパーティション・ポリシーを削除します。
+コマンド`.delete`は、指定されたテーブルのパーティション分割ポリシーを削除します。

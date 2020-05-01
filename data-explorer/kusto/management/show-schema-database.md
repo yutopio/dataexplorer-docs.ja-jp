@@ -1,6 +1,6 @@
 ---
-title: .show データベース スキーマ - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの .show データベース スキーマについて説明します。
+title: 。データベーススキーマを表示します-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのデータベーススキーマの表示について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,71 +8,71 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 212aaf428e03190226a17509c97e9acd1394d2b1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 90a48ec3a830e754bf823712ca7016d162474a39
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519807"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616985"
 ---
-# <a name="show-databases-schema"></a>.show データベース スキーマ
+# <a name="show-databases-schema"></a>。データベーススキーマを表示します。
 
-選択したデータベースの構造のフラット リストを返し、そのすべてのテーブルと列を 1 つのテーブルまたは JSON オブジェクトに格納します。
-バージョンと共に使用した場合、データベースは、提供されたバージョンよりも新しいバージョンの場合にのみ返されます。
+1つのテーブルまたは JSON オブジェクト内のすべてのテーブルと列を含む、選択されたデータベースの構造の単純なリストを返します。
+バージョンで使用する場合は、指定されたバージョンよりも新しいバージョンである場合にのみ、データベースが返されます。
 
 > [!NOTE]
-> バージョンは"vMM.mm"形式でのみ提供する必要があります。 MMはメジャーバージョンを表し、mmはマイナーバージョンを表します。
+> バージョンは、"vMM.mm" 形式でのみ指定する必要があります。 MM はメジャーバージョンを表し、mm はマイナーバージョンを表します。
 
-`.show``database`*データベース名*`schema``details`[`if_later_than` ] [ *"バージョン"*] 
+`.show``database` *DatabaseName* DatabaseName `schema` [`details`] [`if_later_than` *"Version"*] 
 
-`.show``database`*データベース名*`schema``if_later_than` [ *"バージョン"*] `as``json`
+`.show``database` *DatabaseName* DatabaseName `schema` [`if_later_than` *"Version"*] `as``json`
  
-`.show``databases``,`データベース名1 .. *DatabaseName1* `(``)` `schema` [`details` | `as` `json`]
+`.show``databases` `,` *DatabaseName1* DatabaseName1 `(` ...`)` `schema` [`details` | `as` `json`]
  
-`.show``databases``,`*"Version"**DatabaseName1*データベース名1if_later_than「バージョン」.. `(``)` `schema` [`details` | `as` `json`]
+`.show``databases` *"Version"* `,` *DatabaseName1* DatabaseName1 if_later_than "Version"... `(``)` `schema` [`details` | `as` `json`]
 
 **例** 
  
-データベース 'TestDB' には 'イベント' と呼ばれる 1 つのテーブルがあります。
+データベース ' TestDB ' には、' Events ' という名前のテーブルが1つ含まれています。
 
-```
+```kusto
 .show database TestDB schema 
 ```
 
 **出力例**
 
-|DatabaseName|TableName|ColumnName|[列の型]|既定のテーブル|既定の列|プリティネーム|Version
+|DatabaseName|TableName|ColumnName|[列の型]|IsDefaultTable|IsDefaultColumn|"この名前"|Version
 |---|---|---|---|---|---|---|--- 
-|TestDB||||False|False||v.1.1       
-|TestDB|イベント|||True|False||       
-|TestDB|イベント| 名前|System.String|True|False||     
-|TestDB|イベント| StartTime|  System.DateTime|True|False||    
-|TestDB|イベント| EndTime|    System.DateTime|True|False||        
-|TestDB|イベント| City|   System.String|True| False||     
-|TestDB|イベント| SessionId|  System.Int32|True|  True|| 
+|TestDB||||False|False||v1.1       
+|TestDB|events|||True|False||       
+|TestDB|events| 名前|System.String|True|False||     
+|TestDB|events| StartTime|  System.DateTime|True|False||    
+|TestDB|events| EndTime|    System.DateTime|True|False||        
+|TestDB|events| City|   System.String|True| False||     
+|TestDB|events| SessionId|  System.Int32|True|  True|| 
 
 **例** 
  
-```
+```kusto
 .show database TestDB schema if_later_than "v1.0" 
 ```
 **出力例**
 
-|DatabaseName|TableName|ColumnName|[列の型]|既定のテーブル|既定の列|プリティネーム|Version
+|DatabaseName|TableName|ColumnName|[列の型]|IsDefaultTable|IsDefaultColumn|"この名前"|Version
 |---|---|---|---|---|---|---|--- 
-|TestDB||||False|False||v.1.1       
-|TestDB|イベント|||True|False||       
-|TestDB|イベント| 名前|System.String|True|False||     
-|TestDB|イベント| StartTime|  System.DateTime|True|False||    
-|TestDB|イベント| EndTime|    System.DateTime|True|False||        
-|TestDB|イベント| City|   System.String|True| False||     
-|TestDB|イベント| SessionId|  System.Int32|True|  True||  
+|TestDB||||False|False||v1.1       
+|TestDB|events|||True|False||       
+|TestDB|events| 名前|System.String|True|False||     
+|TestDB|events| StartTime|  System.DateTime|True|False||    
+|TestDB|events| EndTime|    System.DateTime|True|False||        
+|TestDB|events| City|   System.String|True| False||     
+|TestDB|events| SessionId|  System.Int32|True|  True||  
 
-現在のデータベース バージョンより低いバージョンが提供されたため、'TestDB' スキーマが返されました。 同等以上のバージョンを指定すると、空の結果が生成されます。
+現在のデータベースバージョンよりも古いバージョンが指定されたため、' TestDB ' スキーマが返されました。 等しいまたはそれ以降のバージョンを指定すると、空の結果が生成されます。
 
 **例** 
  
-```
+```kusto
 .show database TestDB schema as json
 ```
 

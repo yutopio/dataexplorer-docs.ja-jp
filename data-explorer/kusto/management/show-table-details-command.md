@@ -1,6 +1,6 @@
 ---
-title: .show テーブルの詳細 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのテーブルの詳細を示す .show について説明します。
+title: 。テーブルの詳細を表示します-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでテーブルの詳細を表示する方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,19 +8,19 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 6197e173df417acb1f5dc506337773f9534564bf
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 3182c059a3f56b94950009672759388bbff8058d
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519790"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616917"
 ---
-# <a name="show-table-details"></a>.テーブルの詳細を表示
-指定したテーブル、またはデータベース内のすべてのテーブルを含むセットを返し、各テーブルのプロパティの詳細な概要を示します。
+# <a name="show-table-details"></a>.show テーブルの詳細
+指定したテーブルまたはデータベース内のすべてのテーブルを含むセットを返します。各テーブルのプロパティの詳細な概要が表示されます。
 
-[データベース ビューアの権限が](../management/access-control/role-based-authorization.md)必要です。
+[データベースビューアー権限](../management/access-control/role-based-authorization.md)が必要です。
 
-```
+```kusto
 .show table T1 details
 .show tables (T1, ..., Tn) details
 .show tables details
@@ -31,32 +31,32 @@ ms.locfileid: "81519790"
 | 出力パラメーター           | Type     | 説明                                                                                     |
 |----------------------------|----------|-------------------------------------------------------------------------------------------------|
 | `TableName`                | String   | テーブルの名前。                                                                          |
-| `DatabaseName`             | String   | テーブルが属するデータベース。                                                         |
-| `Folder`                   | String   | テーブルのフォルダ。                                                                             |
-| `DocString`                | String   | テーブルを表す文字列。                                                                 |
-| `TotalExtents`             | Int64    | テーブル内のエクステントの総数。                                                       |
-| `TotalExtentSize`          | Double   | 表内のエクステントの合計サイズ (圧縮サイズ + 索引サイズ)。                          |
+| `DatabaseName`             | String   | テーブルが属しているデータベース。                                                         |
+| `Folder`                   | String   | テーブルのフォルダー。                                                                             |
+| `DocString`                | String   | テーブルを文書化する文字列。                                                                 |
+| `TotalExtents`             | Int64    | テーブル内のエクステントの合計数。                                                       |
+| `TotalExtentSize`          | Double   | テーブルのエクステント (圧縮サイズ + インデックスサイズ) の合計サイズ。                          |
 | `TotalOriginalSize`        | Double   | テーブル内の元のデータの合計サイズ。                                                   |
 | `TotalRowCount`            | Int64    | テーブル内の行の合計数。                                                          |
-| `HotExtents`               | Int64    | テーブル内のエクステントの総数 (ホット キャッシュに格納)。                              |
-| `HotExtentSize`            | Double   | テーブル内のエクステントの合計サイズ (圧縮サイズ + インデックス サイズ) で、ホット キャッシュに格納されます。 |
-| `HotOriginalSize`          | Double   | テーブル内の元のデータの合計サイズ(ホット キャッシュに格納)。                          |
-| `HotRowCount`              | Int64    | テーブル内の行の合計数です。                                 |
-| `AuthorizedPrincipals`     | String   | JSON としてシリアル化された、テーブルの承認済みプリンシパル。                                          |
-| `RetentionPolicy`          | String   | JSON としてシリアル化`*`されたテーブルの有効な保持ポリシー。                                  |
-| `CachingPolicy`            | String   | JSON としてシリアル化`*`された、テーブルの有効なキャッシュ ポリシー。                                    |
-| `ShardingPolicy`           | String   | JSON.6666666666666666666としてシリアル化されたテーブルの効果的な`*`シャーディングポリシー                     |
-| `MergePolicy`              | String   | JSON としてシリアル化`*`されたテーブルの有効なマージ ポリシー。                                      |
-| `StreamingIngestionPolicy` | String   | JSON としてシリアル化`*`された、テーブルの効果的なストリーミング インジェスト ポリシー。                        |
-| `MinExtentsCreationTime`   | DateTime | 表内のエクステントの最小作成時間 (エクステントがない場合は null)。         |
-| `MaxExtentsCreationTime`   | DateTime | 表内のエクステントの最大作成時間 (エクステントがない場合は null)。         |
-| `RowOrderPolicy`           | String   | JSON としてシリアル化されたテーブルの有効な行順序ポリシー。                                     |
+| `HotExtents`               | Int64    | ホットキャッシュに格納されているテーブル内のエクステントの合計数。                              |
+| `HotExtentSize`            | Double   | ホットキャッシュに格納されているテーブル内のエクステント (圧縮サイズ + インデックスサイズ) の合計サイズ。 |
+| `HotOriginalSize`          | Double   | テーブル内のデータの元の合計サイズ。ホットキャッシュに格納されます。                          |
+| `HotRowCount`              | Int64    | ホットキャッシュに格納されているテーブル内の行の合計数。                                 |
+| `AuthorizedPrincipals`     | String   | JSON としてシリアル化されたテーブルの承認されたプリンシパル。                                          |
+| `RetentionPolicy`          | String   | JSON として`*`シリアル化された、テーブルの有効な保持ポリシー。                                  |
+| `CachingPolicy`            | String   | JSON として`*`シリアル化された、テーブルの有効なキャッシュポリシー。                                    |
+| `ShardingPolicy`           | String   | テーブルの有効`*`なシャーディングポリシー。66666666666666としてシリアル化されます。                     |
+| `MergePolicy`              | String   | JSON として`*`シリアル化された、テーブルの有効なマージポリシー。                                      |
+| `StreamingIngestionPolicy` | String   | JSON として`*`シリアル化された、テーブルの有効なストリーミングインジェストポリシー。                        |
+| `MinExtentsCreationTime`   | DateTime | テーブル内のエクステントの最小作成時間 (エクステントがない場合は null)。         |
+| `MaxExtentsCreationTime`   | DateTime | テーブル内のエクステントの最大作成時間 (エクステントがない場合は null)。         |
+| `RowOrderPolicy`           | String   | JSON としてシリアル化された、テーブルの有効な行順序ポリシー。                                     |
 
-`*`*親エンティティ (データベース/クラスターなど) のポリシーを考慮に入れる。*
+`*`*親エンティティ (データベース/クラスターなど) のポリシーを*考慮する。
 
-**出力例**
+**出力の例**
 
-| TableName         | DatabaseName | Folder | ドクスト文字列 | 合計範囲 | 合計範囲サイズ | 合計OriginalSize | 集計行数 | ホットエクステント | サイズ | ホットオリジナルサイズ | ホットローカウント | 公認プリンシパル                                                                                                                                                                               | 保持ポリシー                                                                                                                                       | キャッシングポリシー                                                                        | シャーディングポリシー                                                                    | ポリシーのマージ                                                                                                                                             | ストリーミングインジェストポリシー | 最小範囲作成時間      | 最大範囲作成時間      |
+| TableName         | DatabaseName | Folder | DocString | TotalExtents | TotalExtentSize | TotalOriginalSize | TotalRowCount | ホットエクステント | HotExtentSize | ホット Originalsize | ホット行数 | AuthorizedPrincipals                                                                                                                                                                               | RetentionPolicy                                                                                                                                       | CachingPolicy                                                                        | シャード Ingpolicy                                                                    | MergePolicy                                                                                                                                             | StreamingIngestionPolicy | MinExtentsCreationTime      | MaxExtentsCreationTime      |
 |-------------------|--------------|--------|-----------|--------------|-----------------|-------------------|---------------|------------|---------------|-----------------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|-----------------------------|-----------------------------|
-| 操作        | 操作   |        |           | 1164         | 37687203        | 53451358          | 223325        | 29         | 838752        | 1388213         | 5117        | [{"タイプ": "AADユーザー"、"表示名": "私の名前 (alias@fabrikam.comアップン: )", "ObjectId": "a7a77777-4c21-4649-95c5-350bf486087b", "FQN": "aaduser=a7a777777-4c21-4649-95c5-350bf486087b", """ | {"ソフト削除期間": "365.00:00:00"、"コンテナーリサイクル期間": "1.00:00:00"、 """""""","データサイズ制限InBytes": 0, "OriginalDataSizeLimitInBytes": 0 }  | { "DataHotSpan": "4.00:00:00", "IndexHotSpan": "4.00:00:00", "列のオーバーライド": [] } | { "最大行数": 750000, "最大範囲サイズインMb": 1024, "MaxOriginalSizeInMb": 2048 } | { "RowCountUpperBoundForMerge": 0, "MaxExtentsToMerge": 100, "ループ期間" : "01:00:00", "MaxRangeInHours": 3, "再構築を許可": true, "AllowMerge": true } | null                     |
-| ServiceOperations | 操作   |        |           | 1109         | 76588803        | 91553069          | 110125        | 27         | 2635742       | 2929926         | 3162        | [{"タイプ": "AADユーザー"、"表示名": "私の名前 (alias@fabrikam.comアップン: )", "ObjectId": "a7a77777-4c21-4649-95c5-350bf486087b", "FQN": "aaduser=a7a777777-4c21-4649-95c5-350bf486087b", """ | { "ソフト削除期間": "365.00:00:00", "コンテナリサイクル期間": "1.00:00:00", ""","データサイズ制限数": 0, "OriginalDataSizeLimitInBytes": 0 } | { "DataHotSpan": "4.00:00:00", "IndexHotSpan": "4.00:00:00", "列のオーバーライド": [] } | { "最大行数": 750000, "最大範囲サイズインMb": 1024, "MaxOriginalSizeInMb": 2048 } | { "RowCountUpperBoundForMerge": 0, "MaxExtentsToMerge": 100, "ループ期間" : "01:00:00", "MaxRangeInHours": 3, "再構築を許可": true, "AllowMerge": true } | null                     | 2018-02-08 15:30:38.8489786 | 2018-02-14 07:47:28.7660267 |
+| 操作        | 操作   |        |           | 1164         | 37687203        | 53451358          | 223325        | 29         | 838752        | 1388213         | 5117        | [{"Type": "AAD User", "DisplayName": "a7a77777-4c21-4649-95c5-350bf486087b", " alias@fabrikam.com", "aaduser = a7a77777-4c21-4649-95c5-350bf486087b", "note": ""}] "という形式で、[{" Type ":" AAD User "," DisplayName ":" "," ":" "}] | {"SoftDeletePeriod": "365.00:00:00"、"ContainerRecyclingPeriod": "1.00:00:00"、"ExtentsDataSizeLimitInBytes": 0、"OriginalDataSizeLimitInBytes": 0}  | {"Dataホットスパン": "4.00:00:00"、"Indexホットスパン": "4.00:00:00"、"dataview": []} | {"MaxRowCount": 75万, "MaxExtentSizeInMb": 1024, "MaxOriginalSizeInMb": 2048} | {"RowCountUpperBoundForMerge": 0、"MaxExtentsToMerge": 100、"LoopPeriod": "01:00:00"、"MaxRangeInHours": 3、"AllowRebuild": true、"Allowrebuild": true} | null                     |
+| ServiceOperations | 操作   |        |           | 1109         | 76588803        | 91553069          | 110125        | 27         | 2635742       | 2929926         | 3162        | [{"Type": "AAD User", "DisplayName": "a7a77777-4c21-4649-95c5-350bf486087b", " alias@fabrikam.com", "aaduser = a7a77777-4c21-4649-95c5-350bf486087b", "note": ""}] "という形式で、[{" Type ":" AAD User "," DisplayName ":" "," ":" "}] | {"SoftDeletePeriod": "365.00:00:00"、"ContainerRecyclingPeriod": "1.00:00:00"、"ExtentsDataSizeLimitInBytes": 0、"OriginalDataSizeLimitInBytes": 0} | {"Dataホットスパン": "4.00:00:00"、"Indexホットスパン": "4.00:00:00"、"dataview": []} | {"MaxRowCount": 75万, "MaxExtentSizeInMb": 1024, "MaxOriginalSizeInMb": 2048} | {"RowCountUpperBoundForMerge": 0、"MaxExtentsToMerge": 100、"LoopPeriod": "01:00:00"、"MaxRangeInHours": 3、"AllowRebuild": true、"Allowrebuild": true} | null                     | 2018-02-08 15:30: 38.8489786 | 2018-02-14 07:47: 28.7660267 |

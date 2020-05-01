@@ -1,6 +1,6 @@
 ---
-title: TDS 経由の KQL - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの TDS に対する KQL について説明します。
+title: KQL over TDS-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの TDS 経由の KQL について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/09/2019
-ms.openlocfilehash: 364db99141c528f4a822692124ebb870d7315bca
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2c4443c0a9301dbc6bb3e65392163da0cc237f74
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523309"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617886"
 ---
 # <a name="kql-over-tds"></a>TDS 経由の KQL
 
-Kusto は、ネイティブ[KQL](../../query/index.md)クエリ言語で作成されたクエリを実行するために TDS エンドポイントを利用することができます。 この機能は、Kustoに向かってより滑らかなミジレーションを提供します。 たとえば、KQL クエリを使用して Kusto をクエリする SSIS ジョブを作成できます。
+Kusto を使用すると、TDS エンドポイントでネイティブ[Kql](../../query/index.md)クエリ言語で作成されたクエリを実行できます。 この機能により、Kusto への移行がスムーズになります。 たとえば、KQL クエリを使用して Kusto を照会する SSIS ジョブを作成できます。
 
-## <a name="executing-kusto-stored-functions"></a>Kusto ストアドファンクションの実行
+## <a name="executing-kusto-stored-functions"></a>Kusto に格納された関数の実行
 
-Kusto では、SQL ストアド プロシージャを呼び出す場合と同様に、[ストアドファンクション](../../query/schema-entities/stored-functions.md)を実行できます。
+Kusto は、SQL ストアドプロシージャの呼び出しなど、[ストアド関数](../../query/schema-entities/stored-functions.md)の実行を許可します。
 
-たとえば、ストアドファンクション MyFunction:
+たとえば、格納されている関数 MyFunction は次のようになります。
 
-|名前 |パラメーター|Body|Folder|ドクスト文字列
+|名前 |パラメーター|Body|Folder|DocString
 |---|---|---|---|---
-|マイファンクション |(マイリミット:ロング)| {ストームイベント&#124;私の制限を制限します}|マイフォルダ|パラメーター付きのデモ関数||
+|MyFunction |(myLimit: long)| {StormEvents &#124; 制限 myLimit}|MyFolder|パラメーターを使用したデモ関数||
 
-次のように呼び出すことができます。
+次のようにを呼び出すことができます。
 
 ```csharp
   using (var connection = new SqlConnection(csb.ToString()))
@@ -49,21 +49,21 @@ Kusto では、SQL ストアド プロシージャを呼び出す場合と同様
   }
 ```
 
-Kusto ストアドファンクションとエミュレートされた SQL`kusto`システムストアドプロシージャを区別するために、 という名前の明示的なスキーマを使用してストアド関数を呼び出す必要があります。
+> [!注:] は、という名前`kusto`の明示的なスキーマで格納されている関数を呼び出して、Kusto に格納されている関数と、SQL システムのエミュレートされたストアドプロシージャを区別します。
 
-KUsto ストアドファンクションは、SQL 表関数と同様に、T-SQL からも呼び出すことができます。
+また、SQL 表形式関数のように、T-sql から格納されている関数に Kusto 呼び出すこともできます。
 
 ```sql
 SELECT * FROM kusto.MyFunction(10)
 ```
 
-最適化された KQL クエリを作成し、それらを格納された関数にカプセル化して、T-SQL クエリ コードを最小限にすることをお勧めします。
+最適化された KQL クエリを作成し、格納されている関数にカプセル化することで、T-sql クエリコードを最小限にします。
 
 ## <a name="executing-kql-query"></a>KQL クエリの実行
 
-SQL Server`sp_executesql`と同様に、Kusto`sp_execute_kql`は、パラメータ化クエリを含む[KQL](../../query/index.md)クエリを実行するためのストアド プロシージャを導入しました。
+ストアドプロシージャ`sp_execute_kql`は、 [kql](../../query/index.md)クエリ (パラメーター化されたクエリを含む) を実行します。 この手順は、SQL server `sp_executesql`に似ています。
 
-の第 1`sp_execute_kql`パラメータは KQL クエリです。 追加のパラメータを導入することができ、クエリ[パラメータ](../../query/queryparametersstatement.md)のように動作します。
+の最初の`sp_execute_kql`パラメーターは kql クエリです。 追加のパラメーターを導入して、[クエリパラメーター](../../query/queryparametersstatement.md)のように動作させることができます。
 
 次に例を示します。
 
@@ -88,4 +88,4 @@ SQL Server`sp_executesql`と同様に、Kusto`sp_execute_kql`は、パラメー�
   }
 ```
 
-パラメータ型はプロトコルを介して設定されるため、TDSを介して呼び出す際にパラメータを宣言する必要はありません。
+> [!注:] パラメーターの型はプロトコルによって設定されるため、TDS を使用してを呼び出すときにパラメーターを宣言する必要はありません。

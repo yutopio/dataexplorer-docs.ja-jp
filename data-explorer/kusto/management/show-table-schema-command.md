@@ -1,6 +1,6 @@
 ---
-title: .show テーブル スキーマ - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの .show テーブル スキーマについて説明します。
+title: 。テーブルスキーマの表示-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでテーブルスキーマを表示する方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,38 +8,39 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 9223baa0242cc936b25a7d3293d102cb3966ed53
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e2a550f0ea755181d39524876833cff4281608b4
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519773"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618345"
 ---
 # <a name="show-table-schema"></a>.show テーブル スキーマ
 
-作成/変更コマンドおよび追加のテーブル メタデータで使用するスキーマを取得します。
+Create/alter コマンドと追加のテーブルメタデータで使用するスキーマを取得します。
 
-[データベース ユーザーのアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
+[データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
-```
+```kusto
 .show table TableName cslschema 
 ```
+
 | 出力パラメーター | Type   | 説明                                               |
 |------------------|--------|-----------------------------------------------------------|
 | TableName        | String | テーブルの名前。                                    |
-| スキーマ           | String | テーブルの作成/変更に使用するテーブル スキーマ |
-| DatabaseName     | String | テーブルが属するデータベース                   |
-| Folder           | String | テーブルのフォルダ                                            |
-| ドクスト文字列        | String | テーブルのドキュメント文字列                                         |
+| スキーマ           | String | テーブルの作成/変更にはテーブルスキーマを使用する必要があります |
+| DatabaseName     | String | テーブルが属しているデータベース                   |
+| Folder           | String | テーブルのフォルダー                                            |
+| DocString        | String | テーブルの docstring                                         |
 
 
-## <a name="show-table-schema-as-json"></a>.show テーブルスキーマを JSON として表示
+## <a name="show-table-schema-as-json"></a>。テーブルスキーマを JSON として表示します
 
-JSON 形式のスキーマと追加のテーブル メタデータを取得します。
+JSON 形式のスキーマと追加のテーブルメタデータを取得します。
 
-[データベース ユーザーのアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
+[データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
-```
+```kusto
 .show table TableName schema as JSON
 ```
 
@@ -47,6 +48,6 @@ JSON 形式のスキーマと追加のテーブル メタデータを取得し�
 |------------------|--------|-----------------------------------------|
 | TableName        | String | テーブルの名前                   |
 | スキーマ           | String | JSON 形式のテーブルスキーマ         |
-| DatabaseName     | String | テーブルが属するデータベース |
-| Folder           | String | テーブルのフォルダ                          |
-| ドクスト文字列        | String | テーブルのドキュメント文字列                       |
+| DatabaseName     | String | テーブルが属しているデータベース |
+| Folder           | String | テーブルのフォルダー                          |
+| DocString        | String | テーブルの docstring                       |

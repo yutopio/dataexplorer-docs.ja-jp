@@ -1,6 +1,6 @@
 ---
-title: インジェクションバッチ処理ポリシー - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのインジェスティション バッチ処理ポリシーについて説明します。
+title: Kusto IngestionBatching ポリシー管理-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの IngestionBatching ポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,43 +8,43 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 232767e390669a08312f10d3999d19264fb29f26
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: e9823fd0cd44dd2e5bd0731cc59086961ce86d8c
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744314"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617767"
 ---
-# <a name="ingestionbatching-policy"></a>インジェスティションバッチ処理ポリシー
+# <a name="ingestionbatching-policy"></a>IngestionBatching ポリシー
 
-[取り込みバッチ処理ポリシー](batchingpolicy.md)は、指定された設定に従ってデータの取り込み中にデータ集約を停止するタイミングを決定するポリシー オブジェクトです。
+[IngestionBatching ポリシー](batchingpolicy.md)は、指定された設定に従ってデータの取り込み中にデータの集計をいつ停止するかを決定するポリシーオブジェクトです。
 
-ポリシーを`null`に設定すると、既定値を使用する場合、バッチ処理の最大期間を 5 分、1000 項目、総バッチ サイズ 1G、または Kusto によって設定された既定のクラスター値に設定できます。
+ポリシーをに`null`設定することができます。この場合、既定値が使用され、最大バッチ処理時間が5分に、1000項目、合計バッチサイズが1g であるか、Kusto に設定された既定のクラスター値に設定されます。
 
-特定のエンティティに対してポリシーが設定されていない場合は、より高い階層レベルのポリシーが検索されます。 
+ポリシーが特定のエンティティに対して設定されていない場合は、上位階層レベルのポリシーが検索されます。すべて null に設定されている場合は、既定値が使用されます。 
 
-ポリシーの下限は 10 秒であり、15 分より大きい値を使用することはお勧めできません。
+このポリシーの制限は10秒であり、15分を超える値を使用することはお勧めしません。
 
-## <a name="displaying-the-ingestionbatching-policy"></a>インジェスティションバッチ処理ポリシーの表示
+## <a name="displaying-the-ingestionbatching-policy"></a>IngestionBatching ポリシーを表示しています
 
-ポリシーはデータベースまたはテーブルに設定でき、次のいずれかのコマンドを使用して表示されます。
+このポリシーは、データベースまたはテーブルに対して設定でき、次のいずれかのコマンドを使用して表示されます。
 
-* `.show``database`*データベース名*`policy``ingestionbatching`
-* `.show``table`*データベース名*`.`*テーブル名*`policy``ingestionbatching`
+* `.show``database` *DatabaseName* DatabaseName `policy``ingestionbatching`
+* `.show``table` *DatabaseName*DatabaseName`.`*TableName* TableName `policy``ingestionbatching`
 
-## <a name="altering-the-ingestionbatching-policy"></a>インジェスレーションバッチ処理ポリシーの変更
+## <a name="altering-the-ingestionbatching-policy"></a>IngestionBatching ポリシーを変更する
 
 ```kusto
 .alter <entity_type> <database_or_table_name> policy ingestionbatching @'<ingestionbatching policy json>'
 ```
 
-複数のテーブル (同じデータベース コンテキスト内) のインジェスティニングバッチ処理ポリシーの変更:
+複数のテーブルの IngestionBatching ポリシーを変更する (同じデータベースコンテキスト内):
 
 ```kusto
 .alter tables (table_name [, ...]) policy ingestionbatching @'<ingestionbatching policy json>'
 ```
 
-インジェスティションバッチ処理ポリシー:
+IngestionBatching ポリシー:
 
 ```kusto
 {
@@ -55,12 +55,12 @@ ms.locfileid: "81744314"
 ```
 
 * `entity_type`: テーブル、データベース
-* `database_or_table`: entity がテーブルまたはデータベースの場合、その名前は次のようにコマンドで指定する必要があります。 
+* `database_or_table`: エンティティがテーブルまたはデータベースの場合は、次のようにコマンドでその名前を指定する必要があります。 
   - `database_name` または 
   - `database_name.table_name` または 
-  - `table_name`(特定のデータベースのコンテキストで実行する場合)
+  - `table_name`(特定のデータベースのコンテキストで実行されている場合)
 
-## <a name="deleting-the-ingestionbatching-policy"></a>インジェスティションバッチ処理ポリシーの削除
+## <a name="deleting-the-ingestionbatching-policy"></a>IngestionBatching ポリシーを削除しています
 
 ```kusto
 .delete <entity_type> <database_or_table_name> policy ingestionbatching

@@ -1,6 +1,6 @@
 ---
-title: アイテム保持ポリシー - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのアイテム保持ポリシーについて説明します。
+title: Kusto 保持ポリシーは、データの削除方法を制御します-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの保持ポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,65 +8,65 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 81e08b6e007a6e3c669e7138e1d36ae1e701d442
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5254f2daee767f51111f2ac3d1be07b7f2bb09f4
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520317"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617393"
 ---
-# <a name="retention-policy"></a>保持ポリシー
+# <a name="retention-policy"></a>Retention ポリシー
 
-保持ポリシーは、データをテーブルから自動的に削除するメカニズムを制御します。
-このような削除は、通常、関連が年齢ベースのテーブルに継続的に流れ込むデータに役立ちます。 たとえば、保持ポリシーは、2 週間後にインターセリングが解除される可能性がある診断イベントを保持するテーブルに使用できます。
+保持ポリシーは、データがテーブルから自動的に削除されるメカニズムを制御します。
+このような削除は、一般に、年齢ベースの関連性があるテーブルに連続して流れるデータに役立ちます。 たとえば、2週間後には無意味になる可能性のある診断イベントを保持するテーブルに対して保持ポリシーを使用できます。
 
 保持ポリシーは、特定のテーブルまたはデータベース全体に対して構成できます (この場合、ポリシーを上書きしないデータベース内のすべてのテーブルに適用されます)。
 
-データを継続的に取り込むクラスターでは、保持ポリシーを設定することが重要であり、コストが制限されます。
+保持ポリシーの設定は、データを継続的に取り込みするクラスターにとって重要です。これにより、コストを抑えることができます。
 
-保持ポリシーの 「外部」のデータは削除の対象となります。 Kusto は、削除が発生した場合には保証しません (保持ポリシーがトリガーされた場合でも、データが 「残る」可能性があります)。
+"外部" のデータは、削除の対象となります。 Kusto では、削除が発生したかどうかは保証されません (保持ポリシーがトリガーされた場合でも、データが "継続" される可能性があります)。
 
-保持ポリシーは、最も一般的に、取り込みからのデータの保存期間を制限するように設定されています (以下の[SoftDeletePeriod](#the-policy-object)を参照)。
+保持ポリシーは、インジェスト以降にデータの有効期間を制限するために最も一般的に設定されます (以下の「 [Softdeleteperiod](#the-policy-object)」を参照してください)。
 
 > [!NOTE]
-> * 削除時間が不正確です。 システムは、制限を超える前にデータが削除されないことを保証しますが、その時点に続いて削除は即時ではありません。
-> * ソフト・削除期間 0 は、テーブル・レベルの保持ポリシーの一部として設定できます (ただし、データベース・レベルの保持ポリシーの一部としては設定できません)。
->   * この処理を行うと、取り込まれたデータはソース テーブルにコミットされず、データを保持する必要がなくなります。
->   * このような構成は、主にデータがテーブルに取り込まれるときに役立ちます。
->   トランザクション[更新ポリシー](updatepolicy.md)は、変換して出力を別のテーブルにリダイレクトするために使用されます。
+> * 削除時間が不正確です。 制限を超える前にデータが削除されないことがシステムによって保証されますが、その時点以降の削除はすぐには行われません。
+> * 論理的な削除期間0は、テーブルレベルの保持ポリシーの一部として設定できます (ただし、データベースレベルの保持ポリシーの一部としては設定できません)。
+>   * この処理が完了すると、取り込まれたデータがソーステーブルにコミットされず、データを保持する必要がなくなります。
+>   * このような構成は、主にデータをテーブルに取り込まれたときに便利です。
+>   トランザクション[更新ポリシー](updatepolicy.md)を使用して変換を行い、別のテーブルに出力をリダイレクトします。
 
-## <a name="the-policy-object"></a>ポリシー オブジェクト
+## <a name="the-policy-object"></a>ポリシーオブジェクト
 
-アイテム保持ポリシーには、次のプロパティが含まれます。
+保持ポリシーには、次のプロパティが含まれます。
 
-* **ソフト削除期間**:
-    * データが取得された時点以降に測定された、クエリでデータが使用できることを保証する期間。
+* **ソフト Deleteperiod**:
+    * データがクエリに使用可能な状態であることが保証される期間。これは、取り込まれたした時間から測定されます。
     * 既定値は `100 years` です。
-    * 表またはデータベースのソフト・削除期間を変更する場合、新しい値は既存のデータと新規データの両方に適用されます。
-* **回復可能性**:
+    * テーブルまたはデータベースの論理的な削除期間を変更すると、新しい値が既存のデータと新しいデータの両方に適用されます。
+* **回復性**:
     * データが削除された後のデータの回復性 (有効/無効)
     * 既定値は `enabled` です
-    * に`enabled`設定すると、削除後 14 日間データが回復可能になります。
+    * に`enabled`設定した場合、データは削除してから14日間回復できます。
 
 ## <a name="control-commands"></a>管理コマンド
 
-* show[ポリシーの保持を](../management/retention-policy.md)使用して、データベースまたはテーブルの現在の保持ポリシーを表示します。
-* データベースまたはテーブルの現在の保持ポリシーを変更するには[、.alter ポリシーの保持](../management/retention-policy.md)を使用します。
+* を使用[します。 [ポリシーの保持] を表示](../management/retention-policy.md)して、データベースまたはテーブルの現在の保持ポリシーを表示します。
+* [Alter policy retention](../management/retention-policy.md)を使用して、データベースまたはテーブルの現在の保持ポリシーを変更します。
 
 ## <a name="defaults"></a>デフォルト
 
 既定では、データベースまたはテーブルを作成するときに、保持ポリシーが定義されていません。
-一般的なケースでは、データベースが作成され、その後、すぐに既知の要件に従って、その作成者によって設定された保持ポリシーがあります。
-ポリシーが設定されていないデータベースまたはテーブルの保持ポリシーに対して[show コマンド](../management/retention-policy.md)を実行すると、`Policy`が表示`null`されます。
+一般的なケースでは、データベースが作成され、その後すぐに、既知の要件に従って作成者がその保持ポリシーを設定します。
+ポリシーが設定されていないデータベースまたはテーブルの保持ポリシーに対して[show コマンド](../management/retention-policy.md)を`Policy`実行する`null`と、がとして表示されます。
 
-既定の保持ポリシー (上記の既定値) は、次のコマンドを使用して適用できます。
+既定の保持ポリシー (前述の既定値を使用) は、次のコマンドを使用して適用できます。
 
 ```kusto
 .alter database DatabaseName policy retention "{}"
 .alter table TableName policy retention "{}"
 ```
 
-これらの結果は、次のポリシー オブジェクトがデータベースまたはテーブルに適用されます。
+この結果、次のポリシーオブジェクトがデータベースまたはテーブルに適用されます。
 
 ```kusto
 {
@@ -83,11 +83,11 @@ ms.locfileid: "81520317"
 
 ## <a name="examples"></a>例
 
-クラスターに という名前`MyDatabase`のデータベースが含まれ`MyTable1``MyTable2`、テーブルが含まれ、`MySpecialTable`
+クラスターにという名前`MyDatabase`のデータベースがあり、 `MyTable1`テーブル`MyTable2`と`MySpecialTable`
 
-**1. データベース内のすべてのテーブルを、7 日間のソフト削除期間と無効な回復可能性を設定**します。
+**1. データベース内のすべてのテーブルに対して、論理削除期間を7日に設定し、復旧を無効にするように設定します。**
 
-* *オプション 1 (推奨)*: データベース レベルの保持ポリシーを 7 日間の論理的な削除期間で設定し、回復可能性を無効にし、テーブル レベルのポリシーが設定されていないか確認します。
+* *オプション 1 (推奨)*: 論理的な削除期間を7日、回復性を無効にしてデータベースレベルの保持ポリシーを設定し、テーブルレベルのポリシーが設定されていないことを確認します。
 
 ```kusto
 .delete table MyTable1 policy retention        // optional, only if the table previously had its policy set
@@ -96,7 +96,7 @@ ms.locfileid: "81520317"
 .alter-merge database MyDatabase policy retention softdelete = 7d recoverability = disabled
 ```
 
-* *オプション 2*: テーブルごとに、7 日間のソフト削除期間と回復可能性を無効にして、テーブルレベルの保持ポリシーを設定します。
+* *オプション 2*: 各テーブルについて、論理的な削除期間が7日、回復性が無効になっているテーブルレベルの保持ポリシーを設定します。
 
 ```kusto
 .alter-merge table MyTable1 policy retention softdelete = 7d recoverability = disabled
@@ -104,9 +104,9 @@ ms.locfileid: "81520317"
 .alter-merge table MySpecialTable policy retention softdelete = 7d recoverability = disabled
 ```
 
-**2. テーブル`MyTable1`を`MyTable2`設定し、7日間のソフト削除期間と回復可能を有効にし、14日のソフト削除期間と回復可能性を無効にするように設定`MySpecialTable`** する:
+**2. `MyTable1`テーブルの設定`MyTable2`で、論理的な削除期間が7日、回復性が有効になっ`MySpecialTable`ていること、およびの論理削除期間が14日、回復不可能**であるように設定されている。
 
-* *オプション 1 (推奨)*: データベース レベルの保持ポリシーを 7 日間の論理的な削除期間と回復可能性を有効にして設定し、テーブル レベルの保持ポリシーを 14 日間のソフト`MySpecialTable`削除期間で設定し、回復可能性を無効にします。
+* *オプション 1 (推奨)*: データベースレベルの保持ポリシーを設定します。このポリシーには、論理的な削除期間が7日、回復性が有効になっていることを示します。また、の場合は`MySpecialTable`、の論理的な削除期間が14日、回復性が無効になっているテーブルレベルの保持ポリシーを設定します。
 
 ```kusto
 .delete table MyTable1 policy retention   // optional, only if the table previously had its policy set
@@ -115,7 +115,7 @@ ms.locfileid: "81520317"
 .alter-merge table MySpecialTable policy retention softdelete = 14d recoverability = enabled
 ```
 
-* *オプション 2*: テーブルごとに、必要なソフト削除期間と回復可能性を持つテーブルレベルの保持ポリシーを設定します。
+* *オプション 2*: テーブルごとに、必要な論理削除期間と回復性を使用してテーブルレベルの保持ポリシーを設定します。
 
 ```kusto
 .alter-merge table MyTable1 policy retention softdelete = 7d recoverability = disabled
@@ -123,9 +123,9 @@ ms.locfileid: "81520317"
 .alter-merge table MySpecialTable policy retention softdelete = 14d recoverability = enabled
 ```
 
-**3. テーブル`MyTable1`を`MyTable2`設定して、7 日間のソフト削除期間を持ち`MySpecialTable`、そのデータを無期限に保持します**。
+**3. テーブル`MyTable1`を設定`MyTable2`し、論理削除期間を7日間にして、データ`MySpecialTable`を無期限に保持します**。
 
-* *オプション 1*: データベース レベルの保持ポリシーを 7 日間の論理的な削除期間に設定し、テーブル レベルの保持ポリシーを 100 年 (既定の保持ポリシー)`MySpecialTable`のソフト削除期間で設定します。
+* *オプション 1*: データベースレベルの保持ポリシーに7日間の論理的な削除の期間を設定し、テーブルレベルの保持ポリシーをに設定します。これには、の`MySpecialTable`ソフト削除期間として100年 (既定の保持ポリシー) を設定します。
 
 ```kusto
 .delete table MyTable1 policy retention   // optional, only if the table previously had its policy set
@@ -134,7 +134,7 @@ ms.locfileid: "81520317"
 .alter table MySpecialTable policy retention "{}" // this sets the default retention policy
 ```
 
-* *オプション 2*: `MyTable1``MyTable2`テーブルの場合は、テーブルレベルの保持ポリシーを、必要なソフト削除期間 7 日間に設定し、データベースレベルおよびテーブルレベルのポリシー`MySpecialTable`が設定されていないかどうかを確認します。
+* *オプション 2*: テーブル`MyTable1`の場合`MyTable2`は、必要な論理削除期間を7日間にしてテーブルレベルの保持ポリシーを設定し、の`MySpecialTable`データベースレベルとテーブルレベルのポリシーが設定されていないことを確認します。
 
 ```kusto
 .delete database MyDatabase policy retention   // optional, only if the database previously had its policy set
@@ -143,7 +143,7 @@ ms.locfileid: "81520317"
 .alter-merge table MyTable2 policy retention softdelete = 7d
 ```
 
-* *オプション 3*: `MyTable1``MyTable2`テーブル の 場合は、テーブルレベルの保持ポリシーを、必要なソフト削除期間を 7 日間に設定します。 table`MySpecialTable`の場合、ソフト削除期間が 100 年 (デフォルトの保持ポリシー) のテーブルレベルの保持ポリシーを設定します。
+* *オプション 3*: テーブル`MyTable1`の場合`MyTable2`は、目的の論理削除期間7日を使用してテーブルレベルの保持ポリシーを設定します。 テーブル`MySpecialTable`については、論理的な削除期間が100年 (既定の保持ポリシー) になっているテーブルレベルの保持ポリシーを設定します。
 
 ```kusto
 .alter-merge table MyTable1 policy retention softdelete = 7d

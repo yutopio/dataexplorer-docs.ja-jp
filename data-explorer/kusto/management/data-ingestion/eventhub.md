@@ -1,6 +1,6 @@
 ---
-title: イベント ハブからの取り込み - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのイベント ハブからの取り込みについて説明します。
+title: Event Hub からの取り込み-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの Event Hub からの取り込みについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,49 +8,49 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: ddb218e707152f529e5b547ffe06c4d3c7614811
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fac9fd9f218948928e4f91d0d1aa056affcebd11
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521507"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617665"
 ---
-# <a name="ingest-from-event-hub"></a>イベント ハブからの取り込み
+# <a name="ingest-from-event-hub"></a>Event Hub からの取り込み
 
-[Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/event-hubs-about)は、ビッグ データ ストリーミング プラットフォームとイベント インジェスト サービスです。 Azure データ エクスプローラーでは、お客様が管理する Event Hubs から継続的に取り込みができます。 
+[Azure Event Hubs](https://docs.microsoft.com/azure/event-hubs/event-hubs-about)は、ビッグデータストリーミングプラットフォームとイベントインジェストサービスです。 Azure データエクスプローラーは、お客様が管理する Event Hubs から継続的にインジェストを提供します。 
 
 ## <a name="data-format"></a>データ形式
 
-* データは[EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet)オブジェクトの形式でイベント ハブから読み取られます。
-* イベント ペイロードには[、Azure Data Explorer でサポートされるいずれかの形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)で、取り込む 1 つ以上のレコードを含めることができます。
-* 圧縮アルゴリズムを使用してデータ`GZip`を圧縮できます。 `Compression`[インジェスト プロパティ](#ingestion-properties)として指定する必要があります。
+* データは、 [EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet)オブジェクトの形式でイベントハブから読み込まれます。
+* イベントペイロードには、 [Azure データエクスプローラーでサポートされている](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)いずれかの形式で、取り込まれたされる1つ以上のレコードを含めることができます。
+* 圧縮アルゴリズムを使用し`GZip`てデータを圧縮できます。 `Compression` [インジェストプロパティ](#ingestion-properties)として指定する必要があります。
 
 > [!Note]
 > * 圧縮形式 (Avro、Parquet、ORC) では、データ圧縮はサポートされていません。
-> * カスタム エンコードおよび埋め込み[システム プロパティ](#event-system-properties-mapping)は、圧縮データではサポートされていません。
+> * カスタムエンコードおよび埋め込み[システムプロパティ](#event-system-properties-mapping)は、圧縮データではサポートされていません。
 
 ## <a name="ingestion-properties"></a>インジェストのプロパティ
 
-取り込みプロパティは、取り込みプロセスを指示します。 データのルーティング場所と処理方法。 [EventData.Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties)を使用して、イベント インジェクションの取り込み[プロパティ](https://docs.microsoft.com/azure/data-explorer/ingestion-properties)を指定できます。 以下のプロパティを設定できます。
+インジェストプロパティはインジェストプロセスを指示します。 データをルーティングする場所とその処理方法。 [EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties)を使用して、イベントインジェストの[インジェストプロパティ](https://docs.microsoft.com/azure/data-explorer/ingestion-properties)を指定できます。 以下のプロパティを設定できます。
 
-|プロパティ |説明|
+|プロパティ |[説明]|
 |---|---|
-| テーブル | 既存のターゲット表の名前 (大文字と小文字を区別する)。 ブレードの`Table`セットを上書`Data Connection`きします。 |
-| Format | データ形式。 ブレードの`Data format`セットを上書`Data Connection`きします。 |
-| インジェスティションマッピングリファレンス | 使用する既存の[取り込みマッピング](../create-ingestion-mapping-command.md)の名前。 ブレードの`Column mapping`セットを上書`Data Connection`きします。|
-| 圧縮 | データ圧縮、(`None`デフォルト)または`GZip`圧縮。|
-| エンコード |  データエンコーディングのデフォルトは UTF8 です。 [NET でサポートされる任意のエンコーディングを](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks)使用できます。 |
+| テーブル | 既存の対象テーブルの名前 (大文字と小文字が区別されます)。 `Data Connection`ブレードのセットを`Table`オーバーライドします。 |
+| Format | データ形式。 `Data Connection`ブレードのセットを`Data format`オーバーライドします。 |
+| IngestionMappingReference | 使用する既存の[インジェストマッピング](../create-ingestion-mapping-command.md)の名前。 `Data Connection`ブレードのセットを`Column mapping`オーバーライドします。|
+| 圧縮 | データ圧縮、 `None` (既定) また`GZip`は圧縮。|
+| エンコード |  データエンコード、既定値は UTF8 です。 [.Net でサポートされているエンコーディング](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks)のいずれかを指定できます。 |
 
 <!--| Database | Name of the existing target database.|-->
 <!--| Tags | String representing [tags](https://docs.microsoft.com/azure/kusto/management/extents-overview#extent-tagging) that will be attached to resulting extent. |-->
 
-## <a name="events-routing"></a>イベントルーティング
+## <a name="events-routing"></a>イベントのルーティング
 
-Azure Data Explorer クラスターへのイベント ハブ接続を設定する際には、ターゲット テーブルのプロパティ (テーブル名、データ形式、圧縮、マッピング) を指定します。 これは、データの既定のルーティングです`static routing`。
-イベントプロパティを使用して、各イベントのターゲットテーブルプロパティを指定することもできます。 接続は、このイベントの静的プロパティをオーバーライドするイベントのプロパティをオーバーライドする[イベントのプロパティ](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties)で指定されたとおりにデータを動的にルーティングします。
+Azure データエクスプローラークラスターへのイベントハブ接続を設定する場合は、ターゲットテーブルのプロパティ (テーブル名、データ形式、圧縮およびマッピング) を指定します。 これは、データの既定のルーティング (と`static routing`も呼ばれます) です。
+イベントプロパティを使用して、各イベントのターゲットテーブルのプロパティを指定することもできます。 接続は、 [EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties)で指定されているとおりにデータを動的にルーティングし、このイベントの静的プロパティをオーバーライドします。
 
-次のサンプルでは、イベント ハブの詳細を設定し、気象メトリック`WeatherMetrics`データをテーブル に送信します。
-データは形式`json`です。 `mapping1`は、テーブル`WeatherMetrics`で事前定義されています。
+次の例では、event hub の詳細を設定し、weather メトリック`WeatherMetrics`データをテーブルに送信します。
+データの`json`形式はです。 `mapping1`はテーブル`WeatherMetrics`で事前定義されています。
 
 ```csharp
 var eventHubNamespaceConnectionString=<connection_string>;
@@ -74,28 +74,28 @@ eventHubClient.Close();
 
 ## <a name="event-system-properties-mapping"></a>イベント システム プロパティのマッピング
 
-システム プロパティは、イベントがキューに入れられている時間に Event Hubs サービスによって設定されたプロパティを格納するために使用されるコレクションです。 Azure データ エクスプローラー のイベント ハブ接続は、選択したプロパティをテーブルのデータ ランディングに埋め込みます。
+システムプロパティは、イベントがエンキューされるときに、Event Hubs サービスによって設定されるプロパティを格納するために使用されるコレクションです。 Azure データエクスプローラーイベントハブ接続により、選択したプロパティがテーブルのデータランディングに埋め込まれます。
 
 > [!Note]
-> * システム プロパティは、単一レコード イベントでサポートされています。
-> * 圧縮データではシステム プロパティはサポートされていません。
-> * マッピング`csv`の場合、プロパティは次の表に示す順序でレコードの先頭に追加されます。 マッピング`json`の場合、プロパティは次の表のプロパティ名に従って追加されます。
+> * システムプロパティは、単一レコードのイベントに対してサポートされています。
+> * システムプロパティは、圧縮データではサポートされていません。
+> * マッピング`csv`の場合、次の表に示す順序で、レコードの先頭にプロパティが追加されます。 マッピング`json`の場合、プロパティは次の表のプロパティ名に従って追加されます。
 
-### <a name="event-hub-expose-the-following-system-properties"></a>イベント ハブは、次のシステム プロパティを公開します。
+### <a name="event-hub-expose-the-following-system-properties"></a>イベントハブでは、次のシステムプロパティが公開されます。
 
 |プロパティ |データ型 |説明|
 |---|---|---|
-| x-opt-enqueued-time |DATETIME | イベントがキューに入れられていた UTC 時間。 |
-| x-opt-sequence-number |long | イベント ハブのパーティション ストリーム内のイベントの論理シーケンス番号。
-| x-opt-offset |string | イベント ハブパーティション ストリームに対するイベントのオフセット。 オフセット識別子は、イベント ハブ ストリームのパーティション内で一意です。 |
-| x-オプトパブリッシャー |string | メッセージがパブリッシャー エンドポイントに送信された場合のパブリッシャー名。 |
-| x-opt-partition-key |string |イベントを格納した対応するパーティションのパーティション キー。 |
+| x-opt-enqueued-time |DATETIME | イベントがエンキューされた UTC 時刻。 |
+| x-opt-sequence-number |long | イベントハブのパーティションストリーム内のイベントの論理シーケンス番号。
+| x-opt-offset |string | イベントハブパーティションストリームを基準とするイベントのオフセット。 オフセット識別子は、イベントハブストリームのパーティション内で一意です。 |
+| x-opt-パブリッシャー |string | メッセージがパブリッシャーエンドポイントに送信された場合のパブリッシャー名。 |
+| x-opt-partition-key |string |イベントが格納されている、対応するパーティションのパーティションキー。 |
 
-テーブルの **[データ ソース**] セクションで **[イベント システムのプロパティ**] を選択した場合は、テーブル スキーマとマッピングにプロパティを含める必要があります。
+テーブルの [**データソース**] セクションで [**イベントシステムのプロパティ**] を選択した場合は、テーブルのスキーマとマッピングにプロパティを含める必要があります。
 
-**テーブル スキーマの例**
+**テーブルスキーマの例**
 
-データに 3 つの列`Timespan` `Metric`( `Value`、 、および )`x-opt-enqueued-time`が`x-opt-offset`含まれている場合、次のコマンドを使用してテーブル スキーマを作成または変更します。
+データに3つの列 (`Timespan`、 `Metric`、および`Value`) が含まれており、 `x-opt-enqueued-time`含ま`x-opt-offset`れるプロパティがである場合は、次のコマンドを使用してテーブルスキーマを作成または変更します。
 
 ```kusto
     .create-merge table TestTable (TimeStamp: datetime, Metric: string, Value: int, EventHubEnqueuedTime:datetime, EventHubOffset:long)
@@ -103,7 +103,7 @@ eventHubClient.Close();
 
 **CSV マッピングの例**
 
-レコードの先頭にデータを追加するには、次のコマンドを実行します。 注: プロパティは、上の表に示した順序でレコードの先頭に追加されます。 これは、マッピングされるシステムプロパティに基づいて列序数が変更される CSV マッピングにとって重要です。
+次のコマンドを実行して、レコードの先頭にデータを追加します。 注序数値: レコードの先頭に、上記の表に示されている順序でプロパティが追加されます。 これは、マップされているシステムプロパティに基づいて列序数が変化する CSV マッピングにとって重要です。
 
 ```kusto
     .create table TestTable ingestion csv mapping "CsvMapping1"
@@ -118,7 +118,7 @@ eventHubClient.Close();
  
 **JSON マッピングの例**
 
-データは、[データ**接続**] ブレードの **[イベント システムのプロパティ]** ボックスに表示されるシステム プロパティ名を使用して追加されます。 次の各コマンドを実行します。
+データは、[**データ接続**] ブレードの [**イベントシステムプロパティ**] の一覧に表示されるように、システムプロパティ名を使用して追加されます。 これらのコマンドを実行します。
 
 ```kusto
     .create table TestTable ingestion json mapping "JsonMapping1"
@@ -134,34 +134,34 @@ eventHubClient.Close();
 ## <a name="create-event-hub-connection"></a>イベント ハブ接続を作成する
 
 > [!Note]
-> 最適なパフォーマンスを得るため、Azure データ エクスプローラー クラスターと同じリージョン内にすべてのリソースを作成します。
+> 最適なパフォーマンスを得るには、Azure データエクスプローラークラスターと同じリージョンにすべてのリソースを作成します。
 
 ### <a name="create-an-event-hub"></a>Event Hub を作成する
 
-まだ存在しない場合は、[イベント ハブ を作成](https://docs.microsoft.com/azure/event-hubs/event-hubs-create)します。 テンプレートは、[イベント ハブの作成](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-hub#create-an-event-hub)に関するガイドを参照してください。
+まだない場合は、[イベントハブを作成](https://docs.microsoft.com/azure/event-hubs/event-hubs-create)します。 テンプレートは、「方法:[イベントハブを作成](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-hub#create-an-event-hub)する」ガイドに記載されています。
 
 > [!Note]
 > * パーティションの数は変更できないため、設定については長期的な規模で検討する必要があります。
-> * 消費者グループは、消費者ごとにユニクセである*必要があります*。 Azure データ エクスプローラー接続専用のコンシューマー グループを作成します。
+> * コンシューマーグループはコンシューマーごとに uniqe で*ある必要があり*ます。 Azure データエクスプローラー接続専用のコンシューマーグループを作成します。
 
-### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Azure データ エクスプローラーへのデータ取り込み接続
+### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Azure データエクスプローラーへのデータインジェスト接続
 
-* Azure ポータル経由:[イベント ハブ に接続](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-hub#connect-to-the-event-hub)します。
-* Azure データ エクスプローラー管理の .NET SDK の使用:[イベント ハブデータ接続の追加](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-csharp#add-an-event-hub-data-connection)
-* Azure データ エクスプローラー管理の使用 Python SDK:[イベント ハブ データ接続の追加](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-python#add-an-event-hub-data-connection)
-* ARM テンプレートを使用する場合:[イベント ハブ データ接続を追加するための Azure リソース マネージャー テンプレート](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-resource-manager#azure-resource-manager-template-for-adding-an-event-hub-data-connection)
-
-> [!Note]
-> **[マイ データ] でルーティング情報**が選択されている場合は、イベント プロパティの一部として必要な[ルーティング](#events-routing)情報を指定する*必要があります*。
+* Azure ポータルを使用し[て、イベントハブに接続](https://docs.microsoft.com/azure/data-explorer/ingest-data-event-hub#connect-to-the-event-hub)します。
+* Azure データエクスプローラー management .NET SDK の使用:[イベントハブデータ接続を追加する](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-csharp#add-an-event-hub-data-connection)
+* Azure データエクスプローラー management Python SDK の使用:[イベントハブデータ接続を追加](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-python#add-an-event-hub-data-connection)する
+* ARM テンプレートを使用した場合:[イベントハブデータ接続を追加するための Azure Resource Manager テンプレート](https://docs.microsoft.com/azure/data-explorer/data-connection-event-hub-resource-manager#azure-resource-manager-template-for-adding-an-event-hub-data-connection)
 
 > [!Note]
-> 接続が設定されると、作成後にキューに入れられたイベントから開始するデータを取り込みます。
+> **[データにルーティング情報が含ま**れる] が選択されている場合は、イベントのプロパティの一部として必要な[ルーティング](#events-routing)情報を指定*する必要があり*ます。
+
+> [!Note]
+> 接続が設定されると、作成時以降にエンキューされたイベントからデータを取り込みます。
 
 #### <a name="generating-data"></a>データの生成
 
-* データを生成してイベント ハブに送信する[サンプル アプリ](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)を参照してください。
+* データを生成してイベントハブに送信する[サンプルアプリ](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)を参照してください。
 
-イベントには、サイズ制限に達した 1 つ以上のレコードを含めることができます。 次のサンプルでは、2 つのイベントを送信します。
+イベントには、サイズ制限まで1つ以上のレコードを含めることができます。 次の例では、2つのイベントを送信します。それぞれに5個のレコードが追加されています。
 
 ```csharp
 var events = new List<EventData>();

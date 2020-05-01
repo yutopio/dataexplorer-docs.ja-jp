@@ -1,6 +1,6 @@
 ---
-title: .show インジェスション マッピング - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのインジェスション マッピングについて説明します。
+title: 。インジェストマッピングを表示します-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのインジェストマッピングの表示について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 91990fe40664ae89d69357812b0def2c7288eb7d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 711861a07896b7bdc4cf57bebbf1cdd0e01d064a
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519824"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617172"
 ---
-# <a name="show-ingestion-mappings"></a>.show インジェスション マッピング
+# <a name="show-ingestion-mappings"></a>。インジェストマッピングを表示します。
 
-インジェクション マッピング (すべてまたは名前で指定されたもの) を表示します。
+インジェストマッピング (すべてまたは名前で指定されたもの) を表示します。
 
-* `.show``table`*テーブル名*`ingestion`*マッピングキンド*  `mappings`
+* `.show``table` *TableName* TableName `ingestion` *mappingkind*  `mappings`
 
-* `.show``table`*テーブル名*`ingestion`*マッピングKind* `mapping` *マッピング名*   
+* `.show``table` *TableName* TableName `ingestion` *MappingKind* mappingkind`mapping` *MappingName*   
 
-すべてのマッピングの種類からすべての取り込みマッピングを表示します。
+すべてのマッピングの種類からすべてのインジェストマッピングを表示する:
 
-* `.show``table`*テーブル名*`ingestion`  `mapping`
+* `.show` `table` *TableName* `ingestion`  `mapping`
  
 **例** 
  
-```
+```kusto
 .show table MyTable ingestion csv mapping "Mapping1" 
 
 .show table MyTable ingestion csv mappings 
@@ -41,4 +41,4 @@ ms.locfileid: "81519824"
 
 | 名前     | 種類 | マッピング     |
 |----------|------|-------------|
-| マッピング1 | CSV  | [{"名前":"行番号"、"データ型"、""""""""":null,"序数":0"定数":"null}、{"名前":"rowguid"、"データ型":"文字列"、"CsvDataType":"null"、オーディナル":1,"定数":null} |
+| mapping1 | CSV  | [{"Name": "rownumber"、"DataType": "int"、"CsvDataType": null、"Ordinal": 0、"": null}、{"Name": "rowguid"、"DataType": "string"、"CsvDataType": null、"Ordinal": 1、"": null}] |

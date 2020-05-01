@@ -1,6 +1,6 @@
 ---
-title: .rename テーブルと .rename テーブル - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この資料では、Azure データ エクスプローラーのテーブルの名前の変更と名前の変更について説明します。
+title: . テーブル名およびテーブル名の変更-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのテーブル名の変更とテーブルの名前変更の方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,56 +8,56 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: db3e38c562573f52df70979b71fe72d8947158bf
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a1644021d1e2df294782d3b24e111d3c57af5f91
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520487"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617580"
 ---
-# <a name="rename-table-and-rename-tables"></a>.rename テーブルと .rename テーブル
+# <a name="rename-table-and-rename-tables"></a>. テーブル名およびテーブル名を変更します。
 
 既存のテーブルの名前を変更します。
 
-この`.rename tables`コマンドは、データベース内の多数のテーブルの名前を単一のトランザクションとして変更します。
+この`.rename tables`コマンドは、データベース内の複数のテーブルの名前を1つのトランザクションとして変更します。
 
-[データベース管理者のアクセス許可が](../management/access-control/role-based-authorization.md)必要です。
+[Database admin 権限](../management/access-control/role-based-authorization.md)が必要です。
 
 **構文**
 
-`.rename``table`*古い名前*`to`*の新しい名前*
+`.rename``table` *OldName* OldName `to` *NewName*
 
-`.rename``tables`*新しい名前* = *の古い名前*[`ifexists`] [`,` ..
+`.rename``tables` *NewName*NewName = *OldName* [`ifexists`] [`,` ...]
 
 > [!NOTE]
-> * *OldName*は既存のテーブルの名前です。 *OldName*が指定されていない場合`ifexists`(この場合、rename コマンドのこの部分は無視されます)、既存のテーブルに名前を付けていない場合は、エラーが発生し、コマンド全体が失敗します (効果はありません)。
-> * *新しい名前*は、以前は OldName と呼ばれていた既存のテーブルの新しい*名前です*。
-> * 指定`ifexists`すると、存在しない表の名前変更部分を無視するようにコマンドの動作が変更されます。
+> * *OldName*既存のテーブルの名前を指定します。 が指定されていない限り、 *OldName*で既存のテーブルに名前が付いていない場合、エラー `ifexists`が発生し、コマンド全体が失敗します (影響はありません)。ただし、を指定しない場合、[名前の変更] コマンドのこの部分は無視されます。
+> * *NewName*は、 *OldName*を呼び出すために使用された既存のテーブルの新しい名前です。
+> * を`ifexists`指定した場合、存在しないテーブルの部分の名前変更を無視するようにコマンドの動作を変更します。
 
 **解説**
 
 このコマンドは、スコープ内のデータベースのテーブルに対してのみ動作します。
-テーブル名は、クラスター名またはデータベース名で修飾することはできません。
+クラスター名またはデータベース名を使用してテーブル名を修飾することはできません。
 
-このコマンドは、新しいテーブルを作成したり、既存のテーブルを削除したりしません。
-コマンドによって記述される変換は、データベース内のテーブルの数が変わらないようにする必要があります。
+このコマンドでは、新しいテーブルを作成したり、既存のテーブルを削除したりすることはできません。
+コマンドによって記述された変換は、データベース内のテーブルの数が変更されないようにする必要があります。
 
-このコマンド**は、** 上記の規則に従っている限り、テーブル名のスワッピング、または複雑な順列をサポートします。 たとえば、複数のステージング テーブルにデータを取り込み、1 つのトランザクションで既存のテーブルと交換します。
+このコマンドでは、上記の規則に従っている限り、テーブル名またはより複雑な順列のスワップ**が**サポートされています。 たとえば、複数のステージングテーブルにデータを取り込み、1つのトランザクションで既存のテーブルとスワップします。
 
 **使用例**
 
-データベースに、次のテーブル`A`、、`B`および`C`を`A_TEMP`示すデータベースを想像してみてください。
-次のコマンドは、`A`スワップ`A_TEMP`され`A_TEMP`、(テーブルが 呼び出`A`され、その逆の方向に)、`NEWB`に名前を`C`変更`B`し、そのままにします。 
+たとえば`A`、 `B`、、 `C`、および`A_TEMP`の各テーブルを含むデータベースがあるとします。
+次のコマンドを実行`A`する`A_TEMP`と、と ( `A_TEMP`テーブルが`A`呼び出され、もう1つの方法で) の名前`B`が`NEWB`変更され`C` 、そのまま保持されるようになります。 
 
-```
+```kusto
 .rename tables A=A_TEMP, NEWB=B, A_TEMP=A
 ``` 
 
-次の一連のコマンド
+次の一連のコマンドを実行します。
 1. 新しい一時テーブルを作成します。
 1. 既存のテーブルまたは既存でないテーブルを新しいテーブルに置き換えます。
 
-```
+```kusto
 // Drop the temporary table if it exists
 .drop table TempTable ifexists
 

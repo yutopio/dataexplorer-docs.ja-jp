@@ -1,6 +1,6 @@
 ---
-title: 外部テーブルへのデータのエクスポート - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで外部テーブルにデータをエクスポートする方法について説明します。
+title: 外部テーブルへのデータのエクスポート-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの外部テーブルにデータをエクスポートする方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,70 +8,70 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: e26d1ae163b69f3a04c52538c245ea446dc11199
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 56150c480d0d5ecfd4d428e51f7bdb4b68e36b0c
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521643"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617699"
 ---
 # <a name="export-data-to-an-external-table"></a>外部テーブルへのデータのエクスポート
 
-[外部テーブル](../externaltables.md)を定義し、データをエクスポートすることで、データをエクスポートできます。
-テーブルのプロパティは[外部テーブルを作成](../externaltables.md#create-or-alter-external-table)するときに指定されるため、エクスポート コマンドにテーブルのプロパティを埋め込む必要はありません。 エクスポート コマンドは、外部テーブルを名前で参照します。
-データのエクスポートには[、データベースの管理者権限](../access-control/role-based-authorization.md)が必要です。
+[外部テーブル](../externaltables.md)を定義し、データをエクスポートすることによって、データをエクスポートできます。
+テーブルのプロパティは、[外部テーブルを作成](../externaltables.md#create-or-alter-external-table)するときに指定します。そのため、export コマンドにテーブルのプロパティを埋め込む必要はありません。 エクスポートコマンドは、外部テーブルを名前で参照します。
+データのエクスポートには、[データベース管理者のアクセス許可](../access-control/role-based-authorization.md)が必要です。
 
 > [!NOTE] 
-> * 接続文字列を使用`impersonate`して外部テーブルにエクスポートすることは、現在サポートされていません。
+> * 接続文字列を使用した`impersonate`外部テーブルへのエクスポートは、現在サポートされていません。
 
 **構文 :**
 
-`.export`[`async` `to` `table` ]*外部テーブル名* <br>
-`with``(`*プロパティ*名`=`*プロパティ値*`,`..`)`] <|*クエリ*
+`.export`[`async`] `to` `table` *Externaltablename* <br>
+[`with` `(` *PropertyName* PropertyName `=` *PropertyValue*PropertyValue`,`...`)`] <|*クエリ*
 
-**出力：**
+**出力:**
 
 |出力パラメーター |Type |説明
 |---|---|---
-|外部テーブル名  |String |外部テーブルの名前。
+|ExternalTableName  |String |外部テーブルの名前。
 |Path|String|出力パス。
-|数字の記録|String| パスにエクスポートされたレコードの数。
+|NumRecords|String| Path にエクスポートされたレコードの数。
 
 **注:**
-* エクスポート クエリ出力スキーマは、パーティションで定義されたすべての列を含む外部テーブルのスキーマと一致する必要があります。 たとえば、テーブルが*DateTime*でパーティション分割されている場合、クエリ出力スキーマには、外部テーブルパーティション定義で定義されている*TimestampColumnName*と一致する Timestamp 列が含まれている必要があります。
+* エクスポートクエリの出力スキーマは、パーティションで定義されているすべての列を含め、外部テーブルのスキーマと一致する必要があります。 たとえば、テーブルが*DateTime*でパーティション分割されている場合、クエリ出力スキーマには、外部テーブルパーティション分割定義で*定義されているタイム*スタンプ列と一致する Timestamp 列が含まれている必要があります。
 
-* エクスポート コマンドを使用して外部テーブルのプロパティをオーバーライドすることはできません。
- たとえば、データ形式が CSV である外部テーブルに Parquet 形式でデータをエクスポートすることはできません。
+* Export コマンドを使用して外部テーブルのプロパティを上書きすることはできません。
+ たとえば、Parquet 形式のデータを、データ形式が CSV である外部テーブルにエクスポートすることはできません。
 
-* 次のプロパティは、エクスポート コマンドの一部としてサポートされています。 詳細については、「[ストレージへのエクスポート](export-data-to-storage.md)」セクションを参照してください。 
+* Export コマンドの一部として、次のプロパティがサポートされています。 詳細については、「[ストレージへのエクスポート](export-data-to-storage.md)」を参照してください。 
    * `sizeLimit`, `parquetRowGroupSize`, `distributed`.
 
-* 外部テーブルがパーティション化されている場合、エクスポートされたアーティファクトは、[例](#partitioned-external-table-example)に示すようにパーティション定義に従ってそれぞれのディレクトリに書き込まれます。 
+* 外部テーブルがパーティション分割されている場合、エクスポートされたアイテムは、[例](#partitioned-external-table-example)に示されているパーティション定義に従って、それぞれのディレクトリに書き込まれます。 
 
-* パーティションごとに書き込まれるファイルの数は、次の内容によって異なります。
-   * 外部テーブルに datetime パーティションのみが含まれている場合、またはパーティションがまったく含まれていなくても、(パーティションごとに) 書き込まれるファイルの数は、クラスター内のノード数 (到達した`sizeLimit`場合は複数) の前後にする必要があります。 これは、エクスポート操作が分散され、クラスター内のすべてのノードが同時にエクスポートされるためです。 
-   ディストリビューションを無効にして、1 つのノードだけが書き込みを`distributed`実行するようにするには、false に設定します。 これにより、作成されるファイルは少なくなりますが、エクスポートのパフォーマンスは低下します。
+* パーティションごとに書き込まれるファイルの数は、次のことに依存します。
+   * 外部テーブルに datetime パーティションだけが含まれている場合、またはパーティションがまったく存在しない場合は、書き込まれたファイルの数 (各パーティションの場合は、存在する場合) がクラスター `sizeLimit`内のノードの数と同じである必要があります (以上の場合)。 これは、エクスポート操作が分散され、クラスター内のすべてのノードが同時にエクスポートされるためです。 
+   ディストリビューションを無効にして、1つのノードだけが書き込みを`distributed`実行するようにするには、を false に設定します。 これにより、作成されるファイルが少なくなりますが、エクスポートのパフォーマンスが低下します。
 
-   * 外部テーブルに文字列列によるパーティションが含まれている場合、エクスポートされるファイルの数は、パーティションごとに 1 つのファイル (または`sizeLimit`、到達した場合) にする必要があります。 すべてのノードは引き続きエクスポートに参加しますが (操作は分散されます)、各パーティションは特定のノードに割り当てられます。 この`distributed`場合 false に設定すると、エクスポートを実行するノードは 1 つのみになりますが、動作は同じままです (パーティションごとに 1 つのファイルが書き込まれます)。
+   * 外部テーブルに文字列型の列によってパーティションが含まれている場合、エクスポートされるファイルの数は、パーティションごとに`sizeLimit` 1 つのファイルである必要があります (またはに到達した場合)。 すべてのノードは引き続きエクスポートに参加します (操作は分散されます) が、各パーティションは特定のノードに割り当てられます。 この`distributed`場合、を false に設定すると、1つのノードのみがエクスポートを実行しますが、動作は同じままです (パーティションごとに1つのファイルが書き込まれます)。
 
 ## <a name="examples"></a>例
 
-### <a name="non-partitioned-external-table-example"></a>非パーティション化外部表の例
+### <a name="non-partitioned-external-table-example"></a>パーティション分割されていない外部テーブルの例
 
-外部 BLOB は、非パーティション化された外部テーブルです。 
+ExternalBlob は、パーティション分割されていない外部テーブルです。 
 ```kusto
 .export to table ExternalBlob <| T
 ```
 
-|外部テーブル名|Path|数字の記録|
+|ExternalTableName|Path|NumRecords|
 |---|---|---|
-|外部 BLOB|http://storage1.blob.core.windows.net/externaltable1cont1/1_58017c550b384c0db0fea61a8661333e.csv|10|
+|ExternalBlob|http://storage1.blob.core.windows.net/externaltable1cont1/1_58017c550b384c0db0fea61a8661333e.csv|10|
 
-### <a name="partitioned-external-table-example"></a>パーティション化された外部テーブルの例
+### <a name="partitioned-external-table-example"></a>パーティション分割された外部テーブルの例
 
-パーティション外部Blobは、次のように定義された外部テーブルです。 
+PartitionedExternalBlob は、次のように定義された外部テーブルです。 
 
-```
+```kusto
 .create external table PartitionedExternalBlob (Timestamp:datetime, CustomerName:string) 
 kind=blob
 partition by 
@@ -83,13 +83,13 @@ dataformat=csv
 )
 ```
 
-```
+```kusto
 .export to table PartitionedExternalBlob <| T
 ```
 
-|外部テーブル名|Path|数字の記録|
+|ExternalTableName|Path|NumRecords|
 |---|---|---|
-|外部 BLOB|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer1/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_1_58017c550b384c0db0fea61a8661333e.csv|10|
-|外部 BLOB|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer2/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_2_b785beec2c004d93b7cd531208424dc9.csv|10|
+|ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer1/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_1_58017c550b384c0db0fea61a8661333e.csv|10|
+|ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer2/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_2_b785beec2c004d93b7cd531208424dc9.csv|10|
 
-コマンドが非同期に (キーワードを使用して)`async`実行される場合、出力は[show operation details](../operations.md#show-operation-details)コマンドを使用して使用できます。
+コマンドが ( `async`キーワードを使用して) 非同期的に実行された場合、[[操作の詳細を表示](../operations.md#show-operation-details)] コマンドを使用して出力を取得できます。

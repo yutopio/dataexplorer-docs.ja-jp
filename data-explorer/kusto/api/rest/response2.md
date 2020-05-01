@@ -1,6 +1,6 @@
 ---
-title: クエリ V2 HTTP 応答 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのクエリ V2 HTTP 応答について説明します。
+title: クエリ V2 HTTP 応答-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの Query V2 HTTP 応答について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/11/2020
-ms.openlocfilehash: cca9b8381c7c59993c1e9071c46f34c1754d2429
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 86a56d77005b2c6b5c9d38bbec85eebfbcb481dc
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81524312"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617903"
 ---
-# <a name="query-v2-http-response"></a>V2 HTTP 応答のクエリ
+# <a name="query-v2-http-response"></a>クエリ V2 HTTP 応答
 
-状態コードが 200 の場合、応答本文は JSON 配列です。
-配列内の各 JSON オブジェクトは_フレーム_と呼ばれます。
+ステータスコードが200の場合、応答本文は JSON 配列になります。
+配列内の各 JSON オブジェクトを_フレーム_と呼びます。
 
-フレームには7種類あります。
+フレームにはいくつかの種類があります。
 
-1. ヘッダー
-2. テーブルヘッダー
-3. テーブルフラグメント
-4. テーブルプログレス
-5. テーブル補完
-6. DataTable
-7. データセット完了
+* [DataSetHeader](#datasetheader)
+* [TableHeader](#tableheader)
+* [TableFragment](#tablefragment)
+* [TableProgress](#tableprogress)
+* [TableCompletion](#tablecompletion)
+* [データ](#datatable)
+* [DataSetCompletion](#datasetcompletion)
 
-## <a name="datasetheader"></a>ヘッダー 
+## <a name="datasetheader"></a>DataSetHeader 
 
-これは常にデータセットの最初のフレームであり、正確に 1 回だけ表示されます。
+`DataSetHeader`フレームは常にデータセット内の最初のものであり、1回だけ表示されます。
 
 ```json
 {
@@ -43,21 +43,24 @@ ms.locfileid: "81524312"
 
 各値の説明:
 
-1. `Version`はプロトコルバージョンを保持します。 現行バージョンは `v2.0`です。
-2. `IsProgressive`は、このデータセットにプログレッシブ フレームが含まれているかどうかを示すブールフラグです。 プログレッシブ フレームは、次のいずれかです。
-    1. `TableHeader`: テーブルに関する一般的な情報が含まれています。
-    2. `TableFragment`: テーブルの直腸データシャードが含まれています
-    3. `TableProgress`: 進捗率がパーセント (0 ~ 100) で表示されます。
-    4. `TableCompletion`: これがテーブルの最後のフレームであることを示します。
+* `Version`はプロトコルのバージョンです。 現行バージョンは `v2.0`です。
+* `IsProgressive`このデータセットにプログレッシブフレームが含まれているかどうかを示すブール型のフラグです。 
+   プログレッシブフレームは次のいずれかです。
+   
+     | フレーム             | 説明                                    |
+     |-------------------| -----------------------------------------------|
+     | `TableHeader`     | テーブルに関する一般的な情報が含まれます。   |
+     | `TableFragment`   | テーブルの四角形のデータシャードが含まれます。 |
+     | `TableProgress`   | 進行状況をパーセント (0-100) で示します。       |
+     | `TableCompletion` | このフレームが最後のフレームであることを示します。      |
         
-    上記の 4 つのフレームは、テーブルを表すために一緒に使用されます。
-    このフラグが設定されていない場合、セット内のすべてのテーブルは単一のフレームを使用してシリアル化されます。
-      1. `DataTable`: データ セット内の 1 つのテーブルに関してクライアントが必要とするすべての情報が含まれます。
+    上のフレームには、テーブルが記述されています。
+    フラグが`IsProgressive` true に設定されていない場合、セット内のすべてのテーブルが1つのフレームを使用してシリアル化されます。
+* `DataTable`: データセット内の1つのテーブルに関してクライアントに必要なすべての情報が含まれています。
 
+## <a name="tableheader"></a>TableHeader
 
-## <a name="tableheader"></a>テーブルヘッダー
-
-オプションを true に設定`results_progressive_enabled`して発行されるクエリには、このフレームが含まれる場合があります。 この表の後に、クライアントはインターリーブシーケンス`TableFragment`と`TableProgress`フレーム、およびフレームが続`TableCompletion`くことを期待する必要があります。 その後、そのテーブルに関連するフレームは送信されません。
+オプションを true に設定し`results_progressive_enabled`て作成されたクエリには、このフレームを含めることができます。 次の表に従って、クライアントはと`TableFragment` `TableProgress`フレームのインターリーブシーケンスを想定できます。 テーブルの最終フレームは`TableCompletion`です。
 
 ```json
 {
@@ -70,19 +73,20 @@ ms.locfileid: "81524312"
 
 各値の説明:
 
-1. `TableId`はテーブルの一意の ID です。
-2. `TableKind`はテーブルの種類で、次のいずれかになります。
+* `TableId`テーブルの一意の ID を示します。
+* `TableKind`次のいずれか:
 
-      * プライマリ結果
-      * クエリ完了情報
-      * クエリトレースログ
-      * ログ
-      * TableOfContents
-      * QueryProperties
-      * クエリプラン
-      * Unknown
-3. `TableName`はテーブルの名前です。
-4. `Columns`は、テーブルのスキーマを記述する配列です。
+    * PrimaryResult
+    * Queryの情報
+    * QueryTraceLog
+    * QueryPerfLog
+    * TableOfContents
+    * QueryProperties
+    * QueryPlan
+    * Unknown
+      
+* `TableName`テーブルの名前を指定します。
+* `Columns`は、テーブルのスキーマを記述する配列です。
 
 ```json
 {
@@ -90,11 +94,12 @@ ms.locfileid: "81524312"
     "ColumnType": string,
 }
 ```
-サポートされている列の種類については[、ここで](../../query/scalar-data-types/index.md)説明します。
 
-## <a name="tablefragment"></a>テーブルフラグメント
+サポートされる列の型については、[こちら](../../query/scalar-data-types/index.md)を参照してください。
 
-このフレームには、テーブルの長方形のデータフラグメントが含まれています。 実際のデータに加えて、このフレームには`TableFragmentType`、フラグメントをどう処理するかをクライアントに指示するプロパティが含まれています(既存のフラグメントに追加するか、すべて一緒に置き換えることができます)。
+## <a name="tablefragment"></a>TableFragment
+
+この`TableFragment`フレームには、テーブルの四角形のデータフラグメントが含まれています。 このフレームには、実際のデータに加えて、 `TableFragmentType`フラグメントの処理方法をクライアントに指示するプロパティも含まれています。 フラグメントは、既存のフラグメントに追加されるか、置き換えられます。
 
 ```json
 {
@@ -107,17 +112,20 @@ ms.locfileid: "81524312"
 
 各値の説明:
 
-1. `TableId`はテーブルの一意の ID です。
-2. `FieldCount`テーブルの列数を指定します。
-3. `TableFragmentType`は、クライアントがこのフラグメントをどうするかについて説明します。 以下のいずれかを指定できます。
-      * データ追加
-      * データ置換
-4. `Rows`はフラグメントデータを含む2次元配列です。
+* `TableId`テーブルの一意の ID を示します。
+* `FieldCount`テーブル内の列の数を指定します。
+* `TableFragmentType`このフラグメントでクライアントが行う処理について説明します。 
+    `TableFragmentType`次のいずれか:
+    
+    * DataAppend
+    * DataReplace
+      
+* `Rows`は、フラグメントデータを格納する2次元配列です。
 
-## <a name="tableprogress"></a>テーブルプログレス
+## <a name="tableprogress"></a>TableProgress
 
-このフレームは、上述の`TableFragment`フレームとインターリーブすることができる。
-唯一の目的は、クエリの進行状況をクライアントに通知することです。
+`TableProgress`フレームは、上で説明`TableFragment`したフレームとインターリーブできます。
+その唯一の目的は、クエリの進行状況をクライアントに通知することです。
 
 ```json
 {
@@ -128,12 +136,12 @@ ms.locfileid: "81524312"
 
 各値の説明:
 
-1. `TableId`はテーブルの一意の ID です。
-2. `TableProgress`はパーセント (0 -100) の進行状況です。
+* `TableId`テーブルの一意の ID を示します。
+* `TableProgress`進行状況をパーセント (0--100) で示します。
 
-## <a name="tablecompletion"></a>テーブル補完
+## <a name="tablecompletion"></a>TableCompletion
 
-フレーム`TableCompletion`はテーブル送信の終わりを示します。 そのテーブルに関連するフレームは送信されません。
+フレーム`TableCompletion`は、テーブル転送の終了を示します。 そのテーブルに関連するフレームは送信されません。
 
 ```json
 {
@@ -144,41 +152,38 @@ ms.locfileid: "81524312"
 
 各値の説明:
 
-1. `TableId`はテーブルの一意の ID です。
-2. `RowCount`は、テーブルの最終行数です。
+* `TableId`テーブルの一意の ID を示します。
+* `RowCount`テーブル内の行の合計数を指定します。
 
 ## <a name="datatable"></a>DataTable
 
-`EnableProgressiveQuery`フラグを false に設定して発行されたクエリには、前の 4 つのフレーム`TableHeader`( `TableFragment` `TableProgress` 、、および`TableCompletion`) は含まれません。 代わりに、データ セット内の各テーブルは、単一の`DataTable`フレーム、フレームを使用して送信されます。
+フラグを false に設定し`EnableProgressiveQuery`て発行されたクエリには、フレーム (`TableHeader`、 `TableFragment`、 `TableProgress`、および`TableCompletion`) は含まれません。 代わりに、データセット内の各テーブルは、クライアントが必要`DataTable`とするすべての情報が含まれているフレームを使用して送信され、テーブルを読み取ることができます。
 
 ```json
 {
     "TableId": Number,
-
     "TableKind": string,
-
     "TableName": string,
-
     "Columns": Array,
-
     "Rows": Array,
 }
 ```    
 
 各値の説明:
 
-1. `TableId`はテーブルの一意の ID です。
-2. `TableKind`はテーブルの種類で、次のいずれかになります。
+* `TableId`テーブルの一意の ID を示します。
+* `TableKind`次のいずれか:
 
-      * プライマリ結果
-      * クエリ完了情報
-      * クエリトレースログ
-      * ログ
-      * QueryProperties
-      * クエリプラン
-      * Unknown
-3. `TableName`はテーブルの名前です。
-4. `Columns`は、テーブルのスキーマを記述する配列です。
+    * PrimaryResult
+    * Queryの情報
+    * QueryTraceLog
+    * QueryPerfLog
+    * QueryProperties
+    * QueryPlan
+    * Unknown
+      
+* `TableName`テーブルの名前を指定します。
+* `Columns`はテーブルのスキーマを記述する配列で、次のものが含まれます。
 
 ```json
 {
@@ -186,18 +191,20 @@ ms.locfileid: "81524312"
     "ColumnType": string,
 }
 ```
-4. `Rows`は、テーブルのデータを格納する 2 次元配列です。
+
+* `Rows`は、テーブルのデータを格納する2次元配列です。
 
 ### <a name="the-meaning-of-tables-in-the-response"></a>応答内のテーブルの意味
 
-* `PrimaryResult`- クエリの表形式の主な結果。 [各表形式の式ステートメント](../../query/tabularexpressionstatements.md)に対して、ステートメントによって生成された結果を表す 1 つ以上のテーブルが順番に出力されます ([バッチ](../../query/batches.md)演算子と[fork 演算子](../../query/forkoperator.md)により、このようなテーブルが複数存在する場合があります ) 。
-* `QueryCompletionInformation`- クエリが正常に完了したかどうか、クエリで消費されたリソース (v1 応答の QueryStatus テーブルと同様) など、クエリ自体の実行に関する追加情報を提供します。 
-* `QueryProperties`- クライアントの視覚化命令 ([たとえば、render オペレータ](../../query/renderoperator.md)の情報を反映するために出力される) や[データベース カーソル](../../management/databasecursor.md)情報などの追加の値を提供します。
-* `QueryTraceLog`- パフォーマンス トレース ログ情報 ([クライアント要求プロパティ](../netfx/request-properties.md)で perftrace を設定するときに返されます)。
+* `PrimaryResult`-クエリのメインの表形式の結果。 各テーブル[式ステートメント](../../query/tabularexpressionstatements.md)では、ステートメントによって生成される結果を表す1つ以上のテーブルが順に生成されます。 [バッチ](../../query/batches.md)および[フォーク演算子](../../query/forkoperator.md)によって、このようなテーブルが複数存在する場合があります。
+* `QueryCompletionInformation`-クエリ自体の実行に関する追加情報 (正常に完了したかどうかなど) と、クエリで使用されたリソース (v1 応答の QueryStatus テーブルに似ています) を提供します。 
+* `QueryProperties`-クライアントの視覚化の手順 (たとえば、 [render 操作](../../query/renderoperator.md)の情報を反映するために生成された) や[データベースのカーソル](../../management/databasecursor.md)情報などの追加の値を提供します。
+* `QueryTraceLog`-パフォーマンストレースログ情報 ([ `perftrace` [クライアント要求のプロパティ](../netfx/request-properties.md)] が [true] に設定されている場合に返されます)。
 
-## <a name="datasetcompletion"></a>データセット完了
+## <a name="datasetcompletion"></a>DataSetCompletion
 
-これは、データセットの最後のフレームです。
+`DataSetCompletion`フレームは、データセット内の最後のフレームです。
+
 ```json
 {
     "HasErrors": Boolean,
@@ -208,6 +215,6 @@ ms.locfileid: "81524312"
 
 各値の説明:
 
-1. `HasErrors`は、データ・セットを生成するエラーがあった場合は true です。
-2. `Cancelled`データ・セットの生成につながる要求が途中で取り消された場合は true です。 
-3. `OneApiErrors`は、true の`HasErrors`場合にのみ送信されます。 `OneApiErrors`フォーマットの詳細については、セクション 7.10.2[を参照してください](https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md)。
+* `HasErrors`データセットの生成中にエラーが発生した場合は true です。
+* `Cancelled`データセットの生成の原因となった要求が、完了前にキャンセルされた場合は true です。 
+* `OneApiErrors`が true の場合`HasErrors`にのみ返されます。 形式の説明については、「7.10.2」セクションを参照してください。 [here](https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md) `OneApiErrors`

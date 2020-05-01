@@ -1,6 +1,6 @@
 ---
-title: 制限付きビューアクセス ポリシー - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの制限されたビュー アクセス ポリシーについて説明します。
+title: Kusto RestrictedViewAccess ポリシー制御クエリ-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの RestrictedViewAccess ポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,24 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 6f994f5b80632650ab6dbe5dcf28cd82407d688f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e44aa2b14aa8babdab95a6ad8c6f7ef5ed026ff9
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520419"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617428"
 ---
-# <a name="restrictedviewaccess-policy"></a>ポリシーを制限
+# <a name="restrictedviewaccess-policy"></a>RestrictedViewAccess ポリシー
 
-*制限付きビューアクセス*は、データベース内のテーブルで有効にできるオプションのポリシーです。
+*RestrictedViewAccess*は、データベース内のテーブルで有効にできるオプションのポリシーです。
 
-テーブルでこのポリシーを有効にすると、テーブル内のデータは、データベースの[UnrestrictedViewer](../management/access-control/role-based-authorization.md)ロールに追加されたプリンシパル*にのみ*照会できます。
+テーブルでこのポリシーが有効になっている場合、テーブル内のデータは、データベースの[UnrestrictedViewer](../management/access-control/role-based-authorization.md)ロールに追加されたプリンシパルに対して*のみ*クエリを実行できます。
 
-テーブルでポリシーが有効になっている場合[、UnrestrictedViewer](../management/access-control/role-based-authorization.md)データベース レベル ロールに含まれていないプリンシパル (テーブル/データベース/クラスター管理者も含む) は、テーブル内のデータを照会できません。
+テーブルでポリシーが有効になっている場合、 [UnrestrictedViewer](../management/access-control/role-based-authorization.md)データベースレベルのロールに含まれていないプリンシパル (テーブル/データベース/クラスター管理者であっても) は、テーブル内のデータを照会することはできません。
 
-[UnrestrictedViewer](../management/access-control/role-based-authorization.md)ロールは、現在のプリンシパルがデータベースのクエリを既に承認されている場合 (データベース管理者/ユーザー/ビューアー) を使用して、ポリシーが有効になっているデータベース*内のすべての*テーブルに対してビュー権限を付与します。 ロールに対するプリンシパルの追加またはロールからのプリンシパルの削除は、 [DatabaseAdmin](../management/access-control/role-based-authorization.md)によって実行できます。
+[UnrestrictedViewer](../management/access-control/role-based-authorization.md)ロールは、現在のプリンシパルがデータベース (データベース管理者/ユーザー/ビューアー) に対してクエリを実行する権限を既に持っていると仮定して、ポリシーが有効になっているデータベース内の*すべて*のテーブルに view 権限を付与します。 ロールに対してプリンシパルの追加や削除を行うには、 [Databaseadmin](../management/access-control/role-based-authorization.md)を使用します。
 
 > [!NOTE]
-> 行レベルセキュリティ ポリシーが有効になっているテーブルに対して、制限付き[ViewAccessポリシー](./rowlevelsecuritypolicy.md)を設定することはできません。
+> [行レベルセキュリティポリシー](./rowlevelsecuritypolicy.md)が有効になっているテーブルでは、RestrictedViewAccess ポリシーを構成できません。
 
-ポリシーを管理するための制御コマンドの詳細については、 ここ を[参照してください](../management/restrictedviewaccess-policy.md)。
+RestrictedViewAccess ポリシーを管理するための制御コマンドの詳細については、[こちらを参照してください](../management/restrictedviewaccess-policy.md)。

@@ -1,6 +1,6 @@
 ---
-title: .show テーブル - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの .show テーブルについて説明します。
+title: . テーブルを表示する-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでテーブルを表示する方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,20 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: a8faf307a241d1ba0f73436d9503a56c9078e471
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 3da4f705d3182c52d06c7767a12d9be15a219e5c
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519637"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618328"
 ---
-# <a name="show-tables"></a>.show テーブル
+# <a name="show-tables"></a>。テーブルを表示する
 
-指定したテーブルまたはデータベース内のすべてのテーブルを含むセットを返します。
+指定されたテーブルまたはデータベース内のすべてのテーブルを含むセットを返します。
 
-[データベース ビューアの権限が](../management/access-control/role-based-authorization.md)必要です。
+[データベースビューアー権限](../management/access-control/role-based-authorization.md)が必要です。
 
-```
+```kusto
 .show tables
 .show tables (T1, ..., Tn)
 ```
@@ -31,15 +31,15 @@ ms.locfileid: "81519637"
 |出力パラメーター |Type |説明
 |---|---|---
 |TableName  |String |テーブルの名前。
-|DatabaseName  |String |テーブルが属するデータベース。
-|Folder |String |テーブルのフォルダ。
-|ドクスト文字列 |String |テーブルを表す文字列。
+|DatabaseName  |String |テーブルが属しているデータベース。
+|Folder |String |テーブルのフォルダー。
+|DocString |String |テーブルを文書化する文字列。
 
-**出力例**
+**出力の例**
 
-|テーブル名 |データベース名 |Folder | ドクスト文字列
+|テーブル名 |データベース名 |Folder | DocString
 |---|---|---|---
-|Table1 |DB1 |ログ |サービス ログを含む
-|Table2 |DB1 | レポーティング |
+|Table1 |DB1 |ログ |サービスログを含む
+|Table2 |DB1 | レポート |
 |Table3 |DB1 | | 拡張情報 |
-|表4 |DB2 | メトリック| サービスパフォーマンス情報を格納します。
+|Table4 |DB2 | メトリック| サービスのパフォーマンス情報を含みます

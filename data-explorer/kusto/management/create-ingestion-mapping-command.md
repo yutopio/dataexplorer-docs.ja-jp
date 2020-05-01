@@ -1,6 +1,6 @@
 ---
-title: .create インジェスション マッピング - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの .create インジェスション マッピングについて説明します。
+title: 。インジェストマッピングを作成する-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでインジェストマッピングを作成する方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,25 +8,25 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 10e656b074516ad8b0018e627d9904251aebbf10
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 84ab277f5b0d4d1b2e09d31fb7c1254786affe6d
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744498"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617733"
 ---
 # <a name="create-ingestion-mapping"></a>.create インジェスト マッピング
 
-特定のテーブルと特定の形式に関連付けられた取り込みマッピングを作成します。
+特定のテーブルおよび特定の形式に関連付けられているインジェストマッピングを作成します。
 
 **構文**
 
-`.create``table`*テーブル名*`ingestion`*マッピングKind*`mapping`*マッピング名**マッピングフォーマット付きAsJson*
+`.create``table` *TableName* TableName `ingestion` *MappingKind* mappingkind `mapping` *MappingName* *MappingFormattedAsJson*
 
 > [!NOTE]
-> * 作成後は、コマンドの一部として完全なマッピングを指定する代わりに、マッピングをインジェスション・コマンド内でその名前で参照できます。
-> * _マッピングの_有効な値は、 `CSV` `JSON`、 `avro` `parquet`、 、 、`orc`
-> * 同じ名前のマッピングがテーブルに既に存在する場合は、次の手順を実行します。
+> * 作成されたマッピングは、コマンドの一部として完全なマッピングを指定するのではなく、インジェストコマンドで名前によって参照できます。
+> * _Mappingkind_の有効な値は`CSV`、 `JSON`、 `avro`、 `parquet`、、およびです。`orc`
+> * 同じ名前のマッピングがテーブルに既に存在する場合は、次のようになります。
 >    * `.create`失敗します
 >    * `.create-or-alter`既存のマッピングを変更します
  
@@ -50,4 +50,7 @@ ms.locfileid: "81744498"
 
 | 名前     | 種類 | マッピング                                                                                                                                                                          |
 |----------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| マッピング1 | CSV  | [{"名前":"行番号"、"データ型"、""""""""":null,"序数":0"定数":"null}、{"名前":"rowguid"、"データ型":"文字列"、"CsvDataType":"null"、オーディナル":1,"定数":null} |
+| mapping1 | CSV  | [{"Name": "rownumber"、"DataType": "int"、"CsvDataType": null、"Ordinal": 0、"": null}、{"Name": "rowguid"、"DataType": "string"、"CsvDataType": null、"Ordinal": 1、"": null}] |
+
+## <a name="next-steps"></a>次のステップ
+インジェストマッピングの詳細については、「[データマッピング](mappings.md)」を参照してください。

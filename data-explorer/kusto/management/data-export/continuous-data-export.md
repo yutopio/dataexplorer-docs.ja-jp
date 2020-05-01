@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/27/2020
-ms.openlocfilehash: 69d8f4e8e0ffa388893c55e447dd3e03ed058380
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 7abcead19e0306853bc6a585a41b5b79657a6842
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108407"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82617716"
 ---
 # <a name="continuous-data-export"></a>継続的データ エクスポート
 
@@ -73,7 +73,7 @@ Kusto から[外部テーブル](../externaltables.md)にデータを継続的�
 
 **例:**
 
-```
+```kusto
 .create-or-alter continuous-export MyExport
 over (T)
 to table ExternalBlob
@@ -181,15 +181,15 @@ with
 | 名前             | String    | 連続エクスポート名。                             |
 | LastSuccessRun   | Timestamp | 連続エクスポートが最後に正常に実行された。   |
 | FailureKind      | String    | 失敗/PartialFailure。 PartialFailure は、エラーが発生する前に一部のアーティファクトが正常にエクスポートされたことを示します。 |
-| 詳細情報          | String    | エラーの詳細。                              |
+| 詳細          | String    | エラーの詳細。                              |
 
 **例:** 
 
-```
+```kusto
 .show continuous-export MyExport failures 
 ```
 
-| Timestamp                   | OperationId                          | 名前     | LastSuccessRun              | FailureKind | 詳細情報    |
+| Timestamp                   | OperationId                          | 名前     | LastSuccessRun              | FailureKind | 詳細    |
 |-----------------------------|--------------------------------------|----------|-----------------------------|-------------|------------|
 | 2019-01-01 11:07: 41.1887304 | ec641435-2505-4532-ba19-d6ab88c96a9d | MyExport | 2019-01-01 11:06: 35.6308140 | 障害     | 詳細... |
 
@@ -236,7 +236,7 @@ with
 
 連続エクスポートでは、作成した時点からのみデータのエクスポートが開始されます。 この時刻より前のレコード取り込まれたは、(連続していない)[エクスポートコマンド](export-data-to-an-external-table.md)を使用して個別にエクスポートする必要があります。 連続エクスポートによってエクスポートされたデータと重複しないようにするには、[[連続エクスポートの表示] コマンド](#show-continuous-export)によって返された startcursor を使用し、カーソル値が cursor_before_or_at あるレコードのみをエクスポートします。 次の例を見てください。 履歴データが大きすぎて、1回のエクスポートコマンドでエクスポートできない可能性があります。 そのため、クエリをいくつかの小さなバッチに分割します。 
 
-```
+```kusto
 .show continuous-export MyExport | project StartCursor
 ```
 
@@ -246,7 +246,7 @@ with
 
 次の後に続きます。 
 
-```
+```kusto
 .export async to table ExternalBlob
 <| T | where cursor_before_or_at("636751928823156645")
 ```

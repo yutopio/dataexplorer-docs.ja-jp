@@ -1,6 +1,6 @@
 ---
-title: array_index_of() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでarray_index_of() について説明します。
+title: array_index_of ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの array_index_of () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: f68c9385c55cedb4491033d137af087dafd26aa0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 27b956ee54ef22f55b3a0ceae97fceb41aadf5c3
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518617"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737353"
 ---
 # <a name="array_index_of"></a>array_index_of()
 
-指定された項目を配列で検索し、その位置を返します。
+指定した項目を配列内で検索し、その位置を返します。
 
 **構文**
 
-`array_index_of(`*配列*,*値*`)`
+`array_index_of(`*array*、*value*`)`
 
 **引数**
 
-* *配列*: 検索する入力配列。
-* *値*: 検索する値。 値は、長整数、倍精度浮動小数点型、日付/時刻、タイムスパン、10 進数、文字列、または GUID の型にする必要があります。
+* *array*: 検索する入力配列。
+* *値*: 検索対象の値。 値の型は long、integer、double、datetime、timespan、decimal、string、または guid である必要があります。
 
 **戻り値**
 
-検索のインデックス位置が 0 から始まります。
-値が配列内に見つからない場合は -1 を返します。
+検索の0から始まるインデックス位置。
+値が配列に見つからない場合は、-1 を返します。
 
 **例**
 
@@ -46,4 +46,4 @@ print arr=dynamic(["this", "is", "an", "example"])
 
 **参照**
 
-配列内に値が存在するかどうかを確認するだけで、その位置に関心がない場合は[、set_has_element(arr, value)を](sethaselementfunction.md)使用できます。
+配列に値が存在するかどうかを確認するだけで、その位置に関心がない場合は、 [set_has_element (`arr`、 `value`)](sethaselementfunction.md)を使用できます。 この関数を使用すると、クエリの読みやすさが向上します。 両方の関数のパフォーマンスは同じです。

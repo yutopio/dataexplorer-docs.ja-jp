@@ -1,6 +1,6 @@
 ---
-title: current_principal_is_member_of() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでcurrent_principal_is_member_of() について説明します。
+title: current_principal_is_member_of ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの current_principal_is_member_of () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 03/09/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 03d565c9eb61703b326a01b31bb6b1a79742f006
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 4b6f7d0b9ab4074f16ca00b4a3febb1a17351736
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766057"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737761"
 ---
 # <a name="current_principal_is_member_of"></a>current_principal_is_member_of()
 
 ::: zone pivot="azuredataexplorer"
 
-クエリを実行している現在のプリンシパルのグループ メンバーシップまたはプリンシパル ID を確認します。
+クエリを実行している現在のプリンシパルのグループメンバーシップまたはプリンシパル id を確認します。
 
 ```kusto
 print current_principal_is_member_of(
@@ -37,24 +37,24 @@ print current_principal_is_member_of(
 
 **引数**
 
-* *式のリスト*- 各リテラルが、次のように形成された主体完全修飾名 (FQN) 文字列である文字列リテラルのコンマ区切りのリスト。  
-*プリンシプラタイプ*`=`*プリンシパルId*`;`*テナントId*
+* *式の一覧*-文字列リテラルのコンマ区切りのリスト。各リテラルは、次のように構成されたプリンシパル完全修飾名 (文字列形式) です。  
+*PrinciplaType*`=`*PrincipalId*PrincipalId`;`*TenantId*
 
-| プリンシパルタイプ   | FQN プレフィックス  |
+| PrincipalType   | 文字のプレフィックス  |
 |-----------------|-------------|
 | AAD ユーザー        | `aaduser=`  |
-| AADグループ       | `aadgroup=` |
+| AAD グループ       | `aadgroup=` |
 | AAD アプリケーション | `aadapp=`   |
 
 **戻り値**
 
 この関数では次の値が返されます。
-* `true`: クエリを実行している現在のプリンシパルが、少なくとも 1 つの入力引数に対して正常に一致した場合。
-* `false`: クエリを実行している現在のプリンシパルが`aadgroup=`FQN 引数のメンバーではなく、どの引数`aaduser=`または`aadapp=`FQN 引数にも等しくない場合。
-* `(null)`: クエリを実行している現在のプリンシパルが`aadgroup=`FQN 引数のメンバーでなく、どの引数`aaduser=`または`aadapp=`FQN 引数にも等しくなく、少なくとも 1 つの FQN 引数が正常に解決されなかった場合 (AAD ではプリセされていません)。 
+* `true`: クエリを実行している現在のプリンシパルが、少なくとも1つの入力引数に対して正常に照合された場合。
+* `false`: クエリを実行している現在のプリンシパルが、すべて`aadgroup=`の、 `aaduser=`いずれかのパラメーターのメンバーではなく、 `aadapp=`またはいずれの引数にも等しくない場合。
+* `(null)`: クエリを実行している現在のプリンシパルが`aadgroup=` 、どの引数にも対応しておらず、 `aaduser=`または`aadapp=`いずれの引数にも等しくない場合、少なくとも1つのパラメーターが正しく解決されませんでした (AAD では事前に行われていません)。 
 
 > [!NOTE]
-> 関数は 3 状態の値 (`true` `false`、 `null`、および ) を返すため、正の戻り値だけに依存してメンバーシップが成功したことを確認することが重要です。 つまり、次の式は同じではありません。
+> 関数は、3つの状態の値 (`true`、 `false`、および`null`) を返すため、成功したメンバーシップを確認するには、正の戻り値のみに依存することが重要です。 言い換えると、次の式は同じではありません。
 > 
 > * `where current_principal_is_member_of('non-existing-group')`
 > * `where current_principal_is_member_of('non-existing-group') != false` 
@@ -74,7 +74,7 @@ print result=current_principal_is_member_of(
 |--------|
 | (null) |
 
-マルチプル引数の代わりに動的配列を使用する:
+Multple 引数ではなく動的配列を使用する場合:
 
 ```kusto
 print result=current_principal_is_member_of(
@@ -93,6 +93,6 @@ print result=current_principal_is_member_of(
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

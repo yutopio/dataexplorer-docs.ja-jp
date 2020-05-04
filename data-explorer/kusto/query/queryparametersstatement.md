@@ -1,6 +1,6 @@
 ---
-title: クエリ パラメーター宣言ステートメント - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのクエリ パラメーター宣言ステートメントについて説明します。
+title: クエリパラメーター宣言ステートメント-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのクエリパラメーターの宣言ステートメントについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,40 +10,40 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: b7193ada6967882306d9a977b6c90af8b247036d
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: a76755d04179b3d311e79798162c61db764455d7
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765499"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737812"
 ---
-# <a name="query-parameters-declaration-statement"></a>クエリ パラメーター宣言ステートメント
+# <a name="query-parameters-declaration-statement"></a>クエリパラメーター宣言ステートメント
 
 ::: zone pivot="azuredataexplorer"
 
-Kusto に送信されるクエリには、クエリ テキスト自体に加えて、**クエリ パラメータ**と呼ばれる名前と値のペアのセットが含まれる場合があります。 クエリ テキストは、クエリ パラメーター**宣言ステートメント**を使用して名前と型を指定することで、1 つ以上のクエリ パラメーター値を参照できます。
+Kusto に送信されるクエリには、クエリテキスト自体に加えて、**クエリパラメーター**と呼ばれる一連の名前と値のペアが含まれる場合があります。 クエリテキストは、クエリ**パラメーター宣言ステートメント**を使用して名前と型を指定することで、1つ以上のクエリパラメーターの値を参照できます。
 
-クエリ パラメーターには、主に次の 2 つの用途があります。
+クエリパラメーターには、主に次の2つの用途があります。
 
-1. **注射攻撃**に対する防御機構として.
-2. クエリをパラメーター化する方法として。
+1. **インジェクション攻撃**に対する保護メカニズムとして。
+2. クエリをパラメーター化する方法。
 
-特に、Kusto に送信するクエリでユーザーが入力した入力を組み合わせたクライアント アプリケーションは、このメカニズムを使用して、KUsto と同等の[SQL インジェクション](https://en.wikipedia.org/wiki/SQL_injection)攻撃から保護する必要があります。
+特に、ユーザーが入力した入力をクエリで組み合わせて Kusto に送信するクライアントアプリケーションは、このメカニズムを使用して、Kusto と同等の[SQL インジェクション](https://en.wikipedia.org/wiki/SQL_injection)攻撃から保護する必要があります。
 
-## <a name="declaring-query-parameters"></a>クエリ パラメーターの宣言
+## <a name="declaring-query-parameters"></a>クエリパラメーターの宣言
 
-クエリ パラメーターを参照できるようにするには、クエリ テキスト (またはクエリ を使用する関数) が、使用するクエリ パラメーターを最初に宣言する必要があります。 各パラメーターに対して、宣言は名前とスカラー型を提供します。 必要に応じて、要求がパラメーターの具象値を提供しない場合に使用される既定値をパラメーターに設定することもできます。 Kusto は、その型の通常の解析規則に従ってクエリ パラメーターの値を解析します。
+クエリパラメーターを参照できるようにするには、クエリテキスト (またはそれが使用する関数) で、最初に使用するクエリパラメーターを宣言する必要があります。 パラメーターごとに、宣言によって名前とスカラー型が提供されます。 必要に応じて、パラメーターに具体的な値が指定されていない場合に、パラメーターに既定値を使用することもできます。 その後、kusto は、その型の通常の解析規則に従って、クエリパラメーターの値を解析します。
 
 **構文**
 
-`declare``query_parameters`*Name1*`:``,``=`*DefaultValue1**Type1*名前 1 タイプ1 [ デフォルト値1 ] [ ..] `(``);`
+`declare``query_parameters` `:` *Type1* `,` *Name1* `=` Name1 Type1 [DefaultValue1] [...] *DefaultValue1* `(``);`
 
-* *Name1*: クエリで使用されるクエリ パラメータの名前。
-* *タイプ1*: 対応するタイプ(例えば`string`、、、`datetime`など)ユーザーが提供する値は文字列としてエンコードされ、Kusto は、厳密に型指定された値を取得するためにクエリ パラメーターに適切な解析メソッドを適用します。
-* *既定値 1*: パラメーターの省略可能な既定値。 これは、適切なスカラー型のリテラルである必要があります。
+* *Name1*: クエリで使用されるクエリパラメーターの名前。
+* *Type1*: 対応する型 ( `string` `datetime`たとえば、、など)ユーザーによって指定された値は文字列としてエンコードされます。 Kusto は、適切な解析メソッドをクエリパラメーターに適用して、厳密に型指定された値を取得します。
+* *DefaultValue1*: パラメーターの省略可能な既定値。 これは、適切なスカラー型のリテラルである必要があります。
 
 > [!NOTE]
-> [ユーザー定義関数](functions/user-defined-functions.md)と同様に、型`dynamic`のクエリ パラメーターに既定値を設定することはできません。
+> [ユーザー定義関数](functions/user-defined-functions.md)と同様に、型`dynamic`のクエリパラメーターに既定値を指定することはできません。
 
 **使用例**
 
@@ -57,15 +57,15 @@ declare query_parameters(percentage:long = 90);
 T | where Likelihood > percentage
 ```
 
-## <a name="specifying-query-parameters-in-a-client-application"></a>クライアント アプリケーションでのクエリ パラメーターの指定
+## <a name="specifying-query-parameters-in-a-client-application"></a>クライアントアプリケーションでのクエリパラメーターの指定
 
-クエリ パラメーターの名前と値は、クエリ`string`を作成するアプリケーションによって値として提供されます。 名前を繰り返す必要はありません。
+クエリパラメーターの名前と値は、クエリを`string`作成するアプリケーションによって値として指定されます。 名前を繰り返すことはできません。
 
-値の解釈は、クエリ パラメーター宣言ステートメントに従って行われます。 すべての値は、クエリ パラメーター宣言ステートメントで指定された型に従って、クエリ本体のリテラルであるかのように解析されます。
+値の解釈は、クエリパラメーターの宣言ステートメントに従って行われます。 すべての値は、クエリパラメーター宣言ステートメントによって指定された型に基づいて、クエリ本体のリテラルであるかのように解析されます。
 
 ### <a name="rest-api"></a>REST API
 
-クエリ パラメータは、クライアント アプリケーションが`properties`要求本文の JSON オブジェクトのスロットを通じて、 というネストされた`Parameters`プロパティ バッグ内で提供されます。 たとえば、一部のユーザーの年齢を計算する KUsto への REST API 呼び出しの本文を次に示します (アプリケーションからユーザーに誕生日を求める場合があります)。
+クエリパラメーターは、という`properties` `Parameters`入れ子になったプロパティバッグで、要求本文の JSON オブジェクトのスロットを通じてクライアントアプリケーションによって提供されます。 たとえば、一部のユーザーの年齢を計算する Kusto への REST API 呼び出しの本文は次のようになります (アプリケーションがユーザーに誕生日を要求した場合など)。
 
 ``` json
 {
@@ -76,18 +76,18 @@ T | where Likelihood > percentage
 }
 ```
 
-### <a name="kusto-net-sdk"></a>クスト .NET SDK
+### <a name="kusto-net-sdk"></a>Kusto .NET SDK
 
-Kusto .NET クライアント ライブラリを使用するときにクエリ パラメータの名前と値を指定するには、オブジェクトの新`ClientRequestProperties`しいインスタンスを作成し`HasParameter`、 `SetParameter`、`ClearParameter`および メソッドを使用してクエリ パラメータを操作します。 このクラスには、厳密に型指定されたオーバーロードが多数用意されています`SetParameter`。内部的には、クエリ言語の適切なリテラルを生成し、上記の説明に`string`従って REST API を介して、それをとして送信します。 クエリ テキスト自体は、[クエリ パラメータを宣言する](#declaring-query-parameters)必要があります。
+Kusto .net `ClientRequestProperties`クライアントライブラリを使用するときにクエリパラメーターの名前と値を指定するために、オブジェクトの新しいインスタンスを作成し、 `HasParameter`、 `SetParameter`、の`ClearParameter`各メソッドを使用してクエリパラメーターを操作します。 このクラスは、に対して`SetParameter`厳密に型指定された複数のオーバーロードを提供することに注意してください。内部的には、前に説明したように、クエリ言語の`string`適切なリテラルを生成し、REST API を通じてとして送信します。 クエリテキスト自体は、[クエリパラメーターを宣言](#declaring-query-parameters)する必要があります。
 
 ### <a name="kustoexplorer"></a>Kusto.Explorer
 
-サービスへのリクエストを行うときに送信されるクエリパラメータを設定するには、**クエリパラメータ**の"レンチ"アイコン`ALT` + `P`()を使用します。
+サービスへの要求を行うときに送信されるクエリパラメーターを設定するには、**クエリパラメーター** "レンチ`ALT` + `P`" アイコン () を使用します。
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

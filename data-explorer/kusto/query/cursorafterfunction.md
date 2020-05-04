@@ -1,6 +1,6 @@
 ---
-title: cursor_after() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでcursor_after() について説明します。
+title: cursor_after ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの cursor_after () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 39ec32322b74b55182522e4bbb04aa0c3830d8d2
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 9fab1ec936e950368667fc3afb133dcd952e44b5
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766015"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737693"
 ---
 # <a name="cursor_after"></a>cursor_after()
 
 ::: zone pivot="azuredataexplorer"
 
-データベース カーソルに対するそれらの取り込み時間を比較するテーブルのレコード上の述語。
+テーブルのレコードに対する述語で、データベースカーソルに対するインジェスト時間を比較します。
 
 **構文**
 
@@ -29,22 +29,22 @@ ms.locfileid: "81766015"
 
 **引数**
 
-* *RHS*: 空の文字列リテラルか、有効なデータベース カーソル値。
+* *RHS*: 空の文字列リテラル、または有効なデータベースカーソル値のいずれかです。
 
 **戻り値**
 
-データベース カーソル*RHS* (`true`) の後にレコードが取り込まれたかどうかを示す型`false``bool`のスカラー値 ( )
+レコードがデータベースカーソル*RHS* (`true`) または not (`false`) の後に取り込まれたされたかどうかを示す、型`bool`のスカラー値。
 
 **メモ**
 
-[データベース カーソルの詳細については、データベース](../management/databasecursor.md)カーソルを参照してください。
+データベースカーソルの詳細については、「[データベースカーソル](../management/databasecursor.md)」を参照してください。
 
-この関数は、[インジェスタのポリシー](../management/ingestiontimepolicy.md)が有効になっているテーブルのレコードに対してのみ呼び出すことができます。
+この関数は、 [IngestionTime ポリシー](../management/ingestiontimepolicy.md)が有効になっているテーブルのレコードに対してのみ呼び出すことができます。
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

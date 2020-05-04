@@ -1,6 +1,6 @@
 ---
-title: クロスクラスター結合 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのクロスクラスター参加について説明します。
+title: クロスクラスター参加-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのクロスクラスター参加について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,20 +10,20 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 1199b148fa295ac17417bbf590a73bfc9400a710
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: bd2ebaa35de1997a96c6646c0fe0f7e248af2240
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765939"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737319"
 ---
-# <a name="cross-cluster-join"></a>クロスクラスタ結合
+# <a name="cross-cluster-join"></a>クラスター間結合
 
 ::: zone pivot="azuredataexplorer"
 
-クラスタ間クエリに関する一般的な説明については、[クロスクラスタ クエリまたはクロスデータベース クエリを](cross-cluster-or-database-queries.md)参照してください。
+クロスクラスタークエリに関する一般的な説明については、「[クラスター間またはデータベース間のクエリ](cross-cluster-or-database-queries.md)」を参照してください。
 
-異なるクラスターに存在するデータセットに対して結合操作を実行できます。 次に例を示します。 
+異なるクラスターに存在するデータセットに対して結合操作を実行することができます。 次に例を示します。 
 
 ```kusto
 T | ... | join (cluster("SomeCluster").database("SomeDB").T2 | ...) on Col1 // (1)
@@ -31,45 +31,45 @@ T | ... | join (cluster("SomeCluster").database("SomeDB").T2 | ...) on Col1 // (
 cluster("SomeCluster").database("SomeDB").T | ... | join (cluster("SomeCluster2").database("SomeDB2").T2 | ...) on Col1 // (2)
 ```
 
-上記の例では、現在のクラスタが "SomeCluster" でも "SomeCluster2" でもないと仮定した場合のクラスタ間結合があります。
+上の例では、現在のクラスターが "SomeCluster" でも "SomeCluster2" でもないという前提で、結合操作はクロスクラスター結合です。
 
-次の例では、注意してください。
+次の例では、に注意してください。
 
 ```kusto
 cluster("SomeCluster").database("SomeDB").T | ... | join (cluster("SomeCluster").database("SomeDB2").T2 | ...) on Col1 
 ```
 
-両方のオペランドが同じクラスター上にあるため、join 操作はクラスター間結合ではありません。
+結合操作はクラスター間結合ではありません。両方のオペランドが同じクラスター上で発生しています。
 
-Kusto がクロスクラスター結合を検出すると、結合操作自体を実行する場所が自動的に決定されます。 この決定は、次の 3 つの結果のうちの 1 つを持つことができます。
-* 左オペランドのクラスタで結合操作を実行すると、右オペランドはこのクラスタによって最初にフェッチされます。 (例で参加 **(1)** はローカル クラスターで実行されます)
-* 右オペランドのクラスタで結合操作を実行すると、左オペランドはこのクラスタによって最初にフェッチされます。 (例で参加 **(2)** は"SomeCluster2"で実行されます。
-* ローカルでの結合操作の実行 (クエリを受け取ったクラスター上での操作) は、両方のオペランドが最初にローカル クラスターによってフェッチされます。
+Kusto がクラスター間結合を検出すると、結合操作自体を実行する場所が自動的に決定されます。 この決定には、次の3つの結果のいずれかが考えられます。
+* 左側のオペランドのクラスターで結合操作を実行すると、右オペランドがこのクラスターによって最初にフェッチされます。 (例では join **(1)** はローカルクラスターで実行されます)
+* 右オペランドのクラスターで join 操作を実行すると、左側のオペランドがこのクラスターによって最初にフェッチされます。 (例では join **(2)** が "SomeCluster2" で実行されます)
+* ローカルクラスターで結合操作をローカルに実行する (つまり、クエリを受け取ったクラスターで)。両方のオペランドがローカルクラスターによって最初にフェッチされます。
 
-実際の決定は特定のクエリに依存し、自動結合リモート処理戦略は (簡略化されたバージョン): "オペランドの 1 つがローカルの場合、結合はローカルで実行されます。 両方のオペランドがリモート結合の場合は、右オペランドのクラスタで実行されます。
+実際の決定は、特定のクエリによって異なります。自動結合リモート処理戦略は (簡略化されたバージョン) です。 "いずれかのオペランドがローカルの場合、結合はローカルで実行されます。 両方のオペランドがリモート結合の場合は、右側のオペランドのクラスターで実行されます。 "です。
 
-自動リモート処理の方法に従わない場合、クエリのパフォーマンスが大幅に向上する場合があります。 一般的に言うと、最大オペランドのクラスタで (パフォーマンスの観点から) 結合操作を実行するのが最適です。
+自動リモート処理戦略に従わないと、クエリのパフォーマンスが大幅に向上することがあります。 一般に、最大のオペランドのクラスターで結合操作を実行する場合は (パフォーマンスの観点から) 最適です。
 
-例えば **(1)** で生成されたデータセット```T | ...```が```cluster("SomeCluster").database("SomeDB").T2 | ...```、"SomeCluster"で結合操作を実行する方が効率的です。
+例 **(1)** の場合、によって```T | ...```生成されるデータセットは、 ```cluster("SomeCluster").database("SomeDB").T2 | ...``` "SomeCluster" で結合操作を実行するよりもはるかに小さくなります。
 
-これは、Kusto がリモート処理のヒントに参加することで実現できます。 の構文は次のとおりです。
+これは、Kusto join リモート処理ヒントを指定することによって実現できます。 の構文は次のとおりです。
 
 ```kusto
 T | ... | join hint.remote=<strategy> (cluster("SomeCluster").database("SomeDB").T2 | ...) on Col1
 ```
 
-以下は、法的な値です。*`strategy`*
-* **`left`**- 左オペランドのクラスタで結合を実行する 
-* **`right`**- 右オペランドのクラスタで結合を実行する
-* **`local`**- 現在のクラスタのクラスタで参加を実行
-* **`auto`**- (デフォルト)クストに自動リモート処理の決定をさせる
+に有効な値を次に示します。*`strategy`*
+* **`left`**-左オペランドのクラスターで join を実行します 
+* **`right`**-右オペランドのクラスターで join を実行します
+* **`local`**-現在のクラスターのクラスターで join を実行します
+* **`auto`**-(既定) Kusto で自動リモート処理を決定します。
 
-**注:** 結合操作にヒントを与えるストラテジーが適用されない場合、Join リモート処理ヒントは Kusto によって無視されます。
+**注:** 結合操作にヒント戦略が適用されない場合、join remoting ヒントは Kusto によって無視されます。
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

@@ -1,6 +1,6 @@
 ---
-title: 制限ステートメント - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの制限ステートメントについて説明します。
+title: Restrict ステートメント-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの Restrict ステートメントについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,40 +10,40 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: cbd21c01956f817c5db19a93104028dba2b2b2b4
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 094cec5b467c35eb9dbeeb756362bd13c77873ce
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765992"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737778"
 ---
 # <a name="restrict-statement"></a>restrict ステートメント
 
 ::: zone pivot="azuredataexplorer"
 
-restrict ステートメントは、その後に続くクエリステートメントに表示される一連のテーブル/ビュー エンティティを制限します。 たとえば、2 つのテーブル`A`( 、 )`B`を含むデータベースでは、アプリケーションはクエリの残りの`B`部分がアクセスできないようにし、ビューを使用して`A`制限された形式のテーブルのみを 「参照」できます。
+Restrict ステートメントは、その後に続くクエリステートメントで参照できるテーブル/ビューエンティティのセットを制限します。 たとえば、2つのテーブル`A`(、 `B`) を含むデータベースでは、アプリケーションがクエリの残りの部分にアクセス`B`できないようにし、ビューを使用して`A`限られた形式のテーブルだけを表示することができます。
 
-Restrict ステートメントの主なシナリオは、ユーザーからのクエリを受け付け、それらのクエリに行レベルのセキュリティ メカニズムを適用する中間層アプリケーション用です。 中間層アプリケーションは、ユーザーのクエリの前に**論理モデル**を付けることができます`T | where UserId == "..."`。 最後に追加されるステートメントとして、ユーザーの論理モデルへのアクセスのみが制限されます。
+Restrict ステートメントの主なシナリオは、ユーザーからのクエリを受け入れ、それらのクエリに行レベルのセキュリティメカニズムを適用する中間層アプリケーションの場合です。 中間層アプリケーションは、ユーザーのクエリにプレフィックスとして**論理モデル**を付けることができます。これは、ユーザーのデータへのアクセスを制限するビュー `T | where UserId == "..."`を定義する let ステートメントのセットです (たとえば、)。 最後に追加されたステートメントとして、ユーザーのアクセスを論理モデルのみに制限します。
 
 **構文**
 
-`restrict``access` `,` [*エンティティスペシビアー* [ .]] `to` `(``)`
+`restrict``access` `,` [Entityspecifier 子 [...]]*EntitySpecifier* `to` `(``)`
 
-*エンティティの仕様子*は、次のいずれかです。
-* let ステートメントによって表形式ビューとして定義される識別子。
-* テーブル参照 (共用体ステートメントで使用される参照と同様)。
+*Entityspecifier 子*は次のいずれかになります。
+* Let ステートメントで表形式ビューとして定義された識別子。
+* テーブル参照 (union ステートメントで使用されているものと似ています)。
 * パターン宣言によって定義されるパターン。
 
-restrict ステートメントで指定されていないすべてのテーブル、表形式のビュー、またはパターンは、クエリの残りの部分に対して "非表示" になります。 
+Restrict ステートメントで指定されていないすべてのテーブル、表形式ビュー、またはパターンは、クエリの残りの部分で "非表示" になります。 
 
 **メモ**
 
-restrict ステートメントを使用して、別のデータベースまたはクラスター内のエンティティへのアクセスを制限できます (ワイルドカードはクラスター名ではサポートされません)。
+Restrict ステートメントを使用して、別のデータベースまたはクラスター内のエンティティへのアクセスを制限することができます (クラスター名ではワイルドカードはサポートされていません)。
 
 **引数**
 
-restrict ステートメントは、エンティティの名前解決時に許容制限を定義する 1 つ以上のパラメーターを取得できます。 エンティティは次の場合があります。
-- [ステートメントの](./letstatement.md)前`restrict`にステートメントを記述します。 
+Restrict ステートメントでは、エンティティの名前解決時に制限の制限を定義するパラメーターを1つ以上取得できます。 エンティティは次のようになります。
+- [let statement](./letstatement.md)ステートメントの前に`restrict`ステートメントを記述します。 
 
 ```kusto
 // Limit access to 'Test' let statement only
@@ -51,7 +51,7 @@ let Test = () { print x=1 };
 restrict access to (Test);
 ```
 
-- データベース メタデータで定義されている[テーブル](../management/tables.md)または[関数](../management/functions.md)。
+- データベースメタデータで定義されている[テーブル](../management/tables.md)または[関数](../management/functions.md)。
 
 ```kusto
 // Assuming the database that the query uses has table Table1 and Func1 defined in the metadata, 
@@ -60,7 +60,7 @@ restrict access to (Test);
 restrict access to (database().Table1, database().Func1, database('DB2').Table2);
 ```
 
-- [let ステートメント](./letstatement.md)またはテーブル/関数の複数の値に一致するワイルドカード パターン  
+- [Let ステートメント](./letstatement.md)またはテーブル/関数の倍数に一致するワイルドカードパターン  
 
 ```kusto
 let Test1 = () { print x=1 };
@@ -82,7 +82,7 @@ restricts access to (database('DB2').*);
 
 **使用例**
 
-次の例は、中間層アプリケーションが、ユーザーが他のユーザーのデータを照会できないようにする論理モデルを備えたユーザーのクエリを追加する方法を示しています。
+次の例では、中間層アプリケーションが、ユーザーが他のユーザーのデータを照会できないようにする論理モデルを使用して、ユーザーのクエリを前に付加する方法を示します。
 
 ```kusto
 // Assume the database has a single table, UserData,
@@ -139,6 +139,6 @@ Table1 |  count
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

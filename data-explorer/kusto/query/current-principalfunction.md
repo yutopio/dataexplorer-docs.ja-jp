@@ -1,6 +1,6 @@
 ---
-title: current_principal() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでcurrent_principal() について説明します。
+title: current_principal ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの current_principal () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 12/10/2019
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 36cebef7db3042bb59ccc5c7c25a56b2c1a661dc
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 0561ac200105015e6d1c1cce1c16fe5f60fc2ccf
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766038"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737710"
 ---
 # <a name="current_principal"></a>current_principal()
 
@@ -29,9 +29,9 @@ ms.locfileid: "81766038"
 
 **戻り値**
 
-現在のプリンシパルの完全修飾名 (FQN) を`string`.  
-文字列は次のように形成されます。  
-*プリンシプラタイプ*`=`*プリンシパルId*`;`*テナントId*
+としての現在のプリンシパル (完全修飾名) `string`。  
+この文字列の形式は次のとおりです。  
+*PrinciplaType*`=`*PrincipalId*PrincipalId`;`*TenantId*
 
 **例**
 
@@ -41,12 +41,12 @@ print fqn=current_principal()
 
 |fqn|
 |---|
-|aaduser=346e950e-4a62-42bf-96f5-4cf4eac3f11e;72f988bf-86f1-41af-91ab-2d7cd011db47|
+|aaduser = 346e950e-4a62-42bf-96f5-4cf4eac3f11e; 72f988bf-86f1-41af-91ab-2d7cd011db47|
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

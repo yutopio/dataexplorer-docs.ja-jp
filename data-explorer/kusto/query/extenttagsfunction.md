@@ -1,6 +1,6 @@
 ---
-title: extent_tags() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで extent_tags() について説明します。
+title: extent_tags ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの extent_tags () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: d8af7e51c5e2efb16763541db05e9ccc7e2cb95f
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 146ab59c1c0cbcb86bfae94fa26c09f5afa0f216
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765429"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737591"
 ---
 # <a name="extent_tags"></a>extent_tags()
 
 ::: zone pivot="azuredataexplorer"
 
-現在のレコードが存在するデータ シャード ("エクステント") の[タグ](../management/extents-overview.md#extent-tagging)を持つ動的配列を返します。 
+現在のレコードが存在するデータシャード ("extent") の[タグ](../management/extents-overview.md#extent-tagging)を持つ動的配列を返します。 
 
 データシャードにアタッチされていない計算データにこの関数を適用すると、空の値が返されます。
 
@@ -31,11 +31,11 @@ ms.locfileid: "81765429"
 
 **戻り値**
 
-現在のレコードの`dynamic`エクステント タグを保持する配列、または空の値を表す型の値。
+現在のレコードの`dynamic`エクステントタグを保持している配列である型の値、または空の値。
 
 **使用例**
 
-次の例は、1 時間前のレコードを持つすべてのデータ シャードのタグを、列に固有の値を持つリスト`ActivityId`を取得する方法を示しています。 一部のクエリ演算子 (ここでは`where`演算子ですが、`extend``project`と ) はレコードをホストするデータ シャードに関する情報を保持する方法を示します。
+次の例では、1時間前のレコードを含むすべてのデータシャードのタグの一覧を取得し、その列`ActivityId`に特定の値を設定する方法を示します。 この例では、一部のクエリ演算子 ( `where`ここでは演算子でもあります`extend`が`project`、とにも当てはまります) を示しています。これは、レコードをホストしているデータシャードに関する情報を保持します。
 
 ```kusto
 T
@@ -45,7 +45,7 @@ T
 | summarize by tostring(tags)
 ```
 
-次の例では、タグ (および場合によっては他のタグ) でタグ付けされたエクステントに格納され、タグ`MyTag``drop-by:MyOtherTag`を付けられません、過去 1 時間のすべてのレコードの数を取得する方法を示します。
+次の例は、過去1時間のすべてのレコードの数を取得する方法を示しています。これは、タグ`MyTag` (および他のタグ) でタグ付けされてい`drop-by:MyOtherTag`てもタグでタグ付けされていないエクステントに格納されています。
 
 ```kusto
 T
@@ -59,6 +59,6 @@ T
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

@@ -1,6 +1,6 @@
 ---
-title: クラスター() (スコープ関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの cluster() (スコープ関数) について説明します。
+title: cluster () (スコープ関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの cluster () (スコープ関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c5f537b47006af4035c9db26388c1d4110c69b55
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 092915c08b4b3d1e72722a4303e911403b2defd2
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766110"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737200"
 ---
-# <a name="cluster-scope-function"></a>クラスター()(スコープ関数)
+# <a name="cluster-scope-function"></a>cluster () (スコープ関数)
 
 ::: zone pivot="azuredataexplorer"
 
-クエリの参照をリモート クラスターに変更します。 
+クエリの参照をリモートクラスターに変更します。 
 
 ```kusto
 cluster('help').database('Sample').SomeTable
@@ -29,22 +29,22 @@ cluster('help').database('Sample').SomeTable
 
 **構文**
 
-`cluster(`*文字列定数*`)`
+`cluster(`*stringConstant*`)`
 
 **引数**
 
-* *文字列定数*: 参照されるクラスターの名前。 クラスタ名には、完全修飾 DNS 名、または サフィックスが付いた文字列を`.kusto.windows.net`指定できます。 引数はクエリの実行前に_定数_である必要があります。
+* *Stringconstant*: 参照されているクラスターの名前。 クラスター名には、完全修飾 DNS 名か、サフィックスが付け`.kusto.windows.net`られた文字列を指定できます。 引数は、クエリの実行前には_定数_にする必要があります。つまり、サブクエリの評価から取得することはできません。
 
 **メモ**
 
-* 同じクラスタ内のデータベースにアクセスする場合は[、database()](databasefunction.md)関数を使用します。
-* クラスタ間クエリとクロスデータベース クエリの詳細[については、こちらを参照してください。](cross-cluster-or-database-queries.md)  
+* 同じクラスター内のデータベースにアクセスする場合は、 [database ()](databasefunction.md)関数を使用します。
+* クラスター間およびデータベース間のクエリの詳細について[は、こちら](cross-cluster-or-database-queries.md)を参照してください。  
 
 ## <a name="examples"></a>例
 
-### <a name="use-cluster-to-access-remote-cluster"></a>cluster() を使用してリモート・クラスターにアクセスする 
+### <a name="use-cluster-to-access-remote-cluster"></a>クラスター () を使用してリモートクラスターにアクセスする 
 
-次のクエリは、Kusto クラスターのいずれかで実行できます。
+次のクエリは、任意の Kusto クラスターで実行できます。
 
 ```kusto
 cluster('help').database('Samples').StormEvents | count
@@ -56,9 +56,9 @@ cluster('help.kusto.windows.net').database('Samples').StormEvents | count
 |---|
 |59066|
 
-### <a name="use-cluster-inside-let-statements"></a>let ステートメント内で cluster() を使用する 
+### <a name="use-cluster-inside-let-statements"></a>Let ステートメント内で cluster () を使用する 
 
-上記と同じクエリを書き直して、cluster() 関数に渡されるパラメータ`clusterName`を受け取るインライン関数 (let 文) を使用するように書き換えることができます。
+上記と同じクエリは、cluster () 関数に渡されるパラメーター `clusterName`を受け取るインライン関数 (let ステートメント) を使用するように書き換えることができます。
 
 ```kusto
 let foo = (clusterName:string)
@@ -72,9 +72,9 @@ foo('help')
 |---|
 |59066|
 
-### <a name="use-cluster-inside-functions"></a>関数内で cluster() を使用する 
+### <a name="use-cluster-inside-functions"></a>Functions 内で cluster () を使用する 
 
-上記と同じクエリを書き直して、パラメータ`clusterName`を受け取る関数で使用することができます 。
+上記と同じクエリは、cluster () 関数に渡されるパラメーター `clusterName`を受け取る関数で使用するように書き直すことができます。
 
 ```kusto
 .create function foo(clusterName:string)
@@ -83,12 +83,12 @@ foo('help')
 };
 ```
 
-**注:** このような関数はローカルでのみ使用でき、クロスクラスター照会では使用できません。
+**注:** このような関数は、クラスター間クエリではなくローカルでのみ使用できます。
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

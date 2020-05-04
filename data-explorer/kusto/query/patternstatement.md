@@ -1,6 +1,6 @@
 ---
-title: パターン ステートメント - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのパターン ステートメントについて説明します。
+title: pattern ステートメント-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの pattern ステートメントについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,32 +10,32 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: d7ad021fe7b458d54beeb24b908420324b45ad39
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 97fc8361feb3d8dddb7d0722ce741ef44bd4cec6
+ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765671"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82737268"
 ---
-# <a name="pattern-statement"></a>パターンステートメント
+# <a name="pattern-statement"></a>pattern ステートメント
 
 ::: zone pivot="azuredataexplorer"
 
-**パターン**は、定義済みの文字列タプルをパラメーターなしの関数本体にマップする名前付きビューに似た構造です。 パターンは、次の 2 つの側面で一意です。
+**パターン**とは、定義済みの文字列の組をパラメーターなしの関数本体にマップする、名前付きビューのような構造です。 パターンは、次の2つの側面で一意です。
 
-* パターンは、スコープ指定されたテーブル参照に似た構文を使用して"呼び出される" 。
-* パターンには、マップできる、厳密に処理された一連の引数値があり、マッピング プロセスは Kusto によって実行されます。 これは、パターンが宣言されているが定義されていない場合、Kusto はパターンに対するすべての呼び出しをエラーとして識別してフラグを付け、中間層アプリケーションによってこれらのパターンを「解決」することを可能にすることを意味します。
+* パターンは、スコープテーブル参照に似た構文を使用することによって呼び出されます。
+* パターンには、マップ可能な制御されたクローズ終了の引数値のセットがあり、マッププロセスは Kusto によって行われます。 つまり、パターンが宣言されていても定義されていない場合、Kusto はパターンへのすべての呼び出しをエラーとして識別してフラグを設定し、中間層アプリケーションでこれらのパターンを "解決" できるようにします。
 
 
 ## <a name="pattern-declaration"></a>パターン宣言
-パターンステートメントは、パターンの宣言または定義に使用されます。
-たとえば、次はパターンとして宣言`app`するパターンステートメントです。
+Pattern ステートメントは、パターンを宣言または定義するために使用されます。
+たとえば、パターンとしてを宣言`app`する pattern ステートメントを次に示します。
 
 ```kusto
 declare pattern app;
 ```
 
-この文は、パターンである`app`Kustoに指示しますが、パターンの解決方法は Kusto に指示しません。 その結果、クエリでこのパターンを呼び出そうとすると、そのような呼び出しがすべてリストされた特定のエラーが発生します。 次に例を示します。
+このステートメントは、パターンである`app` kusto に指示しますが、パターンの解決方法を kusto 指示することはありません。 その結果、クエリでこのパターンを呼び出そうとすると、そのような呼び出しのすべてを一覧表示する特定のエラーが発生します。 次に例を示します。
 
 ```kusto
 declare pattern app;
@@ -44,15 +44,15 @@ app("ApplicationX").StartEvents
 | count
 ```
 
-このクエリは Kusto からエラーを生成し`app("ApplicationX")["StartEvents"]``app("ApplicationX")["StopEvents"]`、次のパターン呼び出しを解決できないことを示します。
+このクエリでは、Kusto からのエラーが生成されます。これは、次`app("ApplicationX")["StartEvents"]`の`app("ApplicationX")["StopEvents"]`パターン呼び出しを解決できないことを示します。
 
 **構文**
 
-`declare``pattern`*パターン名*
+`declare``pattern` *パターン名*
 
-## <a name="pattern-definition"></a>パターン定義
+## <a name="pattern-definition"></a>パターンの定義
 
-パターン・ステートメントは、パターンを定義するためにも使用できます。 パターン定義では、パターンの呼び出しの可能性がすべて明示的にレイアウトされ、対応する表形式式が指定されます。 Kusto は、クエリを実行すると、各パターン呼び出しを対応するパターン本体に置き換えます。 次に例を示します。
+Pattern ステートメントを使用してパターンを定義することもできます。 パターン定義では、パターンのすべての可能な呼び出しが明示的にレイアウトされ、対応する表形式の式が指定されます。 次に Kusto でクエリを実行すると、各パターン呼び出しが対応するパターン本体に置き換えられます。 次に例を示します。
 
 ```kusto
 declare pattern app = (applicationId:string)[eventType:string]
@@ -65,41 +65,41 @@ app("ApplicationX").StartEvents
 | count
 ```
 
-一致する各パターンに対して指定される式は、テーブル名または[let ステートメント](letstatement.md)への参照です。
+一致する各パターンに対して指定される式は、テーブル名か[let ステートメント](letstatement.md)への参照のいずれかです。
 
 **構文**
 
-`declare``pattern`*パターン* = 名`(`*ArgName* `:` *ArgType* [`,` ..`)` [`[` *パス名*`:`*パス引数 ]* `]``{`
-&nbsp;&nbsp;&nbsp;&nbsp;`(` *ArgValue1* `,` [ *ArgValue2* ..`)` [ `.[` *パス`]`値`=``{`] &nbsp; *式*`};`&nbsp;&nbsp;&nbsp;&nbsp;`,`*ArgValue2_2*[ `(` *ArgValue1_2* ArgValue1_2 [ ArgValue2_2 . &nbsp; &nbsp; &nbsp;`)` [ `.[` *PathValue_2* `]` PathValue_2 `=` `{`] *expression_2.* `};` &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]        `}`
+`declare``pattern` *Pattern 名* =  `:` *ArgType* `,` argname argname [...]*ArgName* `(``)` [`[` *パス名* `:` *pathargtype* `]`]`{`
+&nbsp;&nbsp;&nbsp;&nbsp;`(` *ArgValue1* [`,` *ArgValue2* ...]`)` [ `.[` * Pathvalue `]` ] `=` `{`*式*`};` `(` *ArgValue1_2* *ArgValue2_2* [ArgValue1_2 [`,` ArgValue2_2...] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`)` [ `.[` *PathValue_2* `{` *expression_2* ] `=` expression_2`};` .. &nbsp; . `]` &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ]        `}`
 
-* *パターン名*: パターン キーワードの名前。 キーワードのみを定義する構文は、指定されたキーワードを使用してすべてのパターン参照を検出する場合に使用できます。
-* *ArgName*: パターン引数の名前。 パターンでは、1 つ以上の引数名を使用できます。
-* *ArgType*: パターン引数の型 (`string`現在は許可されている場合のみ)
-* *パス名*: パス引数の名前。 パターンでは、0 または 1 つのパス名を指定できます。
-* *パスタイプ*: パス引数の型 (`string`現在のみ許可されています)
-* *ArgValue1* *、ArgValue2*、.- パターン引数の値`string`(現在はリテラルのみが許可されています)
-* *PathValue* - パターンパスの値(現在`string`はリテラルのみが許可されています)
-* *式*: 式 *-* 表形式の式`Logs | where Timestamp > ago(1h)`(たとえば) または関数を参照するラムダ式。
+* *Pattern Name*: pattern キーワードの名前。 キーワードだけを定義する構文は、指定されたキーワードを使用してすべてのパターン参照を検出するために使用できます。
+* *Argname*: pattern 引数の名前。 パターンでは、1つまたは複数の引数名を使用できます。
+* *Argtype*: pattern 引数の型 (現時点でのみ`string`許可されています)
+* *PathName*: パス引数の名前。 パターンでは、0個または1個のパス名を使用できます。
+* *Pathtype*: パス引数の型 (現時点でのみ`string`許可されています)
+* *ArgValue1*、 *ArgValue2*、...-pattern 引数の値 (現在はリテラル`string`のみを使用できます)
+* *Pathvalue* -パターンパスの値 (現在はリテラル`string`のみを使用できます)
+* *式*:*式*-テーブル式 (など`Logs | where Timestamp > ago(1h)`)、または関数を参照するラムダ式。
 
 ## <a name="pattern-invocation"></a>パターン呼び出し
 
-パターン呼び出し構文は、スコープ指定テーブル参照構文に似ています。
+パターン呼び出し構文は、スコープが指定されたテーブル参照構文に似ています。
 
-* *パターン名*`(` *ArgValue1* [`,` *ArgValue2* ..]`).`*パス値*
-* *パターン名*`(` *ArgValue1* [`,` *ArgValue2* ..]`).["`*パス値*`"]`
+* *Pattern name* `(` *ArgValue1* [`,` *ArgValue2* ...]`).` *Pathvalue*
+* *Pattern name* `(` *ArgValue1* [`,` *ArgValue2* ...]`).["` *Pathvalue*`"]`
 
 ## <a name="remarks"></a>解説
 
 **シナリオ**
 
-パターン ステートメントは、ユーザー クエリを受け入れ、これらのクエリを Kusto に送信する中間層アプリケーション用に設計されています。 このようなアプリケーションは、多くの場合、これらのユーザー クエリの前に論理スキーマ モデル (一連の[let ステートメント](letstatement.md)、 場合によっては[restrict ステートメント](restrictstatement.md)のサフィックス) を付けます。
-場合によっては、これらのアプリケーションは、事前に認識できず、作成する論理スキーマで定義されているエンティティを参照するようにユーザーに提供できる構文を必要とします (潜在的なエンティティの数が論理スキーマで事前に定義するには大きすぎるため、事前に知られていないため)。
+Pattern ステートメントは、ユーザークエリを受け取り、これらのクエリを Kusto に送信する中間層アプリケーション向けに設計されています。 このようなアプリケーションでは、多くの場合、これらのユーザークエリの前に論理スキーマモデル (たとえば、 [restrict ステートメント](restrictstatement.md)でサフィックスが付けられている[let ステートメント](letstatement.md)のセット) を使用します。
+場合によっては、これらのアプリケーションでは、事前に既知ではないエンティティを参照するようにユーザーに指定できる構文が必要になることがあります。また、潜在的なエンティティの数が大きすぎて論理スキーマで事前に定義されていない可能性があるためです。
 
-パターンは、次の方法でこのシナリオを解決します。 中間層アプリケーションは、宣言されたすべてのパターンを含む Kusto にクエリを送信しますが、定義されていません。 Kusto はクエリを解析し、1 つ以上のパターン呼び出しが存在する場合は、中間層アプリケーションにエラーを返し、そのような呼び出しがすべて明示的にリストされます。 中間層アプリケーションは、これらの各参照を解決し、クエリを再実行して、今度は完全に詳細なパターン定義をプレフィックスとして使用できます。
+パターンは、このシナリオを次のように解決します。 中間層アプリケーションはクエリを Kusto に送信します。すべてのパターンが宣言されていますが、定義されていません。 次に kusto はクエリを解析し、1つまたは複数のパターン呼び出しがある場合は、このようなすべての呼び出しが明示的に一覧表示された中間層アプリケーションにエラーを返します。 その後、中間層アプリケーションは、これらの参照をそれぞれ解決し、クエリを再実行します。今回は、完全に詳細なパターン定義でプレフィックスを付けます。
 
-**正規化**
+**Normalizations 場合**
 
-Kusto は自動的にパターンを正規化するので、例えば次の例は同じパターンの呼び出しすべてであり、1 つのパターンが報告されます。
+Kusto はパターンを自動的に正規化します。したがって、たとえば、次の例では、同じパターンをすべて呼び出し、1つを返します。
 
 ```kusto
 declare pattern app;
@@ -110,11 +110,11 @@ union
   app("ApplicationX").["StartEvent"]
 ```
 
-これは、同じと見なされるため、それらを一緒に定義できないことを意味します。
+これは、同じであると見なされるため、1つを同時に定義できないことも意味します。
 
 **ワイルドカード**
 
-Kusto はワイルドカードをパターンで特別な方法で扱いません。 たとえば、次のクエリを使用します。
+Kusto は、パターンでワイルドカードを特別な方法では扱いません。 たとえば、次のクエリでは、
 
 ```kusto
 declare pattern app;
@@ -122,7 +122,7 @@ union app("ApplicationX").*
 | count
 ```
 
-Kusto は、単一の欠落パターン`app("ApplicationX").["*"]`呼び出しを報告します: .
+Kusto は、1つの見つからないパターン`app("ApplicationX").["*"]`呼び出しを報告します。
 
 ## <a name="examples"></a>例
 
@@ -136,25 +136,25 @@ declare pattern A
 union (A('a1').Text), (A('a2').Text)
 ```
 
-|アプリ|いくつかのテキスト|
+|アプリ|その他のテキスト|
 |---|---|
-|アプリ#1|これはフリーテキストです: 1|
-|アプリ#1|これはフリーテキストです: 2|
-|アプリ#1|これはフリーテキストです: 3|
-|アプリ#1|これはフリーテキストです: 4|
-|アプリ#1|これはフリーテキストです: 5|
-|アプリ#2|これはフリーテキストです: 9|
-|アプリ#2|これはフリーテキストです: 8|
-|アプリ#2|これはフリーテキストです: 7|
-|アプリ#2|これはフリーテキストです: 6|
-|アプリ#2|これはフリーテキストです: 5|
+|アプリの #1|これは無料のテキストです: 1|
+|アプリの #1|これは無料のテキストです。2|
+|アプリの #1|これは無料のテキストです: 3|
+|アプリの #1|これは無料のテキストです: 4|
+|アプリの #1|これは無料のテキストです: 5|
+|アプリの #2|これは無料のテキストです: 9|
+|アプリの #2|これは無料のテキストです: 8|
+|アプリの #2|これは無料のテキストです: 7|
+|アプリの #2|これは無料のテキストです: 6|
+|アプリの #2|これは無料のテキストです: 5|
 
 ```kusto
 declare pattern App;
 union (App('a1').Text), (App('a2').Text)
 ```
 
-セマンティック エラー:
+セマンティックエラー:
 
      SEM0036: One or more pattern references were not declared. Detected pattern references: ["App('a1').['Text']","App('a2').['Text']"].
 
@@ -170,7 +170,7 @@ declare pattern App = (applicationId:string)[scope:string]
 union (App('a2').Metrics), (App('a3').Metrics) 
 ```
 
-セマンティック エラーが返されました:
+セマンティックエラーが返されました:
 
     SEM0036: One or more pattern references were not declared. Detected pattern references: ["App('a2').['Metrics']","App('a3').['Metrics']"].
 
@@ -178,6 +178,6 @@ union (App('a2').Metrics), (App('a3').Metrics)
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

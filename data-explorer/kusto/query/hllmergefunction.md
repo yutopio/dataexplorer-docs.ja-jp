@@ -1,6 +1,6 @@
 ---
-title: hll_merge() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで hll_merge() について説明します。
+title: hll_merge ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの hll_merge () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: 10e726af4e9dd2e129b526f016a7c37dc0c99d50
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 35dab83a658b714a220c7fbd6ff751627c0741e4
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514095"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741781"
 ---
 # <a name="hll_merge"></a>hll_merge()
 
-hll の結果 (集約バージョンのスカラーバージョン[`hll_merge()`](hll-merge-aggfunction.md)) をマージします。
+結果`hll`のマージ (集計バージョン[`hll_merge()`](hll-merge-aggfunction.md)のスカラーバージョン)。
 
-[基礎となるアルゴリズム *(H*yper*L*og*L*og) と推定精度](dcount-aggfunction.md#estimation-accuracy)について読んでください。
+[基になるアルゴリズム (*H*Yper*l*og*l*og) と推定精度](dcount-aggfunction.md#estimation-accuracy)について確認します。
 
 **構文**
 
-`hll_merge(`*エクスプル1* `,` *エクスプル2*`, ...)`
+`hll_merge(`*Expr1 or* `,` *Expr2*`, ...)`
 
 **引数**
 
-* マージする hll 値を持つ列。
+* マージする値`hll`を持つ列。
 
 **戻り値**
 
-列`*Exrp1*`をマージする結果、 、.. `*Expr2*``*ExprN*` 1 つの hll 値にします。
+列`*Exrp1*` `*Expr2*`のマージの結果です。`*ExprN*` 1 つ`hll`の値にします。
 
 **使用例**
 
@@ -43,6 +43,6 @@ range x from 1 to 10 step 1
 | project dcount_hll(merged)
 ```
 
-|dcount_hll_merged|
+|`dcount_hll_merged`|
 |---|
 |20|

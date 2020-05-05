@@ -1,6 +1,6 @@
 ---
-title: rank_tdigest() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの rank_tdigest() について説明します。
+title: rank_tdigest ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの rank_tdigest () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,37 +8,37 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: ea24213b0ca673c39f399c3a12cc54cd7d7f47d5
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a849cd496d41ad473768b3f267639eaf8c467880
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510542"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741780"
 ---
 # <a name="rank_tdigest"></a>rank_tdigest()
 
-セット内の値のおおよそのランクを計算します。 `v`セット`S`内の値のランクは、のメンバー`S`の数が小さいか等しいと`v`定義され`S`、それは、それが消化不良で表されます。
+セット内の値のおおよその順位を計算します。 セット`v` `S`内の値のランクは`S` `v`、 `S`より小さいまたは等しいのメンバーの数として定義され`tdigest`ます。これは、によって表されます。
 
 **構文**
 
-`rank_tdigest(`*Tダイジェスト*`,`*エクスプ*`)`
+`rank_tdigest(`*`TDigest`*`,` *`Expr`*`)`
 
 **引数**
 
-* *TDigest*: [tdigest()](tdigest-aggfunction.md)または[tdigest_merge()](tdigest-merge-aggfunction.md)によって生成された式
-* *Expr*: ランク付け計算に使用する値を表す式。
+* *Tdigest*: [tdigest ()](tdigest-aggfunction.md)または[tdigest_merge ()](tdigest-merge-aggfunction.md)によって生成された式
+* *Expr*: 順位付けの計算に使用される値を表す式。
 
 **戻り値**
 
-データ セット内のランク foreach 値。
+データセット内の rank foreach 値。
 
 **ヒント**
 
-1) ランクを取得する値は、ダイジェストと同じタイプである必要があります。
+1) ランクを取得する値は、 `tdigest`と同じ型である必要があります。
 
 **使用例**
 
-ソートされたリスト(1-1000)では、685のランクはインデックスです。
+並べ替えられたリスト (1-1000) では、685のランクは次のようになります。
 
 ```kusto
 range x from 1 to 1000 step 1
@@ -50,7 +50,7 @@ range x from 1 to 1000 step 1
 |-------------|
 |`685`        |
 
-このクエリは、すべての損害特性コストに対する値4490$のランクを計算します。
+このクエリでは、すべての損傷プロパティのコストについて、値 $4490 のランクが計算されます。
 
 ```kusto
 StormEvents
@@ -63,7 +63,7 @@ StormEvents
 |--------------|
 |`50207`       |
 
-ランクの推定パーセンテージを取得する (設定されたサイズで割る):
+(セットサイズで割ることによって) ランクの推定パーセンテージを取得します。
 
 ```kusto
 StormEvents
@@ -77,7 +77,7 @@ StormEvents
 |`85.0015237192293`|
 
 
-損害特性コストのパーセンタイル85は4490$ です。
+損傷プロパティのコストの百分位85は、$4490 です。
 
 ```kusto
 StormEvents

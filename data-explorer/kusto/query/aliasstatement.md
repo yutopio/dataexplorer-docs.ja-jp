@@ -1,6 +1,6 @@
 ---
-title: エイリアス ステートメント - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのエイリアス ステートメントについて説明します。
+title: Alias ステートメント-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの Alias ステートメントについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,30 +10,30 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c6c689ab6daacebe1cd20742b199c8b9cc299245
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 63c639fb95322c537c5e069aa7e8ef7037371c88
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766096"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82742021"
 ---
 # <a name="alias-statement"></a>alias ステートメント
 
 ::: zone pivot="azuredataexplorer"
 
-Alias ステートメントを使用すると、同じクエリで後で使用できるデータベースの別名を定義できます。
+別名ステートメントを使用すると、データベースの別名を定義できます。この別名は、後で同じクエリで使用できます。
 
-これは、いくつかのクラスターを操作しているときに、より少ないクラスターで作業している、または 1 つのクラスターでのみ動作するように見せようとする場合に役立ちます。
-エイリアスは、*クラスタ名*と*データベース名*が既存の有効なエンティティである必要がある次の構文に従って定義する必要があります。
+これは、複数のクラスターを操作しているときに、より少数のクラスターで作業しているかのように表示する場合に便利です。
+エイリアスは、次の構文に従って定義する必要があります。 *clustername*と*databasename*は、既存のエンティティと有効なエンティティです。
 
 **構文**
 
-`alias`データベース]*'データベースエイリアス名'*]`=`クラスター ("https://*クラスター名*.kusto.windows.net:443") データベース("*データベース名*")
+`alias`database [*' DatabaseAliasName '*] `=` cluster ("https://*clustername*: 443"). database ("*databasename*") です。
 
-`alias`*データベース データベースエイリアス名*`=`クラスタ("https://*クラスター名*.kusto.windows.net:443")データベース("*データベース名*")
+`alias`database *DatabaseAliasName* `=` cluster ("https://*clustername*: 443"). database ("*databasename*") を実行します。
 
-* *'データベースエイリアス名'* は、軸方向の名前または新しい名前のいずれかです。
-* マップされたクラスター URI とマップされたデータベース名は、二重引用符(")または単一引用符(') 内になければなりません。
+* *' DatabaseAliasName '* には、既存の名前または新しい名前を指定できます。
+* マップされたクラスター uri とマップされたデータベース名は、二重引用符 (") または単一引用符 (') で囲む必要があります。
 
 **使用例**
 
@@ -51,6 +51,6 @@ database("Logs").Traces | count
 
 ::: zone pivot="azuremonitor"
 
-これは Azure モニターではサポートされていません。
+この機能は、ではサポートされていません Azure Monitor
 
 ::: zone-end

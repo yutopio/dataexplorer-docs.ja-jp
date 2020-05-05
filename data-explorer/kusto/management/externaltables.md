@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 624c0a7f1105ff13642649174f769781f1749598
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: c52f0649531678e31310f5a1f4bfb97f99f15857
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108073"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741938"
 ---
 # <a name="external-table-management"></a>外部テーブル管理
 
@@ -183,6 +183,8 @@ ms.locfileid: "82108073"
 | `fileExtension`  | `string` | 設定すると、blob のファイル拡張子が示されます。 書き込み時には、blob 名はこのサフィックスで終了します。 読み取り時には、このファイル拡張子を持つ blob だけが読み取られます。           |
 | `encoding`       | `string` | テキストのエンコード方法を示します`UTF8NoBOM` 。 (既定値`UTF8BOM`) または。             |
 
+クエリでの外部テーブルパラメーターの詳細については、「[アーティファクトフィルター処理ロジック](#artifact-filtering-logic)」を参照してください。
+
 > [!NOTE]
 > * テーブルが存在する場合`.create` 、コマンドは失敗し、エラーが表示されます。 既存`.alter`のテーブルを変更するには、を使用します。 
 > * 外部 blob テーブルのスキーマ、形式、またはパーティション定義の変更はサポートされていません。 
@@ -203,8 +205,7 @@ dataformat=csv
 with 
 (
    docstring = "Docs",
-   folder = "ExternalTables",
-   namePrefix="Prefix"
+   folder = "ExternalTables"
 )  
 ```
 
@@ -221,8 +222,7 @@ dataformat=csv
 with 
 (
    docstring = "Docs",
-   folder = "ExternalTables",
-   namePrefix="Prefix"
+   folder = "ExternalTables"
 )  
 ```
 
@@ -239,8 +239,7 @@ dataformat=csv
 with 
 (
    docstring = "Docs",
-   folder = "ExternalTables",
-   namePrefix="Prefix"
+   folder = "ExternalTables"
 )
 ```
 
@@ -257,8 +256,7 @@ dataformat=csv
 with 
 (
    docstring = "Docs",
-   folder = "ExternalTables",
-   namePrefix="Prefix"
+   folder = "ExternalTables"
 )
 ```
 
@@ -286,6 +284,22 @@ with
 |TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|
 |---|---|---|---|---|---|---|
 |External多重パーティション|BLOB|ExternalTables|Docs|{"Format": "Csv"、"圧縮": false、"CompressionType": null、"FileExtension": "csv"、"IncludeHeaders": "None"、"Encoding": null、"NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;*******"]}|[{"StringFormat": "様名{0}=", "ColumnName": "様"、"ColumnName": "様"、"序数": 0}、partitionby ":" 1.00:00:00 "、" ColumnName ":" Timestamp "、" Ordinal ": 1}]|
+
+#### <a name="artifact-filtering-logic"></a>アーティファクトのフィルター処理ロジック
+
+外部テーブルに対してクエリを実行する場合、クエリエンジンは、クエリのパフォーマンスを向上させるために、無関係の外部ストレージアーティファクト (blob) を除外します。 Blob を反復処理し、blob を処理する必要があるかどうかを判断するプロセスを次に示します。
+
+1. Blob が検出される場所を表す URI パターンを作成します。 最初、URI パターンは、外部テーブル定義の一部として指定された接続文字列に相当します。 パーティションが定義されている場合は、URI パターンに追加されます。
+たとえば、接続文字列が`https://storageaccount.blob.core.windows.net/container1` `partition by format_datetime="yyyy-MM-dd" bin(Timestamp, 1d)`で、datetime パーティションが定義されている場合、対応する URI パターンは次`https://storageaccount.blob.core.windows.net/container1/yyyy-MM-dd`のようになります。このパターンに一致する場所にある blob が検索されます。
+追加の文字列パーティション`"CustomerId" customerId`が定義されている場合、対応する URI パターン`https://storageaccount.blob.core.windows.net/container1/yyyy-MM-dd/CustomerId=*`は、などです。
+
+2. 作成した URI パターンに含まれるすべての*ダイレクト*blob について、次のことを確認します。
+
+ * パーティション値は、クエリで使用される述語と一致します。
+ * このようなプロパティ`NamePrefix`が定義されている場合、Blob 名はで始まります。
+ * このようなプロパティ`FileExtension`が定義されている場合、Blob 名はで終了します。
+
+すべての条件が満たされると、blob がフェッチされ、クエリエンジンによって処理されます。
 
 #### <a name="spark-virtual-columns-support"></a>Spark 仮想列のサポート
 
@@ -425,7 +439,7 @@ dataformat=parquet
 
 * *TableName* -外部テーブル名。 [エンティティ名](../query/schema-entities/entity-names.md)の規則に従う必要があります。 外部テーブルは、同じデータベース内の通常のテーブルと同じ名前にすることはできません。
 * *Sqltablename* -SQL テーブルの名前。
-* *SqlServerConnectionString* -SQL server への接続文字列。 次のいずれかを指定できます。 
+* *SqlServerConnectionString* -SQL server への接続文字列。 以下のいずれかを指定できます。 
     * **Aad 統合認証**(`Authentication="Active Directory Integrated"`): ユーザーまたはアプリケーションが aad 経由で kusto に対して認証を行い、同じトークンを使用して SQL Server ネットワークエンドポイントにアクセスします。
     * **ユーザー名/パスワード認証**(`User ID=...; Password=...;`)。 外部テーブルを[連続エクスポート](data-export/continuous-data-export.md)に使用する場合は、この方法を使用して認証を実行する必要があります。 
 

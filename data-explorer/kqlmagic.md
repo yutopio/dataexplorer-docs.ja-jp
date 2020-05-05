@@ -7,26 +7,26 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/10/2019
-ms.openlocfilehash: 33fe6750c355c8dc79bbbd9223166786f844a502
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f8f67599872c920e323e788dd79e082fdc22e0f0
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492831"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82616509"
 ---
-# <a name="use-a-jupyter-notebook-and-kqlmagic-extension-to-analyze-data-in-azure-data-explorer"></a>Jupyter Notebook と Kqlmagic 拡張機能を使用して、Azure Data Explorer 内のデータを分析します。
+# <a name="use-a-jupyter-notebook-and-kqlmagic-extension-to-analyze-data-in-azure-data-explorer"></a>Jupyter Notebook と Kqlmagic 拡張機能を使用して Azure Data Explorer 内のデータを分析する
 
 Jupyter Notebook はオープン ソースの Web アプリケーションであり、ライブ コード、数式、視覚化、説明テキストを含むドキュメントを作成して共有するために使用できます。 用途には、データのクリーニングと変換、数値シミュレーション、統計モデリング、データの視覚化、機械学習などが含まれています。
-[Jupyter Notebook](https://jupyter.org/) では、追加コマンドをサポートすることによってカーネルの機能を拡張するマジック関数がサポートされています。 KQL magic は、Kusto 言語のクエリをネイティブに実行できるように、Jupyter Notebook で Python カーネルの機能を拡張するコマンドです。 Python と Kusto クエリ言語を簡単に組み合わせて、`render` コマンドに統合されたリッチな Plot.ly ライブラリを使用してデータのクエリと視覚化を実行できます。 クエリを実行するためのデータ ソースがサポートされています。 このようなデータ ソースとしては、ログとテレメトリ データのための高速でスケーラブルなデータ探索サービスである Azure Data Explorer や、Azure Monitor ログ、Application Insights などがあります。 KQL magic は、Azure Notebooks、Jupyter Lab、および Visual Studio Code Jupyter 拡張機能でも動作します。
+[Jupyter Notebook](https://jupyter.org/) では、追加コマンドをサポートすることによってカーネルの機能を拡張するマジック関数がサポートされています。 kqlmagic は、Kusto 言語のクエリをネイティブに実行できるように、Jupyter Notebook での Python カーネルの機能を拡張するコマンドです。 Python と Kusto クエリ言語を簡単に組み合わせて、`render` コマンドに統合されたリッチな Plot.ly ライブラリを使用してデータの照会と視覚化を実行できます。 クエリを実行するためのデータ ソースがサポートされています。 このようなデータ ソースとしては、ログとテレメトリ データのための高速でスケーラブルなデータ探索サービスである Azure Data Explorer や、Azure Monitor ログ、Application Insights などがあります。 Kqlmagic は、Azure Notebooks、Jupyter Lab、および Visual Studio Code Jupyter 拡張機能でも動作します。
 
 ## <a name="prerequisites"></a>前提条件
 
 - Azure Active Directory (AAD) のメンバーである、組織の電子メール アカウント。
 - ローカル コンピューターにインストールされた Jupyter Notebook、または Azure Notebook を使用してサンプルの [Azure ノートブック](https://kustomagicsamples-manojraheja.notebooks.azure.com/j/notebooks/Getting%20Started%20with%20kqlmagic%20on%20Azure%20Data%20Explorer.ipynb)を複製します
 
-## <a name="install-kql-magic-library"></a>KQL magic ライブラリのインストール
+## <a name="install-kqlmagic-library"></a>Kqlmagic ライブラリをインストールする
 
-1. KQL magic をインストールします。
+1. Kqlmagic をインストールします。
 
     ```python
     !pip install Kqlmagic --no-cache-dir  --upgrade
@@ -34,7 +34,7 @@ Jupyter Notebook はオープン ソースの Web アプリケーションであ
     > [!NOTE]
     > Azure Notebooks を使用するときは、この手順は必要ありません。
 
-1. KQL magic を読み込みます。
+1. Kqlmagic を読み込みます。
 
     ```python
     %reload_ext Kqlmagic
@@ -79,7 +79,7 @@ StormEvents
 
 ### <a name="customize-the-chart-colors"></a>グラフの色をカスタマイズする
 
-既定のカラー パレットが好みでない場合は、パレット オプションを使用してグラフをカスタマイズします。 使用できるパレットは次の場所にあります。[KQL magic クエリ グラフ結果のカラー パレットを選択する](https://mybinder.org/v2/gh/Microsoft/jupyter-Kqlmagic/master?filepath=notebooks%2FColorYourCharts.ipynb)
+既定のカラー パレットが好みでない場合は、パレット オプションを使用してグラフをカスタマイズします。 使用できるパレットは次の場所にあります。[Kqlmagic クエリ グラフ結果のカラー パレットを選択する](https://mybinder.org/v2/gh/Microsoft/jupyter-kqlmagic/master?filepath=notebooks%2FColorYourCharts.ipynb)
 
 1. パレットの一覧の場合:
 
@@ -100,7 +100,7 @@ StormEvents
 
 ## <a name="parameterize-a-query-with-python"></a>Python でクエリをパラメーター化する
 
-KQL magic により、Kusto クエリ言語と Python の間での簡単なインターチェンジが可能になります。 詳細については、以下を参照してください。[Python を使って KQL magic のクエリをパラメーター化する](https://mybinder.org/v2/gh/Microsoft/jupyter-Kqlmagic/master?filepath=notebooks%2FParametrizeYourQuery.ipynb)
+Kqlmagic では、Kusto クエリ言語と Python の間で簡単に交換できます。 詳細については、以下を参照してください。[Python で Kqlmagic のクエリをパラメーター化する](https://mybinder.org/v2/gh/Microsoft/jupyter-Kqlmagic/master?filepath=notebooks%2FParametrizeYourQuery.ipynb)
 
 ### <a name="use-a-python-variable-in-your-kql-query"></a>KQL のクエリで Python 変数を使用する
 
@@ -173,8 +173,8 @@ df.head(10)
 ## <a name="next-steps"></a>次のステップ
 
 help コマンドを実行して、サポートされるすべての機能が含まれている次のサンプル ノートブックを調べます。
-- [Azure Data Explorer に対して KQL magic を使ってみる](https://mybinder.org/v2/gh/Microsoft/jupyter-Kqlmagic/master?filepath=notebooks%2FQuickStart.ipynb) 
-- [Application Insights に対して KQL magic を使ってみる](https://mybinder.org/v2/gh/Microsoft/jupyter-Kqlmagic/master?filepath=notebooks%2FQuickStartAI.ipynb) 
-- [Azure Monitor ログに対して KQL magic を使ってみる](https://mybinder.org/v2/gh/Microsoft/jupyter-Kqlmagic/master?filepath=notebooks%2FQuickStartLA.ipynb) 
-- [Python を使って KQL magic のクエリをパラメーター化する](https://mybinder.org/v2/gh/Microsoft/jupyter-Kqlmagic/master?filepath=notebooks%2FParametrizeYourQuery.ipynb) 
-- [KQL magic クエリ グラフ結果のカラー パレットを選択する](https://mybinder.org/v2/gh/Microsoft/jupyter-Kqlmagic/master?filepath=notebooks%2FColorYourCharts.ipynb)
+- [Azure Data Explorer に対して Kqlmagic を使用する](https://mybinder.org/v2/gh/Microsoft/jupyter-kqlmagic/master?filepath=notebooks%2FQuickStart.ipynb) 
+- [Application Insights に対して Kqlmagic を使用する](https://mybinder.org/v2/gh/Microsoft/jupyter-kqlmagic/master?filepath=notebooks%2FQuickStartAI.ipynb) 
+- [Azure Monitor のログに対して Kqlmagic を使用する](https://mybinder.org/v2/gh/Microsoft/jupyter-kqlmagic/master?filepath=notebooks%2FQuickStartLA.ipynb) 
+- [Python で Kqlmagic のクエリをパラメーター化する](https://mybinder.org/v2/gh/Microsoft/jupyter-kqlmagic/master?filepath=notebooks%2FParametrizeYourQuery.ipynb) 
+- [Kqlmagic クエリ グラフ結果のカラー パレットを選択する](https://mybinder.org/v2/gh/Microsoft/jupyter-kqlmagic/master?filepath=notebooks%2FColorYourCharts.ipynb)

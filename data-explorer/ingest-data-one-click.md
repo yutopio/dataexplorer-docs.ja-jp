@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 155c4fadfc2892ddd91cc0c355f4f47fe4ce513c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5f424716a9227f22b4ec5b148d29798b0a55fa27
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491647"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618379"
 ---
 # <a name="what-is-one-click-ingestion"></a>ワンクリックでのインジェストとは 
 
@@ -53,10 +53,13 @@ Azure Data Explorer の Web UI を使用して、ストレージ (BLOB ファイ
     ![Web UI 上でワンクリックでのインジェストを選択します。](media/ingest-data-one-click/one-click-ingestion-in-webui.png)   
 
 1. ウィザードの指示に従って、次のオプションを選択します。
-       * [既存のテーブル](one-click-ingestion-existing-table.md)への取り込み
-       * [新しいテーブル](one-click-ingestion-new-table.md)への取り込み
-       * 取り込むデータ:      * Blob Storage      * ローカル ファイル      * コンテナー
-       * 1 行から 10,000 行のサンプル サイズを入力します (コンテナーからのみ)。
+    * [既存のテーブル](one-click-ingestion-existing-table.md)への取り込み
+    * [新しいテーブル](one-click-ingestion-new-table.md)への取り込み
+    * 次の場所からのデータの取り込み:
+      * BLOB ストレージ
+      * ローカル ファイル
+      * コンテナー
+    * 1 行から 10,000 行のサンプル サイズを入力します (コンテナーからのみ)。
        
 1. データ ソースを正しく選択すると、データのプレビューが表示されます。 
     データをコンテナーから取り込む場合は、データにフィルターを適用して、特定のプレフィックスや拡張子を持つファイルだけを取り込むことができます。 たとえば、名前が *Europe* で始まるファイルや拡張子が *.json* であるファイルのみを取り込みの対象とすることができます。 

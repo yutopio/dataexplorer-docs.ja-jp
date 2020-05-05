@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: 99c32122fc48aaea7428fa559d7289713849f34e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 80936da3e56fe0a73dcf146ba61630ceeb4bcb2a
+ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494015"
+ms.lasthandoff: 05/01/2020
+ms.locfileid: "82618515"
 ---
 # <a name="create-an-azure-data-explorer-cluster-in-your-virtual-network"></a>仮想ネットワークに Azure Data Explorer クラスターを作成する
 
@@ -79,8 +79,8 @@ Azure Data Explorer では、仮想ネットワーク (VNet) のサブネット�
 クエリ (エンジン) のパブリック IP アドレスを作成するには:
 
 1. ポータルの左上隅にある **[+ リソースの作成]** ボタンを選択します。
-1. *Network Security Group* を検索します。
-1. **[パブリック IP アドレス]** で、画面の下部にある **[作成]** を選択します。
+1. "*パブリック IP アドレス*" を検索します。
+1. **パブリック IP アドレス** にある **Create** を選択します｡
 1. **[パブリック IP アドレスの作成]** ペインで、次の情報を入力します。
    
    ![パブリック IP の作成フォーム](media/vnet-create-cluster-portal/public-ip-blade.png)
@@ -162,4 +162,4 @@ Azure Data Explorer クラスターを仮想ネットワークにデプロイす
 ## <a name="next-steps"></a>次のステップ
 
 > [!div class="nextstepaction"]
-> [Azure Data Explorer を仮想ネットワークにデプロイする](vnet-create-cluster-portal.md)
+> [Azure Data Explorer を仮想ネットワークにデプロイする](vnet-deployment.md)

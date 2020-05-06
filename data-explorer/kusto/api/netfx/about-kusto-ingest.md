@@ -1,6 +1,6 @@
 ---
-title: Kusto インジェスト クライアント ライブラリ - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで Kusto INGEST クライアント ライブラリについて説明します。
+title: Kusto インジェストクライアントライブラリ-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの Kusto インジェストクライアントライブラリについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,92 +8,91 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 0fd86579f4ca6471903305ca9249b78bc03b8cdf
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8357bc387ae26fc0dfcc50c5e712a5b39df32942
+ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81503130"
+ms.lasthandoff: 05/05/2020
+ms.locfileid: "82799715"
 ---
-# <a name="kusto-ingest-client-library"></a>Kusto インジェスト クライアント ライブラリ
+# <a name="kusto-ingest-client-library"></a>Kusto インジェストクライアントライブラリ
 
 ## <a name="overview"></a>概要
-Kusto.Ingest ライブラリは、Kusto サービスにデータを送信できるようにする .NET 4.6.2 ライブラリです。
-Kusto.Ingest は、次のライブラリと SDK に依存します。
+Kusto. インジェスト library は、Kusto サービスにデータを送信できるようにする .NET 4.6.2 ライブラリです。
+Kusto. インジェストは、次のライブラリと Sdk に依存します。
 
-* AAD 認証の ADAL
-* Azure ストレージ クライアント
-* [TBD: 外部依存関係の完全なリスト]
+* AAD 認証用 ADAL
+* Azure Storage クライアント
 
-Kusto インジェスト メソッドは[IKustoIngestClient](kusto-ingest-client-reference.md#interface-ikustoingestclient)インターフェイスによって定義され、同期モードと非同期モードの両方でストリーム、IDataReader、ローカル ファイル、および Azure BLOB からデータを取り込むことができます。
+Kusto インジェストメソッドは[IKustoIngestClient](kusto-ingest-client-reference.md#interface-ikustoingestclient)インターフェイスによって定義され、同期モードと非同期モードの両方でストリーム、IDataReader、ローカルファイル、および Azure blob からのデータインジェストを可能にします。
 
-## <a name="ingest-client-flavors"></a>クライアントフレーバーの取り込み
-概念的には、Ingest クライアントにはキューイングとダイレクトの 2 つの基本的なフレーバーがあります。
+## <a name="ingest-client-flavors"></a>クライアントのフレーバーの取り込み
+概念的には、インジェストクライアントには、Queued と Direct の2つの基本的な種類があります。
 
-### <a name="queued-ingestion"></a>キューイングインジェスティション
-によって定義される[IKustoQueuedIngest クライアント](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)このモードは、Kusto サービスに対するクライアント コードの依存関係を制限します。 取り込みは、Kusto インジェスト メッセージを Azure キューにポストして実行し、その後、Kusto データ管理 (インジェスト) サービスから取得します。 すべての中間ストレージ成果物は、Kusto データ管理サービスによって割り当てられたリソースを使用して、INGEST クライアントによって作成されます。
+### <a name="queued-ingestion"></a>キューに置かれたインジェスト
+[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)により定義されます。このモードでは、Kusto サービスに対するクライアントコードの依存関係が制限されます。 インジェストは、Kusto インジェストメッセージを Azure キューに送信することで実行されます。このメッセージは、Kusto データ管理 (インジェスト) サービスから取得されます。 すべての中間ストレージアーティファクトは、Kusto データ管理サービスによって割り当てられたリソースを使用して、インジェストクライアントによって作成されます。
 
-**キューモードの利点**は次のとおりです(ただし、これらに限定されません)。
+**キューに登録されたモードの利点**は次のとおりです (ただし、これに限定されません)。
 
-* Kusto エンジン サービスからのデータ取り込みプロセスの分離
-* Kusto Engine (またはインジェスト) サービスが利用できない場合に、インジェスト要求を永続化できます。
-* インジェスション サービスによるインバウンド データの効率的で制御可能な集約が可能で、パフォーマンスの向上
-* Kusto インジェスト サービスが Kusto Engine サービスのインジェスト負荷を管理できるようにします。
-* Kusto インジェスト サービスは、一時的なインジェストの失敗 (たとえば、XStore の調整) に必要に応じて再試行します。
+* Kusto Engine サービスからのデータインジェストプロセスの分離
+* Kusto エンジン (またはインジェスト) サービスを使用できないときにインジェスト要求を永続化することを許可します。
+* インジェストサービスによる受信データの効率的で制御可能な集計を可能にし、パフォーマンスを向上させます。
+* Kusto インジェストサービスが Kusto エンジンサービスのインジェスト負荷を管理できるようにします
+* Kusto インジェストサービスは、一時的な取り込みエラー (XStore の制限など) で必要に応じて再試行します
 * すべてのインジェスト要求の進行状況と結果を追跡するための便利なメカニズムを提供します。
 
-次の図は、キューイングインジェスト クライアントと Kusto との対話の概要を示しています。
+次の図は、キューに格納されたインジェストクライアントと Kusto のやり取りの概要を示しています。
 
-![alt text](../images/queued-ingest.jpg "キューイングインジェスト")
+![alt text](../images/queued-ingest.jpg "キューに登録済み-取り込み")
 
-### <a name="direct-ingestion"></a>直接摂取
-IKustoDirectIngest クライアントによって定義され、このモードは Kusto エンジン サービスとの直接の相互作用を強制します。 このモードでは、Kusto インジェスト サービスはデータを管理または管理しません。 ダイレクトモードでのインジェスト要求は、最終的には`.ingest`Kusto Engine サービスで直接実行されるコマンドに変換されます。
-次の図は、Kusto との直接取り込みクライアントの対話の概要を示しています。
+### <a name="direct-ingestion"></a>直接インジェスト
+IKustoDirectIngestClient により定義されます。このモードでは、Kusto エンジンサービスと直接やり取りします。 このモードでは、Kusto インジェストサービスはデータをモデレートまたは管理しません。 Direct モードでのすべてのインジェスト要求は、最終的`.ingest`に Kusto エンジンサービスで直接実行されるコマンドに変換されます。
+次の図は、Kusto との直接インジェストクライアントの対話の概要を示しています。
 
-![alt text](../images/direct-ingest.jpg "直接摂取")
+![alt text](../images/direct-ingest.jpg "直接取り込み")
 
 > [!NOTE]
-> 直接モードは、プロダクション グレードの取り込みソリューションには推奨されません。
+> Direct モードは、実稼働グレードのインジェストソリューションにはお勧めできません。
 
 **ダイレクトモードの利点**は次のとおりです。
 
-* 待機時間が短い (集計なし)。 ただし、キューイング インジェスティションを使用すると、低遅延も実現できます。
-* 同期メソッドを使用する場合、メソッドの完了はインジェスト操作の終了を示します。
+* 低待機時間 (集計はありません)。 ただし、キューに置かれたインジェストで待機時間を短くすることもできます。
+* 同期メソッドが使用されている場合、メソッドの完了時にインジェスト操作の終了が示されます。
 
-**ダイレクトモードの欠点**は次のとおりです。
+**ダイレクトモードの短所**は次のとおりです。
 
-* クライアント コードは、再試行またはエラー処理ロジックを実装する必要があります。
-* Kustoエンジンサービスが利用できない場合、インジェクションは不可能です
-* クライアント コードは、エンジン サービスの容量を認識していないので、取り込み要求で Kusto Engine サービスを圧倒する可能性があります。
+* クライアントコードでは、再試行またはエラー処理のロジックを実装する必要があります。
+* Kusto Engine サービスを利用できない場合、Ingestions は不可能です。
+* クライアントコードでは、エンジンサービスの容量が認識されないため、インジェスト要求で Kusto Engine サービスが過負荷になる可能性があります。
 
-## <a name="ingestion-best-practices"></a>インジェクションのベスト プラクティス
+## <a name="ingestion-best-practices"></a>インジェストのベストプラクティス
 
 ### <a name="general"></a>全般
-[取り込みベストプラクティスは](kusto-ingest-best-practices.md)、取り込み時にCGとスループットPOVを提供します。
+[インジェストのベストプラクティス](kusto-ingest-best-practices.md)では、インジェストと、インジェストのスループットについて説明します。
 
 ### <a name="thread-safety"></a>スレッド セーフ
-Kusto Ingest クライアントの実装はスレッド セーフで、再利用することを意図しています。 各インジェスト操作ごとにクラスの`KustoQueuedIngestClient`インスタンスを作成する必要はありません。 のインスタンス`KustoQueuedIngestClient`は、ユーザー プロセスごとにターゲット Kusto クラスターごとに必要です。 複数のインスタンスを実行すると、逆効果になり、データ管理クラスターを DoS できます。
+Kusto インジェストクライアントの実装はスレッドセーフであり、再利用が想定されています。 または複数の取り込み操作に対して`KustoQueuedIngestClient`クラスのインスタンスを作成する必要はありません。 の1つの`KustoQueuedIngestClient`インスタンスが、ターゲット Kusto クラスターごとのプロセスごとに必要です。 複数のインスタンスを実行すると、カウンターの生産性が向上し、データ管理クラスターが DoS になることがあります。
 
 ### <a name="supported-data-formats"></a>サポートされるデータ形式
-ネイティブ インジェストを使用する場合、まだそこにない場合は、データを 1 つ以上の Azure Storage BLOB にアップロードします。 現在サポートされている BLOB 形式については、「[サポートされているデータ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)」に記載されています。
+ネイティブインジェストがまだ存在しない場合は、そのデータを1つ以上の Azure Storage blob にアップロードします。 現在サポートされている blob 形式については、「[サポートされるデータ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)」を参照してください。
 
 ### <a name="schema-mapping"></a>スキーマ マッピング
-[スキーマ マッピングは、](../../management/mappings.md)変換元データ フィールドを変換先テーブルの列に明確にバインドするのに役立ちます。
+[スキーママッピング](../../management/mappings.md)は、ソースデータフィールドを変換先テーブルの列に確定的にバインドするのに役立ちます。
 
-## <a name="usage-and-further-reading"></a>使用法とさらなる読み取り
+## <a name="usage-and-further-reading"></a>使用方法と参考資料
 
-* 上記のように、Kusto の持続可能で高規模のインジェスト ソリューションの推奨される基礎は **、KustoQueuedIngestClient である**必要があります。
-* Kusto サービスでの不要な負荷を最小限に抑えるには、Kusto Ingest クライアント (キューに入れるまたは直接) の単一のインスタンスを Kusto クラスタごとにプロセスごとに使用することをお勧めします。 Kusto Ingest クライアントの実装はスレッド セーフで完全に再入可能です。
+* 前述のように、Kusto 向けの持続可能な高スケールインジェストソリューションの推奨される基準は、 **KustoQueuedIngestClient**である必要があります。
+* Kusto サービスの不要な負荷を最小限に抑えるには、kusto インジェスト (キューに登録またはダイレクト) の1つのインスタンスを、Kusto クラスターごとのプロセスごとに使用することをお勧めします。 Kusto インジェストクライアントの実装は、スレッドセーフで完全再入可能です。
 
-### <a name="ingestion-permissions"></a>取り込み権限
-* [Kusto インジェストのアクセス許可](kusto-ingest-client-permissions.md)は Kusto.Ingest パッケージを使用して正常に取り込むために必要なアクセス許可の設定を説明します。
+### <a name="ingestion-permissions"></a>インジェストアクセス許可
+* [Kusto インジェストのアクセス許可](kusto-ingest-client-permissions.md)については、kusto インジェストパッケージを使用してインジェストを成功させるために必要なアクセス許可の設定について説明します
 
-### <a name="kustoingest-library-reference"></a>Kusto.Ingest ライブラリ リファレンス
-* [Kusto.Ingest クライアント リファレンス](kusto-ingest-client-reference.md)には、Kusto INGEST クライアント インターフェイスと実装の完全なリファレンスが含まれています。<BR>インジェスト クライアントの作成方法、インジェスト要求の強化、取り込み処理の進捗管理などについての情報が記載されています。
-* [Kusto.Ingest 操作ステータス](kusto-ingest-client-status.md)は、インジェストステータスを追跡するための**クストーキューイングインジェストクライアント**機能を説明します
-* [Kusto.Ingest エラーは](kusto-ingest-client-errors.md)、クストインジェストクライアントのエラーと例外を文書化します。
-* [Kusto.Ingest の例は](kusto-ingest-client-examples.md)、クストにデータを取り込むさまざまな手法を示すコード スニペットを示します。
+### <a name="kustoingest-library-reference"></a>Kusto. インジェストライブラリリファレンス
+* [Kusto. インジェストクライアントリファレンス](kusto-ingest-client-reference.md)には、kusto インジェストクライアントインターフェイスおよび実装の完全なリファレンスが含まれています。<BR>ここでは、インジェストクライアントを作成する方法、インジェスト要求を強化する方法、インジェストの進行状況を管理する方法などについて説明します。
+* [Kusto. 取り込み操作の状態](kusto-ingest-client-status.md)について、インジェストの状態を追跡するための**KustoQueuedIngestClient**機能について説明します。
+* [Kusto. インジェストエラー](kusto-ingest-client-errors.md)ドキュメント Kusto インジェストクライアントのエラーと例外
+* [Kusto. インジェストの例](kusto-ingest-client-examples.md)では、kusto にデータを取り込みするさまざまな手法を示すコードスニペットを紹介しています。
 
-### <a name="data-ingestion-rest-apis"></a>データ取り込み REST API
-[Kusto.Ingest ライブラリを使用しないデータインジェストでは、Kusto.Ingest](kusto-ingest-client-rest.md)ライブラリに依存せずに Kusto REST API を使用してキューに入れる Kusto インジェストを実装する方法について説明します。
+### <a name="data-ingestion-rest-apis"></a>データインジェスト REST Api
+[Kusto. インジェストライブラリを使用しないデータインジェスト](kusto-ingest-client-rest.md): KUSTO の REST api を使用して、kusto インジェストライブラリに依存せずに、キューに登録された kusto インジェストを実装する方法について説明します。
 

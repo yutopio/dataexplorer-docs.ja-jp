@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: e03ff6fe7ffb65d11b59cc98f150df617d42932d
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 7440b42599d8559db547762daa5f8edcc24ea46f
+ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82616374"
+ms.lasthandoff: 05/05/2020
+ms.locfileid: "82799443"
 ---
 # <a name="data-partitioning-policy-preview"></a>データのパーティション分割ポリシー (プレビュー)
 
@@ -22,8 +22,7 @@ ms.locfileid: "82616374"
 > [!NOTE]
 > データのパーティション分割機能は*プレビュー*段階です。
 
-ポリシーの主な目的は、パーティション分割された列の値の小さなサブセットに絞り込まれることがわかっているクエリのパフォーマンスを向上させることです。
-2つ目の利点は、データの圧縮が優れていることです。
+ポリシーの主な目的は、パーティション分割された列の値の小さなサブセットに絞り込まれることがわかっているクエリのパフォーマンスを向上させること、または高カーディナリティ文字列列に対して集計/結合を行うことです。 2つ目の利点は、データの圧縮が優れていることです。
 
 > [!WARNING]
 > ポリシーを定義できるテーブルの量には、ハードコーディングされた制限はありませんが、追加のテーブルごとに、クラスターのノードで実行されているバックグラウンドデータパーティション処理のオーバーヘッドが増加し、クラスターからの追加リソースが必要になる場合があります。「[容量](#capacity)」を参照してください。
@@ -176,7 +175,7 @@ ms.locfileid: "82616374"
   * 1つのデータパーティション分割操作のソースエクステントの行数の合計の最大ターゲット。
   * このプロパティは*省略可能*で、既定値は`0`です (この場合、500万レコードの既定のターゲットが有効になります)。
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>注
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 

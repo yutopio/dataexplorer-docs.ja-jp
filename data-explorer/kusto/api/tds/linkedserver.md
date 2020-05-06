@@ -1,6 +1,6 @@
 ---
-title: SQL サーバーからリンク サーバーとしての Kusto - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの SQL サーバーからリンク サーバーとして Kusto を説明します。
+title: SQL server からリンクサーバーへの kusto as-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの SQL server からのリンクサーバーとしての Kusto について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 77db975f2bd7c5c1d747902248070664cd020e39
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 103d39f7fdd10f0375e4a530d51cd17f7cdcec51
+ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523462"
+ms.lasthandoff: 05/05/2020
+ms.locfileid: "82799596"
 ---
-# <a name="kusto-as-linked-server-from-sql-server"></a>SQL サーバーからリンク サーバーとして Kusto
+# <a name="kusto-as-a-linked-server-from-the-sql-server"></a>SQL server のリンクサーバーとしての kusto
 
-オンプレミスの SQL サーバーでは、リンク サーバーを接続できます。 この機能を使用すると、SQL サーバーとリンク サーバーからのデータを結合するクエリを作成できます。
+オンプレミスの SQL server を使用すると、リンクサーバーをアタッチして、SQL server およびリンクサーバーからデータを結合するクエリを作成できます。
 
-ODBC 接続を介してリンク サーバーとして Kusto を使用することができます。
+Kusto は、ODBC 接続を介してリンクサーバーとして使用できます。
+オンプレミスの SQL Server サービスでは、(既定のサービスアカウントではなく) active directory アカウントを使用して、Azure Active Directory (Azure AD) を使用して Azure データエクスプローラーに接続できるようにする必要があります。
 
-1. SQL Server (オンプレミス) サービスは、AAD を使用して Kusto に接続できるアクティブなディレクトリ アカウント (既定のサービス アカウントではない) を使用する必要があります。
-2. SQL Server 2017 用の最新の ODBC ドライバーをインストールします (SSMS 18 も付属)。https://www.microsoft.com/download/details.aspx?id=56567
-3. 特定の Kusto クラスターおよびデータベースの ODBC ドライバーの DSN より`Driver={ODBC Driver 17 for SQL Server};Server=<cluster>.kusto.windows.net;Database=<database>;Authentication=ActiveDirectoryIntegrated;Language=any@MaxStringSize:4000`少ない接続文字列を準備します。 言語オプションは、文字列を NVARCHAR(4000) としてエンコードするように Kusto をチューニングするために追加されます。 この回避策の詳細については[、ODBC](./clients.md#odbc)を参照してください。
-4. 次の 3 つの設定を定義して、リンク サーバーを![作成します。](../images/linkedserverconnection.png "リンク サーバー接続")
-5. [セキュリティ] タブは、次の設定で定義する必要があります: ![alt テキスト](../images/linkedserverlogin.png "リンク サーバーログイン")
+1. SQL Server 2017 用の最新の ODBC ドライバーをインストールします (SSMS 18 も付属しています)。https://www.microsoft.com/download/details.aspx?id=56567
+1. ODBC ドライバー用の DSN レス接続文字列を、特定の Azure データエクスプローラークラスターおよびデータベースに対して準備`Driver={ODBC Driver 17 for SQL Server};Server=<cluster>.kusto.windows.net;Database=<database>;Authentication=ActiveDirectoryIntegrated;Language=any@MaxStringSize:4000`します。 Language オプションを追加して、文字列を NVARCHAR (4000) としてエンコードするように Azure データエクスプローラーを調整します。 この回避策の詳細については、「 [ODBC](./clients.md#odbc)」を参照してください。
+1. 赤い矢印で示されている設定を使用して、リンクサーバーを作成します。
 
-これで、次のように Kusto からデータをクエリできます。
+:::image type="content" source="../images/linkedserverconnection.png" alt-text="リンクサーバー接続":::
+
+1. 赤い矢印で示される設定でセキュリティを定義します。 
+
+:::image type="content" source="../images/linkedserverlogin.png" alt-text="リンクサーバーログイン":::
+
+Kusto にデータを照会するには:
+
 ```sql
 SELECT * FROM OpenQuery(LINKEDSERVER, 'SELECT * FROM <KustoStoredFunction>[(<Parameters>)]')
 ```
 
-メモ:
-1. Kusto からデータを抽出するには、Kusto[のストアド関数](../../query/schema-entities/stored-functions.md)を使用することをお勧めします。 ストアド関数には[、Kusto](../../query/index.md)からの効率的なクエリに必要なすべてのロジックを含めることができます。 Kusto ストアド関数を呼び出す T-SQL 構文は、SQL 表関数を呼び出す場合と同じです。
-2. SQL Server は、独自のクエリ内のリンク サーバーからリモート テーブル関数を呼び出すことはサポートしていません。 この制限の回避策は、リンク`OpenQuery`サーバーでリモート クエリを実行するために使用することです。 この方法では、テーブル関数は SQL Server の直接ではなく、リンク サーバーで実行されるクエリで呼び出されます。 外部 T-SQL クエリを使用して、 SQL サーバー上のデータと、 を介して`OpenQuery`Kusto ストアドファンクションから返されるデータを結合できます。
+> [!NOTE]
+> 1. Azure データエクスプローラーからデータを抽出するために、Kusto に[格納され](../../query/schema-entities/stored-functions.md)ている関数を使用します。 格納されている関数には、Kusto からの効率的なクエリに必要なすべてのロジックを含めることができ、ネイティブ[Kql](../../query/index.md)言語で作成され、指定されたパラメーター値によって制御されます。 Kusto に格納されている関数を呼び出すための t-sql 構文は、SQL 表形式関数の呼び出しと同じです。
+> 1. SQL server では、独自のクエリ内のリンクサーバーからのリモート表形式関数の呼び出しはサポートされていません。 この制限の回避策は、リンク`OpenQuery`サーバーでリモートクエリを実行するためにを使用することです。 これにより、表形式関数は SQL server ディレクトリではなく、リンクサーバーで実行されるクエリで呼び出されます。 外部 T-sql クエリを使用して、SQL server 上のデータと Kusto によって返されたデータを経由`OpenQuery`で結合できます。

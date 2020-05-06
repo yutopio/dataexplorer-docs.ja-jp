@@ -1,6 +1,6 @@
 ---
-title: Kusto.INGEST ライブラリを使用したデータの取り込み方法 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで Kusto.INGEST ライブラリを使用したデータの取り込み方法について説明します。
+title: Kusto を使用したデータインジェスト-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの Kusto. インジェストライブラリを使用したデータインジェストについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/05/2020
-ms.openlocfilehash: 80b2b61c70269c5bd166a064fe9d0e2c59dd8197
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fe268d19e5f42308737b7c392c58c6c1dca071b3
+ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523632"
+ms.lasthandoff: 05/05/2020
+ms.locfileid: "82799613"
 ---
-# <a name="howto-data-ingestion-with-kustoingest-library"></a>Kusto.Ingest ライブラリを使用したデータの取り込み方法
-この資料では、Kusto.Ingest クライアント ライブラリを使用するサンプル コードを紹介します。
+# <a name="data-ingestion-with-the-kustoingest-library"></a>Kusto インジェストライブラリを使用したデータインジェスト
 
-## <a name="overview"></a>概要
-次のコード サンプルは、Kusto.Ingest ライブラリを使用して Kusto へのキューイング (Kusto データ管理サービス経由で行う) データの取り込み方法を示しています。
+この記事では、データインジェストのために Kusto. インジェストクライアントライブラリを使用するサンプルコードを示します。 このコードは、キューインジェストと呼ばれる、運用レベルのパイプラインのインジェストの推奨モードを詳細に説明しています。 Kusto. インジェストライブラリの場合、対応するエンティティは[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)インターフェイスです。 クライアントコードは、azure キューにインジェスト通知を送信することによって、Azure データエクスプローラーサービスとやり取りします。 キューへの参照は、インジェストを担当するデータ管理エンティティから取得されます。 
 
-> この記事では、プロダクション グレードのパイプラインの推奨されるインジェスト モードについて説明します(**キューインジェスト**とも呼ばれます ( Kusto.Ingest ライブラリの観点から言うと、対応するエンティティは[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)インターフェイスです ) 。 このモードでは、クライアント コードは、Azure キューにインジェスト通知メッセージを送信することで Kusto サービスとやり取りします。 インジェスティオン)サービス。 データ管理サービスとの対話は **、 AAD**で認証される必要があります。
+> [!NOTE]
+> データ管理サービスとの対話は、Azure Active Directory (Azure AD) を使用して認証される必要があります。
 
-#### <a name="authentication"></a>認証
-このコード サンプルでは、AAD ユーザー認証を使用し、対話ユーザーの ID で実行されます。
+このサンプルでは Azure AD ユーザー認証を使用し、対話型ユーザーの id で実行します。
 
 ## <a name="dependencies"></a>依存関係
-このサンプル コードには、次の NuGet パッケージが必要です。
-* マイクロソフト.クスト.インジェスト
+
+このサンプルコードでは、次の NuGet パッケージが必要です。
+* Microsoft. Kusto. インジェスト
 * Microsoft.IdentityModel.Clients.ActiveDirectory
 * WindowsAzure.Storage
 * Newtonsoft.Json
 
 ## <a name="namespaces-used"></a>使用される名前空間
+
 ```csharp
 using System;
 using System.Collections.Generic;
@@ -46,14 +46,15 @@ using Kusto.Ingest;
 ```
 
 ## <a name="code"></a>コード
-以下に示すコードは、次の処理を実行します。
-1. データベースの下に`KustoLab`共有 Kusto`KustoIngestClientDemo`クラスタ上にテーブルを作成します。
-2. そのテーブルに[JSON 列マッピングオブジェクト](../../management/create-ingestion-mapping-command.md)をプロビジョニングします。
-3. データ管理サービスの[IKustoQueueDIngest](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) `Ingest-KustoLab`インスタンスを作成します。
-4. 適切な[取り込みオプションを使用して KustoQueuedIngestion プロパティ](kusto-ingest-client-reference.md#class-kustoqueuedingestionproperties)を設定します
-5. 取り込まれる生成されたデータを格納するメモリストリームを作成します。
-6. メソッドを使用してデータを`KustoQueuedIngestClient.IngestFromStream`取り込む
-7. イン[ジェクション エラー](kusto-ingest-client-status.md#tracking-ingestion-status-kustoqueuedingestclient)のポーリング
+
+このコードでは、次のことを行います。
+1. データベースの`KustoIngestClientDemo`下にある`KustoLab`共有 Azure データエクスプローラークラスターにテーブルを作成します。
+2. そのテーブルで[JSON 列マッピングオブジェクト](../../management/create-ingestion-mapping-command.md)をプロビジョニングします。
+3. データ管理サービスの IKustoQueuedIngestClient インスタンスを作成します。 [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) `Ingest-KustoLab`
+4. 適切なインジェストオプションを使用して[KustoQueuedIngestionProperties](kusto-ingest-client-reference.md#class-kustoqueuedingestionproperties)を設定する
+5. 生成されたデータを取り込まれたに格納して MemoryStream を作成します。
+6. `KustoQueuedIngestClient.IngestFromStream`メソッドを使用してデータを取り込みする
+7. [インジェストエラー](kusto-ingest-client-status.md#tracking-ingestion-status-kustoqueuedingestclient)をポーリングします。
 
 ```csharp
 static void Main(string[] args)

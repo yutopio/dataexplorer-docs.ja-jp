@@ -1,6 +1,6 @@
 ---
-title: ストリーミング インジェスト HTTP 要求 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのストリーミング インジェスト HTTP 要求について説明します。
+title: ストリーミングインジェスト HTTP 要求-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでのストリーミングインジェスト HTTP 要求について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: d14987806bbc62dbc79112700bd5b88aaa6676c3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 672f924865cab14dff6c7d5319c3c34cca1a67ee
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81503011"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862015"
 ---
 # <a name="streaming-ingestion-http-request"></a>ストリーミングインジェスト HTTP 要求
 
-## <a name="request-verb-and-resource"></a>要求動詞とリソース
+## <a name="request-verb-and-resource"></a>動詞とリソースの要求
 
 |アクション    |HTTP 動詞|HTTP リソース                                               |
 |----------|---------|------------------------------------------------------------|
@@ -25,71 +25,64 @@ ms.locfileid: "81503011"
 
 ## <a name="request-parameters"></a>要求パラメーター
 
-| パラメーター    |  説明                                                                                                |
-|--------------|-------------------------------------------------------------------------------------------------------------|
-| `{database}` | **必須**取り込み要求のターゲット データベースの名前                                          |
-| `{table}`    | **必須**取り込み要求のターゲット表の名前                                             |
+| パラメーター    | 説明                                                                 | 必須/オプション |
+|--------------|-----------------------------------------------------------------------------|-------------------|
+| `{database}` |   インジェスト要求の対象データベースの名前                     |  必須         |
+| `{table}`    |   インジェスト要求の対象テーブルの名前                        |  必須         |
 
 ## <a name="additional-parameters"></a>追加パラメーター
-追加のパラメータは URL クエリとして書式設定されます`{name}`=`{value}`: &文字で区切られたペア
 
+追加のパラメーターは、URL クエリ`{name}={value}`のペアとして書式設定され、& 文字で区切られます。
 
-| パラメーター    |  説明                                                                                                |
-|--------------|-------------------------------------------------------------------------------------------------------------|
-|`streamFormat`| **必須**要求本文のデータの形式を指定します。 値は、次のいずれかである必要があります`Csv`。`Tsv``Scsv``SOHsv``Psv``Json``SingleJson``MultiJson``Avro` 詳細については、「[サポートされているデータ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)」を参照してください。|
-|`mappingName` | 、、`streamFormat``SingleJson`または`MultiJson``Json``Avro`、、省略**可能**な場合は**必須**です。 値は、テーブルに定義された事前に作成されたインジェスション マッピングの名前にする必要があります。 データ マッピングの詳細については、「[データ マッピング](../../management/mappings.md)」を参照してください。 テーブルで事前に作成されたマッピングを管理する方法については、以下のページで説明[します。](../../management/create-ingestion-mapping-command.md) |
+| パラメーター    | 説明                                                                          | 必須/オプション   |
+|--------------|--------------------------------------------------------------------------------------|---------------------|
+|`streamFormat`| 要求本文内のデータの形式を指定します。 値は`CSV``TSV`、、、`SCsv`、`SOHsv``PSV``JSON``SingleJSON``Avro`、、、、、のいずれかである必要があります。`MultiJSON` 詳細については、「[サポートされるデータ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)」を参照してください。| 必須 |
+|`mappingName` | テーブルで定義されている事前に作成されたインジェストマッピングの名前。 詳細については、「[データのマッピング](../../management/mappings.md)」を参照してください。 テーブルで事前に作成されたマッピングを管理する方法については、[こちら](../../management/create-ingestion-mapping-command.md)を参照してください。| 省略可能ですが、 `streamFormat`が、 `JSON``SingleJSON`、`MultiJSON`、またはのいずれかの場合に必要です。`Avro`|  |
               
-
-たとえば、データベースのテーブル`Logs`に CSV 形式のデータを取`Test`り込むには、次の要求行を使用します。
+たとえば、CSV 形式のデータをデータベース`Logs` `Test`内のテーブルに取り込むには、次のように使用します。
 
 ```
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Csv HTTP/1.1
 ```
 
-事前に作成されたマッピングを使用して JSON 形式のデータを取り込む`mylogmapping`
+事前に作成されたマッピング`mylogmapping`で JSON 形式のデータを取り込むには、次のように使用します。
 
 ```
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Json&mappingName=mylogmapping HTTP/1.1
 ```
 
-
-(含める要求ヘッダーと本文については、以下を参照してください。
-
 ## <a name="request-headers"></a>要求ヘッダー
 
-次の表に、クエリ操作と管理操作を実行するために使用される共通ヘッダーを示します。
+次の表に、クエリおよび管理操作の共通ヘッダーを示します。
 
-|標準ヘッダー  |説明                                                                                                              |
-|------------------|------------------------------------------------------------------------------------------------------------------------|
-|`Accept`          |**オプション**。 `application/json`に設定します。                                                                           |
-|`Accept-Encoding` |**オプション**。 サポートされているエンコーディングは`gzip``deflate`と です。                                                             |
-|`Authorization`   |**必須**。 [認証](./authentication.md)を参照してください。                                                                |
-|`Connection`      |**オプション**。 有効にすることをお`Keep-Alive`勧めします。                                                           |
-|`Content-Length`  |**オプション**。 要求本文の長さは、既知の場合に指定することをお勧めします。                                   |
-|`Content-Encoding`|**オプション**。 その場合`gzip`、本文はgzip圧縮が必要とされるように設定できます                                 |
-|`Expect`          |**オプション**。 に設定できます`100-Continue`。                                                                             |
-|`Host`            |**必須**。 この値は、要求の送信先の完全修飾ドメイン名 (例:`help.kusto.windows.net`など) に設定します。|
+|標準ヘッダー   | 説明                                                                               | 必須/オプション | 
+|------------------|-------------------------------------------------------------------------------------------|-------------------|
+|`Accept`          | この値をに`application/json`設定します。                                                     | 省略可能          |
+|`Accept-Encoding` | サポートされ`gzip`て`deflate`いるエンコーディングはとです。                                             | 省略可能          | 
+|`Authorization`   | 「[認証](./authentication.md)」を参照してください。                                                | 必須          |
+|`Connection`      | `Keep-Alive`を有効にする:                                                                      | 省略可能          |
+|`Content-Length`  | 要求本文の長さを指定します (既知の場合)。                                              | 省略可能          |
+|`Content-Encoding`| をに`gzip`設定しますが、本文は gzip で圧縮する必要があります                                        | 省略可能          |
+|`Expect`          | `100-Continue` を設定します。                                                                    | 省略可能          |
+|`Host`            | は、要求を送信したドメイン名 (など`help.kusto.windows.net`) に設定します。 | 必須          |
 
-次の表に、クエリ操作および管理操作を実行するときに使用する一般的なカスタム ヘッダーを示します。 特に指定がない限り、これらのヘッダーはテレメトリの目的でのみ使用され、機能に影響はありません。
+次の表に、クエリおよび管理操作の一般的なカスタムヘッダーを示します。 特に明記されていない限り、ヘッダーはテレメトリのみを目的としたものであり、機能には影響しません。
 
-すべてのヘッダーは**オプションです**。 ただし、カスタム ヘッダーを`x-ms-client-request-id`指定**することを強くお勧めします**。 一部のシナリオでは (たとえば、実行中のクエリをキャンセルする)、このヘッダーは要求を識別するために使用される**ので必須**です。
-
-
-|カスタム ヘッダー           |説明                                                                                               |
+|カスタムヘッダー           |説明                                                                           | 必須/オプション |
 |------------------------|----------------------------------------------------------------------------------------------------------|
-|`x-ms-app`              |要求を行うアプリケーションの (フレンドリ) 名。                                                |
-|`x-ms-user`             |要求を行うユーザーの (フレンドリ) 名。                                                       |
-|`x-ms-user-id`          |`x-ms-user` と同じ。                                                                                      |
-|`x-ms-client-request-id`|要求の一意の識別子。                                                                      |
-|`x-ms-client-version`   |要求を行うクライアントの (フレンドリな) バージョン識別子。                                      |
+|`x-ms-app`              |要求を行っているアプリケーションのフレンドリ名。                            | 省略可能          |
+|`x-ms-user`             |要求を行っているユーザーのフレンドリ名。                                   | 省略可能          |
+|`x-ms-user-id`          |`x-ms-user` と同じ。                                                                  | 省略可能          |
+|`x-ms-client-request-id`|要求の一意の識別子。                                                  | 省略可能          |
+|`x-ms-client-version`   |要求を行っているクライアントの (わかりやすい) バージョン識別子。 実行中のクエリの取り消しなど、要求を識別するために使用されるシナリオで必要です。                                                        | 省略可/必須  |
 
 ## <a name="body"></a>Body
 
-本文は、取り込まれる実際のデータです。 テキスト形式は UTF-8 エンコーディングを使用します。
+本文は、取り込まれたする実際のデータです。 テキスト形式では、UTF-8 エンコードを使用する必要があります。
 
 ## <a name="examples"></a>例
 
-次の例は、JSON コンテンツを取り込む HTTP POST 要求を示しています。
+次の例は、取り込み JSON コンテンツに対する HTTP POST 要求を示しています。
 
 ```txt
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Json&mappingName=mylogmapping HTTP/1.1
@@ -116,7 +109,7 @@ x-ms-app: MyApp
 {"Timestamp":"2018-11-14 11:35","Level":"Error","EventText":"Something Happened"}
 ```
 
-次の例は、圧縮された同じデータを取り込む HTTP POST 要求を示しています。
+次の例は、同じ圧縮データを取り込みするための HTTP POST 要求を示しています。
 
 ```txt
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Json&mappingName=mylogmapping HTTP/1.1

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: ba7305eca81ed405f2a577c4a994133509429564
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 69779e42f14a1dfc512d8752f2cc9989897b2cc6
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493927"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741983"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Event Grid の通知をサブスクライブすることで Azure Data Explorer に BLOB を取り込む
 
@@ -56,9 +56,11 @@ Azure Data Explorer は、ログと利用統計情報のための高速でスケ
 
 1. 特定のコンテナーからのファイルを追跡する場合は、 **[フィルター]** タブを選択します。 次のように、通知用のフィルターを設定します。
     * **[次で始まるサブジェクト]** フィールドは、BLOB コンテナーの*リテラル* プレフィックスです。 適用されるパターンは *startswith* であるため、複数のコンテナーにまたがることができます。 ワイルドカードは使用できません。
-     次のように設定する "*必要があります*"。 *`/blobServices/default/containers/`* [コンテナーのプレフィックス]
+        * BLOB コンテナーに対してフィルターを定義するには、フィールドを *`/blobServices/default/containers/[container prefix]`* のように設定する "*必要があります*"。 
+        * BLOB プレフィックス (または ADLS gen2 のフォルダー) に対してフィルターを定義するには、フィールドを *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`* のように設定する "*必要があります*"。 
     * **[Subject Ends With]\(指定の値で終わる件名\)** フィールドは、BLOB の "*リテラル*" サフィックスです。 ワイルドカードは使用できません。
-
+    * イベントのフィルター処理の詳細については、[Blob Storage のイベント](https://docs.microsoft.com/azure/storage/blobs/storage-blob-event-overview#filtering-events)に関するセクションを参照してください。 
+    
 ## <a name="create-a-target-table-in-azure-data-explorer"></a>Azure データ エクスプローラーでターゲット テーブルを作成する
 
 Azure Data Explorer で、Event Hubs のデータの送信先となるテーブルを作成します。 前提条件で準備したクラスターとデータベース内にテーブルを作成します。
@@ -113,7 +115,7 @@ Azure Data Explorer で、Event Hubs のデータの送信先となるテーブ�
     | コンシューマー グループ | *test-group* | 作成したイベント ハブに定義されているコンシューマー グループ。 |
     | | |
 
-    ターゲット テーブル:
+    ターゲット テーブル: 
 
      **設定** | **推奨値** | **フィールドの説明**
     |---|---|---|

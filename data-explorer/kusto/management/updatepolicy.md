@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 7d2b89e0723bbecb29ffd582ae20c2ee41199e45
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 072c908109fecb695a8961c546deb756caf830ab
+ms.sourcegitcommit: 98eabf249b3f2cc7423dade0f386417fb8e36ce7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618498"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82868705"
 ---
 # <a name="update-policy"></a>Update ポリシー
 
@@ -52,19 +52,22 @@ ms.locfileid: "82618498"
 |IsTransactional               |`bool`  |更新ポリシーがトランザクションであるかどうかを示します (既定値は false)。 トランザクション更新ポリシーの実行に失敗すると、ソーステーブルも新しいデータで更新されません。   |
 |PropagateIngestionProperties  |`bool`  |ソーステーブルへの取り込み中に指定されたインジェストプロパティ (エクステントタグと作成時刻) が、派生テーブル内のものにも適用されるかどうかを示します。                 |
 
-> [!NOTE]
->
-> * 更新ポリシーが定義されているソーステーブルとテーブルは、**同じデータベース内に存在する必要があり**ます。
-> * このクエリには、複数のデータベースにまたがるクエリやクロスクラスタークエリを含めることはでき**ません**。
-> * クエリでは、格納されている関数を呼び出すことができます。
-> * クエリのスコープは、新しく取り込まれたたレコードのみを対象とするように自動的に設定されます。
-> * カスケード更新が許可されてい`[update]`ます (TableA----`[update]`> tableb----`[update]`> tablec---->...)
-> * 更新ポリシーが複数のテーブルに循環的に定義されている場合は、実行時に検出され、更新プログラムのチェーンは切り取られます (つまり、影響を受けるテーブルのチェーン内の各テーブルに対してデータが1回だけ取り込まれたされます)。
-> * `Source`ポリシーの`Query`一部 (または後者が参照する関数) でテーブルを参照するときは、テーブルの修飾名を使用し**ない**ようにしてください (つまり`TableName` 、とで`cluster("ClusterName").database("DatabaseName").TableName`は**なく** `database("DatabaseName").TableName`を使用します)。
-> * 更新ポリシーのクエリでは、[行レベルセキュリティポリシー](./rowlevelsecuritypolicy.md)が有効になっているテーブルを参照することはできません。
-> * 更新ポリシーの一部として実行されるクエリには、 [RestrictedViewAccess ポリシー](restrictedviewaccesspolicy.md)が有効になっているテーブルに対する読み取りアクセス権があり**ません**。
-> * `PropagateIngestionProperties`インジェスト操作でのみ有効になります。 更新ポリシーが`.move extents`または`.replace extents`コマンドの一部としてトリガーされた場合、このオプションによる影響は**ありません**。
-> * 更新ポリシーが`.set-or-replace`コマンドの一部として呼び出されると、既定の動作として、派生テーブル内のデータも、ソーステーブルの場合と同じように置換されます。
+## <a name="notes"></a>Notes
+
+* クエリのスコープは、新しく取り込まれたレコードのみを対象とするように自動的に設定されます。
+* クエリでは、格納されている関数を呼び出すことができます。
+* 連鎖更新が許可さ`TableA`れ`TableB`て`TableC`います (→→→...)
+* 更新ポリシーが`.set-or-replace`コマンドの一部として呼び出されると、既定の動作として、派生テーブル内のデータも、ソーステーブルの場合と同じように置換されます。
+
+## <a name="limitations"></a>制限事項
+
+* 更新ポリシーが定義されているソーステーブルとテーブルは、**同じデータベース内に存在する必要があり**ます。
+* このクエリには、複数のデータベースにまたがるクエリやクロスクラスタークエリを含めることはでき**ません**。
+* 更新ポリシーが複数のテーブルに循環的に定義されている場合は、実行時に検出され、更新プログラムのチェーンは切り取られます (つまり、影響を受けるテーブルのチェーン内の各テーブルに対してデータが1回だけ取り込まれたされます)。
+* `Source`ポリシーの`Query`一部 (または後者が参照する関数) でテーブルを参照するときは、テーブルの修飾名を使用し**ない**ようにしてください (つまり`TableName` 、とで`cluster("ClusterName").database("DatabaseName").TableName`は**なく** `database("DatabaseName").TableName`を使用します)。
+* 更新ポリシーの一部として実行されるクエリには、 [RestrictedViewAccess ポリシー](restrictedviewaccesspolicy.md)が有効になっているテーブルに対する読み取りアクセス権があり**ません**。
+* 更新ポリシーのクエリでは、[行レベルセキュリティポリシー](./rowlevelsecuritypolicy.md)が有効になっているテーブルを参照することはできません。
+* `PropagateIngestionProperties`インジェスト操作でのみ有効になります。 更新ポリシーが`.move extents`または`.replace extents`コマンドの一部としてトリガーされた場合、このオプションによる影響は**ありません**。
 
 ## <a name="retention-policy-on-the-source-table"></a>ソーステーブルのアイテム保持ポリシー
 

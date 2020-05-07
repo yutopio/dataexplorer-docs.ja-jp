@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: fac9fd9f218948928e4f91d0d1aa056affcebd11
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 6b2f3b2d75bd964401ae37093405e692cfd64feb
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617665"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82861784"
 ---
 # <a name="ingest-from-event-hub"></a>Event Hub からの取り込み
 
@@ -35,11 +35,12 @@ ms.locfileid: "82617665"
 
 |プロパティ |[説明]|
 |---|---|
-| テーブル | 既存の対象テーブルの名前 (大文字と小文字が区別されます)。 `Data Connection`ブレードのセットを`Table`オーバーライドします。 |
-| Format | データ形式。 `Data Connection`ブレードのセットを`Data format`オーバーライドします。 |
-| IngestionMappingReference | 使用する既存の[インジェストマッピング](../create-ingestion-mapping-command.md)の名前。 `Data Connection`ブレードのセットを`Column mapping`オーバーライドします。|
+| テーブル | 既存の対象テーブルの名前 (大文字と小文字が区別されます)。 [`Data Connection`] ブレードでの [`Table`] の設定をオーバーライドします。 |
+| Format | データ形式。 [`Data Connection`] ブレードでの [`Data format`] の設定をオーバーライドします。 |
+| IngestionMappingReference | 使用する既存の[インジェストマッピング](../create-ingestion-mapping-command.md)の名前。 [`Data Connection`] ブレードでの [`Column mapping`] の設定をオーバーライドします。|
 | 圧縮 | データ圧縮、 `None` (既定) また`GZip`は圧縮。|
 | エンコード |  データエンコード、既定値は UTF8 です。 [.Net でサポートされているエンコーディング](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks)のいずれかを指定できます。 |
+| タグ (プレビュー) | JSON 配列文字列として書式設定された取り込まれたデータに関連付ける[タグ](../extents-overview.md#extent-tagging)の一覧。 タグを使用した場合のパフォーマンスへの[影響](../extents-overview.md#performance-notes-1)に注意してください。 |
 
 <!--| Database | Name of the existing target database.|-->
 <!--| Tags | String representing [tags](https://docs.microsoft.com/azure/kusto/management/extents-overview#extent-tagging) that will be attached to resulting extent. |-->
@@ -65,6 +66,7 @@ var eventData = new EventData(Encoding.UTF8.GetBytes(data));
 eventData.Properties.Add("Table", "WeatherMetrics");
 eventData.Properties.Add("Format", "json");
 eventData.Properties.Add("IngestionMappingReference", "mapping1");
+eventData.Properties.Add("Tags", "['mydatatag']");
 
 // Send events
 var eventHubClient = EventHubClient.CreateFromConnectionString(eventHubNamespaceConnectionString, eventHubName);

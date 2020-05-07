@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/31/2019
-ms.openlocfilehash: 170db0d00f42209a2fd55c4009ab2f11eff55641
-ms.sourcegitcommit: c4aea69fafa9d9fbb814764eebbb0ae93fa87897
+ms.openlocfilehash: 866e9b5d8f076660dfcb453fdb47fb6a6402578b
+ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81610208"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82741993"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
@@ -96,6 +96,9 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 ### <a name="relevant-ip-addresses"></a>関連する IP アドレス
 
 #### <a name="azure-data-explorer-management-ip-addresses"></a>Azure Data Explorer 管理 IP アドレス
+
+> [!NOTE]
+> 将来のデプロイでは、AzureDataExplorer サービス タグを使用してください
 
 | リージョン | アドレス |
 | --- | --- |
@@ -222,6 +225,7 @@ ExpressRoute を使用して、オンプレミス ネットワークを Azure �
 
 ```
 prod.warmpath.msftcloudes.com:443
+gcs.prod.monitoring.core.windows.net:443
 production.diagnostics.monitoring.core.windows.net:443
 graph.windows.net:443
 *.update.microsoft.com:443
@@ -234,8 +238,6 @@ azureprofilerfrontdoor.cloudapp.net:443
 *.servicebus.windows.net:443
 shoebox2.metrics.nsatc.net:443
 prod-dsts.dsts.core.windows.net:443
-*.identity.azure.net:443
-*.vault.azure.net:443
 ocsp.msocsp.com:80
 *.windowsupdate.com:80
 ocsp.digicert.com:80

@@ -7,13 +7,14 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
+ms.custom: has-adal-ref
 ms.date: 10/30/2019
-ms.openlocfilehash: 5e2de0c29c58959ce683518b03bef9164fa9543c
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: b41f77fe97ce6adeeade63c00824818f4a3af721
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799630"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862039"
 ---
 # <a name="ms-tds-clients-and-azure-data-explorer"></a>MS TDS クライアントと Azure データエクスプローラー
 
@@ -83,7 +84,7 @@ ODBC アプリケーションが、ではなく、または DSN に加えて接�
 "Driver={ODBC Driver 17 for SQL Server};Server=mykustocluster.kusto.windows.net;Database=mykustodatabase;Authentication=ActiveDirectoryIntegrated"
 ```
 
-一部の ODBC アプリケーションは、型で`NVARCHAR(MAX)`は適切に機能しません。 詳細については、「https://docs.microsoft.com/sql/relational-databases/native-client/features/using-large-value-types?view=sql-server-2017#sql-server-native-client-odbc-driver」を参照してください。 
+一部の ODBC アプリケーションは、型で`NVARCHAR(MAX)`は適切に機能しません。 詳細については、「https://docs.microsoft.com/sql/relational-databases/native-client/features/using-large-value-types?view=sql-server-2017#sql-server-native-client-odbc-driver」を参照してください。
 
 一般的な回避策は、返されたデータを*NVARCHAR (n)* にキャストすることです。 n の値はいくつかあります。 たとえば、 *NVARCHAR (4000)* のようになります。 ただし、このような回避策は、azure データエクスプローラーでは機能しません。これは、Azure データエクスプローラーの文字列型が1つだけであり、SQL クライアント用に*NVARCHAR (MAX)* としてエンコードされているためです。
 
@@ -104,7 +105,7 @@ $conn = [System.Data.Common.DbProviderFactories]::GetFactory("System.Data.Odbc")
 $conn.ConnectionString = "Driver={ODBC Driver 17 for SQL Server};Server=mykustocluster.kusto.windows.net;Database=mykustodatabase;Authentication=ActiveDirectoryIntegrated"
 $conn.Open()
 $conn.GetSchema("Tables")
-$conn.Close()  
+$conn.Close()
 ```
 
 ## <a name="linqpad"></a>LINQPad

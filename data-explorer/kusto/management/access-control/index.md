@@ -7,13 +7,14 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
+ms.custom: has-adal-ref
 ms.date: 11/25/2019
-ms.openlocfilehash: 9d72373e8fc5c55740fa3e53a8f850a887517e7b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ecdcdf22fe25c855045d90e294597c1abc769c03
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490448"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862107"
 ---
 # <a name="kusto-access-control-overview"></a>Kusto Access Control の概要
 
@@ -30,7 +31,7 @@ Kusto クラスター、データベース、またはテーブルに対して�
 
 AAD は、Microsoft で Kusto に対して認証を行う場合に推奨される方法です。 次のようなさまざまな認証シナリオがサポートされています。
 * **ユーザー認証** (対話型ログオン):人間のプリンシパルを認証するために使用されます。
-* **アプリケーション認証** (非対話型ログオン):人間のユーザーがいない状態で実行または認証する必要があるサービスおよびアプリケーションを認証するために使用されます。 
+* **アプリケーション認証** (非対話型ログオン):人間のユーザーがいない状態で実行または認証する必要があるサービスおよびアプリケーションを認証するために使用されます。
 
 ### <a name="user-authentication"></a>ユーザー認証
 ユーザー認証は、ユーザーが AAD (または、ADFS などの、AAD と連携する ID プロバイダー) に資格情報を提示すると実行され、Kusto サービスに提示できるセキュリティ トークンを受け取ります。 Kusto サービスは、セキュリティ トークンの取得方法は考慮せず、トークンが有効かどうか、および AAD (または連携している IdP) によってどのような情報がそこに入れられているかを考慮します。
@@ -94,4 +95,3 @@ Kusto は [ロールベースの承認モデル](role-based-authorization.md)を
 たとえば、**データベース ユーザー ロール**は、特定のデータベースのデータの読み取り、データベース内でのテーブルの作成、およびその中での関数の作成を行う権限をセキュリティ プリンシパル (ユーザーまたはサービス) に付与します。
 
 セキュリティ プリンシパルとセキュリティ ロールの関連付けは、個別に、または (AAD に定義されている) セキュリティ グループを使用して定義できます。 これを行うための個々のコマンドは、[ロールベースの承認規則の設定](../security-roles.md)に関する記事に定義されています。
-

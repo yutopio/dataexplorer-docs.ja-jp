@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: 342ba4a72ec365b3b3272cb073fd950112118973
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: cd503948d2f48a0ca431b7e1ce9fbe5c178fc542
+ms.sourcegitcommit: 72eaa9e5169d79507ceb6ead4a2eb703121c2190
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492891"
+ms.lasthandoff: 05/04/2020
+ms.locfileid: "82774971"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-azure-cli"></a>Azure CLI を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -55,14 +55,15 @@ Azure Cloud Shell でコマンドを実行している場合、次の手順は�
 1. 次のコマンドを使用して、クラスターを作成します。
 
     ```azurecli-interactive
-    az kusto cluster create --name azureclitest --sku D11_v2 --resource-group testrg
+    az kusto cluster create --name azureclitest --sku name="Standard_D13_v2" tier="Standard" --resource-group testrg --location westus
     ```
 
    |**設定** | **推奨値** | **フィールドの説明**|
    |---|---|---|
    | name | *azureclitest* | クラスターの任意の名前。|
-   | sku | *D13_v2* | クラスターに使用される SKU。 |
+   | sku | *Standard_D13_v2* | クラスターに使用される SKU。 パラメーター: *name* - SKU 名。 *tier* - SKU レベル。 |
    | resource-group | *testrg* | クラスターが作成されるリソース グループの名前。 |
+   | location | *westus* | クラスターが作成される場所。 |
 
     使用できる省略可能なパラメーターが他にも存在します (クラスターの容量など)。
 
@@ -72,23 +73,22 @@ Azure Cloud Shell でコマンドを実行している場合、次の手順は�
     az kusto cluster show --name azureclitest --resource-group testrg
     ```
 
-結果に値が `provisioningState` の `Succeeded` が含まれている場合、クラスターは正常に作成されています。
+結果に値が `Succeeded` の `provisioningState` が含まれている場合、クラスターは正常に作成されています。
 
 ## <a name="create-the-database-in-the-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターでデータベースを作成する
 
 1. 次のコマンドを使用して、データベースを作成します。
 
     ```azurecli-interactive
-    az kusto database create --cluster-name azureclitest --name clidatabase --resource-group testrg --soft-delete-period P365D --hot-cache-period P31D
+    az kusto database create --cluster-name azureclitest --database-name clidatabase --resource-group testrg --read-write-database soft-delete-period=P365D hot-cache-period=P31D location=westus
     ```
 
    |**設定** | **推奨値** | **フィールドの説明**|
    |---|---|---|
    | cluster-name | *azureclitest* | データベースの作成先となるクラスターの名前。|
-   | name | *clidatabase* | データベースの名前。|
+   | database-name | *clidatabase* | データベースの名前。|
    | resource-group | *testrg* | クラスターが作成されるリソース グループの名前。 |
-   | soft-delete-period | *P365D* | データをクエリに使用できるようにしておく時間を示します。 詳細については、[アイテム保持ポリシー](kusto/management/retentionpolicy.md)に関するページを参照してください。 |
-   | hot-cache-period | *P31D* | データをキャッシュに保持する時間を示します。 詳細については、[キャッシュ ポリシー](kusto/management/cachepolicy.md)に関するページを参照してください。 |
+   | read-write-database | *P365D* *P31D* *westus* | データベースの種類。 パラメーター: *soft-delete-period* - データをクエリに使用できるようにしておく時間を示します。 詳細については、[アイテム保持ポリシー](kusto/management/retentionpolicy.md)に関するページを参照してください。 *hot-cache-period* - データをキャッシュに保持する時間を示します。 詳細については、[キャッシュ ポリシー](kusto/management/cachepolicy.md)に関するページを参照してください。 *location* - データベースが作成される場所。 |
 
 1. 次のコマンドを実行して、作成したデータベースを確認します。
 

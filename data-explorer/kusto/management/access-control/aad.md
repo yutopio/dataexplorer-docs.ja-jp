@@ -1,40 +1,41 @@
 ---
-title: Azure アクティブ ディレクトリ (AAD) 認証 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの Azure アクティブ ディレクトリ (AAD) 認証について説明します。
+title: Azure Active Directory (AAD) 認証-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの Azure Active Directory (AAD) 認証について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
+ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: 637252b91af53198b3ee494309857b2d4b6e6828
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 17da89206af12e2e4f7d9867372c8babf0c4aea1
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522935"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862090"
 ---
-# <a name="azure-active-directory-aad-authentication"></a>Azure アクティブ ディレクトリ (AAD) 認証
+# <a name="azure-active-directory-aad-authentication"></a>Azure Active Directory (AAD) 認証
 
 Azure Active Directory (AAD) は、Azure の優先マルチテナント クラウド ディレクトリ サービスであり、セキュリティ プリンシパルの認証や、Microsoft の Active Directory などの他の ID プロバイダーとのフェデレーションに対応できます。
 
-AAD は、さまざまな種類のアプリケーション (Web アプリケーション、Windows デスクトップ アプリケーション、ユニバーサル アプリケーション、モバイル アプリケーションなど) を一様に認証し、Kusto サービスを使用することができます。
+AAD では、さまざまな種類 (web アプリケーション、Windows デスクトップアプリケーション、ユニバーサルアプリケーション、モバイルアプリケーションなど) をアプリケーションで一貫して認証し、Kusto サービスを使用することができます。
 
-AAD は、多くの認証シナリオをサポートしています。
-認証中に存在するユーザーがいる場合は、AAD ユーザー認証によって AAD に対してユーザーを認証する必要があります。
-対話的にユーザーがいない場合でも、サービスで Kusto を使用する必要がある場合があります。 このような場合は、「AAD アプリケーション認証」で説明されているように、アプリケーション シークレットを使用してアプリケーションを認証する必要があります。
+AAD では、さまざまな認証シナリオがサポートされています。
+認証中にユーザーが存在する場合は、AAD ユーザー認証によって AAD に対してユーザーを認証する必要があります。
+場合によっては、ユーザーが対話的に表示されていない場合でも、サービスで Kusto を使用する必要がある場合があります。 このような場合は、「AAD アプリケーション認証」で説明されているように、アプリケーションシークレットを使用してアプリケーションを認証する必要があります。
 
-次の認証方法は、一般的に 、.NET ライブラリを含む Kusto でサポートされています。
+次の認証方法は、一般に、.NET ライブラリを通じて、Kusto でサポートされています。
 
-* 対話型ユーザー認証 - このモードでは、必要に応じて、ログオン UI がポップアップする対話が必要です。
-* Kusto 用に以前に発行された既存の AAD トークンを使用したユーザー認証
+* 対話型ユーザー認証-このモードでは、必要に応じて対話機能が必要です。ログオン UI がポップアップ表示されます。
+* 以前に Kusto に発行された既存の AAD トークンを使用したユーザー認証
 * AppID と共有シークレットを使用したアプリケーション認証
-* ローカルにインストールされた X.509v2 証明書またはインライン証明書を使用したアプリケーション認証
-* Kusto 用に以前発行された既存の AAD トークンを使用したアプリケーション認証
-* 別のリソースに対して発行された AAD トークンを使用したユーザー認証またはアプリケーション認証 (そのリソースと Kusto の間に信頼が存在する場合)
+* ローカルにインストールされた x.509v3 証明書またはインライン証明書を使用したアプリケーション認証
+* 以前に Kusto に発行された既存の AAD トークンを使用したアプリケーション認証
+* 別のリソースに対して発行された AAD トークンを使用したユーザー認証またはアプリケーション認証。そのリソースと Kusto の間に信頼が存在します。
 
-ガイダンスと例については[、Kusto 接続文字列](../../api/connection-strings/kusto.md)リファレンスを参照してください。
+ガイダンスと例については、 [Kusto 接続文字列](../../api/connection-strings/kusto.md)に関するリファレンスを参照してください。
 
 ## <a name="user-authentication"></a>ユーザー認証
 
@@ -54,13 +55,13 @@ AAD は、多くの認証シナリオをサポートしています。
 * 以前に取得した有効な AAD トークン (Kusto に対して発行されたもの) を使用したアプリケーション認証。
 * 以前に取得した、他のリソースに対して発行された有効な AAD トークンを使用したアプリケーション認証 (ただし、そのリソースと Kusto との間に信頼関係があることが条件になります)。
 
-## <a name="aad-server-application-permissions"></a>AAD サーバー アプリケーションのアクセス許可
+## <a name="aad-server-application-permissions"></a>AAD サーバーアプリケーションのアクセス許可
 
-一般的なケースでは、AAD Server アプリケーションは複数のアクセス許可 (読み取り専用アクセス許可、ライター読み取りアクセス許可など) を定義でき、AAD クライアント アプリケーションは承認トークンを要求するときに必要なアクセス許可を決定できます。 トークン取得の一環として、ユーザーは、これらのアクセス許可を持つ権限を持つユーザーの代理として AAD クライアント アプリケーションを承認するように求められます。 ユーザーが承認した場合、これらのアクセス許可は、AAD クライアント アプリケーションに発行されるトークンのスコープ クレームに表示されます。
+通常、AAD サーバーアプリケーションでは、複数のアクセス許可 (読み取り専用アクセス許可や読み取り/書き込みアクセス許可など) を定義できます。 AAD クライアントアプリケーションでは、承認トークンを要求するときに必要なアクセス許可を決定することができます。 トークンの取得の一環として、ユーザーは、AAD クライアントアプリケーションが、これらのアクセス許可を持っていることを承認するためにユーザーの代理として動作することを承認するように求められます。 ユーザーが承認すると、AAD クライアントアプリケーションに対して発行されたトークンのスコープ要求にこれらのアクセス許可が一覧表示されます。
 
 
 
-AAD クライアント アプリケーションは、ユーザーに "アクセス クスト" アクセス許可を要求するように構成されています (AAD は "リソース所有者" と呼びます)。
+AAD クライアントアプリケーションは、"アクセス Kusto" アクセス許可をユーザーに要求するように構成されています (AAD は "リソース所有者" を呼び出します)。
 
 ## <a name="kusto-client-sdk-as-an-aad-client-application"></a>AAD クライアント アプリケーションとしての Kusto クライアント SDK
 
@@ -68,16 +69,15 @@ Kusto クライアント ライブラリは、ADAL (AAD クライアント ラ�
 
 1. 呼び出し元から受信した AAD テナント
 2. AAD クライアント アプリケーション ID
-3. AAD クライアント リソース ID
-4. AAD ReplyUrl (認証が正常に完了した後に AAD サービスがリダイレクトする URL。ADAL は、このリダイレクトをキャプチャし、そこから認証コードを抽出します)。
-5. クラスター URI (''https://Cluster-and-region.kusto.windows.net)
+3. AAD クライアントリソース ID
+4. AAD ReplyUrl (認証が正常に完了した後に AAD サービスがリダイレクトする URL)次に、ADAL はこのリダイレクトをキャプチャし、そこから認証コードを抽出します)。
+5. クラスターの URI ('https://Cluster-and-region.kusto.windows.net')。
 
-ADAL から Kusto クライアント ライブラリに返されるトークンには、対象ユーザーとして Kusto AAD Server アプリケーションがあり、スコープとして "アクセス クスト" アクセス許可があります。
+ADAL から Kusto クライアントライブラリに返されるトークンは、対象ユーザーとして Kusto AAD サーバーアプリケーションを持ち、スコープとして "Access Kusto" アクセス許可を持っています。
 
-## <a name="authenticating-with-aad-programmatically"></a>プログラムで AAD を使用した認証
+## <a name="authenticating-with-aad-programmatically"></a>AAD による認証 (プログラムによる)
 
-次の記事では、プログラムで AAD を使用して Kusto に対して認証を行う方法について説明します。
+次の記事では、AAD を使用して Kusto に対してプログラムで認証する方法について説明します。
 
 * [AAD アプリケーションをプロビジョニングする方法](./how-to-provision-aad-app.md)
 * [AAD 認証を実行する方法](./how-to-authenticate-with-aad.md)
-

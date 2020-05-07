@@ -7,13 +7,14 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
+ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 9e4be7be65b0fe118a99835b24cd9d69ac5a531d
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 2ea7fd33a6e6ed8728fb12d53fbe76eadf8fd6b6
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108492"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862073"
 ---
 # <a name="howto-data-ingestion-without-kustoingest-library"></a>Kusto を使用せずにデータを取り込む方法。インジェストライブラリ
 
@@ -303,7 +304,7 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
 
 ```json
 {
-    "Id" : "<Id>", 
+    "Id" : "<Id>",
     "BlobPath" : "https://<AccountName>.blob.core.windows.net/<ContainerName>/<PathToBlob>?<SasToken>",
     "RawDataSize" : "<RawDataSizeInBytes>",
     "DatabaseName": "<DatabaseName>",
@@ -344,7 +345,7 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
 |失敗した場合 |失敗のタイムスタンプ |
 |IngestionSourceId |Kusto の取り込みに失敗したデータチャンクを識別する GUID |
 |IngestionSourcePath |Kusto の取り込みに失敗したデータチャンクへのパス (URI) |
-|詳細情報 |エラー メッセージ |
+|詳細 |エラー メッセージ |
 |ErrorCode |Kusto エラーコード ([こちら](kusto-ingest-client-errors.md#ingestion-error-codes)のすべてのエラーコードを参照してください) |
 |FailureStatus |障害が永続的であるか一時的なものであるかを示します |
 |RootActivityId |サービス側での操作を追跡するために使用できる kusto 関連付け識別子 (GUID) |

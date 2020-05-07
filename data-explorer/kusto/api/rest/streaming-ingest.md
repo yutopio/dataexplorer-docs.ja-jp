@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 672f924865cab14dff6c7d5319c3c34cca1a67ee
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 1614a04c5e5bff51f45df914174c967ff9c7d8a2
+ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862015"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82907076"
 ---
 # <a name="streaming-ingestion-http-request"></a>ストリーミングインジェスト HTTP 要求
 
@@ -36,8 +36,8 @@ ms.locfileid: "82862015"
 
 | パラメーター    | 説明                                                                          | 必須/オプション   |
 |--------------|--------------------------------------------------------------------------------------|---------------------|
-|`streamFormat`| 要求本文内のデータの形式を指定します。 値は`CSV``TSV`、、、`SCsv`、`SOHsv``PSV``JSON``SingleJSON``Avro`、、、、、のいずれかである必要があります。`MultiJSON` 詳細については、「[サポートされるデータ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)」を参照してください。| 必須 |
-|`mappingName` | テーブルで定義されている事前に作成されたインジェストマッピングの名前。 詳細については、「[データのマッピング](../../management/mappings.md)」を参照してください。 テーブルで事前に作成されたマッピングを管理する方法については、[こちら](../../management/create-ingestion-mapping-command.md)を参照してください。| 省略可能ですが、 `streamFormat`が、 `JSON``SingleJSON`、`MultiJSON`、またはのいずれかの場合に必要です。`Avro`|  |
+|`streamFormat`| 要求本文内のデータの形式を指定します。 `CSV`値は、、 `TSV`、 `SCsv`、 `SOHsv` `PSV` `JSON` `MultiJSON`、、、、のいずれかで`Avro`ある必要があります。 詳細については、「[サポートされるデータ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)」を参照してください。| 必須 |
+|`mappingName` | テーブルで定義されている事前に作成されたインジェストマッピングの名前。 詳細については、「[データのマッピング](../../management/mappings.md)」を参照してください。 テーブルで事前に作成されたマッピングを管理する方法については、[こちら](../../management/create-ingestion-mapping-command.md)を参照してください。| 省略可能ですが、 `streamFormat`が、 `MultiJSON`、 `JSON`またはのいずれかの場合に必要です。`Avro`|  |
               
 たとえば、CSV 形式のデータをデータベース`Logs` `Test`内のテーブルに取り込むには、次のように使用します。
 

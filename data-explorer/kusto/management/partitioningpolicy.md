@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 7440b42599d8559db547762daa5f8edcc24ea46f
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: 6ce7cf38c88879b52c4e2e259e3e9a5cade959de
+ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799443"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82907148"
 ---
 # <a name="data-partitioning-policy-preview"></a>データのパーティション分割ポリシー (プレビュー)
 
@@ -38,7 +38,7 @@ ms.locfileid: "82799443"
 
 ### <a name="hash-partition-key"></a>ハッシュパーティションキー
 
-テーブル内の型指定され`string`た列にハッシュパーティションキーを適用するのは`application_ID` `tenant_ID` 、大*規模なディメンション*の`==`特定`in()` `string`の型の列 (、、など) に対して*大部分*のクエリで等値フィルター ( `user_ID`,) を使用する場合に適しています。
+テーブルの型指定された`string`列にハッシュパーティションキーを適用するのは`application_ID` `tenant_ID` 、大*規模なディメンション*の特定`==` `string`の`in()`型の列 (、、など) に対して*大部分*のクエリで等値フィルター (,) と集計/結合を使用する場合に適し`user_ID`ています。
 
 * ハッシュ剰余関数は、データをパーティション分割するために使用されます。
 * 同じパーティションに属するすべての*同種*(パーティション分割) エクステントは、同じデータノードに割り当てられます。
@@ -175,7 +175,7 @@ ms.locfileid: "82799443"
   * 1つのデータパーティション分割操作のソースエクステントの行数の合計の最大ターゲット。
   * このプロパティは*省略可能*で、既定値は`0`です (この場合、500万レコードの既定のターゲットが有効になります)。
 
-## <a name="notes"></a>注
+## <a name="notes"></a>Notes
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 

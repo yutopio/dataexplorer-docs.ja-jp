@@ -1,6 +1,6 @@
 ---
-title: active_users_countプラグイン - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーactive_users_countプラグインについて説明します。
+title: active_users_count プラグイン-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの active_users_count プラグインについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f324507d1a4528c5efefc14f7820437383211ca6
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 22d3744cfa83a003830acc07710fd459003dbf20
+ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519348"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82907198"
 ---
-# <a name="active_users_count-plugin"></a>active_users_countプラグイン
+# <a name="active_users_count-plugin"></a>active_users_count プラグイン
 
-ルックバック期間内の少なくとも最小期間内に各値が出現した値の個別のカウントを計算します。
+個別の値の数を計算します。各値は、少なくとも、少なくとも最小数の期間に表示されます。
 
-「ファン以外」の出現を含まない一方で、「ファン」の個別のカウントを計算するのに便利です。 ユーザーは、ルックバック期間中にアクティブだった場合にのみ「ファン」としてカウントされます。 ルックバック期間は、ユーザーが「ファン」と見な`active`されるかどうかを判断するためにのみ使用されます。 集計自体には、ルックバック ウィンドウのユーザーは含まれません ([sliding_window_counts] (sliding-window-counts-plugin.md) とは異なり、集計がルックバック期間のスライディング ウィンドウ上にある場合)。
+"ファン以外" の種類を含まない、"ファン" の個別のカウントを計算する場合に便利です。 ユーザーは、"ファン" としてカウントされます。これは、元の状態の間にアクティブだった場合に限ります。 ルックバック期間は、ユーザーが検討`active`されている ("ファン") かどうかを判断するためにのみ使用されます。 集計自体には、[元に戻す] ウィンドウのユーザーは含まれません。 これに対して、 [sliding_window_counts](sliding-window-counts-plugin.md)集計は、ルックバック期間のスライディングウィンドウで実行されます。
 
 ```kusto
 T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), startofday(now()), 7d, 1d, 2, 7d, dim1, dim2, dim3)
@@ -27,35 +27,35 @@ T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), start
 
 **構文**
 
-*T* `| evaluate` `,` *Start* `,` *End* `,` *Period* `,` *Bin* *IdColumn* `,` `,` `,` `,` *TimelineColumn* `,` *LookbackWindow* `,` *dim2* *ActivePeriodsCount* *dim1* IdColumn タイムライン列開始終了ルックバックウィンドウ期間アクティブ期間カウントビン [dim1 dim2.] `active_users_count(``)`
+*T* `| evaluate` *LookbackWindow* *Period* *TimelineColumn* `,` *Bin* *End* `,` *dim2* *Start* `,` *ActivePeriodsCount* *dim1* *IdColumn* `,` `,` idcolumn`,` TimelineColumn`,` Start`,` End`,` ActivePeriodsCount Bin [dim1 dim2..`,` `active_users_count(``)`
 
 **引数**
 
-* *T*: 入力表形式の式。
-* *IdColumn*: ユーザー アクティビティを表す ID 値を持つ列の名前。 
-* *タイムライン列*: タイムラインを表す列の名前。
-* *開始*: (オプション) スカラーと分析開始期間の値。
-* *End*: (オプション) スカラーと分析終了期間の値を指定します。
-* *ルックバックウィンドウ*: ユーザーの外観がチェックされる期間を定義するスライディング時間枠。 ルックバック期間は([現在の外観] - [ルックバックウィンドウ])で始まり、上で終了します([現在の外観])。 
-* *Period*: 単一の外観としてカウントするスカラー定数の期間 (この期間の少なくとも別個の ActivePeriodsCount に表示される場合、ユーザーはアクティブとしてカウントされます)。
-* *アクティブ期間数*: ユーザーがアクティブかどうかを判断する、個別のアクティブ期間の数は最小限です。 アクティブ ユーザーとは、少なくとも (同等以上) のアクティブ期間に出現したユーザーです。
-* *Bin*: 分析ステップ期間のスカラー定数値。 数値/日時/タイムスタンプ値、またはの 1 つである[startofweek](startofweekfunction.md)/[startofmonth](startofmonthfunction.md)/[startofyear](startofyearfunction.md)`week`/`month`/`year`文字列を指定できます。
-* *dim1*、 *dim2*、 .: (オプション) アクティビティ指標の計算をスライスするディメンション列のリスト。
+* *T*: 入力テーブル式。
+* *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
+* *TimelineColumn*: タイムラインを表す列の名前。
+* *Start*: (省略可能) 分析の開始期間の値を持つスカラー。
+* *End*: (省略可能) 分析終了期間の値を含むスカラー。
+* ルック*バックウィンドウ*: ユーザーの外観がチェックされる期間を定義する、スライド式の時間枠。 元に戻す期間は、([現在の外観]-[ルックバックウィンドウ]) から始まり、([現在の外観]) で終わります。 
+* *期間*: スカラー定数 timespan。1つの外観としてカウントされます (ユーザーは、この timespan の少なくとも distinct ActivePeriodsCount に出現すると、アクティブとしてカウントされます。
+* *ActivePeriodsCount*: ユーザーがアクティブかどうかを判断するための、個別のアクティブ期間の最小数。 アクティブなユーザーとは、少なくとも以上のアクティブな期間に出現したユーザーのことです。
+* *Bin*: 分析ステップ期間のスカラー定数値。 には、数値/日付/時刻/タイムスタンプ値、または`week` / `month` / `year`の文字列を指定できます。 すべての期間は、対応する[startofweek](startofweekfunction.md)/[startofmonth](startofmonthfunction.md)/[startofyear](startofyearfunction.md)関数になります。
+* *dim1*、 *dim2*、...: (省略可能) アクティビティメトリックスの計算をスライスするディメンション列の一覧です。
 
 **戻り値**
 
-ルックバック期間内、各タイムライン期間、および既存のディメンションの組み合わせに対して ActivePeriodCounts に表示された ID の個別のカウント値を持つテーブルを返します。
+ActivePeriodCounts に表示された Id の個別のカウント値を持つテーブルを返します。次の期間、各タイムラインの期間、および既存の各ディメンションの組み合わせです。
 
 出力テーブルスキーマは次のとおりです。
 
-|*タイムライン列*|薄暗い1|..|dim_n|dcount_values|
+|*TimelineColumn*|dim1|..|dim_n|dcount_values|
 |---|---|---|---|---|
-|タイプ:*タイムライン列の時点*|..|..|..|long|
+|型: as of *TimelineColumn*|..|..|..|long|
 
 
 **使用例**
 
-少なくとも3日間に3日前の8日間に出現した個別のユーザーの週単位の金額を計算します。 分析期間:2018年7月
+過去8日間に少なくとも3つの異なる日に出現した個別のユーザーの数を計算します。 分析期間: 2018 年7月。
 
 ```kusto
 let Start = datetime(2018-07-01);
@@ -83,11 +83,15 @@ T | evaluate active_users_count(User, Timestamp, Start, End, LookbackWindow, Per
 
 ```
 
-|Timestamp|dcount|
+|Timestamp|`dcount`|
 |---|---|
-|2018-07-01 00:00:00.0000000|1|
-|2018-07-15 00:00:00.0000000|1|
+|2018-07-01 00:00: 00.0000000|1|
+|2018-07-15 00:00: 00.0000000|1|
 
-ユーザーは、少なくとも 3 日間 (Period = 1d、ActivePeriods =3) で、現在の外観 (現在の外観を含む) 以前の 8d のルックバック ウィンドウで、アクティブと見なされます。 下の図では、この基準に従ってアクティブになっている唯一の外観は、7/20のユーザAと7/4のユーザB(上記のプラグインの結果を参照)です。 6/29-30 のユーザー B の表示は開始終了時間範囲に含まれていませんが、7/4 のユーザー B のルックバック ウィンドウに含まれることに注意してください。 
+次の条件のいずれかが満たされると、ユーザーはアクティブと見なされます。 
+* ユーザーは、少なくとも3つの異なる日 (Period = 1d、ActivePeriods = 3) で表示されていました。
+* ユーザーは、現在の外観を含めて、8d のルックバックウィンドウで表示されていました。
 
-![alt text](images/queries/active-users-count.png "アクティブ ユーザー数")
+次の図では、この条件によってアクティブになっているのは、7/20 のユーザー A と7/4 のユーザー B のみです (上記のプラグインの結果を参照してください)。 ユーザー B の表示は7/4 の [元に戻す] ウィンドウには含まれますが、6/29-30 の開始終了時間の範囲には含まれません。 
+
+:::image type="content" source="images/queries/active-users-count.png" alt-text="アクティブなユーザーカウントの例":::

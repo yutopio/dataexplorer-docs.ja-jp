@@ -1,6 +1,6 @@
 ---
-title: row_window_session() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで row_window_session() について説明します。
+title: row_window_session ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの row_window_session () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,58 +8,58 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 87e89443bc85125e705bc180ea0cdb9e599c9c13
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 51bc5e26cdc2d002b29ec435a68421ba8768a7a4
+ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510253"
+ms.lasthandoff: 05/07/2020
+ms.locfileid: "82907191"
 ---
 # <a name="row_window_session"></a>row_window_session()
 
-`row_window_session()`[シリアル化された行セット](./windowsfunctions.md#serialized-row-set)の列のセッション開始値を計算します。
+`row_window_session()`シリアル化された[行セット](./windowsfunctions.md#serialized-row-set)内の列のセッション開始値を計算します。
 
 **構文**
 
-`row_window_session``(`*最初*`,``,`*Restart*の`,`*最大距離間の間の最初の距離から*Expr の最大距離 [ 再起動 ] *MaxDistanceFromFirst*`)`
+`row_window_session` `(` *`Expr`* `,` *`MaxDistanceFromFirst`* `,` *`MaxDistanceBetweenNeighbors`* [`,` *`Restart`*] `)`
 
-* *Expr*は、セッション内で値がグループ化された式です。
-  NULL 値を指定すると NULL 値が生成され、次の値が新しいセッションを開始します。
-  *Expr*は型`datetime`のスカラー式でなければなりません。
+* *`Expr`* は、セッション内で値がグループ化された式です。
+  Null 値によって null 値が生成され、次の値によって新しいセッションが開始されます。
+  *`Expr`* 型`datetime`のスカラー式である必要があります。
 
-* *新*しいセッションを開始するための 1 つの基準を設定します: *Expr*の現在の値とセッションの開始時の*Expr*の値の間の最大距離。
-  型のスカラー定数です`timespan`。
+* *`MaxDistanceFromFirst`* 新しいセッションを開始するための1つの条件を設定します。現在*`Expr`* の値から、 *`Expr`* セッションの開始時のの値までの最大距離です。
+  これは型`timespan`のスカラー定数です。
 
-* *新*しいセッションを開始するための 2 番目の基準を確立します: *Expr*の 1 つの値から次の値までの最大距離。
-  型のスカラー定数です`timespan`。
+* *`MaxDistanceBetweenNeighbors`* 新しいセッションを開始するための2番目の条件を確立します。 *`Expr`* 1 つの値から次の値への最大距離です。
+  これは型`timespan`のスカラー定数です。
 
-* *再起動*は、オプションのスカラー式です`boolean`。 指定した場合、評価されるすべての値`true`は、セッションを直ちに再開します。
+* *Restart*は、型`boolean`の省略可能なスカラー式です。 指定した場合、に`true`評価されるすべての値が直ちにセッションを再起動します。
 
 **戻り値**
 
-この関数は、各セッションの開始時に値を返します。
+関数は、各セッションの開始時に値を返します。
 
 **メモ**
 
-この関数には、次の概念計算モデルがあります。
+関数には、次の概念計算モデルがあります。
 
-1. *値 Expr*の入力シーケンスを順番に確認します。
+1. 入力した値*`Expr`* のシーケンスを順番に表示します。
 
-2. すべての値について、新しいセッションを確立するかどうかを判断します。
+1. すべての値について、新しいセッションを確立するかどうかを判断します。
 
-3. 新しいセッションが確立された場合は *、Expr*の値を出力します。 それ以外の場合は、以前の値の*Expr*を出力します。
+1. 新しいセッションを確立する場合は、の*`Expr`* 値を出力します。 それ以外の場合は、の*`Expr`* 前の値を出力します。
 
-この条件は、値が新しいセッションを表すかどうかを決定する条件は、次の論理 OR です。
+値が新しいセッションを表すかどうかを決定する条件は、論理または次のいずれかの条件になります。
 
-* 以前のセッション値がなかった場合、または前のセッション値が null であった場合。
+* 以前のセッション値がなかった場合、または以前のセッション値が null の場合。
 
-* *Expr*の値が、前のセッション値に*MaxDistanceFromFirst*を加えた値と等しいか、それを超えている場合。
+* の*`Expr`* 値が以前のセッションの値にプラスを加え*`MaxDistanceFromFirst`* た値に等しいか、それを超えた場合。
 
-* *Expr*の値が、以前の*Expr*と*最大距離間近*傍の値と等しいか、それを超えている場合。
+* の*`Expr`* 値がまたはの前の値を*`Expr`* 加算*`MaxDistanceBetweenNeighbors`* した値を超えている場合は。
 
 **使用例**
 
-次の例は、2 つの列、シーケンスを識別する`ID`列、および各レコードが発生した時刻を示す`Timestamp`列を持つテーブルのセッション開始値を計算する方法を示しています。 この例では、セッションは 1 時間を超えることはできません。
+次の例では、2つの列を持つテーブルのセッション開始値を計算`ID`する方法を示します。1つ`Timestamp`はシーケンスを識別する列で、もう1つは各レコードが発生した時刻を示す列です。 この例では、セッションが1時間を超えることはできず、レコードが5分未満である間は継続されます。
 
 ```kusto
 datatable (ID:string, Timestamp:datetime) [

@@ -8,21 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 56150c480d0d5ecfd4d428e51f7bdb4b68e36b0c
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 5a7a1b37c8c50bdff3760ad9222065191a9eb884
+ms.sourcegitcommit: 3393ad86dac455fd182296ffb410b2bd570dbfce
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617699"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "82991890"
 ---
 # <a name="export-data-to-an-external-table"></a>外部テーブルへのデータのエクスポート
 
 [外部テーブル](../externaltables.md)を定義し、データをエクスポートすることによって、データをエクスポートできます。
 テーブルのプロパティは、[外部テーブルを作成](../externaltables.md#create-or-alter-external-table)するときに指定します。そのため、export コマンドにテーブルのプロパティを埋め込む必要はありません。 エクスポートコマンドは、外部テーブルを名前で参照します。
 データのエクスポートには、[データベース管理者のアクセス許可](../access-control/role-based-authorization.md)が必要です。
-
-> [!NOTE] 
-> * 接続文字列を使用した`impersonate`外部テーブルへのエクスポートは、現在サポートされていません。
 
 **構文 :**
 
@@ -34,7 +31,7 @@ ms.locfileid: "82617699"
 |出力パラメーター |Type |説明
 |---|---|---
 |ExternalTableName  |String |外部テーブルの名前。
-|Path|String|出力パス。
+|パス|String|出力パス。
 |NumRecords|String| Path にエクスポートされたレコードの数。
 
 **注:**
@@ -54,7 +51,7 @@ ms.locfileid: "82617699"
 
    * 外部テーブルに文字列型の列によってパーティションが含まれている場合、エクスポートされるファイルの数は、パーティションごとに`sizeLimit` 1 つのファイルである必要があります (またはに到達した場合)。 すべてのノードは引き続きエクスポートに参加します (操作は分散されます) が、各パーティションは特定のノードに割り当てられます。 この`distributed`場合、を false に設定すると、1つのノードのみがエクスポートを実行しますが、動作は同じままです (パーティションごとに1つのファイルが書き込まれます)。
 
-## <a name="examples"></a>例
+## <a name="examples"></a>使用例
 
 ### <a name="non-partitioned-external-table-example"></a>パーティション分割されていない外部テーブルの例
 
@@ -63,7 +60,7 @@ ExternalBlob は、パーティション分割されていない外部テーブ�
 .export to table ExternalBlob <| T
 ```
 
-|ExternalTableName|Path|NumRecords|
+|ExternalTableName|パス|NumRecords|
 |---|---|---|
 |ExternalBlob|http://storage1.blob.core.windows.net/externaltable1cont1/1_58017c550b384c0db0fea61a8661333e.csv|10|
 
@@ -87,7 +84,7 @@ dataformat=csv
 .export to table PartitionedExternalBlob <| T
 ```
 
-|ExternalTableName|Path|NumRecords|
+|ExternalTableName|パス|NumRecords|
 |---|---|---|
 |ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer1/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_1_58017c550b384c0db0fea61a8661333e.csv|10|
 |ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer2/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_2_b785beec2c004d93b7cd531208424dc9.csv|10|

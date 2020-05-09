@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 6ce7cf38c88879b52c4e2e259e3e9a5cade959de
-ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
+ms.openlocfilehash: b3293916841eb56da3985f4b388754e7c8057682
+ms.sourcegitcommit: 3393ad86dac455fd182296ffb410b2bd570dbfce
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82907148"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "82991880"
 ---
 # <a name="data-partitioning-policy-preview"></a>データのパーティション分割ポリシー (プレビュー)
 
@@ -175,7 +175,7 @@ ms.locfileid: "82907148"
   * 1つのデータパーティション分割操作のソースエクステントの行数の合計の最大ターゲット。
   * このプロパティは*省略可能*で、既定値は`0`です (この場合、500万レコードの既定のターゲットが有効になります)。
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>メモ
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 
@@ -202,9 +202,10 @@ ms.locfileid: "82907148"
 
 #### <a name="capacity"></a>容量
 
-* データのパーティション分割プロセスによってより多くのエクステントが作成されるため、[エクステント](../management/extents-overview.md)のマージ処理が最大になるように、クラスターの[エクステントのマージ容量](../management/capacitypolicy.md#extents-merge-capacity)を徐々に増やすことが必要になる場合があります。
-* 必要な場合 (たとえば、大量のインジェストが発生した場合や、パーティション分割が必要なテーブルの数が多い場合など) は、クラスターの[エクステントパーティション容量](../management/capacitypolicy.md#extents-partition-capacity)を (徐々に直線的に) 増加させて、同時実行のパーティション分割操作の数を増やすことができます。
-  * パーティション分割を増やすと、クラスターのリソースの使用が大幅に増加する場合は、手動で、または自動スケールを有効にして、クラスターをスケールアップ/スケールアウトします。
+* データのパーティション分割プロセスにより、より多くのエクステントが作成されます。 クラスターによって、エクステントの[マージ容量](../management/capacitypolicy.md#extents-merge-capacity)が徐々に増加し、[エクステントをマージ](../management/extents-overview.md)するプロセスが維持される可能性があります。
+* 大量のインジェストが発生した場合、またはパーティション分割ポリシーが定義されているテーブルの数が多い場合、クラスターはエクステントの[パーティション容量](../management/capacitypolicy.md#extents-partition-capacity)を徐々に増やして、[エクステントをパーティション分割するプロセス](#the-data-partitioning-process)を継続できるようにします。
+* リソースが過剰に消費されるのを防ぐために、これらの動的な増加は制限されています。 上限を超えた場合は、上限を超えるまで (徐々に直線的に) 増やす必要があります。
+  * 容量を増やすと[、クラスターの](../../manage-cluster-vertical-scaling.md)/リソースの使用が大幅に増加する場合は、手動で、または自動スケールを有効にして、クラスターをスケール[アウト](../../manage-cluster-horizontal-scaling.md)することができます。
 
 ### <a name="outliers-in-partitioned-columns"></a>パーティション分割された列の外れ値
 
@@ -213,6 +214,6 @@ ms.locfileid: "82907148"
 
 どちらの場合も、データを "修正" するか、インジェストの前または後に ([更新ポリシー](updatepolicy.md)を使用して) データ内の関係のないレコードをフィルターで除外して、クラスターでのデータのパーティション分割のオーバーヘッドを軽減する必要があります。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 [パーティション分割ポリシー制御コマンド](../management/partitioning-policy.md)を使用して、テーブルのデータのパーティション分割ポリシーを管理します。

@@ -1,35 +1,35 @@
 ---
-title: geo_point_to_s2cell ()-Azure データエクスプローラー |Microsoft Docs
+title: geo_point_to_s2cell ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの geo_point_to_s2cell () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: d1cd2106865419f9407b3ff464d9852eb5ffb630
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: fe3af4218fcc8b714cd4d62e45e78d6f8c9c0270
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618473"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226909"
 ---
 # <a name="geo_point_to_s2cell"></a>geo_point_to_s2cell()
 
 地理的な場所の S2 セルトークン文字列値を計算します。
 
-S2 セルの詳細については、[ここ](http://s2geometry.io/devguide/s2cell_hierarchy)をクリックしてください。
+[S2 セル階層](https://s2geometry.io/devguide/s2cell_hierarchy)の詳細については、こちらをご覧ください。
 
 **構文**
 
-`geo_point_to_s2cell(`*経度*`, `*latitude*緯度`, `*レベル*`)`
+`geo_point_to_s2cell(`*経度* `, `*緯度* `, `*レベル*`)`
 
 **引数**
 
-* *経度*: 地理的な場所の経度の値。 X が実数で x が範囲 [-180, + 180] の場合、経度 x は有効と見なされます。 
-* *緯度*: 地理的な場所の緯度の値。 Y が実数で、範囲 [-90, + 90] の y である場合、緯度 y は有効と見なされます。 
-* *level*: 要求さ`int`れたセルレベルを定義する省略可能な。 サポートされている値の範囲は [0, 30] です。 指定しない場合は、 `11`既定値が使用されます。
+* *経度*: 地理的な場所の経度の値。 *X*が実数で、 *x*が [-180, + 180] の範囲内にある場合、経度*x*は有効と見なされます。 
+* *緯度*: 地理的な場所の緯度の値。 [-90, + 90] の範囲の y が実数と y の場合、緯度 y は有効と見なされます。 
+* *level*: `int` 要求されたセルレベルを定義する省略可能な。 サポートされている値の範囲は [0, 30] です。 指定しない場合は、既定値 `11` が使用されます。
 
 **戻り値**
 
@@ -37,16 +37,16 @@ S2 セルの詳細については、[ここ](http://s2geometry.io/devguide/s2cel
 
 > [!NOTE]
 >
-> * S2Cell は、便利な地理空間クラスタリングツールにすることができます。
-> * S2Cell は、85011、012.19 km ²の最上位レベル0から 00.44 cm ²までの範囲において、最下位レベルが30の範囲内の領域を持つ31レベルの階層を持っています。
-> * S2Cell では、0から30までのレベルでセルの中心が広く保たれます。
-> * S2Cell は球サーフェイス上のセルで、エッジは geodesics です。
-> * 経度 x と緯度 y で計算された s2cell token 文字列に対して[geo_s2cell_to_central_point ()](geo-s2cell-to-central-point-function.md)関数を呼び出すと、必ずしも x と y が返されるとは限りません。
+> * S2 セルは、便利な地理空間クラスタリングツールにすることができます。
+> * S2 セルには、範囲が31レベルの階層があります。これは、最上位レベルの0から 00.44 cm ²の最下位レベル30で、85011、012.19 km ²から cm ²までの範囲にわたります。
+> * S2 セルは、レベルを0から30に増やしたときにセルの中心を維持します。
+> * S2 セルは球表面のセルで、エッジは geodesics です。
+> * 経度 x と緯度 y で計算された S2 セルトークン文字列に対して[geo_s2cell_to_central_point ()](geo-s2cell-to-central-point-function.md)関数を呼び出すと、必ずしも x と y が返されるとは限りません。
 > * 2つの地理的位置が互いに近接していても、S2 セルトークンが異なる可能性があります。
 
 **S2 セルのおおよその領域カバレッジのレベル値**
 
-各レベルでは、s2cell のサイズは似ていますが、正確には同じではありません。 隣接するセルのサイズが等しい傾向があります。
+各レベルでは、S2 セルのサイズは似ていますが、まったく同じではありません。 隣接するセルのサイズが等しい傾向があります。
 
 |Level|最小ランダムセルのエッジ長 (UK)|最大ランダムセル長の長さ (US)|
 |--|--|--|
@@ -82,7 +82,7 @@ S2 セルの詳細については、[ここ](http://s2geometry.io/devguide/s2cel
 |29|12 mm|18 mm|
 |30|6 mm|9 mm|
 
-テーブルソースは[こちらで](http://s2geometry.io/resources/s2cell_statistics)参照できます。
+[この S2 セル統計リソースに](https://s2geometry.io/resources/s2cell_statistics)は、テーブルソースがあります。
 
 「 [Geo_point_to_geohash ()](geo-point-to-geohash-function.md)」も参照してください。
 
@@ -92,6 +92,7 @@ S2cell によって集計された米国の嵐イベント。
 
 :::image type="content" source="images/geo-point-to-s2cell-function/s2cell.png" alt-text="米国 s2cell":::
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | project BeginLon, BeginLat
@@ -100,6 +101,7 @@ StormEvents
 | render scatterchart with (kind=map) // map rendering available in Kusto Explorer desktop
 ```
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print s2cell = geo_point_to_s2cell(-80.195829, 25.802215, 8)
 ```
@@ -108,7 +110,9 @@ print s2cell = geo_point_to_s2cell(-80.195829, 25.802215, 8)
 |--------|
 | 88d9b  |
 
-次の例では、座標のグループを検索します。 グループ内の座標のすべてのペアは、最大領域が 1632.45 km²の s2cell に存在します。
+次の例では、座標のグループを検索します。 グループ内の座標の各ペアは、最大領域が 1632.45 km²の S2 セルに存在します。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(location_id:string, longitude:real, latitude:real)
 [
@@ -127,6 +131,8 @@ datatable(location_id:string, longitude:real, latitude:real)
 | 47ae3  | 1     | ["C"]     |
 
 次の例では、座標入力が無効なため、空の結果が生成されます。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print s2cell = geo_point_to_s2cell(300,1,8)
 ```
@@ -136,6 +142,8 @@ print s2cell = geo_point_to_s2cell(300,1,8)
 |        |
 
 次の例では、無効なレベルの入力のため、空の結果が生成されます。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print s2cell = geo_point_to_s2cell(1,1,35)
 ```
@@ -145,6 +153,8 @@ print s2cell = geo_point_to_s2cell(1,1,35)
 |        |
 
 次の例では、無効なレベルの入力のため、空の結果が生成されます。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print s2cell = geo_point_to_s2cell(1,1,int(null))
 ```

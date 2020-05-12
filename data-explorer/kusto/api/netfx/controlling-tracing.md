@@ -1,6 +1,6 @@
 ---
-title: Kusto SDK クライアント側のトレースの制御または抑制-Azure データエクスプローラー |Microsoft Docs
-description: この記事では、Azure データエクスプローラーで Kusto SDK クライアント側のトレースを制御または抑制する方法について説明します。
+title: Kusto SDK のクライアント側トレースの制御と抑制-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの Kusto SDK クライアント側トレースの制御と抑制について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -9,24 +9,24 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 10/23/2018
-ms.openlocfilehash: cbda69063e3b1a20549dbadb4641fc9fd3f51f57
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 159036bbbe6e0415f56b36827b1913cba90fb705
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862056"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226178"
 ---
-# <a name="controlling-or-suppressing-kusto-sdk-client-side-tracing"></a>Kusto SDK クライアント側のトレースの制御または抑制
+# <a name="controlling-and-suppressing-kusto-sdk-client-side-tracing"></a>Kusto SDK のクライアント側トレースの制御と抑制
 
-Kusto クライアントライブラリは、トレースに共通のプラットフォームを使用します。 このプラットフォームでは、多数のトレースソース (`System.Diagnostics.TraceSource`) が使用されており、それぞれが構築時`System.Diagnostics.Trace.Listeners`に既定のトレースリスナー () に接続されています。
+Kusto クライアントライブラリは、トレースに共通のプラットフォームを使用します。 このプラットフォームでは、多数のトレースソース () が使用され、 `System.Diagnostics.TraceSource` その構築時にそれぞれがトレースリスナー () の既定のセットに接続され `System.Diagnostics.Trace.Listeners` ます。
 
-この1つの意味は、アプリケーションに既定`System.Diagnostics.Trace`のインスタンスに関連付けられたトレースリスナーがある場合`app.config` (たとえば、ファイルを介して)、Kusto クライアントライブラリによってそれらのリスナーにトレースが出力されることです。
+アプリケーションに既定のインスタンスに関連付けられているトレースリスナー (ファイルなど) がある場合 `System.Diagnostics.Trace` `app.config` 、Kusto クライアントライブラリはこれらのリスナーにトレースを出力します。
 
-この動作は、プログラムまたは構成ファイルを使用して、抑制または制御することができます。
+トレースは、プログラムで、または構成ファイルを使用して、抑制または制御することができます。
 
 ## <a name="suppress-tracing-programmatically"></a>プログラムによるトレースの抑制
 
-プログラムによって Kusto クライアントライブラリからのトレースを抑制するには、関連するライブラリを読み込むときに、次のコードを事前に呼び出します。
+プログラムによって Kusto クライアントライブラリからのトレースを抑制するには、関連するライブラリを読み込むときに、次のコードを呼び出します。
 
 ```csharp
 Kusto.Cloud.Platform.Utils.TraceSourceManager.SetTraceVerbosityForAll(
@@ -34,18 +34,19 @@ Kusto.Cloud.Platform.Utils.TraceSourceManager.SetTraceVerbosityForAll(
     );
 ```
 
-## <a name="suppressing-tracing-by-using-a-config-file"></a>構成ファイルを使用したトレースの抑制
+## <a name="use-a-config-file-to-suppress-tracing"></a>構成ファイルを使用したトレースの抑制 
 
-構成ファイルを使用して Kusto クライアントライブラリからのトレースを抑制するに`Kusto.Cloud.Platform.dll.tweaks`は、適切な "微`Kusto.Data`調整" が読み込まれるようにファイル (ライブラリに含まれています) を変更します。
+構成ファイルを使用して Kusto クライアントライブラリからのトレースを抑制するには、ファイル `Kusto.Cloud.Platform.dll.tweaks` (ライブラリに含まれています) を変更し `Kusto.Data` ます。
 
 ```xml
     <!-- Overrides the default trace verbosity level -->
     <add key="Kusto.Cloud.Platform.Utils.Tracing.OverrideTraceVerbosityLevel" value="0" />
 ```
 
-(微調整を有効にするには、の`key`値にマイナス記号を付ける必要があります)。
+> [!NOTE]
+> 調整を有効にするには、の値にマイナス記号を付けることはできません。`key`
 
-別の方法として、次の操作を行うこともできます。
+代替手段は次のとおりです。
 
 ```csharp
 Kusto.Cloud.Platform.Utils.Anchor.Tweaks.SetProgrammaticAppSwitch(
@@ -54,9 +55,9 @@ Kusto.Cloud.Platform.Utils.Anchor.Tweaks.SetProgrammaticAppSwitch(
     );
 ```
 
-## <a name="how-to-enable-the-kusto-client-libraries-tracing"></a>Kusto クライアントライブラリのトレースを有効にする方法
+## <a name="enable-the-kusto-client-libraries-tracing"></a>Kusto クライアントライブラリのトレースを有効にする
 
-Kusto クライアントライブラリからのトレースを有効にするには、アプリケーションの app.config ファイルで .NET トレースを有効にします。 たとえば、アプリケーション`MyApp.exe`が Kusto. Data クライアントライブラリを使用していると仮定します。 次に、ファイル`MyApp.exe.config`を次のように変更すると、アプリケーションの次回起動時に Kusto. Data tracing が有効になります。
+Kusto クライアントライブラリからのトレースを有効にするには、アプリケーションの app.config*ファイル*で .net トレースを有効にします。 たとえば、アプリケーションが `MyApp.exe` Kusto. Data クライアントライブラリを使用しているとします。 次のようにファイルの*MyApp. .exe. .config*を変更すると、 `Kusto.Data` アプリケーションの次回起動時にトレースが有効になります。
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -72,8 +73,11 @@ Kusto クライアントライブラリからのトレースを有効にする�
 </configuration>
 ```
 
-これにより、プロセスのディレクトリにあるという名前`RollingLogs`のサブディレクトリ内の CSV ファイルに書き込むトレースリスナーが構成されます。 (もちろん、NET 互換のトレースリスナークラスも使用できます)。
+このコードでは、 *Rollogs*という名前のサブディレクトリにある CSV ファイルに書き込むトレースリスナーを構成します。 サブディレクトリは、プロセスのディレクトリにあります。
 
-## <a name="how-to-enable-the-aad-client-libraries-adal-tracing"></a>AAD クライアントライブラリ (ADAL) のトレースを有効にする方法
+> [!NOTE]
+> いつ.NET 互換のトレースリスナークラスも使用できます
 
-Kusto クライアントライブラリのトレースを有効にすると、AAD クライアントライブラリによって生成されるトレース (Kusto クライアントライブラリは ADAL トレースを自動的に構成します)
+## <a name="enable-the-azure-ad-client-libraries-adal-tracing"></a>Azure AD クライアントライブラリ (ADAL) のトレースを有効にする
+
+Kusto クライアントライブラリのトレースが有効になると、は Azure AD クライアントライブラリによってトレースされます。 Kusto クライアントライブラリは、ADAL トレースを自動的に構成します。

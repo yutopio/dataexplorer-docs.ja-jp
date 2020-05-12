@@ -1,50 +1,50 @@
 ---
-title: geo_distance_2points() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの geo_distance_2points() について説明します。
+title: geo_distance_2points ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの geo_distance_2points () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: 30a26bbcc57ecde2ac3beeeb1483b953a0cc5820
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 64c61bcde7bfe02d55bb0f4a6719e9d7b1c1a681
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030160"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227419"
 ---
 # <a name="geo_distance_2points"></a>geo_distance_2points()
 
-地球上の 2 つの地理空間座標間の最短距離を計算します。
+地球上の2つの地理空間座標間の最短距離を計算します。
 
 **構文**
 
-`geo_distance_2points(`*p1_longitude*`, `*p1_latitude*`, ``, `*p2_latitude* *p1_longitudep1_latitudep2_longitudep2_latitude*`)`
+`geo_distance_2points(`*p1_longitude* `, `*p1_latitude* `, `*p2_longitude* `, `*p2_latitude*`)`
 
 **引数**
 
-* *p1_longitude*: 最初の地理空間座標、経度の値 (度)。 有効な値は実数で、範囲 [-180, +180] です。
-* *p1_latitude*: 最初の地理空間座標、緯度値(度) 有効な値は実数で、範囲 [-90, +90] です。
-* *p2_longitude*: 2 番目の地理空間座標、経度の値 (度) 有効な値は実数で、範囲 [-180, +180] です。
-* *p2_latitude*: 2 番目の地理空間座標、緯度値 (度)。 有効な値は実数で、範囲 [-90, +90] です。
+* *p1_longitude*: 最初の地理空間座標、経度の値 (度単位)。 有効な値は、実数と範囲 [-180, + 180] です。
+* *p1_latitude*: 最初の地理空間座標、緯度の値 (度単位)。 有効な値は、実数と範囲 [-90, + 90] です。
+* *p2_longitude*: 2 番目の地理空間座標、経度の値 (度単位)。 有効な値は、実数と範囲 [-180, + 180] です。
+* *p2_latitude*: 2 番目の地理空間座標、緯度の値 (度)。 有効な値は、実数と範囲 [-90, + 90] です。
 
 **戻り値**
 
-地球上の 2 つの地理的位置の間の最短距離 (メートル単位)。 座標が無効な場合、クエリは null の結果を生成します。
+地球の2つの地理的位置間の最短距離 (メートル単位)。 座標が無効な場合は、クエリによって null の結果が生成されます。
 
 > [!NOTE]
-> * 地理空間座標は[WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home)座標参照系によって表される座標として解釈されます。
-> * 地球上の距離を測定するために使用される[測地データム](https://en.wikipedia.org/wiki/Geodetic_datum)は球体です。
+> * 地理空間座標は、 [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home)座標参照システムによって表されるものとして解釈されます。
+> * 地球上の距離を測定するために使用される[測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum)は球です。
 
 **使用例**
 
-次の例では、シアトルとロサンゼルス間の最短距離を検索します。
+次の例では、シアトルとロサンゼルスの間の最短距離を検索します。
 
+:::image type="content" source="images/geo-distance-2points-function/distance_2points_seattle_los_angeles.png" alt-text="シアトルとロサンゼルスの間の距離":::
 
-:::image type="content" source="images/geo-distance-2points-function/distance_2points_seattle_los_angeles.png" alt-text="シアトルとロサンゼルス間の距離":::
-
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print distance_in_meters = geo_distance_2points(-122.407628, 47.578557, -118.275287, 34.019056)
 ```
@@ -53,10 +53,11 @@ print distance_in_meters = geo_distance_2points(-122.407628, 47.578557, -118.275
 |--------------------|
 | 1546754.35197381   |
 
-ここでは、シアトルからロンドンまでの最短パスの概算です。 線はラインストリングに沿って、そしてそれから500メートル以内の座標から成ります。
+ここでは、シアトルからロンドンへの最短のパスを示します。 この線は、LineString に沿った座標と、それから500メートル以内の範囲で構成されます。
 
-:::image type="content" source="images/geo-distance-2points-function/line_seattle_london.png" alt-text="シアトルからロンドンへのラインストリング":::
+:::image type="content" source="images/geo-distance-2points-function/line_seattle_london.png" alt-text="シアトルからロンドンへの LineString":::
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 range i from 1 to 1000000 step 1
 | project lng = rand() * real(-122), lat = rand() * 90
@@ -65,7 +66,9 @@ range i from 1 to 1000000 step 1
 | render scatterchart with (kind=map) // map rendering available in Kusto Explorer desktop
 ```
 
-次の例では、2 つの座標間の最短距離が 1 ~ 11 メートルの間にあるすべての行を検索します。
+次の例では、2つの座標間の最短距離が 1 ~ 11 メートルの範囲内にあるすべての行を検索します。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend distance_1_to_11m = geo_distance_2points(BeginLon, BeginLat, EndLon, EndLat)
@@ -78,7 +81,9 @@ StormEvents
 | 10.5723100154958  |
 | 7.92153588248414  |
 
-次の例では、無効な座標入力のため、null の結果を返します。
+次の例では、座標入力が無効であるため、null 結果が返されます。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print distance = geo_distance_2points(300,1,1,1)
 ```

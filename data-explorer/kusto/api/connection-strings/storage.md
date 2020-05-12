@@ -1,6 +1,6 @@
 ---
-title: ストレージ接続文字列 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのストレージ接続文字列について説明します。
+title: ストレージ接続文字列-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのストレージ接続文字列について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/23/2020
-ms.openlocfilehash: 909198e42786666d3a26874e18b5cfd57b27ab1f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0456ad7115c51bcdc51b0db82bc9f9b88953be32
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81502960"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226212"
 ---
 # <a name="storage-connection-strings"></a>ストレージの接続文字列
 
-いくつかの Kusto コマンドは、外部ストレージ サービスと対話するように Kusto に指示します。 たとえば、Kusto は Azure Storage BLOB にデータをエクスポートするように指定できます。
+いくつかの Kusto コマンドにより、Kusto が外部ストレージサービスと対話するように指示します。 たとえば、Kusto は Azure Storage Blob にデータをエクスポートするように指示できます。この場合、特定のパラメーター (ストレージアカウント名や Blob コンテナーなど) を指定する必要があります。
 
-Kusto は、次のストレージ プロバイダーをサポートします。
+Kusto は、次の記憶域プロバイダーをサポートしています。
 
 
-* Azure ストレージ BLOB ストレージ プロバイダー
-* Azure データ レイク ストレージ プロバイダー
+* 記憶域プロバイダーの Azure Storage Blob
+* 記憶域プロバイダーの Azure Data Lake Storage
 
-ストレージ プロバイダーの種類ごとに、ストレージ リソースとそのアクセス方法を記述するために使用される接続文字列の形式が定義されます。
-Kusto は URI 形式を使用して、これらのストレージ リソースと、アクセスに必要なプロパティ (セキュリティ資格情報など) を記述します。
+記憶域プロバイダーの種類ごとに、ストレージリソースとそのアクセス方法を説明するために使用される接続文字列形式を定義します。
+Kusto は、これらのストレージリソースと、それらにアクセスするために必要なプロパティ (セキュリティ資格情報など) を記述するために URI 形式を使用します。
 
 
 |プロバイダー                   |Scheme    |URI テンプレート                          |
 |---------------------------|----------|--------------------------------------|
-|Azure Storage BLOB         |`https://`|`https://`*アカウント*`.blob.core.windows.net/`*Container*コンテナー`/`[ BLOB`?`*名*] [*SasKey* \| `;`*アカウントキー*]|
-|Azure Data Lake Store Gen 2|`abfss://`|`abfss://`*ファイル システム*`@`*アカウント*`.dfs.core.windows.net/`*パスディレクトリまたはファイル*[`;`*呼び出し元の資格情報*]|
-|Azure Data Lake Store Gen 1|`adl://`  |`adl://`*アカウント*.azuredatalakestore.net/*パスディレクトリまたはファイル*[`;`*呼び出し元の資格情報*]|
+|Azure Storage BLOB         |`https://`|`https://`*アカウント* `.blob.core.windows.net/`*コンテナー*[ `/` *blobname*] [ `?` *SasKey* \| `;` *AccountKey*]|
+|Azure Data Lake Store Gen 2|`abfss://`|`abfss://`*ファイルシステム* `@`*アカウント* `.dfs.core.windows.net/`*PathToDirectoryOrFile*[ `;` *callercredentials*]|
+|Azure Data Lake Store Gen 1|`adl://`  |`adl://`*Account*Azuredatalakestore.net/*PathToDirectoryOrFile*[ `;` *callercredentials*]|
 
 ## <a name="azure-storage-blob"></a>Azure Storage BLOB
 
 このプロバイダーは最も一般的に使用され、すべてのシナリオでサポートされています。
-リソースにアクセスする際には、プロバイダーに資格情報を指定する必要があります。 資格情報を提供するために、2 つのサポートされているメカニズムがあります。
+リソースにアクセスするときは、プロバイダーに資格情報を指定する必要があります。 資格情報を提供するには、次の2つのメカニズムがサポートされています。
 
-* Azure ストレージ BLOB の標準クエリ ( )`?sig=...`を使用して、共有アクセス (SAS) キーを指定します。 Kusto がリソースに制限された時間だけアクセスする必要がある場合は、このメソッドを使用します。
-* ストレージ アカウント キー`;ljkAkl...==`( ) を指定します。 Kusto が継続的にリソースにアクセスする必要がある場合は、このメソッドを使用します。
+* Azure Storage Blob の標準クエリ () を使用して、共有アクセス (SAS) キーを指定し `?sig=...` ます。 このメソッドは、Kusto がリソースにアクセスする必要がある時間に制限されている場合に使用します。
+* ストレージアカウントキー () を指定 `;ljkAkl...==` します。 このメソッドは、Kusto が継続的にリソースにアクセスする必要がある場合に使用します。
 
-例 (これは、アカウント キーまたは SAS を公開しないように、難読化された文字列リテラルを示しています)。
+例 (これは難読化された文字列リテラルを示しているため、アカウントキーまたは SAS を公開しないことに注意してください)。
 
 `h"https://fabrikam.blob.core.windows.net/container/path/to/file.csv;<storage_account_key_text, ends with '=='>"`
 `h"https://fabrikam.blob.core.windows.net/container/path/to/file.csv?sv=...&sp=rwd"` 
@@ -52,37 +52,37 @@ Kusto は URI 形式を使用して、これらのストレージ リソース�
 
 ### <a name="azure-data-lake-store-gen-2"></a>Azure Data Lake Store Gen 2
 
-このプロバイダーは、Azure データ 湖ストア Gen 2 のデータへのアクセスをサポートします。
+このプロバイダーは Azure Data Lake Store Gen 2 のデータへのアクセスをサポートしています。
 
 URI の形式は次のとおりです。
 
-`abfss://`*ファイル システム*`@`*ストレージ アカウント名*`.dfs.core.windows.net/`*パス*`;`*呼び出し元資格情報*
+`abfss://`*ファイルシステム* `@`*Storageaccountname* `.dfs.core.windows.net/`*パス* `;`*Callercredentials*
 
 各値の説明:
 
-* _ファイルシステム_は ADLS ファイルシステムオブジェクトの名前です (BLOB コンテナーとほぼ同じです)
-* _ストレージ アカウント名_はストレージ アカウントの名前です。
-* _パス_は、アクセスされるディレクトリーまたはファイルへのパススラッシュ ()`/`文字が区切り文字として使用されます。
-* _呼び出し元の資格情報は_、次に説明するように、サービスにアクセスするために使用される資格情報を示します。
+* _Filesystem_は、adls ファイルシステムオブジェクトの名前です (Blob コンテナーとほぼ同等)。
+* _Storageaccountname_はストレージアカウントの名前です
+* _パス_は、スラッシュ ( `/` ) 文字を区切り記号として使用されるディレクトリまたはファイルへのパスです。
+* _Callercredentials_は、次に示すように、サービスへのアクセスに使用される資格情報を示します。
 
 Azure Data Lake Store Gen 2 にアクセスする場合、呼び出し元はサービスにアクセスするための有効な資格情報を提供する必要があります。 資格情報を提供する次の方法がサポートされています。
 
-* `;sharedkey=`*アカウントキー*をストレージ アカウント キー_として_URI に追加する
-* URI`;impersonate`に追加します。 Kusto は、要求元のプリンシパル ID を使用し、リソースにアクセスするためにそれを偽装します。 読み取り/書き込み操作を実行するには、プリンシパルに適切な RBAC ロールの割り当てが必要[です](https://docs.microsoft.com/azure/storage/blobs/data-lake-storage-access-control)。 (たとえば、読み取り操作の最小ロールは`Storage Blob Data Reader`ロールです)。
-* AadToken が Base 64 でエンコードされた AAD アクセス トークンである URI に`;token=`*AadToken*を追加`https://storage.azure.com/`します (トークンがリソース用であることを確認してください)。 _AadToken_
-* URI`;prompt`に追加します。 Kusto は、リソースにアクセスする必要がある場合に、ユーザーの資格情報を要求します。 (ユーザーへの確認はクラウド展開では無効にされ、テスト環境でのみ有効になります)。
-* Azure データ レイク ストレージ Gen 2 の標準クエリ ( ) を使用して`?sig=...`、共有アクセス (SAS) キーを提供します。 Kusto がリソースに制限された時間だけアクセスする必要がある場合は、このメソッドを使用します。
+* `;sharedkey=` *ACCOUNTKEY*を URI に追加し、 _AccountKey_をストレージアカウントキーにします。
+* `;impersonate`を URI に追加します。 Kusto は、要求元のプリンシパル id を使用して、リソースにアクセスするために偽装します。 プリンシパルは、[ここ](https://docs.microsoft.com/azure/storage/blobs/data-lake-storage-access-control)に記載されているように、読み取り/書き込み操作を実行できるように、適切な RBAC ロールの割り当てを持っている必要があります。 (たとえば、読み取り操作の最小ロールは `Storage Blob Data Reader` ロールです)。
+* `;token=` *AADTOKEN*を URI に追加します。 _AadToken_は base 64 でエンコードされた AAD アクセストークンです (リソースのトークンであることを確認してください `https://storage.azure.com/` )。
+* `;prompt`を URI に追加します。 Kusto は、リソースにアクセスする必要があるときにユーザー資格情報を要求します。 (ユーザーへのクラウド展開は無効になっており、テスト環境でのみ有効になっています)。
+* Azure Data Lake Storage Gen 2 の標準クエリ () を使用して、共有アクセス (SAS) キーを指定し `?sig=...` ます。 このメソッドは、Kusto がリソースにアクセスする必要がある時間に制限されている場合に使用します。
 
 
 
 ### <a name="azure-data-lake-store-gen-1"></a>Azure Data Lake Store Gen 1
 
-このプロバイダーは、Azure Data Lake Store のファイルとディレクトリへのアクセスをサポートしています。
-資格情報を指定する必要があります (Kusto は Azure データ レイクにアクセスするために独自の AAD プリンシパルを使用しません)。資格情報を提供する次の方法がサポートされています。
+このプロバイダーは、Azure Data Lake Store 内のファイルとディレクトリへのアクセスをサポートしています。
+資格情報を使用して指定する必要があります (Kusto は、Azure Data Lake にアクセスするために独自の AAD プリンシパルを使用しません)。資格情報を提供する次の方法がサポートされています。
 
-* URI`;impersonate`に追加します。 Kusto は、要求元のプリンシパル ID を使用し、リソースにアクセスするためにそれを偽装します。
-* _AadToken `;token=`URI _to追加し _、AadToken_が Base 64 でエンコードされた AAD アクセス トークン (`https://management.azure.com/`トークンがリソース用であることを確認します) にします。
-* URI`;prompt`に追加します。 Kusto は、リソースにアクセスする必要がある場合に、ユーザーの資格情報を要求します。 (ユーザーへの確認はクラウド展開では無効にされ、テスト環境でのみ有効になります)。
+* `;impersonate`を URI に追加します。 Kusto は、要求元のプリンシパル id を使用し、それを偽装してリソースにアクセスします。
+* `;token=` *AADTOKEN*を URI に追加します。 *AadToken*は base 64 でエンコードされた AAD アクセストークンです (リソースのトークンであることを確認してください `https://management.azure.com/` )。
+* `;prompt`を URI に追加します。 Kusto は、リソースにアクセスする必要があるときにユーザー資格情報を要求します。 (ユーザーへのクラウド展開は無効になっており、テスト環境でのみ有効になっています)。
 
 
 

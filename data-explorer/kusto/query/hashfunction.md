@@ -1,6 +1,6 @@
 ---
-title: hash() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで hash() について説明します。
+title: hash ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの hash () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f8142c42dcb0874dfbd84515e56dc8765bcba3d7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a44f817ea57a114400f45e9ca2a841150b4590a6
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514146"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226807"
 ---
 # <a name="hash"></a>hash()
 
@@ -21,21 +21,21 @@ ms.locfileid: "81514146"
 
 **構文**
 
-`hash(`*ソース*`,` [*モッズ*]`)`
+`hash(`*ソース*[ `,` *mod*]`)`
 
 **引数**
 
 * *source*: ハッシュされる値。
-* *mod*: ハッシュ結果に適用されるオプションのモジュール値で、出力値が mod`0`と*mod*の間にあるように - 1
+* *mod*: ハッシュの結果に適用されるオプションのモジュール値。出力値が `0` と*mod* -1 の間になります。
 
 **戻り値**
 
-指定されたスカラーのハッシュ値(指定されている場合)は、指定されたmod値をモジュロします。
+指定した mod 値をモジュロした、指定したスカラーのハッシュ値 (指定されている場合)。
 
 > [!WARNING]
-> ハッシュの計算に使用されるアルゴリズムは xxhash です。
-> このアルゴリズムは将来変更される可能性があり、単一のクエリ内でこのメソッドのすべての呼び出しで同じアルゴリズムが使用されるという保証があります。
-> したがって、ユーザーは、テーブルに結果`hash()`を格納しないことをお勧めします。 ハッシュ値を永続化する必要がある場合は、[代わりに hash_sha256()](./sha256hashfunction.md)を使用することを検討`hash()`してください (ただし、計算する方がはるかに複雑であることに注意してください)。
+> ハッシュの計算に使用されるアルゴリズムは、「」です。
+> このアルゴリズムは将来変更される可能性があります。唯一の保証は、1つのクエリ内で、このメソッドのすべての呼び出しで同じアルゴリズムを使用することです。
+> その結果、の結果をテーブルに格納しないようにすることをお勧めし `hash()` ます。 ハッシュ値を保持する必要がある場合は、代わりに[hash_sha256 ()](./sha256hashfunction.md)を使用することを検討してください (ただし、よりも計算がはるかに複雑になることに注意してください `hash()` )。
 
 **使用例**
 
@@ -45,8 +45,9 @@ hash("World", 100)              // 51 (1846988464401551951 % 100)
 hash(datetime("2015-01-01"))    // 1380966698541616202
 ```
 
-次の例では、ハッシュ関数を使用してデータの 10% に対してクエリを実行しますが、値が均一に分散されていると仮定した場合に、データをサンプリングするためにハッシュ関数を使用すると便利です (この例では StartTime 値)。
+次の例では、ハッシュ関数を使用して、10% のデータに対してクエリを実行します。値が一様に分布していると仮定してデータをサンプリングするには、ハッシュ関数を使用すると便利です (この例では StartTime 値)。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents 
 | where hash(StartTime, 10) == 0

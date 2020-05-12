@@ -1,6 +1,6 @@
 ---
-title: Kusto. インジェスト参照-インジェストアクセス許可-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーの Kusto. インジェストの参照-インジェストアクセス許可について説明します。
+title: Kusto. インジェストアクセス許可の取り込み-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの Kusto インジェストのアクセス許可について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e60eb6642a66fac81ce373f8f4d62de4f7217a91
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: 3fd516b7201c5e857417ca13bade668f32f25161
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799698"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226161"
 ---
-# <a name="kustoingest-reference---ingestion-permissions"></a>Kusto. インジェスト参照-インジェストアクセス許可
+# <a name="kustoingest---ingestion-permissions"></a>Kusto. インジェスト-インジェストのアクセス許可
 
-この記事では、インジェストを機能させるため`Native`にサービスに設定するアクセス許可について説明します。
+この記事では、インジェストを機能させるためにサービスに設定するアクセス許可について説明し `Native` ます。
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
 * Kusto サービスとデータベースの承認設定を表示および変更するには、「 [kusto control コマンド](../../management/security-roles.md)」を参照してください。
 
-## <a name="references"></a>References
-
-* 次の例では、サンプルのプリンシパルとして使用されるアプリケーションを Azure AD します。
-    * テスト AAD アプリ (2a904276-1234-5678-9012-66fc53add60b; microsoft.com)
-    * Kusto 内部インジェスト AAD アプリ (76263cdb-1234-5678-9012-545644e9c404; microsoft.com)
+* 次の例では、Azure Active Directory (Azure AD) アプリケーションをサンプルプリンシパルとして使用します。
+    * テスト Azure AD アプリ (2a904276-1234-5678-9012-66fc53add60b; microsoft.com)
+    * Kusto 内部インジェスト Azure AD アプリ (76263cdb-1234-5678-9012-545644e9c404; microsoft.com)
 
 ## <a name="ingestion-permission-mode-for-queued-ingestion"></a>キューに置かれたインジェストのインジェストアクセス許可モード
 
@@ -39,9 +37,9 @@ ms.locfileid: "82799698"
 
 ### <a name="permissions-on-the-engine-service"></a>エンジンサービスに対する権限
 
-データベース`T1` `DB1`のテーブルへのデータの取り込みを修飾するには、取り込み操作を実行するプリンシパルが承認を持っている必要があります。
-最低限必要な権限レベル`Database Ingestor`は`Table Ingestor`で、データベース内の既存のすべてのテーブルまたは特定の既存のテーブルにデータを取り込むことができます。
-テーブルの作成が必要な`Database User`場合、または高いアクセスロールも割り当てる必要があります。
+データベースのテーブルへのデータの取り込みを修飾するには `T1` `DB1` 、取り込み操作を実行するプリンシパルが承認を持っている必要があります。
+最低限必要な権限レベルはで `Database Ingestor` 、 `Table Ingestor` データベース内の既存のすべてのテーブルまたは特定の既存のテーブルにデータを取り込むことができます。
+テーブルの作成が必要な場合、 `Database User` または高いアクセスロールも割り当てる必要があります。
 
 
 |Role                 |PrincipalType        |PrincipalDisplayName
@@ -49,11 +47,11 @@ ms.locfileid: "82799698"
 |`Database Ingestor`  |Azure AD アプリケーション |`Test App (app id: 2a904276-1234-5678-9012-66fc53add60b)`
 |`Table Ingestor`     |Azure AD アプリケーション |`Test App (app id: 2a904276-1234-5678-9012-66fc53add60b)`
 
->`Kusto Internal Ingestion AAD App (76263cdb-1234-5678-9012-545644e9c404)`Kusto 内部インジェストアプリであるプリンシパルは、 `Cluster Admin`ロールに immutably マップされています。 そのため、任意のテーブルにデータを取り込むことが許可されます。 これは、Kusto で管理されるインジェストパイプラインで行われています。
+>`Kusto Internal Ingestion Azure AD App (76263cdb-1234-5678-9012-545644e9c404)`Kusto 内部インジェストアプリであるプリンシパルは、ロールに immutably マップされてい `Cluster Admin` ます。 そのため、任意のテーブルにデータを取り込むことが許可されます。 これは、Kusto で管理されるインジェストパイプラインで行われています。
 
-データベース`DB1`またはテーブル`T1`に対して必要な`Test App (2a904276-1234-5678-9012-66fc53add60b in AAD tenant microsoft.com)`権限を Azure AD アプリに付与することは、次のようになります。
+データベースまたはテーブルに対して必要な権限 `DB1` `T1` を Azure AD アプリに付与することは、次の `Test App (2a904276-1234-5678-9012-66fc53add60b in Azure AD tenant microsoft.com)` ようになります。
 
 ```kusto
-.add database DB1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test AAD App'
-.add table T1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test AAD App'
+.add database DB1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test Azure AD App'
+.add table T1 ingestors ('aadapp=2a904276-1234-5678-9012-66fc53add60b;microsoft.com') 'Test Azure AD App'
 ```

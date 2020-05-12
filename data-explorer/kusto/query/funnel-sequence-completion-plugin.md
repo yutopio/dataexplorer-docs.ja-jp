@@ -1,6 +1,6 @@
 ---
-title: funnel_sequence_completionプラグイン - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーfunnel_sequence_completionプラグインについて説明します。
+title: funnel_sequence_completion プラグイン-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの funnel_sequence_completion プラグインについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/16/2020
-ms.openlocfilehash: 7f168841db2df47e4e3a192b75585a1fe4d83718
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 57cceb2fabb16956090430161b98c1287efdef97
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514775"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227325"
 ---
 # <a name="funnel_sequence_completion-plugin"></a>funnel_sequence_completion プラグイン
 
-異なる期間を比較する中で、完了したシーケンスステップの漏斗を計算します。
+さまざまな期間を比較して、完了したシーケンスステップのじょうごを計算します。
 
 ```kusto
 T | evaluate funnel_sequence_completion(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, state_column, dynamic(['S1', 'S2', 'S3']), dynamic([10m, 30min, 1h]))
@@ -25,35 +25,36 @@ T | evaluate funnel_sequence_completion(id, datetime_column, startofday(ago(30d)
 
 **構文**
 
-*T* `| evaluate` `,` *Step* *IdColumn* `,` `,` *Start* `,` `,` `,` *Sequence* *End* *TimelineColumn* `,` *StateColumn* IdColumn タイムライン列開始ステップ状態列シーケンス*MaxSequenceStepWindows* `funnel_sequence_completion(``)`
+*T* `| evaluate` `funnel_sequence_completion(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *End* `,` *Step* `,` *statecolumn* `,` *シーケンス* `,` *maxsequencestepwindows*`)`
 
 **引数**
 
-* *T*: 入力表形式の式。
-* *IdColum*: 列参照は、ソース式に存在する必要があります。
-* *タイムライン列*: タイムラインを表す列参照は、ソース式に存在する必要があります。
-* *開始*: 分析開始期間のスカラー定数値
-* *終了*: 分析終了期間のスカラー定数値
-* *ステップ*: 分析ステップ周期のスカラー定数値 (bin) 
-* *状態列*: 状態を表す列参照は、ソース式に存在する必要があります。
-* *シーケンス*: シーケンス値を持つ定数動的配列 (値は`StateColumn`で検索されます)
-* *MaxSequenceStepWindows*: シーケンスの最初と最後の連続したステップの間の最大許容タイムスパンの値を持つスカラー定数動的配列は、配列内の各ウィンドウ (期間) がファネル分析結果を生成します。
+* *T*: 入力テーブル式。
+* *Idcolum*: 列参照。ソース式に存在する必要があります。
+* *TimelineColumn*: タイムラインを表す列参照は、ソース式に存在する必要があります。
+* *Start*: 分析の開始期間のスカラー定数値。
+* *End*: 分析終了期間のスカラー定数値。
+* *ステップ*: 分析ステップ期間 (bin) のスカラー定数値。
+* *Statecolumn*: 状態を表す列参照は、ソース式に存在する必要があります。
+* *Sequence*: シーケンス値を持つ定数動的配列 (値はで検索され `StateColumn` ます)。
+* *Maxsequencestepwindows*: シーケンス内の最初と最後の連続するステップ間の最大許容期間の値を持つスカラー定数動的配列。 配列の各ウィンドウ (ピリオド) では、じょうご分析の結果が生成されます。
 
 **戻り値**
 
-分析されたシーケンスのじょうご図を作成するのに役立つ単一のテーブルを返します。
+分析されたシーケンスのじょうごグラフを作成するのに役立つ単一のテーブルを返します。
 
-* タイムライン列: 分析された時間枠
+* `TimelineColumn`: 分析された時間枠
 * `StateColumn`: シーケンスの状態。
-* 期間: シーケンスの最初のステップから測定されたじょうごシーケンスのステップを完了するために許容される最大期間(ウィンドウ)。 *MaxSequenceStepWindows*の各値は、個別の期間を持つファネル分析を生成します。 
-* dcount: 最初の`IdColumn`シーケンス状態から の値に遷移したタイム ウィンドウ内`StateColumn`の個別のカウント。
+* `Period`: シーケンスの最初のステップから測定されたじょうごシーケンスのステップを完了するために使用できる最大期間 (ウィンドウ)。 *Maxsequencestepwindows*の各値によって、個別のピリオドでじょうご分析が生成されます。 
+* `dcount`: `IdColumn` 最初のシーケンス状態からの値に遷移した時間枠の個別のカウント `StateColumn` 。
 
 **使用例**
 
-### <a name="exploring-storm-events"></a>嵐のイベントを探る 
+### <a name="exploring-storm-events"></a>ストームイベントの調査 
 
-次のクエリは、シーケンスの完了漏斗を`Hail` -> `Tornado` -> `Thunderstorm Wind`チェックします: "全体" 時間 1 時間、4 時間、1 日。 
+次のクエリでは、シーケンスの完了じょうごをチェックします。 `Hail`  ->  `Tornado`  ->  `Thunderstorm Wind` "全体" の時間は1時間、timegenerated>now-4hours、1日です。 
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let _start = datetime(2007-01-01);
 let _end =  datetime(2008-01-01);
@@ -64,17 +65,17 @@ StormEvents
 | evaluate funnel_sequence_completion(EpisodeId, StartTime, _start, _end, _windowSize, EventType, _sequence, _periods) 
 ```
 
-|StartTime|EventType|期間|dcount|
+|`StartTime`|`EventType`|`Period`|`dcount`|
 |---|---|---|---|
-|2007-01-01 00:00:00.0000000|ひょう|01:00:00|2877|
-|2007-01-01 00:00:00.0000000|竜巻|01:00:00|208|
-|2007-01-01 00:00:00.0000000|雷雨風|01:00:00|87|
-|2007-01-01 00:00:00.0000000|ひょう|04:00:00|2877|
-|2007-01-01 00:00:00.0000000|竜巻|04:00:00|231|
-|2007-01-01 00:00:00.0000000|雷雨風|04:00:00|141|
-|2007-01-01 00:00:00.0000000|ひょう|1.00:00:00|2877|
-|2007-01-01 00:00:00.0000000|竜巻|1.00:00:00|244|
-|2007-01-01 00:00:00.0000000|雷雨風|1.00:00:00|155|
+|2007-01-01 00:00: 00.0000000|ひょう|01:00:00|2877|
+|2007-01-01 00:00: 00.0000000|Tornado|01:00:00|208|
+|2007-01-01 00:00: 00.0000000|雷雨風|01:00:00|87|
+|2007-01-01 00:00: 00.0000000|ひょう|04:00:00|2877|
+|2007-01-01 00:00: 00.0000000|Tornado|04:00:00|231|
+|2007-01-01 00:00: 00.0000000|雷雨風|04:00:00|141|
+|2007-01-01 00:00: 00.0000000|ひょう|1.00:00:00|2877|
+|2007-01-01 00:00: 00.0000000|Tornado|1.00:00:00|244|
+|2007-01-01 00:00: 00.0000000|雷雨風|1.00:00:00|155|
 
-結果を理解する:  
-結果は3つの漏斗(期間:1時間、4時間、1日)、各漏斗ステップごとにエピソードIdの数が示されています。 より大きな値のシーケンス全体を完了する時間が多`Hail` -> `Tornado` -> `Thunderstorm Wind`くなる`dcount`ことがわかります(漏斗のステップに到達するシーケンスの発生が多いことを意味します)。
+結果を理解します。  
+結果は3つのじょうご (期間: 1 時間、4時間、1日) です。 じょうごの各ステップについて、多数の個別のカウントが表示されます。 のシーケンス全体を完了するためにより多くの時間が与えられていることがわかり `Hail`  ->  `Tornado`  ->  `Thunderstorm Wind` `dcount` ます。高い値が取得されます。 つまり、シーケンスがじょうごステップに到達する回数が増えていました。

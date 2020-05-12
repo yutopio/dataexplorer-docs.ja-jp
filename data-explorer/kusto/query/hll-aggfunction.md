@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/15/2020
-ms.openlocfilehash: f5c47e2ebd2acc0b2ec250d183d65b6536aff756
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: cbe1b0639a0379fe84bc9c100a629bbadd9c3a63
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741824"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226569"
 ---
 # <a name="hll-aggregation-function"></a>hll () (集計関数)
 
-グループ全体のの[`dcount`](dcount-aggfunction.md)中間結果を計算します。集計内の集計のコンテキストでのみ実行されます。 [summarize](summarizeoperator.md)
+グループ全体のの中間結果を計算し [`dcount`](dcount-aggfunction.md) ます。集計内の集計のコンテキストでのみ実行[され](summarizeoperator.md)ます。
 
 [基になるアルゴリズム (*H*Yper*l*og*l*og) と推定精度](dcount-aggfunction.md#estimation-accuracy)について確認します。
 
@@ -40,16 +40,17 @@ ms.locfileid: "82741824"
     
 **戻り値**
 
-グループ*`Expr`* 全体の個別のカウントの中間結果。
+グループ全体の個別のカウントの中間結果 *`Expr`* 。
  
 **ヒント**
 
-1. 集計関数[`hll_merge`](hll-merge-aggfunction.md)を使用して、複数の`hll`中間結果をマージすることができ`hll`ます (出力のみで機能します)。
+1. 集計関数を使用して、複数 [`hll_merge`](hll-merge-aggfunction.md) の中間結果をマージすることができ `hll` ます (出力のみで機能し `hll` ます)。
 
-1. [`dcount_hll`](dcount-hllfunction.md)関数を使用すると、集計関数`dcount`から`hll`  /  `hll_merge`を計算することができます。
+1. 関数を使用すると、集計関数からを計算することができ [`dcount_hll`](dcount-hllfunction.md) `dcount` `hll`  /  `hll_merge` ます。
 
 **使用例**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | summarize hll(DamageProperty) by bin(StartTime,10m)

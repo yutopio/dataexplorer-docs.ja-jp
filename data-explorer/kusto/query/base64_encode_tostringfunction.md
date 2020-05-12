@@ -1,6 +1,6 @@
 ---
-title: base64_encode_tostring() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで base64_encode_tostring() について説明します。
+title: base64_encode_tostring ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの base64_encode_tostring () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/22/2019
-ms.openlocfilehash: a80b0aa0e3f7e5f330da87f93bbad44e587bcdaf
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 332ff6bedd268dd79be020ff1dc4d0591ed486f7
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518056"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225311"
 ---
 # <a name="base64_encode_tostring"></a>base64_encode_tostring()
 
@@ -25,22 +25,23 @@ ms.locfileid: "81518056"
 
 **引数**
 
-* *文字列*: base64 文字列としてエンコードされる入力文字列。
+* *String*: base64 文字列としてエンコードされる入力文字列。
 
 **戻り値**
 
-base64 文字列としてエンコードされた文字列を返します。
+Base64 文字列としてエンコードされた文字列を返します。
 
-* base64 文字列を UTF-8 文字列にデコードする場合は[、base64_decode_tostring() を](base64_decode_tostringfunction.md)参照してください。
-* base64 文字列を長い値の配列にデコードする場合は[、base64_decode_toarray() を](base64_decode_toarrayfunction.md)参照してください。
+* Base64 文字列を UTF-8 文字列にデコードする方法については、「 [base64_decode_tostring ()](base64_decode_tostringfunction.md) 」を参照してください。
+* Base64 文字列を long 型の値の配列にデコードする方法については、「 [base64_decode_toarray ()](base64_decode_toarrayfunction.md) 」を参照してください。
 
 
 **例**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print Quine=base64_encode_tostring("Kusto")
 ```
 
-|クワイン   |
+|Quine   |
 |--------|
-|S3VzdG8=|
+|S3VzdG8 =|

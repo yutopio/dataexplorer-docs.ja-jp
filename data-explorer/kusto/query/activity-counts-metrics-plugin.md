@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b06b1c137552ba19f9b1ef5367a25bb72eea5c93
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: 167ba8818709f52ccc344452e275405c42b1796e
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82742039"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227674"
 ---
 # <a name="activity_counts_metrics-plugin"></a>activity_counts_metrics プラグイン
 
@@ -25,7 +25,7 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 
 **構文**
 
-*T* `| evaluate` `,` *TimelineColumn* `,` *dim2* *End* `,` *Window* `,` *dim1* *IdColumn* `,` *Start* `,` *Cohort*idcolumn TimelineColumn Start`,` End`,`ウィンドウ [cohort] [dim1 dim2...] `activity_counts_metrics(`[`,` *元に戻す*]`)`
+*T* `| evaluate` `activity_counts_metrics(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *終了* `,` *ウィンドウ*[ `,` *cohort*] [ `,` *dim1* `,` *dim2* `,` ...] [ `,` *元に戻す*]`)`
 
 **引数**
 
@@ -34,7 +34,7 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 * *TimelineColumn*: タイムラインを表す列の名前。
 * *Start*: 分析の開始期間の値を使用したスカラー。
 * *End*: 分析終了期間の値を使用したスカラー。
-* *ウィンドウ*: 分析ウィンドウ期間の値を持つスカラー。 には、数値/日付/時刻/タイムスタンプ値、またはのいずれか`week` / `month` / `year`の文字列を指定できます。この場合、すべての期間は[startofweek](startofweekfunction.md)/[startofmonth](startofmonthfunction.md)または[startofyear](startofyearfunction.md)になります。 
+* *ウィンドウ*: 分析ウィンドウ期間の値を持つスカラー。 には、数値/日付/時刻/タイムスタンプ値、またはのいずれかの文字列を指定でき `week` / `month` / `year` ます。この場合、すべての期間は[startofweek](startofweekfunction.md) / [startofmonth](startofmonthfunction.md)または[startofyear](startofyearfunction.md)になります。 
 * *dim1*、 *dim2*、...: (省略可能) アクティビティメトリックスの計算をスライスするディメンション列の一覧です。
 
 **戻り値**
@@ -60,6 +60,7 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 
 次のクエリでは、指定された入力テーブルの日単位のアクティビティ数を計算します。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let start=datetime(2017-08-01);
 let end=datetime(2017-08-04);

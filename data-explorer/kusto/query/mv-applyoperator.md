@@ -1,6 +1,6 @@
 ---
-title: mv-apply オペレーター - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの mv-apply 演算子について説明します。
+title: mv-apply 演算子-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの mv-apply 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,91 +8,92 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f24bf7721707aa1ba3ae9f0aad49b247f08c2498
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: bb0ab7fd0f3508388a29d4931cea770c8619e083
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512310"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226433"
 ---
 # <a name="mv-apply-operator"></a>mv-apply 演算子
 
-mv-apply 演算子は、入力テーブル内の各レコードをサブテーブルに展開し、サブクエリを各サブテーブルに適用し、すべてのサブクエリの結果の和集合を返します。
+演算子は、 `mv-apply` 入力テーブル内の各レコードをサブテーブルに展開し、サブクエリを各サブテーブルに適用して、すべてのサブクエリの結果の和集合を返します。
 
-たとえば`T`、テーブルに、値が数値の`Metric`配列である`dynamic`型の`real`列があるとします。 次のクエリは、各`Metric`値の 2 つの最大の値を検索し、これらの値に対応するレコードを返します。
+たとえば、テーブルに `T` 型の列があり、 `Metric` `dynamic` 値が数値の配列であるとし `real` ます。 次のクエリでは、各値の最大2つの値を検索し、これらの値 `Metric` に対応するレコードを返します。
 
 ```kusto
 T | mv-apply Metric to typeof(real) on (top 2 by Metric desc)
 ```
 
-一般に、mv-apply 演算子は、以下の処理手順があると考えることができます。
+`mv-apply`演算子には、次の処理手順があります。
 
-1. [mv-expand](./mvexpandoperator.md)演算子を使用して、入力内の各レコードをサブテーブルに展開します。
-2. サブテーブルごとにサブクエリを適用します。
-3. このサブテーブルは、展開されていないソース列の値 (必要に応じて繰り返される) を含む、結果の各サブテーブルに 0 個以上の列を先頭に付けます。
-4. 結果の和集合を返します。
+1. 演算子を使用し [`mv-expand`](./mvexpandoperator.md) て、入力の各レコードを subtables に展開します。
+1. 各 subtables のサブクエリを適用します。
+1. 結果のサブ行に0個以上の列を追加します。 これらの列には、展開されていないソース列の値が含まれ、必要に応じて繰り返されます。
+1. 結果の和集合を返します。
 
-mv-expand 演算子は、次の入力を取得します。
+`mv-expand`演算子は、次の入力を取得します。
 
-1. 拡張する動的配列に評価される 1 つ以上の式。
-   各拡張サブテーブルのレコード数は、これらの動的配列の最大長です。 (複数の式が指定されているが、対応する配列の長さが異なる場合は、必要に応じて NULL 値が導入されます。
+1. 展開する動的配列として評価される1つ以上の式。
+   各拡張サブ形式のレコード数は、各動的配列の最大長です。 複数の式が指定され、対応する配列の長さが異なる場合は、Null 値が追加されます。
 
-2. オプションで、式の値を割り当てる名前を、展開後に指定します。
-   これらは、サブテーブルの列の名前になります。
-   指定しない場合は、列の元の名前が使用されるか (式が列参照の場合)、ランダムな名前が使用されます (それ以外の場合)。
+1. 必要に応じて、展開後に式の値を割り当てる名前を指定します。
+   これらの名前は、subtables 内の列名になります。
+   指定しない場合、式が列参照であるときに、列の元の名前が使用されます。 それ以外の場合は、ランダムな名前が使用されます。 
 
    > [!NOTE]
-   > デフォルトの列名を使用することをお勧めします。
+   > 既定の列名を使用することをお勧めします。
 
-3. 拡張後の動的配列の要素のデータ型。
-   これらは、サブテーブルの列の列タイプになります。
+1. 拡張後のこれらの動的配列の要素のデータ型。
+   これらは、subtables 内の列の列の型になります。
    指定しない場合は、`dynamic` が使用されます。
 
-4. 必要に応じて、サブテーブル レコードの結果となった配列内の要素の 0 から始まるインデックスを指定する、サブテーブルに追加する列の名前。
+1. 必要に応じて、サブ行レコードを生成した配列内の要素の0から始まるインデックスを指定する、subtables に追加する列の名前を指定します。
 
-5. 必要に応じて、展開する配列要素の最大数。
+1. 必要に応じて、展開する配列要素の最大数を指定します。
 
-mv-apply 演算子は[、mv-expand](./mvexpandoperator.md)演算子の一般化と考えることができます (実際には、サブクエリに投影のみが含まれている場合は、後者は前者によって実装できます)。
+演算子は、 `mv-apply` 演算子の汎化と考えることができます [`mv-expand`](./mvexpandoperator.md) (実際には、サブクエリにプロジェクションしか含まれていない場合は、前者の場合は後者を実装できます)。
 
 **構文**
 
-*T* `|` T `mv-apply` [*アイテムインデックス*]*列展開する [* *行制限*] `on` `(` *サブクエリ*`)`
+*T* `|` `mv-apply` [*itemindex*] *columnstoexpand* [*rowlimit*] `on` `(` *サブクエリ*`)`
 
-*ここで ItemIndex には*次の構文があります。
+ここで、 *Itemindex*には次の構文があります。
 
-`with_itemindex``=`*インデックス列名*
+`with_itemindex``=` *Indexcolumnname*
 
-*列の展開*は、フォームの 1 つ以上の要素をコンマで区切ったリストです。
+*Columnstoexpand*は、次の形式の1つ以上の要素をコンマで区切ったリストです。
 
-[*名前*`=`]*配列式*`to` `typeof` `(`[*型名*`)`]
+[*名前* `=` ]*Arrayexpression* [ `to` `typeof` `(` *Typename* `)` ]
 
-*行制限*は単純です。
+*Rowlimit*は単に次のようになります。
 
-`limit`*行制限*
+`limit`*Rowlimit*
 
-*SubQuery*は、任意のクエリ ステートメントと同じ構文を持っています。
+および*サブクエリ*の構文は、任意のクエリステートメントと同じです。
 
 **引数**
 
-* *ItemIndex*: 使用する場合は、配列展開フェーズの`long`一部として入力に追加される型の列の名前を示し、展開された値の 0 から始まる配列インデックスを示します。
+* *Itemindex*: 使用する場合、 `long` 配列展開フェーズの一部として入力に追加される型の列の名前を示し、展開された値の0から始まる配列インデックスを示します。
 
-* *名前*: 使用する場合、配列展開式の配列展開値を割り当てる名前。
-  (指定しない場合は、列の名前が使用できる場合は使用されるか *、ArrayExpression*が単純な列名でない場合はランダムな名前が生成されます。
+* *Name*: 使用されている場合は、配列展開された各式の配列で展開された値を割り当てる名前。
+  指定しない場合は、使用可能な場合は列の名前が使用されます。
+  *Arrayexpression*が単純な列名でない場合は、ランダムな名前が生成されます。
 
-* *配列式*: 値が`dynamic`配列展開される型の式。
-  式が入力内の列の名前である場合、入力列は入力から削除され、同じ名前の新しい列 (または*ColumnName*を指定した場合) が出力に表示されます。
+* *Arrayexpression*: `dynamic` 値が配列展開される型の式。
+  式が入力の列の名前である場合、入力列が入力から削除され、同じ名前の新しい列 (指定されている場合は*ColumnName* ) が出力に表示されます。
 
-* *型名*: 使用する場合は、*配列 ArrayExpression*の各`dynamic`要素が受け取る型の名前。 この型に準拠していない要素は、null 値に置き換えられます。
-  (指定されていない場合は`dynamic`、デフォルトで使用されます。
+* *Typename*: 使用されている場合、 `dynamic` 配列*arrayexpression*の個々の要素によって取得される型の名前。 この型に準拠していない要素は、null 値に置き換えられます。
+  (指定されていない場合、 `dynamic` は既定で使用されます。)
 
-* *RowLimit*: 使用する場合、入力の各レコードから生成されるレコード数の制限。
-  (指定されていない場合は、2147483647 が使用されます。
+* *Rowlimit*: 使用される場合、入力の各レコードから生成するレコードの数の制限。
+  (指定されていない場合、2147483647が使用されます)。
 
-* *SubQuery*: 各配列展開されたサブテーブルに適用される、暗黙の表形式ソースを持つ表形式のクエリ式。
+* *サブクエリ*: 配列で展開された各サブテーブルに適用される、暗黙的な表形式ソースを持つ表形式クエリ式。
 
 **メモ**
 
-* [mv-expand](./mvexpandoperator.md)演算子とは異なり、mv-apply 演算子は配列の拡張のみをサポートします。 プロパティバッグの拡張はサポートしていません。
+* 演算子とは異なり [`mv-expand`](./mvexpandoperator.md) 、 `mv-apply` 演算子は配列の拡張だけをサポートします。 プロパティバッグの拡張はサポートされていません。
 
 **使用例**
 
@@ -109,12 +110,12 @@ _data
 )
 ```
 
-|xMod2|l           |要素|
+|`xMod2`|l           |要素|
 |-----|------------|-------|
 |1    |[1, 3, 5, 7]|7      |
-|0    |[2, 4, 6, 8]|8      |
+|0    |[2、4、6、8]|8      |
 
-## <a name="calculating-sum-of-largest-two-elments-in-an-array"></a>配列内の最大 2 つのエルメントの合計を計算する
+## <a name="calculating-the-sum-of-the-largest-two-elements-in-an-array"></a>配列内の最大の2つの要素の合計を計算する
 
 ```kusto
 let _data =
@@ -128,13 +129,13 @@ _data
 )
 ```
 
-|xMod2|l        |合計|
+|`xMod2`|l        |SumOfTop2|
 |-----|---------|---------|
-|1    |[1,3,5,7]|12       |
-|0    |[2,4,6,8]|14       |
+|1    |[1, 3, 5, 7]|12       |
+|0    |[2、4、6、8]|14       |
 
 
-## <a name="using-with_itemindex-for-working-with-subset-of-the-array"></a>配列`with_itemindex`のサブセットを操作するための使用
+## <a name="using-with_itemindex-for-working-with-a-subset-of-the-array"></a>`with_itemindex`配列のサブセットを操作するためのの使用
 
 ```kusto
 let _data =
@@ -156,7 +157,7 @@ _data
 |3|8|
 |4|10|
 
-## <a name="using-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key"></a>演算子`mv-apply`を使用して、集計の`makelist`出力をキーでソートする
+## <a name="using-the-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key"></a>演算子を使用して、 `mv-apply` 集計の出力を `makelist` いくつかのキーで並べ替えます。
 
 ```kusto
 datatable(command:string, command_time:datetime, user_id:string)
@@ -176,15 +177,15 @@ datatable(command:string, command_time:datetime, user_id:string)
     order by todatetime(command_details['command_time']) asc
     | summarize make_list(tostring(command_details['command']))
 )
-| project-away commands_details 
+| project-away commands_details
 ```
 
-|user_id|list_command_details_command|
+|`user_id`|`list_command_details_command`|
 |---|---|
-|user1|[<br>  "ls",<br>  "mkdir",<br>  "chmod",<br>  "dir",<br>  "pwd"、<br>  "rm"<br>]|
-|user2|[<br>  "rm",<br>  "pwd"<br>]|
+|user1|[<br>  "ls"、<br>  "mkdir"、<br>  "chmod"、<br>  "dir"、<br>  "pwd"、<br>  ws-rm<br>]|
+|user2|[<br>  "rm"、<br>  pwd<br>]|
 
 
 **参照**
 
-* [mv-expand](./mvexpandoperator.md)演算子。
+* [mv-展開](./mvexpandoperator.md)演算子。

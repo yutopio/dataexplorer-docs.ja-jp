@@ -1,6 +1,6 @@
 ---
-title: make_list_with_nulls() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでmake_list_with_nulls() (集計関数) について説明します。
+title: make_list_with_nulls () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの make_list_with_nulls () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/09/2020
-ms.openlocfilehash: 4b039008c5969cf02187d69a3486b09e04ec41ae
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 41f07f16641fd303c9b8e76b4924238378b6ccc9
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512871"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83224818"
 ---
-# <a name="make_list_with_nulls-aggregation-function"></a>make_list_with_nulls() (集計関数)
+# <a name="make_list_with_nulls-aggregation-function"></a>make_list_with_nulls () (集計関数)
 
-グループ内`dynamic`の*Expr*のすべての値 (NULL 値を含む) の配列 (JSON) を返します。
+`dynamic`Null 値を含む、グループ内の*Expr*のすべての値の (JSON) 配列を返します。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
+* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
 **構文**
 
-`summarize``make_list_with_nulls(`*エクスプル*`)`
+`summarize``make_list_with_nulls(` *Expr*`)`
 
 **引数**
 
-* *Expr*: 集計の計算に使用する式。
+* *Expr*: 集計計算に使用される式です。
 
 **戻り値**
 
-グループ内`dynamic`の*Expr*のすべての値 (NULL 値を含む) の配列 (JSON) を返します。
-演算子への入力が`summarize`ソートされていない場合、結果の配列内の要素の順序は未定義です。
-演算子への入力が`summarize`ソートされている場合、結果の配列内の要素の順序は入力の順序を追跡します。
+`dynamic`Null 値を含む、グループ内の*Expr*のすべての値の (JSON) 配列を返します。
+演算子への入力 `summarize` が並べ替えられていない場合、結果として得られる配列内の要素の順序は定義されません。
+演算子への入力が並べ替えられている場合、結果として `summarize` 得られる配列内の要素の順序によって、入力の値が追跡されます。
 
 > [!TIP]
-> 演算子を[`mv-apply`](./mv-applyoperator.md)使用して、キーによって順序付けされたリストを作成します。 [こちら](./mv-applyoperator.md#using-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key)の例を参照してください。
+> [`mv-apply`](./mv-applyoperator.md)キーによって順序付けられたリストを作成するには、演算子を使用します。 [こちら](./mv-applyoperator.md#using-the-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key)の例を参照してください。

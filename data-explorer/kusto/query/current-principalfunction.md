@@ -1,5 +1,5 @@
 ---
-title: current_principal ()-Azure データエクスプローラー |Microsoft Docs
+title: current_principal ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの current_principal () について説明します。
 services: data-explorer
 author: orspod
@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 12/10/2019
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 0561ac200105015e6d1c1cce1c16fe5f60fc2ccf
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: b1d45fb8b0749a4be30854dd9b0120a7eb127bf2
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737710"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83227300"
 ---
 # <a name="current_principal"></a>current_principal()
 
@@ -29,12 +29,13 @@ ms.locfileid: "82737710"
 
 **戻り値**
 
-としての現在のプリンシパル (完全修飾名) `string`。  
+としての現在のプリンシパル (完全修飾名) `string` 。  
 この文字列の形式は次のとおりです。  
-*PrinciplaType*`=`*PrincipalId*PrincipalId`;`*TenantId*
+*PrinciplaType* `=`*PrincipalId* `;`*TenantId*
 
 **例**
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print fqn=current_principal()
 ```

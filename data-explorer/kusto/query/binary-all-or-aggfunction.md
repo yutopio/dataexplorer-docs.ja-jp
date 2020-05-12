@@ -1,6 +1,6 @@
 ---
-title: binary_all_or() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで binary_all_or() (集計関数) について説明します。
+title: binary_all_or () (集計関数)-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの binary_all_or () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,35 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 5de240f606e53b26996ebfe11073170758233e2c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e00d170db7cbafb36f04dfeb14f64caf2b8abcff
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517716"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225260"
 ---
-# <a name="binary_all_or-aggregation-function"></a>binary_all_or() (集計関数)
+# <a name="binary_all_or-aggregation-function"></a>binary_all_or () (集計関数)
 
-集計グループごとのバイナリ`OR`演算を使用して値を累積します (または、グループ化なしで集計が行われた場合は合計で)。
+概要作成グループごとにバイナリ演算を使用して値を累積し `OR` ます (または、グループ化せずに概要作成を実行する場合は合計)。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
+* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
 **構文**
 
-`binary_all_or(`*エクスプの*要約`)`
+集計の `binary_all_or(` *Expr*`)`
 
 **引数**
 
-* *Expr*: 長い数字。
+* *Expr*: long 数値。
 
 **戻り値**
 
-集計グループごとのレコードに対するバイナリ`OR`演算を使用して集計された値を返します (集計がグループ化なしで行われた場合は合計で返します)。
+集計グループごとのレコードに対するバイナリ演算を使用して集計された値を返し `OR` ます (集約がグループ化されていない場合は合計で)。
 
 **例**
 
-バイナリ`OR`操作を使用して「カフェフード」を生産する:
+バイナリ演算を使用して ' カフェ ' を作成してい `OR` ます:
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(num:long)
 [
@@ -50,4 +51,4 @@ datatable(num:long)
 
 |結果|
 |---|
-|カフェフ00D|
+|CAFEF00D|

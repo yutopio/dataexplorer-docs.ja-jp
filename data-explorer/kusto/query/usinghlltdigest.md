@@ -1,6 +1,6 @@
 ---
-title: 集計の中間結果のパーティション分割と作成 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで集計の中間結果をパーティション分割し、作成する方法について説明します。
+title: 集計の中間結果のパーティション分割と作成-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの集計の中間結果のパーティション分割と作成について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,24 +10,24 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c906e764330efedac051587201b28e5d0fc1ef07
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 8085f2347501c313c857a262bc9de6ec7280c90c
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81766139"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83224546"
 ---
 # <a name="partitioning-and-composing-intermediate-results-of-aggregations"></a>集計の中間結果のパーティション分割と作成
 
-過去 7 日間の個別ユーザー数を毎日計算するとします。 これを行う 1 つの方法は`summarize dcount(user)`、過去 7 日間にフィルター処理されたスパンで 1 日 1 回実行する方法です。 計算を実行するたびに、前の計算と 6 日間の重複があるため、これは非効率的です。 別のオプションは、日ごとに集計を計算し、効率的な方法でこれらの集計を結合することです。 このオプションでは、最後の 6 つの結果を "記憶" する必要がありますが、はるかに効率的です。
+過去7日間にわたる個別のユーザーの数を毎日計算する場合。 `summarize dcount(user)`過去7日間にフィルター処理されたスパンを使用して1日に1回実行できます。 このメソッドは、計算が実行されるたびに、前の計算と6日間の重複があるため、効率的ではありません。 また、1日の集計を計算し、これらの集計を結合することもできます。 この方法では、最後の6つの結果を "記憶する" 必要がありますが、はるかに効率的です。
 
-このようなクエリをパーティション分割することは、count() や sum() などの単純な集計では簡単です。 ただし、dcount() やパーセンタイル() など、より複雑な集計に対して実行することもできます。 このトピックでは、Kusto がこのような計算をサポートする方法について説明します。
+説明に従ってクエリをパーティション分割すると、やなどの簡単な集計を簡単に行うことが `count()` `sum()` できます。 また、やなどの複雑な集計にも役立ち `dcount()` `percentiles()` ます。 このトピックでは、Kusto でこのような計算をサポートする方法について説明します。
 
-次の例は、hll/tdigest を使用する方法を示し、一部のシナリオでこれらを使用すると、他の方法よりもはるかにパフォーマンスが高い場合があることを示しています。
+次の例で `hll` / `tdigest` は、これらのコマンドを使用して、一部のシナリオで非常に高いパフォーマンスを実現する方法を示します。
 
 > [!NOTE]
-> 場合によっては、`hll`または`tdigest`集計関数によって生成される動的オブジェクトが大きく、エンコーディング ポリシーの既定の MaxValueSize プロパティを超える場合があります。 その場合、オブジェクトは null として取り込まれます。
-たとえば、関数の`hll`出力を精度レベル 4 で永続化する場合、hll オブジェクトのサイズは既定の MaxValueSize を超えています。
+> 場合によっては、または集計関数によって生成される動的オブジェクト `hll` `tdigest` が大きく、エンコードポリシーの既定の MaxValueSize プロパティを超えることがあります。 その場合、オブジェクトは null として取り込まれたされます。
+たとえば、精度レベル4の関数の出力を永続化する場合、 `hll` オブジェクトのサイズが `hll` 既定の MaxValueSize (1 mb) を超えています。
 
 ```kusto
 range x from 1 to 1000000 step 1
@@ -39,7 +39,7 @@ range x from 1 to 1000000 step 1
 |---|
 |1.0000524520874|
 
-この種のポリシーを適用する前にテーブルにこれを取り込むには、null が取り込まれます。
+この種類のポリシーを適用する前にこの取り込みをテーブルに挿入すると、null が表示されます。
 
 ```kusto
 .set-or-append MyTable <| range x from 1 to 1000000 step 1
@@ -55,21 +55,20 @@ MyTable
 |---------|
 | 1       |
 
-これを回避するには、次のように MaxValueSize`bigobject`を 2 MB に上書きする特殊なエンコード ポリシー の種類を使用します。
+取り込み null を回避するには、特殊なエンコードポリシーの種類を使用し `bigobject` ます。これは、次の `MaxValueSize` ように 2 MB にオーバーライドされます。
 
 ```kusto
 .alter column MyTable.hll_x policy encoding type='bigobject'
 ```
 
-
-
-したがって、上記の同じ表に値を取り込む:
+次のように、同じテーブルに値を取り込みします。
 
 ```kusto
 .set-or-append MyTable <| range x from 1 to 1000000 step 1
 | summarize hll(x,4)
 ```
-2 番目の値を正常に取り込みます。 
+
+2番目の値を正常に取り込みします。 
 
 ```kusto
 MyTable
@@ -84,7 +83,7 @@ MyTable
 
 **例**
 
-各時間に表示されるページに対する hll 値を持つテーブル PageViewsHllTDigest があるとします。 目的は、これらの値を取得することですが、ビン分割`12h`して にして、タイムスタンプによって hll_merge() 集計関数を使用して hll 値をマージします`12h`。 次に、関数を呼び出dcount_hll最後の dcount 値を取得します。
+`PageViewsHllTDigest` `hll` 1 時間ごとに表示されるページの値を含むテーブルがあります。 これらの値ビンをにする必要が `12h` あります。 `hll`集計関数を使用して値をマージ `hll_merge()` し、タイムスタンプビンをに結合し `12h` ます。 関数を使用し `dcount_hll` て、最終的な値を返し `dcount` ます。
 
 ```kusto
 PageViewsHllTDigest
@@ -92,14 +91,14 @@ PageViewsHllTDigest
 | project Timestamp , dcount_hll(merged_hll)
 ```
 
-|Timestamp|dcount_hll_merged_hll|
+|Timestamp|`dcount_hll_merged_hll`|
 |---|---|
-|2016-05-01 12:00:00.0000000|20056275|
-|2016-05-02 00:00:00.0000000|38797623|
-|2016-05-02 12:00:00.0000000|39316056|
-|2016-05-03 00:00:00.0000000|13685621|
+|2016-05-01 12:00: 00.0000000|20056275|
+|2016-05-02 00:00: 00.0000000|38797623|
+|2016-05-02 12:00: 00.0000000|39316056|
+|2016-05-03 00:00: 00.0000000|13685621|
 
-または、ビン分割されたタイムスタンプの`1d`場合も:
+次のようにタイムスタンプをビン分割するには `1d` :
 
 ```kusto
 PageViewsHllTDigest
@@ -107,13 +106,13 @@ PageViewsHllTDigest
 | project Timestamp , dcount_hll(merged_hll)
 ```
 
-|Timestamp|dcount_hll_merged_hll|
+|Timestamp|`dcount_hll_merged_hll`|
 |---|---|
-|2016-05-01 00:00:00.0000000|20056275|
-|2016-05-02 00:00:00.0000000|64135183|
-|2016-05-03 00:00:00.0000000|13685621|
+|2016-05-01 00:00: 00.0000000|20056275|
+|2016-05-02 00:00: 00.0000000|64135183|
+|2016-05-03 00:00: 00.0000000|13685621|
 
- 同じことが、毎時間のBytesDeliveredを表す消化器の値に対して行われる可能性があります。
+の値に対して同じクエリを実行できます `tdigest` 。これは、 `BytesDelivered` 1 時間以内にを表します。
 
 ```kusto
 PageViewsHllTDigest
@@ -121,32 +120,32 @@ PageViewsHllTDigest
 | project Timestamp , percentile_tdigest(merged_tdigests, 95, typeof(long))
 ```
 
-|Timestamp|percentile_tdigest_merged_tdigests|
+|Timestamp|`percentile_tdigest_merged_tdigests`|
 |---|---|
-|2016-05-01 12:00:00.0000000|170200|
-|2016-05-02 00:00:00.0000000|152975|
-|2016-05-02 12:00:00.0000000|181315|
-|2016-05-03 00:00:00.0000000|146817|
+|2016-05-01 12:00: 00.0000000|170200|
+|2016-05-02 00:00: 00.0000000|152975|
+|2016-05-02 12:00: 00.0000000|181315|
+|2016-05-03 00:00: 00.0000000|146817|
  
 **例**
 
-Kusto の制限に達すると、データセットに対して定期的にクエリを実行する必要がありますが、これらの大きなデータセットを計算[`percentile()`](percentiles-aggfunction.md)または[`dcount()`](dcount-aggfunction.md)上の通常のクエリを実行する必要があるデータセットが大きすぎると、制限に達します。
+Kusto の制限に達しているデータセットは、データセットに対して定期的なクエリを実行する必要がありますが、通常のクエリを実行して大規模なデータセットを計算する必要があり [`percentile()`](percentiles-aggfunction.md) [`dcount()`](dcount-aggfunction.md) ます。
 
 ::: zone pivot="azuredataexplorer"
 
-この問題を解決するために、新しく追加されたデータは、必要な操作がdcountの場合、または[`hll()`](hll-aggfunction.md)[`tdigest()`](tdigest-aggfunction.md)、必要な操作が百分位数である場合、または[`set/append`](../management/data-ingestion/index.md)[`update policy`](../management/updatepolicy.md)を使用して、一時テーブルに hll または tdigest 値として追加される可能性があります。
+この問題を解決するには、新たに追加されたデータを `hll` 、 `tdigest` [`hll()`](hll-aggfunction.md) 必要な操作がである場合はを使用し、または `dcount` を使用して [`tdigest()`](tdigest-aggfunction.md) 必要な操作 [`set/append`](../management/data-ingestion/index.md) [`update policy`](../management/updatepolicy.md) である場合は、を使用して、またはの値として一時テーブルに追加する この場合、またはの中間結果 `dcount` は `tdigest` 別のデータセットに保存されます。これは、ターゲットの大きな値よりも小さくする必要があります。
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-この問題を解決するために、新しく追加されたデータは、必要な操作がdcountのときにhll[`hll()`](hll-aggfunction.md)または消化器値として一時テーブルに追加される可能性があり、この場合、dcount の中間結果は別のデータセットに保存され、ターゲットの大きなデータよりも小さいはずです。
+この問題を解決するには、新しく追加されたデータが、 `hll` `tdigest` [`hll()`](hll-aggfunction.md) 必要な操作がのときにを使用して、またはの値として一時テーブルに追加されることがあり `dcount` ます。 この場合、の中間結果 `dcount` は別のデータセットに保存されます。これは、ターゲットの大きな値よりも小さくする必要があります。
 
 ::: zone-end
 
-これらの値の最終結果を取得する必要がある場合、クエリは hll/tdigest の合併を使用[`hll-merge()`](hll-merge-aggfunction.md)/[`tdigest_merge()`](tdigest-merge-aggfunction.md)する可能性があります: 、マージされた値[`percentile_tdigest()`](percentile-tdigestfunction.md) / [`dcount_hll()`](dcount-hllfunction.md)を取得した後、これらのマージされた値に対して呼び出され、dcount またはパーセンタイルの最終結果を取得できます。
+これらの値の最終的な結果を取得する必要がある場合、クエリは hll/tdigest の合併を使用することがあります。 [`hll-merge()`](hll-merge-aggfunction.md) / [`tdigest_merge()`](tdigest-merge-aggfunction.md) その後、マージされた値を取得した後、 [`percentile_tdigest()`](percentile-tdigestfunction.md)  /  [`dcount_hll()`](dcount-hllfunction.md) これらのマージされた値に対してを呼び出して、またはパーセンタイルの最終的な結果を取得することができます `dcount` 。
 
-テーブルが存在すると仮定すると、毎日データが取り込まれる PageViews で、日より後の 1 つの最小数あたりの表示ページ数を計算する日 ( 2016-05-01 18:00:00.000000) 。
+データが毎日取り込まれたされるテーブル、PageViews があると仮定して、日付 = datetime (2016-05-01 18:00: 00.0000000) より後に1分間に表示される個別のページ数を計算します。
 
 次のクエリを実行します。
 
@@ -158,33 +157,33 @@ PageViews
 
 |Timestamp|percentile_BytesDelivered_90|dcount_Page|
 |---|---|---|
-|2016-05-01 00:00:00.0000000|83634|20056275|
-|2016-05-02 00:00:00.0000000|82770|64135183|
-|2016-05-03 00:00:00.0000000|72920|13685621|
+|2016-05-01 00:00: 00.0000000|83634|20056275|
+|2016-05-02 00:00: 00.0000000|82770|64135183|
+|2016-05-03 00:00: 00.0000000|72920|13685621|
 
-このクエリは、このクエリを実行するたびにすべての値を集計します (たとえば、1 日に何回も実行する場合)。
+このクエリでは、このクエリを実行するたびにすべての値が集計されます (たとえば、1日に何度も実行する場合)。
 
-hll 値と tdigest 値 (dcount とパーセンタイルの中間結果) を一時テーブル PageViewsHllTDigest に保存する場合、更新ポリシーまたは set/append コマンドを使用して、値をマージし、次のクエリを使用してdcount_hll/percentile_tdigestを使用します。
+`hll`との `tdigest` 値 (つまり、とパーセンタイルの中間結果) を一時テーブルに保存した場合、 `dcount` `PageViewsHllTDigest` 更新ポリシーまたは set/append コマンドを使用すると、値のみをマージしてから、 `dcount_hll` / `percentile_tdigest` 次のクエリを使用してを使用できます。
 
 ```kusto
 PageViewsHllTDigest
 | summarize  percentile_tdigest(merge_tdigests(tdigestBytesDel), 90), dcount_hll(hll_merge(hllPage)) by bin(Timestamp, 1d)
 ```
 
-|Timestamp|percentile_tdigest_merge_tdigests_tdigestBytesDel|dcount_hll_hll_merge_hllPage|
+|Timestamp|`percentile_tdigest_merge_tdigests_tdigestBytesDel`|`dcount_hll_hll_merge_hllPage`|
 |---|---|---|
-|2016-05-01 00:00:00.0000000|84224|20056275|
-|2016-05-02 00:00:00.0000000|83486|64135183|
-|2016-05-03 00:00:00.0000000|72247|13685621|
+|2016-05-01 00:00: 00.0000000|84224|20056275|
+|2016-05-02 00:00: 00.0000000|83486|64135183|
+|2016-05-03 00:00: 00.0000000|72247|13685621|
 
-これはよりパフォーマンスが高く、クエリはより小さいテーブル上で実行されます (この例では、最初のクエリは約 215M のレコードで実行され、2 番目のクエリは 32 レコードのみで実行されます)。
+これにより、パフォーマンスが向上し、クエリがより小さなテーブルで実行されます (この例では、最初のクエリは ~ 215M のレコードを実行し、2つ目は32レコードを超えてのみ実行されます)。
 
 **例**
 
 保持クエリ。
-各ウィキペディアのページが閲覧された時刻 (サンプルサイズは 10M) を表し、各日付 1 の日付 2 で、日付 1 と日付 2 の両方でレビューされたページの割合を、日付 1 (日付 1 < 日付 2) に対して比較して見つけたいとします。
+各 Wikipedia ページが表示された日時を集計するテーブルがあると仮定します (サンプルサイズは10万)。各 date1 を検索する場合は、date1 に表示されるページに対して、date1 と date2 の両方でレビューされたページの割合 (date1 < date2) を確認します。
   
-単純な方法では、結合演算子と集計演算子を使用します。
+単純な方法では、join 演算子と集計演算子が使用されます。
 
 ```kusto
 // Get the total pages viewed each day
@@ -212,16 +211,16 @@ on $left.Day1 == $right.Day
 | project Day1, Day2, Percentage = count_*100.0/count_1
 ```
 
-|Day1|Day2|パーセント|
+|Day1|Day2|割合|
 |---|---|---|
-|2016-05-01 00:00:00.0000000|2016-05-02 00:00:00.0000000|34.0645725975255|
-|2016-05-01 00:00:00.0000000|2016-05-03 00:00:00.0000000|16.618368960101|
-|2016-05-02 00:00:00.0000000|2016-05-03 00:00:00.0000000|14.6291376489636|
+|2016-05-01 00:00: 00.0000000|2016-05-02 00:00: 00.0000000|34.0645725975255|
+|2016-05-01 00:00: 00.0000000|2016-05-03 00:00: 00.0000000|16.618368960101|
+|2016-05-02 00:00: 00.0000000|2016-05-03 00:00: 00.0000000|14.6291376489636|
 
  
-上記のクエリは約 18 秒かかりました。
+上記のクエリの所要時間は18秒でした。
 
-と の関数を[`hll()`](hll-aggfunction.md)使用すると、同等のクエリは約 1.3 秒後に終了し、hll 関数は上記のクエリを約 14 倍に高速化することを示します。 [`dcount_hll()`](dcount-hllfunction.md) [`hll_merge()`](hll-merge-aggfunction.md)
+、、およびの関数を使用する場合、 [`hll()`](hll-aggfunction.md) [`hll_merge()`](hll-merge-aggfunction.md) 同等のクエリは [`dcount_hll()`](dcount-hllfunction.md) ~ 1.3 秒後に終了し、 `hll` 関数によって上記のクエリの速度が約14倍になることが示されます。
 
 ```kusto
 let Stats=PageViewsSample | summarize pagehll=hll(Page, 2) by day=startofday(Timestamp); // saving the hll values (intermediate results of the dcount values)
@@ -242,11 +241,11 @@ Stats
 | project day1, day2, Percentage = intersection_size*100.0 / pages1
 ```
 
-|1日目|2日目|パーセント|
+|day1|day2.ps1|割合|
 |---|---|---|
-|2016-05-01 00:00:00.0000000|2016-05-02 00:00:00.0000000|33.2298494510578|
-|2016-05-01 00:00:00.0000000|2016-05-03 00:00:00.0000000|16.9773830213667|
-|2016-05-02 00:00:00.0000000|2016-05-03 00:00:00.0000000|14.5160020350006|
+|2016-05-01 00:00: 00.0000000|2016-05-02 00:00: 00.0000000|33.2298494510578|
+|2016-05-01 00:00: 00.0000000|2016-05-03 00:00: 00.0000000|16.9773830213667|
+|2016-05-02 00:00: 00.0000000|2016-05-03 00:00: 00.0000000|14.5160020350006|
 
 > [!NOTE] 
-> hll 関数のエラーにより、クエリの結果が 100% 正確ではありません。(エラー[`dcount()`](dcount-aggfunction.md)の詳細についてはを参照してください)。
+> 関数のエラーにより、クエリの結果が100% 正確ではありません `hll` 。 (エラーの詳細については、「」を参照してください [`dcount()`](dcount-aggfunction.md) 。

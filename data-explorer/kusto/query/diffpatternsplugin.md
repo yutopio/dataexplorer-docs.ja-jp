@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9931b297f5a86c46a8502902a6c396fbb2fd4191
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: b3dece66f3bafae989643afd418557aeaaa7d746
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741732"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225039"
 ---
 # <a name="diff-patterns-plugin"></a>diff パターンプラグイン
 
@@ -51,7 +51,7 @@ T | evaluate diffpatterns(splitColumn)
 
 * WeightColumn - *column_name*
 
-    入力の各行に、指定された重みを適用します (既定では、各行の重みは "1" です)。 引数は数値列の名前にする必要があります (たとえば`int`、 `long`、 `real`、)。
+    入力の各行に、指定された重みを適用します (既定では、各行の重みは "1" です)。 引数は数値列の名前にする必要があります (たとえば、、 `int` `long` 、 `real` )。
     weight 列の一般的な使用方法は、既に各行に埋め込まれているデータのサンプリングまたはバケット/集計を考慮することです。
     
     例: `T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", sample_Count) `
@@ -71,7 +71,7 @@ T | evaluate diffpatterns(splitColumn)
 * CustomWildcard- *"任意-型の値"*
 
     現在のパターンにこの列に対する制限がないことを示す特定の種類のワイルドカード値を結果テーブルに設定します。
-    既定値は null です。文字列の場合、既定値は空の文字列です。 既定値がデータ内で実行可能な値の場合は、別のワイルドカード値 (など`*`) を使用する必要があります。
+    既定値は null です。文字列の場合、既定値は空の文字列です。 既定値がデータ内で実行可能な値の場合は、別のワイルドカード値 (など) を使用する必要があり `*` ます。
     次の例をご覧ください。
 
     例: `T | extend splitColumn = iff(request-responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", "~", "~", "~", int(-1), double(-1), long(0), datetime(1900-1-1))`
@@ -80,13 +80,13 @@ T | evaluate diffpatterns(splitColumn)
 
 `Diffpatterns`2つのセット内のデータのさまざまな部分を取得するパターンの小さなセットを返します (つまり、1つ目のデータセット内の行の大部分をキャプチャし、2番目のセットの行の割合を低くします)。 各パターンは、結果内の行によって表されます。
 
-の`diffpatterns`結果は、次の列を返します。
+の結果は、 `diffpatterns` 次の列を返します。
 
 * SegmentId: 現在のクエリのパターンに割り当てられた id です (注: Id は、繰り返しクエリで同じであることは保証されていません)。
 
-* CountA: セット A のパターンによってキャプチャされた行の数 (セット A は`where tostring(splitColumn) == SplitValueA`と同じです)。
+* CountA: セット A のパターンによってキャプチャされた行の数 (セット A はと同じです `where tostring(splitColumn) == SplitValueA` )。
 
-* CountB: セット B のパターンによってキャプチャされた行の数 (セット B は`where tostring(splitColumn) == SplitValueB`と同じです)。
+* CountB: セット B のパターンによってキャプチャされた行の数 (セット B はと同じです `where tostring(splitColumn) == SplitValueB` )。
 
 * PercentA: パターンによってキャプチャされたセット内の行の比率 (100.0 * CountA/count (SetA))。
 
@@ -94,7 +94,7 @@ T | evaluate diffpatterns(splitColumn)
 
 * PercentDiffAB: A と B の絶対パーセント値の差 (|PercentA-PercentB |)は、2つのセットの違いを説明するパターンの有意性の主要な尺度です。
 
-* 残りの列: 入力の元のスキーマであり、パターンについて説明します。各行 (パターン) は、列の非ワイルドカード値の交差部分を表します ( `where col1==val1 and col2==val2 and ... colN=valN`行の各ワイルドカード以外の値に相当します)。
+* 残りの列: 入力の元のスキーマであり、パターンについて説明します。各行 (パターン) は、列の非ワイルドカード値の交差部分を表します ( `where col1==val1 and col2==val2 and ... colN=valN` 行の各ワイルドカード以外の値に相当します)。
 
 パターンごとに、パターンで設定されていない列 (つまり、特定の値に制限がない) には、ワイルドカード値が含まれます。これは、既定では null になります。 ワイルドカードを手動で変更する方法については、後述の「引数」セクションを参照してください。
 
@@ -107,10 +107,11 @@ T | evaluate diffpatterns(splitColumn)
 
 関心がある行が見つかったら、 `where` フィルターに特定の値を追加して、より詳しく調べることができます。
 
-* 注: `diffpatterns`重要なパターン (セット間のデータ差の部分をキャプチャする) を検索することを目的としていますが、行ごとの違いはありません。
+* 注: `diffpatterns` 重要なパターン (セット間のデータ差の部分をキャプチャする) を検索することを目的としていますが、行ごとの違いはありません。
 
 **例**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents 
 | where monthofyear(StartTime) == 5

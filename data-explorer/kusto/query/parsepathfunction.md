@@ -1,6 +1,6 @@
 ---
-title: parse_path() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで parse_path() について説明します。
+title: parse_path ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの parse_path () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 2267efb4e47a6d8e45733ad48dd9f7f4019c1fa8
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 16b80c86f526cb05514577359603e9e21de80064
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744668"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83224886"
 ---
 # <a name="parse_path"></a>parse_path()
 
-ファイル パス`string`を解析し、パス[`dynamic`](./scalar-data-types/dynamic.md)の次の部分を含むオブジェクトを返します。
-両方のスラッシュを持つ単純なパスに加えて、スキーマ(例えば「file://..」)、共有パス(例えば、共有パス)、長い\\パス(例えば"?\C:.")、\\代替データストリーム(例えば「file1.exe:file2.exe」)をサポートしています。
+ファイルパスを解析 `string` し、 [`dynamic`](./scalar-data-types/dynamic.md) path の次の部分を含むオブジェクトを返します。 Scheme、Rootpath、DirectoryPath、DirectoryName、FileName、Extension、AlternateDataStreamName。
+両方の種類のスラッシュを持つ単純なパスに加えて、スキーマを使用したパス (例: "file://")、共有パス (例: " \\ shareddrive\users...")、長いパス (例 \\ : "? \c:...")、代替データストリーム (例: "file1: file2") をサポートします。
 
 **構文**
 
-`parse_path(`*パス*`)`
+`parse_path(`*道*`)`
 
 **引数**
 
-* *path*: ファイル パスを表す文字列。
+* *パス*: ファイルパスを表す文字列。
 
 **戻り値**
 
-上記のようにパス`dynamic`コンポーネントを指定した型のオブジェクト。
+`dynamic`上に示したパスコンポーネントを含む型のオブジェクト。
 
 **例**
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
-
 ```kusto
 datatable(p:string) 
 [
@@ -51,8 +50,8 @@ datatable(p:string)
 
 |p|path_parts
 |---|---
-|C:\temp\ファイル.txt|{"スキーム":"""""""ルートパス":"C:","ディレクトリ\\パス":"C: temp","ディレクトリ名":"temp"、ファイル名":"ファイル.txt"、拡張子":"txt"、"代替データストリーム名"}
-|一時\ファイル.txt|{"スキーム":""""""""""""""ディレクトリパス":"一時","ディレクトリ名":"temp,"ファイル名":"ファイル.txt"、拡張子":"txt,"代替データストリーム名":"}
-|file://C:/temp/file.txt:some.exe|{"スキーム":"ファイル","ルートパス":"C:"""ディレクトリパス":"C:/temp","ディレクトリ名":"一時","ファイル":"ファイル.txt"、拡張子":""、"、"代替データストリーム名":"some.exe"}
-|\\共有\ユーザー\temp\ファイル.txt.gz|{"スキーム":""""""""""""""""ディレクトリ\\\\パス":"共有\\ユーザー\\の一時"、ディレクトリ名":"temp"、ファイル":"ファイル.txt.gz"、拡張子":"gz,"代替データストリーム名":"}
-|/usr/lib/temp/ファイル.txt|{"スキーム":""""""""""""""""""ディレクトリパス":"ディレクトリ名":"temp","ファイル":"ファイル.txt"、拡張子":"txt"、"、"代替データストリーム名"}
+|C:\temp\file.txt|{"Scheme": "", "RootPath": "C:", "DirectoryPath": "C: \\ temp", "DirectoryName": "temp", "Filename": "file.txt", "Extension": "txt", "AlternateDataStreamName": ""}
+|temp\file.txt|{"Scheme": "", "RootPath": "", "DirectoryPath": "temp", "DirectoryName": "temp", "Filename": "file.txt", "Extension": "txt", "AlternateDataStreamName": ""}
+|file://C:/temp/file.txt:some.exe|{"Scheme": "file", "RootPath": "C:", "DirectoryPath": "C:/temp", "DirectoryName": "temp", "Filename": "file.txt", "Extension": "txt", "AlternateDataStreamName": "some .exe"}
+|\\shared\users\temp\file.txt.gz|{"Scheme": "", "RootPath": "", "DirectoryPath": " \\ \\shared \\ users \\ temp "," DirectoryName ":" temp "," Filename ":" file.txt "," Extension ":" gz "," AlternateDataStreamName ":" "}
+|/usr/lib/temp/file.txt|{"Scheme": "", "RootPath": "", "DirectoryPath": "/usr/lib/temp", "DirectoryName": "temp", "Filename": "file.txt", "Extension": "txt", "AlternateDataStreamName": ""}

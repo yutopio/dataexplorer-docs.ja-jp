@@ -1,6 +1,6 @@
 ---
-title: Kusto.Ingest クライアント リファレンス - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの Kusto.Ingest クライアントリファレンスについて説明します。
+title: Kusto. インジェストクライアントインターフェイスとファクトリクラス-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの Kusto によるクライアントインターフェイスとファクトリクラスの取り込みについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: e5a9c1fa561fa07df527f17552a3a8f594a4e5d8
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1d3c3939a5c8b3a5f1e6f1fa0b40f9b927ee5325
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81503113"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226059"
 ---
-# <a name="kustoingest-client-reference"></a>Kusto.Ingest クライアント リファレンス
+# <a name="kustoingest-client-interfaces-and-factory-classes"></a>Kusto. インジェストクライアントインターフェイスとファクトリクラス
 
-Kusto.Ingest ライブラリのメイン インターフェイスとファクトリ クラスは次のとおりです。
+Kusto インジェストライブラリの主要なインターフェイスとファクトリクラスは次のとおりです。
 
-* [インターフェイス IKustoingest クライアント](#interface-ikustoingestclient): メイン インジェスト インターフェイス。
-* [クラス拡張Kustoingestクライアント](#class-extendedkustoingestclient): メインインジェストインターフェイスへの拡張。
-* [クラスKustoingest工場](#class-kustoingestfactory): インジェストクライアントのメインファクトリ。
-* [クラス Kustoingestionプロパティ](#class-kustoingestionproperties): 共通の取り込みプロパティを提供するために使用されるクラス。
-* [クラス JsonColumnMapping](#class-jsoncolumnmapping): JSON データソースから取得するときに適用するスキーママッピングを記述するために使用されるクラス。
-* [クラス CsvColumnMapping](#class-csvcolumnmapping): CSV データ ソースから取得するときに適用するスキーマ マッピングを記述するために使用されるクラス。
-* [列挙データ ソースフォーマット](#enum-datasourceformat): サポートされているデータ ソース形式 (たとえば、CSV、JSON)
-* [インターフェイス IKustoQueuedIngest クライアント](#interface-ikustoqueuedingestclient): キューに入れるだけの操作を記述するインターフェイス。
-* [クラス KustoQueuedingestionプロパティ](#class-kustoqueuedingestionproperties): キューに入れ込み専用のプロパティ。
+* [Interface IKustoIngestClient](#interface-ikustoingestclient): メインインジェストインターフェイス。
+* [クラス ExtendedKustoIngestClient](#class-extendedkustoingestclient): メインインジェストインターフェイスの拡張機能。
+* [クラス KustoIngestFactory](#class-kustoingestfactory): インジェストクライアントのメインファクトリ。
+* [クラス KustoIngestionProperties](#class-kustoingestionproperties): 一般的なインジェストプロパティを提供するために使用されるクラスです。
+* [クラス JsonColumnMapping](#class-jsoncolumnmapping): JSON データソースから取り込みするときに適用するスキーママッピングを記述するために使用されるクラス。
+* [クラス CsvColumnMapping](#class-csvcolumnmapping): CSV データソースから取り込みした場合に適用するスキーママッピングを記述するために使用されるクラスです。
+* [Enum DataSourceFormat](#enum-datasourceformat): サポートされているデータソース形式 (CSV、JSON など)
+* [Interface IKustoQueuedIngestClient](#interface-ikustoqueuedingestclient): キューインジェストにのみ適用される操作を記述するインターフェイスです。
+* [クラス KustoQueuedIngestionProperties](#class-kustoqueuedingestionproperties): キューインジェストにのみ適用されるプロパティ。
 
-## <a name="interface-ikustoingestclient"></a>インターフェイス Ikustoingest クライアント
+## <a name="interface-ikustoingestclient"></a>インターフェイス IKustoIngestClient
 
-* データリーダー同期の取り込み
-* ストレージ同期の取り込み
-* インジェストストリーム非同期
+* IngestFromDataReaderAsync
+* IngestFromStorageAsync
+* IngestFromStreamAsync
 
 ```csharp
 public interface IKustoIngestClient : IDisposable
@@ -68,16 +68,16 @@ public interface IKustoIngestClient : IDisposable
 }
 ```
 
-## <a name="class-extendedkustoingestclient"></a>クラス拡張クストインジェストクライアント
+## <a name="class-extendedkustoingestclient"></a>ExtendedKustoIngestClient クラス
 
-* シングルブロブから取り込む - 非推奨。 代わりに、`IKustoIngestClient.IngestFromStorageAsync` を使用してください。
-* シングルBLOB非同期から取り込む - 非推奨。 代わりに、`IKustoIngestClient.IngestFromStorageAsync` を使用してください。
-* 取り込みデータリーダー - 非推奨。 代わりに、`IKustoIngestClient.IngestFromDataReaderAsync` を使用してください。
-* データリーダー同期の取り込み
-* シングルファイルから取り込む - 非推奨。 代わりに、`IKustoIngestClient.IngestFromStorageAsync` を使用してください。
-* シングルファイル非同期から取り込む - 非推奨。 代わりに、`IKustoIngestClient.IngestFromStorageAsync` を使用してください。
-* インジェストFromStream - 非推奨。 代わりに、`IKustoIngestClient.IngestFromStreamAsync` を使用してください。
-* インジェストストリーム非同期
+* IngestFromSingleBlob-非推奨です。 代わりに、`IKustoIngestClient.IngestFromStorageAsync` を使用してください。
+* IngestFromSingleBlobAsync-非推奨です。 代わりに、`IKustoIngestClient.IngestFromStorageAsync` を使用してください。
+* IngestFromDataReader-非推奨です。 代わりに、`IKustoIngestClient.IngestFromDataReaderAsync` を使用してください。
+* IngestFromDataReaderAsync
+* IngestFromSingleFile-非推奨です。 代わりに、`IKustoIngestClient.IngestFromStorageAsync` を使用してください。
+* IngestFromSingleFileAsync-非推奨です。 代わりに、`IKustoIngestClient.IngestFromStorageAsync` を使用してください。
+* IngestFromStream-非推奨です。 代わりに、`IKustoIngestClient.IngestFromStreamAsync` を使用してください。
+* IngestFromStreamAsync
 
 ```csharp
 public static class ExtendedKustoIngestClient
@@ -244,12 +244,12 @@ public static class ExtendedKustoIngestClient
 }
 ```
 
-## <a name="class-kustoingestfactory"></a>クラス・クストーインエストファクトリー
+## <a name="class-kustoingestfactory"></a>KustoIngestFactory クラス
 
-* ダイレクトインジェストクライアントの作成
-* キューディングエストクライアントの作成
-* クライアントを作成します。
-* クライアントを作成する
+* CreateDirectIngestClient
+* CreateQueuedIngestClient
+* CreateManagedStreamingIngestClient
+* CreateStreamingIngestClient
 
 ```csharp
 /// <summary>
@@ -342,24 +342,24 @@ public static class KustoIngestFactory
 }
 ```
 
-## <a name="class-kustoingestionproperties"></a>クラス クストインジェストプロパティ
+## <a name="class-kustoingestionproperties"></a>KustoIngestionProperties クラス
 
-KustoIngestionProperties クラスは、取り込みプロセスと Kusto エンジンによる処理を細かく制御できる基本的なインジェスト プロパティをカプセル化します。
+KustoIngestionProperties クラスには、インジェストプロセスをきめ細かく制御するための基本的なインジェストプロパティと、Kusto エンジンがそれを処理する方法が含まれています。
 
-|プロパティ   |意味    |
+|プロパティ   |説明    |
 |-----------|-----------|
 |DatabaseName |取り込むデータベースの名前 |
 |TableName |取り込むテーブルの名前 |
-|ドロップバイタグ |各エクステントに含まれるタグ。 DropByTags は永続的であり、次のように使用できます。 `.show table T extents where tags has 'some tag'``.drop extents <| .show table T extents where tags has 'some tag'` |
-|インジェストバイタグ |エクステントごとに書き込まれるタグ。 後でプロパティと一緒`IngestIfNotExists`に使用して、同じデータを 2 回取り込まないようにすることができます。 |
-|追加タグ |必要に応じて追加タグ |
-|存在しない |もう一度取り込まないタグのリスト (テーブルごと) |
-|CSV マッピング |各列について、データ型と序数列番号を定義します。 CSV インジェスティオンのみに関連する (省略可能) |
-|Json マッピング |各列に対して、JSON パスと変換オプションを定義します。 **JSON の取り込みには必須** |
-|アブロマッピング |各列に対して、Avro レコードのフィールド名を定義します。 **AVRO摂取に必須** |
-|検証ポリシー |データ検証定義。 詳細は[TODO]を参照してください。 |
-|Format |取り込むデータの形式 |
-|追加プロパティ | イン[ジェスト プロパティとしてインジェスト](https://docs.microsoft.com/azure/data-explorer/ingestion-properties)コマンドに渡されるその他のプロパティは、すべてのインジェスト プロパティがこのクラスの個別のメンバーに表示されるわけではないため、インジェスト コマンドに渡されます。|
+|DropByTags |各エクステントに含まれるタグ。 DropByTags は永続的であり、次のように使用できます。 `.show table T extents where tags has 'some tag'` または`.drop extents <| .show table T extents where tags has 'some tag'` |
+|IngestByTags |エクステントごとに記述されるタグ。 後でプロパティと共に使用して `IngestIfNotExists` 、同じデータが2回取り込みされるのを防ぐことができます。 |
+|AdditionalTags |必要に応じて追加のタグ |
+|IngestIfNotExists |再度取り込みたくないタグの一覧 (テーブルごと) |
+|CSVMapping |列ごとに、データ型と序数列番号を定義します。 CSV インジェストのみに関連します (省略可能) |
+|JsonMapping |各列に対して、は JSON パスと変換オプションを定義します。 **JSON インジェストの場合は必須** |
+|AvroMapping |列ごとに、Avro レコードのフィールドの名前を定義します。 **AVRO インジェストの場合は必須** |
+|ValidationPolicy |データ検証の定義。 詳細については、[TODO] を参照してください。 |
+|Format |取り込まれたされるデータの形式 |
+|AdditionalProperties | インジェストコマンドに[インジェストプロパティ](https://docs.microsoft.com/azure/data-explorer/ingestion-properties)として渡されるその他のプロパティ。 すべてのインジェストプロパティがこのクラスの個別のメンバーで表されていないため、プロパティが渡されます。|
 
 ```csharp
 public class KustoIngestionProperties
@@ -382,7 +382,7 @@ public class KustoIngestionProperties
 }
 ```
 
-## <a name="class-jsoncolumnmapping"></a>クラス Json 列マッピング
+## <a name="class-jsoncolumnmapping"></a>クラス JsonColumnMapping
 
 ```csharp
 public class JsonColumnMapping
@@ -395,7 +395,7 @@ public class JsonColumnMapping
 }
 ```
 
-## <a name="class-csvcolumnmapping"></a>クラスの Csv 列マッピング
+## <a name="class-csvcolumnmapping"></a>CsvColumnMapping クラス
 
 ```csharp
 public class CsvColumnMapping
@@ -418,7 +418,7 @@ public class CsvColumnMapping
 }
 ```
 
-## <a name="enum-datasourceformat"></a>列挙データ ソースの形式
+## <a name="enum-datasourceformat"></a>列挙型 DataSourceFormat
 
 ```csharp
 public enum DataSourceFormat
@@ -438,7 +438,7 @@ public enum DataSourceFormat
 ```
 
 
-## <a name="example-of-kustoingestionproperties-definition"></a>クストインジェストプロパティの定義の例
+## <a name="example-of-kustoingestionproperties-definition"></a>KustoIngestionProperties 定義の例
 
 ```csharp
 var guid = new Guid().ToString();
@@ -456,13 +456,13 @@ var kustoIngestionProperties = new KustoIngestionProperties("TargetDatabase", "T
 };
 ```
 
-## <a name="interface-ikustoqueuedingestclient"></a>インターフェイス IKusto キューイングクライアント
+## <a name="interface-ikustoqueuedingestclient"></a>インターフェイス IKustoQueuedIngestClient
 
-IKustoQueuedIngestインターフェイスは、インジェスト操作の結果に従う追跡メソッドを追加し、インジェスト クライアントの RetryPolicy を公開します。
+IKustoQueuedIngestClient インターフェイスは、インジェスト操作の結果に従い、インジェストクライアントの RetryPolicy を公開する追跡メソッドを追加します。
 
-* ピークトップインジェスティション失敗
-* 失敗を取得して廃棄する
-* 成功を収める
+* PeekTopIngestionFailures
+* GetAndDiscardTopIngestionFailures
+* GetAndDiscardTopIngestionSuccesses
 
 ```csharp
 public interface IKustoQueuedIngestClient : IKustoIngestClient
@@ -496,15 +496,15 @@ public interface IKustoQueuedIngestClient : IKustoIngestClient
 }
 ```
 
-## <a name="class-kustoqueuedingestionproperties"></a>クラス クスト キューイングのプロパティ
+## <a name="class-kustoqueuedingestionproperties"></a>KustoQueuedIngestionProperties クラス
 
-KustoQueuedingestionクラスは、インジェスト動作を微調整するために使用できるいくつかのコントロールノブでKustoIngestionPropertiesを拡張します。
+KustoQueuedIngestionProperties クラスは、インジェスト動作を微調整するために使用できるいくつかのコントロールのノブを持つ KustoIngestionProperties を拡張します。
 
-|プロパティ   |意味    |
+|プロパティ   |説明    |
 |-----------|-----------|
-|フラッシュ即時 |既定値は `false` です。 に`true`設定すると、データ管理サービスの集約メカニズムがバイパスされます。 |
-|インジェスティションレポートレベル |インジェストステータスレポートのレベルを制御`FailuresOnly`します (デフォルトは にします)。 パフォーマンスとストレージの使用に関しては、インジェストレポートレベルを次の値に設定することはお勧めしません。`FailuresAndSuccesses` |
-|インジェストレポートメソッド |インジェスステータスレポートのターゲットを制御します。 使用可能なオプションは、Azure キュー、Azure テーブル、またはその両方です。 既定値は `Queue` です。
+|FlushImmediately ちに |既定値は `false` です。 に設定すると `true` 、データ管理サービスの集計メカニズムがバイパスされます。 |
+|IngestionReportLevel |インジェストステータスレポートのレベルを制御します (既定値は `FailuresOnly` )。 最適なパフォーマンスとストレージの使用については、IngestionReportLevel をに設定しないことをお勧めします。`FailuresAndSuccesses` |
+|IngestionReportMethod |インジェストステータスレポートの対象を制御します。 使用可能なオプションは、Azure キュー、Azure テーブル、またはその両方です。 既定値は `Queue` です。
 
 ```csharp
 public class KustoQueuedIngestionProperties : KustoIngestionProperties

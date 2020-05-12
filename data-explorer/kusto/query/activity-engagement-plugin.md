@@ -1,6 +1,6 @@
 ---
-title: activity_engagementプラグイン - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのactivity_engagement プラグインについて説明します。
+title: activity_engagement プラグイン-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの activity_engagement プラグインについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a7ed7ad7ebef425160b64b792ff75c95d4c4fcee
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 9aa85bcb12cd5f8d836f58ea9d16a318d8a40506
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030322"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225957"
 ---
 # <a name="activity_engagement-plugin"></a>activity_engagement プラグイン
 
 変化するタイムライン ウィンドウを対象に、ID 列に基づいてアクティビティ エンゲージメント率が計算されます。
 
-activity_engagementプラグインは、DAU/WAU/ MAU(日/週/月次活動)の計算に使用することができます。
+activity_engagement プラグインを使用して、DAU/WAU/MAU (毎日/毎週/毎月のアクティビティ) を計算できます。
 
 ```kusto
 T | evaluate activity_engagement(id, datetime_column, 1d, 30d)
@@ -27,36 +27,37 @@ T | evaluate activity_engagement(id, datetime_column, 1d, 30d)
 
 **構文**
 
-*T* `| evaluate` `,` `,` `,` `,` `,` `,` *Start* `,` *TimelineColumn* `,` *dim1* *IdColumn* *End* *dim2* *OuterActivityWindow* *InnerActivityWindow* IdColumn タイムライン列 [ 開始終了 ] インナーアクティビティウィンドウアウターアクティビティウィンドウ [dim1 dim2.]] `activity_engagement(``)`
+*T* `| evaluate` `activity_engagement(` *idcolumn* `,` *TimelineColumn* `,` [*開始* `,` *終了* `,` ] *inneractivitywindow* `,` *outeractivitywindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
 **引数**
 
-* *T*: 入力表形式の式。
-* *IdColumn*: ユーザー アクティビティを表す ID 値を持つ列の名前。 
-* *タイムライン列*: タイムラインを表す列の名前。
-* *開始*: (オプション) スカラーと分析開始期間の値。
-* *End*: (オプション) スカラーと分析終了期間の値を指定します。
-* *内部スコープ分析ウィンドウ*期間の値を持つスカラー。
-* *外側スコープ分析ウィンドウ*期間の値を持つスカラー。
-* *dim1*、 *dim2*、 .: (オプション) アクティビティ指標の計算をスライスするディメンション列のリスト。
+* *T*: 入力テーブル式。
+* *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
+* *TimelineColumn*: タイムラインを表す列の名前。
+* *Start*: (省略可能) 分析の開始期間の値を持つスカラー。
+* *End*: (省略可能) 分析終了期間の値を含むスカラー。
+* *Inneractivitywindow*: 内部スコープの分析ウィンドウ期間の値を持つスカラー。
+* *Outeractivitywindow*: 外部スコープの分析ウィンドウ期間の値を持つスカラー。
+* *dim1*、 *dim2*、...: (省略可能) アクティビティメトリックスの計算をスライスするディメンション列の一覧です。
 
 **戻り値**
 
-内部スコープ ウィンドウの各期間と既存のディメンションの組み合わせに対して、テーブル (内部スコープ ウィンドウ内の ID 値の個別のカウント、外側のスコープ ウィンドウ内の ID 値の個別のカウント、およびアクティビティの比率) を持つテーブルを返します。
+(内部スコープウィンドウ内の個別の ID 値のカウント、外側のスコープウィンドウ内での ID 値の個別カウント、アクティビティの比率) を含むテーブルを、内部スコープウィンドウの各期間と、既存の各ディメンションの組み合わせごとに返します。
 
 出力テーブルスキーマは次のとおりです。
 
-|タイムライン列|dcount_activities_inner|dcount_activities_outer|activity_ratio|薄暗い1|..|dim_n|
+|TimelineColumn|dcount_activities_inner|dcount_activities_outer|activity_ratio|dim1|..|dim_n|
 |---|---|---|---|--|--|--|--|--|--|
-|タイプ:*タイムライン列の時点*|long|long|double|..|..|..|
+|型: as of *TimelineColumn*|long|long|double|..|..|..|
 
 
 **使用例**
 
-### <a name="dauwau-calculation"></a>ダウ/WAU 計算
+### <a name="dauwau-calculation"></a>DAU/WAU の計算
 
-次の例では、ランダムに生成されたデータに対して DAU/WAU (日次アクティブ ユーザー/週単位アクティブ ユーザー比) を計算します。
+次の例では、ランダムに生成されたデータに対して DAU/WAU (1 日あたりのアクティブユーザー/週あたりのアクティブユーザー比率) を計算します。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-01-01);
@@ -72,12 +73,13 @@ range _day from _start to _end  step 1d
 | render timechart 
 ```
 
-:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-wau.png" border="false" alt-text="アクティビティ・エンゲージメント・ダウ・ワウ":::
+:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-wau.png" border="false" alt-text="活動エンゲージメント dau wau":::
 
-### <a name="daumau-calculation"></a>ダウ/モー計算
+### <a name="daumau-calculation"></a>DAU/MAU の計算
 
-次の例では、ランダムに生成されたデータに対して DAU/WAU (日次アクティブ ユーザー/週単位アクティブ ユーザー比) を計算します。
+次の例では、ランダムに生成されたデータに対して DAU/WAU (1 日あたりのアクティブユーザー/週あたりのアクティブユーザー比率) を計算します。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-01-01);
@@ -93,12 +95,13 @@ range _day from _start to _end  step 1d
 | render timechart 
 ```
 
-:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau.png" border="false" alt-text="アクティビティエンゲージメントダウマウ":::
+:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau.png" border="false" alt-text="活動エンゲージメント dau mau":::
 
-### <a name="daumau-calculation-with-additional-dimensions"></a>追加のディメンションを含む DAU/MAU 計算
+### <a name="daumau-calculation-with-additional-dimensions"></a>追加ディメンションを使用した DAU/MAU の計算
 
-次の例では、ディメンションが追加されたランダムに生成されたデータに対して、DAU/WAU (日次アクティブ ユーザー`mod3`/ 週単位のアクティブ ユーザー比率) を計算します ( ) 。
+次の例では、追加のディメンション () を使用して、ランダムに生成されたデータに対して DAU/WAU (1 日あたりのアクティブユーザー/週単位のアクティブユーザー比率) を計算し `mod3` ます。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Generate random data of user activities
 let _start = datetime(2017-01-01);
@@ -115,4 +118,4 @@ range _day from _start to _end  step 1d
 | render timechart 
 ```
 
-:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau-mod3.png" border="false" alt-text="アクティビティエンゲージメントダウマウモッズ3":::
+:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau-mod3.png" border="false" alt-text="活動エンゲージメント dau mau mod 3":::

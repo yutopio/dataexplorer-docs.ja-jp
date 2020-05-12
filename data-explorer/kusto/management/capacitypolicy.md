@@ -1,6 +1,6 @@
 ---
-title: 容量ポリシー - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの容量ポリシーについて説明します。
+title: 容量ポリシー-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの容量ポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,86 +8,96 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: af648bd0a4b328477b14e20a2457e3e914df2827
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 15a1c21a38999b0a3929fcf0451a91ec607ca2a8
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522000"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83225923"
 ---
-# <a name="capacity-policy"></a>容量ポリシー
+# <a name="capacity-policy"></a>キャパシティ ポリシー
 
-容量ポリシーは、データインジェストやその他のデータグルーミング操作 (エクステントのマージなど) の実行に使用されるコンピューティング リソースを制御するために使用されます。
+容量ポリシーは、クラスターでのデータ管理操作に使用されるコンピューティングリソースを制御するために使用されます。
 
-## <a name="the-capacity-policy-object"></a>能力ポリシー オブジェクト
+## <a name="the-capacity-policy-object"></a>容量ポリシーオブジェクト
 
-容量ポリシーは`IngestionCapacity`、 、 `ExtentsMergeCapacity`、および`ExtentsPurgeRebuildCapacity``ExportCapacity`で構成されます。
+容量ポリシーは次のもので構成されます。
 
-### <a name="ingestion-capacity"></a>インジェスティキャパシティ
+* [IngestionCapacity](#ingestion-capacity)
+* [ExtentsMergeCapacity](#extents-merge-capacity)
+* [ExtentsPurgeRebuildCapacity](#extents-purge-rebuild-capacity)
+* [ExportCapacity](#export-capacity)
+* [ExtentsPartitionCapacity](#extents-partition-capacity)
+
+## <a name="ingestion-capacity"></a>インジェスト容量
 
 |プロパティ                           |Type    |説明                                                                                                                                                                               |
 |-----------------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|クラスター最大同時実行操作 |long    |クラスター内の同時インジェスト操作の数の最大値                                                                                                            |
-|コア使用率係数         |double  |取り込みキャパシティーを計算するときに使用するコアの割合の係数 (計算結果は常に) によって`ClusterMaximumConcurrentOperations`正規化されます。 |                                                                                                                             |
+|ClusterMaximumConcurrentOperations |long    |クラスター内の同時インジェスト操作数の最大値                                                                                                            |
+|CoreUtilizationCoefficient         |double  |インジェスト容量を計算するときに使用するコアの割合の係数 (計算の結果は常にによって正規化されます `ClusterMaximumConcurrentOperations` ) |                                                                                                                             |
 
-クラスターの合計取り込みキャパシティー [(.show capacity](../management/diagnostics.md#show-capacity)で示すように) は、次の方法で計算されます。
+クラスターのインジェスト容量の合計 (で示されているように、「[容量の表示](../management/diagnostics.md#show-capacity)」を参照) は次の方法で計算されます。
 
-最小(`ClusterMaximumConcurrentOperations` `Number of nodes in cluster` , * 最大値`Core count per node` * `CoreUtilizationCoefficient`(1, )
+最小値 ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 最大 (1, `Core count per node`  *  `CoreUtilizationCoefficient` ))
 
-> [!Note] 
-> 3 つ以上のノードを持つクラスターでは、管理ノードはインジェスト操作の実行に参加`Number of nodes in cluster`しないため、1 ずつ削減されます。
+> [!Note]
+> 3つ以上のノードがあるクラスターでは、管理ノードがインジェスト操作の実行に参加していません。 `Number of nodes in cluster`が1つ減少します。
 
-### <a name="extents-merge-capacity"></a>エクステントマージ容量
+## <a name="extents-merge-capacity"></a>エクステントのマージ容量
 
 |プロパティ                           |Type    |説明                                                                                    |
 |-----------------------------------|--------|-----------------------------------------------------------------------------------------------|
-|最大同時操作数ノード |long    |単一ノードでの並行エクステントマージ/リビルド操作の最大数 |
+|MaximumConcurrentOperationsPerNode |long    |1つのノードでの同時実行エクステントのマージ/再構築操作数の最大値 |
 
-クラスターの合計エクステントマージ容量[(.show capacity](../management/diagnostics.md#show-capacity)で示すように) は、次の方法で計算されます。
+クラスターの合計エクステントマージ容量 (で示されているように、「[容量の表示](../management/diagnostics.md#show-capacity)」を参照) は次の方法で計算されます。
 
-`Number of nodes in cluster`X`MaximumConcurrentOperationsPerNode`
+`Number of nodes in cluster`閉じる`MaximumConcurrentOperationsPerNode`
 
-> [!Note] 
-> 3 つ以上のノードを持つクラスターでは、管理ノードはマージ操作の実行に関与`Number of nodes in cluster`しないため、1 ずつ削減されます。
+> [!Note]
+> * `MaximumConcurrentOperationsPerNode`システムによって [1, 5] の範囲で自動的に調整されます。
+> * 3つ以上のノードがあるクラスターでは、管理ノードはマージ操作の実行に関与しません。 `Number of nodes in cluster`が1つ減少します。
 
-### <a name="extents-purge-rebuild-capacity"></a>エクステントパージ再構築容量
+## <a name="extents-purge-rebuild-capacity"></a>エクステント消去の再構築容量
 
 |プロパティ                           |Type    |説明                                                                                                                           |
 |-----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------|
-|最大同時操作数ノード |long    |単一ノードでの並行エクステントのパージ再構築操作 (パージ操作の再作成エクステント) の最大数 |
+|MaximumConcurrentOperationsPerNode |long    |1つのノードでの消去操作の同時再構築エクステント数の最大値 |
 
-クラスターの合計エクステントのパージ再構築容量[(.show capacity](../management/diagnostics.md#show-capacity)で示すように) は、次の方法で計算されます。
+クラスターの合計エクステントの削除の合計容量 (で示されているように、によって示さ[れます。容量の表示](../management/diagnostics.md#show-capacity)) は、次の方法で計算されます。
 
-`Number of nodes in cluster`X`MaximumConcurrentOperationsPerNode`
+`Number of nodes in cluster`閉じる`MaximumConcurrentOperationsPerNode`
 
-> [!Note] 
-> 3 つ以上のノードを持つクラスターでは、管理ノードはマージ操作の実行に関与`Number of nodes in cluster`しないため、1 ずつ削減されます。
+> [!Note]
+> 3つ以上のノードがあるクラスターでは、管理ノードはマージ操作の実行に関与しません。 `Number of nodes in cluster`が1つ減少します。
 
-### <a name="export-capacity"></a>輸出能力
+## <a name="export-capacity"></a>容量のエクスポート
 
 |プロパティ                           |Type    |説明                                                                                                                                                                            |
 |-----------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|クラスター最大同時実行操作 |long    |クラスター内の同時エクスポート操作の数の最大値。                                                                                                           |
-|コア使用率係数         |double  |エクスポート容量を計算するときに使用するコアの割合の係数 (計算結果は常に`ClusterMaximumConcurrentOperations`によって正規化されます) |
+|ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクスポート操作数の最大値。                                                                                                           |
+|CoreUtilizationCoefficient         |double  |エクスポート容量を計算するときに使用するコアの割合の係数。 計算の結果は、常にによって正規化され `ClusterMaximumConcurrentOperations` ます。 |
 
-クラスターのエクスポート容量の合計 ( [.show capacity](../management/diagnostics.md#show-capacity)で示す ) は、次の方法で計算されます。
+クラスターの合計エクスポート容量 (で示されているように、「[容量の表示](../management/diagnostics.md#show-capacity)」を参照) は、次の方法で計算されます。
 
-最小(`ClusterMaximumConcurrentOperations` `Number of nodes in cluster` , * 最大値`Core count per node` * `CoreUtilizationCoefficient`(1, )
+最小値 ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 最大 (1, `Core count per node`  *  `CoreUtilizationCoefficient` ))
 
-> [!Note] 
-> 3 つ以上のノードを持つクラスターでは、管理ノードはエクスポート操作の実行に参加`Number of nodes in cluster`しないため、1 ずつ削減されます。
+> [!Note]
+> 3つ以上のノードがあるクラスターでは、管理ノードがエクスポート操作の実行に参加していません。 `Number of nodes in cluster`が1つ減少します。
 
-### <a name="extents-partition-capacity"></a>エクステント パーティション容量
+## <a name="extents-partition-capacity"></a>エクステントパーティション容量
 
 |プロパティ                           |Type    |説明                                                                             |
 |-----------------------------------|--------|----------------------------------------------------------------------------------------|
-|クラスター最大同時実行操作 |long    |クラスター内の並行エクステント・パーティション操作の数の最大値。 |
+|ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクステントのパーティション操作数の最大値。 |
 
-クラスターの合計エクステント パーティション容量 ( [.show capacity](../management/diagnostics.md#show-capacity)で示す ) は、 `ClusterMaximumConcurrentOperations`1 つのプロパティで定義されます。
+クラスターのエクステントパーティションの合計容量 (で示さ[れ](../management/diagnostics.md#show-capacity)ているように) は、1つのプロパティで定義され `ClusterMaximumConcurrentOperations` ます。
 
-### <a name="defaults"></a>デフォルト
+> [!Note]
+> `ClusterMaximumConcurrentOperations`システムによって [1, 10] の範囲で自動的に調整されます。
 
-デフォルトの容量ポリシーは、次の JSON 表現を持っています。
+## <a name="defaults"></a>デフォルト
+
+既定の容量ポリシーには、次の JSON 表現があります。
 
 ```kusto 
 {
@@ -108,28 +118,26 @@ ms.locfileid: "81522000"
 }
 ```
 
+## <a name="control-commands"></a>管理コマンド
+
 > [!WARNING]
-> Kustoチームと最初に相談することなく、容量ポリシーを変更することは**めったに**推奨されません。
+> クラスターの使用可能なリソースに影響を与える可能性があるため、容量ポリシーを変更することはめったにありません。
 
-## <a name="control-commands"></a>コントロール コマンド
+* を使用[します。クラスターポリシーの容量を表示](capacity-policy.md#show-cluster-policy-capacity)して、クラスターの現在の容量ポリシーを表示します。
 
-* クラスターの現在の容量ポリシーを表示するには[、.show クラスター ポリシーの容量](capacity-policy.md#show-cluster-policy-capacity)を使用します。
-* [クラスターの容量ポリシーを変更するには、.alter クラスター ポリシー](capacity-policy.md#alter-cluster-policy-capacity)容量を使用します。
+* クラスター[ポリシーの容量を変更](capacity-policy.md#alter-cluster-policy-capacity)して、クラスターの容量ポリシーを変更してください。
 
 ## <a name="throttling"></a>Throttling
 
-Kusto は、次のコマンドに対する同時要求の数を制限します。
+Kusto は、次のユーザーによって開始されるコマンドの同時要求数を制限します。
 
-1. 取り込み ([ここに](../management/data-ingestion/index.md)記載されているすべてのコマンドを含む)
-      * 制限は[、容量ポリシー](#capacity-policy)で定義されているとおりです。
-1. マージ
-      * 制限は[、容量ポリシー](#capacity-policy)で定義されているとおりです。
-1. パージ
-      * グローバルは現在、クラスタごとに 1 つに固定されています。
-      * パージ再構築キャパシティーは、パージ・コマンド中の並行再作成操作の数を決定するために内部的に使用されます (これにより、パージ・コマンドはブロック/スロットルされませんが、パージ・リビルド・キャパシティーに応じて高速/低速で動作します)。
-1. Exports
-      * 制限は[、容量ポリシー](#capacity-policy)で定義されているとおりです。
+* Ingestions ([ここ](../management/data-ingestion/index.md)に記載されているすべてのコマンドを含む)
+   * 制限は、[容量ポリシー](#capacity-policy)で定義されているとおりです。
+* 破棄
+   * 現在、グローバルはクラスターごとに1つずつ修正されています。
+   * Purge rebuild capacity は、purge コマンドの実行中の同時再構築操作の数を決定するために、内部的に使用されます。 このプロセスにより、purge コマンドはブロックまたは制限されませんが、削除の再構築容量によっては、処理速度が速くなるか遅くなります。
+* Exports
+   * 制限は、[容量ポリシー](#capacity-policy)で定義されているとおりです。
 
-
-Kusto は、許可された同時操作を超えた操作を検出すると、429 HTTP コードで応答します。
-クライアントは、バックオフ後に操作を再試行する必要があります。
+操作が許可されている同時実行操作を超えたことがクラスターによって検出されると、429 ("調整済み") HTTP コードを使用して応答します。
+バックオフの後に操作を再試行してください。

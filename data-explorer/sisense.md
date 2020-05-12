@@ -6,13 +6,14 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
+ms.custom: has-adal-ref
 ms.date: 5/29/2019
-ms.openlocfilehash: 33a3e51e8bd892a5d4318445ff8e5f9ee26c4b40
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4afbf9ddf53715b045dba46d03f233f1401ff770
+ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494135"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "82862158"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-sisense"></a>Sisense で Azure Data Explorer のデータを視覚化する
 
@@ -22,7 +23,7 @@ Sisense は、高度な対話型のユーザー エクスペリエンスを提�
 
 この記事を完了するには、以下が必要です。
 
-* [Sisense アプリをダウンロードしてインストールします](https://documentation.sisense.com/latest/getting-started/download-install.htm) 
+* [Sisense アプリをダウンロードしてインストールします](https://documentation.sisense.com/latest/getting-started/download-install.htm)
 
 * StormEvents サンプル データを含むクラスターとデータベースを作成します。 詳細については、「[クイック スタート: Azure Data Explorer クラスターとデータベースを作成する](create-cluster-database-portal.md)」、および「[Azure のデータ エクスプローラーにサンプル データを取り込む](ingest-sample-data.md)」を参照してください。
 
@@ -30,7 +31,7 @@ Sisense は、高度な対話型のユーザー エクスペリエンスを提�
 
 ## <a name="connect-to-sisense-dashboards-using-azure-data-explorer-jdbc-connector"></a>Azure Data Explorer JDBC コネクタを使用して Sisense ダッシュ ボードに接続する
 
-1. 次の jar ファイルの最新バージョンをダウンロードして、 *..\Sisense\DataConnectors\jdbcdrivers\adx* にコピーします 
+1. 次の jar ファイルの最新バージョンをダウンロードして、 *..\Sisense\DataConnectors\jdbcdrivers\adx* にコピーします
 
     * activation-1.1.jar
     * adal4j-1.6.0.jar
@@ -46,14 +47,14 @@ Sisense は、高度な対話型のユーザー エクスペリエンスを提�
     * nimbus-jose-jwt-7.0.1.jar
     * oauth2-oidc-sdk-5.24.1.jar
     * slf4j-api-1.7.21.jar
-    
+
 1. **Sisense** アプリを開きます。
 1. **[データ]** タブを選択し、 **[+ ElastiCube]** を選択して、新しい ElastiCube モデルを作成します。
-    
+
     ![ElastiCube を選択する](media/sisense/data-select-elasticube.png)
 
 1. **[Add new ElastiCube Model]\(新しい ElastiCube モデルの追加\)** で、ElastiCube モデルに名前を付けて、 **[Save]\(保存\)** で保存します。
-   
+
     ![新しい ElastiCube モデルの追加](media/sisense/add-new-elasticube-model.png)
 
 1. **[+ Data]\(+ データ\)** を選択します。
@@ -82,12 +83,12 @@ Sisense は、高度な対話型のユーザー エクスペリエンスを提�
 
 1. *test* (データベース名) ウィンドウで:
     1. テーブル名を選択してテーブルをプレビューし、テーブル列名を確認します。 不要な列を削除できます。
-    1. 関連テーブルのチェック ボックスを選択して、そのテーブルを選択します。 
+    1. 関連テーブルのチェック ボックスを選択して、そのテーブルを選択します。
     1. **[Done]** を選択します。
 
-    ![テーブルを選択する](media/sisense/select-table-see-columns.png)    
+    ![テーブルを選択する](media/sisense/select-table-see-columns.png)
 
-1. **[Build]\(ビルド\)** を選択して、データセットをビルドします。 
+1. **[Build]\(ビルド\)** を選択して、データセットをビルドします。
 
     * **[Build]\(ビルド\)** ウィンドウで **[Build]\(ビルド\)** を選択します。
 
@@ -103,15 +104,15 @@ Sisense は、高度な対話型のユーザー エクスペリエンスを提�
 
     ![新しいダッシュボード](media/sisense/new-dashboard.png)
 
-1. ダッシュ ボードを選択し、 **[Create]\(作成\)** を選択します。 
+1. ダッシュ ボードを選択し、 **[Create]\(作成\)** を選択します。
 
     ![ダッシュボードの作成](media/sisense/create-dashboard.png)
 
-1. **[New Widget]\(新しいウィジェット\)** で、 **[+ Select Data]\(+ データの選択\)** を選択して、新しいウィジェットを作成します。 
+1. **[New Widget]\(新しいウィジェット\)** で、 **[+ Select Data]\(+ データの選択\)** を選択して、新しいウィジェットを作成します。
 
-    ![StormEvents ダッシュ ボードにフィールドを追加する](media/sisense/storm-dashboard-add-field.png)  
+    ![StormEvents ダッシュ ボードにフィールドを追加する](media/sisense/storm-dashboard-add-field.png)
 
-1. **[+ Add More Data]\(+ データの追加\)** を選択し、グラフに列を追加します。 
+1. **[+ Add More Data]\(+ データの追加\)** を選択し、グラフに列を追加します。
 
     ![グラフにデータを追加する](media/sisense/add-more-data.png)
 
@@ -124,4 +125,3 @@ Sisense は、高度な対話型のユーザー エクスペリエンスを提�
 ## <a name="next-steps"></a>次のステップ
 
 * [Azure Data Explorer のクエリを記述する](write-queries.md)
-

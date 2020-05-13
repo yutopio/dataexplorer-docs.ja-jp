@@ -1,5 +1,5 @@
 ---
-title: session_count プラグイン-Azure データエクスプローラー |Microsoft Docs
+title: session_count プラグイン-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの session_count プラグインについて説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7ebbbc401f8fdee79aaa328d45c7758d9acb931e
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 6a9596b71afabe1e80e866fef7f2a22f6b288631
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82619051"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372402"
 ---
 # <a name="session_count-plugin"></a>session_count プラグイン
 
@@ -25,7 +25,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 
 **構文**
 
-*T* `| evaluate` *End* `,` *dim2* *Start* `,` *dim1* *TimelineColumn* `,` *IdColumn* `,` *Bin* `,` *LookBackWindow* idcolumn`,` TimelineColumn`,` Start`,` Bin look backwindow [dim1 dim2...] `session_count(``)`
+*T* `| evaluate` `session_count(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *End* `,` *Bin* `,` *look backwindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
 **引数**
 
@@ -35,7 +35,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 * *Start*: 分析の開始期間の値を使用したスカラー。
 * *End*: 分析終了期間の値を使用したスカラー。
 * *Bin*: セッション分析ステップ期間のスカラー定数値。
-* ルックバック*ウィンドウ*: セッションのルックバック期間を表すスカラー定数値。 から`IdColumn`の id が内`LookBackWindow`の時間枠に表示される場合、セッションは既存のものと見なされます。そうでない場合、セッションは新しいものと見なされます。
+* ルックバック*ウィンドウ*: セッションのルックバック期間を表すスカラー定数値。 からの id が `IdColumn` 内の時間枠に表示される場合、 `LookBackWindow` セッションは既存のものと見なされます。そうでない場合、セッションは新しいものと見なされます。
 * *dim1*、 *dim2*、...: (省略可能) セッション数の計算をスライスするディメンション列の一覧です。
 
 **戻り値**
@@ -56,12 +56,13 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 - Timeline: 1 ~ 1万の実行数
 - Id: 1 ~ 50 のユーザーの Id
 
-`Id`(タイムライン% `Timeline` Id = = 0) の区分`Timeline`線の場合は、特定のスロットに表示されます。
+`Id``Timeline` `Timeline` (タイムライン% Id = = 0) の区分線の場合は、特定のスロットに表示されます。
 
-これは、を持つ`Id==1`イベントは任意`Timeline`のスロット、2番`Id==2`目`Timeline`のスロットごとにイベントが表示されることを意味します。
+これは、を持つイベント `Id==1` は任意の `Timeline` スロット、2番目のスロットごとにイベントが表示されることを意味 `Id==2` `Timeline` します。
 
 次の20行のデータがあります。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let _data = range Timeline from 1 to 10000 step 1
 | extend __key = 1
@@ -97,10 +98,11 @@ _data
 |8|4|
 |8|8|
 
-次に、セッションを定義してみましょう。ユーザー (`Id`) が100の時間帯に少なくとも1回、またはセッションの参照元ウィンドウが41の時間帯である限り、セッションはアクティブと見なされます。
+次に、セッションを定義してみましょう。ユーザー ( `Id` ) が100の時間帯に少なくとも1回、またはセッションの参照元ウィンドウが41の時間帯である限り、セッションはアクティブと見なされます。
 
 次のクエリは、上記の定義に従ってアクティブなセッションの数を示しています。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let _data = range Timeline from 1 to 9999 step 1
 | extend __key = 1

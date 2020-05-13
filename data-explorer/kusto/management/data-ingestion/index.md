@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: f41304ae4ac51081cd61c41856ed5e7e08ed6f7a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f0fb68395ec5ed647e1f28cc1c93d46083d405c6
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490380"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373441"
 ---
 # <a name="data-ingestion"></a>データ インジェスト
 
@@ -41,8 +41,8 @@ ms.locfileid: "81490380"
 > Kusto のテーブルに取り込まれたデータは、テーブルの有効な**保持ポリシー**の対象となります。
 > テーブルに明示的に設定しない限り、有効な保持ポリシーはデータベースの保持ポリシーから取得されます。 そのため、Kusto にデータを取り込むときは、データベースの保持ポリシーがご自分のニーズに適していることを確認してください。 適していない場合は、テーブル レベルで明示的にオーバーライドします。 そうしないと、データベースの保持ポリシーによってデータが "サイレントに" 削除されてしまう可能性があります。 詳しくは、「[Retention policy](https://kusto.azurewebsites.net/docs/concepts/retentionpolicy.html)」(アイテム保持ポリシー) をご覧ください。
 
-データ インジェストのプロパティについては、「[データ インジェストのプロパティ](https://docs.microsoft.com/azure/data-explorer/ingestion-properties)」を参照してください。
-データ インジェストでサポートされている形式の一覧については、[データ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)に関する記事を参照してください。
+データ インジェストのプロパティについては、「[データ インジェストのプロパティ](../../../ingestion-properties.md)」を参照してください。
+データ インジェストでサポートされている形式の一覧については、[データ形式](../../../ingestion-supported-formats.md)に関する記事を参照してください。
 
 
 

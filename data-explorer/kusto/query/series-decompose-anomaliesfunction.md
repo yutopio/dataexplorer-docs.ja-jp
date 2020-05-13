@@ -1,5 +1,5 @@
 ---
-title: series_decompose_anomalies ()-Azure データエクスプローラー |Microsoft Docs
+title: series_decompose_anomalies ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの series_decompose_anomalies () について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/28/2019
-ms.openlocfilehash: 51ac499690323b1d2bafb4dc20ab7773f5c99c63
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 0cd2fc2e395ad47cff29589298ba7ae694fce941
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618908"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372902"
 ---
 # <a name="series_decompose_anomalies"></a>series_decompose_anomalies()
 
@@ -23,7 +23,7 @@ ms.locfileid: "82618908"
 
 **構文**
 
-`series_decompose_anomalies (`*シリーズ* `[, ` *しきい値*`,` *の季節*`,`性の*傾向*`, ` *Test_points* `, ` *AD_method* *Seasonality_threshold* Seasonality_threshold`,``])`
+`series_decompose_anomalies (`*シリーズ* `[, `*しきい値* `,`*季節* `,` 性*傾向* `, `*Test_points* `, `*AD_method* `,`*Seasonality_threshold*`])`
 
 **引数**
 
@@ -41,7 +41,7 @@ ms.locfileid: "82618908"
 * *AD_method*: 次のいずれかを含む残留タイムシリーズの異常検出メソッド ( [series_outliers](series-outliersfunction.md)を参照) を制御する文字列です。    
     * "ctukey": カスタム10パーセンタイルの範囲を持つ[Tukey のフェンステスト](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences)[default]
     * "tukey": 標準 25 ~ 75 パーセンタイルの範囲での[tukey のフェンステスト](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences)
-* *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアの`0.6`しきい値は、既定のスコアしきい値です (詳細については、「」を参照してください) [series_periods_detect](series-periods-detectfunction.md)。
+* *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値は、既定のスコアしきい値です (詳細については、 `0.6` 「」を参照してください) [series_periods_detect](series-periods-detectfunction.md)。
 
 
 **返し**
@@ -65,6 +65,7 @@ ms.locfileid: "82618908"
 
 次の例では、週単位の季節性を持つシリーズを生成し、それに外れ値を追加します。 `series_decompose_anomalies`季節性を自動検出し、繰り返しパターンをキャプチャするベースラインを生成します。 追加した外れ値は、ad_score コンポーネントで明確に把握できます。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -81,8 +82,9 @@ ts
 
 **2. 傾向がある週単位の季節性の異常を検出する**
 
-この例では、前の例の系列に傾向を追加します。 最初に、既定`series_decompose_anomalies`のパラメーターを使用してを実行`avg`します。このパラメーターでは、傾向の既定値は平均のみを計算し、傾向は計算しません。生成されたベースラインに傾向が含まれておらず、前の例と比較しても精度が低いことがわかります。
+この例では、前の例の系列に傾向を追加します。 最初に、既定のパラメーターを使用してを実行 `series_decompose_anomalies` します。このパラメーターでは、傾向の `avg` 既定値は平均のみを計算し、傾向は計算しません。生成されたベースラインに傾向が含まれておらず、前の例と比較しても精度が低いことがわかります。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -99,8 +101,9 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 
 :::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-outliers-with-trend.png" alt-text="傾向がある週単位の季節性の外れ値" border="false":::
 
-次に、同じ例を実行しますが、系列に傾向があるため、trend パラメーター `linefit`でを指定します。 ベースラインが入力系列にかなり近いことがわかります。 挿入したすべての外れ値と、いくつかの偽陽性 (しきい値の調整に関する次の例を参照) が検出されます。
+次に、同じ例を実行しますが、系列に傾向があるため、 `linefit` trend パラメーターでを指定します。 ベースラインが入力系列にかなり近いことがわかります。 挿入したすべての外れ値と、いくつかの偽陽性 (しきい値の調整に関する次の例を参照) が検出されます。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -121,6 +124,7 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 
 前の例では、異常なポイントがいくつか検出されました。この例では、異常検出のしきい値を既定値の1.5 から2.5 の範囲内に増やし、より強力な異常のみが検出されるようにしています。 データに挿入した外れ値のみが検出されたことがわかります。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 

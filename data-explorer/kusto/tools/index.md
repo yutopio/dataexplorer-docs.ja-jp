@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: e9b274ae129f7cd15ba30edb24f8432c738f55ab
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ce7751d7ac60d23f9ffa0fc84992050fe1036131
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490652"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83370482"
 ---
 # <a name="azure-data-explorer-tools"></a>Azure Data Explorer ツール
 
@@ -21,31 +21,31 @@ ms.locfileid: "81490652"
 
 
 * [Kusto.Explorer](./kusto-explorer.md) - Kusto のクエリと制御を行うための主要なデスクトップ ツール
-* [Web UI](https://docs.microsoft.com/azure/data-explorer/web-query-data) - Kusto に対するクエリを実行するための Web UI
+* [Web UI](../../web-query-data.md) - Kusto に対するクエリを実行するための Web UI
 
 ## <a name="visualizations-dashboards-and-reporting-tools"></a>視覚化、ダッシュボード、およびレポート ツール
 
 
-* [Azure Notebooks](https://docs.microsoft.com/azure/data-explorer/azure-notebooks) - Azure Notebooks を使用して Azure Data Explorer のデータを分析します。
+* [Azure Notebooks](../../azure-notebooks.md) - Azure Notebooks を使用して Azure Data Explorer のデータを分析します。
 * Excel
-    * [Excel の空のクエリ](https://docs.microsoft.com/azure/data-explorer/excel-blank-query) - Excel データ ソースとして Kusto クエリを追加します
-    * [Excel コネクタ](https://docs.microsoft.com/azure/data-explorer/excel-connector) - Azure Data Explorer 用の Excel コネクタ 
+    * [Excel の空のクエリ](../../excel-blank-query.md) - Excel データ ソースとして Kusto クエリを追加します
+    * [Excel コネクタ](../../excel-connector.md) - Azure Data Explorer 用の Excel コネクタ 
 
 * PowerBI
 
-   * [PowerBI ベスト プラクティス](https://docs.microsoft.com/azure/data-explorer/power-bi-best-practices)
-   * [PowerBI コネクタ](https://docs.microsoft.com/azure/data-explorer/power-bi-connector)
-   * [Power BI インポート済みクエリ](https://docs.microsoft.com/azure/data-explorer/power-bi-imported-query) 
-   * [PowerBI SQL クエリ](https://docs.microsoft.com/azure/data-explorer/power-bi-sql-query)
+   * [PowerBI ベスト プラクティス](../../power-bi-best-practices.md)
+   * [PowerBI コネクタ](../../power-bi-connector.md)
+   * [Power BI インポート済みクエリ](../../power-bi-imported-query.md) 
+   * [PowerBI SQL クエリ](../../power-bi-sql-query.md)
 
-* [Grafana](https://docs.microsoft.com/azure/data-explorer/grafana)
+* [Grafana](../../grafana.md)
 
 ## <a name="orchestration-tools"></a>オーケストレーション ツール
 
 
 * Microsoft Flow
-    * [Microsoft Flow コネクタ](https://docs.microsoft.com/azure/data-explorer/flow)
-    * [Microsoft Flow コネクタの使用例](https://docs.microsoft.com/azure/data-explorer/flow-usage)
+    * [Microsoft Flow コネクタ](../../flow.md)
+    * [Microsoft Flow コネクタの使用例](../../flow-usage.md)
 * [Microsoft Logic Apps](./logicapps.md) - [Microsoft Logic Apps](https://docs.microsoft.com/azure/logic-apps/logic-apps-what-are-logic-apps) の一部として Kusto クエリを自動的に実行します
 
 
@@ -53,12 +53,12 @@ ms.locfileid: "81490652"
 ## <a name="data-ingestion-tools"></a>データ取り込みツール
 
 
-* [LightIngest](https://docs.microsoft.com/azure/data-explorer/lightingest) - Azure Data Explorer へのアドホック データ取り込みのヘルプ ユーティリティ
+* [LightIngest](../../lightingest.md) - Azure Data Explorer へのアドホック データ取り込みのヘルプ ユーティリティ
  
 
 
 
 ## <a name="source-control-integration-tools"></a>ソース管理の統合ツール
 
-* [Azure Pipelines](https://docs.microsoft.com/azure/data-explorer/devops) - パイプラインの一部として制御コマンドを呼び出します
+* [Azure Pipelines](../../devops.md) - パイプラインの一部として制御コマンドを呼び出します
 * [Sync Kusto](./synckusto.md) - Git との間で Kusto のストアド関数を同期します

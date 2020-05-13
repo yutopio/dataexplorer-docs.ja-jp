@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 564ce0677f3d280fed27c0b6ce1328cb35188c4f
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: fc3fa6b081e48e09ed246144cd72785446395883
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225889"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373338"
 ---
 # <a name="data-partitioning-policy-preview"></a>データのパーティション分割ポリシー (プレビュー)
 
@@ -212,8 +212,8 @@ ms.locfileid: "83225889"
 
 ### <a name="outliers-in-partitioned-columns"></a>パーティション分割された列の外れ値
 
-* ハッシュパーティションキーの値の割合が、適切に設定されていない (たとえば、空であるか、汎用値がある) 場合、クラスターのノード間で分散されていないデータの分布が発生する可能性があります。
-* Uniform range datetime パーティションキーの値の大部分が、列のほとんどの値 (たとえば、遠く以上の datetime 値) からの "遠く" の大きさである場合。
+* たとえば、空の文字列、汎用値 (やなど) など、他のユーザーよりも頻繁に使用されている値がハッシュパーティションキーに含まれている場合、 `null` `N/A` または、 `tenant_id` クラスターノード間でのデータの分散分散に寄与し、クエリのパフォーマンスが低下する可能性があるエンティティ (など) がデータセットに significnatly ます。
+* Uniform range datetime パーティションキーに、列の値の大部分から "遠く" (たとえば、過去または将来の datetime 値) の大きな値が含まれている場合、データのパーティション分割プロセスが過剰に増える可能性があり、クラスターで追跡する必要がある多数の小さなエクステントが発生する可能性があります。
 
 どちらの場合も、データを "修正" するか、インジェストの前または後に ([更新ポリシー](updatepolicy.md)を使用して) データ内の関係のないレコードをフィルターで除外して、クラスターでのデータのパーティション分割のオーバーヘッドを軽減する必要があります。
 

@@ -1,5 +1,5 @@
 ---
-title: series_decompose_forecast ()-Azure データエクスプローラー |Microsoft Docs
+title: series_decompose_forecast ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの series_decompose_forecast () について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 97f87a7390ab099886e84642b2eb46a8087b6da9
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 9676da9d12e2654cd4d92538f183a2630971d078
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618847"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372878"
 ---
 # <a name="series_decompose_forecast"></a>series_decompose_forecast()
 
@@ -23,7 +23,7 @@ ms.locfileid: "82618847"
  
 **構文**
 
-`series_decompose_forecast(`*系列* `,` *ポイント*`,` *Trend* `,` *Seasonality_threshold*の季節性の傾向 Seasonality_threshold *Seasonality* `[,``])`
+`series_decompose_forecast(`*シリーズ* `,`*ポイント* `[,`*季節* `,` 性*傾向* `,`*Seasonality_threshold*`])`
 
 **引数**
 
@@ -37,7 +37,7 @@ ms.locfileid: "82618847"
     * "linefit": 線形回帰 (既定値) を使用して傾向コンポーネントを抽出します。    
     * "avg": 傾向コンポーネントを平均 (x) として定義します。
     * "none": 傾向がありません。このコンポーネントの抽出をスキップします。   
-* *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値`0.6`は、既定のスコアしきい値はです。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
+* *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値は、既定のスコアしきい値は `0.6` です。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
 
 **返し**
 
@@ -52,8 +52,9 @@ ms.locfileid: "82618847"
 
 **例**
 
-次の例では、週単位の季節性と小さな上昇傾向を使用して、1時間ごとの粒度で`make-series` 4 週間のシリーズを生成します。その後、を使用して、系列に空の週を追加します。 `series_decompose_forecast`は週 (24 * 7 ポイント) で呼び出され、季節性と傾向を自動的に検出し、5週間の期間全体の予測を生成します。 
+次の例では、週単位の季節性と小さな上昇傾向を使用して、1時間ごとの粒度で4週間のシリーズを生成します。その後、を使用 `make-series` して、系列に空の週を追加します。 `series_decompose_forecast`は週 (24 * 7 ポイント) で呼び出され、季節性と傾向を自動的に検出し、5週間の期間全体の予測を生成します。 
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*4 step 1 // generate 4 weeks of hourly data
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 

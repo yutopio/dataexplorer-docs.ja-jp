@@ -1,5 +1,5 @@
 ---
-title: Kusto. エクスプローラーツール-Azure データエクスプローラー |Microsoft Docs
+title: Kusto. エクスプローラーツール-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの Kusto エクスプローラーツールについて説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/23/2020
-ms.openlocfilehash: 1a643a282deec5a98230a17e7335fff7638812b8
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 60a414ff871d88de041e8b76671b73d98854fba0
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108441"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374067"
 ---
 # <a name="kustoexplorer-tool"></a>Kusto. エクスプローラーツール
 
@@ -23,7 +23,7 @@ Kusto. エクスプローラーは、Kusto クエリ言語を使用してデー�
 
 * [Kusto エクスプローラーツール](https://aka.ms/Kusto.Explorer)をインストールする
 
-* または、お使いのブラウザーで Kusto クラスターに`https://<your_cluster>.kusto.windows.net`アクセスします。 <your_cluster> を Azure データエクスプローラークラスター名に置き換えます。
+* または、お使いのブラウザーで Kusto クラスターにアクセスします `https://<your_cluster>.kusto.windows.net` 。 <your_cluster> を Azure データエクスプローラークラスター名に置き換えます。
 
 
 
@@ -104,7 +104,7 @@ Kusto. エクスプローラーのメニューパネルには、次のタブが�
 |Column Chart | すべての数値列が異なる系列 (Y 軸) にマップされ、数値が X 軸になる前のテキスト列 (UI で制御可能) を表す縦棒グラフを表示します。|
 |横棒グラフ    | すべての数値列が異なる系列 (X 軸) にマップされ、数値が Y 軸 (UI で制御可能) になる前のテキスト列が横棒グラフで表示されます。|
 |積み上げ面グラフ      | X 軸が最初の列 (数値である必要があります) と、すべての数値列が異なる系列 (Y 軸) にマップされる積み上げ面グラフを表示します。 |
-|タイムライングラフ   | X 軸が最初の列 (datetime である必要があります) で、すべての数値列が異なる系列 (Y 軸) にマップされる時間グラフを表示します。|
+|タイムライン グラフ   | X 軸が最初の列 (datetime である必要があります) で、すべての数値列が異なる系列 (Y 軸) にマップされる時間グラフを表示します。|
 |折れ線グラフ   | X 軸が最初の列 (数値である必要があります) と、すべての数値列が異なる系列 (Y 軸) にマップされた折れ線グラフを表示します。|
 |異常グラフ|    線上に似ていますが、機械学習の異常アルゴリズムを使用して、時系列データの異常を検出します。 異常検出の場合、Kusto は[series_decompose_anomalies](../query/series-decompose-anomaliesfunction.md)関数を使用します。(*) 
 |円グラフ    |    カラー軸が最初の列で、シータ軸 (メジャーである必要があります) が2番目の列である円グラフを表示します。|
@@ -265,7 +265,7 @@ Kusto エクスプローラーの左側のウィンドウに、クライアン�
 実際のスキーマが大きい場合 (数百のテーブルを含むデータベースなど)、CTRL キーを押しながら F キーを押して、探しているエンティティ名の部分文字列 (大文字と小文字を区別しない) を入力することにより、スキーマを検索することができます。
 
 Kusto. エクスプローラーでは、クエリウィンドウからの接続パネルの制御がサポートされています。
-これは、スクリプトに非常に便利です。 たとえば、スクリプトによってクエリされるデータを含むクラスター/データベースに接続するために Kusto エクスプローラーに指示するコマンドを使用してスクリプトファイルを起動する場合は、次の構文を使用できます。 通常どおり、または類似し`F5`た行を実行する必要があります。
+これは、スクリプトに非常に便利です。 たとえば、スクリプトによってクエリされるデータを含むクラスター/データベースに接続するために Kusto エクスプローラーに指示するコマンドを使用してスクリプトファイルを起動する場合は、次の構文を使用できます。 通常どおり、または類似した行を実行する必要があり `F5` ます。
 
 ```kusto
 #connect cluster('help').database('Samples')
@@ -285,7 +285,7 @@ StormEvents | count
 Data Source=https://CLUSTER_NAME.kusto.windows.net;Initial Catalog=DATABASE_NAME;AAD Federated Security=True;Authority Id=AAD_TENANT_OF_CLUSTER;User=USER_DOMAIN
 ```
 
-一意であること`AAD_TENANT_OF_CLUSTER`は、クラスターがホストされている aad テナントのドメイン名または AAD テナント ID (GUID) (通常は、クラスターを所有する組織のドメイン名`contoso.com`)、USER_DOMAIN はそのテナントに招待されたユーザーの id ( `joe@fabrikam.com`など) です。 
+一意であることは、 `AAD_TENANT_OF_CLUSTER` クラスターがホストされている aad テナントのドメイン名または aad テナント ID (GUID) (通常は、クラスターを所有する組織のドメイン名)、 `contoso.com` USER_DOMAIN はそのテナントに招待されたユーザーの id (など) です `joe@fabrikam.com` 。 
 
 >[!Note]
 > ユーザーのドメイン名は、クラスターをホストしているテナントの名前と必ずしも同じではありません。
@@ -294,7 +294,7 @@ Data Source=https://CLUSTER_NAME.kusto.windows.net;Initial Catalog=DATABASE_NAME
 
 Kusto。エクスプローラーは、結果ペインで各行の重大度または詳細レベルを "推測" し、それに応じて色を設定しようとします。 これを行うには、各列の個別の値を一連の既知のパターン ("警告"、"エラー" など) と照合します。
 
-出力の配色を変更するか、この動作をオフにするには、[**ツール**] メニューの [**オプション** > ] [**結果ビューアー** > の**詳細設定**] [配色] を選択します。
+出力の配色を変更するか、この動作をオフにするには、[**ツール**] メニューの [**オプション**] [  >  **結果ビューアー**の  >  **詳細設定**] [配色] を選択します。
 
 ![alt text](./Images/KustoTools-KustoExplorer/ke-color-scheme.png)
 
@@ -316,6 +316,7 @@ Kusto. エクスプローラーには、アドホッククエリの作成、編�
 
 テーブルログがある場合は、次のように入力することで、そのログを調べることができます。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents | count 
 ```
@@ -324,11 +325,13 @@ StormEvents | count
 
 次に、クエリの例をいくつか示します。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Take 10 lines from the table. Useful to get familiar with the data
 StormEvents | limit 10 
 ```
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 // Filter by EventType == 'Flood' and State == 'California' (=~ means case insensitive) 
 // and take sample of 10 lines
@@ -343,7 +346,7 @@ Kusto. エクスプローラーを使用すると、コンピューターから 
 
 1. ファイルに一致するスキーマを使用してテーブルを作成したことを確認します (たとえば、 [. create table](../management/tables.md)コマンドを使用します)。
 
-1. ファイル拡張子がファイルの内容に適していることを確認します。 たとえば、次のように入力します。
+1. ファイル拡張子がファイルの内容に適していることを確認します。 次に例を示します。
     * ファイルにコンマ区切りの値が含まれている場合は、ファイルの拡張子が .csv であることを確認してください。
     * ファイルにタブ区切りの値が含まれている場合は、ファイルの拡張子が .tsv であることを確認します。
 
@@ -401,7 +404,7 @@ Kusto. エクスプローラーは、クエリとクエリ結果を電子メー�
 しくみは次のとおりです。
 
 1. Kusto エクスプローラーでクエリを実行する
-1. [**クリップボードにエクスポート**] ( `Ctrl+Shift+C`または押す) を選択します。
+1. [**クリップボードにエクスポート**] (または押す) を選択します `Ctrl+Shift+C` 。
 
     ![alt text](./Images/KustoTools-KustoExplorer/menu-export.png "メニュー-エクスポート")
 
@@ -421,7 +424,7 @@ Kusto. エクスプローラーは、クエリとクエリ結果を電子メー�
 >
 > * 以下で説明するクライアント側クエリ parametrization は、Kusto. エクスプローラーアプリケーションの機能です。 これは、サービスによって実行されるように送信する前に、クエリに対して文字列置換操作を使用することと同じです。 次に示す構文はクエリ言語自体の一部ではなく、Kusto エクスプローラー以外の方法でサービスにクエリを送信するときには使用できません。
 
-複数のクエリまたは複数のタブで同じ値を使用する予定がある場合は、それを変更するのが困難になります。 ただし、Kusto. エクスプローラーではクエリパラメーターがサポートされています。 パラメーターは、角{}かっこで示されます。 たとえば次のようになります。`{parameter1}`
+複数のクエリまたは複数のタブで同じ値を使用する予定がある場合は、それを変更するのが困難になります。 ただし、Kusto. エクスプローラーではクエリパラメーターがサポートされています。 パラメーターは、角かっこで示され {} ます。 例: `{parameter1}`
 
 スクリプトエディターでは、クエリパラメーターが強調表示されます。
 
@@ -450,13 +453,13 @@ Kusto. エクスプローラーは、クエリとクエリ結果を電子メー�
 ブラウザーで開いたときに、Kusto. エクスプローラーがローカルで起動し、指定した Kusto データベースに対して特定のクエリを実行する URI を作成できます。
 
 ### <a name="limitations"></a>制限事項
-クエリは、Internet Explorer の制限によって最大2000文字までに制限されています (制限はクラスターとデータベース名の長さhttps://support.microsoft.com/kb/208427に依存しているため、この制限はクラスターとデータベース名の長さに依存しているため、文字数の制限に達する可能性があります。以下の「[短いリンクを取得](#getting-shorter-links)する」を参照)。
+クエリは、Internet Explorer の制限によって最大2000文字までに制限されています (制限はクラスターとデータベース名の長さに依存しているため、この制限はクラスターとデータベース名の長さに依存しているため、 https://support.microsoft.com/kb/208427 文字数の制限に達する可能性があります。以下の「[短いリンクを取得](#getting-shorter-links)する」を参照)。
 
-URI の形式は次のとおりです<ClusterCname>: https://<DatabaseName>. kusto.windows.net/? query =<QueryToExecute>
+URI の形式は次のとおりです: https:// <ClusterCname> . kusto.windows.net/ <DatabaseName> ? query =<QueryToExecute>
 
-次に例 を示します。https://help.kusto.windows.net/Samples?query=StormEvents+%7c+limit+10
+次に例を示します。  https://help.kusto.windows.net/Samples?query=StormEvents+%7c+limit+10
  
-この URI は Kusto. エクスプローラーを開き、 `help` kusto クラスターに接続して、 `Samples`データベースに対して指定されたクエリを実行します。 既に実行されている Kusto. エクスプローラーのインスタンスがある場合は、実行中のインスタンスによって新しいタブが開き、そこでクエリが実行されます。)
+この URI は Kusto. エクスプローラーを開き、 `help` kusto クラスターに接続して、データベースに対して指定されたクエリを実行します `Samples` 。 既に実行されている Kusto. エクスプローラーのインスタンスがある場合は、実行中のインスタンスによって新しいタブが開き、そこでクエリが実行されます。)
 
 **セキュリティ**に関する注意: セキュリティ上の理由から、コントロールコマンドに対してディープリンクは無効になっています。
 
@@ -478,7 +481,7 @@ https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSs
 
 ディープリンクでパラメーター化クエリを使用できます。
 
-1. パラメーター化クエリとして書式設定するクエリを作成します ( `KustoLogs | where Timestamp > ago({Period}) | count`たとえば、)。 
+1. パラメーター化クエリとして書式設定するクエリを作成します (たとえば、 `KustoLogs | where Timestamp > ago({Period}) | count` )。 
 2. この場合は、URI 内のすべてのクエリパラメーターにパラメーターを指定します。
 
 `https://mycluster.kusto.windows.net/MyDatabase?web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
@@ -502,10 +505,10 @@ Kusto. エクスプローラーでは、次の構文でいくつかのコマン�
 [*LocalScriptFile*][*QueryString*]
 
 各値の説明:
-* *LocalScriptFile*ローカルコンピューター上のスクリプトファイルの名前を指定します。この名前は`.kql`拡張子を持つ必要があります。 このようなファイルが存在する場合、このファイルは起動時に自動的に読み込まれます。
+* *LocalScriptFile*ローカルコンピューター上のスクリプトファイルの名前を指定します。この名前は拡張子を持つ必要があり `.kql` ます。 このようなファイルが存在する場合、このファイルは起動時に自動的に読み込まれます。
 * *QueryString*は、HTTP クエリ文字列の書式設定を使用して書式設定された文字列です。 このメソッドは、次の表で説明するように、追加のプロパティを提供します。
 
-たとえば、という`c:\temp\script.kql`スクリプトファイルで Kusto. エクスプローラーを起動し、cluster `help` `Samples`と通信するように構成されている場合は、次のコマンドを使用します。
+たとえば、というスクリプトファイルで Kusto. エクスプローラーを起動し、 `c:\temp\script.kql` cluster と通信するように構成されている場合は、 `help` `Samples` 次のコマンドを使用します。
 
 ```
 Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples;Fed=true&name=Samples
@@ -514,8 +517,8 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
 |引数  |説明                                                               |
 |----------|--------------------------------------------------------------------------|
 |**実行するクエリ**                                                                 |
-|`query`   |実行するクエリ (base64 エンコード)。 空の場合は`querysrc`、を使用します。          |
-|`querysrc`|実行するクエリが格納されているファイルまたは blob の`query` URL (が空の場合)。|
+|`query`   |実行するクエリ (base64 エンコード)。 空の場合は、を使用 `querysrc` します。          |
+|`querysrc`|実行するクエリが格納されているファイルまたは blob の URL ( `query` が空の場合)。|
 |**Kusto クラスターへの接続**                                                  |
 |`uri`     |接続先の Kusto クラスターの接続文字列。                 |
 |`name`    |Kusto クラスターへの接続の表示名。                  |
@@ -526,14 +529,14 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
 
 ## <a name="kustoexplorer-connection-files"></a>Kusto. エクスプローラー接続ファイル
 
-Kusto. エクスプローラーは`%LOCALAPPDATA%\Kusto.Explorer` 、その接続設定をフォルダー内に保持します。
-接続グループの一覧は内`%LOCALAPPDATA%\Kusto.Explorer\UserConnectionGroups.xml`に保持され、各接続グループはの下`%LOCALAPPDATA%\Kusto.Explorer\Connections\`の専用ファイル内に保持されます。
+Kusto. エクスプローラーは、その接続設定をフォルダー内に保持します。 `%LOCALAPPDATA%\Kusto.Explorer`
+接続グループの一覧は内に保持され、 `%LOCALAPPDATA%\Kusto.Explorer\UserConnectionGroups.xml` 各接続グループはの下の専用ファイル内に保持され `%LOCALAPPDATA%\Kusto.Explorer\Connections\` ます。
 
 ### <a name="format-of-connection-group-files"></a>接続グループファイルの形式
 
-ファイルの場所は`%LOCALAPPDATA%\Kusto.Explorer\UserConnectionGroups.xml`です。  
+ファイルの場所は `%LOCALAPPDATA%\Kusto.Explorer\UserConnectionGroups.xml` です。  
 
-これは、次のプロパティを持つ`ServerGroupDescription`オブジェクトの配列の XML シリアル化です。
+これは、 `ServerGroupDescription` 次のプロパティを持つオブジェクトの配列の XML シリアル化です。
 
 ```
   <ServerGroupDescription>
@@ -556,9 +559,9 @@ Kusto. エクスプローラーは`%LOCALAPPDATA%\Kusto.Explorer` 、その接�
 
 ### <a name="format-of-connection-list-files"></a>接続リストファイルの形式
 
-ファイルの場所は`%LOCALAPPDATA%\Kusto.Explorer\Connections\`です。
+ファイルの場所はです `%LOCALAPPDATA%\Kusto.Explorer\Connections\` 。
 
-これは、次のプロパティを持つ`ServerDescriptionBase`オブジェクトの配列の XML シリアル化です。
+これは、 `ServerDescriptionBase` 次のプロパティを持つオブジェクトの配列の XML シリアル化です。
 
 ```
    <ServerDescriptionBase xsi:type="ServerDescription">
@@ -586,14 +589,14 @@ Kusto. エクスプローラーは`%LOCALAPPDATA%\Kusto.Explorer` 、その接�
 必要に応じて、Kusto を完全にリセットできます。 コンピューターに展開されている Kusto を完全に削除してからインストールしなければならないようにするには、次の手順を使用します。
 
 1. Windows で、[**プログラムの変更と削除**] ( **[プログラムと機能**] とも呼ばれます) を開きます。
-1. 名前がで始まるすべての`Kusto.Explorer`項目を選択します。
+1. 名前がで始まるすべての項目を選択し `Kusto.Explorer` ます。
 1. **[アンインストール]** を選択します。
 
    これによってアプリケーションがアンインストールされない場合 (ClickOnce アプリケーションで発生する可能性のある既知の問題)、「[このスタックオーバーフロー](https://stackoverflow.com/questions/10896223/how-do-i-completely-uninstall-a-clickonce-application-from-my-computer) 」の記事を参照して、その方法を説明してください。
 
-1. フォルダー `%LOCALAPPDATA%\Kusto.Explorer`を削除します。 これにより、すべての接続と履歴が削除されます。
+1. フォルダーを削除 `%LOCALAPPDATA%\Kusto.Explorer` します。 これにより、すべての接続と履歴が削除されます。
 
-1. フォルダー `%APPDATA%\Kusto`を削除します。 これにより、Kusto. エクスプローラーのトークンキャッシュが削除されます。 すべてのクラスターに対して再認証を行う必要があります。
+1. フォルダーを削除 `%APPDATA%\Kusto` します。 これにより、Kusto. エクスプローラーのトークンキャッシュが削除されます。 すべてのクラスターに対して再認証を行う必要があります。
 
 また、特定のバージョンの Kusto エクスプローラーに戻すこともできます。
 
@@ -609,7 +612,7 @@ Kusto. エクスプローラーは`%LOCALAPPDATA%\Kusto.Explorer` 、その接�
 
 **現象:**
 
-起動時に、Kusto. エクスプローラーにエラーが`InvalidOperationException`表示されます。
+起動時に、Kusto. エクスプローラーにエラーが表示されます。 `InvalidOperationException`
 
 **考えられる解決策:**
 
@@ -627,7 +630,7 @@ Kusto. エクスプローラーを開くたびに、新しいバージョンを�
 
 これは、ローカルの ClickOnce ストアが破損した場合に発生する可能性があります。 管理者特権でのコマンドプロンプトで次のコマンドを実行して、ローカルの ClickOnce ストアを消去できます。
 > [!Important]
-> 1. ClickOnce アプリケーションまたはの`dfsvc.exe`他のインスタンスがある場合は、このコマンドを実行する前にそれらを終了します。
+> 1. ClickOnce アプリケーションまたはの他のインスタンスがある場合は `dfsvc.exe` 、このコマンドを実行する前にそれらを終了します。
 > 2. ClickOnce アプリは、アプリショートカットに格納されている元のインストール場所にアクセスできる限り、次回の実行時に自動的に再インストールされます。 アプリのショートカットは削除されません。
 
 ```
@@ -645,7 +648,7 @@ rd /q /s %userprofile%\appdata\local\apps\2.0
 * プログラムの起動に失敗し、次のものを含むエラーが表示されます。`The application binding data format is invalid.` 
 * プログラムの起動に失敗し、次のものを含むエラーが表示されます。`Exception from HRESULT: 0x800736B2`
 
-エラーの詳細を調べるには、 `Details`次のエラーダイアログをクリックします。
+エラーの詳細を調べるには `Details` 、次のエラーダイアログをクリックします。
 
 ![alt text](./Images/KustoTools-KustoExplorer/clickonce-err-1.jpg "clickonce-err-1")
 
@@ -666,9 +669,9 @@ Following errors were detected during this operation.
 
 **提案されたソリューションの手順:**
 
-1. ( `Programs and Features` `appwiz.cpl`) を使用して、kusto エクスプローラーアプリケーションをアンインストールします。
+1. () を使用して、Kusto エクスプローラーアプリケーションをアンインストールし `Programs and Features` `appwiz.cpl` ます。
 
-1. を実行`CleanOnlineAppCache`してから、Kusto をもう一度インストールしてみてください。 管理者特権のコマンドプロンプトから次のコマンドを実行します。 
+1. を実行してから `CleanOnlineAppCache` 、Kusto をもう一度インストールしてみてください。 管理者特権のコマンドプロンプトから次のコマンドを実行します。 
     
     ```
     rundll32 %windir%\system32\dfshim.dll CleanOnlineAppCache
@@ -705,7 +708,7 @@ Following errors were detected during this operation.
 
 1. それでも失敗する場合は、次のように LogVerbosityLevel string 値1を作成して、詳細な ClickOnce ログ記録を有効にします。
 
-`HKEY_CURRENT_USER\Software\Classes\Software\Microsoft\Windows\CurrentVersion\Deployment`を再再現し、詳細な出力をにKEBugReport@microsoft.com送信します。 
+`HKEY_CURRENT_USER\Software\Classes\Software\Microsoft\Windows\CurrentVersion\Deployment`を再再現し、詳細な出力をに送信し KEBugReport@microsoft.com ます。 
 
 #### <a name="clickonce-error-your-administrator-has-blocked-this-application-because-it-potentially-poses-a-security-risk-to-your-computer"></a>ClickOnce エラー: コンピューターにセキュリティ上のリスクが生じる可能性があるため、管理者がこのアプリケーションをブロックしました
 
@@ -714,7 +717,7 @@ Following errors were detected during this operation.
 * `Your administrator has blocked this application because it potentially poses a security risk to your computer`.
 * `Your security settings do not allow this application to be installed on your computer.`
 
-**解決策:**
+**解決方法:**
 
 1. これは、別のアプリケーションによって、ClickOnce 信頼プロンプトの既定の動作がオーバーライドされたことが原因である可能性があります。 [このハウツー記事で](https://docs.microsoft.com/visualstudio/deployment/how-to-configure-the-clickonce-trust-prompt-behavior)説明されているように、既定の構成設定を表示し、コンピューター上の実際の設定と比較して、必要に応じてリセットすることができます。
 
@@ -722,7 +725,7 @@ Following errors were detected during this operation.
 
 前のトラブルシューティングの手順を実行しても Kusto を開始できない場合があります。エクスプローラーを起動するには、ローカルに保存されているデータをクリーニングすることができます。
 
-Kusto エクスプローラーアプリケーションによって保存されるデータについ`C:\Users\\[your alias]\AppData\Local\Kusto.Explorer`ては、「」を参照してください。
+Kusto エクスプローラーアプリケーションによって保存されるデータについては、「」を参照してください。 `C:\Users\\[your alias]\AppData\Local\Kusto.Explorer`
 
 > [!NOTE]
 > データをクリーニングすると、開いているタブ (回復フォルダー)、保存された接続 (接続フォルダー)、およびアプリケーションの設定 (UserSettings フォルダー) が失われる可能性があります。

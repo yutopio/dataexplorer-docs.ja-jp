@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: a849cd496d41ad473768b3f267639eaf8c467880
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: 29b35e5bd7265d89e65fe0129317a9f1672c7cad
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741780"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373078"
 ---
 # <a name="rank_tdigest"></a>rank_tdigest()
 
-セット内の値のおおよその順位を計算します。 セット`v` `S`内の値のランクは`S` `v`、 `S`より小さいまたは等しいのメンバーの数として定義され`tdigest`ます。これは、によって表されます。
+セット内の値のおおよその順位を計算します。 セット内の値のランク `v` `S` は、より小さいまたは等しいのメンバーの数として定義され `S` ます。これは、に `v` `S` よって表され `tdigest` ます。
 
 **構文**
 
@@ -34,12 +34,13 @@ ms.locfileid: "82741780"
 
 **ヒント**
 
-1) ランクを取得する値は、 `tdigest`と同じ型である必要があります。
+1) ランクを取得する値は、と同じ型である必要があり `tdigest` ます。
 
 **使用例**
 
 並べ替えられたリスト (1-1000) では、685のランクは次のようになります。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 1000 step 1
 | summarize t_x=tdigest(x)
@@ -52,6 +53,7 @@ range x from 1 to 1000 step 1
 
 このクエリでは、すべての損傷プロパティのコストについて、値 $4490 のランクが計算されます。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | summarize tdigestRes = tdigest(DamageProperty)
@@ -65,6 +67,7 @@ StormEvents
 
 (セットサイズで割ることによって) ランクの推定パーセンテージを取得します。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | summarize tdigestRes = tdigest(DamageProperty), count()
@@ -79,6 +82,7 @@ StormEvents
 
 損傷プロパティのコストの百分位85は、$4490 です。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents
 | summarize tdigestRes = tdigest(DamageProperty)

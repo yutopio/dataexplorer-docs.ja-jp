@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1b4a917101ad3a35f8fdbc1cccb257b6f3724b69
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 5c430fd0ca18265c5800165b33bfe14126aee02a
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224869"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373270"
 ---
 # <a name="infer_storage_schema-plugin"></a>infer_storage_schema プラグイン
 
@@ -41,7 +41,7 @@ evaluate infer_storage_schema(options)
 |名前                    |必須|説明|
 |------------------------|--------|-----------|
 |`StorageContainers`|はい|格納されているデータ成果物のプレフィックス URI を表す[ストレージ接続文字列](../api/connection-strings/storage.md)の一覧|
-|`DataFormat`|はい|サポートされている[データ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)の1つ。|
+|`DataFormat`|はい|サポートされている[データ形式](../../ingestion-supported-formats.md)の1つ。|
 |`FileExtension`|いいえ|このファイル拡張子で終わるファイルのみをスキャンします。 必須ではありませんが、これを指定するとプロセスが高速化されます (または、データの読み取りに関する問題を回避できます)。|
 |`FileNamePrefix`|いいえ|このプレフィックスで始まるファイルのみをスキャンします。 必須ではありませんが、指定するとプロセスが高速化される可能性があります。|
 |`Mode`|いいえ|スキーマの推論方法。次のいずれかに `any` `last` `all` なります。 (最初に検出された) ファイル、最後に書き込まれたファイル、またはすべてのファイルからデータスキーマを推論します。 既定値は `last` です。|

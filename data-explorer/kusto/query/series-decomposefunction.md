@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 5394eefad37195833c0c5ebb94325bb540d1f520
-ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
+ms.openlocfilehash: 4500ec5b58c93901e011ea6dd270563d3405ee01
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82907213"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372864"
 ---
 # <a name="series_decompose"></a>series_decompose()
 
@@ -23,7 +23,7 @@ ms.locfileid: "82907213"
  
 **構文**
 
-`series_decompose(`*系列*`[,`*季節*`,`性の*傾向*`,` *Test_points* `,` *Seasonality_threshold*`])`
+`series_decompose(`*シリーズ* `[,`*季節* `,` 性*傾向* `,`*Test_points* `,`*Seasonality_threshold*`])`
 
 **引数**
 
@@ -37,7 +37,7 @@ ms.locfileid: "82907213"
     * "linefit": 線形回帰を使用して傾向コンポーネントを抽出します。
     * "none": 傾向がありません。このコンポーネントの抽出をスキップします。    
 * *Test_points*: 0 (既定値) または正の整数。学習 (回帰) プロセスから除外する系列の末尾の点の数を指定します。 このパラメーターは、予測のために設定する必要があります。
-* *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアの`0.6`しきい値は、既定のスコアしきい値はです。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
+* *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値は、既定のスコアしきい値は `0.6` です。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
 
 **返し**
 
@@ -72,6 +72,7 @@ ms.locfileid: "82907213"
 
 次の例では、週単位の季節性があり、傾向がないシリーズを生成します。その後、外れ値をいくつか追加します。 `series_decompose`季節性を検出して自動的に検出し、季節コンポーネントとほぼ同じ基準を生成します。 追加した外れ値は、残余コンポーネントで明確に表示できます。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -88,8 +89,9 @@ ts
 
 **傾向がある週単位の季節性**
 
-この例では、前の例の系列に傾向を追加します。 まず、既定の`series_decompose`パラメーターを使用してを実行します。 傾向`avg`の既定値は平均のみを取得し、傾向は計算しません。 生成されたベースラインに傾向が含まれていません。 残余の傾向を観察すると、この例は前の例よりも精度が低いことが明らかになります。
+この例では、前の例の系列に傾向を追加します。 まず、 `series_decompose` 既定のパラメーターを使用してを実行します。 傾向の `avg` 既定値は平均のみを取得し、傾向は計算しません。 生成されたベースラインに傾向が含まれていません。 残余の傾向を観察すると、この例は前の例よりも精度が低いことが明らかになります。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 
@@ -104,8 +106,9 @@ ts
 
 :::image type="content" source="images/samples/series-decompose2.png" alt-text="系列の分解2":::
 
-次に、同じ例を再実行します。 ここでは、系列に傾向があるため、trend `linefit`パラメーターでを指定します。 正の傾向が検出され、ベースラインが入力系列に非常に近いことがわかります。 残余はゼロに近く、外れ値のみが除去されます。グラフ内の系列のすべてのコンポーネントが表示されます。
+次に、同じ例を再実行します。 ここでは、系列に傾向があるため、 `linefit` trend パラメーターでを指定します。 正の傾向が検出され、ベースラインが入力系列に非常に近いことがわかります。 残余はゼロに近く、外れ値のみが除去されます。グラフ内の系列のすべてのコンポーネントが表示されます。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 let ts=range t from 1 to 24*7*5 step 1 
 | extend Timestamp = datetime(2018-03-01 05:00) + 1h * t 

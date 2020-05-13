@@ -1,6 +1,6 @@
 ---
-title: Kusto.Ingest リファレンス - エラーと例外 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの Kusto.Ingest リファレンス - エラーと例外について説明します。
+title: Kusto. インジェスト-エラーと例外-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの Kusto. インジェスト-エラーと例外について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,222 +8,220 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: f8f50322a79dea8890b4a4ad5eaa78f0b8fe3bc0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4af09c0b29b77edd7a4e62c7a6abbbae7e918610
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81524346"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373662"
 ---
-# <a name="kustoingest-reference---errors-and-exceptions"></a>Kusto.Ingest リファレンス - エラーと例外
-クライアント側での取り込み処理中のエラーは、C# 例外を介してユーザー コードに公開されます。
+# <a name="kustoingest-errors-and-exceptions"></a>Kusto. 取り込みエラーと例外
+クライアント側でのインジェスト処理中にエラーが発生した場合は、C# の例外によって示されます。
 
-## <a name="failures-overview"></a>障害の概要
+## <a name="failures"></a>エラー
 
-### <a name="kustodirectingestclient-exceptions"></a>クストダイレクトインジェストクライアントの例外
-複数のソースから取り込もうとしている間に、それらのソースの一部の取り込み中にエラーが発生する可能性がありますが、他のソースは正常に摂取される可能性があります。 特定のソースに対してインジェストが失敗した場合、その取り込みがログに記録され、クライアントは取り込み用の残りのソースを引き続き取り込みます。 インジェストのすべてのソースを調けた後、メンバー`IngestClientAggregateException``IList<IngestClientException> IngestionErrors`を含む をスローします。
-`IngestClientException`その派生クラスには、取り`IngestionSource`込みに`Error`失敗したソースから、取得中に発生したエラーへのマッピングを形成するフィールドとフィールドが含まれます。 インジェストエラーリストの情報を使用して、取り込まれなかったソースとその理由を調べることができます。 `IngestClientAggregateException`例外には、すべてのソースで`GlobalError`エラーが発生したかどうかを示すブール型プロパティも含まれます。
+### <a name="kustodirectingestclient-exceptions"></a>KustoDirectIngestClient の例外
 
-### <a name="failures-ingesting-from-files-or-blobs"></a>ファイルまたは BLOB からの取り込みエラー 
-BLOB\file からの取り込み中にインジェスト エラーが発生した場合、`deleteSourceOnSuccess`フラグが に`true`設定されていても、インジェスト ソースは削除されません。
-ソースは、さらなる分析のために保存されます。 エラーの発生元を理解し、そのエラーがインジェストソース自体から発生していないことを考えると、クライアントのユーザーは再び取り込もうとします。
+複数のソースから取り込みを試行しているときに、インジェスト処理中にエラーが発生することがあります。 いずれかのソースのインジェストが失敗した場合はログに記録され、クライアントは残りのソースの取り込みを続行します。 すべてのソースを取り込むと、メンバーを `IngestClientAggregateException` 含むがスローされ `IList<IngestClientException> IngestionErrors` ます。
 
-### <a name="failures-ingesting-from-idatareader"></a>IDataReader からの取り込みエラー
-DataReader から取り込む間、取り込むデータは、既定の場所が`<Temp Path>\Ingestions_<current date and time>`の一時フォルダーに保存されます。 このフォルダは、正常に取り込んだ後、常に削除されます。<BR>
-`IngestFromDataReader`メソッド`IngestFromDataReaderAsync`とメソッドでは、フラグ`retainCsvOnFailure`(既定値は )`false`によって、取り込みが失敗した後にファイルを保持するかどうかを決定します。 このフラグを に`false`設定すると、インジェストに失敗したデータは保持されず、何が間違っていたのかを理解するのが難しくなり、
+`IngestClientException`およびその派生クラスには、フィールドとフィールドが含まれて `IngestionSource` `Error` います。 2つのフィールドの組み合わせによって、インジェストに失敗したソースからインジェストの試行中に発生したエラーまでのマッピングが作成されます。 この情報を一覧で使用して、 `IngestionErrors` インジェストに失敗したソースとその理由を調べることができます。 この例外には、 `IngestClientAggregateException` `GlobalError` すべてのソースでエラーが発生したかどうかを示すブール型プロパティも含まれています。
 
-## <a name="kustoqueuedingestclient-exceptions"></a>クストキューディングクライアントの例外
-メッセージを Azure キューにアップロードしてデータを取り込みます。 キューイング プロセスの前および処理中にエラー`IngestClientAggregateException`が発生した場合、キューにポストされなかったソース (失敗ごとに)`IngestClientException`とメッセージのポスト中に発生したエラーを含むコレクションを含むコレクションを使用して、実行の最後にスローされます。
+### <a name="failures-ingesting-from-files-or-blobs"></a>ファイルまたは blob からのエラーの取り込み
 
-### <a name="posting-to-queue-failures-with-file-or-blob-as-a-source"></a>ファイルまたは BLOB をソースとしてキューの失敗にポストする
-KustoQueuedIngestClient の IngestFromFile/IngestFromBlob メソッドの使用中にエラーが発生した場合、`deleteSourceOnSuccess`フラグが に`true`設定されていてもソースは削除されず、詳細な分析のために保存されます。 エラーの発生元を理解し、エラーがソース自体から発生していないことを考えると、クライアントのユーザーは、失敗したソースで関連する IngestFromFile/IngestFromBlob メソッドを使用してデータを再キューに入れようとする可能性があります。 
+Blob またはファイルから取り込み中に取り込みエラーが発生した場合、 `deleteSourceOnSuccess` フラグがに設定されていても、インジェストソースは削除されません `true` 。 ソースは、詳細な分析のために保持されます。 エラーの発生元が認識され、エラーがインジェストソース自体から発生しなかった場合、クライアントのユーザーがそのエラーを再取り込みしようとすることがあります。
 
-### <a name="posting-to-queue-failures-with-idatareader-as-a-source"></a>ソースとしての IDataReader を使用したキューの失敗への投稿
-DataReader ソースを使用している間、キューにポストするデータは、既定の場所が`<Temp Path>\Ingestions_<current date and time>`に設定されている一時フォルダーに保存されます。
-このフォルダは、データがキューに正常にポストされた後、常に削除されます。
-`IngestFromDataReader`メソッド`IngestFromDataReaderAsync`とメソッドでは、フラグ`retainCsvOnFailure`(既定値は )`false`によって、取り込みが失敗した後にファイルを保持するかどうかを決定します。 このフラグを に`false`設定すると、インジェストに失敗したデータは保持されず、何が間違っていたのかを理解するのが難しくなり、
+### <a name="failures-ingesting-from-idatareader"></a>IDataReader からのエラー取り込み
 
-### <a name="common-failures"></a>一般的な障害
-|Error|理由|対応策|
-|------------------------------|----|------------|
-|データベース<database name>名が存在しません| データベースが存在しません|データベース名を確認する |
-|'Table' の種類のエンティティ '存在しないテーブル名' が見つかりませんでした。|テーブルが存在せず、CSV マッピングもありません。| CSV マッピングの追加/必要なテーブルの作成 |
-|理由<blob path>から除外された BLOB: json パターンは jsonMapping パラメーターで取り込む必要があります| json マッピングが指定されていない場合の Json インジェスティション。|JSON マッピングの提供 |
-|BLOB のダウンロードに失敗しました: 'リモート サーバーがエラーを返しました: (404) 見つかりません。| BLOB が存在しません。|BLOB が存在することを確認し、存在する場合は再試行し、Kusto チームに連絡してください。 |
-|Json 列マッピングが無効です: 2 つ以上のマッピング要素が同じ列を指しています。| JSON マッピングには、異なるパスを持つ 2 つの列があります。|JSON マッピングを修正 |
-|エンジンエラー - [UtilsException] インジェスティオンダウンローダー.ダウンロード:1つ以上のファイルをダウンロードできませんでした(アクティビティIDのKustoLogsを<GUID1>検索<GUID2>:、ルートアクティビティID:)| 1 つ以上のファイルをダウンロードできませんでした。 |[再試行] |
-|解析に失敗しました: id<stream name>' ' のストリームの形式が不正な Csv 形式で、検証ごとの失敗オプション ポリシー |不正な形式の csv ファイル (各行の列数が同じではないなど)。 検証ポリシーが [検証オプション] に設定されている場合にのみ失敗します。 列を検証します。 |csv ファイルを確認します。 このメッセージは、csv/tsv ファイルにのみ適用されます |
-|エラー メッセージ '有効な共有アクセス 署名の必須パラメーターがありません' を持つ IngestClientAggregateException |使用している SAS はサービスであり、ストレージ アカウントのサービスではありません。 |ストレージ アカウントの SAS を使用する |
+DataReader から取り込みしている間、取り込むデータは既定の場所がである一時フォルダーに保存され `<Temp Path>\Ingestions_<current date and time>` ます。 この既定のフォルダーは、インジェストが正常に完了した後、常に削除されます。
 
-### <a name="ingestion-error-codes"></a>インジェクション エラー コード
+`IngestFromDataReader`メソッドとメソッドでは、既定値がであるフラグによって、 `IngestFromDataReaderAsync` インジェストの `retainCsvOnFailure` `false` 失敗後にファイルを保持するかどうかが決定されます。 このフラグがに設定されている場合 `false` 、インジェストに失敗したデータは保存されず、問題が発生した原因を把握することが難しくなります。
 
-インジェストエラーをプログラムで処理するために、エラー情報は数値エラー コード (IngestionErrorCode 列挙) で強化されます。
+## <a name="kustoqueuedingestclient-exceptions"></a>KustoQueuedIngestClient の例外
 
-|ErrorCode|理由|
-|-----------|-------|
-|Unknown| 不明なエラーが発生しました|
-|Stream_LowMemoryCondition| 操作がメモリ不足|
-|Stream_WrongNumberOfFields| CSV ドキュメントのフィールド数が一致しません|
-|Stream_InputStreamTooLarge| 取り込みのために提出されたドキュメントが許容サイズを超えました|
-|Stream_NoDataToIngest| 取り込むデータ ストリームが見つかりません|
-|Stream_DynamicPropertyBagTooLarge| 取り込まれたデータの動的列の 1 つに、一意のプロパティが多すぎます。|
-|Download_SourceNotFound| Azure ストレージからソースをダウンロードできませんでした - ソースが見つかりません|
-|Download_AccessConditionNotSatisfied| Azure ストレージからソースをダウンロードできませんでした - アクセスが拒否されました|
-|Download_Forbidden| Azure ストレージからソースをダウンロードできませんでした - アクセスは許可されていません|
-|Download_AccountNotFound| Azure ストレージからソースをダウンロードできませんでした - アカウントが見つかりません|
-|Download_BadRequest| Azure ストレージからソースをダウンロードできませんでした - 要求が正しくありません|
-|Download_NotTransient| Azure ストレージからソースをダウンロードできませんでした - 一時的なエラーではありません|
-|Download_UnknownError| Azure ストレージからソースをダウンロードできませんでした - 不明なエラー|
-|UpdatePolicy_QuerySchemaDoesNotMatchTableSchema| 更新ポリシーを呼び出すことができませんでした。 クエリ スキーマがテーブル スキーマと一致しません|
-|UpdatePolicy_FailedDescendantTransaction| 更新ポリシーを呼び出すことができませんでした。 失敗した下位トランザクション更新ポリシー|
-|UpdatePolicy_IngestionError| 更新ポリシーを呼び出すことができませんでした。 取り込みエラーが発生しました|
-|UpdatePolicy_UnknownError| 更新ポリシーを呼び出すことができませんでした。 不明なエラーが発生しました|
-|BadRequest_MissingJsonMappingtFailure| json パターンが jsonMapping パラメーターで取り込まれませんでした|
-|BadRequest_InvalidOrEmptyBlob| BLOB が無効または空の zip アーカイブです|
-|BadRequest_DatabaseNotExist| データベースが存在しません|
-|BadRequest_TableNotExist| テーブルが存在しません|
-|BadRequest_InvalidKustoIdentityToken| 無効な kusto ID トークン|
-|BadRequest_UriMissingSas| 不明な BLOB ストレージからの SAS を使用しない BLOB パス|
-|BadRequest_FileTooLarge| ファイルを取り込もうとしている|
-|BadRequest_NoValidResponseFromEngine| インジェスト・コマンドからの有効な応答がありません|
-|BadRequest_TableAccessDenied| テーブルへのアクセスが拒否されました|
-|BadRequest_MessageExhausted| メッセージが使い果たされました|
-|General_BadRequest| 一般的な不正要求 (既存ではないデータベース/テーブルへの取り込みが必要になる可能性があります)|
-|General_InternalServerError| 内部サーバー エラーが発生しました|
+`KustoQueuedIngestClient`Azure キューにメッセージをアップロードしてデータを取り込みします。 キューのプロセスの前または中にエラーが発生した場合は、 `IngestClientAggregateException` プロセスの終了時にがスローされます。 スローされる例外には、のコレクションが含まれます。このコレクションには `IngestClientException` 、各エラーのソースが含まれ、キューにポストされていません。 メッセージを投稿しようとしたときに発生したエラーもスローされます。
 
-## <a name="detailed-kustoingest-exceptions-reference"></a>詳細なクストー.インジェスト例外リファレンス
+### <a name="posting-to-queue-failures-with-a-file-or-blob-as-a-source"></a>ソースとしてのファイルまたは blob を使用したキューエラーへの投稿
 
-### <a name="cloudqueuesnotfoundexception"></a>クラウドキューは見つかりませんでした。
-データ管理クラスターからキューが返されなかった場合に発生します。
+のメソッドを使用しているときにエラーが発生した場合、 `KustoQueuedIngestClient` `IngestFromFile/IngestFromBlob` `deleteSourceOnSuccess` フラグがに設定されていても、ソースは削除されません `true` 。 代わりに、詳細な分析のためにソースが保持されます。 
 
-基本クラス:[例外](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+エラーの発生元が認識され、エラーがインジェストソース自体から発生しなかった場合、クライアントのユーザーは、失敗したソースと関連するメソッドを使用してデータのキューへを試みることができ `IngestFromFile/IngestFromBlob` ます。 
 
-フィールド:
+### <a name="posting-to-queue-failures-with-idatareader-as-a-source"></a>ソースとしての IDataReader を使用したキューエラーへの投稿
 
-|名前|Type|意味
-|-----------|----|------------------------------|
-|Error| `String`| DM からキューを取得しようとしたときに発生したエラー
+DataReader ソースを使用している間、キューにポストするデータは、既定の場所がである一時フォルダーに保存され `<Temp Path>\Ingestions_<current date and time>` ます。 このフォルダーは、データが正常にキューに投稿された後、常に削除されます。
+`IngestFromDataReader`メソッドとメソッドでは、既定値がであるフラグによって、 `IngestFromDataReaderAsync` インジェストの `retainCsvOnFailure` `false` 失敗後にファイルを保持するかどうかが決定されます。 このフラグがに設定されている場合 `false` 、インジェストに失敗したデータは保存されず、問題が発生した原因を把握することが難しくなります。
+
+### <a name="common-failures"></a>一般的なエラー
+|エラー                         |理由           |対応策                                   |
+|------------------------------|-----------------|---------------------------------------------|
+|データベース <database name> 名が存在しません| データベースが存在しません|データベース名を確認し `kustoIngestionProperties` てください。 |
+|種類 ' Table ' のエンティティ ' テーブル名が存在しません。|このテーブルは存在しません。 CSV マッピングはありません。| CSV マッピングを追加する/必要なテーブルを作成する |
+|<blob path>理由により除外された Blob: JSON パターンは jsonMapping パラメーターで取り込まれたである必要があります| Json のマッピングが指定されていない場合の JSON インジェスト。|JSON マッピングを指定する |
+|Blob をダウンロードできませんでした: ' リモートサーバーがエラーを返しました: (404) が見つかりません。 '| BLOB が存在しません。|Blob が存在することを確認します。 存在する場合は、もう一度お試しください。 Kusto チームにお問い合わせください |
+|JSON 列マッピングが無効です: 2 つ以上のマッピング要素が同じ列をポイントしています。| 異なるパスを持つ2つの列を含む JSON マッピング|JSON マッピングの修正 |
+|EngineError-[UtilsException] `IngestionDownloader.Download` : 1 つ以上のファイルをダウンロードできませんでした (ActivityID の検索 KustoLogs: <GUID1> 、rootactivityid: <GUID2> )| 1つ以上のファイルをダウンロードできませんでした。 |[再試行] |
+|解析できませんでした: ID ' ' のストリームの <stream name> CSV 形式が正しくありません。 ValidationOptions ポリシーごとに失敗します |CSV ファイルの形式が正しくありません (たとえば、すべての行に同じ数の列がありません)。 検証ポリシーがに設定されている場合にのみ失敗し `ValidationOptions` ます。 ValidateCsvInputConstantColumns |CSV ファイルを確認します。 このメッセージは、CSV/TSV ファイルにのみ適用されます。 |
+|`IngestClientAggregateException`エラーメッセージ ' 有効な Shared Access Signature の必須パラメーターがありません |使用されている SAS はサービスであり、ストレージアカウントではありません。 |ストレージアカウントの SAS を使用する |
+
+### <a name="ingestion-error-codes"></a>インジェストエラーコード
+
+プログラムによるインジェストエラーの処理を支援するために、エラー情報が数値エラーコード () で拡充されてい `IngestionErrorCode enumeration` ます。
+
+|ErrorCode                                      |理由                                                        |
+|-----------------------------------------------|--------------------------------------------------------------|
+|不明                                        | 不明なエラーが発生しました|
+|Stream_LowMemoryCondition                      | メモリ不足により、操作が実行されました|
+|Stream_WrongNumberOfFields                     | CSV ドキュメントに含まれているフィールドの数が一致しません|
+|Stream_InputStreamTooLarge                     | インジェストのために送信されたドキュメントが、許可されているサイズを超えました|
+|Stream_NoDataToIngest                          | 取り込むデータストリームが見つかりませんでした|
+|Stream_DynamicPropertyBagTooLarge              | 取り込まれたデータの動的列の1つに含まれる一意のプロパティが多すぎます|
+|Download_SourceNotFound                        | Azure storage からソースをダウンロードできませんでした-ソースが見つかりません|
+|Download_AccessConditionNotSatisfied           | Azure storage からソースをダウンロードできませんでした-アクセスが拒否されました|
+|Download_Forbidden                             | Azure storage からソースをダウンロードできませんでした-アクセスは許可されていません|
+|Download_AccountNotFound                       | Azure storage からソースをダウンロードできませんでした-アカウントが見つかりません|
+|Download_BadRequest                            | Azure storage からソースをダウンロードできませんでした-無効な要求|
+|Download_NotTransient                          | Azure storage からソースをダウンロードできませんでした-一時的なエラーではありません|
+|Download_UnknownError                          | Azure storage からソースをダウンロードできませんでした-不明なエラー|
+|UpdatePolicy_QuerySchemaDoesNotMatchTableSchema| 更新ポリシーを呼び出せませんでした。 クエリスキーマがテーブルスキーマと一致しません|
+|UpdatePolicy_FailedDescendantTransaction       | 更新ポリシーを呼び出せませんでした。 失敗した子孫トランザクション更新ポリシー|
+|UpdatePolicy_IngestionError                    | 更新ポリシーを呼び出せませんでした。 インジェストエラーが発生しました|
+|UpdatePolicy_UnknownError                      | 更新ポリシーを呼び出せませんでした。 不明なエラーが発生しました|
+|BadRequest_MissingJsonMappingtFailure          | JsonMapping パラメーターを使用して JSON パターンを取り込みませんでした|
+|BadRequest_InvalidOrEmptyBlob                  | Blob が無効であるか、空の zip アーカイブです|
+|BadRequest_DatabaseNotExist                    | データベースが存在しません|
+|BadRequest_TableNotExist                       | テーブルが存在しません|
+|BadRequest_InvalidKustoIdentityToken           | Kusto id トークンが無効です|
+|BadRequest_UriMissingSas                       | 不明な blob ストレージからの SAS を使用しない blob パス|
+|BadRequest_FileTooLarge                        | 大きすぎるファイルを取り込みようとしています|
+|BadRequest_NoValidResponseFromEngine           | 取り込みコマンドからの有効な応答がありません|
+|BadRequest_TableAccessDenied                   | テーブルへのアクセスが拒否されました|
+|BadRequest_MessageExhausted                    | メッセージを使い果たしました|
+|General_BadRequest                             | 一般的な無効な要求です。 存在しないデータベースまたはテーブルへのインジェストに関するヒント|
+|General_InternalServerError                    | 内部サーバーエラーが発生しました|
+
+## <a name="detailed-exceptions-reference"></a>詳細な例外のリファレンス
+
+### <a name="cloudqueuesnotfoundexception"></a>CloudQueuesNotFoundException
+
+データ管理クラスターからキューが返されなかった場合に発生します
+
+基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+
+|フィールド名 |Type     |説明
+|-----------|---------|------------------------------|
+|エラー      | String  | DM からキューを取得しようとしたときに発生したエラー
                             
-追加情報:
-
-[Kusto キューイングインジェスト クライアント](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)を使用する場合にのみ関連します。
-取り込みプロセス中に、DM にリンクされた Azure キューを取得する試みが何度か行われます。 これらの試行が失敗すると、'Error' フィールドにエラーの理由を含む例外が発生し、場合によっては 'InnerException' フィールド内の内部例外が発生します。
+[Kusto キュー取り込みクライアント](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)を使用する場合にのみ関連します。
+インジェスト処理中に、DM にリンクされている Azure キューを取得しようとする試行がいくつか行われます。 これらの試行が失敗した場合、エラーの理由を含む例外が "エラー" フィールドに発生します。 場合によっては、"InnerException" フィールドの内部例外も発生する可能性があります。
 
 
-### <a name="cloudblobcontainersnotfoundexception"></a>見つかりませんでした。
-BLOB コンテナーがデータ管理クラスターから返されなかった場合に発生します。
+### <a name="cloudblobcontainersnotfoundexception"></a>CloudBlobContainersNotFoundException
 
-基本クラス:[例外](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+データ管理クラスターから blob コンテナーが返されなかった場合に発生します
 
-フィールド:
+基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|名前|Type|意味       
-|-----------|----|------------------------------|
-|クストエンドポイント| `String`| 関連する DM のエンドポイント
+|フィールド名   |Type     |説明       
+|-------------|---------|------------------------------|
+|KustoEndpoint| String  | 関連する DM のエンドポイント
                             
-追加情報:
+[Kusto キュー取り込みクライアント](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)を使用する場合にのみ関連します。  
+ファイル、DataReader、Stream など、Azure コンテナーにまだ存在しないソースを取り込みした場合、データはインジェストのために一時的な blob にアップロードされます。 この例外は、データのアップロード先となるコンテナーが見つからない場合に発生します。
 
-[Kusto キューイングインジェスト クライアント](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)を使用する場合にのみ関連します。  
-Azure コンテナーにまだ存在しないソース (ファイル、DataReader、または Stream) を取得する場合、データはインジェスト用に一時的な BLOB にアップロードされます。 例外は、データのアップロードするコンテナが見つからない場合に発生します。
+### <a name="duplicateingestionpropertyexception"></a>DuplicateIngestionPropertyException
 
-### <a name="duplicateingestionpropertyexception"></a>プロパティの重複例外
-インジェスト プロパティが複数回設定されている場合に発生します。
+インジェストプロパティが複数回構成されている場合に発生します
 
-基本クラス:[例外](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-フィールド:
-
-|名前|Type|意味       
-|-----------|----|------------------------------|
-|PropertyName| `String`| 重複するプロパティの名前
+|フィールド名   |Type     |説明       
+|-------------|---------|------------------------------------|
+|PropertyName | String  | 重複するプロパティの名前
                             
-### <a name="postmessagetoqueuefailedexception"></a>イベントメッセージを送信します。
-キューへのメッセージの投稿に失敗したときに発生します
+### <a name="postmessagetoqueuefailedexception"></a>PostMessageToQueueFailedException
 
-基本クラス:[例外](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+メッセージをキューに投稿できなかった場合に発生します
 
-フィールド:
+基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|名前|Type|意味       
-|-----------|----|------------------------------|
-|キューUri| `String`| キューの URI
-|Error| `String`| キューへのポストの試行中に生成されたエラー メッセージ
+|フィールド名   |Type     |説明       
+|-------------|---------|---------------------------------|
+|QueueUri     | String  | キューの URI
+|エラー        | String  | キューへの投稿を試行しているときに生成されたエラーメッセージ
                             
-追加情報:
+[Kusto キュー取り込みクライアント](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)を使用する場合にのみ関連します。  
+キューに置かれた取り込みクライアントは、関連する Azure キューにメッセージをアップロードしてデータを取り込みします。 Post エラーが発生した場合は、例外が発生します。 これには、キューの URI、エラーの理由 ("エラー" フィールド)、および "InnerException" フィールドの内部例外が含まれます。
 
-[Kusto キューイングインジェスト クライアント](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)を使用する場合にのみ関連します。  
-キューに入っている INGEST クライアントは、関連する Azure キューにメッセージをアップロードしてデータを取得します。 ポストエラーの場合、キュー URI、エラーの理由、および 'InnerException' フィールド内の内部例外を含む例外が発生します。
+### <a name="dataformatnotspecifiedexception"></a>DataFormatNotSpecifiedException
 
-### <a name="dataformatnotspecifiedexception"></a>指定された例外
-データ形式が必要だが、インジェストプロパティで指定されていない場合に発生します。
+データ形式が必要ですが、では指定されていない場合に発生します。`IngestionProperties`
 
-基本クラス: インジェストクライアント例外
+基本クラス: IngestClientException
 
-追加情報:
+ストリームから取り込みする場合は、データを適切に取り込むために、 [IngestionProperties](kusto-ingest-client-reference.md#class-kustoingestionproperties)でデータ形式を指定する必要があります。 この例外は、が指定されていない場合に発生し `IngestionProperties.Format` ます。
 
-ストリームから取り込む場合、データを適切に取り込むには、[インジェストプロパティ](kusto-ingest-client-reference.md#class-kustoingestionproperties)でデータ形式を指定する必要があります。 この例外は、インジェストプロパティ.フォーマットが指定されていない場合に発生します。
+### <a name="invaliduriingestclientexception"></a>InvalidUriIngestClientException
 
-### <a name="invaliduriingestclientexception"></a>無効なUriIngestクライアント例外
-無効な BLOB URI がインジェス ソースとして送信されたときに発生します
+無効な blob URI がインジェストソースとして送信されたときに発生します
 
-基本クラス: インジェストクライアント例外
+基本クラス: IngestClientException
 
-### <a name="compressfileingestclientexception"></a>ファイルイングエストクライアント例外を圧縮する
-取り込み用に提供されたファイルを、INGEST クライアントが圧縮できなかった場合に発生します。
+### <a name="compressfileingestclientexception"></a>CompressFileIngestClientException
 
-基本クラス: インジェストクライアント例外
+インジェスト用に指定されたファイルの取り込みクライアントが圧縮に失敗したときに発生します
 
-追加情報:
+基本クラス: IngestClientException
 
-ファイルは、取り込む前に圧縮されます。 この例外は、ファイルの圧縮に失敗した場合に発生します。
+ファイルはインジェスト前に圧縮されます。 この例外は、ファイルを圧縮しようとして失敗した場合に発生します。
 
-### <a name="uploadfiletotempblobingestclientexception"></a>クライアント例外を処理します。
-インジェスト クライアントが一時的な BLOB への取り込み用に提供されたソースのアップロードに失敗したときに発生します。
+### <a name="uploadfiletotempblobingestclientexception"></a>UploadFileToTempBlobIngestClientException
 
-基本クラス: インジェストクライアント例外
+インジェスト用に提供されたソースをインジェストクライアントがアップロードに失敗した場合に発生します。
 
-### <a name="sizelimitexceededingestclientexception"></a>クライアント例外を超えました。
-インジェスト ソースが大きすぎる場合に発生します。
+基本クラス: IngestClientException
 
-基本クラス: インジェストクライアント例外
+### <a name="sizelimitexceededingestclientexception"></a>SizeLimitExceededIngestClientException
 
-フィールド:
+インジェストソースが大きすぎる場合に発生します
 
-|名前|Type|意味       
-|-----------|----|------------------------------|
-|サイズ| `long`| インジェクション ソースのサイズ
-|MaxSize| `long`| インジェスに許される最大サイズ
+基本クラス: IngestClientException
 
-追加情報:
+|フィールド名   |Type     |説明       
+|-------------|---------|-----------------------|
+|サイズ         | long    | インジェストソースのサイズ
+|MaxSize      | long    | インジェストに許可される最大サイズ
 
-インジェスト ソースが最大サイズ 4 GB を超えると、例外がスローされます。 サイズの検証は[、インジェストプロパティ クラス](kusto-ingest-client-reference.md#class-kustoingestionproperties)の IgnoreSizeLimit フラグでオーバーライドできますが[、1 GB より大きい単一のソースを取り込む](about-kusto-ingest.md#ingestion-best-practices)のはお勧めできません。
+インジェストソースが最大サイズの 4 GB を超えると、例外がスローされます。 サイズの検証は、IngestionProperties クラスのフラグによってオーバーライドでき `IgnoreSizeLimit` ます。 [IngestionProperties class](kusto-ingest-client-reference.md#class-kustoingestionproperties) ただし、1 GB を超える 1[つのソースを](about-kusto-ingest.md#ingestion-best-practices)取り込むことは推奨されません。
 
-### <a name="uploadfiletotempblobingestclientexception"></a>クライアント例外を処理します。
-インジェスト クライアントが一時 BLOB へのインジェスト用に提供されたファイルのアップロードに失敗したときに発生します。
+### <a name="uploadfiletotempblobingestclientexception"></a>UploadFileToTempBlobIngestClientException
 
-基本クラス: インジェストクライアント例外
+インジェスト用に提供されたファイルをインジェストクライアントが一時 blob にアップロードできなかった場合に発生します
 
-### <a name="directingestclientexception"></a>クライアントの例外を指定します。
-直接取り込み中に一般エラーが発生したときに発生します。
+基本クラス: IngestClientException
 
-基本クラス: インジェストクライアント例外
+### <a name="directingestclientexception"></a>DirectIngestClientException
 
-### <a name="queuedingestclientexception"></a>キューイング・エスト・クライアント例外
-キューに入れ取り込み中にエラーが発生したときに発生します。
+直接インジェストの実行中に一般的なエラーが発生した場合に発生します
 
-基本クラス: インジェストクライアント例外
+基本クラス: IngestClientException
 
-### <a name="ingestclientaggregateexception"></a>を使用します。
-取り込み中に 1 つ以上のエラーが発生したときに発生します。
+### <a name="queuedingestclientexception"></a>QueuedIngestClientException
 
-基本クラス:[集計例外](https://msdn.microsoft.com/library/system.aggregateexception(v=vs.110).aspx)
+キューに置かれたインジェストの実行中にエラーが発生した場合に発生します
 
-フィールド:
+基本クラス: IngestClientException
 
-|名前|Type|意味       
-|-----------|----|------------------------------|
-|インジェスティションエラー| `IList<IngestClientException>`| 取り込み中に発生したエラーとそれらに関連するソース
-|グローバル エラー| `bool`| すべてのソースに対して例外が発生したかどうかを示します。
+### <a name="ingestclientaggregateexception"></a>IngestClientAggregateException
 
-## <a name="errors-in-native-code"></a>ネイティブ コードのエラー
-Kusto エンジンはネイティブ コードで記述されています。 ネイティブ コードのエラーの詳細については、[ネイティブ コードのエラーを](../../concepts/errorsinnativecode.md)参照してください。
+インジェスト中に1つ以上のエラーが発生した場合に発生します
+
+基本クラス: [AggregateException](https://msdn.microsoft.com/library/system.aggregateexception(v=vs.110).aspx)
+
+|フィールド名      |Type                             |説明       
+|----------------|---------------------------------|-----------------------|
+|IngestionErrors | IList<IngestClientException>    | 取り込みの試行中に発生したエラーと、それらに関連するソース
+|IsGlobalError   | bool                            | すべてのソースで例外が発生したかどうかを示します
+
+## <a name="next-steps"></a>次の手順
+
+ネイティブコードのエラーの詳細については、「[ネイティブコードのエラー](../../concepts/errorsinnativecode.md)」を参照してください。

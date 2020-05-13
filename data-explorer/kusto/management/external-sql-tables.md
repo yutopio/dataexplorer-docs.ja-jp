@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: f8cc5771890247291f6c9e1183a57fc7e1341874
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 9de01863ddb832421c5b6dbfe65b8ae451382fb7
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227742"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373367"
 ---
 # <a name="external-sql-table"></a>外部 SQL テーブル
 
@@ -75,13 +75,13 @@ with
 
 **出力**
 
-| TableName   | TableType | Folder         | DocString | Properties                            |
+| TableName   | TableType | Folder         | DocString | プロパティ                            |
 |-------------|-----------|----------------|-----------|---------------------------------------|
 | ExternalSql | Sql       | ExternalTables | Docs      | {<br>  "TargetEntityKind": "sqltable" ",<br>  "TargetEntityName": "MySqlTable",<br>  "TargetEntityConnectionString": "Server = tcp: database. windows. net, 1433;Authentication = Active Directory Integrated、Initial Catalog = mydatabase; "、<br>  "FireTriggers": true、<br>  "CreateIfNotExists": true、<br>  "PrimaryKey": "x"<br>} |
 
 ## <a name="querying-an-external-table-of-type-sql"></a>SQL 型の外部テーブルのクエリ 
 
-外部 SQL テーブルのクエリはサポートされています。 「[外部テーブルのクエリ](https://docs.microsoft.com/azure/data-explorer/data-lake-query-data)」を参照してください。 
+外部 SQL テーブルのクエリはサポートされています。 「[外部テーブルのクエリ](../../data-lake-query-data.md)」を参照してください。 
 
 > [!Note]
 > SQL 外部テーブルのクエリ実装では、SQL テーブルから完全な ' SELECT * ' (または関連する列の選択) が実行されます。 クエリの残りの部分は、Kusto 側で実行されます。 

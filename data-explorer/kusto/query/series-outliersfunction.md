@@ -1,5 +1,5 @@
 ---
-title: series_outliers ()-Azure データエクスプローラー |Microsoft Docs
+title: series_outliers ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの series_outliers () について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: 16e82ec68a463b97699f7d02e18c46df65221c7b
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 864638f8e03487a35eefa83fa3951d2ecefc27c7
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618660"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372536"
 ---
 # <a name="series_outliers"></a>series_outliers()
 
@@ -23,17 +23,17 @@ ms.locfileid: "82618660"
 
 **構文**
 
-`series_outliers(`*x*`, `*kind*`, `*max_percentile* *min_percentile**ignore_val*ignore_val min_percentile max_percentile`, ``, ``)`
+`series_outliers(`*x* `, `*種類* `, `*ignore_val* `, `*min_percentile* `, `*max_percentile*`)`
 
 **引数**
 
 * *x*: 数値の配列である動的配列セル
-* *kind*: 外れ値検出のアルゴリズム。 は現在`"tukey"` (従来の tukey) `"ctukey"`と (カスタム tukey) をサポートしています。 既定値は `"ctukey"` です
-* *ignore_val*: 系列内の欠損値を示す数値。既定値は double (null) です。 Null 値と ignore 値のスコアはに`0`設定されます。
-* *min_percentile*: 通常の分位点範囲の場合、既定値は10、サポートされているカスタム値は範囲`[2.0, 98.0]`内`ctukey` (のみ) 
-* *max_percentile*: 同じ、既定値は90、サポートされている`[2.0, 98.0]`カスタム値は範囲内 (ctukey のみ) 
+* *kind*: 外れ値検出のアルゴリズム。 は現在 `"tukey"` (従来の Tukey) と `"ctukey"` (カスタム tukey) をサポートしています。 既定値は `"ctukey"` です
+* *ignore_val*: 系列内の欠損値を示す数値。既定値は double (null) です。 Null 値と ignore 値のスコアはに設定され `0` ます。
+* *min_percentile*: 通常の分位点範囲の場合、既定値は10、サポートされているカスタム値は範囲内 `[2.0, 98.0]` ( `ctukey` のみ) 
+* *max_percentile*: 同じ、既定値は90、サポートされているカスタム値は範囲内 `[2.0, 98.0]` (ctukey のみ) 
 
-次の表では、 `"tukey"`と`"ctukey"`の違いについて説明します。
+次の表では、との違いについて説明し `"tukey"` `"ctukey"` ます。
 
 | アルゴリズム | 既定の分位点範囲 | カスタム分位点範囲のサポート |
 |-----------|----------------------- |--------------------------------|
@@ -48,6 +48,7 @@ ms.locfileid: "82618660"
 
 たとえば、外れ値を生成するノイズを含むタイムシリーズがあり、それらの外れ値 (ノイズ) を平均値に置き換える場合は、series_outliers () を使用して外れ値を検出し、次のように置き換えることができます。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range x from 1 to 100 step 1 
 | extend y=iff(x==20 or x==80, 10*rand()+10+(50-x)/2, 10*rand()+10) // generate a sample series with outliers at x=20 and x=80

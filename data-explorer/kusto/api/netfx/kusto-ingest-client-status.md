@@ -1,6 +1,6 @@
 ---
-title: Kusto.Ingest リファレンス - インジェスト ステータス レポート - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの Kusto.Ingest リファレンス - インジェスト ステータス レポートについて説明します。
+title: Kusto. インジェストの状態レポートの取り込み-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでのインジェストステータスレポートの取り込みについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,23 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 1a3eed1db0ec7d3dd4bc83c0a65f342020b2a387
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 76ae07e2e7bdbb15900385b1e2feab0c9ff97d01
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523717"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373627"
 ---
-# <a name="kustoingest-reference---ingestion-status-reporting"></a>Kusto.Ingest リファレンス - インジェストステータスレポート
-この記事では[、IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)機能を使用してインジェスト要求の状態を追跡する方法について説明します。
+# <a name="kustoingest-ingestion-status-reporting"></a>Kusto。インジェストステータスレポートの取り込み
 
-## <a name="sourcedescription-datareaderdescription-streamdescription-filedescription-and-blobdescription"></a>ソース説明、データリーダー説明、ストリーム説明、ファイル説明、および BLOB の説明
-これらのさまざまな記述クラスは、取り込まれるソースデータに関する重要な詳細をカプセル化し、インジェスト操作に提供される必要があります。
-これらのクラスはすべて抽象クラス`SourceDescription`から派生し、各データ ソースの一意の識別子をインスタンス化するために使用されます。
-提供された識別子は、後続の操作ステータスの追跡を目的とし、適切な操作に関連するすべてのレポート、トレース、および例外に表示されます。
+この記事では、 [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)機能を使用してインジェスト要求の状態を追跡する方法について説明します。
 
-### <a name="class-sourcedescription"></a>クラスソース説明
->大きなデータセット(例えば、1GB以上のDataReader)を取り込む場合、データは1GBのチャンクに分割され、個別に取り込まれます。<BR>この場合、同じデータセットから取得されたすべての取り込み操作に同じ SourceId が適用されます。   
+## <a name="description-classes"></a>Description クラス
+
+これらの説明クラスには、取り込まれたするソースデータに関する重要な詳細情報が含まれており、インジェスト操作で使用する必要があります。 
+
+* SourceDescription
+* DataReaderDescription
+* StreamDescription
+* FileDescription
+* BlobDescription
+
+クラスはすべて、抽象クラスから派生 `SourceDescription` し、各データソースの一意の識別子をインスタンス化するために使用されます。 各識別子はステータス追跡に使用され、関連する操作に関連するすべてのレポート、トレース、および例外に表示されます。
+
+### <a name="class-sourcedescription"></a>クラス SourceDescription
+
+大規模なデータセットは 1 GB のチャンクに分割され、各部分は個別に取り込まれたされます。 同じ SourceId は、同じデータセットから生成されたすべての取り込み操作に適用されます。   
 
 ```csharp
 public abstract class SourceDescription
@@ -33,7 +42,8 @@ public abstract class SourceDescription
 }
 ```
 
-### <a name="class-datareaderdescription"></a>クラス データリーダー説明
+### <a name="class-datareaderdescription"></a>クラス DataReaderDescription
+
 ```csharp
 public class DataReaderDescription : SourceDescription
 {
@@ -41,7 +51,8 @@ public class DataReaderDescription : SourceDescription
 }
 ```
 
-### <a name="class-streamdescription"></a>クラス ストリーム説明
+### <a name="class-streamdescription"></a>クラス StreamDescription
+
 ```csharp
 public class StreamDescription : SourceDescription
 {
@@ -49,7 +60,8 @@ public class StreamDescription : SourceDescription
 }
 ```
 
-### <a name="class-filedescription"></a>クラス ファイル説明
+### <a name="class-filedescription"></a>クラス FileDescription
+
 ```csharp
 public class FileDescription : SourceDescription
 {
@@ -57,7 +69,8 @@ public class FileDescription : SourceDescription
 }
 ```
 
-### <a name="class-blobdescription"></a>クラス BLOB 説明
+### <a name="class-blobdescription"></a>クラス BlobDescription
+
 ```csharp
 public class BlobDescription : SourceDescription
 {
@@ -67,10 +80,12 @@ public class BlobDescription : SourceDescription
 }
 ```
 
-## <a name="ingestion-result-representation"></a>インジェスレーション結果表現
+## <a name="ingestion-result-representation"></a>インジェストの結果表現
 
-### <a name="interface-ikustoingestionresult"></a>インターフェイスのイクストインジングの結果
-このインターフェイスは、キューに入れ込まれた単一の取り込み操作の結果`SourceId`をキャプチャし、 によって取得できるようにします。
+### <a name="interface-ikustoingestionresult"></a>インターフェイス IKustoIngestionResult
+
+このインターフェイスは、1つのキューに格納されたインジェスト操作の結果をキャプチャし、によって取得でき `SourceId` ます。
+
 ```csharp
 public interface IKustoIngestionResult
 {
@@ -82,8 +97,10 @@ public interface IKustoIngestionResult
 }
 ```
 
-### <a name="class-ingestionstatus"></a>クラスインジェスティションステータス
-インジェスタションステータスは、単一のインジェスション操作の完全なステータスをカプセル化します。
+### <a name="class-ingestionstatus"></a>IngestionStatus クラス
+
+IngestionStatus には、単一のインジェスト操作の完全な状態が含まれています。
+
 ```csharp
 public class IngestionStatus
 {
@@ -120,26 +137,28 @@ public class IngestionStatus
 }
 ```
 
-### <a name="status-enumeration"></a>ステータスの列挙
-|値 |意味 |
-|------------|------------|
-|保留中 |一時。 摂取操作の結果に基づいて、摂取の過程で変更される可能性があります。 |
-|成功 |永久。 彼のデータは正常に摂取されました |
-|失敗 |永久。 取り込みが失敗しました |
-|キューに登録済み |永久。 データは取り込みのためにキューに入れられます |
-|スキップ |永久。 データが指定されず、インジェスト操作がスキップされました |
-|部分的に成功しました |永久。 データの一部が正常に取り込まれ、一部が失敗しました |
+### <a name="status-enumeration"></a>状態の列挙型
 
-## <a name="tracking-ingestion-status-kustoqueuedingestclient"></a>インジェストステータスの追跡 (KustoQueuedingestクライアント)
-[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)は 'fire and-forget' クライアントです - クライアント側での取り込み操作は、Azure キューにメッセージをポストして終了し、その後クライアント ジョブが完了します。 クライアントユーザーの便宜のために、KustoQueuedIngestクライアントは個々の取り込みステータスを追跡するためのメカニズムを提供します。 これは、高スループットのインジェスト パイプラインでの大量使用を目的としているのではなく、レートが比較的低く、追跡要件が非常に厳しい場合に、"精度" の取り込み用です。
+|値              |意味                                                                                     |一時的/永続的
+|-------------------|-----------------------------------------------------------------------------------------------------|---------|
+|Pending            |取り込み操作の結果に基づいて、値がインジェストの過程で変更される可能性があります。 |一時|
+|成功          |データが正常に取り込まれたされました                                                              |永続的| 
+|Failed             |インジェストに失敗しました                                                                                     |永続的|
+|キューに登録済み             |データが取り込みのためにキューに入れられました                                                               |永続的|
+|スキップ            |データが指定されませんでした。取り込み操作はスキップされました                                            |永続的|
+|PartiallySucceeded |データの一部が正常に取り込まれたましたが、失敗しました                                        |永続的|
+
+## <a name="tracking-ingestion-status-kustoqueuedingestclient"></a>インジェストステータスの追跡 (KustoQueuedIngestClient)
+
+[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)は、"火災と忘れる" クライアントです。 クライアント側でのインジェスト操作は、Azure キューにメッセージを送信することによって終了します。 ポストされると、クライアントジョブが完了します。 クライアントユーザーの便宜を実現するために、KustoQueuedIngestClient には個々のインジェストステータスを追跡するためのメカニズムが用意されています。 このメカニズムは、高スループットのインジェストパイプラインでの大量使用を想定していません。 このメカニズムは、レートが比較的低く、追跡要件が厳密である場合に、有効桁数のインジェストに使用されます。
 
 > [!WARNING]
-> 大量のデータ ストリームに対するインジェスト要求ごとに肯定通知を有効にする必要があります。これは、基になる xStore リソースに極端な負荷がかかるため、>、インジェストの待機時間が長くなり、クラスターの応答性が完全になる可能性があるためです。
+> 大量のデータストリームに対するすべてのインジェスト要求に対して肯定通知を有効にすることは避けてください。これにより、基になる xStore リソースに極端な負荷がかかるため、取り込みの待機時間が長くなり、クラスターの応答性が完全でない場合もあります。
 
+次のプロパティ ( [KustoQueuedIngestionProperties](kusto-ingest-client-reference.md#class-kustoqueuedingestionproperties)で設定) は、インジェストの成功または失敗の通知のレベルとトランスポートを制御します。
 
-次のプロパティ[(KustoQueuedIngestionProperties](kusto-ingest-client-reference.md#class-kustoqueuedingestionproperties)で設定) は、取得の成功または失敗の通知のレベルとトランスポートを制御します。
+### <a name="ingestionreportlevel-enumeration"></a>IngestionReportLevel 列挙型
 
-### <a name="ingestionreportlevel-enumeration"></a>列挙体の作成
 ```csharp
 public enum IngestionReportLevel
 {
@@ -149,7 +168,8 @@ public enum IngestionReportLevel
 }
 ```
 
-### <a name="ingestionreportmethod-enumeration"></a>列挙体
+### <a name="ingestionreportmethod-enumeration"></a>IngestionReportMethod 列挙型
+
 ```csharp
 public enum IngestionReportMethod
 {
@@ -159,41 +179,45 @@ public enum IngestionReportMethod
 }
 ```
 
-インジェストの状態を追跡できるようにするには、インジェスト操作を実行する[IKustoQueuedIngest クライアント](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)に次の情報を提供してください。
-1.  プロパティ`IngestionReportLevel`をレポートの目的のレベルに設定します ( FailuresOnly (既定値) または FailuresAndSuccesses のいずれかです。
-[なし] に設定すると、インジェストの終了時に何も報告されません。
-2.  必要`IngestionReportMethod`な - キュー、テーブル、またはその両方を指定します。
+インジェストの状態を追跡するには、取り込み操作を行う[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)に次の情報を指定します。
+1.  `IngestionReportLevel`プロパティをレポートの必要なレベルに設定します。 `FailuresOnly`(既定値) またはのいずれか `FailuresAndSuccesses` です。
+に設定すると `None` 、インジェストの最後に何も報告されません。
+1.  、、またはを指定し `IngestionReportMethod`  -  `Queue` `Table` `both` ます。
 
-使用例は[、Kusto.Ingest の例](kusto-ingest-client-examples.md)ページにあります。
+使用例については、「 [Kusto. インジェストの例](kusto-ingest-client-examples.md)」ページを参照してください。
 
-### <a name="ingestion-status-in-azure-table"></a>Azure テーブルでの取り込みステータス
-各`IKustoIngestionResult`INGEST 操作から返されるインターフェイスには、インジェストの状態を照会するために使用できる関数が含まれています。
-返される`Status``IngestionStatus`オブジェクトのプロパティに特に注意してください。
-* `Pending`ソースが取り込みのためにキューに入れられており、まだ更新されていることを示します。この関数を再度使用して、ソースの状態を照会する
-* `Succeeded`ソースが正常に取り込まれたことを示します
-* `Failed`ソースを取り込むことができなかったことを示します
+### <a name="ingestion-status-in-the-azure-table"></a>Azure テーブルでのインジェストの状態
 
->ステータスを`Queued`取得すると、 が`IngestionReportMethod`デフォルト値の 「Queue」に残っていることを示します。 これは永続的な状態であり、関数を呼び出し直すと、常に同じ 'キューに入れ' 状態になります。<BR>Azure テーブルでインジェストの状態を確認できるようにするには、取り込む前に`IngestionReportMethod`[、KustoQueuedIngestionProperties](kusto-ingest-client-reference.md#class-kustoqueuedingestionproperties)のプロパティがに`Table`設定されていることを確認してください (または`QueueAndTable`、インジェストの状態をキューに報告する場合)。
+`IKustoIngestionResult`各取り込み操作から返されるインターフェイスには、インジェストの状態を照会するために使用できる関数が含まれています。
+返されるオブジェクトのプロパティには特に注意して `Status` `IngestionStatus` ください。
+* `Pending`ソースがインジェストのためにキューに登録されていて、まだ更新されていないことを示します。 関数を再度使用して、ソースの状態を照会します。
+* `Succeeded`ソースが正常に取り込まれたされたことを示します。
+* `Failed`ソースを取り込まれたできなかったことを示します。
 
-### <a name="ingestion-status-in-azure-queue"></a>Azure キューでのインジェクションの状態
-これらの`IKustoIngestionResult`メソッドは、Azure テーブルの状態を確認する場合にのみ関連します。 Azure キューに報告された状態を照会するには、[次](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)の方法を使用します。
+> [!NOTE]
+> 状態を取得する `Queued` と、が `IngestionReportMethod` 既定値の ' Queue ' のままになっていることを示します。 これは永続的な状態であり、または関数を再起動すると `GetIngestionStatusBySourceId` `GetIngestionStatusCollection` 、常に同じ "キューに置かれた" 状態になります。
+> Azure テーブルのインジェストの状態を確認するには、取り込みの前に、 `IngestionReportMethod` [KustoQueuedIngestionProperties](kusto-ingest-client-reference.md#class-kustoqueuedingestionproperties)のプロパティがに設定されていることを確認し `Table` ます。 また、インジェストの状態をキューに報告する場合は、[状態] をに設定し `QueueAndTable` ます。
 
-|Method |目的 |
-|------------|------------|
-|ピークトップインジェスティション失敗 |要求されたメッセージの制限に従って、破棄されていない最も早いインジェスト失敗に関する情報を返す非同期メソッド |
-|失敗を取得して廃棄する |要求されたメッセージの制限に従って、破棄されていない最も早いインジェスト失敗を返し、破棄する非同期メソッド |
-|成功を収める |要求されたメッセージの制限に従って、破棄されなかった最も早いインジェストの成功を返し、廃棄する非同期メソッド (に設定`IngestionReportLevel`されている場合にのみ関連します)`FailuresAndSuccesses` |
+### <a name="ingestion-status-in-azure-queue"></a>Azure キューでのインジェストの状態
 
+メソッドは、 `IKustoIngestionResult` Azure テーブルの状態を確認する場合にのみ関連します。 Azure キューに報告された状態を照会するには、次の[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)メソッドを使用します。
 
-### <a name="ingestion-failures-retrieved-from-azure-queue"></a>Azure キューから取得したインジェクション エラー
-取り込みエラーは、障害に`IngestionFailure`関する有用な情報を含むオブジェクトによって表されます。
+|Method                                  |目的     |
+|----------------------------------------|------------|
+|PeekTopIngestionFailures                |要求されたメッセージの制限により、まだ破棄されていない最も古いインジェストエラーに関する情報を返す非同期メソッド |
+|GetAndDiscardTopIngestionFailures       |要求されたメッセージの制限により、まだ破棄されていない最も古いインジェストエラーを返して破棄する非同期メソッド |
+|GetAndDiscardTopIngestionSuccesses      |要求されたメッセージの制限により、まだ破棄されていない最も古いインジェストの成功を返して破棄する非同期メソッド。 このメソッドは、 `IngestionReportLevel` がに設定されている場合にのみ関連します。`FailuresAndSuccesses` |
 
-|プロパティ |意味 |
-|------------|------------|
-|データベース & テーブル |目的のデータベース名とテーブル名 |
-|インジェスティションソースパス |取得した BLOB のパス。 ファイルの取り込み時に元のファイル名が含まれます。 データリーダーの取り込みの場合はランダムになります |
-|失敗ステータス |`Permanent`(再試行は実行されません)、(`Transient`再試行が実行されます)、`Exhausted`または(再試行も何度も失敗しました) |
-|ルートアクティビティid&操作ID |インジェストの操作 ID と RootActivity ID (詳細なトラブルシューティングに役立ちます) |
-|失敗した |失敗の UTC 時刻。 取り込みメソッドが呼び出された時間よりも長くなります。.インジェストを実行する前にデータが集計される |
-|詳細 |障害に関するその他の詳細(存在する場合) |
-|ErrorCode |`IngestionErrorCode`失敗した場合のインジェスション エラー コードを表す列挙型|
+### <a name="ingestion-failures-retrieved-from-the-azure-queue"></a>Azure キューからインジェストのエラーが取得されました
+
+インジェストエラーは、 `IngestionFailure` エラーに関する有用な情報を含むオブジェクトによって表されます。
+
+|プロパティ                      |説明     |
+|------------------------------|------------|
+|データベース & テーブル              |目的のデータベース名とテーブル名 |
+|IngestionSourcePath           |取り込まれた blob のパス。 ファイルが取り込まれたの場合、には元のファイル名が含まれます。 DataReader が取り込まれたの場合はランダムになります |
+|FailureStatus                 |`Permanent`(再試行は実行されません)、 `Transient` (再試行が実行されます)、または `Exhausted` (いくつかの再試行も失敗) |
+|OperationId & RootActivityId  |インジェストの操作 ID と RootActivity ID (詳細なトラブルシューティングに役立ちます) |
+|失敗した場合                      |エラーの UTC 時刻。 インジェストを実行する前にデータが集計されるため、インジェストメソッドが呼び出された時間よりも長くなります。 |
+|詳細                       |エラーに関するその他の詳細 (存在する場合) |
+|ErrorCode                     |`IngestionErrorCode`列挙は、エラーが発生した場合にインジェストエラーコードを表します。 |

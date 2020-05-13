@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 15a1c21a38999b0a3929fcf0451a91ec607ca2a8
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: d66e60d195500089a0649b519604a833ffd5386e
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225923"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271062"
 ---
 # <a name="capacity-policy"></a>キャパシティ ポリシー
 
@@ -93,7 +93,7 @@ ms.locfileid: "83225923"
 クラスターのエクステントパーティションの合計容量 (で示さ[れ](../management/diagnostics.md#show-capacity)ているように) は、1つのプロパティで定義され `ClusterMaximumConcurrentOperations` ます。
 
 > [!Note]
-> `ClusterMaximumConcurrentOperations`システムによって [1, 10] の範囲で自動的に調整されます。
+> `ClusterMaximumConcurrentOperations`システムによって [1, 16] の範囲で自動的に調整されます。
 
 ## <a name="defaults"></a>デフォルト
 

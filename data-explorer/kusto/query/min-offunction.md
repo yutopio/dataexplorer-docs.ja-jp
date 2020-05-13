@@ -1,6 +1,6 @@
 ---
-title: min_of() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで min_of() について説明します。
+title: min_of ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの min_of () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 06a8f7ce6bcef8f3c15c4ea3d4c997b4e4540bf7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0762b1416df32279b9801c47f129a6966772a7e2
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512395"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271368"
 ---
 # <a name="min_of"></a>min_of()
 
-評価された複数の数値式の最小値を返します。
+複数の評価された数値式の最小値を返します。
 
 ```kusto
 min_of(10, 1, -3, 17) == -3
@@ -25,14 +25,14 @@ min_of(10, 1, -3, 17) == -3
 
 **構文**
 
-`min_of``(` *expr_1* `,` *expr_1expr_2..*`)`
+`min_of``(` *expr_1* `,` *expr_2*を expr_1 しています...`)`
 
 **引数**
 
 * *expr_i*: 評価されるスカラー式。
 
 - すべての引数は同じ型である必要があります。
-- 最大 64 個の引数がサポートされます。
+- 最大64個の引数がサポートされています。
 
 **戻り値**
 
@@ -40,6 +40,7 @@ min_of(10, 1, -3, 17) == -3
 
 **例**
 
+<!-- csl: https://help.kusto.windows.net/Samples  -->
 ```kusto
 print result=min_of(10, 1, -3, 17) 
 ```

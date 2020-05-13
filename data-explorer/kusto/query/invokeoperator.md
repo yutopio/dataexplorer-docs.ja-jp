@@ -1,6 +1,6 @@
 ---
-title: 呼び出し演算子 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの呼び出し演算子について説明します。
+title: invoke 演算子-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの invoke 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 41f19440795f4f302352a8dda5192c5c4790ea99
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1aca8cda34e1ee8506d5be6633cfd46fd912c6c3
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513704"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271521"
 ---
 # <a name="invoke-operator"></a>invoke 演算子
 
-表形式パラメーター引数としてソースを受け`invoke`取るラムダを呼び出します。
+`invoke`表形式パラメーター引数としてのソースを受け取るラムダを呼び出します。
 
 ```kusto
 T | invoke foo(param1, param2)
@@ -25,13 +25,13 @@ T | invoke foo(param1, param2)
 
 **構文**
 
-`T | invoke`*機能*`(`[*パラム1*`,`*パラム2*]`)`
+`T | invoke`*関数* `(`[*param1* `,`*param2*]`)`
 
 **引数**
 
 * *T*: 表形式のソース。
-* *function*: 評価するラムダ式または関数名の名前。
-* *param1* *,param2..* : ラムダ引数を追加します。
+* *関数*: 評価するラムダ式または関数名の名前。
+* *param1*, *param2* ...: 追加のラムダ引数。
 
 **戻り値**
 
@@ -39,12 +39,13 @@ T | invoke foo(param1, param2)
 
 **メモ**
 
-表形式の引数を受け取ることができるラムダ式を宣言する方法の詳細については[、let ステートメント](./letstatement.md)を参照してください。
+表形式引数を受け取ることができるラムダ式を宣言する方法の詳細については、「 [let ステートメント](./letstatement.md)」を参照してください。
 
 **例**
 
-次の例は、演算子を`invoke`使用してラムダ式を呼び出す方法を示しています。
+次の例は、演算子を使用してラムダ式を呼び出す方法を示してい `invoke` ます。
 
+<!-- csl: https://help.kusto.windows.net:443/KustoMonitoringPersistentDatabase -->
 ```kusto
 // clipped_average(): calculates percentiles limits, and then makes another 
 //                    pass over the data to calculate average with values inside the percentiles

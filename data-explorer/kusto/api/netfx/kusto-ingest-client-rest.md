@@ -9,43 +9,39 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 2ea7fd33a6e6ed8728fb12d53fbe76eadf8fd6b6
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 80fe504311ee847afa7244e179974d80485efe46
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862073"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373554"
 ---
-# <a name="howto-data-ingestion-without-kustoingest-library"></a>Kusto を使用せずにデータを取り込む方法。インジェストライブラリ
+# <a name="ingestion-without-kustoingest-library"></a>Kusto によるインジェストを使用した取り込み
 
-## <a name="when-to-consider-not-using-kustoingest-library"></a>Kusto. インジェスト library を使用しないことを検討する場合
-一般に、Kusto を使用する場合は、Kusto 取り込みを使用することをお勧めします。<BR>
-これが (通常 OS の制約のために) オプションではない場合、いくつかの作業でほぼ同じ機能を実現できます。<BR>
-この記事では、Kusto. インジェストパッケージに依存しないで、Kusto に**キューに格納**されたインジェストを実装する方法について説明します。
+Azure データエクスプローラーにデータを取り込みする場合は、Kusto. インジェストライブラリをお勧めします。 ただし、Kusto. インジェストパッケージに依存しなくても、ほぼ同じ機能を実現できます。
+この記事では、Azure データエクスプローラーへの*キューインジェスト*を使用して、運用レベルのパイプラインを作成する方法について説明します。
 
->**注:** 次のコードは C# で記述されており、サンプルコードを単純化するために、Azure Storage SDK、ADAL 認証ライブラリ、および NewtonSoft. JSON パッケージを使用しています。<BR>必要に応じて、対応するコードを適切な[Azure Storage REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api)呼び出し、 [non-.NET ADAL パッケージ](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries)、使用可能な任意の JSON 処理パッケージに置き換えることができます。
+> [!NOTE]
+> 次のコードは C# で記述されており、Azure Storage SDK、ADAL 認証ライブラリ、および NewtonSoft. JSON パッケージを使用して、サンプルコードを単純化しています。 必要に応じて、対応するコードを適切な[Azure Storage REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api)呼び出し、 [non-.NET ADAL パッケージ](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries)、および使用可能な任意の JSON 処理パッケージに置き換えることができます。
 
-## <a name="overview"></a>概要
-次のコードサンプルでは、Kusto. インジェストライブラリを使用せずに kusto データ管理サービスを介して kusto にデータを取り込み、キューに登録されていることを示します。<BR>
-これは、環境またはその他の制限のために完全な .NET がアクセスできない場合や利用できない場合に便利です。<BR>
+この記事では、推奨されるインジェストモードについて説明します。 Kusto. インジェストライブラリの場合、対応するエンティティは[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)インターフェイスです。 ここでは、クライアントコードが azure キューにインジェスト通知メッセージを投稿することによって、Azure データエクスプローラーサービスと対話します。 メッセージへの参照は、Kusto データ管理 (インジェスト) サービスから取得されます。 サービスとの対話は、Azure Active Directory (Azure AD) を使用して認証される必要があります。
 
-> この記事では、運用レベルのパイプラインに推奨されるインジェストモードについて説明します。これは**キューインジェスト**とも呼ばれます (Kusto. インジェストライブラリの観点からは、対応するエンティティは[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)インターフェイスです)。 このモードでは、クライアントコードは、Azure キューにインジェスト通知メッセージを投稿することで Kusto サービスとやり取りします。これは、Kusto データ管理 ( インジェスト) サービス。 データ管理サービスとの対話は、 **AAD**で認証される必要があります。
+次のコードは、kusto データ管理サービスが、Kusto. インジェストライブラリを使用せずにキューに置かれたデータインジェストを処理する方法を示しています。 この例は、環境またはその他の制限のために完全な .NET がアクセスできないか、使用できない場合に役立ちます。
 
-このフローの概要については、以下のコードサンプルで説明しています。次のように構成されています。
-1. Azure Storage クライアントを作成し、データを blob にアップロードする
-1. Kusto インジェストサービスにアクセスするための認証トークンを取得する
-2. Kusto インジェストサービスに対してクエリを実行し、次のことを取得します。
-    * インジェストリソース (キューと blob コンテナー)
-    * すべてのインジェストメッセージに追加される kusto id トークン
-3. Kusto in から取得したいずれかの blob コンテナーの blob にデータをアップロードする (2)
-4. 対象の DB とテーブルを識別し、から blob を指すインジェストメッセージを作成します (3)。
-5. (4) で構成したインジェストメッセージを、Kusto in から取得したインジェストキューの1つ (2) に投稿します。
-6. インジェスト中にサービスによって発生したエラーを取得します
+このコードには、Azure Storage クライアントを作成し、データを blob にアップロードする手順が含まれています。
+各手順の詳細については、サンプルコードの後で説明します。
 
-以降のセクションでは、各手順について詳しく説明します。
+1. [Azure データエクスプローラーインジェストサービスにアクセスするための認証トークンを取得する](#obtain-authentication-evidence-from-azure-ad)
+1. Azure データエクスプローラーインジェストサービスにクエリを実行し、次のものを取得します。
+    * [インジェストリソース (キューと blob コンテナー)](#retrieve-azure-data-explorer-ingestion-resources)
+    * [すべてのインジェストメッセージに追加される Kusto id トークン](#obtain-a-kusto-identity-token)
+1. [Kusto in から取得したいずれかの blob コンテナーの blob にデータをアップロードする (2)](#upload-data-to-the-azure-blob-container)
+1. [コピー先のデータベースとテーブルを識別するインジェストメッセージを作成します。このメッセージは、から blob を指します (3)。](#compose-the-azure-data-explorer-ingestion-message)
+1. [(4) で構成したインジェストメッセージを、(2) の Azure データエクスプローラーから取得したインジェストキューに投稿します。](#post-the-azure-data-explorer-ingestion-message-to-the-azure-data-explorer-ingestion-queue)**
+1. [インジェスト中にサービスによって検出されたエラーを取得します](#check-for-error-messages-from-the-azure-queue)
 
 ```csharp
-// A container class for ingestion resources we are going to obtain from Kusto
+// A container class for ingestion resources we are going to obtain from Azure Data Explorer
 internal class IngestionResourcesSnapshot
 {
     public IList<string> IngestionQueues { get; set; } = new List<string>();
@@ -57,7 +53,7 @@ internal class IngestionResourcesSnapshot
 
 public static void IngestSingleFile(string file, string db, string table, string ingestionMappingRef)
 {
-    // Your Kusto ingestion service URI, typically ingest-<your cluster name>.kusto.windows.net
+    // Your Azure Data Explorer ingestion service URI, typically ingest-<your cluster name>.kusto.windows.net
     string DmServiceBaseUri = @"https://ingest-{serviceNameAndRegion}.kusto.windows.net";
 
     // 1. Authenticate the interactive user (or application) to access Kusto ingestion service
@@ -69,7 +65,7 @@ public static void IngestSingleFile(string file, string db, string table, string
     // 2b. Retrieve Kusto identity token
     string identityToken = RetrieveKustoIdentityToken(DmServiceBaseUri, bearerToken);
 
-    // 3. Upload file to one of the blob containers we got from Kusto.
+    // 3. Upload file to one of the blob containers we got from Azure Data Explorer.
     // This example uses the first one, but when working with multiple blobs,
     // one should round-robin the containers in order to prevent throttling
     long blobSizeBytes = 0;
@@ -80,7 +76,7 @@ public static void IngestSingleFile(string file, string db, string table, string
     // 4. Compose ingestion command
     string ingestionMessage = PrepareIngestionMessage(db, table, blobUriWithSas, blobSizeBytes, ingestionMappingRef, identityToken);
 
-    // 5. Post ingestion command to one of the ingestion queues we got from Kusto.
+    // 5. Post ingestion command to one of the ingestion queues we got from Azure Data Explorer.
     // This example uses the first one, but when working with multiple blobs,
     // one should round-robin the queues in order to prevent throttling
     PostMessageToQueue(ingestionResources.IngestionQueues.First(), ingestionMessage);
@@ -103,17 +99,21 @@ public static void IngestSingleFile(string file, string db, string table, string
 }
 ```
 
-## <a name="1-obtain-authentication-evidence-from-aad"></a>1. AAD から認証証拠を取得する
-ここでは、ADAL を使用して、入力キューを要求するために Kusto データ管理サービスにアクセスするための AAD トークンを取得します。
+## <a name="using-queued-ingestion-to-azure-data-explorer-for-production-grade-pipelines"></a>Azure データエクスプローラーにキューインジェストを使用して実稼働レベルのパイプラインを作成する
+
+### <a name="obtain-authentication-evidence-from-azure-ad"></a>Azure AD から認証証拠を取得する
+
+ここでは、ADAL を使用して、Kusto データ管理サービスにアクセスし、その入力キューを要求する Azure AD トークンを取得します。
 ADAL は、必要に応じて[、Windows 以外のプラットフォーム](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries)で使用できます。
+
 ```csharp
-// Authenticates the interactive user and retrieves AAD Access token for specified resource
+// Authenticates the interactive user and retrieves Azure AD Access token for specified resource
 internal static string AuthenticateInteractiveUser(string resource)
 {
-    // Create Auth Context for MSFT AAD:
-    AuthenticationContext authContext = new AuthenticationContext("https://login.microsoftonline.com/{AAD Tenant ID or name}");
+    // Create Auth Context for MSFT Azure AD:
+    AuthenticationContext authContext = new AuthenticationContext("https://login.microsoftonline.com/{Azure AD Tenant ID or name}");
 
-    // Acquire user token for the interactive user for Kusto:
+    // Acquire user token for the interactive user for Azure Data Explorer:
     AuthenticationResult result =
         authContext.AcquireTokenAsync(resource, "<your client app ID>", new Uri(@"<your client app URI>"),
                                         new PlatformParameters(PromptBehavior.Auto), UserIdentifier.AnyUser, "prompt=select_account").Result;
@@ -121,12 +121,13 @@ internal static string AuthenticateInteractiveUser(string resource)
 }
 ```
 
-## <a name="2-retrieve-kusto-ingestion-resources"></a>2. Kusto インジェストリソースを取得する
-これは興味深いものです。 ここでは、Kusto データ管理サービスに対する HTTP POST 要求を手動で作成し、インジェストリソースを返すように要求します。
-これには、DM サービスがリッスンしているキュー、およびデータをアップロードするための blob コンテナーが含まれます。
-データ管理サービスは、これらのキューのいずれかに到着したインジェスト要求を含むすべてのメッセージを処理します。
+### <a name="retrieve-azure-data-explorer-ingestion-resources"></a>Azure データエクスプローラーインジェストリソースを取得する
+
+データ管理サービスに対して HTTP POST 要求を手動で作成し、インジェストリソースの返却を要求します。 これらのリソースには、DM サービスがリッスンしているキュー、およびデータをアップロードするための blob コンテナーが含まれます。
+データ管理サービスは、これらのキューのいずれかに到着するインジェスト要求を含むすべてのメッセージを処理します。
+
 ```csharp
-// Retrieve ingestion resources (queues and blob containers) with SAS from specified Kusto Ingestion service using supplied Access token
+// Retrieve ingestion resources (queues and blob containers) with SAS from specified Azure Data Explorer Ingestion service using supplied Access token
 internal static IngestionResourcesSnapshot RetrieveIngestionResources(string ingestClusterBaseUri, string accessToken)
 {
     string ingestClusterUri = $"{ingestClusterBaseUri}/v1/rest/mgmt";
@@ -191,8 +192,10 @@ internal static WebResponse SendPostRequest(string uriString, string authToken, 
 }
 ```
 
-## <a name="obtaining-kusto-identity-token"></a>Kusto Id トークンを取得しています
-データインジェストを承認するための重要な手順は、id トークンを取得し、すべての取り込みメッセージにアタッチすることです。 インジェストメッセージは、非ダイレクトチャネル (Azure キュー) を介して Kusto に渡されるため、帯域内承認検証を実行することはできません。 Id トークンメカニズムでは、Kusto で署名された id の証拠を発行して、Kusto サービスがインジェストメッセージを受信した後に検証できるようにします。
+### <a name="obtain-a-kusto-identity-token"></a>Kusto id トークンを取得する
+
+インジェストメッセージは、非ダイレクトチャネル (Azure キュー) を介して Azure データエクスプローラーに渡されます。これにより、Azure データエクスプローラーインジェストサービスにアクセスするための帯域内承認検証を行うことができなくなります。 この問題を解決するには、すべての取り込みメッセージに id トークンを添付します。 トークンは、帯域内承認検証を有効にします。 この署名付きトークンは、インジェストメッセージを受信したときに Azure データエクスプローラーサービスによって検証されます。
+
 ```csharp
 // Retrieves a Kusto identity token that will be added to every ingest message
 internal static string RetrieveKustoIdentityToken(string ingestClusterBaseUri, string accessToken)
@@ -213,8 +216,10 @@ internal static string RetrieveKustoIdentityToken(string ingestClusterBaseUri, s
 }
 ```
 
-## <a name="3-upload-data-to-azure-blob-container"></a>3. Azure Blob コンテナーにデータをアップロードする
-この手順では、ローカルファイルを Azure Blob にアップロードします。この Blob は、後でインジェスト用に渡されます。 このコードは Azure Storage SDK を利用していますが、この依存関係が不可能な場合は、 [Azure Blob Service REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/blob-service-rest-api)と同じように実現できます。
+### <a name="upload-data-to-the-azure-blob-container"></a>Azure Blob コンテナーにデータをアップロードする
+
+この手順では、取り込み用に渡される Azure Blob にローカルファイルをアップロードします。 このコードでは、Azure Storage SDK を使用します。 依存関係が不可能な場合は、 [Azure Blob Service REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/blob-service-rest-api)で実現できます。
+
 ```csharp
 // Uploads a single local file to an Azure Blob container, returns blob URI and original data size
 internal static string UploadFileToBlobContainer(string filePath, string blobContainerUri, string containerName, string blobName, out long blobSize)
@@ -233,13 +238,21 @@ internal static string UploadFileToBlobContainer(string filePath, string blobCon
 }
 ```
 
-## <a name="4-compose-kusto-ingestion-message"></a>4. Kusto インジェストメッセージを作成する
-ここでは、NewtonSoft. JSON パッケージをもう一度使用して、適切な Kusto データ管理サービスがリッスンしている Azure キューに送信される有効なインジェスト要求メッセージを作成します。
-* これはインジェストメッセージの最小要件です。
-* この id トークンは必須であり、 `AdditionalProperties` JSON オブジェクト内に存在する必要があることに注意してください。
-* 必要に応じ`CsvMapping`て、 `JsonMapping`またはプロパティも指定する必要があります
-* 詳細については[、インジェストマッピングの事前作成に関する記事を](../../management/create-ingestion-mapping-command.md)参照してください。
-* [付録 a](#appendix-a-ingestion-message-internal-structure)インジェストメッセージの構造について説明します。
+### <a name="compose-the-azure-data-explorer-ingestion-message"></a>Azure データエクスプローラーインジェストメッセージを作成する
+
+NewtonSoft. JSON パッケージは、ターゲットデータベースとテーブルを識別する有効なインジェスト要求を再度作成し、blob を指します。
+メッセージは、関連する Kusto データ管理サービスがリッスンしている Azure キューに送信されます。
+
+ここでは、考慮すべき点をいくつか紹介します。
+
+* この要求は、インジェストメッセージの最小要件です。
+
+> [!NOTE]
+> Id トークンは必須であり、 **Additionalproperties** JSON オブジェクトの一部である必要があります。
+
+* 必要に応じて、CsvMapping または JsonMapping プロパティも指定する必要があります
+* 詳細については、[インジェストマッピングの事前作成に関する記事](../../management/create-ingestion-mapping-command.md)を参照してください。
+* セクション[インジェストメッセージの内部構造](#ingestion-message-internal-structure)インジェストメッセージの構造について説明します。
 
 ```csharp
 internal static string PrepareIngestionMessage(string db, string table, string dataUri, long blobSizeBytes, string mappingRef, string identityToken)
@@ -264,10 +277,12 @@ internal static string PrepareIngestionMessage(string db, string table, string d
 }
 ```
 
-## <a name="5-post-kusto-ingestion-message-to-kusto-ingestion-queue"></a>5. Kusto インジェストメッセージを Kusto インジェストキューに投稿する
-最後に、deed 自体は、選択したキューに構築されたメッセージを投稿するだけです。<BR>
-注: .Net ストレージクライアントを使用する場合は、既定でメッセージが base64 にエンコードされます。 Storage の[ドキュメント](https://docs.microsoft.com/dotnet/api/microsoft.azure.storage.queue.cloudqueue.encodemessage)を参照してください。<BR>
-このクライアントを使用していない場合は、メッセージの内容を適切にエンコードしてください。
+### <a name="post-the-azure-data-explorer-ingestion-message-to-the-azure-data-explorer-ingestion-queue"></a>Azure データエクスプローラーインジェストメッセージを Azure データエクスプローラーインジェストキューに投稿する
+
+最後に、作成したメッセージを、Azure データエクスプローラーから取得した選択したインジェストキューに送信します。
+
+> [!NOTE]
+> .Net ストレージクライアントを使用すると、既定でメッセージが base64 にエンコードされます。 詳細については、 [storage のドキュメント](https://docs.microsoft.com/dotnet/api/microsoft.windowsazure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage)を参照してください。このクライアントを使用していない場合は、メッセージの内容を正しくエンコードしてください。
 
 ```csharp
 internal static void PostMessageToQueue(string queueUriWithSas, string message)
@@ -279,9 +294,9 @@ internal static void PostMessageToQueue(string queueUriWithSas, string message)
 }
 ```
 
-## <a name="6-pop-messages-from-an-azure-queue"></a>6. Azure キューからの Pop メッセージ
-インジェスト後、このメソッドを使用して、Kusto データ管理サービスによって書き込まれる適切なキューからエラーメッセージを読み取ります。<BR>
-[「付録 B](#appendix-b-ingestion-failure-message-structure) 」では、エラーメッセージの構造について説明します。
+### <a name="check-for-error-messages-from-the-azure-queue"></a>Azure キューからのエラーメッセージを確認する
+
+インジェストの後、データ管理が書き込む関連キューからのエラーメッセージを確認します。 エラーメッセージの構造の詳細については、[インジェストのエラーメッセージの構造](#ingestion-failure-message-structure)に関する説明を参照してください。 
 
 ```csharp
 internal static IEnumerable<string> PopTopMessagesFromQueue(string queueUriWithSas, int count)
@@ -299,10 +314,13 @@ internal static IEnumerable<string> PopTopMessagesFromQueue(string queueUriWithS
 }
 ```
 
-## <a name="appendix-a-ingestion-message-internal-structure"></a>付録 A: インジェストメッセージの内部構造
+## <a name="ingestion-messages---json-document-formats"></a>インジェストメッセージ-JSON ドキュメント形式
+
+### <a name="ingestion-message-internal-structure"></a>インジェストメッセージの内部構造
+
 Kusto データ管理サービスが入力 Azure キューからの読み取りを想定しているメッセージは、次の形式の JSON ドキュメントです。
 
-```json
+```JSON
 {
     "Id" : "<Id>",
     "BlobPath" : "https://<AccountName>.blob.core.windows.net/<ContainerName>/<PathToBlob>?<SasToken>",
@@ -318,24 +336,23 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
 }
 ```
 
-
 |プロパティ | 説明 |
 |---------|-------------|
 |Id |メッセージ識別子 (GUID) |
-|BlobPath |Blob URI。読み取り/書き込み/削除のためのアクセス許可を Kusto に付与する SAS キーを含みます (書き込み/削除アクセス許可は、Kusto がデータの取り込み完了後に blob を削除する場合に必要です)。 |
-|RawDataSize |圧縮されていないデータのサイズ (バイト単位)。 この値を指定すると、Kusto は複数の blob をまとめて集計できる可能性があるため、インジェストを最適化できます。 このプロパティは省略可能ですが、指定されていない場合、Kusto は blob にアクセスしてサイズを取得します。 |
+|BlobPath |Blob へのパス (URI)。 Azure データエクスプローラーアクセス許可を付与する SAS キーを含み、読み取り/書き込み/削除を行います。 Azure データエクスプローラーがデータの取り込みを完了した後に blob を削除できるようにするためのアクセス許可が必要です。|
+|RawDataSize |圧縮されていないデータのサイズ (バイト単位)。 この値を指定すると、Azure データエクスプローラーによって、複数の blob を集計する可能性があるため、インジェストを最適化できます。 このプロパティは省略可能ですが、指定されていない場合、Azure データエクスプローラーは blob にアクセスしてサイズを取得します。 |
 |DatabaseName |ターゲットデータベース名 |
 |TableName |ターゲットテーブル名 |
-|RetainBlobOnSuccess |に設定する`true`と、インジェストが正常に完了した後、blob は削除されません。 既定値は `false` です |
+|RetainBlobOnSuccess |に設定すると `true` 、インジェストが正常に完了した後、blob は削除されません。 既定値は `false` です |
 |Format |非圧縮データ形式 |
-|FlushImmediately ちに |に設定する`true`と、すべての集計がスキップされます。 既定値は `false` です |
+|FlushImmediately ちに |に設定する `true` と、すべての集計がスキップされます。 既定値は `false` です |
 |ReportLevel |成功/エラー報告レベル: 0-失敗、1-なし、2-すべて |
 |ReportMethod |レポートメカニズム: 0-キュー、1-テーブル |
-|AdditionalProperties |その他のプロパティ (タグなど) |
+|AdditionalProperties |タグなどの追加のプロパティ |
 
+### <a name="ingestion-failure-message-structure"></a>インジェストエラーメッセージの構造
 
-## <a name="appendix-b-ingestion-failure-message-structure"></a>付録 B: インジェストのエラーメッセージの構造
-Kusto データ管理サービスが入力 Azure キューからの読み取りを想定している次の表のメッセージは、JSON ドキュメントであり、次の形式になっています。
+データ管理が入力 Azure キューから読み取ることを想定しているメッセージは、次の形式の JSON ドキュメントです。
 
 |プロパティ | 説明 |
 |---------|-------------
@@ -343,11 +360,11 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
 |データベース |ターゲットデータベース名 |
 |テーブル |ターゲットテーブル名 |
 |失敗した場合 |失敗のタイムスタンプ |
-|IngestionSourceId |Kusto の取り込みに失敗したデータチャンクを識別する GUID |
-|IngestionSourcePath |Kusto の取り込みに失敗したデータチャンクへのパス (URI) |
+|IngestionSourceId |Azure データエクスプローラーが取り込みに失敗したデータチャンクを識別する GUID |
+|IngestionSourcePath |Azure データエクスプローラーが取り込みに失敗したデータチャンクへのパス (URI) |
 |詳細 |エラー メッセージ |
-|ErrorCode |Kusto エラーコード ([こちら](kusto-ingest-client-errors.md#ingestion-error-codes)のすべてのエラーコードを参照してください) |
+|ErrorCode |Azure データエクスプローラーのエラーコード ([こちら](kusto-ingest-client-errors.md#ingestion-error-codes)のすべてのエラーコードを参照してください) |
 |FailureStatus |障害が永続的であるか一時的なものであるかを示します |
-|RootActivityId |サービス側での操作を追跡するために使用できる kusto 関連付け識別子 (GUID) |
-|発信ポリシー |エラーの原因がエラー[トランザクション更新ポリシー](../../management/updatepolicy.md)であるかどうかを示します |
-|再試行する | が正常に再試行された場合にインジェストが成功するかどうかを示します |
+|RootActivityId |サービス側での操作を追跡するために使用できる Azure データエクスプローラー関連付け識別子 (GUID) |
+|発信ポリシー |失敗した[トランザクション更新ポリシー](../../management/updatepolicy.md)が原因でエラーが発生したかどうかを示します。 |
+|再試行する | がそのように再試行された場合にインジェストが成功するかどうかを示します |

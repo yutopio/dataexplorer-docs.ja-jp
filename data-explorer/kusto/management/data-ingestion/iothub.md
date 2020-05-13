@@ -1,6 +1,6 @@
 ---
-title: IoT ハブからの取り込み - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの IoT Hub からの取り込みについて説明します。
+title: IoT Hub からの取り込み-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの IoT Hub からの取り込みについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,46 +8,46 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 33b6f4f737657ee0a6c2712f3b7cadce0c9c0a8f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c3ed0fa8608f2be5739c1143a648230f792e5d40
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521354"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373398"
 ---
-# <a name="ingest-from-iot-hub"></a>IoT ハブからの取り込み
+# <a name="ingest-from-iot-hub"></a>IoT Hub からの取り込み
 
-[Azure IoT Hub](https://docs.microsoft.com/azure/iot-hub/about-iot-hub)は、クラウドでホストされるマネージド サービスであり、IoT アプリケーションと管理するデバイスとの間の双方向通信の中心的なメッセージ ハブとして機能します。 Azure データ エクスプローラーは[、Event Hub と互換性のあるエンドポイント](https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messages-d2c#routing-endpoints)を使用して、顧客管理の IoT Hub から継続的に取り込まれます。
+[Azure IoT Hub](https://docs.microsoft.com/azure/iot-hub/about-iot-hub)は、クラウドでホストされる管理されたサービスであり、IoT アプリケーションとそれが管理するデバイス間の双方向通信のための中央のメッセージハブとして機能します。 Azure データエクスプローラーは、 [Event hub と互換性のある組み込みエンドポイント](https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messages-d2c#routing-endpoints)を使用して、お客様が管理する IoT hub から継続的にインジェストを提供します。
 
 ## <a name="data-format"></a>データ形式
 
-* データは[EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet)オブジェクトの形式でイベント ハブ エンドポイントから読み取られます。
-* イベント ペイロードは[、Azure データ エクスプローラー でサポートされるいずれかの形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)で指定できます。
+* データは、 [EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet)オブジェクトの形式でイベントハブエンドポイントから読み込まれます。
+* イベントペイロードは、 [Azure データエクスプローラーでサポートされている](../../../ingestion-supported-formats.md)いずれかの形式にすることができます。
 
 ## <a name="ingestion-properties"></a>インジェストのプロパティ
 
-取り込みプロパティは、取り込みプロセスを指示します。 データのルーティング場所と処理方法。 [EventData.Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties)を使用して、イベント インジェクションの取り込み[プロパティ](https://docs.microsoft.com/azure/data-explorer/ingestion-properties)を指定できます。 以下のプロパティを設定できます。
+インジェストプロパティはインジェストプロセスを指示します。 データをルーティングする場所とその処理方法。 [EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties)を使用して、イベントインジェストの[インジェストプロパティ](../../../ingestion-properties.md)を指定できます。 以下のプロパティを設定できます。
 
 |プロパティ |説明|
 |---|---|
-| テーブル | 既存のターゲット表の名前 (大文字と小文字を区別する)。 ブレードの`Table`セットを上書`Data Connection`きします。 |
-| Format | データ形式。 ブレードの`Data format`セットを上書`Data Connection`きします。 |
-| インジェスティションマッピングリファレンス | 使用する既存の[取り込みマッピング](../create-ingestion-mapping-command.md)の名前。 ブレードの`Column mapping`セットを上書`Data Connection`きします。|
-| エンコード |  データエンコーディングのデフォルトは UTF8 です。 [NET でサポートされる任意のエンコーディングを](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks)使用できます。 |
+| テーブル | 既存の対象テーブルの名前 (大文字と小文字が区別されます)。 [`Data Connection`] ブレードでの [`Table`] の設定をオーバーライドします。 |
+| Format | データ形式。 [`Data Connection`] ブレードでの [`Data format`] の設定をオーバーライドします。 |
+| IngestionMappingReference | 使用する既存の[インジェストマッピング](../create-ingestion-mapping-command.md)の名前。 [`Data Connection`] ブレードでの [`Column mapping`] の設定をオーバーライドします。|
+| エンコード |  データエンコード、既定値は UTF8 です。 [.Net でサポートされているエンコーディング](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks)のいずれかを指定できます。 |
 
-## <a name="events-routing"></a>イベントルーティング
+## <a name="events-routing"></a>イベントのルーティング
 
-Azure データ エクスプローラー クラスターへの IoT Hub 接続を設定する際には、ターゲット テーブルのプロパティ (テーブル名、データ形式、マッピング) を指定します。 これは、データの既定のルーティングです`static routing`。
-イベントプロパティを使用して、各イベントのターゲットテーブルプロパティを指定することもできます。 接続は、このイベントの静的プロパティをオーバーライドするイベントのプロパティをオーバーライドする[イベントのプロパティ](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties)で指定されたとおりにデータを動的にルーティングします。
+Azure データエクスプローラークラスターへの IoT Hub 接続を設定する場合は、ターゲットテーブルのプロパティ (テーブル名、データ形式、およびマッピング) を指定します。 これは、データの既定のルーティング (とも呼ばれ `static routing` ます) です。
+イベントプロパティを使用して、各イベントのターゲットテーブルのプロパティを指定することもできます。 接続は、 [EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties)で指定されているとおりにデータを動的にルーティングし、このイベントの静的プロパティをオーバーライドします。
 
 ## <a name="event-system-properties-mapping"></a>イベント システム プロパティのマッピング
 
-システム プロパティは、イベントを受信した時点で IoT Hubs サービスによって設定されたプロパティを格納するために使用されるコレクションです。 Azure データ エクスプローラー IoT Hub 接続は、選択したプロパティをテーブルのデータ ランディングに埋め込みます。
+システムプロパティは、イベントの受信時に IoT hub サービスによって設定されるプロパティを格納するために使用されるコレクションです。 Azure データエクスプローラー IoT Hub 接続により、選択したプロパティがテーブルのデータランディングに埋め込まれます。
 
 > [!Note]
-> * マッピング`csv`の場合、プロパティは次の表に示す順序でレコードの先頭に追加されます。 マッピング`json`の場合、プロパティは次の表のプロパティ名に従って追加されます。
+> * マッピングの場合 `csv` 、次の表に示す順序で、レコードの先頭にプロパティが追加されます。 マッピングの場合 `json` 、プロパティは次の表のプロパティ名に従って追加されます。
 
-### <a name="iot-hub-exposes-the-following-system-properties"></a>IoT Hub は、次のシステム プロパティを公開します。
+### <a name="iot-hub-exposes-the-following-system-properties"></a>IoT Hub は、次のシステムプロパティを公開します。
 
 |プロパティ |説明|
 |---|---|
@@ -63,11 +63,11 @@ Azure データ エクスプローラー クラスターへの IoT Hub 接続を
 | iothub-connection-auth-generation-id| IoT Hub で D2C メッセージに対して設定される ID。 メッセージを送信したデバイスの connectionDeviceGenerationId (「デバイス ID のプロパティ」を参照) が含まれています。 |
 | iothub-connection-auth-method| IoT Hub で D2C メッセージに対して設定される認証方法。 このプロパティには、メッセージを送信するデバイスの認証に使用する認証方法に関する情報が含まれます。 |
 
-テーブルの **[データ ソース**] セクションで **[イベント システムのプロパティ**] を選択した場合は、テーブル スキーマとマッピングにプロパティを含める必要があります。
+テーブルの [**データソース**] セクションで [**イベントシステムのプロパティ**] を選択した場合は、テーブルのスキーマとマッピングにプロパティを含める必要があります。
 
-**テーブル スキーマの例**
+**テーブルスキーマの例**
 
-データに 3 つの列`Timespan` `Metric`( `Value`、 、および )`x-opt-enqueued-time`が`x-opt-offset`含まれている場合、次のコマンドを使用してテーブル スキーマを作成または変更します。
+データに3つの列 (、、および) が含まれており、含まれるプロパティがである場合は `Timespan` `Metric` `Value` `x-opt-enqueued-time` `x-opt-offset` 、次のコマンドを使用してテーブルスキーマを作成または変更します。
 
 ```kusto
     .create-merge table TestTable (TimeStamp: datetime, Metric: string, Value: int, EventHubEnqueuedTime:datetime, EventHubOffset:long)
@@ -75,7 +75,7 @@ Azure データ エクスプローラー クラスターへの IoT Hub 接続を
 
 **CSV マッピングの例**
 
-レコードの先頭にデータを追加するには、次のコマンドを実行します。 注: プロパティは、上の表に示した順序でレコードの先頭に追加されます。 これは、マッピングされるシステムプロパティに基づいて列序数が変更される CSV マッピングにとって重要です。
+次のコマンドを実行して、レコードの先頭にデータを追加します。 注序数値: レコードの先頭に、上記の表に示されている順序でプロパティが追加されます。 これは、マップされているシステムプロパティに基づいて列序数が変化する CSV マッピングにとって重要です。
 
 ```kusto
     .create table TestTable ingestion csv mapping "CsvMapping1"
@@ -90,7 +90,7 @@ Azure データ エクスプローラー クラスターへの IoT Hub 接続を
  
 **JSON マッピングの例**
 
-データは、[データ**接続**] ブレードの **[イベント システムのプロパティ]** ボックスに表示されるシステム プロパティ名を使用して追加されます。 次の各コマンドを実行します。
+データは、[**データ接続**] ブレードの [**イベントシステムプロパティ**] の一覧に表示されるように、システムプロパティ名を使用して追加されます。 これらのコマンドを実行します。
 
 ```kusto
     .create table TestTable ingestion json mapping "JsonMapping1"
@@ -103,32 +103,32 @@ Azure データ エクスプローラー クラスターへの IoT Hub 接続を
     ']'
 ```
 
-## <a name="create-iot-hub-connection"></a>IoT ハブ接続の作成
+## <a name="create-iot-hub-connection"></a>IoT Hub 接続の作成
 
 > [!Note]
-> 最適なパフォーマンスを得るため、Azure データ エクスプローラー クラスターと同じリージョン内にすべてのリソースを作成します。
+> 最適なパフォーマンスを得るには、Azure データエクスプローラークラスターと同じリージョンにすべてのリソースを作成します。
 
 ### <a name="create-an-iot-hub"></a>IoT Hub の作成
 
-まだ持っていない場合は[、IoT Hub を作成](https://docs.microsoft.com/azure/data-explorer/ingest-data-iot-hub#create-an-iot-hub)します。
+[Iot hub](../../../ingest-data-iot-hub.md#create-an-iot-hub)をまだ作成していない場合は、作成します。
 
 > [!Note]
-> * カウント`device-to-cloud partitions`は変更できないので、パーティション数を設定する場合は長期的なスケールを考慮する必要があります。
-> * 消費者グループは、消費者ごとにユニクセである*必要があります*。 Kusto 接続専用のコンシューマー グループを作成します。 Azure ポータルでリソースを探し、新`Built-in endpoints`しいコンシューマー グループを追加します。
+> * `device-to-cloud partitions`カウントは変更できないため、パーティション数を設定するときは、長期的なスケールを考慮する必要があります。
+> * コンシューマーグループはコンシューマーごとに uniqe で*ある必要があり*ます。 Kusto 接続専用のコンシューマーグループを作成します。 Azure Portal でリソースを検索し、「」に進んで、 `Built-in endpoints` 新しいコンシューマーグループを追加します。
 
-### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Azure データ エクスプローラーへのデータ取り込み接続
+### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Azure データエクスプローラーへのデータインジェスト接続
 
-* Azure ポータル経由: [Azure データ エクスプローラー テーブルを IoT ハブ に接続](https://docs.microsoft.com/azure/data-explorer/ingest-data-iot-hub#connect-azure-data-explorer-table-to-iot-hub)します。
-* Azure データ エクスプローラー管理 .NET SDK の使用: [IoT Hub データ接続を追加する](https://docs.microsoft.com/azure/data-explorer/data-connection-iot-hub-csharp#add-an-iot-hub-data-connection)
-* Azure データ エクスプローラー管理の使用 Python SDK: [IoT Hub データ接続を追加する](https://docs.microsoft.com/azure/data-explorer/data-connection-iot-hub-python#add-an-iot-hub-data-connection)
-* ARM テンプレートを使用する場合: [Iot Hub データ接続を追加するための Azure リソース マネージャー テンプレート](https://docs.microsoft.com/azure/data-explorer/data-connection-iot-hub-resource-manager#azure-resource-manager-template-for-adding-an-iot-hub-data-connection)
-
-> [!Note]
-> **[マイ データ] でルーティング情報**が選択されている場合は、イベント プロパティの一部として必要な[ルーティング](#events-routing)情報を指定する*必要があります*。
+* Azure ポータルを使用して[、azure データエクスプローラーテーブルを IoT hub に接続](../../../ingest-data-iot-hub.md#connect-azure-data-explorer-table-to-iot-hub)します。
+* Azure データエクスプローラー management .NET SDK の使用: [IoT Hub データ接続を追加する](../../../data-connection-iot-hub-csharp.md#add-an-iot-hub-data-connection)
+* Azure データエクスプローラー management Python SDK の使用: [IoT Hub データ接続を追加する](../../../data-connection-iot-hub-python.md#add-an-iot-hub-data-connection)
+* ARM テンプレートを使用した場合: [Iot hub データ接続を追加するための Azure Resource Manager テンプレート](../../../data-connection-iot-hub-resource-manager.md#azure-resource-manager-template-for-adding-an-iot-hub-data-connection)
 
 > [!Note]
-> 接続が設定されると、作成後にキューに入れられたイベントから開始するデータを取り込みます。
+> **[データにルーティング情報が含ま**れる] が選択されている場合は、イベントのプロパティの一部として必要な[ルーティング](#events-routing)情報を指定*する必要があり*ます。
+
+> [!Note]
+> 接続が設定されると、作成時以降にエンキューされたイベントからデータを取り込みます。
 
 ### <a name="generating-data"></a>データの生成
 
-* デバイスをシミュレートしてデータを生成する[サンプル プロジェクト](https://github.com/Azure-Samples/azure-iot-samples-csharp/tree/master/iot-hub/Quickstarts/simulated-device)を参照してください。
+* デバイスをシミュレートし、データを生成する[サンプルプロジェクト](https://github.com/Azure-Samples/azure-iot-samples-csharp/tree/master/iot-hub/Quickstarts/simulated-device)を参照してください。

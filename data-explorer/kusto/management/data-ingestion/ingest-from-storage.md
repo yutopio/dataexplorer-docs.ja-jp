@@ -1,6 +1,6 @@
 ---
-title: コマンドへの .ingest (ストレージからデータをプル) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの .ingest into コマンド (ストレージからデータを取得) について説明します。
+title: インジェスト into コマンド (ストレージからデータをプル)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのインジェスト into コマンド (ストレージからのデータのプル) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,59 +8,59 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1f304f9dc064094c6d55cb32f3fb453f32114979
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 05d62aaa7b123f7f6d02b784402fd06335e155b2
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521439"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373423"
 ---
-# <a name="the-ingest-into-command-pull-data-from-storage"></a>コマンドへの .ingest (ストレージからデータをプル)
+# <a name="the-ingest-into-command-pull-data-from-storage"></a>インジェスト into コマンド (ストレージからデータをプル)
 
-この`.ingest into`コマンドは、1 つ以上のクラウド ストレージ アーティファクトからデータを "プル" することによって、データをテーブルに取り込みます。
-たとえば、コマンドは、Azure BLOB ストレージから 1000 個の CSV 形式の BLOB を取得し、解析して、それらを 1 つのターゲット テーブルにまとめて取得できます。
-既存のレコードに影響を与えず、テーブルのスキーマを変更することなく、データがテーブルに追加されます。
+この `.ingest into` コマンドは、1つまたは複数のクラウドストレージアーティファクトからデータを "プル" することによって、データをテーブルに取り込みします。
+たとえば、このコマンドは、Azure Blob Storage から CSV 形式の 1000 blob を取得して解析し、1つのターゲットテーブルにまとめて取り込むことができます。
+テーブルには、既存のレコードに影響を与えることなく、テーブルのスキーマを変更せずに、データが追加されます。
 
 **構文**
 
-`.ingest`[`async` `into` `table` ]*テーブル名**ソースデータロケーター* [`with` `(` *インジェスティションプロパティ名*`=`*取得プロパティ値*[`,` .]`)`]
+`.ingest`[ `async` ] `into` `table` *TableName* *SourceDataLocator* [ `with` `(` *IngestionPropertyName* `=` *IngestionPropertyValue* [ `,` ...] `)` ]
 
 **引数**
 
-* `async`: 指定すると、コマンドはすぐに戻り、バックグラウンドでインジェクションを続行します。 コマンドの結果には、取り込`OperationId`み完了ステータスと結果を`.show operation`取得するためにコマンドとともに使用できる値が含まれます。
+* `async`: 指定した場合、コマンドはすぐに制御を戻し、バックグラウンドで取り込みを続行します。 コマンドの結果には、インジェストの `OperationId` `.show operation` 完了状態と結果を取得するためにコマンドで使用できる値が含まれます。
   
-* *テーブル名*: データを取り込むテーブルの名前。
-  テーブル名は常にコンテキスト内のデータベースに対して相対的であり、スキーマ マッピング オブジェクトが指定されていない場合に、そのスキーマはデータに対して想定されるスキーマです。
+* *TableName*: データの取り込み先となるテーブルの名前。
+  テーブル名は常にデータベースに対する相対参照であり、スキーママッピングオブジェクトが指定されていない場合は、そのスキーマがデータに対して想定されるスキーマです。
 
-* *SourceDataLocator*: 型`string`のリテラル、または文字で`(``)`囲まれたリテラルのコンマ区切りのリストで、プルするデータを含むストレージ アーティファクトを示します。 [ストレージ接続文字列](../../api/connection-strings/storage.md)を参照してください。
+* *SourceDataLocator*: 型のリテラル、 `string` またはと文字で囲まれたそのようなリテラルのコンマ区切りのリスト。 `(` `)` プルするデータを含むストレージアーティファクトを示します。 「[ストレージ接続文字列](../../api/connection-strings/storage.md)」を参照してください。
 
 > [!NOTE]
-> 実際の資格情報を含む*SourceDataPointer*には[、難読化された文字列リテラル](../../query/scalar-data-types/string.md#obfuscated-string-literals)を使用することを強くお勧めします。
-> サービスは、内部トレース、エラー メッセージなどで資格情報をスクラブすることを確認します。
+> *SourceDataPointer*には、実際の資格情報を含む、難読化された[文字列リテラル](../../query/scalar-data-types/string.md#obfuscated-string-literals)を使用することを強くお勧めします。
+> サービスは、内部トレース、エラーメッセージなどの資格情報を確実にスクラブします。
 
-* *インジェスティションプロパティ名*、*インジェスティションプロパティ値*:[インジェ](https://docs.microsoft.com/azure/data-explorer/ingestion-properties)スティプロセスに影響を与えるインジェスション プロパティの数。
+* *IngestionPropertyName*, *IngestionPropertyValue*: インジェストプロセスに影響を与える任意の数の[インジェストプロパティ](../../../ingestion-properties.md)。
 
 **結果**
 
-コマンドの結果は、コマンドによって生成されたデータ・シャード (「エクステント」) と同じ数のレコードを持つ表です。
-データシャードが生成されていない場合は、空の (ゼロ値の) エクステント ID を持つ単一のレコードが返されます。
+コマンドの結果は、コマンドによって生成されるデータシャード ("エクステント") の数と同数のレコードを含むテーブルです。
+データシャードが生成されていない場合は、空の (ゼロ値) エクステント ID で1つのレコードが返されます。
 
 |名前       |Type      |説明                                                                |
 |-----------|----------|---------------------------------------------------------------------------|
-|エクステントID   |`guid`    |コマンドによって生成されたデータ シャードの一意の識別子。|
-|アイテムを読み込んだ |`string`  |このレコードに関連する 1 つ以上のストレージ成果物。             |
-|Duration   |`timespan`|摂取の実行にかかった時間。                                     |
-|エラー  |`bool`    |このレコードが取り込み失敗を表すかどうか。                |
-|OperationId|`guid`    |操作を表す一意の ID。 コマンドと共に`.show operation`使用できます。|
+|ExtentId   |`guid`    |コマンドによって生成されたデータシャードの一意の識別子。|
+|ItemLoaded |`string`  |このレコードに関連する1つ以上のストレージアーティファクト。             |
+|Duration   |`timespan`|インジェストの実行にかかった時間。                                     |
+|HasErrors  |`bool`    |このレコードがインジェストの失敗を表すかどうかを示します。                |
+|OperationId|`guid`    |操作を表す一意の ID。 コマンドと共に使用でき `.show operation` ます。|
 
 **解説**
 
-このコマンドは、取り込まれるテーブルのスキーマを変更しません。
-必要に応じて、データは取り込み中にこのスキーマに 「強制変換」され、逆の方法ではありません (余分な列は無視され、欠落列は NULL 値として扱われます)。
+このコマンドでは、取り込まれたするテーブルのスキーマは変更されません。
+必要に応じて、データは取り込み中にこのスキーマに "強制" されます。これに対して、他の方法ではありません (余分な列は無視され、欠落している列は null 値として扱われます)。
 
 **使用例**
 
-次の例では、エンジンに対して、Azure BLOB Storage から 2 つの BLOB を CSV`T`ファイルとして読み取り、その内容をテーブル に取り込む方法を指示します。 は`...`、各 BLOB への読み取りアクセスを提供する Azure Storage 共有アクセス署名 (SAS) を表します。 また、SAS が記録されないように、難読化された`h`文字列 (文字列値の前) を使用することにも注意してください。
+次の例では、Azure Blob Storage から CSV ファイルとして2つの blob を読み取り、その内容をテーブルに取り込むようにエンジンに指示し `T` ます。 は、 `...` 各 blob への読み取りアクセスを提供する Azure Storage shared access signature (SAS) を表します。 また、(文字列値の前にある) 難読化された文字列を使用して、 `h` SAS が記録されないように注意してください。
 
 ```kusto
 .ingest into table T (
@@ -69,7 +69,7 @@ ms.locfileid: "81521439"
 )
 ```
 
-次の例は、Azure データ レイク ストレージ Gen 2 (ADLSv2) からデータを取り込む場合です。 ここで使用される資格情報 (`...`) はストレージ アカウントの資格情報 (共有キー) であり、接続文字列の秘密部分に対してのみ文字列難読化を使用します。
+次の例は、Azure Data Lake Storage Gen 2 (ADLSv2) の取り込みデータを対象としています。 ここで使用する資格情報 ( `...` ) は、ストレージアカウントの資格情報 (共有キー) であり、接続文字列のシークレット部分に対してのみ文字列難読化を使用します。
 
 ```kusto
 .ingest into table T (
@@ -78,8 +78,8 @@ ms.locfileid: "81521439"
 )
 ```
 
-次の例では、Azure データ レイク ストレージ (ADLS) から 1 つのファイルを取り込みます。
-ユーザーの資格情報を使用して ADLS にアクセスします (そのため、ストレージ URI をシークレットを含むものとして扱う必要はありません)。 また、インジェスト プロパティを指定する方法も示します。
+次の例では、Azure Data Lake Storage (ADLS) から1つのファイルを取り込みします。
+ユーザーの資格情報を使用して ADLS にアクセスします (そのため、シークレットを含むストレージ URI を処理する必要はありません)。 インジェストプロパティを指定する方法についても説明します。
 
 ```kusto
 .ingest into table T ('adl://contoso.azuredatalakestore.net/Path/To/File/file1.ext;impersonate')

@@ -1,6 +1,6 @@
 ---
-title: .ingest インライン コマンド (プッシュ) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの .ingest インライン コマンド (プッシュ) について説明します。
+title: インジェストインラインコマンド (プッシュ)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのインジェストインラインコマンド (プッシュ) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,49 +8,49 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 47da2df6ff974afb5e91224ade695dc0863b6817
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2b1766b295fd348639d8d91c8308a3ed0a35a3dc
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521371"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373408"
 ---
-# <a name="the-ingest-inline-command-push"></a>.ingest インライン コマンド (プッシュ)
+# <a name="the-ingest-inline-command-push"></a>インジェストインラインコマンド (push)
 
-このコマンドは、コマンド テキスト自体にインラインで埋め込まれたデータを "プッシュ" することによって、データをテーブルに取り込みます。
+このコマンドは、インラインで埋め込まれているデータをコマンドテキスト自体に "プッシュ" することで、データをテーブルに取り込みします。
 
 > [!NOTE]
-> このコマンドの主な目的は、手動アドホックテストの目的です。
-> 実稼働環境では、大量のデータのバルク配信に適した他の取[り込み方法 (ストレージからの取り込み](./ingest-from-storage.md)など) を使用することをお勧めします。
+> このコマンドの主な目的は、手動によるアドホックテストの目的です。
+> 運用環境で使用する場合は、[ストレージからの取り込み](./ingest-from-storage.md)など、大量のデータの一括配信に適した他の取り込み方法を使用することをお勧めします。
 
 **構文**
 
-`.ingest``inline``(`*TableName*`with``,`*IngestionPropertyName*`=`*IngestionPropertyValue*テーブル名 [ 取得プロパティ名 ] プロパティプロパティ値 [ .] `into` `table``)`] `<|` *データ*
+`.ingest``inline` `into` `table`*TableName* [ `with` `(` *IngestionPropertyName* `=` *IngestionPropertyValue* [ `,` ...] `)` ] `<|`*データ*
 
 
 
 **引数**
 
-* *テーブル名*は、データを取り込むテーブルの名前です。
-  テーブル名は常にコンテキスト内のデータベースに対して相対的であり、スキーマ マッピング オブジェクトが指定されていない場合に、そのスキーマはデータに対して想定されるスキーマです。
+* *TableName*は、データの取り込み先のテーブルの名前です。
+  テーブル名は常にデータベースに対する相対参照であり、スキーママッピングオブジェクトが指定されていない場合は、そのスキーマがデータに対して想定されるスキーマです。
 
 * *データ*は、取り込むデータコンテンツです。 インジェストプロパティによって変更されない限り、このコンテンツは CSV として解析されます。
-  ほとんどの制御コマンドやクエリとは異なり、コマンドの*Data*部分のテキストは言語の構文規則に従う必要はありません (例えば、空白文字が重要であり、`//`組み合わせはコメントとして扱われません)。
+  ほとんどのコントロールコマンドやクエリとは異なり、コマンドの*データ*部分のテキストは、言語の構文規則に従う必要はありません (たとえば、空白文字は重要で、 `//` 組み合わせはコメントとして扱われません)。
 
-* *インジェスティションプロパティ名*、*インジェスティションプロパティ値*:[インジェ](https://docs.microsoft.com/azure/data-explorer/ingestion-properties)スティプロセスに影響を与えるインジェスション プロパティの数。
+* *IngestionPropertyName*, *IngestionPropertyValue*: インジェストプロセスに影響を与える任意の数の[インジェストプロパティ](../../../ingestion-properties.md)。
 
 **結果**
 
-コマンドの結果は、コマンドによって生成されたデータ・シャード (「エクステント」) と同じ数のレコードを持つ表です。
-データシャードが生成されていない場合は、空の (ゼロ値の) エクステント ID を持つ単一のレコードが返されます。
+コマンドの結果は、コマンドによって生成されるデータシャード ("エクステント") の数と同数のレコードを含むテーブルです。
+データシャードが生成されていない場合は、空の (ゼロ値) エクステント ID で1つのレコードが返されます。
 
 |名前       |Type      |説明                                                                |
 |-----------|----------|---------------------------------------------------------------------------|
-|エクステントID   |`guid`    |コマンドによって生成されたデータ シャードの一意の識別子。|
+|ExtentId   |`guid`    |コマンドによって生成されたデータシャードの一意の識別子。|
 
 **使用例**
 
-次のコマンドは、データを 2 つの`Purchases`列 (タイプ)`SKU`と`string``Quantity`(タイプ) を`long`持つテーブル ( ) に取り込みます。
+次のコマンドは、 `Purchases` `SKU` (型 `string` ) と `Quantity` (型の) 2 つの列を持つテーブル () にデータを取り込みし `long` ます。
 
 ```kusto
 .ingest inline into table Purchases <|

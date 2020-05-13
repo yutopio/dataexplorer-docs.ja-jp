@@ -1,6 +1,6 @@
 ---
-title: クエリ - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのクエリについて説明します。
+title: クエリ-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーのクエリについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,23 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 2ac338600320d3f83a92e22e405f630ee308df2f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fb842bcda70c2986bd754f55184413eec594d412
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510780"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373125"
 ---
 # <a name="queries"></a>クエリ
 
-クエリは、Kusto Engine クラスターの取り込みデータに対する読み取り専用操作です。 クエリは常にクラスタ内の特定のデータベースのコンテキストで実行されます (ただし、別のデータベースのデータや別のクラスタのデータを参照する場合もあります)。
+クエリは、Kusto エンジンクラスターの取り込まれたデータに対する読み取り専用操作です。 クエリは、常にクラスター内の特定のデータベースのコンテキストで実行されます (ただし、別のデータベースまたは別のクラスター内のデータを参照している場合もあります)。
 
-データのアドホック クエリは Kusto の最優先シナリオであるため、Kusto クエリ言語構文は、データに対してクエリを作成および実行する専門家以外のユーザーに最適化され、各クエリの実行内容を明確に理解できます (論理的に)。
+データのアドホッククエリは Kusto の最優先事項のシナリオであるため、Kusto クエリ言語の構文は、専門家ではないユーザーがデータに対してクエリを作成して実行し、各クエリの内容 (論理的) を明確に理解できるように最適化されています。
 
-言語の構文はデータ フローの構文であり、"データ" は実際には "表形式のデータ" (1 つ以上の行/列の四角形のデータ) を意味します。 少なくとも、クエリはソース データ参照 (Kusto テーブルへの参照) と、パイプ文字 (`|`) を使用して演算子を区切ることによって、順番に適用される 1 つ以上の**クエリ演算子**で構成されます。
+言語の構文とは、データフローのことです。 "データ" は、"表形式のデータ" を意味します。これは、1つ以上の行/列の四角形の形でデータを表します。 少なくとも、クエリは、ソースデータ参照 (Kusto テーブルへの参照) と1つ以上の**クエリ演算子**(パイプ文字 () を使用して演算子を区切ることによって視覚的に示される) で構成され `|` ます。
 
 次に例を示します。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents 
 | where State == 'FLORIDA' and StartTime > datetime(2000-01-01)

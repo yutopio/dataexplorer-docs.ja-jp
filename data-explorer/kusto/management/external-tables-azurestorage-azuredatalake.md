@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: db99d1d46c321bff0f5d7b370766900ea7d1d5a0
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 1c7670dfb06e95f227a4b828a86b980005eeeac9
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227725"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373355"
 ---
 # <a name="external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake 内の外部テーブル
 
@@ -40,7 +40,7 @@ ms.locfileid: "83227725"
 * *TableName* -外部テーブル名。 [エンティティ名](../query/schema-entities/entity-names.md)の規則に従う必要があります。 外部テーブルは、同じデータベース内の通常のテーブルと同じ名前にすることはできません。
 * *スキーマ*-外部データスキーマの形式: `ColumnName:ColumnType[, ColumnName:ColumnType ...]` 。 外部データスキーマが不明な場合は、 [infer_storage_schema](../query/inferstorageschemaplugin.md)プラグインを使用します。これにより、外部のファイルの内容に基づいてスキーマを推測できます。
 * *Partition* -1 つまたは複数のパーティション定義 (省略可能)。 後述のパーティション構文を参照してください。
-* *Format* -データ形式。 すべての[インジェスト形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)は、クエリに対してサポートされています。 [エクスポートシナリオ](data-export/export-data-to-an-external-table.md)での外部テーブルの使用は、、、 `CSV` `TSV` `JSON` 、の各形式に制限され `Parquet` ます。
+* *Format* -データ形式。 すべての[インジェスト形式](../../ingestion-supported-formats.md)は、クエリに対してサポートされています。 [エクスポートシナリオ](data-export/export-data-to-an-external-table.md)での外部テーブルの使用は、、、 `CSV` `TSV` `JSON` 、の各形式に制限され `Parquet` ます。
 * *StorageConnectionString* -資格情報を含む Azure Blob Storage Blob コンテナーまたは Azure Data Lake Store ファイルシステム (仮想ディレクトリまたはフォルダー) への1つまたは複数のパス。 詳細については、「[ストレージ接続文字列](../api/connection-strings/storage.md)」を参照してください。 大量のデータを外部テーブルに[エクスポート](data-export/export-data-to-an-external-table.md)するときにストレージの調整を回避するには、ストレージアカウントを1つ以上指定します。 エクスポートすると、提供されたすべてのアカウント間の書き込みが分散されます。 
 
 **パーティションの構文**
@@ -168,7 +168,7 @@ with
 
 **出力**
 
-|TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|
+|TableName|TableType|Folder|DocString|プロパティ|ConnectionStrings|メジャー グループ|
 |---|---|---|---|---|---|---|
 |External多重パーティション|Blob|ExternalTables|Docs|{"Format": "Csv"、"圧縮": false、"CompressionType": null、"FileExtension": "csv"、"IncludeHeaders": "None"、"Encoding": null、"NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;*******"]}|[{"StringFormat": "様名 = {0} ", "ColumnName": "様"、"ColumnName": "様"、"序数": 0}、PartitionBy ":" 1.00:00:00 "、" ColumnName ":" Timestamp "、" Ordinal ": 1}]|
 

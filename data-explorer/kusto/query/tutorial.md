@@ -1,5 +1,5 @@
 ---
-title: チュートリアル-Azure データエクスプローラー |Microsoft Docs
+title: チュートリアル-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーのチュートリアルについて説明します。
 services: data-explorer
 author: orspod
@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 03/23/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 90d06064069a17d6b1394701bb4ea72483061b9c
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 8898f772af37e86ec33bff66e43779dfbaf4c053
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737608"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83370685"
 ---
 # <a name="tutorial"></a>チュートリアル
 
 ::: zone pivot="azuredataexplorer"
 
-Kusto クエリ言語について学習する最善の方法は、いくつかの単純なクエリを見て、[いくつかのサンプルデータを含むデータベース](https://help.kusto.windows.net/Samples)を使用して言語の "感覚" を取得することです。 この記事に示されているクエリは、そのデータベースで実行する必要があります。 この`StormEvents`サンプルデータベースの表では、米国で発生したストームに関する情報を提供しています。
+Kusto クエリ言語について学習する最善の方法は、いくつかの単純なクエリを見て、[いくつかのサンプルデータを含むデータベース](https://help.kusto.windows.net/Samples)を使用して言語の "感覚" を取得することです。 この記事に示されているクエリは、そのデータベースで実行する必要があります。 `StormEvents`このサンプルデータベースの表では、米国で発生したストームに関する情報を提供しています。
 
 <!--
   TODO: Provide link to reference data we used originally in StormEvents
@@ -34,11 +34,12 @@ Kusto クエリ言語について学習する最善の方法は、いくつか�
 
 ## <a name="count-rows"></a>行数のカウント
 
-このサンプルデータベースには、と`StormEvents`いう名前のテーブルがあります。
+このサンプルデータベースには、という名前のテーブルがあり `StormEvents` ます。
 その大きさを調べるために、次のように単に行数をカウントする演算子にコンテンツをパイプします。
 
 * *構文:* クエリは、データソース (通常はテーブル名) で、必要に応じてパイプ文字の1つ以上のペアと、表形式演算子を指定します。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents | count
 ```
@@ -57,8 +58,9 @@ StormEvents | count
 
 ## <a name="where-filtering-by-a-boolean-expression"></a>where: ブール式によるフィルター処理
 
-では、 `flood`2007 年2月`California`にのみを見てみましょう。
+では、 `flood` `California` 2007 年2月にのみを見てみましょう。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | where StartTime > datetime(2007-02-01) and StartTime < datetime(2007-03-01)
@@ -74,6 +76,7 @@ StormEvents
 
 たとえば、以下のように 5 個の行を表示するとします。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | take 5
@@ -93,11 +96,12 @@ StormEvents
 
 ## <a name="sort-and-top"></a>sort と top
 
-* *構文:* 一部`by`の演算子には、などのキーワードによって導入されたパラメーターがあります。
+* *構文:* 一部の演算子には、などのキーワードによって導入されたパラメーターがあり `by` ます。
 * `desc` は降順、`asc` は昇順を意味します。
 
 特定の列で並べ替えた最初の n 個の行を表示する場合は、以下のように指定します。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | top 5 by StartTime desc
@@ -114,6 +118,7 @@ StormEvents
 
 [Sort](./sortoperator.md)を使用して、 [take](./takeoperator.md)演算子を使用すると、同じことができます。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | sort by StartTime desc
@@ -125,6 +130,7 @@ StormEvents
 
 すべての行の値を計算して、新しい列を作成します。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | limit 5
@@ -143,6 +149,7 @@ StormEvents
 列名を再利用し、計算結果を同じ列に割り当てることができます。
 次に例を示します。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 print x=1
 | extend x = x + 1, y = x
@@ -153,22 +160,24 @@ print x=1
 |---|---|
 |3|1|
 
-[スカラー式](./scalar-data-types/index.md)には、通常の演算子 (`+`、 `-`、 `*`、 `/`、 `%`) をすべて含めることができます。また、さまざまな便利な関数があります。
+[スカラー式](./scalar-data-types/index.md)には、通常の演算子 ( `+` 、、、、) をすべて含めることができ `-` `*` `/` `%` ます。また、さまざまな便利な関数があります。
 
 ## <a name="summarize-aggregate-groups-of-rows"></a>まとめ: 行の集計グループ
 
 各国から取得したイベントの数をカウントします。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | summarize event_count = count() by State
 ```
 
-句内の同じ値を持つ行をグループ化し、集計関数 (など`count`) を使用して各グループを1行[にまとめます。](./summarizeoperator.md) `by` そのため、この場合は、状態ごとに1行、その状態の行の数を示す列があります。
+句内の同じ値を持つ行[をグループ](./summarizeoperator.md)化 `by` し、集計関数 (など) を使用して `count` 各グループを1行にまとめます。 そのため、この場合は、状態ごとに1行、その状態の行の数を示す列があります。
 
 [集計関数](./summarizeoperator.md#list-of-aggregation-functions)がいくつかあります。1つの集計演算子で使用して、複数の計算列を生成することができます。 たとえば、各州のストームの数を取得し、状態ごとの嵐の種類を合計することもできます。  
 次に、 [top](./topoperator.md)を使用して、最もストームに影響する状態を取得できます。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents 
 | summarize StormCount = count(), TypeOfStorms = dcount(EventType) by State
@@ -191,9 +200,10 @@ summarize の結果には以下のものが含まれます。
 
 ## <a name="summarize-by-scalar-values"></a>スカラー値による集計
 
-`by`句ではスカラー (数値、時刻、または間隔) の値を使用できますが、値をビンに入れることをお勧めします。  
+句ではスカラー (数値、時刻、または間隔) の値を使用でき `by` ますが、値をビンに入れることをお勧めします。  
 [Bin ()](./binfunction.md)関数は、次の場合に役立ちます。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | where StartTime > datetime(2007-02-14) and StartTime < datetime(2007-02-21)
@@ -218,6 +228,7 @@ StormEvents
 
 2つの列を射影し、グラフの x 軸と y 軸として使用します。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents 
 | summarize event_count=count(), mid = avg(BeginLat) by State 
@@ -229,7 +240,7 @@ StormEvents
 
 :::image type="content" source="images/tutorial/event-counts-state.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
-プロジェクトの操作`mid`では削除しましたが、グラフでその注文の国を表示する必要がある場合は、引き続き必要です。
+プロジェクトの操作では削除しましたが `mid` 、グラフでその注文の国を表示する必要がある場合は、引き続き必要です。
 
 厳密に言うと、' render ' はクエリ言語の一部ではなく、クライアントの機能です。 それでも、言語に統合されており、結果を構想するうえで非常に便利です。
 
@@ -238,6 +249,7 @@ StormEvents
 
 数値ビンに戻ると、タイムシリーズが表示されるようになります。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | summarize event_count=count() by bin(StartTime, 1d)
@@ -250,6 +262,7 @@ StormEvents
 
 値の組み合わせごとに別の行を作成する場合は、以下のように、 `summarize by` 句で複数の値を使用します。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents 
 | where StartTime > datetime(2007-06-04) and StartTime < datetime(2007-06-10) 
@@ -259,18 +272,19 @@ StormEvents
 
 :::image type="content" source="images/tutorial/table-count-source.png" alt-text="ソース別のテーブル数":::
 
-上記のにレンダリング語句を追加するだけ`| render timechart`です。
+上記のにレンダリング語句を追加するだけ `| render timechart` です。
 
 :::image type="content" source="images/tutorial/line-count-source.png" alt-text="ソース別の折れ線グラフ数":::
 
-では`render timechart`最初の列が x 軸として使用され、他の列は個別の行として表示されることに注意してください。
+では `render timechart` 最初の列が x 軸として使用され、他の列は個別の行として表示されることに注意してください。
 
 ## <a name="daily-average-cycle"></a>日次平均サイクル
 
 活動は平均1日にどのように変化しますか。
 
-1日の時間単位でイベントをカウントします。 Bin の代わりに`floor`を使用することに注意してください。
+1日の時間単位でイベントをカウントします。 Bin の代わりにを使用することに注意して `floor` ください。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend hour = floor(StartTime % 1d , 1h)
@@ -281,7 +295,7 @@ StormEvents
 
 :::image type="content" source="images/tutorial/time-count-hour.png" alt-text="時間別の時間グラフの数":::
 
-現在、 `render`では、期間に適切にラベル付け`| render columnchart`されませんが、代わりにを使用できます。
+現在、では、 `render` 期間に適切にラベル付けされませんが、代わりにを使用でき `| render columnchart` ます。
 
 :::image type="content" source="images/tutorial/column-count-hour.png" alt-text="1時間ごとの縦棒グラフ":::
 
@@ -289,6 +303,7 @@ StormEvents
 
 さまざまな状態の時間帯におけるアクティビティの違い
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend hour= floor( StartTime % 1d , 1h)
@@ -299,8 +314,9 @@ StormEvents
 
 :::image type="content" source="images/tutorial/time-hour-state.png" alt-text="時間と状態別の時間グラフ":::
 
-X 軸`1h`を継続時間ではなく時間番号にするには、を除算します。
+X 軸を継続時間ではなく時間番号にするには、を除算し `1h` ます。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend hour= floor( StartTime % 1d , 1h)/ 1h
@@ -317,6 +333,7 @@ StormEvents
 
 最初の EventType と2つ目の EventType を使用して、嵐イベントを取得し、2つのセットを状態に結合できます。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | where EventType == "Lightning"
@@ -331,14 +348,15 @@ StormEvents
 
 ## <a name="user-session-example-of-join"></a>ユーザーセッションの結合の例
 
-このセクションでは、テーブル`StormEvents`は使用しません。
+このセクションでは、テーブルは使用しません `StormEvents` 。
 
 各ユーザーセッションの開始と終了を示すイベントと、各セッションの一意の ID を含むデータがあると仮定します。 
 
 各ユーザーセッションが最後にどれくらいの時間になりますか。
 
-を使用`extend`して2つのタイムスタンプのエイリアスを指定することで、セッション継続時間を計算できます。
+を使用して `extend` 2 つのタイムスタンプのエイリアスを指定することで、セッション継続時間を計算できます。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 Events
 | where eventName == "session_started"
@@ -361,6 +379,7 @@ Events
 
 長さが異なるのは、どのくらいのストームがあるのでしょうか。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend  duration = EndTime - StartTime
@@ -374,7 +393,7 @@ StormEvents
 
 :::image type="content" source="images/tutorial/event-count-duration.png" alt-text="期間別のイベント数線上":::
 
-または`| render columnchart`を使用します。
+またはを使用し `| render columnchart` ます。
 
 :::image type="content" source="images/tutorial/column-event-count-duration.png" alt-text="期間別の縦棒グラフイベント数線上":::
 
@@ -382,13 +401,13 @@ StormEvents
 
 期間の範囲は、ストームの割合によって異なりますか。
 
-上記のクエリを使用します`render`が、をに置き換えます。
+上記のクエリを使用しますが、 `render` をに置き換えます。
 
 ```kusto
 | summarize percentiles(duration, 5, 20, 50, 80, 95)
 ```
 
-この場合、句を指定し`by`なかったので、結果は単一行になります。
+この場合、句を指定しなかったので、 `by` 結果は単一行になります。
 
 :::image type="content" source="images/tutorial/summarize-percentiles-duration.png" alt-text="期間別のパーセンタイルの概要テーブル":::
 
@@ -400,6 +419,7 @@ StormEvents
 
 状態ごとに個別の内訳を取得するには、両方の集計演算子を使用して state 列を個別に取得する必要があります。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 StormEvents
 | extend  duration = EndTime - StartTime
@@ -417,6 +437,7 @@ StormEvents
 
 上記の "結合" の例でクエリ式の各部分を分離するには、 [let](./letstatement.md)を使用します。 結果は変わりません。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let LightningStorms = 
     StormEvents

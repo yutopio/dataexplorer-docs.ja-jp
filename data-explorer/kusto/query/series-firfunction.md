@@ -1,5 +1,5 @@
 ---
-title: series_fir ()-Azure データエクスプローラー |Microsoft Docs
+title: series_fir ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの series_fir () について説明します。
 services: data-explorer
 author: orspod
@@ -8,35 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 4641da6481365d13919de59708387b689581c9ce
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 0cb1f2b414c22220f8cdc81475c5cb0a3d9aedcf
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618805"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372749"
 ---
 # <a name="series_fir"></a>series_fir()
 
 系列に有限インパルス応答フィルターを適用します。  
 
-動的な数値配列を含む式を入力として受け取り、[有限インパルス応答](https://en.wikipedia.org/wiki/Finite_impulse_response)フィルターを適用します。 `filter`係数を指定することによって、移動平均、スムージング、変更検出、その他多くのユースケースを計算するために使用できます。 この関数は、動的配列とフィルターの係数の静的な動的配列を含む列を入力として受け取り、列にフィルターを適用します。 フィルター処理された出力を含む、動的配列の新しい列が出力されます。  
+動的な数値配列を含む式を入力として受け取り、[有限インパルス応答](https://en.wikipedia.org/wiki/Finite_impulse_response)フィルターを適用します。 係数を指定することによって、 `filter` 移動平均、スムージング、変更検出、その他多くのユースケースを計算するために使用できます。 この関数は、動的配列とフィルターの係数の静的な動的配列を含む列を入力として受け取り、列にフィルターを適用します。 フィルター処理された出力を含む、動的配列の新しい列が出力されます。  
 
 **構文**
 
-`series_fir(`*x* `,` *フィルター* [`,` *正規化*[`,` *中央*]]`)`
+`series_fir(`*x* `,` *フィルター* [ `,` *正規化*[ `,` *中央*]]`)`
 
 **引数**
 
 * *x*: 数値の配列である動的配列のセル。通常は、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)の演算子の結果の出力です。
 * *フィルター*: フィルターの係数を含む定数式です (数値の動的配列として格納されます)。
-* *ノーマライズ*: フィルターを正規化する (つまり、係数の合計で除算する) かどうかを示す省略可能なブール値。 *フィルター*に負の値が含まれている場合`false`、*正規化*はとし`null`て指定する必要があります。それ以外の場合、結果はになります。 指定しない場合、*フィルター*に負の値があるかどうかによって既定値の*ノーマライズ*が想定されます。*フィルター*に負の値が1つ以上含まれている場合、*ノーマライズ*はと見なされ`false`ます。  
+* *ノーマライズ*: フィルターを正規化する (つまり、係数の合計で除算する) かどうかを示す省略可能なブール値。 *フィルター*に負の値が含まれている場合、*正規化*はとして指定する必要があり `false` ます。それ以外の場合、結果はになり `null` ます。 指定しない場合、*フィルター*に負の値があるかどうかによって既定値の*ノーマライズ*が想定されます。*フィルター*に負の値が1つ以上含まれている場合、*ノーマライズ*はと見なされ `false` ます。  
 正規化は、係数の合計が1であることを確認するのに便利な方法であり、フィルターによってシリーズが増幅または減衰されないようにします。 たとえば、4つのビンの移動平均を*フィルター*= [1, 1, 1, 1] に指定し、*正規化*された = true にすると、[0.25, 0.25.0.25, 0.25] より簡単に入力できます。
 * *center*: フィルターが現在のポイントの前後の時間枠で対称的に適用されるか、現在のポイントから後方にある時間枠で適用されるかを示す、省略可能なブール値。 既定では center は false です。これはデータのストリーミングのシナリオに適合します。この場合、現在のポイントとそれより前のポイントにのみフィルターを適用できます。ただし、アドホック処理の場合、これを true に設定して、時系列との同期を維持できます (以下の例を参照)。 技術的に言えば、このパラメーターはフィルターの[グループ遅延](https://en.wikipedia.org/wiki/Group_delay_and_phase_delay)を制御します。
 
 **使用例**
 
-* 5ポイントの移動平均を計算するには、 *filter*= [1, 1, 1, 1, 1] と*ノーマライズ*= `true` (既定値) を設定します。 *center* = Center`false` (既定) との効果に注意し`true`てください。
+* 5ポイントの移動平均を計算するには、 *filter*= [1, 1, 1, 1, 1] と*ノーマライズ* = `true` (既定値) を設定します。 *Center* = `false` (既定) `true` との効果に注意してください。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range t from bin(now(), 1h)-23h to bin(now(), 1h) step 1h
 | summarize t=make_list(t)
@@ -54,6 +55,7 @@ range t from bin(now(), 1h)-23h to bin(now(), 1h) step 1h
 
 * Point とその前の点の差を計算するには、 *filter*= [1,-1] を設定します。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 range t from bin(now(), 1h)-11h to bin(now(), 1h) step 1h
 | summarize t=make_list(t)

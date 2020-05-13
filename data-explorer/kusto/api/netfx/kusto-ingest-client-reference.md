@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1d3c3939a5c8b3a5f1e6f1fa0b40f9b927ee5325
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: d2e42ce3de656a3e137245786596e454c36ccbef
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226059"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373604"
 ---
 # <a name="kustoingest-client-interfaces-and-factory-classes"></a>Kusto. インジェストクライアントインターフェイスとファクトリクラス
 
@@ -359,7 +359,7 @@ KustoIngestionProperties クラスには、インジェストプロセスをき�
 |AvroMapping |列ごとに、Avro レコードのフィールドの名前を定義します。 **AVRO インジェストの場合は必須** |
 |ValidationPolicy |データ検証の定義。 詳細については、[TODO] を参照してください。 |
 |Format |取り込まれたされるデータの形式 |
-|AdditionalProperties | インジェストコマンドに[インジェストプロパティ](https://docs.microsoft.com/azure/data-explorer/ingestion-properties)として渡されるその他のプロパティ。 すべてのインジェストプロパティがこのクラスの個別のメンバーで表されていないため、プロパティが渡されます。|
+|AdditionalProperties | インジェストコマンドに[インジェストプロパティ](../../../ingestion-properties.md)として渡されるその他のプロパティ。 すべてのインジェストプロパティがこのクラスの個別のメンバーで表されていないため、プロパティが渡されます。|
 
 ```csharp
 public class KustoIngestionProperties

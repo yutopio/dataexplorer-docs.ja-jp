@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/12/2020
-ms.openlocfilehash: c0ee38fe77c0957b9ba7fd589115eee20be6a649
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 646ec00531d528efd51b4a168fde3de660a85ced
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224852"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271096"
 ---
 # <a name="parse-where-operator"></a>parse-where 演算子
 
@@ -83,7 +83,7 @@ T | parse-where Text with "ActivityName=" name ", ActivityType=" type
         
     - `long`はに変換されました `\-\d+` 。
 
-## <a name="examples"></a>使用例
+## <a name="examples"></a>例
 
 演算子を使用すると、 `parse-where` `extend` 同じ式で複数のアプリケーションを使用して、テーブルに効率的にテーブルを提供 `extract` `string` できます。 これは、テーブルに、 `string` 個々の列に分割する複数の値を含む列がある場合に最も役立ちます。 たとえば、開発者のトレース (" `printf` "/"") ステートメントによって生成された列を分割でき `Console.WriteLine` ます。
 
@@ -95,6 +95,7 @@ T | parse-where Text with "ActivityName=" name ", ActivityType=" type
 
 を使用すると、 `parse` 計算列には null が設定されます。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -121,6 +122,7 @@ Traces
 
 ' Parse ' を使用すると、結果から解析された文字列をフィルターで除外できます。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -145,6 +147,7 @@ Traces
 
 次のクエリを使用して、に対して、/を取得します。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [
@@ -167,6 +170,7 @@ Traces
 
 3つの文字列のみが正常に解析されるため、結果は3つのレコードになります (一部の totalSlices は無効な整数を保持します)。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let Traces = datatable(EventText:string)
 [

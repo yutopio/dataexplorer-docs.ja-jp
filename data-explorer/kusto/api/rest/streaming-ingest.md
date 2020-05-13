@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1614a04c5e5bff51f45df914174c967ff9c7d8a2
-ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
+ms.openlocfilehash: 87b68e4a9de42a9a7085238db5919066d577ed1f
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82907076"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373536"
 ---
 # <a name="streaming-ingestion-http-request"></a>ストリーミングインジェスト HTTP 要求
 
@@ -32,20 +32,20 @@ ms.locfileid: "82907076"
 
 ## <a name="additional-parameters"></a>追加パラメーター
 
-追加のパラメーターは、URL クエリ`{name}={value}`のペアとして書式設定され、& 文字で区切られます。
+追加のパラメーターは、URL クエリのペアとして書式設定され `{name}={value}` 、& 文字で区切られます。
 
 | パラメーター    | 説明                                                                          | 必須/オプション   |
 |--------------|--------------------------------------------------------------------------------------|---------------------|
-|`streamFormat`| 要求本文内のデータの形式を指定します。 `CSV`値は、、 `TSV`、 `SCsv`、 `SOHsv` `PSV` `JSON` `MultiJSON`、、、、のいずれかで`Avro`ある必要があります。 詳細については、「[サポートされるデータ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)」を参照してください。| 必須 |
-|`mappingName` | テーブルで定義されている事前に作成されたインジェストマッピングの名前。 詳細については、「[データのマッピング](../../management/mappings.md)」を参照してください。 テーブルで事前に作成されたマッピングを管理する方法については、[こちら](../../management/create-ingestion-mapping-command.md)を参照してください。| 省略可能ですが、 `streamFormat`が、 `MultiJSON`、 `JSON`またはのいずれかの場合に必要です。`Avro`|  |
+|`streamFormat`| 要求本文内のデータの形式を指定します。 値は、、、、、、、、のいずれかである必要があります `CSV` `TSV` `SCsv` `SOHsv` `PSV` `JSON` `MultiJSON` `Avro` 。 詳細については、「[サポートされるデータ形式](../../../ingestion-supported-formats.md)」を参照してください。| 必須 |
+|`mappingName` | テーブルで定義されている事前に作成されたインジェストマッピングの名前。 詳細については、「[データのマッピング](../../management/mappings.md)」を参照してください。 テーブルで事前に作成されたマッピングを管理する方法については、[こちら](../../management/create-ingestion-mapping-command.md)を参照してください。| 省略可能ですが `streamFormat` 、が、、 `JSON` `MultiJSON` またはのいずれかの場合に必要です。`Avro`|  |
               
-たとえば、CSV 形式のデータをデータベース`Logs` `Test`内のテーブルに取り込むには、次のように使用します。
+たとえば、CSV 形式のデータをデータベース内のテーブルに取り込むには、 `Logs` `Test` 次のように使用します。
 
 ```
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Csv HTTP/1.1
 ```
 
-事前に作成されたマッピング`mylogmapping`で JSON 形式のデータを取り込むには、次のように使用します。
+事前に作成されたマッピングで JSON 形式のデータを取り込むには `mylogmapping` 、次のように使用します。
 
 ```
 POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Json&mappingName=mylogmapping HTTP/1.1
@@ -57,14 +57,14 @@ POST https://help.kusto.windows.net/v1/rest/ingest/Test/Logs?streamFormat=Json&m
 
 |標準ヘッダー   | 説明                                                                               | 必須/オプション | 
 |------------------|-------------------------------------------------------------------------------------------|-------------------|
-|`Accept`          | この値をに`application/json`設定します。                                                     | 省略可能          |
-|`Accept-Encoding` | サポートされ`gzip`て`deflate`いるエンコーディングはとです。                                             | 省略可能          | 
+|`Accept`          | この値をに設定 `application/json` します。                                                     | 省略可能          |
+|`Accept-Encoding` | サポートされているエンコーディングは `gzip` と `deflate` です。                                             | 省略可能          | 
 |`Authorization`   | 「[認証](./authentication.md)」を参照してください。                                                | 必須          |
 |`Connection`      | `Keep-Alive`を有効にする:                                                                      | 省略可能          |
 |`Content-Length`  | 要求本文の長さを指定します (既知の場合)。                                              | 省略可能          |
-|`Content-Encoding`| をに`gzip`設定しますが、本文は gzip で圧縮する必要があります                                        | 省略可能          |
+|`Content-Encoding`| をに設定します `gzip` が、本文は gzip で圧縮する必要があります                                        | 省略可能          |
 |`Expect`          | `100-Continue` を設定します。                                                                    | 省略可能          |
-|`Host`            | は、要求を送信したドメイン名 (など`help.kusto.windows.net`) に設定します。 | 必須          |
+|`Host`            | は、要求を送信したドメイン名 (など) に設定し `help.kusto.windows.net` ます。 | 必須          |
 
 次の表に、クエリおよび管理操作の一般的なカスタムヘッダーを示します。 特に明記されていない限り、ヘッダーはテレメトリのみを目的としたものであり、機能には影響しません。
 

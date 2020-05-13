@@ -1,6 +1,6 @@
 ---
-title: parse_ipv4() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで parse_ipv4() について説明します。
+title: parse_ipv4 ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの parse_ipv4 () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 296c7e77a2397501ae086e16154ca249249c23e4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2bfea891b6057b5d43b65fa045e2b01d5e025a82
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511749"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271249"
 ---
 # <a name="parse_ipv4"></a>parse_ipv4()
 
-IPv4 文字列を long (符号付き 64 ビット) の数値表現に変換します。
+IPv4 文字列を long (符号付き64ビット) 数値表現に変換します。
 
 ```kusto
 parse_ipv4("127.0.0.1") == 2130706433
@@ -26,24 +26,25 @@ parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 
 **構文**
 
-`parse_ipv4(`*Expr*`)`
+`parse_ipv4(`*With*`)`
 
 **引数**
 
-* *Expr*: 長整数型に変換される IPv4 を表す文字列式です。 文字列には[、IP プレフィックス表記](#ip-prefix-notation)を使用するネット マスクを含めることができます。
+* *Expr*: long 型に変換される IPv4 を表す文字列式。 文字列には、 [IP プレフィックス表記](#ip-prefix-notation)を使用した net マスクを含めることができます。
 
-### <a name="ip-prefix-notation"></a>IP プレフィックス表記
+### <a name="ip-prefix-notation"></a>IP プレフィックスの表記
 
-スラッシュ ()`IP-prefix notation``/`文字を使用して IP アドレスを定義するのが一般的です。
-スラッシュ (`/`) の LEFT の IP アドレスはベース IP アドレスで、スラッシュ (/) の RIGHT の番号 (1 から 32) はネットマスク内の連続する 1 ビットの数です。 したがって、192.168.2.0/24 には、24 個の連続ビットまたは 255.255.255.0 をドット付き 10 進形式で含む、関連付けられた net/subnetmask が付けられます。
+一般的な方法では、スラッシュ () 文字を使用して IP アドレスを定義し `IP-prefix notation` `/` ます。
+スラッシュ () の左側の IP アドレス `/` は基本 ip アドレスで、スラッシュ (/) の右側にある番号 (1 ~ 32) は、ネットマスクの連続した1ビット数です。 したがって、192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
 
 **戻り値**
 
-変換が成功すると、結果は長い数値になります。
-変換が成功しなかった場合は、 が`null`返されます。
+変換が成功した場合、結果は長い数値になります。
+変換に失敗した場合、結果はになり `null` ます。
  
 **例**
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(ip_string:string)
 [

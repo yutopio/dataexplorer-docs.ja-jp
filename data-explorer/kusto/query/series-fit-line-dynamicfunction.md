@@ -1,5 +1,5 @@
 ---
-title: series_fit_line_dynamic ()-Azure データエクスプローラー |Microsoft Docs
+title: series_fit_line_dynamic ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの series_fit_line_dynamic () について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 170348dd530b581f85e0323563be324d5b795511
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 756650db23d531ec37636c0e7bd781a74ef9fdc3
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618719"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372695"
 ---
 # <a name="series_fit_line_dynamic"></a>series_fit_line_dynamic()
 
@@ -27,7 +27,7 @@ ms.locfileid: "82618719"
 * `interception`: 近似直線のインターセプト (y = ax + b の b)
 * `line_fit`: 最適な行の一連の値を保持する数値配列。 系列の長さは入力配列の長さと同じです。 主にグラフ作成に使用します。
 
-この演算子は[series_fit_line](series-fit-linefunction.md)と似`series-fit-line`ていますが、動的なバッグを返します。
+この演算子は[series_fit_line](series-fit-linefunction.md)と似ていますが、 `series-fit-line` 動的なバッグを返します。
 
 **構文**
 
@@ -42,6 +42,7 @@ ms.locfileid: "82618719"
 
 **使用例**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print id=' ', x=range(bin(now(), 1h)-11h, bin(now(), 1h), 1h), y=dynamic([2,5,6,8,11,15,17,18,25,26,30,30])
 | extend fit=series_fit_line_dynamic(y)

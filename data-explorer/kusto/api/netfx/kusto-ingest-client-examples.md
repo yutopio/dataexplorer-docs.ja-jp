@@ -1,6 +1,6 @@
 ---
-title: Kusto. インジェストの参照-インジェストコードの例-Azure データエクスプローラー |Microsoft Docs
-description: この記事では、Azure データエクスプローラーの Kusto. インジェストのコード例について説明します。
+title: Kusto. インジェストの取り込みコードの例-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの Kusto によるインジェストコードの例について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,25 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/15/2019
-ms.openlocfilehash: ba3232ca1c8a3f587f53ee1c3c6aad3fc12283ad
-ms.sourcegitcommit: 061eac135a123174c85fe1afca4d4208c044c678
+ms.openlocfilehash: caeebf0a94d4e8144f1d00f84ea78f8727947416
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/05/2020
-ms.locfileid: "82799681"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373640"
 ---
-# <a name="kustoingest-reference---ingestion-code-examples"></a>Kusto. インジェストリファレンス-インジェストコードの例
-これは、Kusto テーブルにデータを取り込みするさまざまな手法を示す短いコードスニペットのコレクションです。
+# <a name="kustoingest-ingestion-code-examples"></a>Kusto. インジェストの取り込みコードの例
 
->リマインダー: これらのサンプルは、インジェストの後すぐにインジェストクライアントが破棄されるかのように見えます。 これを文字どおりに実行しないでください。<BR>インジェストクライアントは再入可能で、スレッドセーフであり、大きな数値で作成することはできません。 インジェストクライアントインスタンスの推奨カーディナリティは、ターゲット Kusto クラスターごとのホストプロセスごとに1つです。
+この短いコードスニペットのコレクションは、Kusto テーブルにデータを取り込みするさまざまな手法を示しています。
 
-### <a name="useful-references"></a>参考資料
-* [Kusto. インジェストクライアントリファレンス](kusto-ingest-client-reference.md)
-* [Kusto. 取り込み操作の状態](kusto-ingest-client-errors.md)
-* [Kusto. インジェスト例外](kusto-ingest-client-errors.md)
-* [Kusto の接続文字列](../connection-strings/kusto.md)
-* [Kusto 承認モデル](../../management/security-roles.md)
+> [!NOTE]
+> これらの例は、インジェストの後すぐにインジェストクライアントが破棄されるかのように見えます。 これを文字どおりに実行しないでください。
+> インジェストクライアントは再入可能でスレッドセーフであり、大量に作成することはできません。 インジェストクライアントインスタンスの推奨カーディナリティは、ホストプロセスごと、ターゲット Kusto クラスターごとに1つです。
 
-### <a name="async-ingestion-from-a-single-azure-blob-using-kustoqueuedingestclient-with-optional-retrypolicy"></a>KustoQueuedIngestClient を使用して単一の Azure Blob から非同期インジェストを実行する (省略可能) RetryPolicy:
+## <a name="async-ingestion-from-a-single-azure-blob"></a>単一の Azure blob からの非同期インジェスト
+
+1つの Azure blob からの非同期インジェストには、省略可能な RetryPolicy で KustoQueuedIngestClient を使用します。
+
 ```csharp
 //Create Kusto connection string with App Authentication
 var kustoConnectionStringBuilderDM =
@@ -56,9 +55,13 @@ await client.IngestFromStorageAsync(uri: @"BLOB-URI-WITH-SAS-KEY", ingestionProp
 client.Dispose();
 ```
 
-### <a name="ingest-from-local-file-using-kustodirectingestclient"></a>KustoDirectIngestClient を使用したローカルファイルからの取り込み 
+## <a name="ingest-from-local-file"></a>ローカルファイルから取り込み 
 
-この方法は、制限されたボリュームと低頻度のインジェストの場合にお勧めします。
+KustoDirectIngestClient を使用して、ローカルファイルから取り込みます。
+
+
+> [!NOTE]
+> この方法は、制限されたボリュームと低頻度のインジェストにお勧めします。
 
 ```csharp
 // Create Kusto connection string with App Authentication
@@ -78,7 +81,10 @@ using (IKustoIngestClient client = KustoIngestFactory.CreateDirectIngestClient(k
 }
 ```
 
-### <a name="ingest-from-local-files-using-kustoqueuedingestclient-and-ingestion-validation"></a>KustoQueuedIngestClient およびインジェスト検証を使用したローカルファイルからの取り込み 
+## <a name="ingest-from-local-files-and-validate-ingestion"></a>ローカルファイルから取り込み、インジェストを検証する
+
+KustoQueuedIngestClient を使用してローカルファイルから取り込み、インジェストを検証します。
+
 ```csharp
 // Create Kusto connection string with App Authentication
 var kustoConnectionStringBuilderDM =
@@ -110,7 +116,9 @@ Ensure.IsTrue((ingestionFailures.Count() > 0), "Failures expected");
 client.Dispose();
 ```
 
-### <a name="ingest-from-a-local-files-using-kustoqueuedingestclient-and-report-status-to-a-queue"></a>KustoQueuedIngestClient を使用してローカルファイルから取り込み、キューに状態を報告する
+### <a name="ingest-from-local-files-and-report-status-to-a-queue"></a>ローカルファイルから取り込み、キューに状態を報告する
+
+KustoQueuedIngestClient を使用して、ローカルファイルから取り込み、状態をキューに報告します。
 
 ```csharp
 // Create Kusto connection string with App Authentication
@@ -157,7 +165,9 @@ Ensure.ConditionIsMet((ingestionSuccesses.Count() > 0),
 client.Dispose();
 ```
 
-### <a name="ingest-from-a-local-file-using-kustoqueuedingestclient-and-report-status-to-a-table"></a>KustoQueuedIngestClient を使用してローカルファイルから取り込み、テーブルに状態を報告する
+### <a name="ingest-from-local-files-and-report-status-to-a-table"></a>ローカルファイルから取り込み、テーブルに状態を報告する
+
+KustoQueuedIngestClient を使用して、ローカルファイルから取り込み、テーブルに状態を報告します。
 
 ```csharp
 // Create Kusto connection string with App Authentication
@@ -206,3 +216,11 @@ Ensure.ConditionIsMet(ingestionStatus.Status == Status.Succeeded,
 // Dispose of the client
 client.Dispose();
 ```
+
+## <a name="next-steps"></a>次のステップ
+
+* [Kusto. インジェストクライアントリファレンス](kusto-ingest-client-reference.md)
+* [Kusto. 取り込み操作の状態](kusto-ingest-client-errors.md)
+* [Kusto. インジェスト例外](kusto-ingest-client-errors.md)
+* [Kusto の接続文字列](../connection-strings/kusto.md)
+* [Kusto 承認モデル](../../management/security-roles.md)

@@ -1,6 +1,6 @@
 ---
-title: ipv4_is_match() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの ipv4_is_match() について説明します。
+title: ipv4_is_match ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの ipv4_is_match () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: aa0646321af2d467c1e4af07fba81ccdc58eff37
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b63a73efe73223ba7c6bd2b42c6e05a6c60e94b6
+ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513738"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83271453"
 ---
-# <a name="ipv4_is_match"></a>ipv4_is_match()
+# <a name="ipv4_is_match"></a>ipv4_is_match ()
 
-2 つの IPv4 文字列に一致します。
+2つの IPv4 文字列を一致と見なします。
 
 ```kusto
 ipv4_is_match("127.0.0.1", "127.0.0.1") == true
@@ -28,35 +28,36 @@ ipv4_is_match('192.168.1.1', '192.168.1.255', 24) == true
 
 **構文**
 
-`ipv4_is_match(`*Expr1*`, `*Expr2*`[ ,`*プレフィックスマスク*`])`
+`ipv4_is_match(`*Expr1 or* `, `*Expr2* `[ ,`*PrefixMask*`])`
 
 **引数**
 
-* *Expr1* *、Expr2*: IPv4 アドレスを表す文字列式。 [Ip プレフィックス表記](#ip-prefix-notation)を使用して IPv4 文字列をマスクできます。
-* *PrefixMask*: 考慮される最上位ビットの数を表す 0 から 32 までの整数。
+* *Expr1 or*, *Expr2*: IPv4 アドレスを表す文字列式。 IPv4 文字列は[、IP プレフィックス表記](#ip-prefix-notation)を使用してマスクできます。
+* *PrefixMask*: 0 ~ 32 の整数で、考慮される最上位ビットの数を表します。
 
-### <a name="ip-prefix-notation"></a>IP プレフィックス表記
+### <a name="ip-prefix-notation"></a>IP プレフィックスの表記
 
-スラッシュ ()`IP-prefix notation``/`文字を使用して IP アドレスを定義するのが一般的です。 スラッシュ (`/`) の LEFT の IP アドレスはベース IP アドレスで、スラッシュの`/`RIGHT の番号 (1 から 32) はネットマスク内の連続する 1 ビットの数です。 
+一般的な方法では、スラッシュ () 文字を使用して IP アドレスを定義し `IP-prefix notation` `/` ます。 スラッシュ () の左側の IP アドレス `/` は基本 ip アドレスで、スラッシュ () の右側にある番号 (1 ~ 32) `/` は、ネットマスクの連続した1ビット数です。 
 
-例: 192.168.2.0/24 には、24 個の連続ビットまたは 255.255.255.0 をドット付き 10 進形式で含む、関連付けられた net/subnetmask があります。
+例: 192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
 
 **戻り値**
 
-2 つの IPv4 文字列は、引数プレフィックスから計算された IP プレフィックス マスクの組み合わせとオプション`PrefixMask`の引数を考慮しながら解析および比較されます。
+2つの IPv4 文字列は、引数のプレフィックスから計算された IP プレフィックスの組み合わせと、省略可能な引数を考慮して、解析と比較が実行され `PrefixMask` ます。
 
 戻り値:
-* `true`: 最初の IPv4 文字列引数の long 表現が 2 番目の IPv4 文字列引数と等しい場合。
-*  `false`: それ以外の場合。
+* `true`: 最初の IPv4 文字列引数の長い形式が2番目の IPv4 文字列引数と等しい場合は。
+*  `false`それ以外.
 
-2 つの IPv4 文字列のうち 1 つの変換が成功しなかった場合`null`、結果は .
+2つの IPv4 文字列のいずれかの変換が成功しなかった場合、結果はになり `null` ます。
 
 **使用例**
 
-## <a name="ipv4-comparison-equality-cases"></a>IPv4 比較等価のケース
+## <a name="ipv4-comparison-equality-cases"></a>IPv4 比較等値ケース
 
-次の例では、IPv4 文字列内で指定された IP プレフィックス表記を使用して、さまざまな IP を比較します。
+次の例では、IPv4 文字列内で指定された IP プレフィックス表記を使用して、さまざまな ip を比較します。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(ip1_string:string, ip2_string:string)
 [
@@ -75,8 +76,9 @@ datatable(ip1_string:string, ip2_string:string)
 |192.168.1.1|192.168.1.255/24|1|
 |192.168.1.1/30|192.168.1.255/24|1|
 
-次の例では、IPv4 文字列内で指定された IP プレフィックス表記法を使用し、関数の追加`ipv4_is_match()`引数としてさまざまな IP を比較します。
+次の例では、IPv4 文字列内で指定された IP プレフィックス表記と、関数の追加引数を使用して、さまざまな ip を比較し `ipv4_is_match()` ます。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 datatable(ip1_string:string, ip2_string:string, prefix:long)
 [

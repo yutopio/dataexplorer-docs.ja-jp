@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 03/24/2020
-ms.openlocfilehash: c43c6c09ad6da90685c56dc47ebe257a55eaede6
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 5770c59ff7298567cad01bb3ed4cc6a684b2378a
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862141"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373692"
 ---
 # <a name="kusto-ingest-client-library"></a>Kusto インジェストクライアントライブラリ
 
@@ -47,7 +47,7 @@ Kusto インジェストメソッドは[IKustoIngestClient](kusto-ingest-client-
 ![alt text](../images/queued-ingest.jpg "キューに登録済み-取り込み")
 
 ### <a name="direct-ingestion"></a>直接インジェスト
-IKustoDirectIngestClient により定義されます。このモードでは、Kusto エンジンサービスと直接やり取りします。 このモードでは、Kusto インジェストサービスはデータをモデレートまたは管理しません。 Direct モードでのすべてのインジェスト要求は、最終的`.ingest`に Kusto エンジンサービスで直接実行されるコマンドに変換されます。
+IKustoDirectIngestClient により定義されます。このモードでは、Kusto エンジンサービスと直接やり取りします。 このモードでは、Kusto インジェストサービスはデータをモデレートまたは管理しません。 Direct モードでのすべてのインジェスト要求は、最終的に `.ingest` Kusto エンジンサービスで直接実行されるコマンドに変換されます。
 次の図は、Kusto との直接インジェストクライアントの対話の概要を示しています。
 
 ![alt text](../images/direct-ingest.jpg "直接取り込み")
@@ -72,10 +72,10 @@ IKustoDirectIngestClient により定義されます。このモードでは、K
 [インジェストのベストプラクティス](kusto-ingest-best-practices.md)では、インジェストと、インジェストのスループットについて説明します。
 
 ### <a name="thread-safety"></a>スレッド セーフ
-Kusto インジェストクライアントの実装はスレッドセーフであり、再利用が想定されています。 または複数の取り込み操作に対して`KustoQueuedIngestClient`クラスのインスタンスを作成する必要はありません。 の1つの`KustoQueuedIngestClient`インスタンスが、ターゲット Kusto クラスターごとのプロセスごとに必要です。 複数のインスタンスを実行すると、カウンターの生産性が向上し、データ管理クラスターが DoS になることがあります。
+Kusto インジェストクライアントの実装はスレッドセーフであり、再利用が想定されています。 `KustoQueuedIngestClient`または複数の取り込み操作に対してクラスのインスタンスを作成する必要はありません。 の1つのインスタンス `KustoQueuedIngestClient` が、ターゲット Kusto クラスターごとのプロセスごとに必要です。 複数のインスタンスを実行すると、カウンターの生産性が向上し、データ管理クラスターが DoS になることがあります。
 
 ### <a name="supported-data-formats"></a>サポートされるデータ形式
-ネイティブインジェストがまだ存在しない場合は、そのデータを1つ以上の Azure Storage blob にアップロードします。 現在サポートされている blob 形式については、「[サポートされるデータ形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)」を参照してください。
+ネイティブインジェストがまだ存在しない場合は、そのデータを1つ以上の Azure Storage blob にアップロードします。 現在サポートされている blob 形式については、「[サポートされるデータ形式](../../../ingestion-supported-formats.md)」を参照してください。
 
 ### <a name="schema-mapping"></a>スキーマ マッピング
 [スキーママッピング](../../management/mappings.md)は、ソースデータフィールドを変換先テーブルの列に確定的にバインドするのに役立ちます。

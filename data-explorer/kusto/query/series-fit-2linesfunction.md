@@ -1,5 +1,5 @@
 ---
-title: series_fit_2lines ()-Azure データエクスプローラー |Microsoft Docs
+title: series_fit_2lines ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの series_fit_2lines () について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 6c16b535962271a7aaf4acad63f52da028b49e33
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: d4b4be37f171439b47399ecfbb314b1a9b704afd
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618745"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372707"
 ---
 # <a name="series_fit_2lines"></a>series_fit_2lines()
 
@@ -40,10 +40,10 @@ ms.locfileid: "82618745"
 
 **構文**
 
-プロジェクト`series_fit_2lines(` *x*`)`
+プロジェクト `series_fit_2lines(` *x*`)`
 * は、前述のすべての列を返します (series_fit_2lines_x_rsquare、series_fit_2lines_x_split_idx など)。
-プロジェクト (rs、si、v) =`series_fit_2lines(`*x*`)`
-* は、次の列を返します。 rs (r-2 乗)、si (split index)、v (分散)、およびその他の列は series_fit_2lines_x_rvariance、series_fit_2lines_x_line_fit などのようになります。拡張 (`series_fit_2lines(`rs, si, v) =*x*`)`
+プロジェクト (rs、si、v) = `series_fit_2lines(` *x*`)`
+* は、次の列を返します。 rs (r-2 乗)、si (split index)、v (分散)、およびその他の列は series_fit_2lines_x_rvariance、series_fit_2lines_x_line_fit などのようになります。拡張 (rs, si, v) = `series_fit_2lines(` *x*`)`
 * rs (r-2 乗)、si (分割インデックス)、v (差異) のみを返します。
   
 **引数**
@@ -55,6 +55,7 @@ ms.locfileid: "82618745"
 
 **使用例**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print id=' ', x=range(bin(now(), 1h)-11h, bin(now(), 1h), 1h), y=dynamic([1,2.2, 2.5, 4.7, 5.0, 12, 10.3, 10.3, 9, 8.3, 6.2])
 | extend (Slope,Interception,RSquare,Variance,RVariance,LineFit)=series_fit_line(y), (RSquare2, SplitIdx, Variance2,RVariance2,LineFit2)=series_fit_2lines(y)

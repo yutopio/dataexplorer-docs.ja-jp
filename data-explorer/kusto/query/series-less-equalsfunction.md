@@ -1,6 +1,6 @@
 ---
-title: series_less_equals() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでseries_less_equals() について説明します。
+title: series_less_equals ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの series_less_equals () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 2dc03b1f1e24aaef4a6a006d72aeb980753e871e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8f86d7174e73f2ffbace935f695c1220572a0e38
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81508281"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83372608"
 ---
 # <a name="series_less_equals"></a>series_less_equals()
 
-2 つの数値系列入力の要素の小`<=`さまたは等しい ( ) ロジック演算を計算します。
+`<=`2 つの数値系列入力の要素ごとの () 論理演算を計算します。
 
 **構文**
 
-`series_less_equals (`*シリーズ1*`,`*シリーズ2*`)`
+`series_less_equals (`*Series1* `,`*Series2*`)`
 
 **引数**
 
-* *Series1、Series2*: 要素に対して比較される入力数値配列。 すべての引数は動的配列でなければなりません。 
+* *Series1, Series2*: 要素ごとに比較する数値配列を入力します。 すべての引数は動的配列である必要があります。 
 
 **戻り値**
 
-2 つの入力間の計算された要素単位の小数または等しいロジック演算を含むブール値の動的配列。 数値以外の要素または存在しない要素 (サイズが異なる配列) は、要素`null`値を生成します。
+2つの入力間の計算された要素ごとの、または等しい論理演算を含むブール値の動的配列。 数値以外の要素または存在しない要素 (異なるサイズの配列) は、 `null` 要素の値を生成します。
 
 **例**
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 print s1 = dynamic([1,2,4]), s2 = dynamic([4,2,1])
 | extend s1_less_equals_s2 = series_less_equals(s1, s2)
@@ -40,10 +41,10 @@ print s1 = dynamic([1,2,4]), s2 = dynamic([4,2,1])
 
 |s1|s2|s1_less_equals_s2|
 |---|---|---|
-|[1,2,4]|[4,2,1]|[真、真、偽]|
+|[1, 2, 4]|[4, 2, 1]|[true、true、false]|
 
 **参照**
 
-シリーズ全体の統計の比較については、以下を参照してください。
+系列統計の比較全体については、以下を参照してください。
 * [series_stats()](series-statsfunction.md)
 * [series_stats_dynamic()](series-stats-dynamicfunction.md)

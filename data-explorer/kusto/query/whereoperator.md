@@ -1,6 +1,6 @@
 ---
-title: where 演算子-Azure データエクスプローラー |Microsoft Docs
-description: この記事では、Azure データエクスプローラーでの where 演算子 (contains、contains、startswith、endswith、regex の一致) について説明します。
+title: Kusto クエリ言語の where 演算子-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの where 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fadf8aa8c21dac364793c73a38e68d55fc2a6f6d
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7dc9d7166a1f286e14c81f269f32f894cbe9ff9d
+ms.sourcegitcommit: da7c699bb62e1c4564f867d4131d26286c5223a8
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370366"
+ms.lasthandoff: 05/14/2020
+ms.locfileid: "83404170"
 ---
 # <a name="where-operator"></a>where 演算子
 
@@ -61,9 +61,9 @@ Traces
     and ActivityId == SubActivityId 
 ```
 
-1時間経過しておらず、"MyCluster" という名前のソースから取得され、同じ値を持つ2つの列を持つレコード。 
+この例では、1時間経過していないレコードを取得し、というソースから取得 `MyCluster` し、同じ値の2つの列を保持します。 
 
-2 つの列の比較を最後に配置していることに注目してください。これは、インデックスを使用できず、スキャンを強制するためです。
+インデックスを使用してスキャンを強制的に実行できないため、2つの列の比較が最後に行われることに注意してください。
 
 **例**
 

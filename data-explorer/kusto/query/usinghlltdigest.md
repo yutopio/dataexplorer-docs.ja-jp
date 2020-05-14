@@ -1,5 +1,5 @@
 ---
-title: 集計の中間結果のパーティション分割と作成-Azure データエクスプローラー
+title: Kusto partition & 中間の集計結果を作成する-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーでの集計の中間結果のパーティション分割と作成について説明します。
 services: data-explorer
 author: orspod
@@ -10,16 +10,16 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8085f2347501c313c857a262bc9de6ec7280c90c
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: ce86e24fbd13221fe333f281dac3ba3b6ac73a1f
+ms.sourcegitcommit: da7c699bb62e1c4564f867d4131d26286c5223a8
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224546"
+ms.lasthandoff: 05/14/2020
+ms.locfileid: "83404243"
 ---
 # <a name="partitioning-and-composing-intermediate-results-of-aggregations"></a>集計の中間結果のパーティション分割と作成
 
-過去7日間にわたる個別のユーザーの数を毎日計算する場合。 `summarize dcount(user)`過去7日間にフィルター処理されたスパンを使用して1日に1回実行できます。 このメソッドは、計算が実行されるたびに、前の計算と6日間の重複があるため、効率的ではありません。 また、1日の集計を計算し、これらの集計を結合することもできます。 この方法では、最後の6つの結果を "記憶する" 必要がありますが、はるかに効率的です。
+過去7日間にわたる個別のユーザーの数を毎日計算するとします。 `summarize dcount(user)`過去7日間にフィルター処理されたスパンを使用して1日に1回実行できます。 このメソッドは非効率的です。計算が実行されるたびに、前の計算と6日間の重複が発生します。 また、1日の集計を計算し、これらの集計を結合することもできます。 この方法では、最後の6つの結果を "記憶する" 必要がありますが、はるかに効率的です。
 
 説明に従ってクエリをパーティション分割すると、やなどの簡単な集計を簡単に行うことが `count()` `sum()` できます。 また、やなどの複雑な集計にも役立ち `dcount()` `percentiles()` ます。 このトピックでは、Kusto でこのような計算をサポートする方法について説明します。
 
@@ -39,7 +39,7 @@ range x from 1 to 1000000 step 1
 |---|
 |1.0000524520874|
 
-この種類のポリシーを適用する前にこの取り込みをテーブルに挿入すると、null が表示されます。
+この種類のポリシーを適用する前にこのオブジェクトをテーブルに取り込みすると、null が取り込みされます。
 
 ```kusto
 .set-or-append MyTable <| range x from 1 to 1000000 step 1
@@ -143,7 +143,7 @@ Kusto の制限に達しているデータセットは、データセットに�
 
 ::: zone-end
 
-これらの値の最終的な結果を取得する必要がある場合、クエリは hll/tdigest の合併を使用することがあります。 [`hll-merge()`](hll-merge-aggfunction.md) / [`tdigest_merge()`](tdigest-merge-aggfunction.md) その後、マージされた値を取得した後、 [`percentile_tdigest()`](percentile-tdigestfunction.md)  /  [`dcount_hll()`](dcount-hllfunction.md) これらのマージされた値に対してを呼び出して、またはパーセンタイルの最終的な結果を取得することができます `dcount` 。
+これらの値の最終的な結果を取得する必要がある場合、クエリでは合併を使用することがあり `hll` / `tdigest` [`hll-merge()`](hll-merge-aggfunction.md) / [`tdigest_merge()`](tdigest-merge-aggfunction.md) ます。 次に、マージされた値を取得した後、 [`percentile_tdigest()`](percentile-tdigestfunction.md)  /  [`dcount_hll()`](dcount-hllfunction.md) これらのマージされた値に対してを呼び出して、またはパーセンタイルの最終結果を取得することができ `dcount` ます。
 
 データが毎日取り込まれたされるテーブル、PageViews があると仮定して、日付 = datetime (2016-05-01 18:00: 00.0000000) より後に1分間に表示される個別のページ数を計算します。
 
@@ -176,12 +176,12 @@ PageViewsHllTDigest
 |2016-05-02 00:00: 00.0000000|83486|64135183|
 |2016-05-03 00:00: 00.0000000|72247|13685621|
 
-これにより、パフォーマンスが向上し、クエリがより小さなテーブルで実行されます (この例では、最初のクエリは ~ 215M のレコードを実行し、2つ目は32レコードを超えてのみ実行されます)。
+このクエリは、より小さなテーブルで実行されるため、パフォーマンスが向上します。 この例では、最初のクエリは ~ 215M レコードに対して実行され、2番目のクエリは32レコードのみで実行されます。
 
 **例**
 
 保持クエリ。
-各 Wikipedia ページが表示された日時を集計するテーブルがあると仮定します (サンプルサイズは10万)。各 date1 を検索する場合は、date1 に表示されるページに対して、date1 と date2 の両方でレビューされたページの割合 (date1 < date2) を確認します。
+各 Wikipedia ページが表示された日時を集計するテーブルがあるとします (サンプルサイズは10万)。各 date1 を検索する場合は、date1 で表示されるページに対して、date1 と date2 の両方でレビューされたページの割合 (date1 < date2) を確認します。
   
 単純な方法では、join 演算子と集計演算子が使用されます。
 
@@ -220,7 +220,7 @@ on $left.Day1 == $right.Day
  
 上記のクエリの所要時間は18秒でした。
 
-、、およびの関数を使用する場合、 [`hll()`](hll-aggfunction.md) [`hll_merge()`](hll-merge-aggfunction.md) 同等のクエリは [`dcount_hll()`](dcount-hllfunction.md) ~ 1.3 秒後に終了し、 `hll` 関数によって上記のクエリの速度が約14倍になることが示されます。
+、、およびの各関数を使用した場合 [`hll()`](hll-aggfunction.md) [`hll_merge()`](hll-merge-aggfunction.md) [`dcount_hll()`](dcount-hllfunction.md) 、同等のクエリは ~ 1.3 秒後に終了し、 `hll` 関数が上記のクエリよりも最大で14倍速くなることが示されます。
 
 ```kusto
 let Stats=PageViewsSample | summarize pagehll=hll(Page, 2) by day=startofday(Timestamp); // saving the hll values (intermediate results of the dcount values)
@@ -248,4 +248,4 @@ Stats
 |2016-05-02 00:00: 00.0000000|2016-05-03 00:00: 00.0000000|14.5160020350006|
 
 > [!NOTE] 
-> 関数のエラーにより、クエリの結果が100% 正確ではありません `hll` 。 (エラーの詳細については、「」を参照してください [`dcount()`](dcount-aggfunction.md) 。
+> 関数のエラーにより、クエリの結果が100% 正確ではありません `hll` 。 エラーの詳細については、「」を参照してください [`dcount()`](dcount-aggfunction.md) 。

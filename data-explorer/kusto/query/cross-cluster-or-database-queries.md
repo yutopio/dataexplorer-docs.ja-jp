@@ -1,5 +1,5 @@
 ---
-title: 複数のデータベースにまたがるクエリとクロスクラスタークエリ-Azure データエクスプローラー |Microsoft Docs
+title: 複数のデータベースにまたがるクロス & クエリ-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーでのデータベース間およびクロスクラスタークエリについて説明します。
 services: data-explorer
 author: orspod
@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 834fd81e1832b8ab624da8d99cb5cc32407db84f
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: bb25fd556ab59dc5bdf5c533435f99deb6b32fdb
+ms.sourcegitcommit: da7c699bb62e1c4564f867d4131d26286c5223a8
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741751"
+ms.lasthandoff: 05/14/2020
+ms.locfileid: "83404236"
 ---
 # <a name="cross-database-and-cross-cluster-queries"></a>複数のデータベースに対するクエリと複数のクラスターに対するクエリ
 
@@ -23,7 +23,7 @@ ms.locfileid: "82741751"
 
 すべての Kusto クエリは、現在のクラスターと既定のデータベースのコンテキストで動作します。
 * [Kusto Explorer](../tools/kusto-explorer.md)では、[[接続] パネル](../tools/kusto-explorer.md#connections-panel)で既定のデータベースが選択されています。現在のクラスターは、そのデータベースを含む接続です。
-* [Kusto クライアントライブラリ](../api/netfx/about-kusto-data.md)を使用する場合、現在のクラスターと既定のデータベースは`Data Source` 、 `Initial Catalog`それぞれ[kusto 接続文字列](../api/connection-strings/kusto.md)のプロパティとプロパティによって指定されます。
+* [Kusto クライアントライブラリ](../api/netfx/about-kusto-data.md)を使用する場合、現在のクラスターと既定のデータベースは、 `Data Source` `Initial Catalog` それぞれ[kusto 接続文字列](../api/connection-strings/kusto.md)のプロパティとプロパティによって指定されます。
 
 ## <a name="queries"></a>クエリ
 既定以外のデータベースからテーブルにアクセスするには、次のように*修飾名*構文を使用する必要があります。現在のクラスター内のデータベースにアクセスするには、次のようにします。
@@ -38,9 +38,9 @@ cluster("<cluster name>").database("<database name>").<table name>
 *データベース名*では大文字と小文字が区別されます
 
 *クラスター名*は大文字と小文字が区別されず、次のいずれかの形式にすることができます。
-* 整形式 URL: 例`http://contoso.kusto.windows.net:1234/`として、HTTP および HTTPS スキームのみがサポートされています。
-* 完全修飾ドメイン名 (FQDN): たとえば`contoso.kusto.windows.net` 、に相当する`https://`**`contoso.kusto.windows.net`**`:443/`
-* 短い名前 (ドメイン部分を含まないホスト名 [およびリージョン]): インスタンス`contoso` `https://` **`contoso`** `.kusto.windows.net:443/`の場合、または`contoso.westus`と解釈されます。`https://`**`contoso.westus`**`.kusto.windows.net:443/`
+* などの整形式の URL `http://contoso.kusto.windows.net:1234/` 。 HTTP および HTTPS スキームのみがサポートされています。
+* のような完全修飾ドメイン名 (FQDN) `contoso.kusto.windows.net` 。 この文字列はと同じです `https://` **`contoso.kusto.windows.net`** `:443/` 。
+* またはなど、短い名前 (ドメイン部分のないホスト名 [および地域] `contoso` ) `contoso.westus` 。 これらの文字列は、およびとして解釈され `https://` **`contoso`** `.kusto.windows.net:443/` `https://` **`contoso.westus`** `.kusto.windows.net:443/` ます。
 
 > [!NOTE]
 > 複数データベースにまたがるアクセスは、通常のアクセス許可のチェックに従います。
@@ -81,7 +81,7 @@ restrict access to (my*, database("MyOther*").*, cluster("OtherCluster").databas
 
 ## <a name="functions-and-views"></a>関数とビュー
 
-関数およびビュー (永続化および作成されたインライン) は、データベースとクラスターの境界を越えてテーブルをリファレンスことができます。 有効なのは次のとおりです。
+関数とビュー (永続化および作成されたインライン) は、データベースとクラスターの境界を越えてテーブルを参照できます。 次のコードは有効です。
 
 ```kusto
 let MyView = Table1 join database("OtherDb").Table2 on Key | join cluster("OtherCluster").database("SomeDb").Table3 on Key;
@@ -90,13 +90,13 @@ MyView | where ...
 
 永続的な関数とビューには、同じクラスター内の別のデータベースからアクセスできます。
 
-の`OtherDb`表形式関数 (ビュー):
+の表形式関数 (ビュー) `OtherDb` :
 
 ```kusto
 .create function MyView(v:string) { Table1 | where Column1 has v ...  }  
 ```
 
-次の`OtherDb`スカラー関数:
+次のスカラー関数 `OtherDb` :
 ```kusto
 .create function MyCalc(a:double, b:double, c:double) { (a + b) / c }  
 ```
@@ -109,7 +109,7 @@ database("OtherDb").MyView("exception") | extend CalCol=database("OtherDb").MyCa
 
 ## <a name="limitations-of-cross-cluster-function-calls"></a>クラスター間関数呼び出しの制限事項
 
-表形式の関数またはビューは、クラスター間で参照できます。 次の制限が適用されます。
+表形式の関数またはビューは、クラスター間で参照できます。 次の制限事項が適用されます。
 
 1. リモート関数は表形式スキーマを返す必要があります。 スカラー関数は、同じクラスター内でのみアクセスできます。
 2. リモート関数は、スカラーパラメーターのみを受け入れることができます。 1つ以上のテーブル引数を取得する関数は、同じクラスター内でのみアクセスできます。
@@ -121,24 +121,24 @@ database("OtherDb").MyView("exception") | extend CalCol=database("OtherDb").MyCa
 cluster("OtherCluster").database("SomeDb").MyView("exception") | count
 ```
 
-次のクエリは、リモートスカラー `MyCalc`関数を呼び出します。
-これは規則 #1 に違反しているため、有効では**ありません**。
+次のクエリは、リモートスカラー関数 `MyCalc` を呼び出します。
+この呼び出しは、規則 #1 に違反するため、**有効ではありません**。
 
 ```kusto
 MyTable | extend CalCol=cluster("OtherCluster").database("OtherDb").MyCalc(Col1, Col2, Col3) | limit 10
 ```
 
-次のクエリは、リモート`MyCalc`関数を呼び出し、表形式パラメーターを提供します。
-これは規則 #2 に違反しているため、有効では**ありません**。
+次のクエリは、リモート関数を呼び出し、 `MyCalc` 表形式パラメーターを提供します。
+この呼び出しは、規則 #2 に違反するため、**有効ではありません**。
 
 ```kusto
 cluster("OtherCluster").database("OtherDb").MyCalc(datatable(x:string, y:string)["x","y"] ) 
 ```
 
-次のクエリは、パラメーター `SomeTable` `tablename`に基づいて変数スキーマの出力を持つリモート関数を呼び出します。
-これは規則 #3 に違反しているため、有効では**ありません**。
+次のクエリは、 `SomeTable` パラメーターに基づいて変数スキーマの出力を持つリモート関数を呼び出し `tablename` ます。
+この呼び出しは、規則 #3 に違反するため、**有効ではありません**。
 
-次の`OtherDb`表形式関数:
+次の表形式関数 `OtherDb` :
 ```kusto
 .create function SomeTable(tablename:string) { table(tablename)  }  
 ```
@@ -148,10 +148,10 @@ cluster("OtherCluster").database("OtherDb").MyCalc(datatable(x:string, y:string)
 cluster("OtherCluster").database("OtherDb").SomeTable("MyTable")
 ```
 
-次のクエリは、データ`GetDataPivot`に基づく変数スキーマの出力を持つリモート関数を呼び出します ([pivot () プラグイン](pivotplugin.md)には動的出力があります)。
-これは規則 #3 に違反しているため、有効では**ありません**。
+次のクエリは、 `GetDataPivot` データに基づく変数スキーマの出力を持つリモート関数を呼び出します ([pivot () プラグイン](pivotplugin.md)には動的出力があります)。
+この呼び出しは、規則 #3 に違反するため、**有効ではありません**。
 
-次の`OtherDb`表形式関数:
+次の表形式関数 `OtherDb` :
 ```kusto
 .create function GetDataPivot() { T | evaluate pivot(PivotColumn) }  
 ```
@@ -163,7 +163,7 @@ cluster("OtherCluster").database("OtherDb").GetDataPivot()
 
 ## <a name="displaying-data"></a>データの表示
 
-クライアントにデータを返すステートメントは、 `take`演算子が特に使用されていない場合でも、返されるレコードの数によって暗黙的に制限されます。 この制限を引き上げるには、 `notruncation` クライアント要求オプションを使います。
+クライアントにデータを返すステートメントは、演算子が特に使用されていない場合でも、返されるレコードの数によって暗黙的に制限され `take` ます。 この制限を引き上げるには、 `notruncation` クライアント要求オプションを使います。
 
 グラフィカルな形式でデータを表示するには、 [render 演算子](renderoperator.md)を使用します。
 
@@ -171,6 +171,6 @@ cluster("OtherCluster").database("OtherDb").GetDataPivot()
 
 ::: zone pivot="azuremonitor"
 
-この機能は、ではサポートされていません Azure Monitor
+複数のデータベースにまたがるクエリとクロスクラスタークエリは、Azure Monitor ではサポートされていません。
 
 ::: zone-end

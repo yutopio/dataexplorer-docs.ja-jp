@@ -1,5 +1,5 @@
 ---
-title: Kusto. インジェストの状態レポートの取り込み-Azure データエクスプローラー
+title: Kusto. インジェスト状態レポート-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーでのインジェストステータスレポートの取り込みについて説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 76ae07e2e7bdbb15900385b1e2feab0c9ff97d01
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 41c6f7868d5300dc6a7234ee774ad8c78b08c36e
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373627"
+ms.locfileid: "83382184"
 ---
 # <a name="kustoingest-ingestion-status-reporting"></a>Kusto。インジェストステータスレポートの取り込み
 
@@ -202,7 +202,7 @@ public enum IngestionReportMethod
 
 メソッドは、 `IKustoIngestionResult` Azure テーブルの状態を確認する場合にのみ関連します。 Azure キューに報告された状態を照会するには、次の[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)メソッドを使用します。
 
-|Method                                  |目的     |
+|メソッド                                  |目的     |
 |----------------------------------------|------------|
 |PeekTopIngestionFailures                |要求されたメッセージの制限により、まだ破棄されていない最も古いインジェストエラーに関する情報を返す非同期メソッド |
 |GetAndDiscardTopIngestionFailures       |要求されたメッセージの制限により、まだ破棄されていない最も古いインジェストエラーを返して破棄する非同期メソッド |

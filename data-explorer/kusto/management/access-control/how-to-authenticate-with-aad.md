@@ -1,5 +1,5 @@
 ---
-title: Azure データエクスプローラーアクセス用に AAD で認証する方法-Azure データエクスプローラー |Microsoft Docs
+title: アクセスのために AAD を使用した kusto-Azure データエクスプローラー
 description: この記事では、azure データエクスプローラーで Azure データエクスプローラーアクセスを行うために AAD で認証する方法について説明します。
 services: data-explorer
 author: orspod
@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: b7e2120f158093e07e096b200b96ac3e265ae2e0
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 34a0e5cd7107827cd97eb0baf9a3d40b408b2024
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82861988"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382078"
 ---
 # <a name="how-to-authenticate-with-aad-for-azure-data-explorer-access"></a>Azure データエクスプローラーアクセス用に AAD で認証する方法
 
@@ -58,16 +58,16 @@ https://help.kusto.windows.net
 
 AAD はマルチテナントサービスであり、すべての組織は AAD で**ディレクトリ**と呼ばれるオブジェクトを作成できます。 ディレクトリオブジェクトは、ユーザーアカウント、アプリケーション、グループなどのセキュリティ関連のオブジェクトを保持します。 AAD は、多くの場合、ディレクトリを**テナント**として参照します。 AAD テナントは GUID (**テナント ID**) によって識別されます。 多くの場合、AAD テナントは、組織のドメイン名で識別することもできます。
 
-たとえば、"Contoso" という組織には、テナント ID `4da81d62-e0a8-4899-adad-4349ca6bfe24`とドメイン名`contoso.com`が含まれている場合があります。
+たとえば、"Contoso" という組織には、テナント ID とドメイン名が含まれている場合があり `4da81d62-e0a8-4899-adad-4349ca6bfe24` `contoso.com` ます。
 
 ## <a name="specifying-the-aad-authority"></a>AAD 機関の指定
 
 AAD には、認証用のエンドポイントがいくつかあります。
 
-* 認証されているプリンシパルをホストしているテナントがわかっている場合 (つまり、ユーザーまたはアプリケーションが属する AAD ディレクトリを認識している`https://login.microsoftonline.com/{tenantId}`場合)、AAD エンドポイントはになります。
-  ここで`{tenantId}`は、AAD の組織のテナント ID またはそのドメイン名 (など`contoso.com`) のいずれかになります。
+* 認証されているプリンシパルをホストしているテナントがわかっている場合 (つまり、ユーザーまたはアプリケーションが属する AAD ディレクトリを認識している場合)、AAD エンドポイントはに `https://login.microsoftonline.com/{tenantId}` なります。
+  ここで `{tenantId}` は、AAD の組織のテナント ID またはそのドメイン名 (など) のいずれかになり `contoso.com` ます。
 
-* 認証されているプリンシパルをホストしているテナントが不明な場合は、上記の`{tenantId}`を値`common`に置き換えることによって "common" エンドポイントを使用できます。
+* 認証されているプリンシパルをホストしているテナントが不明な場合は、上記のを値に置き換えることによって "common" エンドポイントを使用でき `{tenantId}` `common` ます。
 
 > [!NOTE]
 > 認証に使用される AAD エンドポイントは、 **aad 機関 URL**または単に**aad 機関**とも呼ばれます。
@@ -83,11 +83,11 @@ Azure データエクスプローラー SDK を使用する場合、AAD トー�
 
 ## <a name="user-authentication"></a>ユーザー認証
 
-ユーザー認証を使用して Azure データエクスプローラーにアクセスする最も簡単な方法は、Azure データエクスプローラー SDK `Federated Authentication`を使用して、azure データエクスプローラー接続`true`文字列のプロパティをに設定することです。 SDK を初めて使用してサービスに要求を送信すると、AAD 資格情報を入力するためのサインインフォームがユーザーに表示され、認証が成功すると要求が送信されます。
+ユーザー認証を使用して Azure データエクスプローラーにアクセスする最も簡単な方法は、Azure データエクスプローラー SDK を使用して、 `Federated Authentication` azure データエクスプローラー接続文字列のプロパティをに設定することです `true` 。 SDK を初めて使用してサービスに要求を送信すると、AAD 資格情報を入力するためのサインインフォームがユーザーに表示され、認証が成功すると要求が送信されます。
 
-Azure データエクスプローラー SDK を使用しないアプリケーションでも、AAD サービスセキュリティプロトコルクライアントを実装する代わりに、AAD クライアントライブラリ (ADAL) を使用できます。 .NET アプリケーションからhttps://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNet実行する例については、[] を参照してください。
+Azure データエクスプローラー SDK を使用しないアプリケーションでも、AAD サービスセキュリティプロトコルクライアントを実装する代わりに、AAD クライアントライブラリ (ADAL) を使用できます。 https://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNet.Net アプリケーションから実行する例については、[] を参照してください。
 
-Azure データエクスプローラーアクセスのユーザーを認証するには、まず、アプリケーションに`Access Kusto`委任されたアクセス許可が付与されている必要があります。 詳細については、 [AAD アプリケーションのプロビジョニングに関する Kusto のガイドを](how-to-provision-aad-app.md#set-up-delegated-permissions-for-kusto-service-application)参照してください。
+Azure データエクスプローラーアクセスのユーザーを認証するには、まず、アプリケーションに委任されたアクセス許可が付与されている必要があり `Access Kusto` ます。 詳細については、 [AAD アプリケーションのプロビジョニングに関する Kusto のガイドを](how-to-provision-aad-app.md#set-up-delegated-permissions-for-kusto-service-application)参照してください。
 
 次の簡単なコードスニペットは、ADAL を使用して Azure データエクスプローラーにアクセスするための AAD ユーザートークンを取得する方法を示しています (ログオン UI を起動します)。
 
@@ -195,7 +195,7 @@ Native client フローの場合と同様に、2つの AAD アプリケーショ
 
 AdalJs を実行するには、access_token の呼び出しが行われる前に id_token を取得する必要があります。
 
-アクセストークンは`AuthenticationContext.login()`メソッドを呼び出すことによって取得され、 `Authenticationcontext.acquireToken()`access_tokens を呼び出すことによって取得されます。
+アクセストークンはメソッドを呼び出すことによって取得され、 `AuthenticationContext.login()` access_tokens を呼び出すことによって取得され `Authenticationcontext.acquireToken()` ます。
 
 * 適切な構成で AuthenticationContext を作成します。
 
@@ -210,9 +210,9 @@ var config = {
 var authContext = new AuthenticationContext(config);
 ```
 
-* ログイン`authContext.login()`してい`acquireToken()`ない場合は、を試行する前にを呼び出します。 ログインされているかどうかを知るには、を呼び出し`authContext.getCachedUser()`て、それが返さ`false`れるかどうかを確認することをお勧めします。
-* ページ`authContext.handleWindowCallback()`が読み込まれるたびに、を呼び出します。 これは、AAD からリダイレクトをインターセプトし、そのトークンをフラグメント URL から取得してキャッシュするコードの部分です。
-* を`authContext.acquireToken()`呼び出して、実際のアクセストークンを取得します。これで、有効な ID トークンが作成されました。 AcquireToken の最初のパラメーターは、Kusto サーバー AAD アプリケーションリソース URL になります。
+* `authContext.login()` `acquireToken()` ログインしていない場合は、を試行する前にを呼び出します。 ログインされているかどうかを知るには、を呼び出して、それが返されるかどうかを確認することをお勧めします `authContext.getCachedUser()` `false` 。
+* `authContext.handleWindowCallback()`ページが読み込まれるたびに、を呼び出します。 これは、AAD からリダイレクトをインターセプトし、そのトークンをフラグメント URL から取得してキャッシュするコードの部分です。
+* を呼び出して、 `authContext.acquireToken()` 実際のアクセストークンを取得します。これで、有効な ID トークンが作成されました。 AcquireToken の最初のパラメーターは、Kusto サーバー AAD アプリケーションリソース URL になります。
 
 ```javascript
  authContext.acquireToken("<Kusto cluster URL>", callbackThatUsesTheToken);

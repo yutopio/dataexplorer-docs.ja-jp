@@ -1,5 +1,5 @@
 ---
-title: Kusto を使用しないデータインジェストの使用。インジェストライブラリ-Azure データエクスプローラー |Microsoft Docs
+title: インジェストライブラリを使用しない kusto データインジェスト-Azure データエクスプローラー
 description: この記事では、Kusto を使用せずにデータを取り込む方法について説明します。 Azure データエクスプローラーでライブラリを取り込みます。
 services: data-explorer
 author: orspod
@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 80fe504311ee847afa7244e179974d80485efe46
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 96409849823850ef9fd939f9e359d75d3e6d5bf1
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373554"
+ms.locfileid: "83382150"
 ---
 # <a name="ingestion-without-kustoingest-library"></a>Kusto によるインジェストを使用した取り込み
 
@@ -344,7 +344,7 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
 |DatabaseName |ターゲットデータベース名 |
 |TableName |ターゲットテーブル名 |
 |RetainBlobOnSuccess |に設定すると `true` 、インジェストが正常に完了した後、blob は削除されません。 既定値は `false` です |
-|Format |非圧縮データ形式 |
+|形式 |非圧縮データ形式 |
 |FlushImmediately ちに |に設定する `true` と、すべての集計がスキップされます。 既定値は `false` です |
 |ReportLevel |成功/エラー報告レベル: 0-失敗、1-なし、2-すべて |
 |ReportMethod |レポートメカニズム: 0-キュー、1-テーブル |

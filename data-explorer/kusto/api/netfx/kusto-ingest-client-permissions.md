@@ -1,5 +1,5 @@
 ---
-title: Kusto. インジェストアクセス許可の取り込み-Azure データエクスプローラー
+title: Kusto. インジェストアクセス許可-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの Kusto インジェストのアクセス許可について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3fd516b7201c5e857417ca13bade668f32f25161
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 6b649a06262153f80c4c35374e55a206be02c781
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226161"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382286"
 ---
 # <a name="kustoingest---ingestion-permissions"></a>Kusto. インジェスト-インジェストのアクセス許可
 
@@ -42,7 +42,7 @@ ms.locfileid: "83226161"
 テーブルの作成が必要な場合、 `Database User` または高いアクセスロールも割り当てる必要があります。
 
 
-|Role                 |PrincipalType        |PrincipalDisplayName
+|ロール                 |PrincipalType        |PrincipalDisplayName
 |---------------------|---------------------|------------
 |`Database Ingestor`  |Azure AD アプリケーション |`Test App (app id: 2a904276-1234-5678-9012-66fc53add60b)`
 |`Table Ingestor`     |Azure AD アプリケーション |`Test App (app id: 2a904276-1234-5678-9012-66fc53add60b)`

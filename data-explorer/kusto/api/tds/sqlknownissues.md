@@ -1,6 +1,6 @@
 ---
-title: クストーマイクロソフトSQLサーバー間のMS-TDS/T-SQLの違い - Azureデータエクスプローラ |マイクロソフトドキュメント
-description: この資料では、Azure データ エクスプローラーでのクススト マイクロソフト SQL サーバー間の MS-TDS/T-SQL の違いについて説明します。
+title: SQL Server との kusto MS-TDS/T-sql の相違点-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの Kusto Microsoft SQL Server 間の MS TDS/T-sql の違いについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,70 +8,70 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/04/2019
-ms.openlocfilehash: be294053fdd0f95d488f52b547ef7abd0ef7c23c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c949b5bb3659d82ed586a39b4310495e61934777
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523428"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382371"
 ---
-# <a name="ms-tdst-sql-differences-between-kusto-microsoft-sql-server"></a>クストーマイクロソフトSQLサーバー間のMS-TDS/T-SQLの違い
+# <a name="ms-tdst-sql-differences-between-kusto-microsoft-sql-server"></a>Kusto Microsoft SQL Server 間の MS-TDS/T-sql の相違点
 
-以下は、Kusto と SQL Server の T-SQL の実装の主な違いの一部です。
+次に示すのは、Kusto と SQL Server による T-sql の実装の主な違いを示しています。
 
-## <a name="create-insert-drop-alter-statements"></a>作成、挿入、削除、およびステートメントの変更
+## <a name="create-insert-drop-alter-statements"></a>CREATE、INSERT、DROP、ALTER ステートメント
 
-KUsto は、MS-TDS を使用したスキーマの変更やデータ変更をサポートしません。
+Kusto は、MS TDS を使用したスキーマの変更やデータの変更をサポートしていません。また、上記の T-sql ステートメントをサポートしていません。
 
 ## <a name="correlated-sub-queries"></a>相関サブクエリ
 
-Kusto は、 、`SELECT``WHERE`および 句の相関サブクエリを`JOIN`サポートしていません。
+Kusto `SELECT` では、、、および句での相関サブクエリはサポートされていません `WHERE` `JOIN` 。
 
 ## <a name="top-flavors"></a>トップフレーバー
 
-Kusto は`WITH TIES`クエリを無視して、通常`TOP`の クエリとして評価します。
-クストはサポート`PERCENT`していません.
+Kusto は `WITH TIES` 、クエリを無視し、標準として評価し `TOP` ます。
+Kusto はサポートしていません `PERCENT` 。
 
 ## <a name="cursors"></a>カーソル
 
-KUSTO は SQL カーソルをサポートしていません。
+Kusto では、SQL カーソルはサポートされていません。
 
 ## <a name="flow-control"></a>フロー制御
 
-Kusto は、および`IF``THEN``ELSE``ELSE`バッチに同じスキーマを持つ句など、いくつかの限定されたケースを除き、フロー`THEN`制御ステートメントをサポートしていません。
+Kusto では、フロー制御ステートメントはサポートされません。ただし、 `IF` `THEN` `ELSE` とのバッチに同一のスキーマを持つ句など、少数のケースがあり `THEN` `ELSE` ます。
 
 ## <a name="data-types"></a>データ型
 
-クエリによっては、返されるデータの種類が SQL Server と異なる場合があります。
-ここでの明白な例は`TINYINT`、Kusto`SMALLINT`に相当するものがないような型です。 したがって、`BYTE`型の値を期待するクライアント、`INT16`または代わりに`INT32`値`INT64`を取得するクライアント。
+クエリによっては、返されるデータの型が SQL Server とは異なる場合があります。
+ここでのわかりやすい例として `TINYINT` 、Kusto に相当するやなどの型があり `SMALLINT` ます。 したがって、型または型の値を予期しているクライアントは、 `BYTE` `INT16` 値または値を取得することがあり `INT32` `INT64` ます。
 
-## <a name="column-order-in-results"></a>結果の列の順序
+## <a name="column-order-in-results"></a>結果内の列の順序
 
-ステートメントで asterix を`SELECT`使用する場合、各結果セットの列の順序は Kusto と SQL Server の間で異なる場合があります。 このような場合、列名を使用するクライアントの方が適切です。
-`SELECT`ステートメントに asterix 文字がない場合は、列序数が保持されます。
+ステートメントでアスタリスクを使用する場合 `SELECT` 、各結果セットの列の順序が kusto と SQL Server で異なる場合があります。 このような場合、列名を使用するクライアントの方が適しています。
+ステートメントにアスタリスク文字がない場合は `SELECT` 、列の序数が保持されます。
 
-## <a name="columns-name-in-results"></a>結果の列名
+## <a name="columns-name-in-results"></a>結果内の列名
 
-T-SQL では、複数の列に同じ名前を付ける場合があります。 これは、クストーでは許可されていません。
-名前が衝突した場合、Kusto では列の名前が異なる場合があります。
-ただし、少なくとも 1 つの列では、元の名前が保持されます。
+T-sql では、複数の列が同じ名前を持つ場合があります。 これは Kusto では許可されていません。
+名前の競合が発生した場合、列の名前が Kusto と異なる場合があります。
+ただし、少なくともいずれかの列に対して、元の名前が保持されます。
 
-## <a name="any-all-and-exists-predicates"></a>任意、すべて、および存在の述部
+## <a name="any-all-and-exists-predicates"></a>ANY、ALL、および EXISTS 述語
 
-Kusto は述語`ANY`、、`ALL`および`EXISTS`をサポートしていません。
+Kusto は、述語、、およびをサポートしていません `ANY` `ALL` `EXISTS` 。
 
 ## <a name="recursive-ctes"></a>再帰 CTE
 
-Kusto は再帰的共通テーブル式をサポートしていません。
+Kusto では、再帰共通テーブル式はサポートされていません。
 
 ## <a name="dynamic-sql"></a>動的 SQL
 
-Kusto は動的 SQL ステートメントをサポートしていません (クエリによって生成された SQL スクリプトのインライン実行)。
+Kusto では、動的 SQL ステートメント (クエリによって生成される SQL スクリプトのインライン実行) はサポートされません。
 
 ## <a name="within-group"></a>WITHIN GROUP
 
-クストは条項をサポート`WITHIN GROUP`していません。
+Kusto は句をサポートしていません `WITHIN GROUP` 。
 
-## <a name="truncate-function"></a>切り捨て関数
+## <a name="truncate-function"></a>TRUNCATE 関数
 
-クストの TRUNCATE 関数 (ODBC) は ROUND と同様に動作するため、結果は SQL で返される下位の値ではなく、最も近い値になります。
+Kusto の TRUNCATE 関数 (ODBC) は、ROUND と同様に動作します。これは、結果が SQL で返される下位の値ではなく、最も近い値になることを意味します。

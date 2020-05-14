@@ -1,5 +1,5 @@
 ---
-title: Kusto. インジェスト-エラーと例外-Azure データエクスプローラー
+title: Kusto. インジェストエラー & 例外-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの Kusto. インジェスト-エラーと例外について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 4af09c0b29b77edd7a4e62c7a6abbbae7e918610
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 97798fa62d588769636966c7155dc5f398bd001a
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373662"
+ms.locfileid: "83382320"
 ---
 # <a name="kustoingest-errors-and-exceptions"></a>Kusto. 取り込みエラーと例外
 クライアント側でのインジェスト処理中にエラーが発生した場合は、C# の例外によって示されます。
@@ -107,7 +107,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|フィールド名 |Type     |説明
+|フィールド名 |種類     |説明
 |-----------|---------|------------------------------|
 |エラー      | String  | DM からキューを取得しようとしたときに発生したエラー
                             
@@ -121,7 +121,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|フィールド名   |Type     |説明       
+|フィールド名   |種類     |説明       
 |-------------|---------|------------------------------|
 |KustoEndpoint| String  | 関連する DM のエンドポイント
                             
@@ -134,7 +134,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|フィールド名   |Type     |説明       
+|フィールド名   |種類     |説明       
 |-------------|---------|------------------------------------|
 |PropertyName | String  | 重複するプロパティの名前
                             
@@ -144,7 +144,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|フィールド名   |Type     |説明       
+|フィールド名   |種類     |説明       
 |-------------|---------|---------------------------------|
 |QueueUri     | String  | キューの URI
 |エラー        | String  | キューへの投稿を試行しているときに生成されたエラーメッセージ
@@ -186,7 +186,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基本クラス: IngestClientException
 
-|フィールド名   |Type     |説明       
+|フィールド名   |種類     |説明       
 |-------------|---------|-----------------------|
 |サイズ         | long    | インジェストソースのサイズ
 |MaxSize      | long    | インジェストに許可される最大サイズ
@@ -217,10 +217,10 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基本クラス: [AggregateException](https://msdn.microsoft.com/library/system.aggregateexception(v=vs.110).aspx)
 
-|フィールド名      |Type                             |説明       
+|フィールド名      |種類                             |説明       
 |----------------|---------------------------------|-----------------------|
 |IngestionErrors | IList<IngestClientException>    | 取り込みの試行中に発生したエラーと、それらに関連するソース
-|IsGlobalError   | bool                            | すべてのソースで例外が発生したかどうかを示します
+|IsGlobalError   | [bool]                            | すべてのソースで例外が発生したかどうかを示します
 
 ## <a name="next-steps"></a>次の手順
 

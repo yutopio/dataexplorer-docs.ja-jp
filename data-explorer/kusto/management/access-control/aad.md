@@ -1,5 +1,5 @@
 ---
-title: Azure Active Directory (AAD) 認証-Azure データエクスプローラー |Microsoft Docs
+title: Kusto Azure Active Directory (AAD) 認証-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーでの Azure Active Directory (AAD) 認証について説明します。
 services: data-explorer
 author: orspod
@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: 17da89206af12e2e4f7d9867372c8babf0c4aea1
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 85d01c9192c71b3274907e5f93e4155b4c98accf
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862090"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382218"
 ---
 # <a name="azure-active-directory-aad-authentication"></a>Azure Active Directory (AAD) 認証
 
@@ -71,7 +71,7 @@ Kusto クライアント ライブラリは、ADAL (AAD クライアント ラ�
 2. AAD クライアント アプリケーション ID
 3. AAD クライアントリソース ID
 4. AAD ReplyUrl (認証が正常に完了した後に AAD サービスがリダイレクトする URL)次に、ADAL はこのリダイレクトをキャプチャし、そこから認証コードを抽出します)。
-5. クラスターの URI ('https://Cluster-and-region.kusto.windows.net')。
+5. クラスターの URI (' https://Cluster-and-region.kusto.windows.net ')。
 
 ADAL から Kusto クライアントライブラリに返されるトークンは、対象ユーザーとして Kusto AAD サーバーアプリケーションを持ち、スコープとして "Access Kusto" アクセス許可を持っています。
 

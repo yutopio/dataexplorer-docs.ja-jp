@@ -1,5 +1,5 @@
 ---
-title: PowerShell からの .NET クライアントライブラリの使用-Azure データエクスプローラー
+title: PowerShell からの kusto .NET クライアントライブラリ-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーで PowerShell から .NET クライアントライブラリを使用する方法について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/29/2019
-ms.openlocfilehash: 5c521d7e63d58dd32425e759b0cf09a22a050b40
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: b454b9453c7afd0835041ac78d13318de73432e2
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226042"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83382071"
 ---
 # <a name="using-the-net-client-libraries-from-powershell"></a>PowerShell からの .NET クライアントライブラリの使用
 
@@ -34,7 +34,7 @@ PowerShell を使用して Azure データエクスプローラー .NET クラ�
 
 詳細については、「 [Azure データエクスプローラークライアントライブラリ](../netfx/about-kusto-data.md)」を参照してください。
 
-## <a name="examples"></a>使用例
+## <a name="examples"></a>例
 
 ### <a name="initialization"></a>初期化
 

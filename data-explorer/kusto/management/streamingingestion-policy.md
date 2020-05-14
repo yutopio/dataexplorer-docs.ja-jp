@@ -1,5 +1,5 @@
 ---
-title: ストリーミングインジェストポリシーの管理-Azure データエクスプローラー |Microsoft Docs
+title: Kusto streaming インジェスト policy management-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーでのストリーミングインジェストポリシーの管理について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 76844b764a8e21629c7d936f4c269d7d3ab1ec8c
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 1c3ce0c0d383d07375333b08de336503d1578b1a
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373330"
+ms.locfileid: "83381997"
 ---
 # <a name="streaming-ingestion-policy-management"></a>ストリーミングインジェストポリシーの管理
 

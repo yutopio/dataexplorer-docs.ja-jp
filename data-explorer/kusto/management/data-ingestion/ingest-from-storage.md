@@ -1,5 +1,5 @@
 ---
-title: インジェスト into コマンド (ストレージからデータをプル)-Azure データエクスプローラー |Microsoft Docs
+title: Kusto. インジェスト into コマンド (ストレージからデータをプル)-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーのインジェスト into コマンド (ストレージからのデータのプル) について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 05d62aaa7b123f7f6d02b784402fd06335e155b2
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: fcab02ee032d1009cf31e36963c44cc6b12358e3
+ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373423"
+ms.locfileid: "83382014"
 ---
 # <a name="the-ingest-into-command-pull-data-from-storage"></a>インジェスト into コマンド (ストレージからデータをプル)
 
@@ -45,7 +45,7 @@ ms.locfileid: "83373423"
 コマンドの結果は、コマンドによって生成されるデータシャード ("エクステント") の数と同数のレコードを含むテーブルです。
 データシャードが生成されていない場合は、空の (ゼロ値) エクステント ID で1つのレコードが返されます。
 
-|名前       |Type      |説明                                                                |
+|名前       |種類      |説明                                                                |
 |-----------|----------|---------------------------------------------------------------------------|
 |ExtentId   |`guid`    |コマンドによって生成されたデータシャードの一意の識別子。|
 |ItemLoaded |`string`  |このレコードに関連する1つ以上のストレージアーティファクト。             |

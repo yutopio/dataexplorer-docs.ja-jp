@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/09/2019
-ms.openlocfilehash: e779571251baa6e87953e546d71adb98e7cfde61
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 88bb9e6541d9dc5c934affc8f777f836aad86ae1
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490397"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373486"
 ---
 # <a name="data-export"></a>データのエクスポート
 
@@ -21,10 +21,7 @@ ms.locfileid: "81490397"
 
 データ エクスポートにはいくつかの方法があります。
 
-* **クライアント側のエクスポート**: 最も単純な形式では、クライアント側でデータ エクスポートを実行できます (クライアントはサービスに対してクエリを実行し、結果を読み取り、その後にそれらを書き込みます)。 この形式のデータ エクスポートは、クライアント ツールに依存して、通常、ツールが実行されているローカル ファイルシステムへのエクスポートを実行します。 このモデルをサポートするツールとしては、[Kusto.Explorer](../../tools/kusto-explorer.md)、[Web UI](https://docs.microsoft.com/azure/data-explorer/web-query-data) 
-
-
- などがあります。
+* **クライアント側のエクスポート**: 最も単純な形式では、クライアント側でデータ エクスポートを実行できます (クライアントはサービスに対してクエリを実行し、結果を読み取り、その後にそれらを書き込みます)。 この形式のデータ エクスポートは、クライアント ツールに依存して、通常、ツールが実行されているローカル ファイルシステムへのエクスポートを実行します。 このモデルをサポートするツールとしては、[Kusto.Explorer](../../tools/kusto-explorer.md)、[Web UI](../../../web-query-data.md) などがあります。
 
 * **サービス側のエクスポート (プル)** : エクスポートのターゲットが (クエリと同じまたは別のクラスター/データベース上にある) Kusto テーブルの場合は、ターゲット テーブルで "クエリからの取り込み" フローを使用します。 このフローでは、クエリが実行されて、その結果がすぐに Kusto テーブルに取り込まれます。 「[データ インジェスト](../data-ingestion/index.md)」を参照してください。
 

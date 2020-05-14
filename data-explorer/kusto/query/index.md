@@ -1,5 +1,5 @@
 ---
-title: 概要 - Azure Data Explorer | Microsoft Docs
+title: 概要 - Azure Data Explorer
 description: この記事では、Azure Data Explorer の概要について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/07/2019
-ms.openlocfilehash: 1c6c3cafef35c1292292e86da69a4d6ec03bb87c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7f36e5239ba183b87ab04349b873a0182363def7
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81490278"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226484"
 ---
 # <a name="overview"></a>概要
 
@@ -26,6 +26,7 @@ Kusto クエリは、データを処理して結果を返すための、読み�
 
 たとえば、次の Kusto クエリにはステートメントが 1 つありますが、それは表形式ステートメントです。 このステートメントは `StormEvents` という名前のテーブルの参照から始まっています (このテーブルをホストするデータベースはここでは接続情報の一部として暗に示されるだけです)。 そのテーブルのデータ (行) が `StartTime` 列の値でフィルター処理され、さらに `State` 列の値でフィルター処理されます。 "最後まで残った" 行の数がクエリにより返されます。
 
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 StormEvents 
 | where StartTime >= datetime(2007-11-01) and StartTime < datetime(2007-12-01)

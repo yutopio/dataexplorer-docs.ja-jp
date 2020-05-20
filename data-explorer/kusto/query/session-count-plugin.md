@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6a9596b71afabe1e80e866fef7f2a22f6b288631
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 1e173dcba48e8748562bad61e0f16786e957ca83
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372402"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550556"
 ---
 # <a name="session_count-plugin"></a>session_count プラグイン
 
@@ -35,7 +35,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 * *Start*: 分析の開始期間の値を使用したスカラー。
 * *End*: 分析終了期間の値を使用したスカラー。
 * *Bin*: セッション分析ステップ期間のスカラー定数値。
-* ルックバック*ウィンドウ*: セッションのルックバック期間を表すスカラー定数値。 からの id が `IdColumn` 内の時間枠に表示される場合、 `LookBackWindow` セッションは既存のものと見なされます。そうでない場合、セッションは新しいものと見なされます。
+* ルックバック*ウィンドウ*: セッションのルックバック期間を表すスカラー定数値。 の ID が `IdColumn` 内の時間枠に表示される場合 `LookBackWindow` 、セッションは既存のものと見なされます。 ID が表示されない場合、セッションは新しいものと見なされます。
 * *dim1*、 *dim2*、...: (省略可能) セッション数の計算をスライスするディメンション列の一覧です。
 
 **戻り値**
@@ -49,16 +49,15 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 |型: as of *TimelineColumn*|..|..|..|long|
 
 
-**使用例**
+**例**
 
-
-この例では、データを決定的にするために、2つの列を含むテーブルを作成します。
+この例では、データは決定的であり、2つの列を含むテーブルを使用します。
 - Timeline: 1 ~ 1万の実行数
 - Id: 1 ~ 50 のユーザーの Id
 
 `Id``Timeline` `Timeline` (タイムライン% Id = = 0) の区分線の場合は、特定のスロットに表示されます。
 
-これは、を持つイベント `Id==1` は任意の `Timeline` スロット、2番目のスロットごとにイベントが表示されることを意味 `Id==2` `Timeline` します。
+を持つイベントは、 `Id==1` 任意の `Timeline` スロット、 `Id==2` 2 番目のスロットごとにイベントを表示 `Timeline` します。
 
 次の20行のデータがあります。
 

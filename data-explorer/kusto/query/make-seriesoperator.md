@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: b4df3d7ea6df9eaec2e71fd3dddd60a1b23a02bd
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 5c1d25c0eaa0a3f52c18cf2f1e5e4200775b7d9d
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271436"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550573"
 ---
 # <a name="make-series-operator"></a>make-series 演算子
 
-指定した軸に沿って、指定した集計値の系列を作成します。 
+指定した軸に沿って、指定した集計値の系列を作成します。
 
 ```kusto
 T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from datetime(2016-01-01) to datetime(2016-01-10) step 1d by fruit, supplier
@@ -30,13 +30,13 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 **引数**
 
 * *Column:* 結果列の省略可能な名前。 既定値は式から派生した名前です。
-* *DefaultValue:* 既定値は、値が存在しない場合に使用されます。 値が指定さ*れている*行がない場合は *、結果*内で、配列の対応する要素が*DefaultValue*で割り当てられます。 `default =` *DefaultValue*を省略すると、0が想定されます。 
-* *集計:* 列名を引数として持つ、やなどの[集計関数](make-seriesoperator.md#list-of-aggregation-functions)の呼び出し `count()` `avg()` 。 [集計関数のリスト](make-seriesoperator.md#list-of-aggregation-functions)を参照してください。 演算子と共に使用できるのは、数値の結果を返す集計関数だけであることに注意 `make-series` してください。
+* *DefaultValue:* 値が存在しない場合に使用される既定値。 *列*に特定の値が含まれていない場合*は、結果では、配列*の対応する要素に*DefaultValue*が割り当てられます。 *DefaultValue*を省略した場合、0が想定されます。 
+* *集計:* 列名を引数として持つ、やなどの[集計関数](make-seriesoperator.md#list-of-aggregation-functions)の呼び出し `count()` `avg()` 。 [集計関数のリスト](make-seriesoperator.md#list-of-aggregation-functions)を参照してください。 演算子と共に使用できるのは、数値の結果を返す集計関数だけ `make-series` です。
 * *軸列:* 系列が並べ替えられる列。 これはタイムラインと見なすことができ `datetime` ますが、すべての数値型にも適用されます。
-* *start*: (省略可能) 各系列の*列*の下限値が作成されます。 *start*、 *end* 、 *step*を使用して、指定された範囲内の*軸列*の値の配列を構築し、指定した*手順*を使用します。 すべての*集計*値は、この配列に対して順番に並べ替えられます。 この*列*配列は、出力の最後の出力列でも、*軸列*と同じ名前になっています。 *開始*値が指定されていない場合、開始は、各系列にデータを持つ最初の bin (ステップ) です。
-* *end*: (省略可能)*軸列*の下限 (非包含) 値。時系列の最後のインデックスは、この値よりも小さくなります (*開始*されるのは、*終了*よりも小さい*ステップ*の倍数になります)。 *終了*値が指定されていない場合は、各系列にデータを含む最後のビン (ステップ) の上限になります。
+* *start*: (省略可能) 構築する各系列の*軸列*の下限値。 *start*、 *end*、および*step*を使用して、指定された範囲内の*軸の列*の値の配列を構築し、指定した*手順*を使用します。 すべての*集計*値は、この配列に対して順番に並べ替えられます。 この*軸列*配列は、出力の最後の出力列でもあり、*軸列*と同じ名前が付けられています。 *開始*値が指定されていない場合、開始は、各系列にデータを持つ最初の bin (ステップ) です。
+* *end*: (省略可能)*軸列*の上限 (非包含) 値。 時系列の最後のインデックスは、この値よりも小さくなります (*先頭*には、*終了*よりも小さい*ステップ*の倍数の倍数が加算されます)。 *終了*値が指定されていない場合は、各系列にデータが含まれている最後のビン (ステップ) の上限になります。
 * *ステップ*:*列*配列の2つの連続する要素 (bin サイズ) の差。
-* *GroupExpression:* 列に対する式です。個別の値のセットを示します。 通常は、限られた値のセットが既に指定されている列名です。 
+* *Groupexpression:* 個別の値のセットを提供する列に対する式。 通常は、限られた値のセットが既に指定されている列名です。 
 * *MakeSeriesParameters*: 0 個以上 (スペースで区切られた) パラメーターを*Name* `=` 、動作を制御する名前*値*の形式で指定します。 サポートされているパラメーターは次のとおりです。 
   
   |名前           |値                                        |説明                                                                                        |
@@ -45,13 +45,13 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 **戻り値**
 
-入力行は、 `by` 式および `bin_at(` *軸列* `, ` *ステップ*の `, ` *開始*式の値が同じグループに配置され `)` ます。 次に、指定された集計関数によってグループごとに計算が行われ、各グループに対応する行が生成されます。 結果には、列、列の列、 `by` および計算される集計ごとに少なくとも1つの列が含まれます。 *AxisColumn* (複数の列または数値以外の結果はサポートされていません)。
+入力行は、式と同じ値を持つグループに配置され、 `by` `bin_at(` *列*の `, ` *ステップ* `, ` *開始* `)` 式になります。 次に、指定された集計関数によってグループごとに計算が行われ、各グループに対応する行が生成されます。 結果には、列、列の列、 `by` および計算される集計ごとに少なくとも1つの列が含まれます。 *AxisColumn* (複数の列または数値以外の結果はサポートされていません)。
 
 この中間結果には `by` 、と `bin_at(` *列*の `, ` *ステップ* `, ` *開始*値の個別の組み合わせが存在するのと同じ数の行が含ま `)` れます。
 
-最後に、中間結果の行が、式の同じ値を持つグループに配置され、 `by` すべての集計値が配列 (型の値) に配置され `dynamic` ます。 各集計に対して、同じ名前の配列を含む列が1つ存在します。 すべての*軸の列*の値を持つ range 関数の出力の最後の列。 この値はすべての行に対して繰り返されます。 
+最後に、中間結果の行が、式の同じ値を持つグループに配置され、 `by` すべての集計値が配列 (型の値) に配置され `dynamic` ます。 集計ごとに、同じ名前の配列を含む列が1つ存在します。 すべての*軸の列*の値を持つ range 関数の出力の最後の列。 この値はすべての行に対して繰り返されます。 
 
-既定値によって欠損ビンがいっぱいになるため、結果として得られるピボットテーブルのビン数 (つまり集計値) はすべての系列で同じであることに注意してください。  
+既定値による欠損ビンの塗りつぶしにより、結果として得られるピボットテーブルのビン数 (つまり、集計値) はすべての系列に対して同じになります。  
 
 **注**
 
@@ -61,9 +61,9 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 *T* `| make-series` [*column* `=` ]*集計*[ `default` `=` *DefaultValue*] [ `,` ...] `on` *軸列*の `in` `range(` *開始* `,` *停止* `,` *ステップ* `)` [ `by` [*列* `=` ] *groupexpression* [ `,` ...]]
 
-別の構文から生成された系列は、次の2つの側面の主な構文と異なります。
+別の構文から生成された系列は、次の2つの点で主な構文と異なります。
 * *停止*値は包括的です。
-* インデックス軸のビン分割は bin () で生成され、bin_at () ではありません。つまり、*開始*は、生成された系列に含まれるとは限りません。
+* インデックス軸のビン分割は bin () で生成され、bin_at () ではありません。これは、生成された系列に*start*が含まれていないことを意味します。
 
 別の構文ではなく、make シリーズの主要な構文を使用することをお勧めします。
 
@@ -73,22 +73,22 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 ## <a name="list-of-aggregation-functions"></a>集計関数の一覧
 
-|機能|[説明]|
+|関数|[説明]|
 |--------|-----------|
-|[any()](any-aggfunction.md)|グループに対して空でないランダムな値を返します|
-|[avg()](avg-aggfunction.md)|Retuns グループ全体の平均値|
+|[any()](any-aggfunction.md)|グループの空でないランダムな値を返します|
+|[avg ()](avg-aggfunction.md)|グループ全体の平均値を返します|
 |[count ()](count-aggfunction.md)|グループの数を返します|
-|[countif()](countif-aggfunction.md)|グループの述語を使用して count を返します|
-|[dcount()](dcount-aggfunction.md)|グループ要素の概数の個別カウントを返します。|
+|[countif()](countif-aggfunction.md)|グループの述語を使用してカウントを返します。|
+|[dcount()](dcount-aggfunction.md)|グループ要素の概数を返します。|
 |[max ()](max-aggfunction.md)|グループ全体の最大値を返します|
 |[min ()](min-aggfunction.md)|グループ全体の最小値を返します|
-|[stdev()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
-|[sum()](sum-aggfunction.md)|グループので要素の合計を返します。|
+|[stdev ()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
+|[sum ()](sum-aggfunction.md)|グループ内の要素の合計を返します。|
 |[variance()](variance-aggfunction.md)|グループ間の分散を返します。|
 
 ## <a name="list-of-series-analysis-functions"></a>系列分析関数の一覧
 
-|機能|[説明]|
+|関数|[説明]|
 |--------|-----------|
 |[series_fir()](series-firfunction.md)|[有限インパルス応答](https://en.wikipedia.org/wiki/Finite_impulse_response)フィルターを適用します|
 |[series_iir()](series-iirfunction.md)|[無限インパルス応答](https://en.wikipedia.org/wiki/Infinite_impulse_response)フィルターを適用します|
@@ -104,18 +104,18 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
   
 ## <a name="list-of-series-interpolation-functions"></a>系列補間関数の一覧
 
-|機能|説明|
+|関数|説明|
 |--------|-----------|
 |[series_fill_backward()](series-fill-backwardfunction.md)|系列内の欠損値の後方塗りつぶし補間を実行します|
 |[series_fill_const()](series-fill-constfunction.md)|系列の欠損値を指定された定数値に置き換えます|
 |[series_fill_forward()](series-fill-forwardfunction.md)|系列内の欠損値の前方フィル補間を実行します|
 |[series_fill_linear()](series-fill-linearfunction.md)|系列内の欠損値の線形補間を実行します|
 
-* 注: 補間関数 `null` は、既定では欠損値として想定されます。 そのため `default=` *double* `null` `make-series` 、系列に補間関数を使用する場合は、に double () を指定することをお勧めします。 
+* 注: 補間関数 `null` は、既定では欠損値として想定されます。 したがって `default=` *double* `null` `make-series` 、系列に補間関数を使用する場合は、に double () を指定します。 
 
 ## <a name="example"></a>例
   
- 指定された範囲のタイムスタンプによって並べ替えられた各サプライヤーからの各果物の数と平均価格の配列を示すテーブル。 果物と supplier の個別の組み合わせごとに、出力に行があります。 出力列には、[カウント]、[平均]、および [タイムライン全体] (2016-01-01 から2016-01-10 まで) のフルーツ、仕入先、および配列が表示されます。 すべての配列はそれぞれのタイムスタンプによって並べ替えられ、すべてのギャップに既定値が設定されます (この例では 0)。 他のすべての入力列は無視されます。
+ 指定された範囲のタイムスタンプによって並べ替えられた各サプライヤーからの各果物の数と平均価格の配列を示すテーブル。 果物と supplier の個別の組み合わせごとに、出力に行があります。 出力列には、カウント、平均、およびタイムライン全体 (2016-01-01 から2016-01-10 まで) の果物、仕入先、および配列が表示されます。 すべての配列はそれぞれのタイムスタンプによって並べ替えられ、すべてのギャップに既定値が設定されます (この例では 0)。 他のすべての入力列は無視されます。
   
 ```kusto
 T | make-series PriceAvg=avg(Price) default=0
@@ -124,7 +124,7 @@ on Purchase from datetime(2016-09-10) to datetime(2016-09-13) step 1d by Supplie
 
 :::image type="content" source="images/make-seriesoperator/makeseries.png" alt-text="Makeseries":::  
 
- <!-- csl: https://help.kusto.windows.net:443/Samples --> 
+<!-- csl: https://help.kusto.windows.net:443/Samples --> 
 ```kusto
 let data=datatable(timestamp:datetime, metric: real)
 [

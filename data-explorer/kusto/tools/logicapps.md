@@ -1,42 +1,60 @@
 ---
-title: マイクロソフト ロジック アプリと Kusto - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのマイクロソフト ロジック アプリと Kusto について説明します。
-services: data-explorer
+title: Logic Apps を使用して Kusto クエリを自動的に実行する
+description: Logic Apps を使用して Kusto クエリとコマンドを自動的に実行し、スケジュールを設定する方法について説明します。
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: docohe
 ms.service: data-explorer
-ms.topic: reference
-ms.date: 10/30/2019
-ms.openlocfilehash: f7d719ece5df6eb3f6d4060a2fb07e7092902601
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.topic: conceptual
+ms.date: 04/14/2020
+ms.openlocfilehash: 8765635e0eea8c1d41640bc0393d39a0afa5f971
+ms.sourcegitcommit: e66c5f4b833b4f6269bb7bfa5695519fcb11d9fa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523819"
+ms.lasthandoff: 05/19/2020
+ms.locfileid: "83630198"
 ---
-# <a name="microsoft-logic-app-and-kusto"></a>マイクロソフト ロジック アプリとクストー
+# <a name="microsoft-logic-app-and-azure-data-explorer"></a>Microsoft Logic App と Azure データエクスプローラー
 
-Azure Kusto ロジック アプリ コネクタを使用すると、スケジュールされたタスクまたはトリガーされたタスクの一部として、自動的に[Kusto](https://docs.microsoft.com/azure/logic-apps/logic-apps-what-are-logic-apps)クエリとコマンドを実行できます。
+Azure Kusto Logic App コネクタを使用すると、 [Microsoft Logic app](https://docs.microsoft.com/azure/logic-apps/logic-apps-what-are-logic-apps)コネクタを使用して、スケジュールされたタスクまたはトリガーされたタスクの一部として kusto クエリとコマンドを自動的に実行することができます。
 
-Logic App コネクタと Flow コネクタは同じコネクタの上に構築されているため、フロー[actions](flow.md#azure-kusto-flow-actions)ドキュメント[ページ](flow.md)で説明[したように、アクション](flow.md#limitations)、[認証](flow.md#authentication)、[および使用法の例](flow.md#usage-examples)は両方に適用されます。
+ロジックアプリとフローは、同じコネクタ上に構築されています。 そのため、フローに適用される[制限事項](flow.md#limitations)、[アクション](flow.md#azure-kusto-flow-actions)、[認証](flow.md#authentication)、[使用例](flow.md#azure-kusto-flow-actions)については、 [flow のドキュメントページ](flow.md)で説明されているように、Logic Apps にも適用されます。
 
+## <a name="how-to-create-a-logic-app-with-azure-data-explorer"></a>Azure データエクスプローラーでロジックアプリを作成する方法
 
-## <a name="how-to-create-a-logic-app-with-azure-kusto"></a>Azure Kusto でロジック アプリを作成する方法
+1. [Microsoft Azure portal](https://ms.portal.azure.com/)を開きます。 
+1. を検索して `logic app` 選択します。
 
-Azure ポータルを開き、[新しいロジック アプリ リソースの作成] をクリックします。
-希望の名前、サブスクリプション、resoure グループと場所を追加し、[作成] をクリックします。
+    [![](./Images/logicapps/logicapp-search.png "Search for logic app")](./Images/logicapps/logicapp-search.png#lightbox)
 
-![ロジック アプリを作成する](./Images/KustoTools-LogicApp/logicapp-createlogicapp.png "ロジックアプリ作成ロジックアプリ")
+1. **[+追加]** を選択します。
 
-ロジック アプリが作成されたら、編集ボタン
+    ![ロジックアプリの追加](./Images/logicapps/logicapp-add.png)
 
-![ロジック アプリ デザイナーの編集](./Images/KustoTools-LogicApp/logicapp-editdesigner.png "ロジックアプリ編集デザイナー")
+1. フォームの必要な詳細を入力します。
+    * サブスクリプション
+    * Resource group
+    * ロジックアプリ名
+    * 地域または統合サービス環境
+    * インストール先
+    * ログ分析のオン/オフ
+1. **[Review + create]\(レビュー + 作成\)** を選択します。
 
-空のロジック アプリを作成する
+    ![ロジック アプリを作成する](./Images/logicapps/logicapp-create-new.png)
 
-![ロジック アプリの空白テンプレート](./Images/KustoTools-LogicApp/logicapp-blanktemplate.png "ロジックアプリ空白テンプレート")
+1. ロジックアプリが作成されたら、[**編集**] を選択します。
 
-定期的なアイテムのアクションを追加し、[Azure Kusto] を選択します。
+    ![ロジックアプリデザイナーの編集](./Images/logicapps/logicapp-editdesigner.png "logicapp-editdesigner")
 
-![ロジック アプリ クストー フロー コネクタ](./Images/KustoTools-LogicApp/logicapp-kustoconnector.png "ロジックアプリ-クストーコネクタ")
+1. 空のロジックアプリを作成します。
+
+    ![ロジックアプリの空のテンプレート](./Images/logicapps/logicapp-blanktemplate.png "logicapp-空白のテンプレート")
+
+1. 繰り返しアクションを追加し、[ **Azure Kusto**] を選択します。
+
+    ![ロジックアプリ Kusto Flow コネクタ](./Images/logicapps/logicapp-kustoconnector.png "logicapp-kustoconnector")
+
+## <a name="next-steps"></a>次のステップ
+
+* 繰り返しアクションの構成の詳細については、 [Flow のドキュメントページ](flow.md)を参照してください。
+* ロジックアプリのアクションを構成する方法については、[使用例](flow.md#azure-kusto-flow-actions)を参照してください。

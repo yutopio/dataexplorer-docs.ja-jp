@@ -1,6 +1,6 @@
 ---
-title: toint() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで toint() について説明します。
+title: toint ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの toint () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,24 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 570e13dc816c8a7e6d5baa488912fd8def5d2883
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7f0ede908be2689165f641038b2b6f699c0eb543
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506105"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550607"
 ---
 # <a name="toint"></a>toint()
 
-入力を整数 (符号付き 32 ビット) 数値表現に変換します。
+入力を整数 (符号付き32ビット) の数値表現に変換します。
 
 ```kusto
-toint("123") == 123
+toint("123") == 123s
 ```
 
 **構文**
 
-`toint(`*Expr*`)`
+`toint(`*With*`)`
 
 **引数**
 
@@ -33,7 +33,7 @@ toint("123") == 123
 
 **戻り値**
 
-変換が成功すると、結果は整数になります。
-変換が成功しなかった場合は、 が`null`返されます。
+変換が成功した場合、結果は整数になります。
+変換が成功しなかった場合、結果はになり `null` ます。
  
-*注意*: 可能な場合[は int() を](./scalar-data-types/int.md)使用することをお好みで指定します。
+*注*: 可能な限り[int ()](./scalar-data-types/int.md)を使用することをお勧めします。

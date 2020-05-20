@@ -1,5 +1,5 @@
 ---
-title: dcount_hll ()-Azure データエクスプローラー |Microsoft Docs
+title: dcount_hll ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの dcount_hll () について説明します。
 services: data-explorer
 author: orspod
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: d4a76a30526f5fecbafafd735cf72de92aae7644
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 1b1b0c2313f32044a7988e0992c00786885ce2aa
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225192"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550301"
 ---
 # <a name="dcount_hll"></a>dcount_hll()
 
-Hll の結果 ( [hll](hll-aggfunction.md)または[hll_merge](hll-merge-aggfunction.md)によって生成された) からの dcount を計算します。
+Hll 結果からの dcount ( [hll](hll-aggfunction.md)または[hll_merge](hll-merge-aggfunction.md)によって生成された) を計算します。
 
 [基になるアルゴリズム (*H*Yper*l*og*l*og) と推定精度](dcount-aggfunction.md#estimation-accuracy)について確認します。
 
@@ -33,7 +33,7 @@ Hll の結果 ( [hll](hll-aggfunction.md)または[hll_merge](hll-merge-aggfunct
 
 *Expr*内の各値の個別のカウント
 
-**使用例**
+**例**
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

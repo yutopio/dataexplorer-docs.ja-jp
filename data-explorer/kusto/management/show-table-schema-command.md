@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: e2a550f0ea755181d39524876833cff4281608b4
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 899e54b46dd231db0bf1272c0eb1933dad474a47
+ms.sourcegitcommit: 2ebd83369f247cf6dd91709f26e4ecd873489eaa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618345"
+ms.lasthandoff: 05/19/2020
+ms.locfileid: "83555017"
 ---
 # <a name="show-table-schema"></a>.show テーブル スキーマ
 
@@ -25,7 +25,7 @@ Create/alter コマンドと追加のテーブルメタデータで使用する�
 .show table TableName cslschema 
 ```
 
-| 出力パラメーター | Type   | 説明                                               |
+| 出力パラメーター | 種類   | 説明                                               |
 |------------------|--------|-----------------------------------------------------------|
 | TableName        | String | テーブルの名前。                                    |
 | スキーマ           | String | テーブルの作成/変更にはテーブルスキーマを使用する必要があります |
@@ -41,10 +41,10 @@ JSON 形式のスキーマと追加のテーブルメタデータを取得しま
 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 ```kusto
-.show table TableName schema as JSON
+.show table TableName schema as json
 ```
 
-| 出力パラメーター | Type   | 説明                             |
+| 出力パラメーター | 種類   | 説明                             |
 |------------------|--------|-----------------------------------------|
 | TableName        | String | テーブルの名前                   |
 | スキーマ           | String | JSON 形式のテーブルスキーマ         |

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/09/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 521165f5b0af31207d587f3d9514e7538d284258
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: fdd062abc02ff1d98ba935fc9016d0a1505e69c3
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227342"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550403"
 ---
 # <a name="current_principal_is_member_of"></a>current_principal_is_member_of()
 
@@ -47,11 +47,11 @@ print current_principal_is_member_of(
 | AAD アプリケーション | `aadapp=`   |
 
 **戻り値**
-
+  
 この関数では次の値が返されます。
 * `true`: クエリを実行している現在のプリンシパルが、少なくとも1つの入力引数に対して正常に照合された場合。
 * `false`: クエリを実行している現在のプリンシパルが、すべての、いずれかのパラメーターのメンバーではなく、 `aadgroup=` またはいずれの引数にも等しくない場合 `aaduser=` `aadapp=` 。
-* `(null)`: クエリを実行している現在のプリンシパルが、どの引数にも対応しておらず、またはいずれの引数にも等しくない場合、少なくとも1つのパラメーターが `aadgroup=` `aaduser=` `aadapp=` 正しく解決されませんでした (AAD では事前に行われていません)。 
+* `(null)`: クエリを実行している現在のプリンシパルが、どの引数にも対応しておらず、またはいずれかの引数と等しくない場合に、少なくとも `aadgroup=` `aaduser=` `aadapp=` 1 つの小さい n 引数が正常に解決されなかった (Azure AD で押されていない)。 
 
 > [!NOTE]
 > 関数は、3つの状態の値 ( `true` 、 `false` 、および) を返すため `null` 、成功したメンバーシップを確認するには、正の戻り値のみに依存することが重要です。 言い換えると、次の式は同じではありません。

@@ -1,6 +1,6 @@
 ---
-title: バッチ - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのバッチについて説明します。
+title: バッチ-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーのバッチについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,25 +8,25 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bd695a1e7ffd9980de2750d38ad9538eeb877538
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e5a38d53fb9b28fc7da0ddf71132e3a047e8188e
+ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518022"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "83550335"
 ---
 # <a name="batches"></a>バッチ
 
-クエリには、セミコロン (`;`) 文字で区切られている限り、複数の表形式の式ステートメントを含めることができます。 次に、クエリは、表形式の式ステートメントによって生成された複数の表形式の結果を返し、クエリ テキスト内のステートメントの順序に従って順序付けされます。
+クエリには、セミコロン () 文字で区切られている限り、複数の表形式式ステートメントを含めることができ `;` ます。 このクエリでは、複数の表形式の結果が返されます。 結果は、テーブル式ステートメントによって生成され、クエリテキスト内のステートメントの順序に従って並べ替えられます。
 
-たとえば、次のクエリは 2 つの表形式の結果を生成します。 ユーザー エージェント ツールは、それぞれの (`Count of events in Florida`と`Count of events in Guam`) に関連付けられた適切な名前を持つ結果を表示できます。
+たとえば、次のクエリでは、2つの表形式の結果が生成されます。 ユーザーエージェントツールは、それぞれに関連付けられた適切な名前を使用して結果を表示でき `Count of events in Florida` `Count of events in Guam` ます (それぞれと)。
 
 ```kusto
 StormEvents | where State == "FLORIDA" | count | as ['Count of events in Florida'];
 StormEvents | where State == "GUAM" | count | as ['Count of events in Guam']
 ```
 
-バッチは、ダッシュボードなど、複数のサブクエリで共有される共通の計算があるシナリオで特に便利です。 一般的な計算が複雑な場合は、次の方法で[、次](./materializefunction.md)の関数を使用してクエリを 1 回だけ実行するようにします。
+Batch は、複数のサブクエリ (ダッシュボードなど) で共通の計算が共有されるシナリオに役立ちます。 一般的な計算が複雑な場合は、[具体化 () 関数](./materializefunction.md)を使用してクエリを作成し、1回だけ実行されるようにします。
 
 ```kusto
 let m = materialize(StormEvents | summarize n=count() by State);
@@ -35,4 +35,4 @@ m | where n < 10
 ```
 
 メモ:
-* [fork](forkoperator.md)演算子[`materialize`](materializefunction.md)を使用してバッチ処理を行う方が好きです。
+* [`materialize`](materializefunction.md)[フォーク演算子](forkoperator.md)を使用してバッチ処理を優先します。

@@ -272,6 +272,8 @@
               href: flow.md
             - name: Microsoft Flow コネクタの使用例
               href: flow-usage.md
+        - name: Logic Apps
+          href: kusto/tools/logicapps.md
         - name: Apache Spark コネクタ
           href: spark-connector.md
         - name: Python を使用して Databricks から接続する

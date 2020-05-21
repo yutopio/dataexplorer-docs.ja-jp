@@ -4,27 +4,26 @@ description: この記事では、Azure データエクスプローラーの Kus
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: ohbitton
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/24/2020
-ms.openlocfilehash: d2e42ce3de656a3e137245786596e454c36ccbef
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.date: 05/19/2020
+ms.openlocfilehash: 3a89af281b2376e7fc06d07643af8e95a6c97cd2
+ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373604"
+ms.lasthandoff: 05/21/2020
+ms.locfileid: "83722101"
 ---
-# <a name="kustoingest-client-interfaces-and-factory-classes"></a>Kusto. インジェストクライアントインターフェイスとファクトリクラス
+# <a name="kustoingest-client-interfaces-and-classes"></a>Kusto. インジェストクライアントインターフェイスとクラス
 
-Kusto インジェストライブラリの主要なインターフェイスとファクトリクラスは次のとおりです。
+Kusto インジェストライブラリの主なインターフェイスとクラスは次のとおりです。
 
 * [Interface IKustoIngestClient](#interface-ikustoingestclient): メインインジェストインターフェイス。
 * [クラス ExtendedKustoIngestClient](#class-extendedkustoingestclient): メインインジェストインターフェイスの拡張機能。
 * [クラス KustoIngestFactory](#class-kustoingestfactory): インジェストクライアントのメインファクトリ。
 * [クラス KustoIngestionProperties](#class-kustoingestionproperties): 一般的なインジェストプロパティを提供するために使用されるクラスです。
-* [クラス JsonColumnMapping](#class-jsoncolumnmapping): JSON データソースから取り込みするときに適用するスキーママッピングを記述するために使用されるクラス。
-* [クラス CsvColumnMapping](#class-csvcolumnmapping): CSV データソースから取り込みした場合に適用するスキーママッピングを記述するために使用されるクラスです。
+* クラス IngestionMapping: インジェストのデータマッピングを記述するために使用されるクラスです。
 * [Enum DataSourceFormat](#enum-datasourceformat): サポートされているデータソース形式 (CSV、JSON など)
 * [Interface IKustoQueuedIngestClient](#interface-ikustoqueuedingestclient): キューインジェストにのみ適用される操作を記述するインターフェイスです。
 * [クラス KustoQueuedIngestionProperties](#class-kustoqueuedingestionproperties): キューインジェストにのみ適用されるプロパティ。
@@ -352,13 +351,11 @@ KustoIngestionProperties クラスには、インジェストプロセスをき�
 |TableName |取り込むテーブルの名前 |
 |DropByTags |各エクステントに含まれるタグ。 DropByTags は永続的であり、次のように使用できます。 `.show table T extents where tags has 'some tag'` または`.drop extents <| .show table T extents where tags has 'some tag'` |
 |IngestByTags |エクステントごとに記述されるタグ。 後でプロパティと共に使用して `IngestIfNotExists` 、同じデータが2回取り込みされるのを防ぐことができます。 |
+|IngestionMapping|終了したマッピングへの参照または列マッピングの一覧を保持します。|
 |AdditionalTags |必要に応じて追加のタグ |
 |IngestIfNotExists |再度取り込みたくないタグの一覧 (テーブルごと) |
-|CSVMapping |列ごとに、データ型と序数列番号を定義します。 CSV インジェストのみに関連します (省略可能) |
-|JsonMapping |各列に対して、は JSON パスと変換オプションを定義します。 **JSON インジェストの場合は必須** |
-|AvroMapping |列ごとに、Avro レコードのフィールドの名前を定義します。 **AVRO インジェストの場合は必須** |
 |ValidationPolicy |データ検証の定義。 詳細については、[TODO] を参照してください。 |
-|Format |取り込まれたされるデータの形式 |
+|形式 |取り込まれたされるデータの形式 |
 |AdditionalProperties | インジェストコマンドに[インジェストプロパティ](../../../ingestion-properties.md)として渡されるその他のプロパティ。 すべてのインジェストプロパティがこのクラスの個別のメンバーで表されていないため、プロパティが渡されます。|
 
 ```csharp
@@ -370,51 +367,13 @@ public class KustoIngestionProperties
     public IEnumerable<string> IngestByTags { get; set; }
     public IEnumerable<string> AdditionalTags { get; set; }
     public IEnumerable<string> IngestIfNotExists { get; set; }
-    public IEnumerable<CsvColumnMapping> CSVMapping { get; set; }
-    public IEnumerable<JsonColumnMapping> JsonMapping { get; set; } // Must be set for DataSourceFormat.json format
-    public IEnumerable<AvroColumnMapping> AvroMapping { get; set; } // Must be set for DataSourceFormat.avro format
+    public IngestionMapping IngestionMapping { get; set; }
     public ValidationPolicy ValidationPolicy { get; set; }
     public DataSourceFormat? Format { get; set; }
     public bool IgnoreSizeLimit { get; set; } // Determines whether the limit of 4GB per single ingestion source should be ignored. Defaults to false.
     public IDictionary<string, string> AdditionalProperties { get; set; }
 
     public KustoIngestionProperties(string databaseName, string tableName);
-}
-```
-
-## <a name="class-jsoncolumnmapping"></a>クラス JsonColumnMapping
-
-```csharp
-public class JsonColumnMapping
-{
-    /// The column name (in the Kusto table)
-    public string ColumnName { get; set; }
-
-    /// The JsonPath to the desired property in the JSON document
-    public string JsonPath { get; set; }
-}
-```
-
-## <a name="class-csvcolumnmapping"></a>CsvColumnMapping クラス
-
-```csharp
-public class CsvColumnMapping
-{
-    /// The column name (in the Kusto table)
-    public string ColumnName { get; set; }
-
-    /// The column's data type in the table (CSL term), if empty, the current column data type will be used.
-    /// If column doesn't exist, a new one will be created (alter table) with this data type, if empty, StorageDataType.StringBuffer will be used.
-    public string CslDataType { get; set; }
-
-    /// The CSV column dataType (not in use for now)
-    public string CsvColumnDataType { get; set; }
-
-    /// CSV ordinal number
-    public int Ordinal { get; set; }
-
-    /// This column has a const value (the Ordinal field is ignored, if this value is not null or empty)
-    public string ConstValue { get; set; }
 }
 ```
 
@@ -428,11 +387,13 @@ public enum DataSourceFormat
     scsv,       // Data is in a SCSV(-semicolon-separated values) format
     sohsv,      // Data is in a SOHSV(-SOH (ASCII 1) separated values) format
     psv,        // Data is in a PSV (pipe-separated values) format
+    tsve,       // Tab-separated value with '\' escaping character.
     txt,        // Each record is a line and has just one field
     raw,        // The entire stream/file/blob is a single record having a single field
     json,       // Data is in a JSON-line format (each line is record with a single JSON value)
     multijson,  // The data stream is a concatenation of JSON documents (property bags all)
     avro,       // Data is in a AVRO format
+    orc,        // Data is in a ORC format
     parquet,    // Data is in a Parquet format
 }
 ```
@@ -448,9 +409,15 @@ var kustoIngestionProperties = new KustoIngestionProperties("TargetDatabase", "T
     IngestByTags = new List<string> { guid },
     AdditionalTags = new List<string> { "some tags" },
     IngestIfNotExists = new List<string> { guid },
-    CSVMapping = new List<CsvColumnMapping> { new CsvColumnMapping { ColumnName = "columnA", CslDataType = "Dynamic", Ordinal = 1 } },
-    JsonMapping = new List<JsonColumnMapping> { new JsonColumnMapping { ColumnName = "columnA" , JsonPath = "$.path" } }, // You can only one of CSV/JSON/AVRO mappings
-    AvroMapping = new List<AvroColumnMapping> { new AvroColumnMapping { ColumnName = "columnA" , FieldName = "AvroFieldName" } }, // You can only one of CSV/JSON/AVRO mappings
+    IngestionMapping = new IngestionMapping() {
+        IngestionMappingKind = Data.Ingestion.IngestionMappingKind.Csv,
+        IngestionMappings = new ColumnMapping[] { new ColumnMapping() {
+            ColumnName = "stringColumn",
+            Properties = new Dictionary<string, string>() {
+            { MappingConsts.Ordinal, "1"} }
+        } },
+        // IngestionMappingReference = mappingName, the pre-created mapping name
+    },
     ValidationPolicy = new ValidationPolicy { ValidationImplications = ValidationImplications.Fail, ValidationOptions = ValidationOptions.ValidateCsvInputConstantColumns },
     Format = DataSourceFormat.csv
 };
@@ -502,7 +469,7 @@ KustoQueuedIngestionProperties クラスは、インジェスト動作を微調�
 
 |プロパティ   |説明    |
 |-----------|-----------|
-|FlushImmediately ちに |既定値は `false` です。 に設定すると `true` 、データ管理サービスの集計メカニズムがバイパスされます。 |
+|FlushImmediately ちに |既定値は、`false` です。 に設定すると `true` 、データ管理サービスの集計メカニズムがバイパスされます。 |
 |IngestionReportLevel |インジェストステータスレポートのレベルを制御します (既定値は `FailuresOnly` )。 最適なパフォーマンスとストレージの使用については、IngestionReportLevel をに設定しないことをお勧めします。`FailuresAndSuccesses` |
 |IngestionReportMethod |インジェストステータスレポートの対象を制御します。 使用可能なオプションは、Azure キュー、Azure テーブル、またはその両方です。 既定値は `Queue` です。
 
@@ -521,6 +488,12 @@ public class KustoQueuedIngestionProperties : KustoIngestionProperties
     /// </summary>
     public IngestionReportLevel ReportLevel { get; set; }
 
+    /// <summary>
+    /// Controls the target of the ingestion status reporting. Available options are Azure Queue, Azure Table, or both.
+    /// Defaults to 'Queue'.
+    /// </summary>
+    public IngestionReportMethod ReportMethod { get; set; }
+    
     /// <summary>
     /// Controls the target of the ingestion status reporting. Available options are Azure Queue, Azure Table, or both.
     /// Defaults to 'Queue'.

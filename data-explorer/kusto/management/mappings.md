@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: ohbitton
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/30/2020
-ms.openlocfilehash: 2a3b402c04d5d1af85b2c2a042a23fbade7e2524
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.date: 05/19/2020
+ms.openlocfilehash: c4a64db6d1103aa2a004b816969ab73c7ba19943
+ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617648"
+ms.lasthandoff: 05/21/2020
+ms.locfileid: "83722067"
 ---
 # <a name="data-mappings"></a>データのマッピング
 
 取り込み中にデータマッピングを使用して、受信データを Kusto テーブル内の列にマップします。
 
-Kusto では、さまざまな種類の`row-oriented`マッピング (CSV、JSON、AVRO) と`column-oriented` (Parquet) がサポートされています。
+Kusto では、さまざまな種類のマッピング `row-oriented` (CSV、JSON、AVRO) と `column-oriented` (Parquet) がサポートされています。
 
 マッピングリストの各要素は、次の3つのプロパティから構成されます。
 
@@ -30,7 +30,7 @@ Kusto では、さまざまな種類の`row-oriented`マッピング (CSV、JSON
 |`Properties`|Optional次の各セクションで説明するように、各マッピングに固有のプロパティを含むプロパティバッグ。
 
 
-すべてのマッピングは[事前に作成](create-ingestion-mapping-command.md)でき、パラメーターを使用して`ingestionMappingReference`インジェストコマンドから参照できます。
+すべてのマッピングは[事前に作成](create-ingestion-mapping-command.md)でき、パラメーターを使用してインジェストコマンドから参照できます `ingestionMappingReference` 。
 
 ## <a name="csv-mapping"></a>CSV マッピング
 
@@ -46,7 +46,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 |`constantValue`|OptionalCSV 内の一部の値ではなく、列に使用される定数値|
 
 > [!NOTE]
-> `Ordinal`と`ConstantValue`は相互に排他的です。
+> `Ordinal`と `ConstantValue` は相互に排他的です。
 
 ### <a name="example-of-the-csv-mapping"></a>CSV マッピングの例
 
@@ -65,9 +65,9 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 ```
 
 > [!NOTE]
-> 上記のマッピングを`.ingest`制御コマンドの一部として指定すると、JSON 文字列としてシリアル化されます。
+> 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
-* 上記のマッピングが[事前に作成](create-ingestion-mapping-command.md)されている場合、 `.ingest`コントロールコマンドで参照できます。
+* 上記のマッピングが[事前に作成](create-ingestion-mapping-command.md)されている場合、コントロールコマンドで参照でき `.ingest` ます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -78,7 +78,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
     )
 ```
 
-* 上記のマッピングを`.ingest`制御コマンドの一部として指定すると、JSON 文字列としてシリアル化されます。
+* 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -93,7 +93,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
     )
 ```
 
-**注:** 次のマッピング形式`Properties`は、現在サポートされていますが、今後非推奨とされる可能性があります。
+**注:** 次のマッピング形式は、 `Properties` プロパティバッグなしでは非推奨とされます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -116,7 +116,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 
 |プロパティ|説明|
 |----|--|
-|`path`|がで`$`始まる場合: json ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体が`$`であることを示す json パス)。 値が次の値で`$`始まらない場合: 定数値が使用されます。|
+|`path`|がで始まる場合 `$` : json ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。|
 |`transform`|Optional[マッピング変換](#mapping-transformations)を使用してコンテンツに適用する必要がある変換。|
 
 ### <a name="example-of-json-mapping"></a>JSON マッピングの例
@@ -138,7 +138,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 ```
 
 > [!NOTE]
-> 上記のマッピングを`.ingest`制御コマンドの一部として指定すると、JSON 文字列としてシリアル化されます。
+> 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -149,7 +149,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
     )
 ```
 
-**注:** 次のマッピング形式`Properties`は、現在サポートされていますが、今後非推奨とされる可能性があります。
+**注:** 次のマッピング形式は、 `Properties` プロパティバッグなしでは非推奨とされます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -173,13 +173,13 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 |プロパティ|説明|
 |----|--|
 |`Field`|Avro レコードのフィールドの名前。|
-|`Path`|を使用する`field`代わりに、必要に応じて Avro レコードフィールドの内部部分を取得することもできます。 値は、レコードのルートからの JSON パスを表します。 詳細については、以下のメモを参照してください。 |
+|`Path`|を使用する代わりに `field` 、必要に応じて Avro レコードフィールドの内部部分を取得することもできます。 値は、レコードのルートからの JSON パスを表します。 詳細については、以下のメモを参照してください。 |
 |`transform`|Optional[サポートされている変換](#mapping-transformations)を使用してコンテンツに適用する必要がある変換。|
 
 **メモ**
 >[!NOTE]
-> * `field`と`path`を一緒に使用することはできません。使用できるのは1つだけです。 
-> * `path`ルート`$`のみを指すことはできません。パスのレベルが少なくとも1つ必要です。
+> * `field`とを `path` 一緒に使用することはできません。使用できるのは1つだけです。 
+> * `path`ルートのみを指すことはできません `$` 。パスのレベルが少なくとも1つ必要です。
 
 以下の2つの選択肢は同じです。
 
@@ -211,7 +211,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 ``` 
 
 > [!NOTE]
-> 上記のマッピングを`.ingest`制御コマンドの一部として指定すると、JSON 文字列としてシリアル化されます。
+> 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -222,7 +222,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
     )
 ```
 
-**注:** 次のマッピング形式`Properties`は、現在サポートされていますが、今後非推奨とされる可能性があります。
+**注:** 次のマッピング形式は、 `Properties` プロパティバッグなしでは非推奨とされます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -245,7 +245,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 
 |プロパティ|説明|
 |----|--|
-|`path`|がで`$`始まる場合: Parquet ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体が`$`であることを示す json パス)。 値が次の値で`$`始まらない場合: 定数値が使用されます。|
+|`path`|がで始まる場合 `$` : Parquet ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。|
 |`transform`|Optionalコンテンツに適用する必要がある[変換のマッピング](#mapping-transformations)。
 
 
@@ -266,9 +266,9 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 ```      
 
 > [!NOTE]
-> 上記のマッピングを`.ingest`制御コマンドの一部として指定すると、JSON 文字列としてシリアル化されます。
+> 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
-* 上記のマッピングが[事前に作成](create-ingestion-mapping-command.md)されている場合、 `.ingest`コントロールコマンドで参照できます。
+* 上記のマッピングが[事前に作成](create-ingestion-mapping-command.md)されている場合、コントロールコマンドで参照でき `.ingest` ます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -279,7 +279,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
     )
 ```
 
-* 上記のマッピングを`.ingest`制御コマンドの一部として指定すると、JSON 文字列としてシリアル化されます。
+* 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -302,7 +302,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 
 |プロパティ|説明|
 |----|--|
-|`path`|がで`$`始まる場合: Orc ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体が`$`であることを示す json パス)。 値が次の値で`$`始まらない場合: 定数値が使用されます。|
+|`path`|がで始まる場合 `$` : Orc ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。|
 |`transform`|Optionalコンテンツに適用する必要がある[変換のマッピング](#mapping-transformations)。
 
 ### <a name="example-of-orc-mapping"></a>Orc mapping の例
@@ -322,7 +322,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 ```      
 
 > [!NOTE]
-> 上記のマッピングを`.ingest`制御コマンドの一部として指定すると、JSON 文字列としてシリアル化されます。
+> 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -343,8 +343,8 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 
 |パスに依存する変換|説明|条件|
 |--|--|--|
-|`PropertyBagArrayToDictionary`|プロパティの JSON 配列 ({events: [{"n1": "v1"}、{"n2": "v2"}]}) をディクショナリに変換し、有効な JSON ドキュメント (たとえば、{"n1": "v1", "n2": "v2"}) にシリアル化します。|は、が使用さ`path`れている場合にのみ適用できます。|
-|`GetPathElement(index)`|指定されたインデックスに従って、指定されたパスから要素を抽出します (たとえば、Path: $. a. b. c、GetPathElement (0) = = "c"、GetPathElement (-1) = = "b"、型文字列など)。|は、が使用さ`path`れている場合にのみ適用できます。|
+|`PropertyBagArrayToDictionary`|プロパティの JSON 配列 ({events: [{"n1": "v1"}、{"n2": "v2"}]}) をディクショナリに変換し、有効な JSON ドキュメント (たとえば、{"n1": "v1", "n2": "v2"}) にシリアル化します。|`path`は、が使用されている場合にのみ適用できます。|
+|`GetPathElement(index)`|指定されたインデックスに従って、指定されたパスから要素を抽出します (たとえば、Path: $. a. b. c、GetPathElement (0) = = "c"、GetPathElement (-1) = = "b"、型文字列など)。|`path`は、が使用されている場合にのみ適用できます。|
 |`SourceLocation`|データを提供したストレージアーティファクトの名前です。たとえば、「string」と入力します (たとえば、blob の "BaseUri" フィールド)。|
 |`SourceLineNumber`|そのストレージアーティファクトを基準としたオフセット。 long (' 1 ' から始まり、新しいレコードごとに増分) を入力します。|
 |`DateTimeFromUnixSeconds`|Unix 時間 (1970-01-01 以降の秒) を表す数値を UTC の datetime 文字列に変換します|

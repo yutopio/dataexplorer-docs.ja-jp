@@ -7,12 +7,12 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/07/2019
-ms.openlocfilehash: 4c385551f8983219dddf840f7a2d590809b030a3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 35fd37db22b2f07dcee9d7f67c700414a4cfc5d3
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492759"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373848"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>フォロワー データベースを使用して Azure Data Explorer にデータベースをアタッチする
 
@@ -29,8 +29,8 @@ ms.locfileid: "81492759"
 ## <a name="prerequisites"></a>前提条件
 
 1. Azure サブスクリプションをお持ちでない場合は、開始する前に[無料アカウントを作成](https://azure.microsoft.com/free/)してください。
-1. リーダーとフォロワー用の[クラスターと DB を作成](/azure/data-explorer/create-cluster-database-portal)します。
-1. 「[データ取り込みの概要](/azure/data-explorer/ingest-data-overview)」に記載されているさまざまな方法の 1 つを使用して、リーダー データベースに[データを取り込み](/azure/data-explorer/ingest-sample-data)ます。
+1. リーダーとフォロワー用の[クラスターと DB を作成](create-cluster-database-portal.md)します。
+1. 「[データ取り込みの概要](/azure/data-explorer/ingest-data-overview)」に記載されているさまざまな方法の 1 つを使用して、リーダー データベースに[データを取り込み](ingest-sample-data.md)ます。
 
 ## <a name="attach-a-database"></a>データベースのアタッチ
 
@@ -370,7 +370,7 @@ poller = kusto_management_client.clusters.detach_follower_databases(resource_gro
 
 ### <a name="manage-permissions"></a>アクセス許可の管理
 
-読み取り専用データベースのアクセス許可は、他のデータベースの種類と同じ方法で管理できます。 「[Azure portal でアクセス許可を管理する](/azure/data-explorer/manage-database-permissions#manage-permissions-in-the-azure-portal)」を参照してください。
+読み取り専用データベースのアクセス許可は、他のデータベースの種類と同じ方法で管理できます。 「[Azure portal でアクセス許可を管理する](manage-database-permissions.md#manage-permissions-in-the-azure-portal)」を参照してください。
 
 ### <a name="configure-caching-policy"></a>キャッシュ ポリシーの構成
 
@@ -379,8 +379,8 @@ poller = kusto_management_client.clusters.detach_follower_databases(resource_gro
 ## <a name="limitations"></a>制限事項
 
 * フォロワー クラスターとリーダー クラスターは、同じリージョンに存在する必要があります。
-* [ストリーミング インジェスト](/azure/data-explorer/ingest-data-streaming)は、フォローされているデータベースでは使用できません。
-* [カスタマー マネージド キー](/azure/data-explorer/security#customer-managed-keys-with-azure-key-vault)を使用したデータ暗号化は、リーダー クラスターとフォロワー クラスターの両方でサポートされていません。 
+* [ストリーミング インジェスト](ingest-data-streaming.md)は、フォローされているデータベースでは使用できません。
+* [カスタマー マネージド キー](security.md#customer-managed-keys-with-azure-key-vault)を使用したデータ暗号化は、リーダー クラスターとフォロワー クラスターの両方でサポートされていません。 
 * 別のクラスターにアタッチされているデータベースは、デタッチ前に削除することはできません。
 * 別のクラスターにアタッチされているデータベースを持つクラスターは、デタッチ前に削除することはできません。
 * フォロワー データベースまたはリーダー データベースがアタッチされているクラスターを停止することはできません。 

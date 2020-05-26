@@ -7,18 +7,18 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/30/2019
-ms.openlocfilehash: 219a9014b120e0df74f8d9d286253fa933c8f05a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c0373d2e380f1a9fb826d0e40ffcc0284f6db09a
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493651"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373778"
 ---
 # <a name="streaming-ingestion-preview"></a>ストリーミング インジェスト (プレビュー)
 
 ストリーミング インジェストは、多様なボリューム データでインジェスト時間が 10 秒未満の短い待機時間を必要とするときに使用します。 各テーブルへのデータ ストリームが比較的小さい (1 秒あたりのレコード数が少ない) 1 つまたは複数のデータベースで、数多くのテーブルの操作処理を最適化するために使用されますが、データ インジェスト ボリューム全体が高くなります (1 秒あたり数千レコード)。 
 
-データ量がテーブルごとに 1 MB/秒を超える場合は、ストリーミング インジェストではなく一括インジェストを使用します。 さまざまなインジェスト方法の詳細については、「[Azure データ エクスプローラーでのデータ インジェスト](/azure/data-explorer/ingest-data-overview)」を参照してください。
+データ量がテーブルごとに 1 MB/秒を超える場合は、ストリーミング インジェストではなく一括インジェストを使用します。 さまざまなインジェスト方法の詳細については、「[Azure データ エクスプローラーでのデータ インジェスト](ingest-data-overview.md)」を参照してください。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -48,7 +48,7 @@ ms.locfileid: "81493651"
 2 種類のストリーミング インジェストがサポートされています。
 
 
-* データ ソースとして使用される[**イベント ハブ**](/azure/data-explorer/ingest-data-event-hub)
+* データ ソースとして使用される[**イベント ハブ**](ingest-data-event-hub.md)
 * **カスタム インジェスト**では、Azure Data Explorer クライアント ライブラリのいずれかを使用するアプリケーションを作成する必要があります。 サンプル アプリケーションについては、[ストリーミング インジェストのサンプル](https://github.com/Azure/azure-kusto-samples-dotnet/tree/master/client/StreamingIngestionSample)を参照してください。
 
 ### <a name="choose-the-appropriate-streaming-ingestion-type"></a>適切なストリーミング インジェストの種類を選択する

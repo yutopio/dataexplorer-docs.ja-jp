@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/27/2018
-ms.openlocfilehash: 7e1c7dd313f42884132fe014367c0402418be708
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1853b85215da63a753a7867cb9d4354c5b99731a
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492907"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373975"
 ---
 # <a name="connect-to-azure-data-explorer-from-azure-databricks-by-using-python"></a>Azure Databricks から Python を使用して Azure Data Explorer に接続する
 
@@ -20,7 +20,7 @@ ms.locfileid: "81492907"
 
 ## <a name="prerequisites"></a>前提条件
 
-- [Azure Data Explorer クラスターとデータベースを作成します](/azure/data-explorer/create-cluster-database-portal)。
+- [Azure Data Explorer クラスターとデータベースを作成します](create-cluster-database-portal.md)。
 - [Azure Databricks ワークスペースを作成します](/azure/azure-databricks/quickstart-create-databricks-workspace-portal#create-an-azure-databricks-workspace)。 **[Azure Databricks サービス]** の **[価格レベル]** ドロップダウン リストから **[Premium]** を選択します。 この選択により、Azure Databricks のシークレットを使用して資格情報を格納し、それらをノートブックとジョブで参照できます。
 
 - Azure Databricks で以下の仕様 (サンプルのノートブックを実行するために必要な最小限の設定) を使用して、[クラスターを作成します](https://docs.azuredatabricks.net/user-guide/clusters/create.html)。

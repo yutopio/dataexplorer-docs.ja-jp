@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/24/2019
-ms.openlocfilehash: eac1237e098b90f526e441ef89f0902f72abde53
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e48b3356d01248eb34857c936f9ff2c8dfb7662a
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492755"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374007"
 ---
 # <a name="anomaly-detection-and-forecasting-in-azure-data-explorer"></a>Azure Data Explorer での異常検出と予測
 
@@ -22,7 +22,7 @@ Azure Data Explorer を使用すると、クラウド サービスまたは IoT 
 
 ## <a name="prerequisites"></a>前提条件
 
-時系列機能の概要について、「[Azure Data Explorer の時系列分析](/azure/data-explorer/time-series-analysis)」をお読みになってください。
+時系列機能の概要について、「[Azure Data Explorer の時系列分析](time-series-analysis.md)」をお読みになってください。
 
 ## <a name="time-series-decomposition-model"></a>時系列分解モデル
 
@@ -131,4 +131,4 @@ demo_make_series2
 
 ## <a name="next-steps"></a>次のステップ
 
-Azure Data Explorer の[機械学習機能](/azure/data-explorer/machine-learning-clustering)について学習します。
+Azure Data Explorer の[機械学習機能](machine-learning-clustering.md)について学習します。

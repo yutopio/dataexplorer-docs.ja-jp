@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 07303130bbe33472f85e3d620ecd2eace555dbe2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 24f22c2dd4a8e159e4d85c1917b1852e1eb039f4
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491307"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374372"
 ---
 # <a name="use-one-click-ingestion-to-ingest-data-to-a-new-table-in-azure-data-explorer"></a>ワンクリックでのインジェストを使用して Azure Data Explorer の新しいテーブルにデータを取り込む
 
@@ -109,5 +109,5 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
 ## <a name="next-steps"></a>次のステップ
 
-* [Azure Data Explorer の Web UI でデータのクエリを実行する](/azure/data-explorer/web-query-data)
-* [Kusto クエリ言語を使用して Azure Data Explorer のクエリを作成する](/azure/data-explorer/write-queries)
+* [Azure Data Explorer の Web UI でデータのクエリを実行する](web-query-data.md)
+* [Kusto クエリ言語を使用して Azure Data Explorer のクエリを作成する](write-queries.md)

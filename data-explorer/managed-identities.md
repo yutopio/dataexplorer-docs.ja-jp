@@ -7,16 +7,16 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/12/2020
-ms.openlocfilehash: 900bf815917a4b7c9841860d663a2183b1ab71b3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 523330f5ace4d9f2d652eccbd746b039d66df749
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493603"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374297"
 ---
 # <a name="configure-managed-identities-for-your-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターのマネージド ID の構成
 
-[Azure Active Directory のマネージド ID](/azure/active-directory/managed-identities-azure-resources/overview) を使用すると、クラスターは AAD で保護された他のリソース (Azure Key Vault など) に簡単にアクセスできます。 ID は Azure プラットフォームによって管理され、シークレットをプロビジョニングまたはローテーションする必要はありません。 この記事では、Azure Data Explorer クラスターのマネージド ID を作成する方法について説明します。 マネージド ID の構成は、現在、[お使いのクラスターに対して、お客様が管理するキーを有効にする](/azure/data-explorer/security#customer-managed-keys-with-azure-key-vault)場合にのみサポートされています。
+[Azure Active Directory のマネージド ID](/azure/active-directory/managed-identities-azure-resources/overview) を使用すると、クラスターは AAD で保護された他のリソース (Azure Key Vault など) に簡単にアクセスできます。 ID は Azure プラットフォームによって管理され、シークレットをプロビジョニングまたはローテーションする必要はありません。 この記事では、Azure Data Explorer クラスターのマネージド ID を作成する方法について説明します。 マネージド ID の構成は、現在、[お使いのクラスターに対して、お客様が管理するキーを有効にする](security.md#customer-managed-keys-with-azure-key-vault)場合にのみサポートされています。
 
 > [!Note]
 > Azure Data Explorer クラスターがサブスクリプションやテナント間で移行された場合、Azure Data Explorer のマネージド ID は想定されたとおりに動作しません。 アプリは、機能を[無効にして](#disable-a-system-assigned-identity)から[再度有効にする](#add-a-system-assigned-identity)ことで、新しい ID を取得する必要があります。 新しい ID を使用するには、ダウンストリーム リソースのアクセス ポリシーも更新する必要があります。
@@ -33,7 +33,7 @@ ms.locfileid: "81493603"
 
 #### <a name="new-azure-data-explorer-cluster"></a>新しい Azure Data Explorer クラスター
 
-1. [Azure Data Explorer クラスターを作成します](/azure/data-explorer/create-cluster-database-portal#create-a-cluster) 
+1. [Azure Data Explorer クラスターを作成します](create-cluster-database-portal.md#create-a-cluster) 
 1. **[セキュリティ]** タブ > **[システム割り当て ID]** で、 **[オン]** を選択します。 システム割り当て ID を削除するには、 **[オフ]** を選択します。
 2. **[次へ: タグ] >** または **[確認と作成]** を選択して、クラスターを作成します。
 

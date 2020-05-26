@@ -7,19 +7,19 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/01/2020
-ms.openlocfilehash: 0f99e11be99f22feec73b72397b27522b90dbf49
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d9564eec41fd78b3506994da2917f1d8765ee266
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492619"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373987"
 ---
 # <a name="use-azure-notebooks-to-analyze-data-in-azure-data-explorer"></a>Azure Notebooks を使用して Azure Data Explorer のデータを分析する
 
 [Azure Notebooks](https://notebooks.azure.com/) は、[Jupyter Notebooks](https://jupyter.org/) の作成と共有を簡単にする Azure クラウド サービスです。 Azure Notebooks を使用すると、ドキュメント、コード、およびコードの実行結果を簡単に組み合わせることができます。
 
 > [!Note]
-> * 次の手順では、Azure Notebooks 環境で Python クライアントを使用して Azure Data Explorer に対してクエリを実行します。 ただし、[KQLmagic](https://docs.microsoft.com/azure/data-explorer/kqlmagic) を使用して Azure Data Explorer に対するクエリを実行することもできます。
+> * 次の手順では、Azure Notebooks 環境で Python クライアントを使用して Azure Data Explorer に対してクエリを実行します。 ただし、[KQLmagic](kqlmagic.md) を使用して Azure Data Explorer に対するクエリを実行することもできます。
 > * 一部のユーザーにより、Edge を使用した認証で問題が報告されました。そのような問題が解決されるまでは、別のブラウザーを使用してください。
 
 ## <a name="create-a-project"></a>プロジェクトの作成

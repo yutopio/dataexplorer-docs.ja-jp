@@ -8,12 +8,12 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/15/2019
-ms.openlocfilehash: c937d69df73ed523d1e4f3f0614eadf249ced0f3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 066f385e53c010f45979ec435e3446d880302e44
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493155"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373959"
 ---
 # <a name="copy-data-to-azure-data-explorer-by-using-azure-data-factory"></a>Azure Data Factory を使用して Azure Data Explorer にデータをコピーする 
 
@@ -245,4 +245,4 @@ Azure Data Explorer のリンクされたサービスを作成するには、以
 
 * Azure Data Factory 内の [Azure Data Explorer コネクタ](/azure/data-factory/connector-azure-data-explorer)について学習する。
 * [Data Factory UI](/azure/data-factory/quickstart-create-data-factory-portal) でのリンクされたサービス、データセット、およびパイプラインの編集の詳細について学習する。
-* データのクエリのための [Azure Data Explorer のクエリ](/azure/data-explorer/web-query-data)について確認する。
+* データのクエリのための [Azure Data Explorer のクエリ](web-query-data.md)について確認する。

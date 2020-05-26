@@ -8,12 +8,12 @@ ms.reviewer: tomersh26
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/20/2020
-ms.openlocfilehash: 5b8e9844894df9c49c1abd703ebc5a14b4c7050c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b3ff40f04ba9152fa1b12b7211bf7a7cf07c69bb
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493143"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373932"
 ---
 # <a name="integrate-azure-data-explorer-with-azure-data-factory"></a>Azure Data Explorer と Azure Data Factory の統合
 
@@ -51,7 +51,7 @@ Azure Data Explorer は、Azure 内でデータをコピーするときに使用
 
 1. [マッピング データ フロー](/azure/data-factory/data-flow-create)を作成します。
 1. [Azure BLOB](/azure/data-factory/data-flow-sink) にデータをエクスポートします。 
-1. データを Azure に取り込むために、[Event Grid](/azure/data-explorer/ingest-data-event-grid) または [ADF コピーアクティビティ](/azure/data-explorer/data-factory-load-data)を定義します。
+1. データを Azure に取り込むために、[Event Grid](ingest-data-event-grid.md) または [ADF コピーアクティビティ](data-factory-load-data.md)を定義します。
 
 ## <a name="select-between-copy-and-azure-data-explorer-command-activities-when-copy-data"></a>データをコピーするときにコピーと Azure Data Explorer コマンド アクティビティ間で選択する 
 
@@ -216,7 +216,7 @@ static void Main(string[] args)
 * [Azure Data Factory を使用して Azure Data Explorer にデータをコピーする](data-factory-load-data.md)方法について確認する。
 * [データベースから Azure Data Explorer への一括コピーに Azure Data Factory テンプレートを使用する](data-factory-template.md)方法について学習する。
 * [Azure Data Factory コマンド アクティビティを使用して Azure Data Explorer 制御コマンドを実行する](data-factory-command-activity.md)方法について学習する。
-* データのクエリのための [Azure Data Explorer のクエリ](/azure/data-explorer/web-query-data)について確認する。
+* データのクエリのための [Azure Data Explorer のクエリ](web-query-data.md)について確認する。
 
 
 

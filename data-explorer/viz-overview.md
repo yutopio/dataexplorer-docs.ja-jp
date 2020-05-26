@@ -8,12 +8,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/30/2020
-ms.openlocfilehash: 6d3b692d72b673b55e4bdc0f737b74b9c4a669d9
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b1d888471c93409826abe523ae6ae4df39e120c3
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494011"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374259"
 ---
 # <a name="data-visualization-with-azure-data-explorer"></a>Azure Data Explorer でのデータの視覚化 
 
@@ -29,11 +29,11 @@ Kusto クエリ言語 [`render operator`](kusto/query/renderoperator.md) には�
 
 Azure Data Explorer には、さまざまな方法を使用して [Power BI](https://powerbi.microsoft.com) に接続する機能があります。 
 
-  * [組み込みのネイティブ Power BI コネクタ](/azure/data-explorer/power-bi-connector)
+  * [組み込みのネイティブ Power BI コネクタ](power-bi-connector.md)
 
-  * [Azure Data Explorer から Power BI へのクエリのインポート](/azure/data-explorer/power-bi-imported-query)
+  * [Azure Data Explorer から Power BI へのクエリのインポート](power-bi-imported-query.md)
  
-  * [SQL query](/azure/data-explorer/power-bi-sql-query)
+  * [SQL query](power-bi-sql-query.md)
 
 ## <a name="microsoft-excel"></a>Microsoft Excel
 
@@ -41,11 +41,11 @@ Azure Data Explorer には、[組み込みのネイティブ Excel コネクタ]
 
 ## <a name="grafana"></a>Grafana
 
-[Grafana](https://grafana.com) には、Azure Data Explorer のデータを視覚化できる Azure Data Explorer プラグインがあります。 [Grafana のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](/azure/data-explorer/grafana)。 
+[Grafana](https://grafana.com) には、Azure Data Explorer のデータを視覚化できる Azure Data Explorer プラグインがあります。 [Grafana のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](grafana.md)。 
 
 ## <a name="kibana"></a>Kibana
 
-Azure Data Explorer は、オープン ソース コネクタである K2Bridge を使用して [Kibana ([Discover] ページ)](https://www.elastic.co/guide/en/kibana/6.8/discover.html) に接続する機能を提供します。 [Kibana のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](/azure/data-explorer/k2bridge)。
+Azure Data Explorer は、オープン ソース コネクタである K2Bridge を使用して [Kibana ([Discover] ページ)](https://www.elastic.co/guide/en/kibana/6.8/discover.html) に接続する機能を提供します。 [Kibana のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](k2bridge.md)。
 
 ## <a name="odbc-connector"></a>ODBC コネクタ
 
@@ -53,18 +53,18 @@ Azure Data Explorer には [Open Database Connectivity (ODBC) コネクタ](conn
 
 ## <a name="tableau"></a>Tableau
 
-Azure Data Explorer には、[ODBC コネクタ](/azure/data-explorer/connect-odbc)を使用して [Tableau](https://www.tableau.com) に接続し、[Tableau でデータを視覚化する](tableau.md)機能があります。
+Azure Data Explorer には、[ODBC コネクタ](connect-odbc.md)を使用して [Tableau](https://www.tableau.com) に接続し、[Tableau でデータを視覚化する](tableau.md)機能があります。
 
 ## <a name="qlik"></a>Qlik
 
-Azure Data Explorer には、[ODBC コネクタ](/azure/data-explorer/connect-odbc)を使用して [Qlik](https://www.qlik.com) に接続し、Qlik Sense ダッシュボードを作成して、データを視覚化する機能があります。 次の動画を使用すると、Azure Data Explorer のデータを Qlik で視覚化する方法を学習できます。 
+Azure Data Explorer には、[ODBC コネクタ](connect-odbc.md)を使用して [Qlik](https://www.qlik.com) に接続し、Qlik Sense ダッシュボードを作成して、データを視覚化する機能があります。 次の動画を使用すると、Azure Data Explorer のデータを Qlik で視覚化する方法を学習できます。 
 
 > [!VIDEO https://www.youtube.com/embed/nhWIiBwxjjU]  
 
 ## <a name="sisense"></a>SiSense
 
-Azure Data Explorer には、JDBC コネクタを使用して [Sisense](https://www.sisense.com) に接続する機能があります。 [Sisense のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](/azure/data-explorer/sisense)。
+Azure Data Explorer には、JDBC コネクタを使用して [Sisense](https://www.sisense.com) に接続する機能があります。 [Sisense のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](sisense.md)。
 
 ## <a name="redash"></a>Redash
 
-[Redash](https://redash.io/) を使用して、ダッシュボードを作成し、データを視覚化できます。 [Redash のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](/azure/data-explorer/redash)。
+[Redash](https://redash.io/) を使用して、ダッシュボードを作成し、データを視覚化できます。 [Redash のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](redash.md)。

@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: tutorial
-ms.date: 01/29/2020
-ms.openlocfilehash: 59a42c2a3e4efa8c8642bccf96b0040767753e65
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.date: 05/19/2020
+ms.openlocfilehash: 0808d0dadd410ae6d220b03ef54191192b925a21
+ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108339"
+ms.lasthandoff: 05/21/2020
+ms.locfileid: "83722186"
 ---
 # <a name="tutorial-ingest-and-query-monitoring-data-in-azure-data-explorer"></a>チュートリアル:Azure Data Explorer で監視データを取り込んでクエリを実行する 
 
@@ -196,7 +196,7 @@ Azure アクティビティ ログは、サブスクリプションのリソー�
 
 ## <a name="set-up-an-ingestion-pipeline-in-azure-data-explorer"></a>Azure Data Explorer で取り込みパイプラインを設定する
 
-Azure Data Explorer のパイプラインの設定には、[テーブルの作成やデータの取り込み](/azure/data-explorer/ingest-sample-data#ingest-data)など、いくつかの手順が含まれています。 データの操作、マップ、更新を行うこともできます。
+Azure Data Explorer のパイプラインの設定には、[テーブルの作成やデータの取り込み](ingest-sample-data.md#ingest-data)など、いくつかの手順が含まれています。 データの操作、マップ、更新を行うこともできます。
 
 ### <a name="connect-to-the-azure-data-explorer-web-ui"></a>Azure Data Explorer の Web UI に接続する
 
@@ -290,7 +290,7 @@ Azure Data Explorer の Web UI を使用して、Azure Data Explorer データ�
 診断メトリックとログのデータをテーブルにマップするには、次のクエリを使用します。
 
 ```kusto
-.create table DiagnosticRawRecords ingestion json mapping 'DiagnosticRawRecordsMapping' '[{"column":"Records","path":"$.records"}]'
+.create table DiagnosticRawRecords ingestion json mapping 'DiagnosticRawRecordsMapping' '[{"column":"Records","Properties":{"path":"$.records"}}]'
 ```
 
 # <a name="activity-logs"></a>[アクティビティ ログ](#tab/activity-logs)
@@ -299,7 +299,7 @@ Azure Data Explorer の Web UI を使用して、Azure Data Explorer データ�
 アクティビティ ログのデータをテーブルにマップするには、次のクエリを使用します。
 
 ```kusto
-.create table ActivityLogsRawRecords ingestion json mapping 'ActivityLogsRawRecordsMapping' '[{"column":"Records","path":"$.records"}]'
+.create table ActivityLogsRawRecords ingestion json mapping 'ActivityLogsRawRecordsMapping' '[{"column":"Records","Properties":{"path":"$.records"}}]'
 ```
 ---
 
@@ -336,7 +336,7 @@ Azure Data Explorer の Web UI を使用して、Azure Data Explorer データ�
 # <a name="diagnostic-logs"></a>[診断ログ](#tab/diagnostic-logs)
 #### <a name="create-data-update-policy-for-diagnostics-logs"></a>診断ログのデータ更新ポリシーを作成する
 
-1. コレクション内の各値が個別の行を受け取るように診断ログ レコードのコレクションを展開する[関数](kusto/management/functions.md)を作成します。 Azure Data Explorer クラスターでインジェスト ログを有効にし、[インジェスト ログ スキーマ](/azure/data-explorer/using-diagnostic-logs#diagnostic-logs-schema)を使用します。 成功したインジェストと失敗したインジェスト用にテーブルを 1 つ作成します。インジェストが成功した場合は、いくつかのフィールド (ErrorCode など) が空になります。 [`mv-expand`](kusto/query/mvexpandoperator.md) 演算子を使用します。
+1. コレクション内の各値が個別の行を受け取るように診断ログ レコードのコレクションを展開する[関数](kusto/management/functions.md)を作成します。 Azure Data Explorer クラスターでインジェスト ログを有効にし、[インジェスト ログ スキーマ](using-diagnostic-logs.md#diagnostic-logs-schema)を使用します。 成功したインジェストと失敗したインジェスト用にテーブルを 1 つ作成します。インジェストが成功した場合は、いくつかのフィールド (ErrorCode など) が空になります。 [`mv-expand`](kusto/query/mvexpandoperator.md) 演算子を使用します。
 
     ```kusto
     .create function DiagnosticLogsExpand() {

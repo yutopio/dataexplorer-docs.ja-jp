@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/19/2020
-ms.openlocfilehash: 1319b8cd6ac8a0eb83381c24bcde9996458e47a7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ffe641c6e96db1378be7a8ce845685fb2b66715f
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494051"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374309"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>メトリックを使用した Azure Data Explorer のパフォーマンス、正常性、および使用状況の監視
 
@@ -110,6 +110,6 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
 ## <a name="next-steps"></a>次のステップ
 
-* [チュートリアル:Azure Data Explorer で監視データを取り込んでクエリを実行する](/azure/data-explorer/ingest-data-no-code)
-* [診断ログを使用して Azure Data Explorer インジェスト操作を監視する](/azure/data-explorer/using-diagnostic-logs)
+* [チュートリアル:Azure Data Explorer で監視データを取り込んでクエリを実行する](ingest-data-no-code.md)
+* [診断ログを使用して Azure Data Explorer インジェスト操作を監視する](using-diagnostic-logs.md)
 * [クイック スタート: Azure Data Explorer でデータのクエリを実行する](web-query-data.md)

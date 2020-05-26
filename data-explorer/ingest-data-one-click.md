@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 5f424716a9227f22b4ec5b148d29798b0a55fa27
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 16db3eb2d925d12ba8eefa605b27566e9b4c1b04
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618379"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373817"
 ---
 # <a name="what-is-one-click-ingestion"></a>ワンクリックでのインジェストとは 
 
@@ -26,7 +26,7 @@ Azure Data Explorer の Web UI を使用して、ストレージ (BLOB ファイ
 
 * Azure サブスクリプションをお持ちでない場合は、開始する前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
 * [Azure Data Explorer クラスターとデータベース](create-cluster-database-portal.md)を作成します。
-* [Azure Data Explorer の Web UI にサインイン](https://dataexplorer.azure.com/)して、[クラスターへの接続を追加](/azure/data-explorer/web-query-data#add-clusters)します。
+* [Azure Data Explorer の Web UI にサインイン](https://dataexplorer.azure.com/)して、[クラスターへの接続を追加](web-query-data.md#add-clusters)します。
 
 ## <a name="file-formats"></a>ファイル形式
 
@@ -74,5 +74,5 @@ Azure Data Explorer の Web UI を使用して、ストレージ (BLOB ファイ
 ## <a name="next-steps"></a>次のステップ
 
 * ワンクリックでのインジェストを使用してデータを[既存のテーブル](one-click-ingestion-existing-table.md)に取り込むか、[新しいテーブル](one-click-ingestion-new-table.md)に取り込むかを決めます。
-* [Azure Data Explorer の Web UI でデータのクエリを実行する](/azure/data-explorer/web-query-data)
-* [Kusto クエリ言語を使用して Azure Data Explorer のクエリを作成する](/azure/data-explorer/write-queries)
+* [Azure Data Explorer の Web UI でデータのクエリを実行する](web-query-data.md)
+* [Kusto クエリ言語を使用して Azure Data Explorer のクエリを作成する](write-queries.md)

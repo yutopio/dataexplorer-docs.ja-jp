@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/07/2019
-ms.openlocfilehash: 600c5421af21f8d10f3575854a38f1d95ec27160
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 3019cfd85fa2e62a18536fe22353d81b93e64c26
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492403"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374341"
 ---
 # <a name="time-series-analysis-in-azure-data-explorer"></a>Azure データ エクスプローラーの時系列分析
 
@@ -289,5 +289,5 @@ demo_many_series1
 
 ## <a name="next-steps"></a>次のステップ
 
-* Azure Data Explorer での[時系列の異常検出と予測](/azure/data-explorer/anomaly-detection)について学習します。
-* Azure Data Explorer の[機械学習機能](/azure/data-explorer/machine-learning-clustering)について学習します。
+* Azure Data Explorer での[時系列の異常検出と予測](anomaly-detection.md)について学習します。
+* Azure Data Explorer の[機械学習機能](machine-learning-clustering.md)について学習します。

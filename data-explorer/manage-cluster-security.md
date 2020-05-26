@@ -7,12 +7,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/20/2019
-ms.openlocfilehash: 0f935999b68a7283c032d43c42d688b273d5c450
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 3daf9f5af46338a450a1f1a4e9c80a6c83841343
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492599"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374020"
 ---
 # <a name="secure-your-cluster-in-azure-data-explorer---azure-portal"></a>Azure Data Explorer でのクラスターのセキュリティ保護 - Azure portal
 
@@ -35,4 +35,4 @@ ms.locfileid: "81492599"
 
 ## <a name="next-steps"></a>次のステップ
 
-[クラスターの正常性を確認する](/azure/data-explorer/check-cluster-health)
+[クラスターの正常性を確認する](check-cluster-health.md)

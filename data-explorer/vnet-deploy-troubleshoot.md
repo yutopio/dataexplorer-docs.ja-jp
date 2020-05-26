@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: b50b971a3b1980ad35a1a939bdf25f1c9e6ac7ba
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: bbbf120c0a24a7ed14bc558b7dcd739bf2cae595
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494003"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374269"
 ---
 # <a name="troubleshoot-access-ingestion-and-operation-of-your-azure-data-explorer-cluster-in-your-virtual-network"></a>仮想ネットワーク内の Azure Data Explorer クラスターのアクセス、インジェスト、操作に関するトラブルシューティング
 
@@ -29,7 +29,7 @@ ms.locfileid: "81494003"
 # <a name="windows"></a>[Windows](#tab/windows)
 
    1. クラスターに接続しているマシンに、[TCping](https://www.elifulkerson.com/projects/tcping.php) をダウンロードします。
-   2. 次のコマンドを使用して、ソース マシンからターゲットに ping を実行します。
+   1. 次のコマンドを使用して、ソース マシンからターゲットに ping を実行します。
 
     ```cmd
      C:\> tcping -t yourcluster.kusto.windows.net 443 
@@ -47,7 +47,7 @@ ms.locfileid: "81494003"
     $ apt-get install netcat
      ```
 
-   2. 次のコマンドを使用して、ソース マシンからターゲットに ping を実行します。
+   1. 次のコマンドを使用して、ソース マシンからターゲットに ping を実行します。
 
      ```bash
      $ netcat -z -v yourcluster.kusto.windows.net 443
@@ -72,7 +72,7 @@ ms.locfileid: "81494003"
 
 ### <a name="check-ingestion-health"></a>インジェストの正常性を確認する
 
-[クラスター インジェスト メトリック](/azure/data-explorer/using-metrics#ingestion-health-and-performance-metrics) が正常な状態であることを確認します。
+[クラスター インジェスト メトリック](using-metrics.md#ingestion-health-and-performance-metrics) が正常な状態であることを確認します。
 
 ### <a name="check-security-rules-on-data-source-resources"></a>データ ソース リソースのセキュリティ規則を確認する
 
@@ -150,7 +150,7 @@ ms.locfileid: "81494003"
 
 ### <a name="check-network-security-group-nsg"></a>ネットワーク セキュリティ グループ (NSG) を確認する
 
-「[VNet デプロイの依存関係](/azure/data-explorer/vnet-deployment#dependencies-for-vnet-deployment)」の手順に従って、[ネットワーク セキュリティ グループ](/azure/virtual-network/security-overview)が適切に構成されていることを確認します
+「[VNet デプロイの依存関係](vnet-deployment.md#dependencies-for-vnet-deployment)」の手順に従って、[ネットワーク セキュリティ グループ](/azure/virtual-network/security-overview)が適切に構成されていることを確認します
 
 ### <a name="check-route-table"></a>ルート テーブルを確認する
 
@@ -158,4 +158,4 @@ ms.locfileid: "81494003"
 
 ### <a name="check-firewall-rules"></a>ファイアウォール規則を確認する
 
-ファイアウォールにサブネットの送信トラフィックを強制的にトンネリングする場合は、「[ファイアウォールを使用した送信トラフィックのセキュリティ保護](/azure/data-explorer/vnet-deployment#securing-outbound-traffic-with-firewall)」の説明に従って、すべての依存関係の FQDN (たとえば、 *.blob.core.windows.net*) がファイアウォール構成で許可されていることを確認してください。
+ファイアウォールにサブネットの送信トラフィックを強制的にトンネリングする場合は、「[ファイアウォールを使用した送信トラフィックのセキュリティ保護](vnet-deployment.md#securing-outbound-traffic-with-firewall)」の説明に従って、すべての依存関係の FQDN (たとえば、 *.blob.core.windows.net*) がファイアウォール構成で許可されていることを確認してください。

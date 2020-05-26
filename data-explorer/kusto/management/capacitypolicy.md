@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 0ecdee4171cb6deaa4cc6c233b8951c4eb54953c
-ms.sourcegitcommit: 9810acae3f1c83b8efe7b952d3bada2ff496b024
+ms.openlocfilehash: 4a2b18f28840291fc02002239297b45f38be00be
+ms.sourcegitcommit: 4e46b497d518884693a142f4ae21ea497db81861
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83444700"
+ms.lasthandoff: 05/25/2020
+ms.locfileid: "83824919"
 ---
 # <a name="capacity-policy"></a>キャパシティ ポリシー
 
@@ -121,7 +121,7 @@ ms.locfileid: "83444700"
 ## <a name="control-commands"></a>管理コマンド
 
 > [!WARNING]
-> クラスターの使用可能なリソースに影響を与える可能性があるため、容量ポリシーを変更することはめったにありません。
+> 容量ポリシーを変更する前に、Azure データエクスプローラーチームに問い合わせてください。
 
 * を使用[します。クラスターポリシーの容量を表示](capacity-policy.md#show-cluster-policy-capacity)して、クラスターの現在の容量ポリシーを表示します。
 

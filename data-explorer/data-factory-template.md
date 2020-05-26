@@ -8,12 +8,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 09/08/2019
-ms.openlocfilehash: 884f4e956b37c2def6c25d0acdf20f15eddf7767
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e1c51132ddb36a206a97236b6ceb4553a62e6d2c
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493227"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373913"
 ---
 # <a name="copy-in-bulk-from-a-database-to-azure-data-explorer-by-using-the-azure-data-factory-template"></a>Azure Data Factory テンプレートを使用してデータベースから Azure Data Explorer に一括コピーする 
 
@@ -113,7 +113,7 @@ ControlTableDataset の形式が異なる場合は、ご自分の形式に対応
 
 * [Azure Data Factory を使用して Azure Data Explorer にデータをコピーする](data-factory-load-data.md)方法について確認する。
 * Azure Data Factory 内の [Azure Data Explorer コネクタ](/azure/data-factory/connector-azure-data-explorer)について学習する。
-* データのクエリのための [Azure Data Explorer のクエリ](/azure/data-explorer/web-query-data)について確認する。
+* データのクエリのための [Azure Data Explorer のクエリ](web-query-data.md)について確認する。
 
 
 

@@ -7,16 +7,16 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/29/2019
-ms.openlocfilehash: e2adedec36696c7974ecb2e7f7c62d65329c368f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: abef0650485ac1feb53d43f42559c5a7fdfb75c3
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494491"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374029"
 ---
 # <a name="machine-learning-capability-in-azure-data-explorer"></a>Azure Data Explorer の機械学習機能
 
-ビッグ データ分析プラットフォームである Azure Data Explorer では、組み込みの[異常検出と予測](/azure/data-explorer/anomaly-detection)機能を使用してサービスの正常性、QoS、または正常に機能していないデバイスの異常な動作を監視することができます。 異常なパターンが検出されると、異常を軽減または解決するために根本原因分析 (RCA) が実行されます。
+ビッグ データ分析プラットフォームである Azure Data Explorer では、組み込みの[異常検出と予測](anomaly-detection.md)機能を使用してサービスの正常性、QoS、または正常に機能していないデバイスの異常な動作を監視することができます。 異常なパターンが検出されると、異常を軽減または解決するために根本原因分析 (RCA) が実行されます。
 
 診断プロセスは、複雑で時間がかかり、ドメインの専門家によって行われます。 このプロセスには、さまざまなソースからの同じ換算時間中の追加データの取り込みと結合、複数のディメンション上での値の分布の変化の検索、およびドメインに関する知識と直感に基づくその他の手法が含まれます。 これらの診断シナリオは Azure Data Explorer では一般的であることから、診断フェーズをより簡単にし、RCA の期間を短縮するための機械学習プラグインが提供されています。
 
@@ -38,7 +38,7 @@ demo_clustering1
 
 ![サービスの例外の時間グラフ](media/machine-learning-clustering/service-exceptions-timechart.png)
 
-サービスの例外の数は、サービスの全体のトラフィックと関連しています。 月曜日から金曜日までの営業日の毎日のパターンがはっきりとわかります。正午にサービスの例外の数が増加し、夜間にはその数が減少しています。 週末には数は少なく横ばい状態になっています。 Azure Data Explorer 内の[時系列の異常検出](/azure/data-explorer/anomaly-detection?#time-series-anomaly-detection)を使用すれば、例外の急激な増加を検出できます。
+サービスの例外の数は、サービスの全体のトラフィックと関連しています。 月曜日から金曜日までの営業日の毎日のパターンがはっきりとわかります。正午にサービスの例外の数が増加し、夜間にはその数が減少しています。 週末には数は少なく横ばい状態になっています。 Azure Data Explorer 内の[時系列の異常検出](anomaly-detection.md#time-series-anomaly-detection)を使用すれば、例外の急激な増加を検出できます。
 
 データの急激な増加が 2 番目に発生しているのは火曜日の午後です。 このような急激な増加を詳しく診断するには、次のクエリを使用します。 このクエリを使用すると、急激な増加を示している付近のグラフがより高い解像度 (1 分間のビンで 8 時間) で再描画され、鋭角で急増しているかどうかや、その境界を確認することができます。
 

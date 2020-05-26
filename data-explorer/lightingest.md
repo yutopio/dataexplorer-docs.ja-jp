@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/01/2020
-ms.openlocfilehash: e9918452aaeefc2c4f144c60e2e7bdb70ac87f2b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8d4eeb47abb8eac2b042b64e65b55dac7e91d6c9
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494511"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374055"
 ---
 # <a name="install-and-use-lightingest"></a>LightIngest のインストールと使用
 
@@ -73,7 +73,7 @@ LightIngest は、Azure Data Explorer へのアドホック データ インジ�
 |-prefix               |             |string  |省略可能  |取り込むソース データが Blob Storage に存在する場合、この URL プレフィックスが、コンテナー名を除くすべての BLOB で共有されます。 <br>たとえば、データが `MyContainer/Dir1/Dir2` にある場合は、プレフィックスを `Dir1/Dir2` にする必要があります。 二重引用符で囲むことをお勧めします |
 |-pattern              |             |string  |省略可能  |ソース ファイルまたは BLOB を選択するパターン。 ワイルドカードがサポートされます。 たとえば、「 `"*.csv"` 」のように入力します。 二重引用符で囲むことをお勧めします |
 |-zipPattern           |             |string  |省略可能  |取り込む ZIP アーカイブ内のファイルを選択するときに使用する正規表現。<br>アーカイブ内の他のファイルはすべて無視されます。たとえば、`"*.csv"` などです。 二重引用符で囲むことをお勧めします |
-|-format               |-f           |string  |省略可能  |ソース データの形式。 [サポートされている形式](https://docs.microsoft.com/azure/data-explorer/ingestion-supported-formats)のいずれかである必要があります |
+|-format               |-f           |string  |省略可能  |ソース データの形式。 [サポートされている形式](ingestion-supported-formats.md)のいずれかである必要があります |
 |-ingestionMappingPath |-mappingPath |string  |省略可能  |インジェスト列マッピング ファイルへのパス (Json および Avro 形式の場合は必須)。 「[データ マッピング](kusto/management/mappings.md)」を参照してください |
 |-ingestionMappingRef  |-mappingRef  |string  |省略可能  |事前に作成されたインジェスト列マッピングの名前 (Json および Avro 形式の場合は必須)。 「[データ マッピング](kusto/management/mappings.md)」を参照してください |
 |-creationTimePattern  |             |string  |省略可能  |設定した場合、ファイルまたは BLOB のパスから CreationTime プロパティを抽出するために使用されます。 「[CreationTimePattern 引数の使用](#using-creationtimepattern-argument)」を参照してください |

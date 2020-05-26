@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 02/18/2019
-ms.openlocfilehash: 8f48499e1b9bb1c67f43ae575a68bb38e314f08e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 9a438b7d55c94acd64064e9cbd2b53c2ac31435b
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493119"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373795"
 ---
 # <a name="azure-data-explorer-data-ingestion"></a>Azure データ エクスプローラーでのデータ インジェスト
 
@@ -52,7 +52,7 @@ Azure データ エクスプローラーでは複数のインジェスト方法�
 
 ### <a name="ingestion-using-integration-services"></a>統合サービスを使用した取り込み
 
-* Azure Data Factory (ADF) は、Azure の分析ワークロード用のフル マネージド データ統合サービスで、[サポートされているデータ ストアと形式](/azure/data-factory/copy-activity-overview#supported-data-stores-and-formats)を使用して Azure Data Explorer との間でデータのコピーを行います。 詳しくは、「[Azure Data Factory から Azure Data Explorer にデータをコピーする](/azure/data-explorer/data-factory-load-data)」をご覧ください。
+* Azure Data Factory (ADF) は、Azure の分析ワークロード用のフル マネージド データ統合サービスで、[サポートされているデータ ストアと形式](/azure/data-factory/copy-activity-overview#supported-data-stores-and-formats)を使用して Azure Data Explorer との間でデータのコピーを行います。 詳しくは、「[Azure Data Factory から Azure Data Explorer にデータをコピーする](data-factory-load-data.md)」をご覧ください。
 
 ### <a name="programmatic-ingestion"></a>プログラムによるインジェスト
 

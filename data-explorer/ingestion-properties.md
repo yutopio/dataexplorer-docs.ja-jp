@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: 04f7d0de687d168fe6df7bfcc535cbafde2d4446
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c66d7e11b3f64633a0dda33f7a3fa2f974536caa
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492679"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373723"
 ---
 # <a name="azure-data-explorer-data-ingestion-properties"></a>Azure Data Explorer データ インジェスト プロパティ 
 
@@ -41,5 +41,5 @@ ms.locfileid: "81492679"
 
 ## <a name="next-steps"></a>次のステップ
 
-* [データ インジェスト](/azure/data-explorer/ingest-data-overview)の詳細を確認する
+* [データ インジェスト](ingest-data-overview.md)の詳細を確認する
 * [サポートされるデータ形式](ingestion-supported-formats.md)の詳細を確認する

@@ -7,12 +7,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/17/2019
-ms.openlocfilehash: aa1cdb647190c804c5dc18d1575a6030f166a845
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b7ca4a41bb15e9fb8a4f55a9d674b1536dddd5ae
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493331"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83226399"
 ---
 # <a name="query-data-in-azure-data-lake-using-azure-data-explorer"></a>Azure Data Explorer を使用して Azure Data Lake でデータのクエリを実行する
 
@@ -46,7 +46,7 @@ Azure Data Explorer は、Azure Blob Storage および Azure Data Lake Storage (
     > * パーティションを使用する外部テーブルを定義するときは、ストレージ構造が同一であると想定します。
 たとえば、テーブルが yyyy/MM/dd 形式 (既定) の DateTime パーティションで定義されている場合、URI ストレージ ファイルのパスは *container1/yyyy/MM/dd/all_exported_blobs* である必要があります。 
     > * 外部テーブルが datetime 列によってパーティション分割されている場合は、閉じた範囲の時間フィルターをクエリに含めるようにしてください (たとえば、範囲が閉じていないこちらの `ArchivedProducts | where Timestamp > ago(1h)` よりも、クエリ `ArchivedProducts | where Timestamp between (ago(1h) .. 10m)` の方がパフォーマンスが良くなります)。 
-    > * 外部テーブルを使用して、すべての[サポートされているインジェスト形式](ingest-data-overview.md#supported-data-formats)のクエリを実行できます。
+    > * 外部テーブルを使用して、すべての[サポートされているインジェスト形式](ingestion-supported-formats.md)のクエリを実行できます。
 
 1. 外部テーブルは Web UI の左側のウィンドウに表示されます
 

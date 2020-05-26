@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/12/2020
-ms.openlocfilehash: 7389bfdf437d5fc6e4872f9f35ed40d5cb7b2f16
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 8a4a4e68333255c322708993b1c9429a89ae7a00
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108373"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373765"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-kibana-with-the-k2bridge-open-source-connector"></a>K2Bridge オープンソース コネクタを使用して Kibana で Azure Data Explorer のデータを視覚化する
 
@@ -46,7 +46,7 @@ Kibana で Azure Data Explorer のデータを視覚化するには、事前に�
 
 * Azure Data Explorer でデータを表示することが承認された Azure Active Directory (Azure AD) サービス プリンシパル。クライアント ID とクライアント シークレットが含まれます。
 
-    サービス プリンシパルに表示アクセス許可を設定することを推奨します。より高いレベルのアクセス許可は使用しないことをお勧めします。 [Azure AD サービス プリンシパルにクラスターの表示アクセス許可を設定します](https://docs.microsoft.com/azure/data-explorer/manage-database-permissions#manage-permissions-in-the-azure-portal)。
+    サービス プリンシパルに表示アクセス許可を設定することを推奨します。より高いレベルのアクセス許可は使用しないことをお勧めします。 [Azure AD サービス プリンシパルにクラスターの表示アクセス許可を設定します](manage-database-permissions.md#manage-permissions-in-the-azure-portal)。
 
     Azure AD サービス プリンシパルについて詳しくは、[Azure AD サービス プリンシパルの作成](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#create-an-azure-active-directory-application)に関する記事をご覧ください。
 

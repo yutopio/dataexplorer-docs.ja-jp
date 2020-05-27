@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: 80936da3e56fe0a73dcf146ba61630ceeb4bcb2a
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 097e175ff28d334532e85715f1f6401a96fa8f8c
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618515"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83374323"
 ---
 # <a name="create-an-azure-data-explorer-cluster-in-your-virtual-network"></a>仮想ネットワークに Azure Data Explorer クラスターを作成する
 
@@ -68,7 +68,7 @@ Azure Data Explorer では、仮想ネットワーク (VNet) のサブネット�
     | 名前 | AllowAzureDataExplorerManagement
     | | |
     
-1. 「[VNet デプロイの依存関係](/azure/data-explorer/vnet-deployment#dependencies-for-vnet-deployment)」に従って、受信と送信のすべての依存関係に対し、前の 2 つの手順を繰り返します。 または、送信規則は、ポート 443 と80 で "*インターネット*" を許可する 1 つの規則に置き換えることもできます。
+1. 「[VNet デプロイの依存関係](vnet-deployment.md#dependencies-for-vnet-deployment)」に従って、受信と送信のすべての依存関係に対し、前の 2 つの手順を繰り返します。 または、送信規則は、ポート 443 と80 で "*インターネット*" を許可する 1 つの規則に置き換えることもできます。
     
     受信と送信の依存関係に対する NSG 規則は次のようになります。
 
@@ -121,7 +121,7 @@ Azure Data Explorer では、仮想ネットワーク (VNet) のサブネット�
     | | | |
 
     > [!NOTE]
-    > 運用ワークロードの場合は、「[VNet でサブネットのサイズを計画する](/azure/data-explorer/vnet-deployment#plan-subnet-size-in-your-vnet)」に従って、サブネットのサイズを計画します
+    > 運用ワークロードの場合は、「[VNet でサブネットのサイズを計画する](vnet-deployment.md#plan-subnet-size-in-your-vnet)」に従って、サブネットのサイズを計画します
 
 1. **[確認と作成]** を選択してクラスターの詳細を確認し、 **[作成]** を選択してクラスターをプロビジョニングします。
 

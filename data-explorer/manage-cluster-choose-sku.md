@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/14/2019
-ms.openlocfilehash: 2d078f9715a0cfa171f0c88776a4ab78c15215a8
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a2735a4f469ecf6dea9856a1ee8f0036ffc38fe5
+ms.sourcegitcommit: 8a88534eb6aa2c4260e97b7afd1818ce32786001
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494487"
+ms.lasthandoff: 05/20/2020
+ms.locfileid: "83708462"
 ---
 # <a name="select-the-correct-vm-sku-for-your-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターに適した VM SKU を選択する 
 
@@ -70,17 +70,18 @@ Azure Data Explorer クラスター VM の技術仕様を次の表で説明し�
 
 |**名前**| **カテゴリ** | **SSD サイズ** | **コア** | **RAM** | **Premium Storage ディスク (1&nbsp;TB)**| **クラスターあたりの最小インスタンス数** | **クラスターあたりの最大インスタンス数**
 |---|---|---|---|---|---|---|---
-|D11 v2| コンピューティング最適化 | 75&nbsp;GB    | 2 | 14&nbsp;GB | 0 | 1 | 8 (1 である開発/テスト SKU を除く)
-|D12 v2| コンピューティング最適化 | 150&nbsp;GB   | 4 | 28&nbsp;GB | 0 | 2 | 16
-|D13 v2| コンピューティング最適化 | 307&nbsp;GB   | 8 | 56&nbsp;GB | 0 | 2 | 1,000
-|D14 v2| コンピューティング最適化 | 614&nbsp;GB   | 16| 112&nbsp;GB | 0 | 2 | 1,000
-|DS13 v2 + 1&nbsp;TB&nbsp;PS| ストレージ最適化 | 1&nbsp;TB | 8 | 56&nbsp;GB | 1 | 2 | 1,000
-|DS13 v2 + 2&nbsp;TB&nbsp;PS| ストレージ最適化 | 2&nbsp;TB | 8 | 56&nbsp;GB | 2 | 2 | 1,000
-|DS14 v2 + 3&nbsp;TB&nbsp;PS| ストレージ最適化 | 3&nbsp;TB | 16 | 112&nbsp;GB | 2 | 2 | 1,000
-|DS14 v2 + 4&nbsp;TB&nbsp;PS| ストレージ最適化 | 4&nbsp;TB | 16 | 112&nbsp;GB | 4 | 2 | 1,000
-|L4s v1| ストレージ最適化 | 650&nbsp;GB | 4 | 32&nbsp;GB | 0 | 2 | 16
-|L8s v1| ストレージ最適化 | 1.3&nbsp;TB | 8 | 64&nbsp;GB | 0 | 2 | 1,000
-|L16s_1| ストレージ最適化 | 2.6&nbsp;TB | 16| 128&nbsp;GB | 0 | 2 | 1,000
+|Dev(No SLA)_Standard_D11_v2| コンピューティング最適化 | 75&nbsp;GB    | 1 | 14&nbsp;GB | 0 | 1 | 1
+|Standard_D11_v2| コンピューティング最適化 | 75&nbsp;GB    | 2 | 14&nbsp;GB | 0 | 2 | 8 
+|Standard_D12_v2| コンピューティング最適化 | 150&nbsp;GB   | 4 | 28&nbsp;GB | 0 | 2 | 16
+|Standard_D13_v2| コンピューティング最適化 | 307&nbsp;GB   | 8 | 56&nbsp;GB | 0 | 2 | 1,000
+|Standard_D14_v2| コンピューティング最適化 | 614&nbsp;GB   | 16| 112&nbsp;GB | 0 | 2 | 1,000
+|Standard_DS13_v2 + 1&nbsp;TB&nbsp;PS| ストレージ最適化 | 1&nbsp;TB | 8 | 56&nbsp;GB | 1 | 2 | 1,000
+|Standard_DS13_v2 + 2&nbsp;TB&nbsp;PS| ストレージ最適化 | 2&nbsp;TB | 8 | 56&nbsp;GB | 2 | 2 | 1,000
+|Standard_DS14_v2 + 3&nbsp;TB&nbsp;PS| ストレージ最適化 | 3&nbsp;TB | 16 | 112&nbsp;GB | 2 | 2 | 1,000
+|Standard_DS14_v2 + 4&nbsp;TB&nbsp;PS| ストレージ最適化 | 4&nbsp;TB | 16 | 112&nbsp;GB | 4 | 2 | 1,000
+|Standard_L4s| ストレージ最適化 | 650&nbsp;GB | 4 | 32&nbsp;GB | 0 | 2 | 16
+|Standard_L8s| ストレージ最適化 | 1.3&nbsp;TB | 8 | 64&nbsp;GB | 0 | 2 | 1,000
+|Standard_L16s| ストレージ最適化 | 2.6&nbsp;TB | 16| 128&nbsp;GB | 0 | 2 | 1,000
 
 * Azure Data Explorer [ListSkus API](/dotnet/api/microsoft.azure.management.kusto.clustersoperationsextensions.listskus?view=azure-dotnet) を使用して、リージョンごとの更新された VM SKU の一覧を表示できます。 
 * [さまざまな SKU](/azure/virtual-machines/windows/sizes) の詳細について参照してください。 

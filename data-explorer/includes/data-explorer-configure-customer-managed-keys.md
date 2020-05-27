@@ -4,12 +4,12 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 01/07/2020
 ms.author: orspodek
-ms.openlocfilehash: 7f5c02c6c009e8916ed063454e0ae6049892e95c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5187f89a939daf45c0a5826e483de52cb7784103
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492839"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83383865"
 ---
 Azure Data Explorer は、保存されているストレージ アカウント内のすべてのデータを暗号化します。 規定では、データは Microsoft のマネージド キーで暗号化されます。 暗号化キーをさらに制御するために、データの暗号化に使用する目的で、カスタマー マネージド キーを提供できます。 
 
@@ -22,8 +22,8 @@ Azure Data Explorer は、保存されているストレージ アカウント�
 Azure Data Explorer でカスタマー マネージド キーを構成するには、[キー コンテナーの 2 つのプロパティを設定](/azure/key-vault/key-vault-ovw-soft-delete)する必要があります。 **[論理的な削除]** と **[Do Not Purge]\(消去しない\)** です。 これらのプロパティは、既定では有効になっていません。 これらのプロパティを有効にするには、新規または既存のキー コンテナーに対して、**論理的な削除の有効化**および**消去保護の有効化**を [PowerShell](/azure/key-vault/key-vault-soft-delete-powershell) または [Azure CLI](/azure/key-vault/key-vault-soft-delete-cli) で実行します。 サイズが 2048 の RSA キーのみがサポートされています。 キーの詳細については、「[Key Vault のキー](/azure/key-vault/about-keys-secrets-and-certificates#key-vault-keys)」を参照してください。
 
 > [!NOTE]
-> カスタマー マネージド キーを使用したデータ暗号化は、[リーダー クラスターとフォロワー クラスター](/azure/data-explorer/follower)ではサポートされていません。 
+> カスタマー マネージド キーを使用したデータ暗号化は、[リーダー クラスターとフォロワー クラスター](../follower.md)ではサポートされていません。
 
 ## <a name="assign-an-identity-to-the-cluster"></a>クラスターに ID を割り当てる
 
-お使いのクラスターでカスタマー マネージド キーを有効にするには、まず、そのクラスターにシステム割り当てマネージド ID を割り当てます。 このマネージド ID を使って、キー コンテナーへのアクセス許可をクラスターに付与します。 システム割り当てマネージド ID の構成については、[マネージド ID](/azure/data-explorer/managed-identities) に関するページを参照してください。
+お使いのクラスターでカスタマー マネージド キーを有効にするには、まず、そのクラスターにシステム割り当てマネージド ID を割り当てます。 このマネージド ID を使って、キー コンテナーへのアクセス許可をクラスターに付与します。 システム割り当てマネージド ID の構成については、[マネージド ID](../managed-identities.md) に関するページを参照してください。

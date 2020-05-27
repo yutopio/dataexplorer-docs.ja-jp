@@ -8,12 +8,12 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/05/2019
-ms.openlocfilehash: ced839f671a94744799e8a6cde4dbee2a8f17cc3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: cf6724a0f363eda510b5aa9cde195ec4fd3db65b
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493195"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373863"
 ---
 # <a name="azure-devops-task-for-azure-data-explorer"></a>Azure Data Explorer の Azure DevOps タスク
 
@@ -26,9 +26,9 @@ ms.locfileid: "81493195"
 
 * Azure サブスクリプションをお持ちでない場合は、開始する前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
 * Azure Data Explorer クラスター セットアップ:
-    * [Azure Data Explorer クラスターとデータベース](/azure/data-explorer/create-cluster-database-portal)
+    * [Azure Data Explorer クラスターとデータベース](create-cluster-database-portal.md)。
     * [Azure AD アプリケーションをプロビジョニングする](kusto/management/access-control/how-to-provision-aad-app.md)ことによって、Azure Active Directory (Azure AD) アプリを作成します。
-    * [Azure Data Explorer データベースのアクセス許可を管理すること](/azure/data-explorer/manage-database-permissions)で、Azure Data Explorer データベースの Azure AD アプリへのアクセスを付与します。
+    * [Azure Data Explorer データベースのアクセス許可を管理すること](manage-database-permissions.md)で、Azure Data Explorer データベースの Azure AD アプリへのアクセスを付与します。
 * Azure DevOps セットアップ:
     * [無料組織の新規登録](/azure/devops/user-guide/sign-up-invite-teammates?view=azure-devops)
     * [組織の作成](/azure/devops/organizations/accounts/create-organization?view=azure-devops)

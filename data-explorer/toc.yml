@@ -220,8 +220,6 @@
               href: language-extensions.md
         - name: データベース
           items:
-            - name: フォロワー データベース
-              href: follower.md
             - name: データベースのアクセス許可を管理する
               href: manage-database-permissions.md
             - name: データベース プリンシパルの追加
@@ -254,6 +252,12 @@
           href: using-metrics.md
         - name: リソースの正常性を使用してクラスターの正常性を監視する
           href: monitor-with-resource-health.md
+    - name: データの共有
+      items:
+        - name: Azure Data Share の使用
+          href: data-share.md
+        - name: フォロワー データベース
+          href: follower.md
     - name: 他のツールとの統合
       items:
         - name: Azure Data Factory
@@ -1248,11 +1252,11 @@
                   href: ./kusto/management/show-table-schema-command.md
             - name: 外部テーブル
               items:
-                - name: 外部テーブルのコントロール コマンド
+                - name: 外部テーブルの一般的なコントロール コマンド
                   href: ./kusto/management/externaltables.md
-                - name: 外部 SQL テーブル
+                - name: 外部 SQL テーブルを作成および変更する
                   href: ./kusto/management/external-sql-tables.md
-                - name: Azure Storage または Azure Data Lake の外部テーブル
+                - name: Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
                   href: ./kusto/management/external-tables-azurestorage-azuredatalake.md
             - name: '[列]'
               items:
@@ -1561,9 +1565,12 @@
         - name: アドホック クエリ
           items:
             - name: Kusto.Explorer
-              href: ./kusto/tools/kusto-explorer.md
               items:
-                - name: Kusto Explorer のオプション
+                - name: Kusto.Explorer のインストールとユーザー インターフェイス
+                  href: ./kusto/tools/kusto-explorer.md
+                - name: Kusto.Explorer の使用
+                  href: ./kusto/tools/kusto-explorer-using.md
+                - name: Kusto.Explorer のオプション
                   href: ./kusto/tools/kusto-explorer-options.md
                 - name: キーボード ショートカット
                   href: ./kusto/tools/kusto-explorer-shortcuts.md
@@ -1573,6 +1580,8 @@
                   href: ./kusto/tools/kusto-explorer-codenav.md
                 - name: コード アナライザー
                   href: ./kusto/tools/kusto-explorer-code-analyzer.md
+                - name: Kusto.Explorer のトラブルシューティング
+                  href: ./kusto/tools/kusto-explorer-troubleshooting.md
             - name: Web UI
               href: ./web-query-data.md
             - name: Kusto.Cli

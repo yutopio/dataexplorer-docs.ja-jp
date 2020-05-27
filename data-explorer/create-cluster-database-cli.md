@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: cd503948d2f48a0ca431b7e1ce9fbe5c178fc542
-ms.sourcegitcommit: 72eaa9e5169d79507ceb6ead4a2eb703121c2190
+ms.openlocfilehash: b7e8611ba6427880f15d57137e31010047c39e01
+ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82774971"
+ms.lasthandoff: 05/12/2020
+ms.locfileid: "83224614"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-azure-cli"></a>Azure CLI を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -49,13 +49,19 @@ Azure Cloud Shell でコマンドを実行している場合、次の手順は�
     ```azurecli-interactive
     az account set --subscription MyAzureSub
     ```
+   
+1. 最新の Kusto CLI バージョンを使用する拡張機能をインストールします。
+
+    ```azurecli-interactive
+    az extension add -n kusto
+    ```
 
 ## <a name="create-the-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターを作成する
 
 1. 次のコマンドを使用して、クラスターを作成します。
 
     ```azurecli-interactive
-    az kusto cluster create --name azureclitest --sku name="Standard_D13_v2" tier="Standard" --resource-group testrg --location westus
+    az kusto cluster create --cluster-name azureclitest --sku name="Standard_D13_v2" tier="Standard" --resource-group testrg --location westus
     ```
 
    |**設定** | **推奨値** | **フィールドの説明**|
@@ -70,7 +76,7 @@ Azure Cloud Shell でコマンドを実行している場合、次の手順は�
 1. クラスターが正常に作成されたかどうかを確認するには、次のコマンドを実行します。
 
     ```azurecli-interactive
-    az kusto cluster show --name azureclitest --resource-group testrg
+    az kusto cluster show --cluster-name azureclitest --resource-group testrg
     ```
 
 結果に値が `Succeeded` の `provisioningState` が含まれている場合、クラスターは正常に作成されています。
@@ -93,7 +99,7 @@ Azure Cloud Shell でコマンドを実行している場合、次の手順は�
 1. 次のコマンドを実行して、作成したデータベースを確認します。
 
     ```azurecli-interactive
-    az kusto database show --name clidatabase --resource-group testrg --cluster-name azureclitest
+    az kusto database show --database-name clidatabase --resource-group testrg --cluster-name azureclitest
     ```
 
 クラスターとデータベースが作成されました。
@@ -104,7 +110,7 @@ Azure Cloud Shell でコマンドを実行している場合、次の手順は�
 * リソースをクリーンアップするには、クラスターを削除します。 クラスターを削除するときに、その中に含まれるデータベースもすべて削除されます。 クラスターを削除するには次のコマンドを使います。
 
     ```azurecli-interactive
-    az kusto cluster delete --name azureclitest --resource-group testrg
+    az kusto cluster delete --cluster-name azureclitest --resource-group testrg
     ```
 
 ## <a name="next-steps"></a>次のステップ

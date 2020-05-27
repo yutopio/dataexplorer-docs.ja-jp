@@ -6,17 +6,17 @@ ms.author: orspodek
 ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 01/27/2020
-ms.openlocfilehash: 36c7616ee3d79cebaea96ca67787466cbd401cab
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.date: 05/19/2020
+ms.openlocfilehash: 856749fc15a89ffe18c6b0cba92b62579c3ea8b0
+ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663180"
+ms.lasthandoff: 05/21/2020
+ms.locfileid: "83722135"
 ---
 # <a name="ingest-json-formatted-sample-data-into-azure-data-explorer"></a>Azure Data Explorer に JSON 書式付きサンプル データを取り込む
 
-この記事では、Azure Data Explorer データベースに JSON 書式付きデータを取り込む方法を示します。 まず、未加工の JSON とマップされた JSON の単純な例を紹介します。次に、複数行の JSON に進み、その後、配列とディクショナリを含むさらに複雑な JSON スキーマに取り組みます。  これらの例では、Kusto クエリ言語 (KQL)、 C#、または Python を使用して JSON 書式付きデータを取り込むプロセスについて詳しく説明しています。 Kusto クエリ言語の `ingest` 制御コマンドは、エンジン エンドポイントに対して直接実行されます。 運用環境のシナリオでは、インジェストは、クライアント ライブラリまたはデータ接続を使用して、データ管理サービスに対して実行されます。 これらのクライアント ライブラリを使用したデータの取り込みに関するチュートリアルについては、「[Azure Data Explorer の Python ライブラリを使用してデータを取り込む](/azure/data-explorer/python-ingest-data)」と「[Azure Data Explorer .NET Standard SDK (プレビュー) を使用してデータを取り込む](/azure/data-explorer/net-standard-ingest-data)」を参照してください。
+この記事では、Azure Data Explorer データベースに JSON 書式付きデータを取り込む方法を示します。 まず、未加工の JSON とマップされた JSON の単純な例を紹介します。次に、複数行の JSON に進み、その後、配列とディクショナリを含むさらに複雑な JSON スキーマに取り組みます。  これらの例では、Kusto クエリ言語 (KQL)、 C#、または Python を使用して JSON 書式付きデータを取り込むプロセスについて詳しく説明しています。 Kusto クエリ言語の `ingest` 制御コマンドは、エンジン エンドポイントに対して直接実行されます。 運用環境のシナリオでは、インジェストは、クライアント ライブラリまたはデータ接続を使用して、データ管理サービスに対して実行されます。 これらのクライアント ライブラリを使用したデータの取り込みに関するチュートリアルについては、「[Azure Data Explorer の Python ライブラリを使用してデータを取り込む](python-ingest-data.md)」と「[Azure Data Explorer .NET Standard SDK (プレビュー) を使用してデータを取り込む](net-standard-ingest-data.md)」を参照してください。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -30,7 +30,7 @@ Azure Data Explorer は、次の 2 つの JSON ファイル形式をサポート
 
 ### <a name="ingest-and-map-json-formatted-data"></a>JSON 書式付きデータを取り込んでマップする
 
-JSON 書式付きデータを取り込むには、[インジェスト プロパティ](ingestion-properties.md)を使用して "*書式*" を指定する必要があります。 JSON データを取り込むには、JSON ソース エントリをターゲット列にマップする[マッピング](kusto/management/mappings.md)が必要です。 データを取り込むときは、事前に定義された `jsonMappingReference` インジェスト プロパティを使用するか、`jsonMapping` インジェスト プロパティを指定します。 この記事では、インジェストに使用するテーブルで事前に定義されている `jsonMappingReference` インジェスト プロパティを使用します。 次の例では、最初に JSON レコードを生データとして 1 列のテーブルに取り込みます。 次に、マッピングを使用して、各プロパティを、そのマップされた列に取り込みます。 
+JSON 書式付きデータを取り込むには、[インジェスト プロパティ](ingestion-properties.md)を使用して "*書式*" を指定する必要があります。 JSON データを取り込むには、JSON ソース エントリをターゲット列にマップする[マッピング](kusto/management/mappings.md)が必要です。 データを取り込むときは、`IngestionMapping` プロパティと `ingestionMappingReference` (事前定義されたマッピングの場合) インジェスト プロパティを使用するか、`IngestionMappings` プロパティを使用します。 この記事では、インジェストに使用するテーブルで事前に定義されている `ingestionMappingReference` インジェスト プロパティを使用します。 次の例では、最初に JSON レコードを生データとして 1 列のテーブルに取り込みます。 次に、マッピングを使用して、各プロパティを、そのマップされた列に取り込みます。 
 
 ### <a name="simple-json-example"></a>単純な JSON の例
 
@@ -71,7 +71,7 @@ Kusto クエリ言語を使用して、未加工の JSON 形式でデータを�
 1. JSON マッピングを作成します。
 
     ```kusto
-    .create table RawEvents ingestion json mapping 'RawEventMapping' '[{"column":"Event","path":"$"}]'
+    .create table RawEvents ingestion json mapping 'RawEventMapping' '[{"column":"Event","Properties":{"path":"$"}}]'
     ```
 
     このコマンドは、マッピングを作成し、JSON ルート パス `$` を `Event` 列にマップします。
@@ -79,7 +79,7 @@ Kusto クエリ言語を使用して、未加工の JSON 形式でデータを�
 1. `RawEvents` テーブルにデータを取り込みます。
 
     ```kusto
-    .ingest into table RawEvents h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D' with (format=json, jsonMappingReference=RawEventMapping)
+    .ingest into table RawEvents (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":json, "ingestionMappingReference":"DiagnosticRawRecordsMapping"}'
     ```
 
 # <a name="c"></a>[C#](#tab/c-sharp)
@@ -118,13 +118,14 @@ C# を使用して、未加工の JSON 形式でデータを取り込みます�
     ```csharp
     var tableMapping = "RawEventMapping";
     var command =
-        CslCommandGenerator.GenerateTableJsonMappingCreateCommand(
+        CslCommandGenerator.GenerateTableMappingCreateCommand(
+            Data.Ingestion.IngestionMappingKind.Json,
             tableName,
             tableMapping,
-            new[]
-            {
-                new JsonColumnMapping {ColumnName = "Events", JsonPath = "$"},
-            });
+            new[] {
+            new ColumnMapping {ColumnName = "Events", Properties = new Dictionary<string, string>() {
+                {"path","$"} }
+            } });
 
     kustoClient.ExecuteControlCommand(command);
     ```
@@ -150,10 +151,13 @@ C# を使用して、未加工の JSON 形式でデータを取り込みます�
         new KustoQueuedIngestionProperties(database, table)
         {
             Format = DataSourceFormat.json,
-            IngestionMappingReference = tableMapping
+            IngestionMapping = new IngestionMapping()
+            {
+                IngestionMappingReference = tableMapping
+            }
         };
 
-    ingestClient.IngestFromSingleBlob(blobPath, deleteSourceOnSuccess: false, ingestionProperties: properties);
+    ingestClient.IngestFromStorageAsync(blobPath, properties);
     ```
 
 > [!NOTE]
@@ -219,7 +223,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 1. JSON マッピングを作成します。
 
     ```kusto
-    .create table Events ingestion json mapping 'FlatEventMapping' '[{"column":"Time","path":"$.timestamp"},{"column":"Device","path":"$.deviceId"},{"column":"MessageId","path":"$.messageId"},{"column":"Temperature","path":"$.temperature"},{"column":"Humidity","path":"$.humidity"}]'
+    .create table Events ingestion json mapping 'FlatEventMapping' '[{"column":"Time","Properties":{"path":"$.timestamp"}},{"column":"Device","Properties":{"path":"$.deviceId"}},{"column":"MessageId","Properties":{"path":"$.messageId"}},{"column":"Temperature","Properties":{"path":"$.temperature"}},{"column":"Humidity","Properties":{"path":"$.humidity"}}]'
     ```
 
     このマッピングでは、テーブル スキーマによって定義されているように、`timestamp` エントリは `datetime` データ型として列 `Time` に取り込まれます。
@@ -227,7 +231,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 1. `Events` テーブルにデータを取り込みます。
 
     ```kusto
-    .ingest into table Events h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D' with (format=json, jsonMappingReference=FlatEventMapping)
+    .ingest into table Events (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":"json", "ingestionMappingReference":"FlatEventMapping"}'
     ```
 
     ファイル 'simple.json' には、行区切りの JSON レコードがいくつか含まれています。 形式は `json` であり、インジェスト コマンドで使用されるマッピングは、作成した `FlatEventMapping` です。
@@ -258,16 +262,17 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
     ```csharp
     var tableMapping = "FlatEventMapping";
     var command =
-        CslCommandGenerator.GenerateTableJsonMappingCreateCommand(
-            tableName,
+         CslCommandGenerator.GenerateTableMappingCreateCommand(
+            Data.Ingestion.IngestionMappingKind.Json,
+            "",
             tableMapping,
             new[]
             {
-                        new JsonColumnMapping {ColumnName = "Time", JsonPath = "$.timestamp"},
-                        new JsonColumnMapping {ColumnName = "Device", JsonPath = "$.deviceId"},
-                        new JsonColumnMapping {ColumnName = "MessageId", JsonPath = "$.messageId"},
-                        new JsonColumnMapping {ColumnName = "Temperature", JsonPath = "$.temperature"},
-                        new JsonColumnMapping {ColumnName = "Humidity", JsonPath = "$.humidity"},
+               new ColumnMapping() {ColumnName = "Time", Properties = new Dictionary<string, string>() {{ MappingConsts.Path, "$.timestamp"} } },
+               new ColumnMapping() {ColumnName = "Device", Properties = new Dictionary<string, string>() {{ MappingConsts.Path, "$.deviceId" } } },
+               new ColumnMapping() {ColumnName = "MessageId", Properties = new Dictionary<string, string>() {{ MappingConsts.Path, "$.messageId" } } },
+               new ColumnMapping() {ColumnName = "Temperature", Properties = new Dictionary<string, string>() {{ MappingConsts.Path, "$.temperature" } } },
+               new ColumnMapping() { ColumnName= "Humidity", Properties = new Dictionary<string, string>() {{ MappingConsts.Path, "$.humidity" } } },
             });
 
     kustoClient.ExecuteControlCommand(command);
@@ -283,10 +288,13 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
         new KustoQueuedIngestionProperties(database, table)
         {
             Format = DataSourceFormat.json,
-            IngestionMappingReference = tableMapping
+            IngestionMapping = new IngestionMapping()
+            {
+                IngestionMappingReference = tableMapping
+            }
         };
 
-    ingestClient.IngestFromSingleBlob(blobPath, deleteSourceOnSuccess: false, ingestionProperties: properties);
+    ingestClient.IngestFromStorageAsync(blobPath, properties);
     ```
 
     ファイル 'simple.json' には、行区切りの JSON レコードがいくつか含まれています。 形式は `json` であり、インジェスト コマンドで使用されるマッピングは、作成した `FlatEventMapping` です。
@@ -306,7 +314,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 
     ```python
     MAPPING = "FlatEventMapping"
-    CREATE_MAPPING_COMMAND = ".create table Events ingestion json mapping '" + MAPPING + """' '[{"column":"Time","path":"$.timestamp"},{"column":"Device","path":"$.deviceId"},{"column":"MessageId","path":"$.messageId"},{"column":"Temperature","path":"$.temperature"},{"column":"Humidity","path":"$.humidity"}]'""" 
+    CREATE_MAPPING_COMMAND = ".create table Events ingestion json mapping '" + MAPPING + """' '[{"column":"Time","Properties":{"path":"$.timestamp"}},{"column":"Device","Properties":{"path":"$.deviceId"}},{"column":"MessageId","Properties":{"path":"$.messageId"}},{"column":"Temperature","Properties":{"path":"$.temperature"}},{"column":"Humidity","Properties":{"path":"$.humidity"}}]'""" 
     RESPONSE = KUSTO_CLIENT.execute_mgmt(DATABASE, CREATE_MAPPING_COMMAND)
     dataframe_from_result_table(RESPONSE.primary_results[0])
     ```
@@ -334,7 +342,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 `Events` テーブルにデータを取り込みます。
 
 ```kusto
-.ingest into table Events h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/multilined.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D' with (format=multijson, jsonMappingReference=FlatEventMapping)
+.ingest into table Events (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/multilined.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":"multijson", "ingestionMappingReference":"FlatEventMapping"}'
 ```
 
 # <a name="c"></a>[C#](#tab/c-sharp)
@@ -348,10 +356,13 @@ var properties =
     new KustoQueuedIngestionProperties(database, table)
     {
         Format = DataSourceFormat.multijson,
-        IngestionMappingReference = tableMapping
+        IngestionMapping = new IngestionMapping()
+        {
+            IngestionMappingReference = tableMapping
+        }
     };
 
-ingestClient.IngestFromSingleBlob(blobPath, deleteSourceOnSuccess: false, ingestionProperties: properties);
+ingestClient.IngestFromStorageAsync(blobPath, properties);
 ```
 
 # <a name="python"></a>[Python](#tab/python)
@@ -427,7 +438,7 @@ INGESTION_CLIENT.ingest_from_blob(
 1. `RawEvents` テーブルにデータを取り込みます。
 
     ```kusto
-    .ingest into table RawEvents h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/array.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D' with (format=multijson, jsonMappingReference=RawEventMapping)
+    .ingest into table RawEvents (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/array.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":"multijson", "ingestionMappingReference":"RawEventMapping"}'
     ```
 
 1. `Events` テーブル内のデータを確認します。
@@ -482,10 +493,13 @@ INGESTION_CLIENT.ingest_from_blob(
         new KustoQueuedIngestionProperties(database, table)
         {
             Format = DataSourceFormat.multijson,
-            IngestionMappingReference = tableMapping
+            IngestionMapping = new IngestionMapping()
+            {
+                IngestionMappingReference = tableMapping
+            }
         };
 
-    ingestClient.IngestFromSingleBlob(blobPath, deleteSourceOnSuccess: false, ingestionProperties: properties);
+    ingestClient.IngestFromStorageAsync(blobPath, properties);
     ```
     
 1. `Events` テーブル内のデータを確認します。
@@ -575,13 +589,13 @@ INGESTION_CLIENT.ingest_from_blob(
 1. JSON マッピングを作成します。
 
     ```kusto
-    .create table Events ingestion json mapping 'KeyValueEventMapping' '[{"column":"Time","path":"$.event[?(@.Key == 'timestamp')]"},{"column":"Device","path":"$.event[?(@.Key == 'deviceId')]"},{"column":"MessageId","path":"$.event[?(@.Key == 'messageId')]"},{"column":"Temperature","path":"$.event[?(@.Key == 'temperature')]"},{"column":"Humidity","path":"$.event[?(@.Key == 'humidity')]"}]'
+    .create table Events ingestion json mapping 'KeyValueEventMapping' '[{"column":"a","Properties":{"path":"$.event[?(@.Key == \'timestamp\')]"}},{"column":"b","Properties":{"path":"$.event[?(@.Key == \'deviceId\')]"}},{"column":"c","Properties":{"path":"$.event[?(@.Key == \'messageId\')]"}},{"column":"d","Properties":{"path":"$.event[?(@.Key == \'temperature\')]"}},{"column":"Humidity","datatype":"string","Properties":{"path":"$.event[?(@.Key == \'humidity\')]"}}]'
     ```
 
 1. `Events` テーブルにデータを取り込みます。
 
     ```kusto
-    .ingest into table Events h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/dictionary.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D' with (format=multijson, jsonMappingReference=KeyValueEventMapping)
+    .ingest into table Events (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/dictionary.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":"multijson", "ingestionMappingReference":"KeyValueEventMapping"}'
     ```
 
 # <a name="c"></a>[C#](#tab/c-sharp)
@@ -592,16 +606,29 @@ INGESTION_CLIENT.ingest_from_blob(
     var tableName = "Events";
     var tableMapping = "KeyValueEventMapping";
     var command =
-        CslCommandGenerator.GenerateTableJsonMappingCreateCommand(
-            tableName,
+         CslCommandGenerator.GenerateTableMappingCreateCommand(
+            Data.Ingestion.IngestionMappingKind.Json,
+            "",
             tableMapping,
             new[]
             {
-                        new JsonColumnMapping {ColumnName = "Time", JsonPath = "$.event[?(@.Key == 'timestamp')]"},
-                        new JsonColumnMapping {ColumnName = "Device", JsonPath = "$.event[?(@.Key == 'deviceId')]"},
-                        new JsonColumnMapping {ColumnName = "MessageId", JsonPath = "$.event[?(@.Key == 'messageId')]"},
-                        new JsonColumnMapping {ColumnName = "Temperature", JsonPath = "$.event[?(@.Key == 'temperature')]"},
-                        new JsonColumnMapping {ColumnName = "Humidity", JsonPath = "$.event[?(@.Key == 'humidity')]"},
+                new ColumnMapping() { ColumnName = "Time", Properties = new Dictionary<string, string>() { {
+                    MappingConsts.Path,
+                    "$.event[?(@.Key == 'timestamp')]"
+                } } },
+                    new ColumnMapping() { ColumnName = "Device", Properties = new Dictionary<string, string>() { {
+                    MappingConsts.Path,
+                    "$.event[?(@.Key == 'deviceId')]"
+                } } }, new ColumnMapping() { ColumnName = "MessageId", Properties = new Dictionary<string, string>() { {
+                    MappingConsts.Path,
+                    "$.event[?(@.Key == 'messageId')]"
+                } } }, new ColumnMapping() { ColumnName = "Temperature", Properties = new Dictionary<string, string>() { {
+                    MappingConsts.Path,
+                    "$.event[?(@.Key == 'temperature')]"
+                } } }, new ColumnMapping() { ColumnName = "Humidity", Properties = new Dictionary<string, string>() { {
+                    MappingConsts.Path,
+                    "$.event[?(@.Key == 'humidity')]"
+                } } },
             });
 
     kustoClient.ExecuteControlCommand(command);
@@ -615,10 +642,12 @@ INGESTION_CLIENT.ingest_from_blob(
         new KustoQueuedIngestionProperties(database, table)
         {
             Format = DataSourceFormat.multijson,
-            IngestionMappingReference = tableMapping
+            IngestionMapping = new IngestionMapping()
+            {
+                IngestionMappingReference = tableMapping
+            }
         };
-
-    ingestClient.IngestFromSingleBlob(blobPath, deleteSourceOnSuccess: false, ingestionProperties: properties);
+    ingestClient.IngestFromStorageAsync(blobPath, properties);
     ```
 
 # <a name="python"></a>[Python](#tab/python)

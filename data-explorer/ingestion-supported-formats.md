@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: 93451dd1237905754ac834cb335f5d8a02157ac7
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: c591c4f774f3af99004d398898b288256861bb75
+ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030057"
+ms.lasthandoff: 05/13/2020
+ms.locfileid: "83373712"
 ---
 # <a name="data-formats-supported-by-azure-data-explorer-for-ingestion"></a>インジェスト用に Azure Data Explorer でサポートされているデータ形式
 
@@ -34,6 +34,7 @@ ms.locfileid: "82030057"
 |TSV      |`.tsv`      |タブ区切り値 (`\t`) を含むテキスト ファイル。|
 |TSVE     |`.tsv`      |タブ区切り値 (`\t`) を含むテキスト ファイル。 エスケープにはバックスラッシュ文字 (`\`) が使用されます。|
 |TXT      |`.txt`      |`\n` で区切られた行を含むテキスト ファイル。 空の行はスキップされます。|
+|W3CLOGFILE |`.log`    |W3C によって規格化された [Web ログ ファイル](https://www.w3.org/TR/WD-logfile.html)のフォーマットです。|
 
 ## <a name="supported-data-compression-formats"></a>サポートされているデータ圧縮形式
 
@@ -57,5 +58,5 @@ BLOB またはファイルの名前に拡張子を追加して、圧縮を示し
 
 ## <a name="next-steps"></a>次のステップ
 
-* [データ インジェスト](/azure/data-explorer/ingest-data-overview)の詳細を確認する
+* [データ インジェスト](ingest-data-overview.md)の詳細を確認する
 * [Azure Data Explorer データ インジェスト プロパティ](ingestion-properties.md)の詳細を確認する

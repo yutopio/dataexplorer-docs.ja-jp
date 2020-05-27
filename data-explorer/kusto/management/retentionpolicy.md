@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 5254f2daee767f51111f2ac3d1be07b7f2bb09f4
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 3d854262a2a446f983f60c49a5c0ca02f6aa2ffe
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617393"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011371"
 ---
 # <a name="retention-policy"></a>Retention ポリシー
 
@@ -31,7 +31,7 @@ ms.locfileid: "82617393"
 > [!NOTE]
 > * 削除時間が不正確です。 制限を超える前にデータが削除されないことがシステムによって保証されますが、その時点以降の削除はすぐには行われません。
 > * 論理的な削除期間0は、テーブルレベルの保持ポリシーの一部として設定できます (ただし、データベースレベルの保持ポリシーの一部としては設定できません)。
->   * この処理が完了すると、取り込まれたデータがソーステーブルにコミットされず、データを保持する必要がなくなります。
+>   * この処理が完了すると、取り込まれたデータがソーステーブルにコミットされず、データを保持する必要がなくなります。 したがって、は `Recoverability` にのみ設定でき `Disabled` ます。 
 >   * このような構成は、主にデータをテーブルに取り込まれたときに便利です。
 >   トランザクション[更新ポリシー](updatepolicy.md)を使用して変換を行い、別のテーブルに出力をリダイレクトします。
 
@@ -41,12 +41,12 @@ ms.locfileid: "82617393"
 
 * **ソフト Deleteperiod**:
     * データがクエリに使用可能な状態であることが保証される期間。これは、取り込まれたした時間から測定されます。
-    * 既定値は `100 years` です。
+    * 既定値は、`100 years` です。
     * テーブルまたはデータベースの論理的な削除期間を変更すると、新しい値が既存のデータと新しいデータの両方に適用されます。
 * **回復性**:
     * データが削除された後のデータの回復性 (有効/無効)
-    * 既定値は `enabled` です
-    * に`enabled`設定した場合、データは削除してから14日間回復できます。
+    * 既定値は `Enabled` です
+    * に設定した場合 `Enabled` 、データは論理的に削除されてから14日間回復できます。
 
 ## <a name="control-commands"></a>管理コマンド
 
@@ -57,7 +57,7 @@ ms.locfileid: "82617393"
 
 既定では、データベースまたはテーブルを作成するときに、保持ポリシーが定義されていません。
 一般的なケースでは、データベースが作成され、その後すぐに、既知の要件に従って作成者がその保持ポリシーを設定します。
-ポリシーが設定されていないデータベースまたはテーブルの保持ポリシーに対して[show コマンド](../management/retention-policy.md)を`Policy`実行する`null`と、がとして表示されます。
+ポリシーが設定されていないデータベースまたはテーブルの保持ポリシーに対して[show コマンド](../management/retention-policy.md)を実行すると、 `Policy` がとして表示され `null` ます。
 
 既定の保持ポリシー (前述の既定値を使用) は、次のコマンドを使用して適用できます。
 
@@ -83,7 +83,7 @@ ms.locfileid: "82617393"
 
 ## <a name="examples"></a>例
 
-クラスターにという名前`MyDatabase`のデータベースがあり、 `MyTable1`テーブル`MyTable2`と`MySpecialTable`
+クラスターにという名前のデータベースがあり、 `MyDatabase` テーブルと `MyTable1` `MyTable2``MySpecialTable`
 
 **1. データベース内のすべてのテーブルに対して、論理削除期間を7日に設定し、復旧を無効にするように設定します。**
 
@@ -104,9 +104,9 @@ ms.locfileid: "82617393"
 .alter-merge table MySpecialTable policy retention softdelete = 7d recoverability = disabled
 ```
 
-**2. `MyTable1`テーブルの設定`MyTable2`で、論理的な削除期間が7日、回復性が有効になっ`MySpecialTable`ていること、およびの論理削除期間が14日、回復不可能**であるように設定されている。
+**2. テーブル `MyTable1` の設定で、 `MyTable2` 論理的な削除期間が7日、回復性が有効になっていること、および `MySpecialTable` の論理削除期間が14日、回復不可能**であるように設定されている。
 
-* *オプション 1 (推奨)*: データベースレベルの保持ポリシーを設定します。このポリシーには、論理的な削除期間が7日、回復性が有効になっていることを示します。また、の場合は`MySpecialTable`、の論理的な削除期間が14日、回復性が無効になっているテーブルレベルの保持ポリシーを設定します。
+* *オプション 1 (推奨)*: データベースレベルの保持ポリシーを設定します。このポリシーには、論理的な削除期間が7日、回復性が有効になっていることを示します。また、の場合は、の論理的な削除期間が14日、回復性が無効になっているテーブルレベルの保持ポリシーを設定し `MySpecialTable` ます。
 
 ```kusto
 .delete table MyTable1 policy retention   // optional, only if the table previously had its policy set
@@ -123,9 +123,9 @@ ms.locfileid: "82617393"
 .alter-merge table MySpecialTable policy retention softdelete = 14d recoverability = enabled
 ```
 
-**3. テーブル`MyTable1`を設定`MyTable2`し、論理削除期間を7日間にして、データ`MySpecialTable`を無期限に保持します**。
+**3. テーブルを設定し `MyTable1` 、 `MyTable2` 論理削除期間を7日間にして、 `MySpecialTable` データを無期限に保持します**。
 
-* *オプション 1*: データベースレベルの保持ポリシーに7日間の論理的な削除の期間を設定し、テーブルレベルの保持ポリシーをに設定します。これには、の`MySpecialTable`ソフト削除期間として100年 (既定の保持ポリシー) を設定します。
+* *オプション 1*: データベースレベルの保持ポリシーに7日間の論理的な削除の期間を設定し、テーブルレベルの保持ポリシーをに設定します。これには、のソフト削除期間として100年 (既定の保持ポリシー) を設定し `MySpecialTable` ます。
 
 ```kusto
 .delete table MyTable1 policy retention   // optional, only if the table previously had its policy set
@@ -134,7 +134,7 @@ ms.locfileid: "82617393"
 .alter table MySpecialTable policy retention "{}" // this sets the default retention policy
 ```
 
-* *オプション 2*: テーブル`MyTable1`の場合`MyTable2`は、必要な論理削除期間を7日間にしてテーブルレベルの保持ポリシーを設定し、の`MySpecialTable`データベースレベルとテーブルレベルのポリシーが設定されていないことを確認します。
+* *オプション 2*: テーブルの場合は `MyTable1` `MyTable2` 、必要な論理削除期間を7日間にしてテーブルレベルの保持ポリシーを設定し、のデータベースレベルとテーブルレベルのポリシーが設定されていないことを確認し `MySpecialTable` ます。
 
 ```kusto
 .delete database MyDatabase policy retention   // optional, only if the database previously had its policy set
@@ -143,7 +143,7 @@ ms.locfileid: "82617393"
 .alter-merge table MyTable2 policy retention softdelete = 7d
 ```
 
-* *オプション 3*: テーブル`MyTable1`の場合`MyTable2`は、目的の論理削除期間7日を使用してテーブルレベルの保持ポリシーを設定します。 テーブル`MySpecialTable`については、論理的な削除期間が100年 (既定の保持ポリシー) になっているテーブルレベルの保持ポリシーを設定します。
+* *オプション 3*: テーブルの場合は `MyTable1` `MyTable2` 、目的の論理削除期間7日を使用してテーブルレベルの保持ポリシーを設定します。 テーブルについては `MySpecialTable` 、論理的な削除期間が100年 (既定の保持ポリシー) になっているテーブルレベルの保持ポリシーを設定します。
 
 ```kusto
 .alter-merge table MyTable1 policy retention softdelete = 7d

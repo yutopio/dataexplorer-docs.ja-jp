@@ -1,6 +1,6 @@
 ---
-title: コマンド管理 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのコマンド管理について説明します。
+title: コマンド管理-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでのコマンドの管理について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,29 +8,29 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5685833431529af22aa4d8778d121f5a4dec16d1
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: e6a31e2c79ae658cceecfdad0ce307e2522bb55b
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744308"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011416"
 ---
-# <a name="commands-management"></a>コマンド管理
+# <a name="commands-management"></a>コマンドの管理
 
-## <a name="show-commands"></a>.show コマンド 
+## <a name="show-commands"></a>。コマンドを表示する 
 
-`.show``commands`コマンドは、最終状態に達した管理コマンドを含むテーブルを返します。 これらのコマンドは、30 日間のクエリに使用できます。
+`.show commands`最後の状態に達した管理コマンドを含むテーブルを返します。 これらのコマンドは、クエリで30日間使用できます。
 
-Commands テーブルには、完了した各コマンドのリソース消費の詳細を含む 2 つの列があります。
-* 合計 CPU: このコマンドで消費される CPU クロック時間の合計 (ユーザー モード + カーネル モード)。
-* リソース使用率: そのコマンドに関連するすべてのリソース使用率情報を含むオブジェクト (TotalCpu を含む)。
+Commands テーブルには、完了したすべてのコマンドのリソース消費の詳細を含む2つの列があります。
 
-追跡されるリソースの消費量には、データの更新と、現在の管理コマンドに関連付けられているクエリが含まれます。
-現在のところ、一部の管理コマンドのみがコマンド テーブル (.ingest、.set、.append、.set または replace、.set or-append) でカバーされており、徐々に、さらに多くのコマンドが今後追加されます。
+* TotalCpu-このコマンドで使用される CPU のクロック時間の合計 (ユーザーモード + カーネルモード)。
+* ResourceUtilization 率-TotalCpu など、そのコマンドに関連するすべてのリソース使用情報が含まれます。
 
+追跡されるリソース消費には、データの更新と、現在の管理コマンドに関連付けられているクエリが含まれます。
+現在、コマンドテーブル (、、、、) では、一部の管理コマンドのみが対象と `.ingest` `.set` `.append` `.set-or-replace` `.set-or-append` なります。 コマンドテーブルに追加されるコマンドが徐々に増えています。
 
-* [データベース管理者またはデータベース・モニター](../management/access-control/role-based-authorization.md)は、データベースで呼び出されたコマンドを表示できます。
-* 他のユーザーは、そのユーザーが呼び出したコマンドのみを表示できます。
+* データベース[管理者またはデータベースモニター](../management/access-control/role-based-authorization.md)は、データベースで呼び出された任意のコマンドを表示できます。
+* 他のユーザーは、それらによって呼び出されたコマンドのみを表示できます。
 
 **構文**
 
@@ -38,18 +38,19 @@ Commands テーブルには、完了した各コマンドのリソース消費�
  
 **例**
  
-|クライアントアクティビティId |CommandType |Text |データベース |スタートンオン |ラストアップデートオン |Duration |State |RootActivityId |User |FailureReason |Application |プリンシパル |合計Cpu |ResourceUtilization
+|ClientActivityId |CommandType |テキスト |データベース |StartedOn |LastUpdatedOn |Duration |State |RootActivityId |User |FailureReason |アプリケーション |プリンシパル |TotalCpu |ResourceUtilization
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|--
-|KD2RunCommand;a069f9e3-6062-4a0e-aa82-75a1b5e16fb4 |エクステントマージ   |.マージ非同期操作.    |DB1    |2017-09-05 11:08:07.5738569    |2017-09-05 11:08:09.1051161    |00:00:01.5312592   |完了  |b965d809-3f3e-4f44-bd2b-5e1f49ac46c5   |AAD アプリ id=5ba8cec2-9a70-e92c98cad651  |   |クスト.Azure.DM.Svc |aadapp=5ba8cec2-9a70-e92c98cad651  |00:00:03.5781250   |{ "スキャンドエクステント統計": { "MinDataScannedtime": null、 "MaxDataScannedTime": null },"CacheStatistics": { メモリ" { "ミス": 2, "ヒット": "ディスク": { "ミス" : { "ミス" : 2, "ヒット" } } } } } } 
-|柯。実行コマンド;710e08ca-2cd3-4d2d-b7bd-2738d335aa50 |データインジングエストプル |に取り込む .   |TestDB |2017-09-04 16:00:37.0915452    |2017-09-04 16:04:37.2834555    |00:04:00.1919103   |失敗 |a8986e9e-943f-81b0270d6fae4    |cooper@fabrikam.com    |ソケット接続は破棄されました。   |Kusto.Explorer |aaduser=..    |00:00:00   |{ "スキャンドエクステント統計" : { "MinDataScannedTime": null, "MaxDataScannedTime": null }, "キャッシュ統計" : { "メモリ" { "メモリ" { "ミス" : 0, ヒット" " "ディスク" : { "ミス" : "ヒット" : "ヒット" } 
-|KD2RunCommand;97db47e6-93e2-4306-8b7d-670f2c3307ff |エクステント再構築 |.マージ非同期操作.    |DB2    |2017-09-18 13:29:38.5945531    |2017-09-18 13:29:39.9451163    |00:00:01.3505632   |完了  |d5ebb755-d5df-4e94-b240-9accdf06c2d1   |AAD アプリ id=5ba8cec2-9a70-e92c98cad651  |   |クスト.Azure.DM.Svc |aadapp=5ba8cec2-9a70-e92c98cad651  |00:00:00.8906250   |{ "スキャンドエクステント統計": { "MinDataScannedtime": null、 "MaxDataScannedTime": null }、"CacheStatistics": { "ミス": {ミス" " "ヒット" " "ヒット" " "ディスク" : {"ミス" " " "ミス" " " "ヒット" " } } } } } } } "MemoryPeak" : 88828560, "TotalCpu" " "00:00:00.8906250"} 
+|KD2RunCommand;a069f9e3-6062-4a0e-aa82-75a1b5e16fb4 |ExtentsMerge   |。非同期操作をマージしています...    |DB1    |2017-09-05 11:08: 07.5738569    |2017-09-05 11:08: 09.1051161    |00:00: 01.5312592   |完了  |b965d809-3f3e-4f44-bd2b-5e1f49ac46c5   |AAD アプリ id = 5ba8cec2-9a70-e92c98cad651  |   |Kusto. Azure. .Svc |aadapp = 5ba8cec2 a70-e92c98cad651  |00:00: 03.5781250   |{"ScannedExtentsStatistics": {"MinDataScannedTime": null、"MaxDataScannedTime": null}、"CacheStatistics": {Memory ": {" ミス ": 2、" ヒット ":20}、" ディスク ": {" ミス ": 2、" ヒット ": 0}}、" MemoryPeak ": 159620640、" TotalCpu ":" 00:00: 03.5781250 "} 
+|KE.RunCommand710e08ca-2cd3-4d2d-b7bd-2738d335aa50    |DataIngestPull |。 MyTableName に取り込む...   |TestDB |2017-09-04 16:00: 37.0915452    |2017-09-04 16:04: 37.2834555    |00:04: 00.1919103   |Failed |a8986e9e-81b0270d6fae4    |cooper@fabrikam.com    |ソケット接続は破棄されています。   |Kusto.Explorer |aaduser =...    |00:00:00   |{"ScannedExtentsStatistics": {"MinDataScannedTime": null、"MaxDataScannedTime": null}、"CacheStatistics": {"Memory": {"ミス": 0、ヒット ": 0}、" ディスク ": {" ミス ": 0、" ヒット ": 0}}、" MemoryPeak ": 0、" TotalCpu ":" 00:00:00 "} 
+|KD2RunCommand;97db47e6-93e2-4306-8b7d-670f2c3307ff |ExtentsRebuild |。非同期操作をマージしています...    |DB2    |2017-09-18 13:29: 38.5945531    |2017-09-18 13:29: 39.9451163    |00:00: 01.3505632   |完了  |d5ebb755-d5df-4e94-b240-9accdf06c2d1   |AAD アプリ id = 5ba8cec2-9a70-e92c98cad651  |   |Kusto. Azure. .Svc |aadapp = 5ba8cec2 a70-e92c98cad651  |00:00: 00.8906250   |{"ScannedExtentsStatistics": {"MinDataScannedTime": null、"MaxDataScannedTime": null}、"CacheStatistics": {Memory ": {" ミス ": 0、" ヒット ": 1}、" ディスク ": {" ミス ": 0、" ヒット ": 0}}、" MemoryPeak ": 88828560、" TotalCpu ":" 00:00: 00.8906250 "} 
 
-**例: ResourceUtilization 列から特定のデータを抽出する**
+**例: ResourceUtilization 率列から特定のデータを抽出する**
 
-ResourceUtilization 列内のプロパティの 1 つにアクセスするには、ResourcesUtilization.xxx呼び出すことによって行われます (xxx はプロパティ名です)。
-ResourceUtilization は動的な列であるため、値を処理するには、まず特定のデータ型に変換する必要があります (tolong、toint、totimespan、..  
+ResourceUtilization 率列内のいずれかのプロパティにアクセスするには、ResourcesUtilization.xxx (xxx はプロパティ名) を呼び出します。
+> [!NOTE] 
+> `ResourceUtilization`は動的列です。 値を操作するには、最初にそれを特定のデータ型に変換する必要があります。 、、などの変換関数を使用し `tolong` `toint` `totimespan` ます。  
 
-次に例を示します。
+たとえば、オブジェクトに適用された
 
 ```kusto
 .show commands
@@ -60,20 +61,21 @@ ResourceUtilization は動的な列であるため、値を処理するには、
 | project StartedOn, MemoryPeak, TotalCpu, Text
 ```
 
-|スタートンオン |メモリピーク |合計Cpu |Text
+|StartedOn |MemoryPeak |TotalCpu |テキスト
 |--|--|--|--
-| 2017-09-28 12:11:27.8155381   | 800396032 | 00:00:04.5312500  | .append Server_Boots \| <ブートスタートソーステーブル = セッション開始を可能にします。...
-| 2017-09-28 11:21:26.7304547   | 750063056 | 00:00:03.8218750  | .設定または追加 WebUsage <\|データベース(「CuratedDB」)。WebUsage_v2 | 要約。。。 | プロジェクト。。。
-| 2017-09-28 12:16:17.4762522   | 676289120 | 00:00:00.0625000  | .set-or-append AtlasClusterEventStats (.) \| <Atlas_Temp (2017-09-28 12:13:28.7621737),日時(2017-09-28 12:14:28.8168492))
+| 2017-09-28 12:11: 27.8155381   | 800396032 | 00:00: 04.5312500 |。追加 Server_Boots <\| Let bootStartsSourceTable = sessionstarts;...
+| 2017-09-28 11:21: 26.7304547   | 750063056 | 00:00: 03.8218750 |. set-または-append WebUsage <\| データベース (' CuratedDB ')。WebUsage_v2 | 概要... | プロジェクト...
+| 2017-09-28 12:16: 17.4762522   | 676289120 | 00:00: 00.0625000 |. set-または-append AtlasClusterEventStats with (...) <\| Atlas_Temp (datetime (2017-09-28 12:13: 28.7621737), datetime (2017-09-28 12:14: 28.8168492))
 
 ## <a name="investigating-performance-issues"></a>パフォーマンスの問題の調査
 
-`.show``commands`は、各 Control コマンドによって消費されるリソースを表示できるため、パフォーマンスの問題を調査するために使用できます。
-次の例は、このような調査のための単純で便利なクエリです。
+`.show`は、 `commands` 各コントロールコマンドによって使用されているリソースを表示するため、パフォーマンスの問題を調査するために使用できます。
 
-### <a name="querying-the-totalcpu-column"></a>合計 Cpu 列のクエリ
+次の例は、このような調査を行うための簡単で便利なクエリです。
 
-最終日の上位 10 CPU のクエリ:
+### <a name="query-the-totalcpu-column"></a>TotalCpu 列に対してクエリを実行します。
+
+過去1日の上位10個の CPU 消費クエリ。
 
 ```kusto
 .show commands
@@ -82,7 +84,7 @@ ResourceUtilization は動的な列であるため、値を処理するには、
 | project StartedOn, CommandType, ClientActivityId, TotalCpu 
 ```
 
-TotalCpu が 3 分を超えた過去 10 時間のすべてのクエリ:
+TotalCpu が3分間経過した過去10時間のすべてのクエリ。
 
 ```kusto
 .show commands
@@ -91,7 +93,7 @@ TotalCpu が 3 分を超えた過去 10 時間のすべてのクエリ:
 | order by TotalCpu 
 ```
 
-過去 24 時間の TotalCpu が 5 分を超えていたすべてのクエリは、ユーザーとプリンシパル別にグループ化されています。
+過去24時間の TotalCpu が5分間に達したすべてのクエリは、ユーザーおよびプリンシパル別にグループ化されています。
 
 ```kusto
 .show commands  
@@ -102,7 +104,7 @@ TotalCpu が 3 分を超えた過去 10 時間のすべてのクエリ:
 | project User, Principal, CountAboveThreshold, TotalCount, PercentageAboveThreshold, MaxTotalCpu, AverageCpu, 50th_Percentile_TotalCpu, 95th_Percentile_TotalCpu
 ```
 
-タイムチャート: 平均 CPU 対 95 パーセンタイル対最大 CPU :
+線上: 平均 CPU 対95パーパーセンタイルと最大 CPU。
 
 ```kusto
 .show commands 
@@ -111,9 +113,9 @@ TotalCpu が 3 分を超えた過去 10 時間のすべてのクエリ:
 | render timechart
 ```
 
-## <a name="querying-the-memorypeak"></a>メモリピークのクエリ
+## <a name="query-the-memorypeak"></a>MemoryPeak のクエリを実行する
 
-最後の日の上位 10 件のクエリで、MemoryPeak の値が最も高い場合:
+最上位の MemoryPeak 値を持つ最後の日の上位10件のクエリ。
 
 ```kusto
 .show commands
@@ -123,7 +125,7 @@ TotalCpu が 3 分を超えた過去 10 時間のすべてのクエリ:
 | top 10 by MemoryPeak  
 ```
 
-平均メモリピーク対95パーセンタイル対最大メモリピークのタイムチャート:
+平均 MemoryPeak 線上95パーパーセンタイルと Max MemoryPeak の比較。
 
 ```kusto
 .show commands 

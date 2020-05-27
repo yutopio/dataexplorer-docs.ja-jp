@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 4a2b18f28840291fc02002239297b45f38be00be
-ms.sourcegitcommit: 4e46b497d518884693a142f4ae21ea497db81861
+ms.openlocfilehash: 21514de40910691e878dbc6d237d810a13676b40
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/25/2020
-ms.locfileid: "83824919"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011535"
 ---
 # <a name="capacity-policy"></a>キャパシティ ポリシー
 
@@ -31,7 +31,7 @@ ms.locfileid: "83824919"
 
 ## <a name="ingestion-capacity"></a>インジェスト容量
 
-|プロパティ                           |種類    |説明                                                                                                                                                                               |
+|プロパティ                           |Type    |説明                                                                                                                                                                               |
 |-----------------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |ClusterMaximumConcurrentOperations |long    |クラスター内の同時インジェスト操作数の最大値                                                                                                            |
 |CoreUtilizationCoefficient         |double  |インジェスト容量を計算するときに使用するコアの割合の係数 (計算の結果は常にによって正規化されます `ClusterMaximumConcurrentOperations` ) |                                                                                                                             |
@@ -45,7 +45,7 @@ ms.locfileid: "83824919"
 
 ## <a name="extents-merge-capacity"></a>エクステントのマージ容量
 
-|プロパティ                           |種類    |説明                                                                                    |
+|プロパティ                           |Type    |説明                                                                                    |
 |-----------------------------------|--------|-----------------------------------------------------------------------------------------------|
 |MaximumConcurrentOperationsPerNode |long    |1つのノードでの同時実行エクステントのマージ/再構築操作数の最大値 |
 
@@ -59,7 +59,7 @@ ms.locfileid: "83824919"
 
 ## <a name="extents-purge-rebuild-capacity"></a>エクステント消去の再構築容量
 
-|プロパティ                           |種類    |説明                                                                                                                           |
+|プロパティ                           |Type    |説明                                                                                                                           |
 |-----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------|
 |MaximumConcurrentOperationsPerNode |long    |1つのノードでの消去操作の同時再構築エクステント数の最大値 |
 
@@ -72,7 +72,7 @@ ms.locfileid: "83824919"
 
 ## <a name="export-capacity"></a>容量のエクスポート
 
-|プロパティ                           |種類    |説明                                                                                                                                                                            |
+|プロパティ                           |Type    |説明                                                                                                                                                                            |
 |-----------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクスポート操作数の最大値。                                                                                                           |
 |CoreUtilizationCoefficient         |double  |エクスポート容量を計算するときに使用するコアの割合の係数。 計算の結果は、常にによって正規化され `ClusterMaximumConcurrentOperations` ます。 |
@@ -86,7 +86,7 @@ ms.locfileid: "83824919"
 
 ## <a name="extents-partition-capacity"></a>エクステントパーティション容量
 
-|プロパティ                           |種類    |説明                                                                             |
+|プロパティ                           |Type    |説明                                                                             |
 |-----------------------------------|--------|----------------------------------------------------------------------------------------|
 |ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクステントのパーティション操作数の最大値。 |
 
@@ -131,7 +131,7 @@ ms.locfileid: "83824919"
 
 Kusto は、次のユーザーによって開始されるコマンドの同時要求数を制限します。
 
-* Ingestions ([ここ](../management/data-ingestion/index.md)に記載されているすべてのコマンドを含む)
+* Ingestions ([ここ](../../ingest-data-overview.md)に記載されているすべてのコマンドを含む)
    * 制限は、[容量ポリシー](#capacity-policy)で定義されているとおりです。
 * 破棄
    * 現在、グローバルはクラスターごとに1つずつ修正されています。

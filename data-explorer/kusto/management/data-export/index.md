@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/09/2019
-ms.openlocfilehash: 88bb9e6541d9dc5c934affc8f777f836aad86ae1
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: f8c05967d684f9723dd26085eddda7261a7eb19b
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373486"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011399"
 ---
 # <a name="data-export"></a>データのエクスポート
 
@@ -23,7 +23,7 @@ ms.locfileid: "83373486"
 
 * **クライアント側のエクスポート**: 最も単純な形式では、クライアント側でデータ エクスポートを実行できます (クライアントはサービスに対してクエリを実行し、結果を読み取り、その後にそれらを書き込みます)。 この形式のデータ エクスポートは、クライアント ツールに依存して、通常、ツールが実行されているローカル ファイルシステムへのエクスポートを実行します。 このモデルをサポートするツールとしては、[Kusto.Explorer](../../tools/kusto-explorer.md)、[Web UI](../../../web-query-data.md) などがあります。
 
-* **サービス側のエクスポート (プル)** : エクスポートのターゲットが (クエリと同じまたは別のクラスター/データベース上にある) Kusto テーブルの場合は、ターゲット テーブルで "クエリからの取り込み" フローを使用します。 このフローでは、クエリが実行されて、その結果がすぐに Kusto テーブルに取り込まれます。 「[データ インジェスト](../data-ingestion/index.md)」を参照してください。
+* **サービス側のエクスポート (プル)** : エクスポートのターゲットが (クエリと同じまたは別のクラスター/データベース上にある) Kusto テーブルの場合は、ターゲット テーブルで "クエリからの取り込み" フローを使用します。 このフローでは、クエリが実行されて、その結果がすぐに Kusto テーブルに取り込まれます。 「[データ インジェスト](../../../ingest-data-overview.md)」を参照してください。
 
 
 

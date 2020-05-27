@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: d46a8669c523955f74d3f489c7b10e5b0f7ccef6
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: e35245cf767e3cf82ab61d5ce0704015d996cd7c
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373284"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011378"
 ---
 # <a name="externaldata-operator"></a>externaldata 演算子
 
@@ -33,7 +33,7 @@ ms.locfileid: "83373284"
 
 * *StorageConnectionString*:[ストレージ接続文字列](../api/connection-strings/storage.md)は、返されるデータを保持しているストレージアーティファクトを表します。
 
-* *Prop1*、 *Value1*、...: [[インジェストのプロパティ](../management/data-ingestion/index.md)] に表示されている、ストレージから取得したデータを解釈する方法を説明する追加のプロパティです。
+* *Prop1*、 *Value1*、...: [[インジェストのプロパティ](../../ingestion-properties.md)] に表示されている、ストレージから取得したデータを解釈する方法を説明する追加のプロパティです。
     * 現在サポートされているプロパティ: `format` および `ignoreFirstRecord` 。
     * サポートされているデータ形式:、、、、など、[インジェストデータ形式](../../ingestion-supported-formats.md)のいずれかがサポートされています `csv` `tsv` `json` `parquet` `avro` 。
 

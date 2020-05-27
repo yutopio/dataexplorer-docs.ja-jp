@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: ce86e24fbd13221fe333f281dac3ba3b6ac73a1f
-ms.sourcegitcommit: da7c699bb62e1c4564f867d4131d26286c5223a8
+ms.openlocfilehash: 3f1371fe298b2d0e066fc3a278cc3b560050416c
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/14/2020
-ms.locfileid: "83404243"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011586"
 ---
 # <a name="partitioning-and-composing-intermediate-results-of-aggregations"></a>集計の中間結果のパーティション分割と作成
 
@@ -133,7 +133,7 @@ Kusto の制限に達しているデータセットは、データセットに�
 
 ::: zone pivot="azuredataexplorer"
 
-この問題を解決するには、新たに追加されたデータを `hll` 、 `tdigest` [`hll()`](hll-aggfunction.md) 必要な操作がである場合はを使用し、または `dcount` を使用して [`tdigest()`](tdigest-aggfunction.md) 必要な操作 [`set/append`](../management/data-ingestion/index.md) [`update policy`](../management/updatepolicy.md) である場合は、を使用して、またはの値として一時テーブルに追加する この場合、またはの中間結果 `dcount` は `tdigest` 別のデータセットに保存されます。これは、ターゲットの大きな値よりも小さくする必要があります。
+この問題を解決するには、新たに追加されたデータを `hll` 、 `tdigest` [`hll()`](hll-aggfunction.md) 必要な操作がである場合はを使用し、または `dcount` を使用して [`tdigest()`](tdigest-aggfunction.md) 必要な操作 [`set/append`](../../ingest-data-overview.md) [`update policy`](../management/updatepolicy.md) である場合は、を使用して、またはの値として一時テーブルに追加する この場合、またはの中間結果 `dcount` は `tdigest` 別のデータセットに保存されます。これは、ターゲットの大きな値よりも小さくする必要があります。
 
 ::: zone-end
 

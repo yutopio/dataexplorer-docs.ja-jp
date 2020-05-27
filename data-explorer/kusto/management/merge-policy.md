@@ -1,6 +1,6 @@
 ---
-title: マージ ポリシー管理 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのマージ ポリシー管理について説明します。
+title: マージポリシー管理-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのマージポリシーの管理について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4093c9c09e4e268bc38cabdc6da27f0ac2ee17ab
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: 9ef6f2cd2359e35e90c3903738adf82728e9da40
+ms.sourcegitcommit: a562ce255ac706ca1ca77d272a97b5975235729d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81664022"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83867071"
 ---
-# <a name="merge-policy-management"></a>マージ ポリシー管理
+# <a name="merge-policy-management"></a>マージポリシー管理
 
-## <a name="show-policy"></a>ポリシーを表示する
+## <a name="show-policy"></a>ポリシーの表示
 
 ```kusto
 .show table [table_name] policy merge
@@ -29,43 +29,45 @@ ms.locfileid: "81664022"
 .show database * policy merge
 ```
 
-データベースまたはテーブルの現在のマージ ポリシーを表示します。
-指定された名前が "*" の場合、指定されたエンティティの種類 (データベースまたはテーブル) のすべてのポリシーを表示します。
+データベースまたはテーブルの現在のマージポリシーを表示します。
+指定された名前が ' * ' の場合、特定のエンティティ型 (データベースまたはテーブル) のすべてのポリシーを表示します。
 
 ### <a name="output"></a>出力
 
-|ポリシー名 | エンティティ名 | ポリシー | 子エンティティ | エンティティの種類
+|ポリシー名 | エンティティ名 | ポリシー | 子エンティティ | エンティティ型
 |---|---|---|---|---
-|エクステントマージポリシー | データベース/テーブル名 | ポリシーを表す JSON 形式の文字列 | テーブルのリスト (データベース用)|データベース &#124; テーブル
+|ExtentsMergePolicy | データベース/テーブル名 | ポリシーを表す JSON 形式の文字列 | テーブルの一覧 (データベース用)|データベース &#124; テーブル
 
 ## <a name="alter-policy"></a>ポリシーの変更
 
 ### <a name="examples"></a>例
 
-#### <a name="1-setting-all-properties-of-the-policy-explicitly-at-table-level"></a>1. ポリシーのすべてのプロパティをテーブルレベルで明示的に設定する場合:
+#### <a name="1-setting-all-properties-of-the-policy-explicitly-at-table-level"></a>1. テーブルレベルで、ポリシーのすべてのプロパティを明示的に設定します。
 
 ```kusto
 .alter table [table_name] policy merge 
 @'{'
     '"ExtentSizeTargetInMb": 1024,'
     '"OriginalSizeInMbUpperBoundForRebuild": 2048,'
-    '"RowCountUpperBoundForRebuild": 750000, '
-    '"RowCountUpperBoundForMerge": 0, '
-    '"MaxExtentsToMerge": 100, '
-    '"LoopPeriod": "01:00:00", '
-    '"MaxRangeInHours": 8, '
+    '"OriginalSizeInMbUpperBoundForMerge": 4096,'
+    '"RowCountUpperBoundForRebuild": 750000,'
+    '"RowCountUpperBoundForMerge": 0,'
+    '"MaxExtentsToMerge": 100,'
+    '"LoopPeriod": "01:00:00",'
+    '"MaxRangeInHours": 8,'
     '"AllowRebuild": true,'
     '"AllowMerge": true '
 '}'
 ```
 
-#### <a name="2-setting-all-properties-of-the-policy-explicitly-at-database-level"></a>2. ポリシーのすべてのプロパティをデータベースレベルで明示的に設定する場合:
+#### <a name="2-setting-all-properties-of-the-policy-explicitly-at-database-level"></a>2. データベースレベルで、ポリシーのすべてのプロパティを明示的に設定します。
 
 ```kusto
 .alter database [database_name] policy merge 
 @'{'
     '"ExtentSizeTargetInMb": 1024,'
     '"OriginalSizeInMbUpperBoundForRebuild": 2048,'
+    '"OriginalSizeInMbUpperBoundForMerge": 4096,'
     '"RowCountUpperBoundForRebuild": 750000,'
     '"RowCountUpperBoundForMerge": 0,'
     '"MaxExtentsToMerge": 100,'
@@ -76,13 +78,13 @@ ms.locfileid: "81664022"
 '}'
 ```
 
-#### <a name="3-setting-the-default-merge-policy-at-database-level"></a>3. データベースレベルで*のデフォルト*のマージポリシーの設定
+#### <a name="3-setting-the-default-merge-policy-at-database-level"></a>3. データベースレベルで*既定*のマージポリシーを設定する:
 
 ```kusto
 .alter database [database_name] policy merge '{}'
 ```
 
-#### <a name="4-altering-a-single-property-of-the-policy-at-database-level-keeping-all-other-properties-as-is"></a>4. ポリシーの単一のプロパティをデータベース レベルで変更し、その他のすべてのプロパティを維持します。
+#### <a name="4-altering-a-single-property-of-the-policy-at-database-level-keeping-all-other-properties-as-is"></a>4. データベースレベルでポリシーの1つのプロパティを変更し、その他のすべてのプロパティをそのままにします。
 
 ```kusto
 .alter-merge database [database_name] policy merge
@@ -91,7 +93,7 @@ ms.locfileid: "81664022"
 '}'
 ```
 
-#### <a name="5-altering-a-single-property-of-the-policy-at-table-level-keeping-all-other-properties-as-is"></a>5. ポリシーの単一のプロパティをテーブルレベルで変更し、その他のすべてのプロパティを維持します。
+#### <a name="5-altering-a-single-property-of-the-policy-at-table-level-keeping-all-other-properties-as-is"></a>5. テーブルレベルでポリシーの1つのプロパティを変更し、他のすべてのプロパティをそのままにします。
 
 ```kusto
 .alter-merge table [table_name] policy merge
@@ -100,9 +102,9 @@ ms.locfileid: "81664022"
 '}'
 ```
 
-上記のすべては、エンティティ (修飾名として指定されたデータベースまたはテーブル) の更新されたエクステント マージ ポリシーを出力として返します。
+上記のいずれの場合も、エンティティ (修飾名として指定されたデータベースまたはテーブル) の更新されたエクステントのマージポリシーが出力として返されます。
 
-ポリシーの変更が有効になるには、最大で 1 時間かかる場合があります。
+ポリシーに対する変更は、有効になるまで最大1時間かかる場合があります。
 
 ## <a name="delete-policy-of-merge"></a>マージのポリシーを削除する
 
@@ -113,4 +115,4 @@ ms.locfileid: "81664022"
 
 ```
 
-このコマンドは、指定されたエンティティの現在のマージ ポリシーを削除します。
+コマンドは、指定されたエンティティの現在のマージポリシーを削除します。

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: bb25fd556ab59dc5bdf5c533435f99deb6b32fdb
-ms.sourcegitcommit: da7c699bb62e1c4564f867d4131d26286c5223a8
+ms.openlocfilehash: 26c6d660cb254ec2df6600e90437d7db7ca748f4
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/14/2020
-ms.locfileid: "83404236"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863151"
 ---
 # <a name="cross-database-and-cross-cluster-queries"></a>複数のデータベースに対するクエリと複数のクラスターに対するクエリ
 
@@ -23,7 +23,7 @@ ms.locfileid: "83404236"
 
 すべての Kusto クエリは、現在のクラスターと既定のデータベースのコンテキストで動作します。
 * [Kusto Explorer](../tools/kusto-explorer.md)では、[[接続] パネル](../tools/kusto-explorer.md#connections-panel)で既定のデータベースが選択されています。現在のクラスターは、そのデータベースを含む接続です。
-* [Kusto クライアントライブラリ](../api/netfx/about-kusto-data.md)を使用する場合、現在のクラスターと既定のデータベースは、 `Data Source` `Initial Catalog` それぞれ[kusto 接続文字列](../api/connection-strings/kusto.md)のプロパティとプロパティによって指定されます。
+* [Kusto クライアントライブラリ](../api/netfx/about-kusto-data.md)を使用する場合、現在のクラスターと既定のデータベースは `Data Source` 、 `Initial Catalog` それぞれ[kusto 接続文字列](../api/connection-strings/kusto.md)のプロパティとプロパティによって指定されます。
 
 ## <a name="queries"></a>クエリ
 既定以外のデータベースからテーブルにアクセスするには、次のように*修飾名*構文を使用する必要があります。現在のクラスター内のデータベースにアクセスするには、次のようにします。

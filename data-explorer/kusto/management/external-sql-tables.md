@@ -1,6 +1,6 @@
 ---
-title: 外部 SQL テーブル-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーでの外部 SQL テーブルの作成について説明します。
+title: 外部 SQL テーブルの作成と変更-Azure データエクスプローラー
+description: この記事では、外部 SQL テーブルを作成および変更する方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 9de01863ddb832421c5b6dbfe65b8ae451382fb7
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 235c68a8a04fd76dd3a9e25abac63db09e00919a
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373367"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863338"
 ---
-# <a name="external-sql-table"></a>外部 SQL テーブル
+# <a name="create-and-alter-external-sql-tables"></a>外部 SQL テーブルを作成および変更する
 
 コマンドが実行されるデータベース内の外部 SQL テーブルを作成または変更します。  
 
@@ -75,9 +75,9 @@ with
 
 **出力**
 
-| TableName   | TableType | Folder         | DocString | プロパティ                            |
+| TableName   | TableType | フォルダー         | DocString | プロパティ                            |
 |-------------|-----------|----------------|-----------|---------------------------------------|
-| ExternalSql | Sql       | ExternalTables | Docs      | {<br>  "TargetEntityKind": "sqltable" ",<br>  "TargetEntityName": "MySqlTable",<br>  "TargetEntityConnectionString": "Server = tcp: database. windows. net, 1433;Authentication = Active Directory Integrated、Initial Catalog = mydatabase; "、<br>  "FireTriggers": true、<br>  "CreateIfNotExists": true、<br>  "PrimaryKey": "x"<br>} |
+| ExternalSql | Sql       | ExternalTables | ドキュメント      | {<br>  "TargetEntityKind": "sqltable" ",<br>  "TargetEntityName": "MySqlTable",<br>  "TargetEntityConnectionString": "Server = tcp: database. windows. net, 1433;Authentication = Active Directory Integrated、Initial Catalog = mydatabase; "、<br>  "FireTriggers": true、<br>  "CreateIfNotExists": true、<br>  "PrimaryKey": "x"<br>} |
 
 ## <a name="querying-an-external-table-of-type-sql"></a>SQL 型の外部テーブルのクエリ 
 
@@ -95,3 +95,8 @@ external_table('MySqlExternalTable') | count
 Kusto は、SQL データベースに対して ' SELECT * from TABLE ' クエリを実行し、その後に Kusto 側のカウントを実行します。 このような場合は、外部テーブル関数を使用するのではなく、T-sql で直接記述し (' SELECT COUNT (1) FROM TABLE ')、 [sql_request プラグイン](../query/sqlrequestplugin.md)を使用して実行すると、パフォーマンスが向上します。 同様に、フィルターは SQL クエリにプッシュされません。  
 
 クエリが Kusto 側でさらに実行するためにテーブル全体 (または関連する列) の読み取りを必要とする場合は、外部テーブルを使用して SQL テーブルに対してクエリを実行します。 T-sql で SQL クエリを最適化できる場合は、 [sql_request プラグイン](../query/sqlrequestplugin.md)を使用します。
+
+## <a name="next-steps"></a>次のステップ
+
+* [外部テーブル全般制御コマンド](externaltables.md)
+* [Azure Storage または Azure Data Lake で外部テーブルを作成および変更する](external-tables-azurestorage-azuredatalake.md)

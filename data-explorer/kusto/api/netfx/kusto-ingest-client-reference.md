@@ -8,12 +8,12 @@ ms.reviewer: ohbitton
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/19/2020
-ms.openlocfilehash: 3a89af281b2376e7fc06d07643af8e95a6c97cd2
-ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
+ms.openlocfilehash: 49a689b88e508285f2876f2e86208afceda0872b
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83722101"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863253"
 ---
 # <a name="kustoingest-client-interfaces-and-classes"></a>Kusto. インジェストクライアントインターフェイスとクラス
 
@@ -23,7 +23,7 @@ Kusto インジェストライブラリの主なインターフェイスとク�
 * [クラス ExtendedKustoIngestClient](#class-extendedkustoingestclient): メインインジェストインターフェイスの拡張機能。
 * [クラス KustoIngestFactory](#class-kustoingestfactory): インジェストクライアントのメインファクトリ。
 * [クラス KustoIngestionProperties](#class-kustoingestionproperties): 一般的なインジェストプロパティを提供するために使用されるクラスです。
-* クラス IngestionMapping: インジェストのデータマッピングを記述するために使用されるクラスです。
+* [クラス IngestionMapping](#class-ingestionmapping): インジェストのデータマッピングを記述するために使用されるクラスです。
 * [Enum DataSourceFormat](#enum-datasourceformat): サポートされているデータソース形式 (CSV、JSON など)
 * [Interface IKustoQueuedIngestClient](#interface-ikustoqueuedingestclient): キューインジェストにのみ適用される操作を記述するインターフェイスです。
 * [クラス KustoQueuedIngestionProperties](#class-kustoqueuedingestionproperties): キューインジェストにのみ適用されるプロパティ。
@@ -355,7 +355,7 @@ KustoIngestionProperties クラスには、インジェストプロセスをき�
 |AdditionalTags |必要に応じて追加のタグ |
 |IngestIfNotExists |再度取り込みたくないタグの一覧 (テーブルごと) |
 |ValidationPolicy |データ検証の定義。 詳細については、[TODO] を参照してください。 |
-|形式 |取り込まれたされるデータの形式 |
+|Format |取り込まれたされるデータの形式 |
 |AdditionalProperties | インジェストコマンドに[インジェストプロパティ](../../../ingestion-properties.md)として渡されるその他のプロパティ。 すべてのインジェストプロパティがこのクラスの個別のメンバーで表されていないため、プロパティが渡されます。|
 
 ```csharp
@@ -374,6 +374,28 @@ public class KustoIngestionProperties
     public IDictionary<string, string> AdditionalProperties { get; set; }
 
     public KustoIngestionProperties(string databaseName, string tableName);
+}
+```
+
+## <a name="class-ingestionmapping"></a>IngestionMapping クラス
+
+既存のマッピングまたは列マッピングのリストへの参照を保持します。
+
+|プロパティ   |説明    |
+|-----------|-----------|
+|IngestionMappings | 列マッピング。各列には、ターゲット列のデータとそのソースが記述されています。 |
+|IngestionMappingKind | IngestionMappings プロパティに記述されているマッピングの種類: 次のうちのどれかです: Csv、Json、Avro、Parquet、SStream、Orc、ApacheAvro、または W3CLogFile |
+|IngestionMappingReference | 事前に作成されたマッピング名 |
+
+```csharp
+public class IngestionMapping
+{
+    public IEnumerable<ColumnMapping> IngestionMappings { get; set; }
+    public IngestionMappingKind IngestionMappingKind { get; set; }
+    public string IngestionMappingReference { get; set; }
+
+    public IngestionMapping()
+    public IngestionMapping(IngestionMapping ingestionMapping)
 }
 ```
 
@@ -416,7 +438,6 @@ var kustoIngestionProperties = new KustoIngestionProperties("TargetDatabase", "T
             Properties = new Dictionary<string, string>() {
             { MappingConsts.Ordinal, "1"} }
         } },
-        // IngestionMappingReference = mappingName, the pre-created mapping name
     },
     ValidationPolicy = new ValidationPolicy { ValidationImplications = ValidationImplications.Fail, ValidationOptions = ValidationOptions.ValidateCsvInputConstantColumns },
     Format = DataSourceFormat.csv

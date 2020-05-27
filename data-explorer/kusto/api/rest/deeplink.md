@@ -1,6 +1,6 @@
 ---
-title: UI ディープリンク - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの UI ディープ リンクについて説明します。
+title: UI ディープリンク-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの UI ディープリンクについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,79 +8,79 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: c9535ced274ccdbe38f8d9a765e98d11e7b381e5
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: aa47811bfe8004037cb04e642c234003087617a1
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523683"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863236"
 ---
-# <a name="ui-deep-links"></a>UI ディープ リンク
+# <a name="ui-deep-links"></a>UI ディープリンク
 
-REST API は、HTTP`GET`要求が呼び出し元を UI ツールにリダイレクトできるようにするディープ リンク機能を提供します。 たとえば、Kusto.Explorer ツールを開き、特定のクラスターとデータベースに対して自動構成し、特定のクエリを実行してその結果をユーザーに表示する URI を作成できます。
+REST API には、HTTP `GET` 要求によって呼び出し元を UI ツールにリダイレクトできるディープリンク機能が用意されています。 たとえば、Kusto エクスプローラーツールを開き、特定のクラスターおよびデータベース用に自動構成し、特定のクエリを実行し、その結果をユーザーに表示する URI を作成できます。
 
-UI は REST API を深くリンクします。
+UI ディープリンク REST API:
 
-* クラスタ (必須) は、REST API を実装するサービスとして暗黙的に定義されますが、URI クエリ パラメータ`uri`を指定することでオーバーライドできます。
+* クラスター (必須) は、通常、REST API を実装するサービスとして暗黙的に定義されますが、URI クエリパラメーターを指定することによってオーバーライドでき `uri` ます。
 
-* データベース (オプション) は、URI パスの最初の唯一のフラグメントとして指定されます。 データベースはクエリに必須で、制御コマンドにはオプションです。
+* データベース (省略可能) は、URI パスの最初の唯一のフラグメントとして指定されています。 クエリでは、データベースは必須であり、制御コマンドでは省略可能です。
 
-* クエリまたはコントロール コマンド (オプション) は、URI クエリ`query`パラメーター または URI`querysrc`クエリ パラメーター (クエリを保持する Web リソースを指す) を使用して指定します。
-  `query`は、クエリまたはコントロール コマンド自体のテキストで使用できます (HTTP クエリ パラメーター エンコードを使用してエンコードされます)。 または、クエリまたはコントロール コマンド テキストの gzip の base64 エンコーディングで使用できます (長いクエリを圧縮して既定のブラウザーの URI の長さの制限に合わせることができます)。
+* クエリまたは制御コマンド (オプション) は、URI クエリパラメーターを使用して指定する `query` か、 `querysrc` (クエリを保持する web リソースを参照する) uri クエリパラメーターを使用して指定します。
+  `query`クエリまたはコントロールコマンド自体のテキストで使用できます (HTTP クエリパラメーターエンコーディングを使用してエンコードされます)。 または、クエリまたは制御コマンドテキストの gzip の base64 エンコードで使用することもできます (長いクエリを圧縮して、既定のブラウザー URI の長さの制限に合わせることができるようにします)。
 
-* クラスタ接続の名前 (オプション) は、 URI クエリ パラメータ`name`を使用して指定します。
+* クラスター接続の名前 (省略可能) は、URI クエリパラメーターを使用して指定し `name` ます。
 
-* UI ツールは、オプションの`web`URI クエリ パラメーターを使用して指定します。
-  `web=0`は、デスクトップ アプリケーションの Kusto.Explorer を示します。 `web=1`は、アプリケーションを示します。
-  `web=2`は、アプリケーション分析に基づく Kusto.WebExplorer の古いバージョンです。 `web=3`は空のプロファイルを持つ Kusto.WebExplorer です (以前に開いていたタブやクラスタは使用できません)。 最後に、`web`クエリ パラメーターを使用`saw=1`して、SAW バージョンの Kusto.Explorer を示すことができます。
+* UI ツールは、省略可能な URI クエリパラメーターを使用して指定し `web` ます。
+  `web=0`デスクトップアプリケーション Kusto. エクスプローラーを示します。 `web=1`Kusto. WebExplorer web アプリケーションを示します。
+  `web=2`は、以前のバージョンの Kusto. WebExplorer (Application Insights Analytics に基づく) です。 `web=3`は、空のプロファイルを持つ Kusto. WebExplorer です (以前に開いていたタブやクラスターは使用できません)。 最後に、表示 `web` されて `saw=1` いる Kusto エクスプローラーを示すために、クエリパラメーターをに置き換えることができます。
 
-リンクの例をいくつか示します。
+リンクの例をいくつか次に示します。
 
-* `https://help.kusto.windows.net/`: ユーザー エージェント (ブラウザーなど) が要求`GET /`を発行すると、クラスターを照会するように構成されている既定の UI`help`ツールにリダイレクトされます。
-* `https://help.kusto.windows.net/Samples`: ユーザー エージェント (ブラウザーなど) が要求`GET /Samples`を発行すると、クラスター`help``Samples`データベースを照会するように構成されている既定の UI ツールにリダイレクトされます。
-* `http://help.kusto.windows.net/Samples?query=StormEvents`: ユーザー (ブラウザーなど) が要求を`GET /Samples?query=StormEvents`発行すると、クラスター`help``Samples`データベースを照会してクエリを発行するように構成されている既定の UI ツール`StormEvents`にリダイレクトされます。
+* `https://help.kusto.windows.net/`: ユーザーエージェント (ブラウザーなど) が要求を発行すると、クラスターに対し `GET /` てクエリを実行するように構成された既定の UI ツールにリダイレクトされ `help` ます。
+* `https://help.kusto.windows.net/Samples`: ユーザーエージェント (ブラウザーなど) が要求を発行すると、 `GET /Samples` クラスターデータベースに対してクエリを実行するように構成された既定の UI ツールにリダイレクトされ `help` `Samples` ます。
+* `http://help.kusto.windows.net/Samples?query=StormEvents`: ユーザー (ブラウザーなど) が要求を発行すると、 `GET /Samples?query=StormEvents` クラスターデータベースに対してクエリを実行するように構成された既定の UI ツールにリダイレクトされ、 `help` クエリを発行し `Samples` `StormEvents` ます。
 
 > [!NOTE]
-> ディープ リンク URI は、リダイレクトに使用される UI ツールによって認証が実行されるため、認証を必要としません。
-> HTTP`Authorization`ヘッダーが指定されている場合は、無視されます。
+> リダイレクトに使用される UI ツールによって認証が実行されるため、ディープリンク Uri は認証を必要としません。
+> `Authorization`HTTP ヘッダーが指定されている場合は無視されます。
 
 > [!IMPORTANT]
-> セキュリティ上の理由から、UI ツールは、ディープ リンクで`query`指定`querysrc`されている場合や指定されている場合でも、コントロール コマンドを自動的に実行しません。
+> セキュリティ上の理由から、 `query` `querysrc` ディープリンクでまたはが指定されている場合でも、UI ツールはコントロールコマンドを自動的に実行しません。
 
-## <a name="deep-linking-to-kustoexplorer"></a>クストーへのディープリンク.エクスプローラ
+## <a name="deep-linking-to-kustoexplorer"></a>Kusto. エクスプローラーへのディープリンク
 
-この REST API は、特定の Kusto エンジン クラスターへの接続を開き、そのクラスターに対してクエリを実行する特別に細工されたスタートアップ パラメーターを使用して Kusto.Explorer デスクトップ クライアント ツールをインストールして実行するリダイレクトを実行します。
+この REST API は、特定の Kusto エンジンクラスターへの接続を開き、そのクラスターに対してクエリを実行する特別に細工されたスタートアップパラメーターを使用して、Kusto エクスプローラーデスクトップクライアントツールをインストールして実行するリダイレクトを実行します。
 
-* パス: `/` [*データベース名*']
-* 動詞：`GET`
+* パス: `/` [*DatabaseName*']
+* 助動詞`GET`
 * クエリ文字列:`web=0`
 
 > [!NOTE]
-> [Kusto.Explorer](../../tools/kusto-explorer.md#deep-linking-queries)を起動するためのリダイレクト URI 構文の詳細については、Kusto.Explorer とのディープ リンクを参照してください。
+> Kusto を起動するためのリダイレクト URI 構文の詳細については、「 [Kusto によるディープリンク](../../tools/kusto-explorer-using.md#deep-linking-queries)」を参照してください。
 
-## <a name="deep-linking-to-kustowebexplorer"></a>クストへのディープリンク.ウェブエクスプローラ
+## <a name="deep-linking-to-kustowebexplorer"></a>Kusto へのディープリンク (WebExplorer)
 
-この REST API は、Web アプリケーションである Kusto.WebExplorer へのリダイレクトを実行します。
+この REST API は、web アプリケーションである Kusto. WebExplorer へのリダイレクトを実行します。
 
-* パス: `/` [*データベース名*']
-* 動詞：`GET`
+* パス: `/` [*DatabaseName*']
+* 助動詞`GET`
 * クエリ文字列:`web=1`
 
 ## <a name="specifying-the-query-or-control-command-in-the-uri"></a>URI でのクエリまたは制御コマンドの指定
 
-URI クエリ文字列パラメーター`query`を指定する場合は、URI クエリ文字列エンコード HTML ルールに従ってエンコードする必要があります。 あるいは、クエリまたは制御コマンドのテキストを gzip で圧縮し、base64 エンコードを使用してエンコードすることもできます。 これにより、より長いクエリやコントロール コマンドを送信できます (後者のエンコード方法の結果 URI が短くなるため)。
+URI クエリ文字列パラメーターを指定する場合 `query` は、uri クエリ文字列のエンコード HTML ルールに従ってエンコードする必要があります。 または、クエリまたはコントロールコマンドのテキストを gzip で圧縮し、base64 エンコードを使用してエンコードすることもできます。 これにより、より長いクエリまたは制御コマンドを送信することができます (後者のエンコード方法では Uri が短くなります)。
 
-## <a name="specifying-the-query-or-control-command-by-indirection"></a>間接指定によるクエリまたは制御コマンドの指定
+## <a name="specifying-the-query-or-control-command-by-indirection"></a>間接的にクエリまたは制御コマンドを指定する
 
-クエリまたは制御コマンドが非常に長い場合は、gzip/base64 を使用してエンコードしても、ユーザーエージェントの最大 URI 長を超えます。 または、URI クエリ文字列パラメーター`querysrc`が提供され、その値は、クエリまたはコントロール コマンド テキストを保持する Web リソースを指す短い URI です。
+クエリまたは制御コマンドが非常に長い場合、gzip/base64 を使用してエンコードした場合でも、ユーザーエージェントの URI の最大長を超えることはありません。 または、URI クエリ文字列パラメーターを `querysrc` 指定します。その値は、クエリまたはコントロールのコマンドテキストを保持する web リソースを指す短い uri です。
 
-たとえば、Azure BLOB ストレージによってホストされるファイルの URI を指定できます。
+たとえば、Azure Blob Storage によってホストされるファイルの URI を指定できます。
 
 > [!NOTE]
-> ディープ リンクが Web アプリケーション UI ツールに対するリンクである場合は、クエリまたは制御コマンドを提供する Web`querysrc`サービス (つまり、URI を提供`dataexplorer.azure.com`するサービス) が CORS をサポートするように構成されている必要があります。
+> ディープリンクが web アプリケーション UI ツールに対して実行される場合、クエリまたは制御コマンドを提供する web サービス (つまり、URI を提供するサービス) は、 `querysrc` の CORS をサポートするように構成する必要があり `dataexplorer.azure.com` ます。
 >
-> さらに、そのサービスで認証/承認情報が必要な場合は、URI 自体の一部として提供する必要があります。
+> さらに、そのサービスで認証/承認情報が必要な場合は、URI 自体の一部として指定する必要があります。
 >
-> たとえば、Azure `querysrc` BLOB ストレージ内の BLOB をポイントする場合は、CORS をサポートするようにストレージ アカウントを構成し、BLOB 自体を公開するか (セキュリティクレームなしでダウンロードできるように)、適切な Azure Storage SAS を URI に追加する必要があります。 CORS の構成は[、Azure ポータル](https://portal.azure.com/)または[Azure ストレージ エクスプローラー](https://azure.microsoft.com/features/storage-explorer/)から行うことができます。
-> [Azure ストレージの CORS サポートを](https://docs.microsoft.com/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)参照してください。
+> たとえば、が `querysrc` Azure Blob Storage の blob を指している場合、CORS をサポートするようにストレージアカウントを構成し、blob 自体をパブリック (セキュリティ要求なしでダウンロードできるようにするため) にするか、適切な AZURE STORAGE SAS を URI に追加する必要があります。 CORS の構成は、 [Azure portal](https://portal.azure.com/)または[Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)から行うことができます。
+> [Azure Storage での CORS のサポートを](https://docs.microsoft.com/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)参照してください。
 

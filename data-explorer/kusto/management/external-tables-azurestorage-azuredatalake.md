@@ -1,6 +1,6 @@
 ---
-title: Azure Storage または Azure Data Lake の外部テーブル-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーでの外部テーブル管理について説明します。
+title: Azure Storage または Azure Data Lake で外部テーブルを作成および変更する-Azure データエクスプローラー
+description: この記事では、Azure Storage または Azure Data Lake で外部テーブルを作成および変更する方法について説明します
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1c7670dfb06e95f227a4b828a86b980005eeeac9
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 2ef238d863f2f3fe181814ac14e3605de21a5aff
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373355"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863372"
 ---
-# <a name="external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake 内の外部テーブル
+# <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake で外部テーブルを作成および変更する
 
 次のコマンドでは、外部テーブルを作成する方法について説明します。 このテーブルは、Azure Blob Storage、Azure Data Lake Store Gen1、または Azure Data Lake Store Gen2 に配置できます。 
 [ストレージ接続文字列](../api/connection-strings/storage.md)は、これらの各オプションの接続文字列の作成について説明します。 
@@ -168,9 +168,9 @@ with
 
 **出力**
 
-|TableName|TableType|Folder|DocString|プロパティ|ConnectionStrings|メジャー グループ|
+|TableName|TableType|フォルダー|DocString|プロパティ|ConnectionStrings|メジャー グループ|
 |---|---|---|---|---|---|---|
-|External多重パーティション|Blob|ExternalTables|Docs|{"Format": "Csv"、"圧縮": false、"CompressionType": null、"FileExtension": "csv"、"IncludeHeaders": "None"、"Encoding": null、"NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;*******"]}|[{"StringFormat": "様名 = {0} ", "ColumnName": "様"、"ColumnName": "様"、"序数": 0}、PartitionBy ":" 1.00:00:00 "、" ColumnName ":" Timestamp "、" Ordinal ": 1}]|
+|External多重パーティション|Blob|ExternalTables|ドキュメント|{"Format": "Csv"、"圧縮": false、"CompressionType": null、"FileExtension": "csv"、"IncludeHeaders": "None"、"Encoding": null、"NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;*******"]}|[{"StringFormat": "様名 = {0} ", "ColumnName": "様"、"ColumnName": "様"、"序数": 0}、PartitionBy ":" 1.00:00:00 "、" ColumnName ":" Timestamp "、" Ordinal ": 1}]|
 
 ### <a name="artifact-filtering-logic"></a>アーティファクトのフィルター処理ロジック
 
@@ -217,7 +217,7 @@ dataformat=parquet
 
 **構文 :** 
 
-`.show``external` `table` *TableName*`artifacts`
+`.show` `external` `table` *TableName* `artifacts`
 
 **出力**
 
@@ -233,7 +233,7 @@ dataformat=parquet
 
 **出力:**
 
-| URI                                                                     |
+| Uri                                                                     |
 |-------------------------------------------------------------------------|
 | `https://storageaccount.blob.core.windows.net/container1/folder/file.csv` |
 
@@ -306,3 +306,7 @@ dataformat=parquet
 ```kusto
 .drop external table MyExternalTable JSON mapping "Mapping1" 
 ```
+## <a name="next-steps"></a>次のステップ
+
+* [外部テーブル全般制御コマンド](externaltables.md)
+* [外部 SQL テーブルを作成および変更する](external-sql-tables.md)

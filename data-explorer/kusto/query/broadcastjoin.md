@@ -1,6 +1,6 @@
 ---
-title: ブロードキャスト参加 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのブロードキャスト参加について説明します。
+title: Broadcast Join-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでのブロードキャスト結合について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 72c89bf2160f8f5b735fd8c93f9519feae9114d9
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e64413047ceb83860f7ea47a1540ae99faa7ec55
+ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517308"
+ms.lasthandoff: 05/26/2020
+ms.locfileid: "83863219"
 ---
 # <a name="broadcast-join"></a>ブロードキャスト結合
 
-現在、通常の結合は単一のクラスタ ノードで実行されます。
-ブロードキャスト結合は、クラスタノード上で配布するjoinの実行戦略であり、結合の左側が小さい(最大100Kレコード)場合に便利です。
+現在、1つのクラスターノードで正規の結合が実行されています。
+Broadcast join は join の実行戦略であり、クラスターノードに分散されます。 この方法は、結合の左側が小さい場合 (最大 100 K レコード) に役立ちます。 この場合、broadcast join は通常の結合よりもパフォーマンスが高くなります。
 
-結合の左側が小さなデータセットの場合は、次の構文 (hint.strategy = ブロードキャスト) を使用して、ブロードキャスト モードで join を実行できます。
+結合の左側が小規模なデータセットである場合は、次の構文を使用してブロードキャストモードで結合を実行できます (ヒント. 戦略 = ブロードキャスト)。
 
 ```kusto
 lookupTable 
 | join hint.strategy = broadcast (factTable) on key
 ```
 
-パフォーマンスの向上は、結合の後に、 などの`summarize`他の演算子が続くシナリオで、より顕著になります。 たとえば、次のクエリを使用します。
+結合の後になどの他の演算子が続くシナリオでは、パフォーマンスの向上が顕著になり `summarize` ます。 このクエリの例を次に示します。
 
 ```kusto
 lookupTable 

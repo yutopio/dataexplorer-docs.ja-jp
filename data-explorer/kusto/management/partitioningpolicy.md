@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: e6f103d8957416c55a4562fb646e8ccb17ddf1e5
-ms.sourcegitcommit: 9810acae3f1c83b8efe7b952d3bada2ff496b024
+ms.openlocfilehash: b2bb03511afed386e4c7519471481b7ecf5b6291
+ms.sourcegitcommit: e82e1bcfcb456e89a1afb19fc6e874ca9d70c575
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83444717"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84110895"
 ---
 # <a name="data-partitioning-policy-preview"></a>データのパーティション分割ポリシー (プレビュー)
 
@@ -24,7 +24,7 @@ ms.locfileid: "83444717"
 
 ポリシーの主な目的は、パーティション分割された列の値の小さなサブセットに絞り込まれることがわかっているクエリのパフォーマンスを向上させること、または高カーディナリティ文字列列に対して集計/結合を行うことです。 2つ目の利点は、データの圧縮が優れていることです。
 
-> [!WARNING]
+> [!CAUTION]
 > ポリシーを定義できるテーブルの量には、ハードコーディングされた制限はありませんが、追加のテーブルごとに、クラスターのノードで実行されているバックグラウンドデータパーティション処理のオーバーヘッドが増加し、クラスターからの追加リソースが必要になる場合があります。「[容量](#capacity)」を参照してください。
 
 ## <a name="partition-keys"></a>パーティション キー
@@ -33,7 +33,7 @@ ms.locfileid: "83444717"
 
 |種類                                                   |列の型 |パーティションのプロパティ                    |パーティションの値                                        |
 |-------------------------------------------------------|------------|----------------------------------------|-------------------------------------------------------|
-|[ハッシュ](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
+|[Hash](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
 |[統一範囲](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`                | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
 
 ### <a name="hash-partition-key"></a>ハッシュパーティションキー
@@ -178,7 +178,7 @@ ms.locfileid: "83444717"
   * 1つのデータパーティション分割操作のソースエクステントの行数の合計の最大ターゲット。
   * このプロパティは*省略可能*で、既定値はです `0` (この場合、500万レコードの既定のターゲットが有効になります)。
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>メモ
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 

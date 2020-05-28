@@ -144,6 +144,8 @@
               href: machine-learning-clustering.md
     - name: データの視覚化
       items:
+        - name: Azure Data Explorer のダッシュボード
+          href: azure-data-explorer-dashboards.md
         - name: Power BI
           items:
             - name: ベスト プラクティス
@@ -1383,7 +1385,6 @@
         - name: セキュリティ ロール
           href: ./kusto/management/security-roles.md
         - name: データの取り込み
-          href: ./kusto/management/data-ingestion/index.md
           items:
             - name: ストレージからの取り込み
               href: ./kusto/management/data-ingestion/ingest-from-storage.md
@@ -1438,8 +1439,6 @@
               href: ./kusto/management/access-control/role-based-authorization.md
             - name: AAD 認証の方法
               href: ./kusto/management/access-control/how-to-authenticate-with-aad.md
-            - name: AAD アプリケーションをプロビジョニングする方法
-              href: ./kusto/management/access-control/how-to-provision-aad-app.md
         - name: 詳細なデータ管理
           items:
             - name: エクステント (データ シャード) の概要

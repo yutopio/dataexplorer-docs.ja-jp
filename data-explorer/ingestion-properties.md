@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: c66d7e11b3f64633a0dda33f7a3fa2f974536caa
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 25e80458dc4f0432e0f9e4c385fb71c4b8bf3997
+ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373723"
+ms.lasthandoff: 05/27/2020
+ms.locfileid: "84011569"
 ---
 # <a name="azure-data-explorer-data-ingestion-properties"></a>Azure Data Explorer データ インジェスト プロパティ 
 
@@ -36,7 +36,7 @@ ms.locfileid: "83373723"
 |`policy_ingestiontime`|ブール値。指定されている場合、このコマンドで作成されるテーブルで [IngestionTime ポリシー](kusto/management/ingestiontimepolicy.md)を有効にするかどうかを記述します 既定では、 `true`です。|`with (policy_ingestiontime=false)`|
 |`recreate_schema` |指定した場合、コマンドでテーブルのスキーマを再作成するかどうかを示すブール値。 このプロパティは、`.set-or-replace` コマンドに対してのみ適用されます。 両方が設定されている場合、`extend_schema` プロパティよりもこのプロパティが優先されます。|`with (recreate_schema=true)`|
 |`tags`|JSON 文字列として書式設定された、取り込まれたデータに関連付けられる[タグ](kusto/management/extents-overview.md#extent-tagging)の一覧。 |`with (tags="['Tag1', 'Tag2']")`|
-|`validationPolicy`|インジェスト中に実行する検証を示す JSON 文字列。 さまざまなオプションの説明については、「[データ インジェスト](kusto/management/data-ingestion/index.md)」を参照してください。| `with (validationPolicy='{"ValidationOptions":1, "ValidationImplications":1}')` (これが実際の既定のポリシーです)|
+|`validationPolicy`|インジェスト中に実行する検証を示す JSON 文字列。 さまざまなオプションの説明については、「[データ インジェスト](ingest-data-overview.md)」を参照してください。| `with (validationPolicy='{"ValidationOptions":1, "ValidationImplications":1}')` (これが実際の既定のポリシーです)|
 |`zipPattern`|ZIP アーカイブを持つストレージからデータを取り込むときに、このプロパティを使用します。 これは、取り込む ZIP アーカイブ内のファイルを選択するときに使用する正規表現を示す文字列値です。  アーカイブ内の他のファイルはすべて無視されます。|`with (zipPattern="*.csv")`|
 
 ## <a name="next-steps"></a>次のステップ

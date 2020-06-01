@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: a3d95d3cb90b6a834b1f1538aa28da1f1ac2a97f
-ms.sourcegitcommit: a562ce255ac706ca1ca77d272a97b5975235729d
+ms.openlocfilehash: 2b03f4e0ef426b07f88d7c179caecca6e7dd3034
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83867054"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257826"
 ---
 # <a name="external-tables"></a>外部テーブル
 
@@ -29,4 +29,5 @@ ms.locfileid: "83867054"
 * 外部テーブル名を Kusto テーブル名と重複させることはできません。
 * 外部テーブル名は、[エンティティ名](./entity-names.md)の規則に従います。
 * データベースあたりの外部テーブルの上限は1000です。
-* Kusto は[、外部テーブルへのデータのエクスポート](../../management/data-export/export-data-to-an-external-table.md)と、[外部テーブルのクエリ](../../../data-lake-query-data.md)をサポートしています。
+* Kusto では、外部テーブルへの[エクスポート](../../management/data-export/export-data-to-an-external-table.md)と[連続エクスポート](../../management/data-export/continuous-data-export.md)がサポートされています。また、[外部テーブル](../../../data-lake-query-data.md)に対してクエリを実行することもできます。
+    * [データの消去](../../concepts/data-purge.md)は、外部テーブルには適用されません。 外部テーブルからレコードが削除されることはありません。

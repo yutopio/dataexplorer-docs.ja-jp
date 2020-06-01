@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/06/2020
-ms.openlocfilehash: e394d928774624ac3c7faacab7726570272da82a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ff2edd1e64aa3ef44c96ecf15d6a859eadd49e69
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492995"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257877"
 ---
 # <a name="configure-customer-managed-keys-using-c"></a>C# を使用してカスタマー マネージド キーを構成する
 
@@ -20,6 +20,7 @@ ms.locfileid: "81492995"
 > * [ポータル](customer-managed-keys-portal.md)
 > * [C#](customer-managed-keys-csharp.md)
 > * [Azure Resource Manager テンプレート](customer-managed-keys-resource-manager.md)
+> * [CLI](customer-managed-keys-cli.md)
 
 [!INCLUDE [data-explorer-configure-customer-managed-keys](includes/data-explorer-configure-customer-managed-keys.md)]
 
@@ -47,7 +48,7 @@ ms.locfileid: "81492995"
 
 ### <a name="configure-cluster"></a>クラスターの構成
 
-既定では、Azure Data Explorer の暗号化は Microsoft マネージド キーを使用します。 カスタマー マネージド キーを使用するように Azure Data Explorer クラスターを構成し、そのクラスターに関連付けるキーを指定します。
+既定では、Azure Data Explorer の暗号化では Microsoft のマネージド キーが使用されます。 カスタマー マネージド キーを使用するように Azure Data Explorer クラスターを構成し、そのクラスターに関連付けるキーを指定します。
 
 1. 次のコードを使用してクラスターを更新します。
 
@@ -83,7 +84,7 @@ ms.locfileid: "81492995"
     kustoManagementClient.Clusters.Get(resourceGroupName, clusterName);
     ```
 
-    結果に値が `ProvisioningState` の `Succeeded` が含まれている場合、クラスターは正常に更新されています。
+    結果に値が `Succeeded` の `ProvisioningState` が含まれている場合、クラスターは正常に更新されています。
 
 ## <a name="update-the-key-version"></a>キーのバージョンを更新する
 

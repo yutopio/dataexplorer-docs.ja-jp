@@ -1,6 +1,6 @@
 ---
-title: インジェスティションタイム ポリシー - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのインジェスティションタイム ポリシーについて説明します。
+title: IngestionTime ポリシー-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの IngestionTime ポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,27 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 0c1755115a9e9f4c60c7f5574eb9b784520ecb88
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 50e0083b1cdbed06106507fe69fb0d039c923c43
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520827"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257809"
 ---
 # <a name="ingestiontime-policy"></a>IngestionTime ポリシー
 
-インジェストタイム ポリシーは、テーブルに設定 (有効) に設定できるオプションのポリシーです。
+IngestionTime ポリシーは、テーブルで設定 (有効) できるオプションのポリシーです。
 
-このポリシーがテーブルで有効になっている場合、Kusto は`datetime`非表示の列を テーブル`$IngestionTime`に追加します。 その時点以降、新しいデータがテーブルに取り込まれるたびに、取り込み時間 (データがコミットされる直前に Kusto クラスターで測定される) が、取り込まれるすべてのレコードの非表示列に記録されます。 (他の列と同様に、`$IngestionTime`すべてのレコードに固有の値があることに注意してください。
+有効な場合、Kusto はという名前の非表示の `datetime` 列をテーブルに追加し `$IngestionTime` ます。 これで、新しいデータが取り込まれたされるたびに、インジェストの時間が非表示の列に記録されます。 この時間は、データがコミットされる直前に Kusto クラスターによって測定されます。 
 
-インジェスト時間列が非表示になっているため、値を直接照会することはできません。
-代わりに、その値を取得するために[ingestion_time()](../query/ingestiontimefunction.md)という特別な関数が提供されます。 テーブルにそのような列がない場合、またはレコードの取り込み時に InestionTime ポリシーが有効になっていない場合は、NULL 値が返されます。
+> [!NOTE]
+> すべてのレコードには独自の値があり `$IngestionTime` ます。
 
-インジェスティションタイム ポリシーは、2 つの主なシナリオに合わせて設計されています。
-* ユーザーがデータの取り込みでエンド ツー エンドの待機時間を見積もることができるようにします。
-  ログ データを保持する多くのテーブルには、レコードが生成された時刻を示すためにソースによって値が入力されるタイムスタンプ列があります。 その列の値とインジェスタイム列を比較することで、データを取得する際の待ち時間を見積もることができます。 (ソースと Kusto は必ずしもクロックが同期されるとは限らないので、これは見積もりに過ぎないことに注意してください)。
-* データベース[カーソル](../management/databasecursor.md)をサポートするために、ユーザーが連続クエリを発行し、そのたびに、前のクエリ以降に取得されたデータにクエリを制限できるようにします。
+インジェスト time 列は非表示になっているため、その値に対して直接クエリを実行することはできません。
+代わりに、 [ingestion_time ()](../query/ingestiontimefunction.md)と呼ばれる特殊な関数は、その値を取得します。 `datetime`テーブルに列がない場合、またはレコードが取り込まれたされたときに IngestionTime ポリシーが有効になっていない場合は、null 値が返されます。
 
+IngestionTime ポリシーは、主に次の2つのシナリオ向けに設計されています。
+* ユーザーが取り込みデータの待機時間を見積もることができるようにします。
+  ログデータを含む多数のテーブルに timestamp 列があります。 タイムスタンプ値はソースによって取得され、レコードが生成された時刻を示します。 この列の値とインジェスト時間列を比較することによって、でデータを取得する際の待機時間を見積もることができます。 
+  
+  > [!NOTE]
+  > 計算値は推定値です。ソースと Kusto のクロックが同期されているとは限らないためです。
+  
+* ユーザーが連続したクエリを実行できるようにする[データベースカーソル](../management/databasecursor.md)をサポートするために、クエリは、前のクエリから取り込まれたされたデータに制限されます。
 
-
-インジェスティオンタイムポリシーを管理するための制御コマンドの詳細については、[こちらをご覧ください](../management/ingestiontime-policy.md)。
+詳しくは、 [IngestionTime ポリシーを管理するための制御コマンド](../management/ingestiontime-policy.md)を参照してください。

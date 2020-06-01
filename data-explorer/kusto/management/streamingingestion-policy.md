@@ -8,27 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 1c3ce0c0d383d07375333b08de336503d1578b1a
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 55ed390a1c98a307d2bb38476458f29fc9c92997
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83381997"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84258013"
 ---
 # <a name="streaming-ingestion-policy-management"></a>ストリーミングインジェストポリシーの管理
 
-ストリーミングインジェストポリシーをデータベースまたはテーブルにアタッチして、それらの場所へのストリーミングの取り込みを可能にすることができます。 このポリシーでは、ストリーミングインジェストに使用される行ストアも定義します。
+ストリーミングインジェストポリシーをテーブルに設定して、このテーブルへのストリーミングインジェストを許可することができます。 また、データベースレベルでポリシーを設定して、現在のテーブルと将来のテーブルの両方に同じ設定を適用することもできます。
 
-ストリーミングインジェストの詳細については、[ストリーミングインジェスト (プレビュー)](../../ingest-data-streaming.md)に関する説明を参照してください。 ストリーミングインジェストポリシーの詳細については、[ストリーミングインジェストポリシー](streamingingestionpolicy.md)に関するページを参照してください。
+詳細については、「[ストリーミングインジェスト](../../ingest-data-streaming.md)」を参照してください。 ストリーミングインジェストポリシーの詳細については、[ストリーミングインジェストポリシー](streamingingestionpolicy.md)に関するページを参照してください。
 
-## <a name="show-policy-streamingingestion"></a>。ポリシー streamingingestion を表示します。
+## <a name="display-the-policy"></a>ポリシーを表示する
 
 コマンドは、 `.show policy streamingingestion` データベースまたはテーブルのストリーミングインジェストポリシーを表示します。
-
+ 
 **構文**
 
-`.show``database` `policy` `streamingingestion` 
- MyDatabase `.show``table`MyTable `policy``streamingingestion`
+`.show``{database|table}` &lt; エンティティ &gt; 名 `policy``streamingingestion`
 
 **戻り値**
 
@@ -38,77 +37,84 @@ ms.locfileid: "83381997"
 |---|---|---
 |PolicyName|`string`|ポリシー名-StreamingIngestionPolicy
 |EntityName|`string`|データベース名またはテーブル名
-|ポリシー    |`string`|ストリーミングインジェストポリシー[オブジェクト](#streaming-ingestion-policy-object)として書式設定されたストリーミングインジェストポリシーを定義する JSON オブジェクト
+|ポリシー    |`string`|[ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object)
 
-**例**
+**使用例**
 
 ```kusto
-.show database DB1 policy streamingingestion 
-.show table T1 policy streamingingestion 
+.show database DB1 policy streamingingestion
+
+.show table T1 policy streamingingestion
 ```
 
 |PolicyName|EntityName|ポリシー|ChildEntities|EntityType|
 |---|---|---|---|---|
-|StreamingIngestionPolicy|DB1|{"NumberOfRowStores": 4}
+|StreamingIngestionPolicy|DB1|{"IsEnabled": true、"HintAllocatedRate": null}
 
-### <a name="streaming-ingestion-policy-object"></a>ストリーミングインジェストポリシーオブジェクト
+## <a name="change-the-policy"></a>ポリシーを変更する
 
-|プロパティ  |Type    |説明                                                       |
-|----------|--------|------------------------------------------------------------------|
-|NumberOfRowStores |`int`  |エンティティに割り当てられている行ストアの数|
-|SealIntervalLimit|`TimeSpan?`|テーブルに対する封印操作の間隔を指定します (省略可能)。 有効な範囲は 1 ~ 24 時間です。 既定値: 24 時間。|
-|SealThresholdBytes|`int?`|テーブルで1つの封印操作に使用するデータ量の制限 (オプション)。 値の有効な範囲は 10 ~ 200 MBs です。 既定値は 200 Mb です。|
-
-## <a name="alter-policy-streamingingestion"></a>. alter ポリシー streamingingestion
-
-この `.alter policy streamingingestion` コマンドは、データベースまたはテーブルの streamingingestion ポリシーを設定します。
+`.alter[-merge] policy streamingingestion`コマンドファミリは、データベースまたはテーブルのストリーミングインジェストポリシーを変更するための手段を提供します。
 
 **構文**
 
-* `.alter``database` `policy` MyDatabase `streamingingestion`*StreamingIngestionPolicyObject*
+* `.alter``{database|table}` &lt; &gt; エンティティ `policy` 名 `streamingingestion``[enable|disable]`
 
-* `.alter``database` `policy` MyDatabase `streamingingestion``enable`
+* `.alter``{database|table}` &lt; エンティティ名の &gt; `policy` `streamingingestion` &lt; [ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object)&gt;
 
-* `.alter``database` `policy` MyDatabase `streamingingestion``disable`
+* `.alter-merge``{database|table}` &lt; エンティティ名の &gt; `policy` `streamingingestion` &lt; [ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object)&gt;
 
-* `.alter``table` `policy` MyTable `streamingingestion`*StreamingIngestionPolicyObject*
-
-* `.alter``table` `policy` MyTable `streamingingestion``enable`
-
-* `.alter``table` `policy` MyTable `streamingingestion``disable`
-
-**メモ**
-
-1. *StreamingIngestionPolicyObject*は、ストリーミングインジェストポリシーオブジェクトが定義されている JSON オブジェクトです。
-
-2. `enable`-ポリシーが定義されていない場合、または既に0行ストアで定義されている場合は、ストリーミングインジェストポリシーを4行ストアで設定します。それ以外の場合、コマンドは何も行いません。
-
-3. `disable`-正の行ストアでポリシーが既に定義されている場合は、ストリーミングインジェストポリシーを0行ストアに設定します。それ以外の場合、コマンドは何も行いません。
-
-**例**
-
-```kusto
-.alter database MyDatabase policy streamingingestion '{  "NumberOfRowStores": 4}'
-
-.alter table MyTable policy streamingingestion '{  "NumberOfRowStores": 4}'
-```
-
-## <a name="delete-policy-streamingingestion"></a>。削除ポリシー streamingingestion
-
-コマンドは、 `.delete policy streamingingestion` データベースまたはテーブルから streamingingestion ポリシーを削除します。
-
-**構文** 
-
-`.delete``database`MyDatabase `policy``streamingingestion`
-
-`.delete``table`MyTable `policy``streamingingestion`
+> [!Note]
+>
+> * ポリシーの他のプロパティを変更したり、エンティティでポリシーが定義されていない場合は、プロパティを既定値に設定したりしなくても、ストリーミングインジェストの有効/無効の状態を変更できます。
+>
+> * エンティティのストリーミングインジェストポリシー全体を置き換えることができます。 [ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object)には、すべての必須プロパティが含まれている必要があります。
+>
+> * エンティティのストリーミングインジェストポリシーの指定したプロパティのみを置き換えることができます。 [ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object)には、必須プロパティの一部またはすべてを含めることができます。
 
 **戻り値**
 
-このコマンドは、テーブルまたはデータベースの streamingingestion ポリシーオブジェクトを削除し、対応する[show policy streamingingestion](#show-policy-streamingingestion)コマンドの出力を返します。
+コマンドを実行すると、テーブルまたはデータベースポリシーオブジェクトが変更され、 `streamingingestion` 対応[ `.show policy` `streamingingestion` ](#display-the-policy)するコマンドの出力が返されます。
 
-**例**
+**使用例**
 
 ```kusto
-.delete database MyDatabase policy streamingingestion 
+.alter database DB1 policy streamingingestion enable
+
+.alter table T1 policy streamingingestion disable
+
+.alter database DB1 policy streamingingestion '{"IsEnabled": true, "HintAllocatedRate": 2.1}'
+
+.alter table T1 streamingingestion '{"IsEnabled": true}'
+
+.alter-merge database DB1 policy streamingingestion '{"IsEnabled": false}'
+
+.alter-merge table T1 policy streamingingestion '{"HintAllocatedRate": 1.5}'
 ```
+
+## <a name="delete-the-policy"></a>ポリシーを削除します。
+
+コマンドは、 `.delete policy streamingingestion` データベースまたはテーブルから streamingingestion ポリシーを削除します。
+
+**構文**
+
+`.delete``{database|table}` &lt; エンティティ &gt; 名 `policy``streamingingestion`
+
+**戻り値**
+
+このコマンドは、テーブルまたはデータベースの streamingingestion ポリシーオブジェクトを削除し、対応する[show policy streamingingestion](#display-the-policy)コマンドの出力を返します。
+
+**使用例**
+
+```kusto
+.delete database DB1 policy streamingingestion
+
+.delete table T1 policy streamingingestion
+```
+
+### <a name="streaming-ingestion-policy-object"></a>ストリーミングインジェストポリシーオブジェクト
+
+ストリーミングインジェストポリシーオブジェクトは、管理コマンドの入力と出力で、次のプロパティを含む JSON 形式の文字列です。
+|プロパティ  |Type    |説明                                                       |必須/オプション |
+|----------|--------|------------------------------------------------------------------|-------|
+|IsEnabled |`bool`  |エンティティのストリーミングインジェストが有効になっている| 必須|
+|HintAllocatedRate|`double`|データはの推定速度 (Gb/時間)| 省略可能|

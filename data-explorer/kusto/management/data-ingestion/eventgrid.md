@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 7673b50a8d1ff401f8c2fa086b7eec34c0517238
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: e8c5642e59999c7a1bd547bfcb17cc18bf5d9e15
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373482"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84258047"
 ---
 # <a name="ingest-from-storage-using-event-grid-subscription"></a>Event Grid サブスクリプションを使用したストレージからの取り込み
 
@@ -46,7 +46,7 @@ Blob メタデータを使用して、blob インジェストの[インジェス
 
 ## <a name="events-routing"></a>イベントのルーティング
 
-Azure データエクスプローラークラスターへの blob ストレージ接続を設定する場合は、ターゲットテーブルのプロパティ (テーブル名、データ形式、およびマッピング) を指定します。 これは、データの既定のルーティングであり、とも呼ばれ `static routig` ます。
+Azure データエクスプローラークラスターへの blob ストレージ接続を設定する場合は、ターゲットテーブルのプロパティ (テーブル名、データ形式、およびマッピング) を指定します。 これは、データの既定のルーティング (とも呼ばれ `static routing` ます) です。
 Blob メタデータを使用して、各 blob のターゲットテーブルのプロパティを指定することもできます。 データは、[インジェストプロパティ](#ingestion-properties)によって指定されたとおりに動的にルーティングされます。
 
 次に示すのは、アップロードする前に、インジェストプロパティを blob メタデータに設定する例です。 Blob は異なるテーブルにルーティングされます。
@@ -77,9 +77,9 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
 
 ### <a name="event-grid-subscription"></a>Event Grid サブスクリプション
 
-* `Event Hub`Blob storage イベント通知の転送に使用される、以下型として選択された kusto。 `Event Grid schema`通知用に選択されたスキーマです。 各ハブが1つの接続を提供できることに注意してください。
+* `Event Hub`Blob storage イベント通知の転送に使用されるエンドポイントの種類として選択された kusto。 `Event Grid schema`通知用に選択されたスキーマです。 各ハブが1つの接続を提供できることに注意してください。
 * Blob storage サブスクリプション接続は、型の通知を処理し `Microsoft.Storage.BlobCreated` ます。 サブスクリプションを作成するときは、必ずそれを選択してください。 他の種類の通知 (選択されている場合) は無視されることに注意してください。
-* 1つのサブスクリプションでストレージイベントを1つ以上のコンテナーに通知できます。 特定のコンテナーのファイルを追跡する場合は、通知のフィルターを次のように設定します。接続を設定するときに、次の値を speciel に扱います。 
+* 1つのサブスクリプションでストレージイベントを1つ以上のコンテナーに通知できます。 特定のコンテナーのファイルを追跡する場合は、通知のフィルターを次のように設定します。接続を設定するときに、次の値を特別に扱います。 
    * サブジェクトは、blob コンテナーの*リテラル*プレフィックスである Filter**で始まり**ます。 適用されるパターンは *startswith* であるため、複数のコンテナーにまたがることができます。 ワイルドカードは使用できません。
      次のように設定する*必要があり* *`/blobServices/default/containers/<prefix>`* ます。 例: */blobServices/default/containers/StormEvents-2020-*
    * **[Subject Ends With]\(指定の値で終わる件名\)** フィールドは、BLOB の "*リテラル*" サフィックスです。 ワイルドカードは使用できません。 ファイル拡張子をフィルター処理する場合に便利です。
@@ -88,12 +88,12 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
 
 ### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Azure データエクスプローラーへのデータインジェスト接続
 
-* Azure Portal を使用する: [azure データエクスプローラーで Event Grid データ接続を作成](../../../ingest-data-event-grid.md#create-an-event-grid-data-connection-in-azure-data-explorer)します。
+* Via Azure portal: [Azure データエクスプローラーで Event Grid データ接続を作成](../../../ingest-data-event-grid.md#create-an-event-grid-data-connection-in-azure-data-explorer)します。
 * Kusto management .NET SDK の使用: [Event Grid データ接続を追加する](../../../data-connection-event-grid-csharp.md#add-an-event-grid-data-connection)
 * Kusto management Python SDK の使用: [Event Grid データ接続を追加する](../../../data-connection-event-grid-python.md#add-an-event-grid-data-connection)
 * ARM テンプレートを使用した場合: [Event Grid データ接続を追加するための Azure Resource Manager テンプレート](../../../data-connection-event-grid-resource-manager.md#azure-resource-manager-template-for-adding-an-event-grid-data-connection)
 
-### <a name="generating-data"></a>データの生成
+### <a name="generating-data"></a>データを生成する
 
 > [!NOTE]
 > * `BlockBlob`データを生成するには、を使用します。 `AppendBlob` はサポートされません。
@@ -125,3 +125,10 @@ blob.UploadFromFile(csvCompressedLocalFileName);
 ## <a name="blob-lifecycle"></a>Blob のライフサイクル
 
 Azure データエクスプローラーでは、取り込み後の blob は削除されませんが、3 ~ 5 日間保持されます。 [Azure blob storage のライフサイクル](https://docs.microsoft.com/azure/storage/blobs/storage-lifecycle-management-concepts?tabs=azure-portal)を使用して、blob の削除を管理します。
+
+## <a name="known-issues"></a>既知の問題
+
+Azure データエクスプローラーを使用して event grid インジェストに使用するファイルを[エクスポート](../data-export/export-data-to-storage.md)する場合は、次の点に注意してください。 
+* エクスポートコマンドに指定された接続文字列、または[外部テーブル](../data-export/export-data-to-an-external-table.md)に対して指定された接続文字列が[ADLS Gen2 形式](../../api/connection-strings/storage.md#azure-data-lake-store)の接続文字列 (など) であっても、 *not* `abfss://filesystem@accountname.dfs.core.windows.net` *ストレージアカウントが階層的な名前空間に対して有効になっ*ていない場合、Event Grid 通知はトリガーされません。 
+ * アカウントが階層的な名前空間に対して有効になっていない場合、接続文字列には[Blob Storage](../../api/connection-strings/storage.md#azure-storage-blob)形式 (など) を使用する必要があり `https://accountname.blob.core.windows.net` ます。 
+ * この場合、ADLS Gen2 接続文字列を使用している場合でもエクスポートは期待どおりに機能しますが、通知はトリガーされないため、Event Grid インジェストは機能しません。 

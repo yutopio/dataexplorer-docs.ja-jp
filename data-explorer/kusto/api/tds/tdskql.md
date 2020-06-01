@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/09/2019
-ms.openlocfilehash: 2c4443c0a9301dbc6bb3e65392163da0cc237f74
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 55864dd408f35c59398ea1b93f18c0834a611a90
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617886"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84258098"
 ---
 # <a name="kql-over-tds"></a>TDS 経由の KQL
 
@@ -25,7 +25,7 @@ Kusto は、SQL ストアドプロシージャの呼び出しなど、[ストア
 
 たとえば、格納されている関数 MyFunction は次のようになります。
 
-|名前 |パラメーター|Body|Folder|DocString
+|名前 |パラメーター|本文|フォルダー|DocString
 |---|---|---|---|---
 |MyFunction |(myLimit: long)| {StormEvents &#124; 制限 myLimit}|MyFolder|パラメーターを使用したデモ関数||
 
@@ -49,7 +49,7 @@ Kusto は、SQL ストアドプロシージャの呼び出しなど、[ストア
   }
 ```
 
-> [!注:] は、という名前`kusto`の明示的なスキーマで格納されている関数を呼び出して、Kusto に格納されている関数と、SQL システムのエミュレートされたストアドプロシージャを区別します。
+> [!注:] は、という名前の明示的なスキーマで格納されている関数を呼び出し `kusto` て、Kusto に格納されている関数と、SQL システムのエミュレートされたストアドプロシージャを区別します。
 
 また、SQL 表形式関数のように、T-sql から格納されている関数に Kusto 呼び出すこともできます。
 
@@ -61,9 +61,9 @@ SELECT * FROM kusto.MyFunction(10)
 
 ## <a name="executing-kql-query"></a>KQL クエリの実行
 
-ストアドプロシージャ`sp_execute_kql`は、 [kql](../../query/index.md)クエリ (パラメーター化されたクエリを含む) を実行します。 この手順は、SQL server `sp_executesql`に似ています。
+ストアドプロシージャは `sp_execute_kql` 、 [kql](../../query/index.md)クエリ (パラメーター化されたクエリを含む) を実行します。 この手順は、SQL server に似てい `sp_executesql` ます。
 
-の最初の`sp_execute_kql`パラメーターは kql クエリです。 追加のパラメーターを導入して、[クエリパラメーター](../../query/queryparametersstatement.md)のように動作させることができます。
+の最初のパラメーター `sp_execute_kql` は KQL クエリです。 追加のパラメーターを導入して、[クエリパラメーター](../../query/queryparametersstatement.md)のように動作させることができます。
 
 次に例を示します。
 
@@ -88,4 +88,5 @@ SELECT * FROM kusto.MyFunction(10)
   }
 ```
 
-> [!注:] パラメーターの型はプロトコルによって設定されるため、TDS を使用してを呼び出すときにパラメーターを宣言する必要はありません。
+> [!NOTE]
+> パラメーターの型はプロトコルによって設定されるため、TDS を使用してを呼び出すときにパラメーターを宣言する必要はありません。

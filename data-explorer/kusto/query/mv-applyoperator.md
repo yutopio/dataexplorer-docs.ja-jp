@@ -8,21 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 80e38c1782a4476181fe73c5f77d6460f2ef539f
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 8fd83615de466c238a590273b228c118e2cd1b46
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271232"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257842"
 ---
 # <a name="mv-apply-operator"></a>mv-apply 演算子
 
-演算子は、 `mv-apply` 入力テーブル内の各レコードをサブテーブルに展開し、サブクエリを各サブテーブルに適用して、すべてのサブクエリの結果の和集合を返します。
+各レコードにサブクエリを適用し、すべてのサブクエリの結果の和集合を返します。
 
 たとえば、テーブルに `T` 型の列があり、 `Metric` `dynamic` 値が数値の配列であるとし `real` ます。 次のクエリでは、各値の最大2つの値を検索し、これらの値 `Metric` に対応するレコードを返します。
 
 ```kusto
-T | mv-apply Metric to typeof(real) on (top 2 by Metric desc)
+T | mv-apply Metric to typeof(real) on 
+(
+   top 2 by Metric desc
+)
 ```
 
 `mv-apply`演算子には、次の処理手順があります。

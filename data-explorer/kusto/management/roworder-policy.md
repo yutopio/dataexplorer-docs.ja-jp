@@ -1,6 +1,6 @@
 ---
-title: 行順序ポリシー - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの行順序ポリシーについて説明します。
+title: RowOrder ポリシー-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの RowOrder ポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: cda4c9a6017071878832fab376a0376d250f3ed6
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 63aad71854c73a3d1f1837c3665a152db8b48d13
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520249"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84258030"
 ---
-# <a name="roworder-policy"></a>行順序ポリシー
+# <a name="roworder-policy"></a>RowOrder ポリシー
 
-この資料では、[行順序ポリシー](../management/roworderpolicy.md)の作成および変更に使用する制御コマンドについて説明します。
+この記事では、[行の順序ポリシー](../management/roworderpolicy.md)を作成および変更するために使用する制御コマンドについて説明します。
 
-## <a name="show-roworder-policy"></a>行順序ポリシーの表示
+## <a name="show-roworder-policy"></a>RowOrder ポリシーの表示
 
 ```kusto
 .show table <table_name> policy roworder
@@ -27,13 +27,13 @@ ms.locfileid: "81520249"
 .show table * policy roworder
 ```
 
-## <a name="delete-roworder-policy"></a>行順序の削除ポリシー
+## <a name="delete-roworder-policy"></a>RowOrder ポリシーの削除
 
 ```kusto
 .delete table <table_name> policy roworder
 ```
 
-## <a name="alter-roworder-policy"></a>行順序の変更ポリシー
+## <a name="alter-roworder-policy"></a>Alter RowOrder policy
 
 ```kusto
 .alter table <table_name> policy roworder (<row_order_policy>)
@@ -43,9 +43,9 @@ ms.locfileid: "81520249"
 .alter-merge table <table_name> policy roworder (<row_order_policy>)
 ```
 
-**使用例**
+**使用例** 
 
-次の例では、`TenantId`行の順序ポリシーを、列 (昇順) を主キーとして、`Timestamp`列 (昇順) をセカンダリ キーとして設定します。次に、ポリシーを照会します。
+次の例では、列 (昇順) の行順序ポリシーを主キーとして設定 `TenantId` し、 `Timestamp` 列 (昇順) をセカンダリキーとして設定します。 その後、ポリシーが照会されます。
 
 ```kusto
 .alter table events policy roworder (TenantId asc, Timestamp desc)
@@ -55,6 +55,6 @@ ms.locfileid: "81520249"
 .show table events policy roworder 
 ```
 
-|TableName|行順序ポリシー| 
+|TableName|RowOrderPolicy| 
 |---|---|
-|events|(テナントID asc、タイムスタンプdesc)| 
+|events|(TenantId asc、Timestamp desc)|

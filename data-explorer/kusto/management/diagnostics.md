@@ -1,6 +1,6 @@
 ---
-title: 診断情報 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの診断情報について説明します。
+title: 診断情報-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの診断情報について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,38 +8,43 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ae8efdf99b7ed91285e90defed7568d2a440240d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 505e5443e18007f41ca3fb67046df31fcbae2ba2
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521269"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257945"
 ---
 # <a name="diagnostic-information"></a>診断情報
 
-Next コマンドを使用して、システム診断情報を表示できます。
+これらのコマンドを使用して、システム診断情報を表示できます。
 
-## <a name="show-cluster"></a>.show クラスタ
+* [。クラスターを表示します](#show-cluster)
+* [。診断を表示します](#show-diagnostics)
+* [。容量を表示します。](#show-capacity)
+* [。操作を表示します。](#show-operations)
+
+## <a name="show-cluster"></a>。クラスターを表示します
 
 ```kusto
 .show cluster
 ```
 
-クラスタ内で現在アクティブなノードごとに 1 つのレコードを持つセットを返します。  
+クラスター内で現在アクティブになっているノードごとに1つのレコードを含むセットを返します。  
 
-**結果**
+**結果** 
 
-|出力列 |Type |説明 
+|出力列 |Type |説明
 |---|---|---|
-|NodeId|String|ノードを識別します (クラスターが Azure にデプロイされている場合は、ノードの Azure RoleId です)。 |
-|Address|String |ノード間通信にクラスタが使用する内部エンドポイント。 
-|名前 |String |ノードの内部名 (これには、マシン名、プロセス名、およびプロセス ID が含まれます)。 
-|StartTime |DateTime |ノード内の現在の Kusto インスタンス化が開始された正確な日付/時刻 (UTC)。 これは、ノード (またはノードで実行されている Kusto) が最近再起動されたかどうかを検出するために使用できます。 
-|IsAdmin |Boolean |このノードが現在クラスタの "リーダー" であるかどうか。 
-|マシントータルメモリ  |Int64 |ノードに含まれる RAM の量。 
-|利用可能なメモリ  |Int64 |現在ノードで「使用可能」な RAM の量。 
-|ProcessorCount  |Int32 |ノード上のプロセッサの量。 
-|環境説明  |string |ノードの環境に関する追加情報 (例: アップグレード/障害ドメイン) を JSON としてシリアル化します。 
+|NodeId|String|ノードを識別します。 クラスターが Azure にデプロイされている場合、ノード ID はノードの Azure RoleId になります。
+|Address|String |ノード間通信のためにクラスターによって使用される内部エンドポイント
+|名前 |String |ノードの内部名。 名前には、コンピューター名、プロセス名、およびプロセス ID が含まれます。
+|StartTime |DateTime |ノードで現在の Kusto インスタンス化が開始された日付/時刻 (UTC)。 この値は、ノード (またはノード上で実行されている Kusto) が最近再起動されたかどうかを検出するために使用できます。
+|IsAdmin |Boolean |このノードが現在クラスターの "リーダー" である場合 
+|MachineTotalMemory  |Int64 |ノードの RAM の量。
+|MachineAvailableMemory  |Int64 |現在ノードで使用可能な RAM の量。
+|ProcessorCount  |Int32 |ノード上のプロセッサの数。
+|環境の説明  |string |JSON としてシリアル化されたノードの環境に関する追加情報。 たとえば、[アップグレード/障害ドメイン] として
 
 **例**
 
@@ -47,112 +52,112 @@ Next コマンドを使用して、システム診断情報を表示できます
 .show cluster
 ```
 
-NodeId|Address|名前|StartTime|IsAdmin|マシントータルメモリ|利用可能なメモリ|ProcessorCount|環境説明
+NodeID|Address|名前|StartTime|IsAdmin|MachineTotalMemory|MachineAvailableMemory|ProcessorCount|環境の説明
 ---|---|---|---|---|---|---|---|---
-Svc_IN_1|net.tcp://100.112.150.30:23107/|クスト.Azure.Svc_IN_4/RD000D3AB1E9BD/ワワーカーホスト/3820|2016-01-15 02:00:22.6522152|True|274877435904|247797796864|16|{"更新ドメイン":0、「フォールトドメイン」:0}
-クストー・アズール・Svc_IN_3|net.tcp://100.112.154.34:23107/|クスト.Azure.Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52:52.1434683|False|274877435904|258740346880|16|{"更新ドメイン":1,"フォルトドメイン":1}
-クスト.Azure.Svc_IN_2|net.tcp://100.112.128.40:23107/|クスト.Azure.Svc_IN_2/RD000D3AB1E054/WaWorkerHost/3776|2016-01-15 07:17:18.0699790|False|274877435904|244232339456|16|{"更新ドメイン":2、「フォルトドメイン」:2}
-クスト.Azure.Svc_IN_0|net.tcp://100.112.138.15:23107/|クスト.Azure.Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46:36.9865016|False|274877435904|238414581760|16|{"更新ドメイン":3、「フォルトドメイン」:3}
+Kusto. Azure. Svc_IN_1|net.tcp://100.112.150.30: 23107/|Kusto. Azure. Svc_IN_4/RD000D3AB1E9BD/WaWorkerHost/3820|2016-01-15 02:00: 22.6522152|True|274877435904|247797796864|16|{"UpdateDomain": 0、"FaultDomain": 0}
+Kusto. Azure. Svc_IN_3|net.tcp://100.112.154.34: 23107/|Kusto. Azure. Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52: 52.1434683|False|274877435904|258740346880|16|{"UpdateDomain": 1, "FaultDomain": 1}
+Kusto. Azure. Svc_IN_2|net.tcp://100.112.128.40: 23107/|Kusto. Azure. Svc_IN_2/rd000d3ab1e052015 年4月3日の waworkerhost376|2016-01-15 07:17: 18.0699790|False|274877435904|244232339456|16|{"UpdateDomain": 2, "FaultDomain": 2}
+Kusto. Azure. Svc_IN_0|net.tcp://100.112.138.15: 23107/|Kusto. Azure. Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46: 36.9865016|False|274877435904|238414581760|16|{"UpdateDomain": 3、"FaultDomain": 3}
 
 
-## <a name="show-diagnostics"></a>診断の表示
+## <a name="show-diagnostics"></a>。診断を表示します
 
 ```kusto
 .show diagnostics
 ```
 
-Kusto クラスターのヘルス状態に関する情報を返します。
+Kusto クラスターの正常性状態に関する情報を返します。
  
 **戻り値**
 
 |出力パラメーター |Type |説明|
 |-----------------|-----|-----------| 
-|イズヘルシー|Boolean|クラスターが正常と見なされるかどうか。
-|必要なスケールアウト|Boolean|クラスターのサイズを増やす必要があるかどうか (コンピューティング ノードを追加する)。 
-|マシン合計|Int64|クラスター内のマシンの数。
-|マシンオフライン|Int64|現在オフライン (応答なし) のコンピューターの数。
-|ノードラストリスタートオン|DateTime|クラスター内のいずれかのノードが最後に再起動された時刻。
-|アドミニスト選出|DateTime|クラスター管理者ロールの所有権が最後に変更された時刻。
-|メモリロードファクター|Double|クラスターが保持するデータ量は、その容量に対する相対的な量 (100.0) です。
-|エクステント合計|Int64|クラスターが現在すべてのデータベースとすべてのテーブルにまたがって持っているデータエクステントの総数。
+|IsHealthy|Boolean|クラスターが正常であるかどうか
+|IsScaleOutRequired|Boolean|コンピューティングノードを追加してクラスターのサイズを増やす必要がある場合
+|MachinesTotal|Int64|クラスター内のマシンの数
+|オフラインのスケジュール|Int64|現在オフラインになっているマシンの数
+|NodeLastRestartedOn|DateTime|クラスター内のノードが再起動された最後の日付/時刻
+|AdminLastElectedOn|DateTime|クラスター管理者ロールの最後の日付/時刻の所有権が変更されました
+|MemoryLoadFactor|Double|クラスターによって保持されているデータの量 (最大容量は 100.0)
+|ExtentsTotal|Int64|すべてのデータベースとすべてのテーブルにわたる、現在のクラスターのデータエクステントの合計数
 |予約済み|Int64|
 |予約済み|Int64|
-|データ容量に基づいてインスタンスを作成します。|Int64| ClusterDataCapacityFactor を 80 以下にするのに必要なインスタンスの数 (すべてのマシンのサイズが同じ場合にのみ有効)。
-|合計Originalデータサイズ|Int64|最初に取り込まれたデータの合計サイズ
-|合計範囲サイズ|Int64|格納されたデータの合計サイズ (圧縮およびインデックス作成後)
-|IngestionsLoadFactor|Double|クラスター取り込みキャパシティーの使用率 (.show capacity コマンドを使用して表示できます)
-|インジェスティオンズインプログレス|Int64|現在実行されている取り込み操作の数。
-|インジェクション成功率|Double|過去 10 分間に正常に完了したインジェクション操作の割合。
-|マージインプログレス|Int64|現在実行されているエクステントマージ操作の数。
-|BuildVersion|String|Kusto ソフトウェア バージョンがクラスターに展開されました。
-|ビルドタイム|DateTime|この Kusto ソフトウェア バージョンのビルド時間。
-|ClusterDataCapacityFactor|Double|クラスター・データ容量使用率のパーセンテージ。 これは、SUM(エクステント・サイズ・データ)/SUM(SSDキャッシュ・サイズ)として計算されます。
-|必要なデータの温暖化|Boolean|内部: クラスターのウォーミング クエリを実行する必要があるかどうか (ローカル SSD キャッシュにデータを取得するため)。 
-|データウォーミングラストランオン|DateTime|最後に .warm データがクラスターで実行された時刻
-|成功率をマージ|Double|過去 10 分間に正常に完了したマージ操作の割合。
-|健康ではない理由|String|クラスターが正常でない理由を指定する文字列 
-|必要なアテンション|Boolean|クラスターがオペレーション チームの注意を必要とするかどうか
-|注意必須理由|String|注意を要するクラスターの理由を指定する文字列
-|ProductVersion|String|製品情報(ブランチ、バージョンなど)を含む文字列
-|失敗したオペレーション|Int64|10 分を過ぎて失敗したインジェス操作の数
-|失敗したマージ操作|Int64|1 時間を過ぎて失敗したマージ操作の数
-|シングルテーブル|Int64|テーブル内のエクステントの最大数 (テーブルウィズマックスエクステント)
-|テーブルウィズマックスエクステント|String|エクステントの最大数を持つテーブル (最大範囲InSingleTable)
-|ウォームエクステントサイズ|Double|ホット キャッシュ内のエクステントの合計サイズ
-|データベースの数|Int32|クラスタ内のデータベースの数
+|InstancesTargetBasedOnDataCapacity|Int64|ClusterDataCapacityFactor を80未満にするために必要なインスタンスの数。 この値は、すべてのマシンのサイズが同じ場合にのみ有効です
+|TotalOriginalDataSize|Int64|最初に取り込まれたされたデータの合計サイズ
+|TotalExtentSize|Int64|圧縮およびインデックス作成後の、格納されたデータの合計サイズ
+|IngestionsLoadFactor|Double|使用されたクラスターインジェスト容量の割合。 最大容量は、コマンドを使用して表示できます。 `.show capacity`
+|IngestionsInProgress|Int64|現在実行されているインジェスト操作の数
+|IngestionsSuccessRate|Double|過去10分間に正常に完了したインジェスト操作の割合
+|MergesInProgress|Int64|現在実行されているエクステントのマージ操作の数
+|BuildVersion|String|クラスターに展開されている Kusto ソフトウェアのバージョン
+|BuildTime|DateTime|Kusto ソフトウェアのビルドバージョンの日付/時刻。
+|ClusterDataCapacityFactor|Double|使用されているクラスターデータ容量の割合。 割合は、SUM (エクステントサイズデータ)/合計 (SSD キャッシュサイズ) として計算されます。
+|IsDataWarmingRequired|Boolean|内部: クラスターのウォームクエリを実行し、データをローカル SSD キャッシュに取り込む必要がある場合 
+|DataWarmingLastRunOn|DateTime|ウォームデータがクラスターで実行された最後の日付/時刻
+|MergesSuccessRate|Double|過去10分間に正常に完了したマージ操作の割合。
+|NotHealthyReason|String|クラスターが正常でない理由を指定します 
+|IsAttentionRequired|Boolean|クラスターに操作チームの注意が必要な場合
+|AttentionRequiredReason|String|クラスターの注意が必要な理由を指定します
+|ProductVersion|String|製品情報 (分岐、バージョンなど) を指定します
+|FailedIngestOperations|Int64|過去10分間に失敗したインジェスト操作の数
+|失敗した Mergeoperation|Int64|前の1時間に失敗したマージ操作の数
+|MaxExtentsInSingleTable|Int64|テーブル内のエクステントの最大数 (TableWithMaxExtents)
+|TableWithMaxExtents|String|エクステントの最大数を含むテーブル (MaxExtentsInSingleTable)
+|WarmExtentSize|Double|ホットキャッシュ内のエクステントの合計サイズ
+|NumberOfDatabases|Int32|クラスター内のデータベースの数
 
-## <a name="show-capacity"></a>.show 容量 
+## <a name="show-capacity"></a>。容量を表示します。
 
 ```kusto
 .show capacity
 ```
 
-各リソースの推定クラスター容量の計算を返します。 
+各リソースの推定クラスター容量の計算結果を返します。
  
 **結果**
 
 |出力パラメーター |Type |説明 
 |---|---|---
-|リソース |String |リソースの名前。 
-|合計 |Int64 |利用可能な種類 'Resource' のリソースの総量 (同時インジェストの量など) 
-|使用量 |Int64 |現在消費されているリソースの数の "リソース" 型の数 
-|残り |Int64 |'リソース' 型の残りのリソースの量 
+|リソース |String |リソースの名前 
+|合計 |Int64 |使用可能なリソースの総量 (種類 ' Resource ')。 たとえば、同時実行 ingestions の数
+|使用量 |Int64 |現在、' Resource ' 型のリソースの消費量が使用されています
+|残り |Int64 |種類 ' Resource ' の残りのリソースの量
  
 **例**
 
-|リソース |合計 |使用量 |残り 
+|リソース |合計 |使用量 |残り
 |---|---|---|---
-|摂取 |576 |1 |575 
+|ingestions |576 |1 |575
 
-## <a name="show-operations"></a>.show 操作 
+## <a name="show-operations"></a>。操作を表示します。
 
-新しい管理ノードが選択されてからのすべての管理操作を含むテーブルを返します。 
+このコマンドは、新しい管理ノードが選択されてからのすべての管理操作を含むテーブルを返します。
 
 |||
 |---|---| 
-|`.show` `operations`              |クラスターが処理した、または処理しているすべての操作を返します。 
-|`.show``operations`*オペレーションId*|特定の ID の操作ステータスを返します。 
-|`.show``operations`*OperationId1*`,`*OperationId2*`,`操作 Id1 操作 Id2 .) `(`|特定の ID の操作ステータスを返します。
+|`.show` `operations`              |クラスターが処理しているか処理されているすべての操作を返します
+|`.show``operations` *OperationId*|特定の ID の操作の状態を返します。
+|`.show``operations` `(` *OperationId1* `,` *OperationId2* `,` ...)|特定の Id の操作の状態を返します。
 
 **結果**
  
-|出力パラメーター |Type |説明 
+|出力パラメーター |Type |説明
 |---|---|---
-|Id |String |操作識別子。 
-|Operation |String |管理コマンド エイリアス 
-|NodeId |String |コマンドにリモート実行がある場合 (例: DataIngestPull) - NodeId には実行中のリモートノードの ID が含まれます。 
-|スタートンオン |DateTime |操作が開始された日時 (UTC) 
-|ラストアップデートオン |DateTime |操作が最後に更新された日時 (UTC) (操作内のステップ、または完了ステップのいずれか) 
-|Duration |DateTime |ラストアップデートオンとスタートンの間のタイムスパン 
-|State |String |コマンド状態: "処理中"、"完了"、または"失敗"の値を持つことができます。 
-|Status |String |失敗した操作のエラーを保持する追加のヘルプ文字列 
+|id |String |操作 id
+|操作 |String |管理者コマンドのエイリアス
+|NodeId |String |コマンドがリモートで実行されている場合 (DataIngestPull など)。 ノード ID には、を実行しているリモートノードの ID が含まれます。
+|StartedOn |DateTime |操作が開始された日付/時刻 (UTC) 
+|LastUpdatedOn |DateTime |操作が最後に更新された日付/時刻 (UTC)。 操作は、操作内のステップでも、完了ステップでもかまいません。
+|期間 |DateTime |LastUpdateOn と StartedOn の間の期間
+|州 |String |値が "処理中"、"完了"、または "失敗" のコマンド状態
+|状態 |String |失敗した操作のエラーを含む追加のヘルプ文字列
  
 **例**
  
-|Id |Operation |ノード ID |開始日 |最終更新日 |Duration |State |Status 
+|ID |操作 |ノード ID |開始日 |最終更新日 |期間 |州 |状態 
 |--|--|--|--|--|--|--|--
-|3827def6-0773-4f2a-859e-c02cf395deaf |スキーマショー | |2015-01-06 08:47:01.0000000 |2015-01-06 08:47:01.0000000 |0001-01-01 00:00:00.0000000 |完了 | 
-|841fafa4-076a-4cba-9300-4836da0d9c75 |データインジングエストプル |Svc_IN_1 |2015-01-06 08:47:02.0000000 |2015-01-06 08:48:19.0000000 |0001-01-01 00:01:17.0000000 |完了 | 
-|e198c519-5263-4629-a158-8d68f7a1022f |オペレーションショー | |2015-01-06 08:47:18.0000000 |2015-01-06 08:47:18.0000000 |0001-01-01 00:00:00.0000000 |完了 | 
-|a9f287a1-f3e6-4154-ad18-b86438da0929 |エクステントドロップ | |2015-01-11 08:41:01.0000000 |0001-01-01 00:00:00.0000000 |0001-01-01 00:00:00.0000000 |InProgress | 
-|9edb3ecc-f4b4-4738-87e1-648eed2bd9988 |データインジングエストプル | |2015-01-10 14:57:41.0000000 |2015-01-10 14:57:41.0000000 |0001-01-01 00:00:00.0000000 |失敗 |コレクションが変更されました。列挙操作は実行できません。 
+|3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47: 01.0000000 |2015-01-06 08:47: 01.0000000 |0001-01-01 00:00: 00.0000000 |完了 | 
+|84 1fafa4076a47 cba93008-4836da9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47: 02.0000000 |2015-01-06 08:48: 19.0000000 |0001-01-01 00:01: 17.0000000 |完了 | 
+|e198c519-5263-4629-a158-8d68f7a1022f |表示の表示 | |2015-01-06 08:47: 18.0000000 |2015-01-06 08:47: 18.0000000 |0001-01-01 00:00: 00.0000000 |完了 |
+|a9f287a1-f3e6-4154-ad18-b86438da0929 |ExtentsDrop | |2015-01-11 08:41: 01.0000000 |0001-01-01 00:00: 00.0000000 |0001-01-01 00:00: 00.0000000 |InProgress |
+|9edb3ecc-f4b4-4738-87e1-648eed2bd998 |DataIngestPull | |2015-01-10 14:57: 41.0000000 |2015-01-10 14:57: 41.0000000 |0001-01-01 00:00: 00.0000000 |Failed |コレクションが変更されました。 列挙操作は実行されない可能性があります |

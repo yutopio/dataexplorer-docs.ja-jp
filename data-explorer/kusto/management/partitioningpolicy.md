@@ -8,19 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: b2bb03511afed386e4c7519471481b7ecf5b6291
-ms.sourcegitcommit: e82e1bcfcb456e89a1afb19fc6e874ca9d70c575
+ms.openlocfilehash: 829e23fc087e732db4a555f3007f760249df15fe
+ms.sourcegitcommit: d660e39f24bd9a0e1c788cb86d4da9afd981cfc9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84110895"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84268068"
 ---
 # <a name="data-partitioning-policy-preview"></a>データのパーティション分割ポリシー (プレビュー)
 
 パーティション分割ポリシーでは、特定のテーブルに対して[エクステント (データシャード)](../management/extents-overview.md)をどのようにパーティション分割するかを定義します。
-
-> [!NOTE]
-> データのパーティション分割機能は*プレビュー*段階です。
 
 ポリシーの主な目的は、パーティション分割された列の値の小さなサブセットに絞り込まれることがわかっているクエリのパフォーマンスを向上させること、または高カーディナリティ文字列列に対して集計/結合を行うことです。 2つ目の利点は、データの圧縮が優れていることです。
 
@@ -178,7 +175,7 @@ ms.locfileid: "84110895"
   * 1つのデータパーティション分割操作のソースエクステントの行数の合計の最大ターゲット。
   * このプロパティは*省略可能*で、既定値はです `0` (この場合、500万レコードの既定のターゲットが有効になります)。
 
-## <a name="notes"></a>メモ
+## <a name="notes"></a>Notes
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 

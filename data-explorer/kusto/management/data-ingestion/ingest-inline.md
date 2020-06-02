@@ -1,6 +1,6 @@
 ---
 title: 取り込みインラインコマンド (プッシュ)-Azure データエクスプローラー
-description: この記事では、. インジェスト inline コマンド (push) について説明します。
+description: この記事では、. インジェストインラインコマンド (push) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 2ac3a9a414d31492917cfb1768ce7bb1d7d8abb1
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: 35098d2605a637832fd513da62a956382183a47c
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84257928"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294544"
 ---
 # <a name="ingest-inline-command-push"></a>。インジェストインラインコマンド (push)
 
@@ -30,23 +30,23 @@ ms.locfileid: "84257928"
 **引数**
 
 * *TableName*は、データの取り込み先となるテーブルの名前です。
-  名前は、常にデータベースに対してコンテキストで相対的に指定されます。
+  名前は、常にデータベースに関連付けられています。
   テーブルスキーマは、スキーママッピングオブジェクトが指定されていない場合に、データに対して想定されるスキーマです。
 
 * *データ*は、取り込むデータコンテンツです。 インジェストプロパティによって変更されない限り、このコンテンツは CSV として解析されます。
  
-> [!NOTE]
-> ほとんどのコントロールコマンドやクエリとは異なり、コマンドの*データ*部分のテキストは、言語の構文規則に従う必要はありません。 たとえば、空白文字が重要な場合や、 `//` 組み合わせがコメントとして扱われない場合などです。
+ > [!NOTE]
+ > ほとんどのコントロールコマンドやクエリとは異なり、コマンドの*データ*部分のテキストは、言語の構文規則に従う必要はありません。 たとえば、空白文字が重要な場合や、 `//` 組み合わせがコメントとして扱われない場合などです。
 
 * *IngestionPropertyName*, *IngestionPropertyValue*: インジェストプロセスに影響を与える任意の数の[インジェストプロパティ](../../../ingestion-properties.md)。
 
 **結果**
 
-コマンドの結果は、生成されたデータシャード ("エクステント") の数と同数のレコードを含むテーブルになります。
+結果は、生成されたデータシャード ("エクステント") の数と同数のレコードを含むテーブルになります。
 データシャードが生成されない場合は、空の (ゼロ値) エクステント ID で1つのレコードが返されます。
 
-|名前       |Type      |説明                                                 |
-|-----------|----------|------------------------------------------------------------|
+|名前       |Type      |説明                                                               |
+|-----------|----------|--------------------------------------------------------------------------|
 |ExtentId   |`guid`    |コマンドによって生成されたデータシャードの一意の識別子|
 
 **使用例**
@@ -63,7 +63,7 @@ Wide Shoes,50
 
 <!--
 You can generate inline ingests commands using the Kusto.Data client library. 
-(Note that compression does let you embed new lines in quoted fields) 
+Compression lets you embed new lines in quoted fields.
 
     Kusto.Data.Common.CslCommandGenerator.GenerateTableIngestPushCommand(tableName, compressed: true, csvData: csvStream);
 

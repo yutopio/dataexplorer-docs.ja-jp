@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 2bfea891b6057b5d43b65fa045e2b01d5e025a82
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 459b94d4fdb8dbd9d294367b2cee49aab9800406
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271249"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294595"
 ---
 # <a name="parse_ipv4"></a>parse_ipv4()
 
@@ -26,16 +26,18 @@ parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 
 **構文**
 
-`parse_ipv4(`*With*`)`
+`parse_ipv4(`*`Expr`*`)`
 
 **引数**
 
-* *Expr*: long 型に変換される IPv4 を表す文字列式。 文字列には、 [IP プレフィックス表記](#ip-prefix-notation)を使用した net マスクを含めることができます。
+* *`Expr`*: Long 型に変換される IPv4 を表す文字列式。 文字列には、 [IP プレフィックス表記](#ip-prefix-notation)を使用した net マスクを含めることができます。
 
-### <a name="ip-prefix-notation"></a>IP プレフィックスの表記
+## <a name="ip-prefix-notation"></a>IP プレフィックスの表記
 
-一般的な方法では、スラッシュ () 文字を使用して IP アドレスを定義し `IP-prefix notation` `/` ます。
-スラッシュ () の左側の IP アドレス `/` は基本 ip アドレスで、スラッシュ (/) の右側にある番号 (1 ~ 32) は、ネットマスクの連続した1ビット数です。 したがって、192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
+IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用して定義でき `/` ます。
+スラッシュ () の左側の IP アドレスは、 `/` 基本 ip アドレスです。 スラッシュ (/) の右側にある数字 (1 ~ 32) は、ネットマスク内の連続した1ビットの数です。 
+
+**例:** 192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
 
 **戻り値**
 

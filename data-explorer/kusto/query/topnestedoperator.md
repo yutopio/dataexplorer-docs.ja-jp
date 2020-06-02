@@ -8,62 +8,86 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f87606442dcc5d7c9e7e0fceec379c37169757c3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: a2a8f4fa92a7b8722097ec3595674b855a90f216
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370769"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294663"
 ---
 # <a name="top-nested-operator"></a>top-nested 演算子
 
-上位の結果が階層型で生成されます。各レベルは前のレベル値に基づくドリルダウンになります。 
+階層的な集計と上位の値の選択を生成します。各レベルは前のレベルを改良したものです。
 
 ```kusto
 T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-nested 4 of bin(Timestamp,5m) by sum(MachinesNumber)
 ```
 
-これは、ダッシュボードの視覚化のシナリオ、または "K1 の上位 N の値を検索する (一部の集計を使用する)" という質問に答える必要がある場合に便利です。それぞれについて、(別の集計を使用して) K2 のトップ-M 値を見つけます。..."
+演算子は、 `top-nested` 入力として表形式のデータと1つ以上の集計句を受け取ります。
+最初の集計句 (左端) は、これらのレコードに対する式の固有の値に従って、入力レコードをパーティションに細分化します。 次に、句は、レコードに対してこの式を最大化または最小化する特定の数のレコードを保持します。 次の集計句は、同様の関数を入れ子になった形式で適用します。 次の各句は、前の句によって生成されたパーティションに適用されます。 この処理は、すべての集計句に対して続行されます。
+
+たとえば、演算子を使用すると、 `top-nested` 「国、販売員、販売量などの売上の数値を含むテーブルについて」という質問に答えることができます。売上の上位5国は何ですか。 各国の上位3人の販売員はどのようなものですか。」
 
 **構文**
 
-*T* `|` `top-nested` [*N1*] `of` *Expression1* [ `with others=` *ConstExpr1*] `by` [*AggName1* `=` ] *Aggregation1* [ `asc`  |  `desc` ] [ `,` ...]
+*T* `|` `top-nested` *TopNestedClause2* [ `,` *TopNestedClause2*...]
+
+ここで、 *Topnestedclause*の構文は次のとおりです。
+
+[*N*] `of` [ *`ExprName`* `=` ] *`Expr`* [ `with` `others` `=` *`ConstExpr`* `by` *`AggName`* `=` *`Aggregation`* `asc`  |  `desc` ] [] []
 
 **引数**
 
-最上位の入れ子になったルールごとに、次のようにします。
-* *N1*: 階層レベルごとに返される上位の値の数。 省略可能 (省略した場合、すべての個別の値が返されます)。
-* *Expression1*: top 値を選択する式。 通常は、 *T*の列名、またはその `bin()` ような列に対するビン分割操作 (など) のいずれかです。 
-* *ConstExpr1*: 指定されている場合、該当する入れ子レベルでは、上位の値に含まれていない他の値の集計結果を保持する追加の行が追加されます。
-* *Aggregation1*: [sum ()](sum-aggfunction.md)、 [count ()](count-aggfunction.md)、 [max ()](max-aggfunction.md)、 [min ()](min-aggfunction.md)、 [dcount ()](dcountif-aggfunction.md)、 [avg ()](avg-aggfunction.md)、[百分位 ()](percentiles-aggfunction.md)、 [percentilew (](percentiles-aggfunction.md))、またはこれらの集計の任意の algebric 組み合わせのいずれかである集計関数の呼び出し。
-* `asc` または `desc` (既定値) は、実際には選択が範囲の "下限" と "上限" のどちらから行われるかを制御します。
+各*Topnestedclause*の場合:
+
+* *`N`*: `long` この階層レベルで返される上位の値の数を示す型のリテラル。
+  省略した場合、すべての個別の値が返されます。
+
+* *`ExprName`*: 指定した場合、の値に対応する出力列の名前を設定 *`Expr`* します。
+
+* *`Expr`*: この階層レベルで返される値を示す入力レコードの式。
+  通常は、表形式の入力 (*T*)、またはそのような列に対する一部の計算 (など) の列参照です `bin()` 。
+
+* *`ConstExpr`*: 指定されている場合、各階層レベル1のレコードは、"先頭に配置されていない" すべてのレコードの集計値と共に追加されます。
+
+* *`AggName`*: 指定されている場合、この識別子は、*集計*の値の出力の列名を設定します。
+
+* *`Aggregation`*: 同じ値を共有するすべてのレコードに適用する集計を示す数値式 *`Expr`* 。 この集計の値によって、結果として得られるレコードのどれが "top" であるかが決まります。
+  
+  次の集計関数がサポートされています。
+   * [sum ()](sum-aggfunction.md)、
+   * [count ()](count-aggfunction.md)、
+   * [max ()](max-aggfunction.md)、
+   * [min ()](min-aggfunction.md)、
+   * [dcount ()](dcountif-aggfunction.md)、
+   * [avg ()](avg-aggfunction.md)、
+   * [百分位 ()](percentiles-aggfunction.md)、および
+   * [percentilew ()](percentiles-aggfunction.md)。 集計の代数的な組み合わせもサポートされています。
+
+* `asc`または `desc` (既定値) は、集計値の範囲の "下" または "上" から選択されているかどうかを制御するように表示される場合があります。
 
 **戻り値**
 
-言及テーブルには、入力列と、各要素に対して同じレベルの集計結果を含む新しい列が生成されます。
-列は入力列と同じ順序で配置され、新しく生成された列は集計列の近くに配置されます。 各レコードには言及構造があります。これは、前のレベルのすべての上位入れ子になったルールを適用してから、この出力に対する現在のレベルのルールを適用した後に、各値が選択されます。
-これは、レベル i の上位 n の値が、レベル i-1 の各値に対して計算されることを意味します。
- 
-**ヒント**
+この演算子は、各集計句に2つの列を持つテーブルを返します。
 
-* *集計*結果としてで列の名前を変更する: T |場所を指定した場所の上位3つの場所 (場所 = 合計 (個の場所)....
+* 1つの列に句の計算の個別の値が保持 *`Expr`* されます (指定した場合は、列名が*exprname*になります)。
 
-* 返されるレコードの数は非常に大きい場合があります。最大 (*N1*+ 1) \* (*N2*+ 1) \* ... \* (*Nm*+ 1) (m はレベルの数、 *Ni*は level i の最上位の数)。
+* 1つの列には、*集計*計算の結果が格納されます (指定した場合は、列名が Aggregation *ationname*になります)。
 
-* 集計関数を含む数値列を受け取る必要があります。集計関数は、前述のいずれかです。
+**コメント**
 
-* オプションを使用して、 `with others=` あるレベルの上位 N の値ではないその他すべての値の集計値を取得します。
+値として指定されていない入力列は出力されません *`Expr`* 。
+特定のレベルのすべての値を取得するには、次のような集計カウントを追加します。
 
-* いくつかのレベルの取得に関心がない場合は `with others=` 、null 値が追加されます (集計列およびレベルキーについては、次の例を参照してください)。
+* *N*の値を省略します
+* の値として列名を使用します。*`Expr`*
+* を `Ignore=max(1)` 集計として使用し、列を無視 (またはプロジェクトから) し `Ignore` ます。
 
+レコードの数は、集計句の数 ((N1 + 1) \* (N2 + 1) \* ...) を使用して指数関数的に増加することがあります。*N*制限が指定されていない場合、レコードの増加はさらに高速になります。 このオペレーターが大量のリソースを消費する可能性があることを考慮してください。
 
-* 次のような上位の入れ子になったステートメントを追加することで、選択した最上位の候補に対して追加の列を返すことができます (以下の例を参照してください)。
+集計の分布が非常に一様でない場合は、( *N*を使用して) 返される個別の値の数を制限し、ConstExpr オプションを使用して、 `with others=` *ConstExpr*その他すべてのケースの "重み" を示すことができます。
 
-```kusto
-top-nested 2 of ...., ..., ..., top-nested of <additionalRequiredColumn1> by max(1), top-nested of <additionalRequiredColumn2> by max(1)
-```
-
-**例**
+**使用例**
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -73,7 +97,7 @@ StormEvents
   top-nested 1 of EndLocation by sum(BeginLat)
 ```
 
-|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
+|州|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |カンザス|87771.2355000001|法執行機関|18744.823|FT SCOTT|264.858|
 |カンザス|87771.2355000001|パブリック|22855.6206|BUCKLIN|488.2457|
@@ -82,8 +106,7 @@ StormEvents
 |テキサス州|123400.5101|法執行機関|37228.5966|PERRYTON|289.3178|
 |テキサス州|123400.5101|訓練を受けた観測員|13997.7124|CLDE|421.44|
 
-
-* その他の例:
+オプション ' with 他 ' を使用します。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -95,7 +118,7 @@ StormEvents
 
 ```
 
-|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
+|州|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |カンザス|87771.2355000001|法執行機関|18744.823|FT SCOTT|264.858|
 |カンザス|87771.2355000001|パブリック|22855.6206|BUCKLIN|488.2457|
@@ -137,7 +160,7 @@ StormEvents
 | project-away tmp
 ```
 
-|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|EventType|
+|州|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|EventType|
 |---|---|---|---|---|---|---|
 |カンザス|87771.2355000001|訓練を受けた観測員|21279.7083|SHARON SPGS|388.7404|雷雨風|
 |カンザス|87771.2355000001|訓練を受けた観測員|21279.7083|SHARON SPGS|388.7404|ひょう|
@@ -150,7 +173,7 @@ StormEvents
 |テキサス州|123400.5101|法執行機関|37228.5966|PERRYTON|289.3178|洪水|
 |テキサス州|123400.5101|法執行機関|37228.5966|PERRYTON|289.3178|鉄砲水|
 
-最後に入れ子になったレベル (この例では EndLocation) で結果を並べ替え、このレベルの各値に対してインデックスの並べ替え順序を指定するには (グループあたり):
+このレベルの各値 (グループごと) のインデックスの並べ替え順序を指定して、最後に入れ子になったレベル (この例では EndLocation) で結果を並べ替えます。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -162,7 +185,7 @@ StormEvents
 | mv-expand EndLocations, endLocationSums, indicies
 ```
 
-|State|source|EndLocations|endLocationSums 合計|決まっ|
+|州|source|EndLocations|endLocationSums 合計|決まっ|
 |---|---|---|---|---|
 |テキサス州|訓練を受けた観測員|CLDE|421.44|0|
 |テキサス州|訓練を受けた観測員|AMARILLO|316.8892|1|

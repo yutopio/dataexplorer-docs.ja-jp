@@ -1,6 +1,6 @@
 ---
-title: .drop インジェスティマッピング - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの .drop インジェスティ マッピングについて説明します。
+title: 。インジェストマッピングを削除します-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのインジェストのマッピングの削除について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,23 +8,23 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: c1434234033acc73de35289c6bc0a90af727babb
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 7454bd86a6ca2a835dc0515a9c8901a444259f12
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744770"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294527"
 ---
 # <a name="drop-ingestion-mapping"></a>.ate インジェスト マッピング
 
-データベースから取り込みマッピングを削除します。
+データベースからインジェストマッピングを削除します。
  
-`.drop``table`*テーブル名*`ingestion`*マッピングKind* `mapping` *マッピング名*   
+`.drop``table` *TableName* `ingestion` *mappingkind* `mapping` *MappingName*   
 
 **例** 
 
 ```kusto
 .drop table MyTable ingestion CSV mapping "Mapping1" 
 
-.drop table MyTable ingestion JSON mappings "Mapping1" 
+.drop table MyTable ingestion json mapping "Mapping1" 
 ```

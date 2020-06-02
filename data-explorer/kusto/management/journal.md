@@ -1,6 +1,6 @@
 ---
-title: ジャーナル管理 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのジャーナル管理について説明します。
+title: ジャーナル管理-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでのジャーナル管理について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,78 +8,68 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/19/2019
-ms.openlocfilehash: bbe5ab4bda42fdfd9382c7e71da85789c13f6987
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 64b0f8179a328ce811747b05a90516fd8b6029be
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520793"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294408"
 ---
 # <a name="journal-management"></a>ジャーナル管理
 
- `Journal`Kusto データベースで実行されたメタデータ操作に関する情報が含まれています。
+ `Journal`Azure データエクスプローラーデータベースで実行されるメタデータ操作について説明します。
 
-メタデータ操作は、システムによって実行される制御コマンドまたはシステムによって実行される内部制御コマンド (保持によるドロップ・エクステントなど) の結果である可能性があります。
+メタデータ操作は、ユーザーが実行したコントロールコマンド、またはシステムによって実行された内部制御コマンド (保有期間によるエクステントの削除など) によって発生する可能性があります。
 
-**注:**
+> [!NOTE]
+> * 、などの新しいエクステントの*追加*を含むメタデータ操作では、 `.ingest` `.append` `.move` に一致するイベントが表示されません `Journal` 。
+> * 結果セットの列のデータと、表示される形式は契約していません。 
+  依存関係を取得することは推奨されません。
 
-- 新しいエクステントの*追加*を含むメタデータ操作`.ingest` `.append`( `.move` 、 など ) には、 に`Journal`一致するイベントが表示されません。
-- 結果セットの列のデータと、それが提示される形式は、契約*上のデータではない*ため、それらに依存することはお勧め*しません*。
-
-|Event        |EventTimestamp     |データベース  |EntityName|更新されたエンティティ名|エンティティバージョン|エンティティコンテナ名|
+|Event        |EventTimestamp     |データベース  |EntityName|UpdatedEntityName|EntityVersion|Entitycontainername.entitysetname|
 |-------------|-------------------|----------|----------|-----------------|-------------|-------------------|
-|テーブルの作成 |2017-01-05 14:25:07|内部Db|マイテーブル1  |マイテーブル1         |v7.0         |内部Db         |
-|テーブルの名前の変更 |2017-01-13 10:30:01|内部Db|マイテーブル1  |マイテーブル2         |v8.0         |内部Db         |  
+|テーブルの作成 |2017-01-05 14:25:07|InternalDb|MyTable1  |MyTable1         |v1.0         |InternalDb         |
+|テーブル名の変更 |2017-01-13 10:30:01|InternalDb|MyTable1  |MyTable2         |8.0         |InternalDb         |  
 
-|元のエンティティ状態|更新されたエンティティ状態                                              |コマンドを変更します。                                                                                                          |プリンシパル            |
+|OriginalEntityState|UpdatedEntityState                                              |ChangeCommand                                                                                                          |プリンシパル            |
 |-------------------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|---------------------|
-|.                  |名前: MyTable1, 属性: 名前='[MyTable1]。[col1]'、タイプ='I32'|作成テーブル MyTable1 (col1:int)                                                                                      |imike@fabrikam.com
-|.                  |db プロパティ (長すぎてここに表示できません)               |.データベースの作成 TestDBhttps://imfbkm.blob.core.windows.net/md永続化 (@"https://imfbkm.blob.core.windows.net/data", @" ")|AAD アプリ id=76263cdb-abcd-545644e9c404
-|名前: MyTable1, 属性: 名前='[MyTable1]。[col1]'、タイプ='I32'|名前: MyTable2, 属性: 名前='[MyTable1]。[col1]'、タイプ='I32'|名前の変更テーブル MyTable1 から MyTable2 に変更|rdmik@fabrikam.com
+|.                  |名前: MyTable1、Attributes: Name = ' [MyTable1]。[col1] ', Type = ' I32 '|. create table MyTable1 (col1: int)                                                                                      |imike@fabrikam.com
+|.                  |データベースのプロパティ (長すぎてここに表示できません)         |. create database TestDB persist (@ " https://imfbkm.blob.core.windows.net/md ", @ " https://imfbkm.blob.core.windows.net/data ")|Azure AD app id = 76263cdb-545644e9c404
+|名前: MyTable1、Attributes: Name = ' [MyTable1]。[col1] ', Type = ' I32 '|名前: MyTable2、Attributes: Name = ' [MyTable1]。[col1] ', Type = ' I32 '|。テーブル MyTable1 を MyTable2 に変更します。|rdmik@fabrikam.com
 
+|Item                 |説明                                                              |                                
+|---------------------|-------------------------------------------------------------------------|
+|Event                |メタデータイベント名                                                  |
+|EventTimestamp       |イベントのタイムスタンプ                                                      |                        
+|データベース             |このデータベースのメタデータは、イベントの後で変更されました                |
+|EntityName           |変更前に操作が実行されたエンティティ名。    |
+|UpdatedEntityName    |変更後の新しいエンティティ名                                     |
+|EntityVersion        |変更後の新しいメタデータバージョン (db/クラスター)               |
+|Entitycontainername.entitysetname  |エンティティコンテナー名 (entity = column, container = table)               |
+|OriginalEntityState  |変更前のエンティティ (エンティティプロパティ) の状態            |
+|UpdatedEntityState   |変更後の新しい状態                                           |
+|ChangeCommand        |メタデータの変更をトリガーした、実行されたコントロールコマンド          |
+|プリンシパル            |Control コマンドを実行したプリンシパル (ユーザー/アプリ)               |
+    
+## <a name="show-journal"></a>。ジャーナルを表示します
 
-イベント: メタデータ イベント名。
-
-イベントタイムスタンプ - イベントタイムスタンプ。
-
-データベース - このデータベースのメタデータは、イベントの後に変更されました。
-
-エンティティ名 - エンティティ名、操作が実行された、変更の前に。
-
-更新されたエンティティ名 - 変更後の新しいエンティティ名。
-
-EntityVersion - 変更後の新しいメタデータ バージョン (db/cluster)。
-
-エンティティコンテナ名 - エンティティコンテナ名(つまり、エンティティ=列、コンテナ=テーブル)。
-
-元のエンティティ状態 : 変更前のエンティティ (エンティティ プロパティ) の状態。
-
-更新されたエンティティ状態 - 変更後の新しい状態。
-
-ChangeCommand - メタデータの変更をトリガーした実行されたコントロールコマンド。
-
-プリンシパル - コントロール コマンドを実行したプリンシパル (ユーザー/アプリ)。
-                    
-## <a name="show-journal"></a>.ジャーナルを表示
-
-この`.show journal`コマンドは、ユーザーが管理者アクセス権を持つデータベース/クラスター上のメタデータ変更のリストを返します。
+この `.show journal` コマンドは、データベースまたはユーザーが管理者アクセス権を持っているクラスターのメタデータ変更の一覧を返します。
 
 **アクセス許可**
 
-すべてのユーザー (クラスター アクセス) は、コマンドを実行できます。 
+すべてのユーザー (クラスターアクセス) でコマンドを実行できます。 
 
 返される結果は次のとおりです。 
-1. コマンドを実行しているユーザーのすべてのジャーナル項目。 
-2. コマンドを実行しているユーザーが管理者アクセス権を持つデータベースのすべてのジャーナル項目。 
-3. コマンドを実行するユーザーがクラスター管理者である場合は、すべてのクラスター・ジャーナル項目。 
+- コマンドを実行しているユーザーのすべてのジャーナルエントリ。 
+- コマンドを実行しているユーザーが管理者アクセス権を持っているデータベースのすべてのジャーナルエントリ。 
+- コマンドを実行しているユーザーがクラスター管理者である場合は、すべてのクラスタージャーナルエントリ。 
 
-## <a name="show-database-databasename-journal"></a>.show*データベース データベース名仕訳帳* 
+## <a name="show-database-databasename-journal"></a>。データベース*DatabaseName*ジャーナルを表示します 
 
-`.show` `database` `journal` *DatabaseName*コマンドは、特定のデータベース メタデータの変更に関するジャーナルを返します。
+`.show` `database` *DatabaseName* `journal` コマンドは、特定のデータベースメタデータの変更に対するジャーナルを返します。
 
 **アクセス許可**
 
-すべてのユーザー (クラスター アクセス) は、コマンドを実行できます。 返される結果は次のとおりです。 
-1. コマンドを実行するユーザーが*DatabaseName*のデータベース管理者である場合は、データベース*データベース名*のすべてのジャーナル項目。 
-2. それ以外の場合は、データベース*DatabaseName*およびコマンドを実行しているユーザーのすべてのジャーナル項目。 
-
+すべてのユーザー (クラスターアクセス) でコマンドを実行できます。 返される結果は次のとおりです。 
+- コマンドを実行しているユーザーが*databasename*内のデータベース管理者である場合、データベース*DatabaseName*のすべてのジャーナルエントリ。 
+- それ以外の場合は、コマンドを実行しているデータベースとユーザーのすべてのジャーナルエントリ `DatabaseName` 。 

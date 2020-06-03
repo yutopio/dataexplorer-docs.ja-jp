@@ -1,5 +1,5 @@
 ---
-title: . alter インジェスト mapping-Azure データエクスプローラー |Microsoft Docs
+title: . alter インジェスト mapping-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーでの alter インジェストマッピングについて説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 2f43039ff3935edbb6e92627d2f96b1c411e1ffa
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: f62692c7f5a1b557038f452f5ed3c023ec9849f9
+ms.sourcegitcommit: f7101c6b41ec250d05f4cb6092e2939958b37b40
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617818"
+ms.lasthandoff: 06/03/2020
+ms.locfileid: "84329029"
 ---
 # <a name="alter-ingestion-mapping"></a>.alter インジェスト マッピング
 
@@ -21,11 +21,11 @@ ms.locfileid: "82617818"
 
 **構文**
 
-`.alter``table` *TableName* TableName `ingestion` *MappingKind* mappingkind `mapping` *MappingName* *MappingFormattedAsJson*
+`.alter``table` *TableName* `ingestion` *mappingkind* `mapping` *MappingName* *MappingFormattedAsJson*
 
 > [!NOTE]
 > * このマッピングは、コマンドの一部として完全なマッピングを指定するのではなく、インジェストコマンドを使用して名前で参照できます。
-> * _Mappingkind_の有効な値は`CSV`、 `JSON`、 `avro`、 `parquet`、、 `orc`およびです。
+> * _Mappingkind_の有効な値は `CSV` 、、、 `JSON` `avro` 、 `parquet` 、および `orc` です。
 
 **例** 
  
@@ -43,8 +43,8 @@ ms.locfileid: "82617818"
 ']'
 ```
 
-**出力例**
+**サンプル出力**
 
 | 名前     | 種類 | マッピング                                                                                                                                                                          |
 |----------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| mapping1 | CSV  | [{"Name": "rownumber"、"DataType": "int"、"CsvDataType": null、"Ordinal": 0、"": null}、{"Name": "rowguid"、"DataType": "string"、"CsvDataType": null、"Ordinal": 1、"": null}] |
+| mapping1 | CSV  | `[{"Name":"rownumber","DataType":"int","CsvDataType":null,"Ordinal":0,"ConstValue":null},{"Name":"rowguid","DataType":"string","CsvDataType":null,"Ordinal":1,"ConstValue":null}]` |

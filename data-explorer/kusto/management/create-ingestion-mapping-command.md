@@ -1,5 +1,5 @@
 ---
-title: 。インジェストマッピングを作成する-Azure データエクスプローラー |Microsoft Docs
+title: ': インジェストマッピングを作成する-Azure データエクスプローラー'
 description: この記事では、Azure データエクスプローラーでインジェストマッピングを作成する方法について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: 84ab277f5b0d4d1b2e09d31fb7c1254786affe6d
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 3855d56ad31bbf98a6a075feb44a598b3bdbf52a
+ms.sourcegitcommit: f7101c6b41ec250d05f4cb6092e2939958b37b40
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617733"
+ms.lasthandoff: 06/03/2020
+ms.locfileid: "84329063"
 ---
 # <a name="create-ingestion-mapping"></a>.create インジェスト マッピング
 
@@ -21,11 +21,11 @@ ms.locfileid: "82617733"
 
 **構文**
 
-`.create``table` *TableName* TableName `ingestion` *MappingKind* mappingkind `mapping` *MappingName* *MappingFormattedAsJson*
+`.create``table` *TableName* `ingestion` *mappingkind* `mapping` *MappingName* *MappingFormattedAsJson*
 
 > [!NOTE]
 > * 作成されたマッピングは、コマンドの一部として完全なマッピングを指定するのではなく、インジェストコマンドで名前によって参照できます。
-> * _Mappingkind_の有効な値は`CSV`、 `JSON`、 `avro`、 `parquet`、、およびです。`orc`
+> * _Mappingkind_の有効な値は `CSV` 、、、 `JSON` `avro` 、 `parquet` 、およびです。`orc`
 > * 同じ名前のマッピングがテーブルに既に存在する場合は、次のようになります。
 >    * `.create`失敗します
 >    * `.create-or-alter`既存のマッピングを変更します
@@ -50,7 +50,7 @@ ms.locfileid: "82617733"
 
 | 名前     | 種類 | マッピング                                                                                                                                                                          |
 |----------|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| mapping1 | CSV  | [{"Name": "rownumber"、"DataType": "int"、"CsvDataType": null、"Ordinal": 0、"": null}、{"Name": "rowguid"、"DataType": "string"、"CsvDataType": null、"Ordinal": 1、"": null}] |
+| mapping1 | CSV  | `[{"Name":"rownumber","DataType":"int","CsvDataType":null,"Ordinal":0,"ConstValue":null},{"Name":"rowguid","DataType":"string","CsvDataType":null,"Ordinal":1,"ConstValue":null}]` |
 
 ## <a name="next-steps"></a>次のステップ
 インジェストマッピングの詳細については、「[データマッピング](mappings.md)」を参照してください。

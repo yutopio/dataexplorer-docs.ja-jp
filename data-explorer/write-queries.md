@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/07/2019
-ms.openlocfilehash: 7b43218d3d1894341ce997f4cfddcc3abbf1e39c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4490310664a7c27a319ce758a63b1dc90be8bef0
+ms.sourcegitcommit: 3cdb365c0174e517fb5cb16784da278ceb801b23
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493559"
+ms.lasthandoff: 05/29/2020
+ms.locfileid: "84214410"
 ---
 # <a name="write-queries-for-azure-data-explorer"></a>Azure データ エクスプローラーのクエリを記述する
 
@@ -31,7 +31,7 @@ ms.locfileid: "81493559"
 
 ## <a name="overview-of-the-query-language"></a>クエリ言語の概要
 
-Azure のデータ エクスプローラーのクエリ言語は、データを処理し、結果を返す、読み取り専用の要求です。 要求は、構文を読みやすく、作りやすく、自動化しやすくするように設計されたデータフロー モデルを利用してプレーンテキストで述べられます。 データベース、テーブル、列など、SQL に似た階層で整理されたスキーマ エンティティがクエリで使用されます。
+Azure Data Explorer のクエリは、データを処理し、結果を返す、読み取り専用の要求です。 要求は、構文を読みやすく、作りやすく、自動化しやすくするように設計されたデータフロー モデルを利用してプレーンテキストで述べられます。 データベース、テーブル、列など、SQL に似た階層で整理されたスキーマ エンティティがクエリで使用されます。
 
 クエリは一連のクエリ ステートメントで構成されます。ステートメントはセミコロン (`;`) で区切られ、少なくとも 1 つのステートメントを表形式にします。表形式のステートメントでは、生成されたデータが列と行からなる表のようなメッシュで整理されます。 クエリの表形式ステートメントからクエリの結果が生成されます。
 

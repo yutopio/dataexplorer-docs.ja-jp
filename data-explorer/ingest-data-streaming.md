@@ -7,18 +7,18 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/30/2019
-ms.openlocfilehash: c0373d2e380f1a9fb826d0e40ffcc0284f6db09a
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 4bbb076b4c21ac2f93b2bdaf775d513483332934
+ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373778"
+ms.lasthandoff: 06/01/2020
+ms.locfileid: "84257962"
 ---
 # <a name="streaming-ingestion-preview"></a>ストリーミング インジェスト (プレビュー)
 
 ストリーミング インジェストは、多様なボリューム データでインジェスト時間が 10 秒未満の短い待機時間を必要とするときに使用します。 各テーブルへのデータ ストリームが比較的小さい (1 秒あたりのレコード数が少ない) 1 つまたは複数のデータベースで、数多くのテーブルの操作処理を最適化するために使用されますが、データ インジェスト ボリューム全体が高くなります (1 秒あたり数千レコード)。 
 
-データ量がテーブルごとに 1 MB/秒を超える場合は、ストリーミング インジェストではなく一括インジェストを使用します。 さまざまなインジェスト方法の詳細については、「[Azure データ エクスプローラーでのデータ インジェスト](ingest-data-overview.md)」を参照してください。
+データ量がテーブルごとに 1 時間あたり 4 GB を超える場合は、ストリーミング インジェストではなく一括インジェストを使用します。 さまざまなインジェスト方法の詳細については、「[Azure データ エクスプローラーでのデータ インジェスト](ingest-data-overview.md)」を参照してください。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -47,9 +47,8 @@ ms.locfileid: "83373778"
 
 2 種類のストリーミング インジェストがサポートされています。
 
-
-* データ ソースとして使用される[**イベント ハブ**](ingest-data-event-hub.md)
-* **カスタム インジェスト**では、Azure Data Explorer クライアント ライブラリのいずれかを使用するアプリケーションを作成する必要があります。 サンプル アプリケーションについては、[ストリーミング インジェストのサンプル](https://github.com/Azure/azure-kusto-samples-dotnet/tree/master/client/StreamingIngestionSample)を参照してください。
+* データ ソースとして使用される[**イベント ハブ**](ingest-data-event-hub.md)。
+* **カスタム インジェスト**では、Azure Data Explorer [クライアント ライブラリ](kusto/api/client-libraries.md)のいずれかを使用するアプリケーションを作成する必要があります。 サンプル アプリケーションについては、[ストリーミング インジェストのサンプル](https://github.com/Azure/azure-kusto-samples-dotnet/tree/master/client/StreamingIngestionSample)を参照してください。
 
 ### <a name="choose-the-appropriate-streaming-ingestion-type"></a>適切なストリーミング インジェストの種類を選択する
 
@@ -64,7 +63,7 @@ ms.locfileid: "83373778"
 > ストリーミング インジェストの無効化には数時間かかることがあります。
 
 1. 関連するすべてのテーブルとデータベースから[ストリーミング インジェスト ポリシー](kusto/management/streamingingestionpolicy.md)をドロップします。 ストリーミング インジェスト ポリシーの削除によって、初期ストレージから列ストア (エクステントまたはシャード) 内の永続的なストレージへのストリーミング インジェストのデータ移動がトリガーされます。 データ移動には、初期ストレージ上のデータ量とクラスターによる CPU およびメモリ使用率に応じて、数秒から数時間かかることがあります。
-1. Azure portal で、Azure Data Explorer クラスターに移動します。 **[設定]** で **[構成]** を選択します。 
+1. Azure portal で、Azure Data Explorer クラスターに移動します。 **[設定]** で **[構成]** を選択します。
 1. **[構成]** ウィンドウで、 **[オフ]** を選択して **[ストリーミング インジェスト]** を無効にします。
 1. **[保存]** を選択します。
 
@@ -72,10 +71,11 @@ ms.locfileid: "83373778"
 
 ## <a name="limitations"></a>制限事項
 
-* ストリーミング インジェストでは、[データベース カーソル](kusto/management/databasecursor.md)および[データ マッピング](kusto/management/mappings.md)はサポートされません。 [事前に作成された](kusto/management/create-ingestion-mapping-command.md)データ マッピングのみがサポートされています。 
-* ストリーミング インジェストのパフォーマンスと容量は、VM とクラスターのサイズを増やして拡張されます。 同時インジェストは、コアあたり 6 つのインジェストに制限されます。 たとえば、D14 や L16 などの 16 コアの SKU の場合、サポートされる最大負荷は 96 の同時インジェストです。 D11 などの 2 コアの SKU の場合、サポートされる最大負荷は 12 の同時インジェストです。
-* インジェスト要求ごとのデータ サイズの制限は 4 MB です。
-* テーブルとインジェスト マッピングの作成や変更など、スキーマの更新には、ストリーミング インジェスト サービスに最大 5 分かかることがあります。
+* データベース自体またはそのいずれかのテーブルに[ストリーミング インジェスト ポリシー](kusto/management/streamingingestionpolicy.md)が定義され、有効になっている場合、データベースで[データベース カーソル](kusto/management/databasecursor.md)はサポートされません。
+* [データ マッピング](kusto/management/mappings.md)は、ストリーミング インジェストで使用するために[事前に作成](kusto/management/create-ingestion-mapping-command.md)する必要があります。 個々のストリーミング インジェスト要求は、インライン データ マッピングには対応していません。
+* ストリーミング インジェストのパフォーマンスと容量は、VM とクラスターのサイズを増やして拡張されます。 同時インジェスト要求の数は、コアあたり 6 個に制限されています。 たとえば、D14 や L16 などの 16 コアの SKU の場合、サポートされる最大負荷は 96 の同時インジェスト要求です。 D11 などの 2 コアの SKU の場合、サポートされる最大負荷は 12 の同時インジェスト要求です。
+* ストリーミング インジェスト要求のデータ サイズの制限は 4 MB です。
+* スキーマの更新は、ストリーミング インジェスト サービスで利用できるようになるまでに最大 5 分かかる場合があります。 これらの更新の例としては、テーブルおよびインジェスト マッピングの作成と変更があります。 
 * クラスターでストリーミング インジェストを有効にすると、データがストリーミング経由で取り込まれていない場合でも、インジェスト データをストリーミングするためにクラスター マシンのローカル SSD ディスクの一部を使用して、ホット キャッシュに使用できるストレージを減らします。
 * [extent タグ](kusto/management/extents-overview.md#extent-tagging)は、ストリーミング インジェスト データには設定できません。
 

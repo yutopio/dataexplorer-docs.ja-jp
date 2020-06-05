@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fe44323dabb246438f18c9ab01eec0008ad4fe97
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: ffb14b110904bcf94a69d3abeed2fc0b542b0448
+ms.sourcegitcommit: 31af2dfa75b5a2f59113611cf6faba0b45d29eb5
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372963"
+ms.lasthandoff: 06/05/2020
+ms.locfileid: "84454135"
 ---
 # <a name="samples"></a>サンプル
 
@@ -38,18 +38,17 @@ StormEvents
 
 :::image type="content" source="images/samples/060.png" alt-text="060":::
 
-<a name="activities"></a>
 ## <a name="get-sessions-from-start-and-stop-events"></a>開始および停止イベントからのセッションの取得
 
 イベントのログがあり、一部のイベントで拡張アクティビティまたはセッションの開始または終了がマークされているとします。 
 
 |名前|City|SessionId|Timestamp|
 |---|---|---|---|
-|[開始]|London|2817330|2015-12-09T10:12:02.32|
+|開始|London|2817330|2015-12-09T10:12:02.32|
 |Game|London|2817330|2015-12-09T10:12:52.45|
-|[開始]|Manchester|4267667|2015-12-09T10:14:02.23|
+|開始|Manchester|4267667|2015-12-09T10:14:02.23|
 |Stop|London|2817330|2015-12-09T10:23:43.18|
-|Cancel|Manchester|4267667|2015-12-09T10:27:26.29|
+|キャンセル|Manchester|4267667|2015-12-09T10:27:26.29|
 |Stop|Manchester|4267667|2015-12-09T10:28:31.72|
 
 すべてのイベントには SessionId があるため、問題は、開始イベントと停止イベントを同じ id で照合することです。
@@ -104,7 +103,7 @@ Events
 
 :::image type="content" source="images/samples/040.png" alt-text="040"::: 
 
-次に、コードを追加して、サイズの簡単なビンで期間をカウントできます。横棒グラフの設定はわずかであるため、を使用して `1s` 、タイムスパンを数値に変換します。 
+次に、コードを追加して、簡単にサイズ変更可能なビンに期間をカウントできます。横棒グラフの設定はわずかであるため、を使用して `1s` 、タイムスパンを数値に変換します。 
 
 
       // Count the frequency of each duration:
@@ -185,7 +184,6 @@ on UnitOfWorkId
 | extend SaveFactor = sum_NormalizedLoad / sum_CurrentLoad 
 ```
 
-<a name="concurrent-activities"><a/>
 ## <a name="chart-concurrent-sessions-over-time"></a>同時セッションの時系列グラフ
 
 開始および終了時刻を含むアクティビティのテーブルがあるとします。  ここでは、一定時間における同時実行数を示す時系列グラフを使用します。
@@ -295,7 +293,7 @@ T
    では、テーブルがでは使用されません `mv-expand` 。
 3. 関数に `mv-expand` 対して演算子を使用 `range` すると、との間に5分のビンと同じ数の行が作成され `StartTime` `EndTime` ます。
 4. がのすべて `Count` の `0` 。
-5. 最後に、演算子を使用して、元の引数 ( `summarize` left、outer) から、内部引数に対するビン `union` (つまり、null ビン行) までのビンをグループ化します。 これにより、出力にはビンごとに1行が含まれるようになります。値は0または元のカウントのいずれかになります。  
+5. 最後に、演算子を使用して、元の引数 ( `summarize` left、outer) から、内部引数に対するビン `union` (つまり、null ビン行) までのビンをグループ化します。 これにより、出力にはビンごとに1行が含まれ、その値は0または元のカウントになります。  
 
 ## <a name="get-more-out-of-your-data-in-kusto-using-machine-learning"></a>Kusto を使用してデータをさらに活用する方法 Machine Learning 
 
@@ -473,7 +471,7 @@ Devices
 | project FriendlyName, Count
 ```
 
-結果: 
+結果:
 
 |FriendlyName |Count 
 |---|---
@@ -559,14 +557,14 @@ Notes
 |SomeSeries|Int|
 |----------|-------|
 |Foo       |    100|
-|棒グラフ       |    200|
+|横棒       |    200|
 
 このテーブルを表示するには、次のようにします。
 
 |SomeSeries|Int|Pct |
 |----------|-------|----|
 |Foo       |    100|33.3|
-|棒グラフ       |    200|66.6|
+|横棒       |    200|66.6|
 
 これを行うには、列の合計 (合計) を計算 `SomeInt` してから、この列の各値を合計で割る必要があります。 [As 演算子](asoperator.md)を使用してこれらの結果を名前に指定することで、任意の結果に対してこれを行うことができます。
 

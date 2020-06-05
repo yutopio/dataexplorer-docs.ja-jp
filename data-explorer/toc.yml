@@ -198,6 +198,8 @@
               href: customer-managed-keys-resource-manager.md
             - name: Azure CLI
               href: customer-managed-keys-cli.md
+            - name: PowerShell
+              href: customer-managed-keys-powershell.md
         - name: Azure AD アプリを作成する
           href: provision-azure-ad-app.md
     - name: 管理する

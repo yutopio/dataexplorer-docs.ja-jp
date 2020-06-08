@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/09/2019
-ms.openlocfilehash: 55864dd408f35c59398ea1b93f18c0834a611a90
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: 071658bf2277dd0ddb4734aaf0b59a7a44c8fe27
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84258098"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512352"
 ---
 # <a name="kql-over-tds"></a>TDS 経由の KQL
 
@@ -25,7 +25,7 @@ Kusto は、SQL ストアドプロシージャの呼び出しなど、[ストア
 
 たとえば、格納されている関数 MyFunction は次のようになります。
 
-|名前 |パラメーター|本文|フォルダー|DocString
+|名前 |パラメーター|本文|Folder|DocString
 |---|---|---|---|---
 |MyFunction |(myLimit: long)| {StormEvents &#124; 制限 myLimit}|MyFolder|パラメーターを使用したデモ関数||
 
@@ -49,7 +49,8 @@ Kusto は、SQL ストアドプロシージャの呼び出しなど、[ストア
   }
 ```
 
-> [!注:] は、という名前の明示的なスキーマで格納されている関数を呼び出し `kusto` て、Kusto に格納されている関数と、SQL システムのエミュレートされたストアドプロシージャを区別します。
+> [!NOTE]
+> `kusto`Kusto ストアド関数とエミュレートされた SQL システムストアドプロシージャを区別するために、という名前の明示的なスキーマを使用して、格納されている関数を呼び出します。
 
 また、SQL 表形式関数のように、T-sql から格納されている関数に Kusto 呼び出すこともできます。
 

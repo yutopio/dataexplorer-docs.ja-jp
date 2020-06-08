@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: bfa44859987d8f3c4f11221fd8370290f08f9a67
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: cd9d0f9156387f3a42d41b000aefc9eac0793f9d
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382048"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512505"
 ---
 # <a name="ingest-from-query-set-append-set-or-append-set-or-replace"></a>クエリからの取り込み (............................
 
@@ -38,7 +38,7 @@ ms.locfileid: "83382048"
 
 **引数**
 
-* `async`: 指定した場合、コマンドはすぐに制御を戻し、バックグラウンドで取り込みを続行します。 コマンドの結果には、インジェストの `OperationId` `.show operation` 完了状態と結果を取得するためにコマンドで使用できる値が含まれます。
+* `async`: 指定した場合、コマンドはすぐに制御を戻し、バックグラウンドで取り込みを続行します。 コマンドの結果には、インジェストの `OperationId` `.show operations` 完了状態と結果を取得するためにコマンドで使用できる値が含まれます。
 * *TableName*: データの取り込み先となるテーブルの名前。
   テーブル名は、常にデータベースに対してコンテキストで相対的に指定されます。
 * *PropertyName*、 *PropertyValue*: インジェスト処理に影響を与える任意の数のインジェストプロパティ。
@@ -58,7 +58,7 @@ ms.locfileid: "83382048"
 
   また、コマンド自体の動作を制御するプロパティもあります。
 
-|プロパティ        |種類    |Description|
+|プロパティ        |Type    |[説明]|
 |----------------|--------|-----------------------------------------------------------------------------------------------------------------------------|
 |`distributed`   |`bool`  |コマンドが、クエリを並列実行しているすべてのノードから取り込みしたことを示します。 (既定値は `false` です)。 以下の解説を参照してください。|
 

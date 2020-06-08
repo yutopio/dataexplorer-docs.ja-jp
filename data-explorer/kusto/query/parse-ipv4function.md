@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 459b94d4fdb8dbd9d294367b2cee49aab9800406
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: b0377cd8af302d2680c0ee451d05f4b4b083ccec
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294595"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512607"
 ---
 # <a name="parse_ipv4"></a>parse_ipv4()
 
@@ -35,9 +35,11 @@ parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 ## <a name="ip-prefix-notation"></a>IP プレフィックスの表記
 
 IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用して定義でき `/` ます。
-スラッシュ () の左側の IP アドレスは、 `/` 基本 ip アドレスです。 スラッシュ (/) の右側にある数字 (1 ~ 32) は、ネットマスク内の連続した1ビットの数です。 
+スラッシュ () の左側の IP アドレスは、 `/` 基本 ip アドレスです。 スラッシュ (/) の右側にある数字 (1 ~ 32) は、ネットマスク内の連続した1ビットの数です。
 
-**例:** 192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
+**例**
+
+192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
 
 **戻り値**
 

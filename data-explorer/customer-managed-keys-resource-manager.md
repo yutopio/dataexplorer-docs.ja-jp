@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/06/2020
-ms.openlocfilehash: 1d7611537a96cf38ab33ddba30c83f721c90d11c
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: dc181e1509f720a8871fd4c41c43f940cef72728
+ms.sourcegitcommit: a7e040fc844098323aa1c00e254bcbcd41fe587f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84257979"
+ms.lasthandoff: 06/04/2020
+ms.locfileid: "84426508"
 ---
 # <a name="configure-customer-managed-keys-using-the-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用してカスタマー マネージド キーを構成する
 
@@ -21,6 +21,7 @@ ms.locfileid: "84257979"
 > * [C#](customer-managed-keys-csharp.md)
 > * [Azure Resource Manager テンプレート](customer-managed-keys-resource-manager.md)
 > * [CLI](customer-managed-keys-cli.md)
+> * [PowerShell](customer-managed-keys-powershell.md)
 
 [!INCLUDE [data-explorer-configure-customer-managed-keys](includes/data-explorer-configure-customer-managed-keys.md)]
 

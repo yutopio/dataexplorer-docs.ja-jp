@@ -1,6 +1,6 @@
 ---
-title: クエリの一貫性 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのクエリの一貫性について説明します。
+title: クエリの整合性-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでのクエリの一貫性について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,21 +8,21 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/20/2019
-ms.openlocfilehash: b66540af2d2d4bef4571249474cd618e69eb2261
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8b4d1df4dc9a035764f9d50a4f9c4dcf452da67e
+ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523105"
+ms.lasthandoff: 06/08/2020
+ms.locfileid: "84512267"
 ---
 # <a name="query-consistency"></a>クエリの一貫性
 
-Kusto は、**強**いクエリと弱いの 2 つのクエリの一貫性モデルをサポート**しています**。
+Kusto では、2つのクエリ整合性モデル ( **strong**と**weak**) がサポートされています。
 
-強い整合性を持つクエリ (既定) には"読み取りマイ変更" が保証されます。 制御コマンドを送信し、コマンドが正常に完了したことを肯定応答を受け取るクライアントは、次の直後のクエリがコマンドの結果を観察することを保証します。
+厳密に一貫性のあるクエリ (既定値) には、"変更の読み取り" の保証があります。 制御コマンドを送信し、コマンドが正常に完了したことを示す受信確認を受信した場合は、すぐに次のクエリを実行すると、コマンドの結果が確認されます。
 
-弱い整合性のクエリ (クライアントが明示的に有効にする必要があります) は保証されません。 クエリを実行するクライアントは、変更とそれらの変更を反映したクエリの間に、ある程度の待機時間 (通常は 1 ~ 2 分) を観察する場合があります。
+クライアントによって明示的に有効にする必要がある、一貫性のないクエリは保証されません。 クエリを実行するクライアントは、変更とその変更を反映したクエリの間に、待機時間 (通常は1-2 分) が発生する可能性があります。
 
-弱い整合性クエリの利点は、データベースの変更を処理するクラスター ノードの負荷を軽減することです。 一般に、お客様はまず強い一貫性のあるモデルを試し、必要に応じて弱い一貫性を使用するように切り替えることをお勧めします。
+整合性の弱いクエリの利点は、データベースの変更を処理するクラスターノードの負荷が軽減されることです。 一般に、最初に厳密に一貫性のあるモデルを試すことをお勧めします。 必要に応じて、弱い一貫したクエリを使用するように切り替えます。
 
-[REST API 呼び出し](../api/rest/request.md)を行う際`queryconsistency`にプロパティを設定することで、弱い整合性のクエリに切り替えます。 Kusto .NET クライアントのユーザーは[、Kusto 接続文字列](../api/connection-strings/kusto.md)または[クライアント要求のプロパティ](../api/netfx/request-properties.md)のフラグとして設定することもできます。
+弱い一貫したクエリに切り替えるには、 `queryconsistency` [REST API 呼び出し](../api/rest/request.md)を行うときにプロパティを設定します。 また、.NET クライアントのユーザーは、 [Kusto 接続文字列](../api/connection-strings/kusto.md)で、または[クライアント要求のプロパティ](../api/netfx/request-properties.md)でフラグとして設定することもできます。

@@ -1,6 +1,6 @@
 ---
-title: anyif() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの anyif() (集計関数) について説明します。
+title: anyif () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの anyif () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 813df821bad1b7e57315dad9bcd7b1387a2cd678
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 54431e2d088f60fa8ea2a56bffea9faa374faeda
+ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030083"
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84626660"
 ---
-# <a name="anyif-aggregation-function"></a>anyif() (集計関数)
+# <a name="anyif-aggregation-function"></a>anyif () (集計関数)
 
-述語が真である[集計演算子](summarizeoperator.md)のグループごとに 1 つのレコードを任意に選択し、各レコードに対する式の値を返します。
+[集計演算子](summarizeoperator.md)内のグループごとに、述語が "true" であるレコードを任意に選択します。 関数は、このような各レコードに対する式の値を返します。
 
 **構文**
 
-`summarize`エクスプル ,*述語*) ' *Expr* `anyif` `(`
+`summarize``anyif` `(` *Expr*、*述語*`)`
 
 **引数**
 
-* *Expr*: 返す入力から選択された各レコードに対する式。
-* *述語*: 評価対象と考えられるレコードを示す述語。
+* *Expr*: 入力から選択された各レコードの式を返します。
+* *述語*: 評価の対象となるレコードを示す述語。
 
 **戻り値**
 
-集計`anyif`関数は、集計演算子の各グループからランダムに選択された各レコードについて計算された式の値を返します。 *Predicate*が true を返すレコードのみを選択できます (述語が true を返さない場合は、NULL 値が生成されます)。
+集計関数は、集計 `anyif` 演算子の各グループからランダムに選択された各レコードに対して計算された式の値を返します。 *述語*が "true" を返すレコードのみが選択される可能性があります。 述語が "true" を返さない場合は、null 値が生成されます。
 
 **解説**
 
-この関数は、複合グループ キーの値ごとに 1 列のサンプル値を取得する場合に便利です。
+この関数は、複合グループキーの値ごとに1つの列のサンプル値を取得する場合に便利です。これは、"true" である述語によって決まります。
 
-関数は、null 以外の値または空でない値が存在する場合は、値を返そうとします。
+この値が存在する場合、関数は null 以外の値または空でない値を返そうとします。
 
 **使用例**
 
-3億から6億の人口を持つランダムな大陸を表示します。
+300から6億への人口があるランダム大陸を表示します。
 
 ```kusto
 Continents | summarize anyif(Continent, Population between (300000000 .. 600000000))
 ```
 
-:::image type="content" source="images/aggfunction/any1.png" alt-text="任意の 1":::
+:::image type="content" source="images/aggfunction/any1.png" alt-text="任意1":::

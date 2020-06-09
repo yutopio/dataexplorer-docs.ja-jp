@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a2a8f4fa92a7b8722097ec3595674b855a90f216
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: 3fc4cfa307a283c4eb21ba60e3b83ba89b574757
+ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294663"
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84626692"
 ---
 # <a name="top-nested-operator"></a>top-nested 演算子
 
@@ -48,7 +48,7 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 * *`Expr`*: この階層レベルで返される値を示す入力レコードの式。
   通常は、表形式の入力 (*T*)、またはそのような列に対する一部の計算 (など) の列参照です `bin()` 。
 
-* *`ConstExpr`*: 指定されている場合、各階層レベル1のレコードは、"先頭に配置されていない" すべてのレコードの集計値と共に追加されます。
+* *`ConstExpr`*: 指定した場合、階層レベルごとに1つのレコードが追加されます。この値には、"最上位にしない" すべてのレコードの集計値が含まれます。
 
 * *`AggName`*: 指定されている場合、この識別子は、*集計*の値の出力の列名を設定します。
 
@@ -72,7 +72,7 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 
 * 1つの列に句の計算の個別の値が保持 *`Expr`* されます (指定した場合は、列名が*exprname*になります)。
 
-* 1つの列には、*集計*計算の結果が格納されます (指定した場合は、列名が Aggregation *ationname*になります)。
+* 1つの列に集計計算の結果が格納されます (指定されている場合は、列名が*Aggregation* *ationname*になります)。
 
 **コメント**
 
@@ -85,7 +85,7 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 
 レコードの数は、集計句の数 ((N1 + 1) \* (N2 + 1) \* ...) を使用して指数関数的に増加することがあります。*N*制限が指定されていない場合、レコードの増加はさらに高速になります。 このオペレーターが大量のリソースを消費する可能性があることを考慮してください。
 
-集計の分布が非常に一様でない場合は、( *N*を使用して) 返される個別の値の数を制限し、ConstExpr オプションを使用して、 `with others=` *ConstExpr*その他すべてのケースの "重み" を示すことができます。
+集計の分布が非常に均一でない場合は、( *N*を使用して) 返される個別の値の数を制限し、ConstExpr オプションを使用して、 `with others=` *ConstExpr*その他のすべてのケースの "重み" を示す値を取得します。
 
 **使用例**
 
@@ -97,7 +97,7 @@ StormEvents
   top-nested 1 of EndLocation by sum(BeginLat)
 ```
 
-|州|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
+|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |カンザス|87771.2355000001|法執行機関|18744.823|FT SCOTT|264.858|
 |カンザス|87771.2355000001|パブリック|22855.6206|BUCKLIN|488.2457|
@@ -118,7 +118,7 @@ StormEvents
 
 ```
 
-|州|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
+|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |カンザス|87771.2355000001|法執行機関|18744.823|FT SCOTT|264.858|
 |カンザス|87771.2355000001|パブリック|22855.6206|BUCKLIN|488.2457|
@@ -136,7 +136,6 @@ StormEvents
 |テキサス州|123400.5101|||その他のすべてのエンドロケーション|58523.2932000001|
 |その他のすべての状態|1149279.5923|||その他のすべてのエンドロケーション|1149279.5923|
 
-
 次のクエリは、上記の例で使用した最初のレベルと同じ結果を示しています。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
@@ -151,7 +150,7 @@ StormEvents
 |1149279.5923|
 
 
-上位の入れ子になった結果に別の列 (EventType) を要求します。 
+上位の入れ子になった結果に別の列 (EventType) を要求します。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -160,7 +159,7 @@ StormEvents
 | project-away tmp
 ```
 
-|州|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|EventType|
+|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|EventType|
 |---|---|---|---|---|---|---|
 |カンザス|87771.2355000001|訓練を受けた観測員|21279.7083|SHARON SPGS|388.7404|雷雨風|
 |カンザス|87771.2355000001|訓練を受けた観測員|21279.7083|SHARON SPGS|388.7404|ひょう|
@@ -185,7 +184,7 @@ StormEvents
 | mv-expand EndLocations, endLocationSums, indicies
 ```
 
-|州|source|EndLocations|endLocationSums 合計|決まっ|
+|State|source|EndLocations|endLocationSums 合計|連想|
 |---|---|---|---|---|
 |テキサス州|訓練を受けた観測員|CLDE|421.44|0|
 |テキサス州|訓練を受けた観測員|AMARILLO|316.8892|1|

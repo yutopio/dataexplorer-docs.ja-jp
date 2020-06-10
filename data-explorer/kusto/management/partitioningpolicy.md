@@ -7,20 +7,17 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/30/2020
-ms.openlocfilehash: e8125c6d0c327c98b80c4aeed6c587df12fdf91d
-ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
+ms.date: 06/10/2020
+ms.openlocfilehash: 768f07307a6f43c2af2db79bc1221c140b7c9a6f
+ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84626650"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84664978"
 ---
-# <a name="data-partitioning-policy-preview"></a>データのパーティション分割ポリシー (プレビュー)
+# <a name="data-partitioning-policy"></a>データのパーティション分割ポリシー
 
 パーティション分割ポリシーでは、特定のテーブルに対して[エクステント (データシャード)](../management/extents-overview.md)をどのようにパーティション分割するかを定義します。
-
-> [!NOTE]
-> データのパーティション分割機能は*プレビュー*段階です。
 
 ポリシーの主な目的は、パーティション分割された列の値のデータセットを狭めることがわかっているクエリのパフォーマンスを向上させること、または高カーディナリティ文字列列に対して集計/結合を行うことです。 ポリシーによって、データの圧縮が向上する場合もあります。
 
@@ -177,7 +174,7 @@ ms.locfileid: "84626650"
   * 1つのデータパーティション分割操作のソースエクステントの行数の合計の最大ターゲット。
   * このプロパティは省略可能です。 既定値は `0` で、既定のターゲットは500万レコードです。
 
-## <a name="notes"></a>メモ
+## <a name="notes"></a>Notes
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 
@@ -188,21 +185,21 @@ ms.locfileid: "84626650"
 
 #### <a name="monitoring"></a>監視
 
-* クラスター内のパーティション分割の進行状況や状態を監視できます。 [. Show diagnostics](../management/diagnostics.md#show-diagnostics)コマンドを使用します。
+クラスター内のパーティション分割の進行状況または状態を監視するには、 [. show diagnostics](../management/diagnostics.md#show-diagnostics)コマンドを使用します。
 
-```kusto
-.show diagnostics
-| project MinPartitioningPercentageInSingleTable,
-          TableWithMinPartitioningPercentage
-```
+    ```kusto
+    .show diagnostics
+    | project MinPartitioningPercentageInSingleTable,
+              TableWithMinPartitioningPercentage
+    ```
 
-出力には次のものが含まれます。
+    The output includes:
 
-  * `MinPartitioningPercentageInSingleTable`: クラスター内にデータのパーティション分割ポリシーがあるすべてのテーブルにわたる、パーティション分割されたデータの最小割合。
+    * `MinPartitioningPercentageInSingleTable`: クラスター内にデータのパーティション分割ポリシーがあるすべてのテーブルにわたる、パーティション分割されたデータの最小割合。
       * この割合が常に90% 未満の場合は、クラスターのパーティション分割容量を評価します (「[容量](partitioningpolicy.md#capacity)」を参照してください)。
-  * `TableWithMinPartitioningPercentage`: パーティションの割合が上に表示されるテーブルの完全修飾名。
+    * `TableWithMinPartitioningPercentage`: パーティションの割合が上に表示されるテーブルの完全修飾名。
 
-* パーティション分割コマンドとそのリソース使用率を監視するには、「[コマンドを表示](commands.md)する」を参照してください。 次に例を示します。
+を使用[します。](commands.md)パーティション分割コマンドとそのリソース使用率を監視するには、コマンドを表示します。 次に例を示します。
 
 ```kusto
 .show commands 

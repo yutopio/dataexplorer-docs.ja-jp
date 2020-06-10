@@ -1,6 +1,6 @@
 ---
-title: プリンシパルと ID プロバイダー - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのプリンシパルと ID プロバイダーについて説明します。
+title: プリンシパルと Id プロバイダー-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのプリンシパルと Id プロバイダーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,49 +8,48 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a0638ba0031162dadbb4b9a2815940e66d4dcfb3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4e34c724799cffe38db93869e96fcfae83a92b55
+ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81522646"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84664995"
 ---
-# <a name="principals-and-identity-providers"></a>プリンシパルと ID プロバイダー
+# <a name="principals-and-identity-providers"></a>プリンシパルと Id プロバイダー
 
-Kusto 承認モデルでは、複数の ID プロバイダー (IdP) と複数のプリンシパル型がサポートされています。
-この記事では、サポートされているプリンシパルの種類を確認し、[ロール割り当てコマンド](../../management/security-roles.md)での使用について説明します。
+Kusto 認証モデルでは、複数の Id プロバイダー (IdPs) と複数のプリンシパルの種類がサポートされています。
+この記事では、サポートされているプリンシパルの種類を確認し、[ロールの割り当てコマンド](../../management/security-roles.md)での使用方法を示します。
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
-Azure Active Directory (AAD) は、Azure の好ましいマルチテナント クラウド ディレクトリ サービスと ID プロバイダーであり、セキュリティ プリンシパルの認証や、マイクロソフトの Active Directory などの他の ID プロバイダーとのフェデレーションが可能です。
+Azure Active Directory (AAD) は、Azure の優先マルチテナントクラウドディレクトリサービスと Id プロバイダーであり、セキュリティプリンシパルの認証や、Microsoft の Active Directory などの他の id プロバイダーとのフェデレーションを可能にします。
 
-AAD は、Kusto に認証するための推奨される方法です。 次のようなさまざまな認証シナリオがサポートされています。
+AAD は、Kusto に対する認証方法として推奨されています。 次のようなさまざまな認証シナリオがサポートされています。
 * **ユーザー認証** (対話型ログオン):人間のプリンシパルを認証するために使用されます。
 * **アプリケーション認証** (非対話型ログオン):人間のユーザーがいない状態で実行または認証する必要があるサービスおよびアプリケーションを認証するために使用されます。
 
->注: Azure Active Directory では、サービス アカウントの認証は許可されません (これは、定義上のオンプレミスの AD エンティティです)。
-AD サービス アカウントと同等の AAD は、AAD アプリケーションです。
+> [!NOTE]
+> Azure Active Directory では、(オンプレミスの AD エンティティを定義することによって) サービスアカウントの認証は許可されません。
+AAD と同等の AD サービスアカウントは AAD アプリケーションです。
 
-#### <a name="aad-group-principals"></a>AAD グループ プリンシパル
-Kusto はセキュリティ グループ プリンシパルのみをサポートします (配布グループのプリンシパルはサポートしません)。 Kusto クラスタで DG へのアクセスを設定しようとすると、エラーが発生します。
+#### <a name="aad-group-principals"></a>AAD グループプリンシパル
+Kusto でサポートされるのはセキュリティグループプリンシパルだけです (配布グループのプリンシパルではありません)。 Kusto クラスターの DG へのアクセスを設定しようとすると、エラーが発生します。
 
 #### <a name="aad-tenants"></a>AAD テナント
 
-
->AAD テナントが明示的に指定されていない場合、Kusto は UPN (ユニバーサル プリンシパル名など`johndoe@fabrikam.com`) から解決しようとします (指定されている場合)。
-プリンシパルにテナント情報が含まれていない場合 (UPN 形式ではない)、プリンシパル記述子にテナント ID または名前を追加して、明示的に指定する必要があります。
+AAD テナントが明示的に指定されていない場合、Kusto は UPN (UniversalPrincipalName、など) からの解決を試み `johndoe@fabrikam.com` ます (指定されている場合)。 (UPN 形式ではなく) テナント情報がプリンシパルに含まれていない場合は、テナント ID または名前をプリンシパル記述子に追加することによって、明示的に指定する必要があります。
 
 **AAD プリンシパルの例**
 
 |AAD テナント |Type |構文 |
 |-----------|-----|-------|
-|暗黙的 (UPN)  |User  |`aaduser=`*ユーザー電子メールアドレス*
-|明示的な (ID)   |User  |`aaduser=`*ユーザー電子メール アドレス*`;`*テナント ID*または`aaduser=`*オブジェクト ID*`;`*テナント ID*
-|明示的 (名前) |User  |`aaduser=`*ユーザー電子メール アドレス*`;`*テナント名*または`aaduser=`*オブジェクト ID*`;`*テナント名*
-|暗黙的 (UPN)  |グループ |`aadgroup=`*グループ電子メールアドレス*
-|明示的な (ID)   |グループ |`aadgroup=`*グループオブジェクト Id*`;`*テナント ID*または`aadgroup=`*グループ表示名*`;`*テナント ID*
-|明示的 (名前) |グループ |`aadgroup=`*グループオブジェクト ID*`;`*テナント名*または`aadgroup=`*グループ表示名*`;`*テナント名*
-|明示的 (UPN)  |アプリ   |`aadapp`=*アプリケーション表示名*`;`*テナント ID*
-|明示的 (名前) |アプリ   |`aadapp=`*アプリケーション ID*`;`*テナント名*
+|暗黙的 (UPN)  |User  |`aaduser=`*UserEmailAddress*
+|明示的 (ID)   |User  |`aaduser=`*UserEmailAddress* `;`*Tenantid*または `aaduser=` *ObjectID* `;` *tenantid*
+|明示的 (名前) |User  |`aaduser=`*UserEmailAddress* `;`*Tenantname*または `aaduser=` *ObjectID* `;` *tenantname*
+|暗黙的 (UPN)  |グループ |`aadgroup=`*GroupEmailAddress*
+|明示的 (ID)   |グループ |`aadgroup=`*GroupObjectId* `;`*Tenantid*または `aadgroup=` *groupdisplayname* `;` *tenantid*
+|明示的 (名前) |グループ |`aadgroup=`*GroupObjectId* `;`*Tenantname*または `aadgroup=` *groupdisplayname* `;` *tenantname*
+|Explicit (UPN)  |アプリ   |`aadapp`=*Applicationdisplayname* `;`*TenantId*
+|明示的 (名前) |アプリ   |`aadapp=`*ApplicationId* `;`*Tenantname*
 
 ```kusto
 // No need to specify AAD tenant for UPN, as Kusto performs the resolution by itself

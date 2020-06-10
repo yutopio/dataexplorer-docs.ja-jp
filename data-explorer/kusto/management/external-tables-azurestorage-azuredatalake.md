@@ -8,222 +8,273 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 2ef238d863f2f3fe181814ac14e3605de21a5aff
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: 296c6e245b7157c09c7af59132fd8bfa686fc9f7
+ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863372"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84665046"
 ---
-# <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake で外部テーブルを作成および変更する
+# <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
-次のコマンドでは、外部テーブルを作成する方法について説明します。 このテーブルは、Azure Blob Storage、Azure Data Lake Store Gen1、または Azure Data Lake Store Gen2 に配置できます。 
-[ストレージ接続文字列](../api/connection-strings/storage.md)は、これらの各オプションの接続文字列の作成について説明します。 
+次のコマンドでは、Azure Blob Storage、Azure Data Lake Store Gen1、または Azure Data Lake Store Gen2 にある外部テーブルを作成する方法について説明します。 
 
 ## <a name="create-or-alter-external-table"></a>。外部テーブルを作成または変更します。
 
 **構文**
 
-( `.create`  |  `.alter` ) `external` `table` *TableName* (*スキーマ*)  
+( `.create`  |  `.alter` ) `external` `table` *[TableName](#table-name)* `(` *[スキーマ](#schema)*`)`  
 `kind` `=` (`blob` | `adl`)  
-[ `partition` `by` *パーティション*[ `,` ...]]  
-`dataformat` `=` *Format*  
-`(`  
-*StorageConnectionString* [ `,` ...]  
-`)`  
-[ `with` `(` [ `docstring` `=` *ドキュメント*] [ `,` `folder` `=` *FolderName*]、 *property_name* `=` *値* `,` ... `)` ]
+[ `partition` `by` `(` *[パーティション](#partitions)* `)` [ `pathformat` `=` `(` *[pathformat](#path-format)* `)` ]]  
+`dataformat``=` *[形式](#format)*  
+`(`*[StorageConnectionString](#connection-string)* [ `,` ...]`)`   
+[ `with` `(` *[PropertyName](#properties)* `=` *[Value](#properties)* `,` ... `)` ]  
 
 コマンドが実行されるデータベース内の新しい外部テーブルを作成または変更します。
 
+> [!NOTE]
+> * テーブルが存在する場合、 `.create` コマンドは失敗し、エラーが表示されます。 `.alter`既存のテーブルを変更するには、を使用します。 
+> * 外部 blob テーブルのスキーマ、形式、またはパーティション定義の変更はサポートされていません。 
+> * 操作には、の[データベースユーザー権限](../management/access-control/role-based-authorization.md) `.create` と、の[table admin 権限](../management/access-control/role-based-authorization.md)が必要です `.alter` 。 
+
 **パラメーター**
 
-* *TableName* -外部テーブル名。 [エンティティ名](../query/schema-entities/entity-names.md)の規則に従う必要があります。 外部テーブルは、同じデータベース内の通常のテーブルと同じ名前にすることはできません。
-* *スキーマ*-外部データスキーマの形式: `ColumnName:ColumnType[, ColumnName:ColumnType ...]` 。 外部データスキーマが不明な場合は、 [infer_storage_schema](../query/inferstorageschemaplugin.md)プラグインを使用します。これにより、外部のファイルの内容に基づいてスキーマを推測できます。
-* *Partition* -1 つまたは複数のパーティション定義 (省略可能)。 後述のパーティション構文を参照してください。
-* *Format* -データ形式。 すべての[インジェスト形式](../../ingestion-supported-formats.md)は、クエリに対してサポートされています。 [エクスポートシナリオ](data-export/export-data-to-an-external-table.md)での外部テーブルの使用は、、、 `CSV` `TSV` `JSON` 、の各形式に制限され `Parquet` ます。
-* *StorageConnectionString* -資格情報を含む Azure Blob Storage Blob コンテナーまたは Azure Data Lake Store ファイルシステム (仮想ディレクトリまたはフォルダー) への1つまたは複数のパス。 詳細については、「[ストレージ接続文字列](../api/connection-strings/storage.md)」を参照してください。 大量のデータを外部テーブルに[エクスポート](data-export/export-data-to-an-external-table.md)するときにストレージの調整を回避するには、ストレージアカウントを1つ以上指定します。 エクスポートすると、提供されたすべてのアカウント間の書き込みが分散されます。 
+<a name="table-name"></a>
+*テーブル*
 
-**パーティションの構文**
+[エンティティ名](../query/schema-entities/entity-names.md)の規則に準拠している外部テーブル名。
+外部テーブルは、同じデータベース内の通常のテーブルと同じ名前にすることはできません。
 
-[ `format_datetime =` *DateTimePartitionFormat*] `bin(`タイム*スタンプ columnname*、 *partitionbytimespan*`)`  
-|   
-[*Stringformatprefix*]*Stringcolumnname* [*stringformatsuffix*])
+<a name="schema"></a>
+*スキーマ*
 
-**パーティションパラメーター**
+外部データスキーマについては、次の形式を使用して説明します。
 
-* *DateTimePartitionFormat* -出力パス内の必要なディレクトリ構造の形式 (省略可能)。 パーティション分割が定義されていて、format が指定されていない場合、既定値は "yyyy/MM/dd/HH/mm" になります。 この形式は PartitionByTimeSpan に基づいています。 たとえば、1d でパーティション分割する場合、structure は "yyyy/MM/dd" になります。 1 h でパーティション分割すると、structure は "yyyy/MM/dd/HH" になります。
-* タイム*スタンプ columnname* -テーブルがパーティション分割されている Datetime 列。 外部テーブルにエクスポートする場合は、外部テーブルのスキーマ定義とエクスポートクエリの出力に Timestamp 列が存在している必要があります。
-* *Partitionbytimespan* -パーティション分割する timespan リテラル。
-* *Stringformatprefix* -テーブル値 (省略可能) の前に連結された成果物パスの一部となる定数文字列リテラル。
-* *Stringformatsuffix* -テーブル値 (省略可能) の後に連結された成果物パスの一部となる定数文字列リテラル。
-* *Stringcolumnname* -テーブルがパーティション分割される文字列列。 文字列型の列は、外部テーブルのスキーマ定義に存在する必要があります。
+&nbsp;&nbsp;*ColumnName* `:`*ColumnType* [ `,` *ColumnName* `:` *ColumnType* ...]
 
-**省略可能なプロパティ**:
+*ColumnName*はエンティティの[名前付け](../query/schema-entities/entity-names.md)規則に準拠し、 *ColumnType*は[サポートされているデータ型](../query/scalar-data-types/index.md)の1つです。
+
+> [!TIP]
+> 外部データスキーマが不明な場合は、[推定 \_ ストレージ \_ スキーマ](../query/inferstorageschemaplugin.md)プラグインを使用します。これは、外部ファイルの内容に基づいてスキーマを推論するのに役立ちます。
+
+<a name="partitions"></a>
+*パーティション*
+
+外部テーブルをパーティション分割する列のコンマ区切りの一覧です。 パーティション列は、データファイル自体に存在することも、ファイルパスの一部を使用することもできます ([仮想列](#virtual-columns)の詳細についてはこちらを参照してください)。
+
+パーティションの一覧は、次のいずれかの形式を使用して指定されたパーティション列の任意の組み合わせです。
+
+* [仮想列](#virtual-columns)を表すパーティション。
+
+  *PartitionName* `:`(`datetime` | `string`)
+
+* 文字列の列の値に基づいてパーティション分割します。
+
+  *PartitionName* `:``string` `=` *ColumnName*
+
+* 文字列型の列値の[ハッシュ](../query/hashfunction.md)(剰余) に基づいてパーティション*分割します*。
+
+  *PartitionName* `:``long` `=` `hash``(` *ColumnName* `,` *数値*`)`
+
+* Datetime 列の切り捨てられた値に基づくパーティション。 [Startofyear](../query/startofyearfunction.md)、 [startofmonth](../query/startofmonthfunction.md)、 [startofweek](../query/startofweekfunction.md)、 [startofday](../query/startofdayfunction.md) 、または[bin](../query/binfunction.md)関数に関するドキュメントを参照してください。
+
+  *PartitionName* `:``datetime` `=` ( `startofyear` \| `startofmonth` \| `startofweek` \| `startofday` ) `(` *ColumnName*`)`  
+  *PartitionName* `:``datetime` `=` `bin``(` *ColumnName* `,` *TimeSpan*`)`
+
+
+<a name="path-format"></a>
+*PathFormat*
+
+外部データ URI ファイルパス形式。パーティションに加えて指定できます。 パスの形式は、パーティション要素とテキスト区切りのシーケンスです。
+
+&nbsp;&nbsp;[*Stringseparator*]*Partition* [*stringseparator*] [*partition* [*stringseparator*]...]  
+
+ここで、 *partition*は in 句で宣言されたパーティションを指し `partition` `by` 、 *stringseparator*は引用符で囲まれた任意のテキストです。
+
+元のファイルパスプレフィックスは、文字列としてレンダリングされ、対応するテキスト区切り記号で区切られたパーティション要素を使用して作成できます。 Datetime パーティション値の表示に使用する形式を指定するには、次のマクロを使用できます。
+
+&nbsp;&nbsp;`datetime_pattern``(` *DateTimeFormat* `,` *PartitionName*`)`  
+
+*DateTimeFormat*は .net 形式の仕様に準拠しており、拡張機能を使用すると、書式指定子を中かっこで囲むことができます。 たとえば、次の2つの形式は同等です。
+
+&nbsp;&nbsp;`'year='yyyy'/month='MM`そして`year={yyyy}/month={MM}`
+
+既定では、datetime 値は次の形式で表示されます。
+
+| パーティション関数    | 既定の形式 |
+|-----------------------|----------------|
+| `startofyear`         | `yyyy`         |
+| `startofmonth`        | `yyyy/MM`      |
+| `startofweek`         | `yyyy/MM/dd`   |
+| `startofday`          | `yyyy/MM/dd`   |
+| `bin(`*項目*`, 1d)` | `yyyy/MM/dd`   |
+| `bin(`*項目*`, 1h)` | `yyyy/MM/dd/HH` |
+| `bin(`*項目*`, 1m)` | `yyyy/MM/dd/HH/mm` |
+
+*Pathformat*を外部テーブル定義から省略した場合、すべてのパーティションが定義されている順序とまったく同じ順序で区切られていると見なされ `/` ます。 パーティションは、既定の文字列表現を使用してレンダリングされます。
+
+<a name="format"></a>
+*形式*
+
+データ形式。[取り込み形式](../../ingestion-supported-formats.md)のいずれかです。
+
+> [!NOTE]
+> [エクスポートシナリオ](data-export/export-data-to-an-external-table.md)での外部テーブルの使用は `CSV` 、、 `TSV` 、 `JSON` およびの各形式に制限され `Parquet` ます。
+
+<a name="connection-string"></a>
+*StorageConnectionString*
+
+Blob コンテナーまたは Azure Data Lake Store ファイルシステム (仮想ディレクトリまたはフォルダー) を Azure Blob Storage するための1つ以上のパス (資格情報を含む)。
+詳細については、「[ストレージ接続文字列](../api/connection-strings/storage.md)」を参照してください。
+
+> [!TIP]
+> 大量のデータを外部テーブルに[エクスポート](data-export/export-data-to-an-external-table.md)するときにストレージの調整を回避するには、ストレージアカウントを1つ以上指定します。 エクスポートすると、提供されたすべてのアカウント間の書き込みが分散されます。 
+
+<a name="properties"></a>
+*省略可能なプロパティ*
 
 | プロパティ         | Type     | 説明       |
 |------------------|----------|-------------------------------------------------------------------------------------|
 | `folder`         | `string` | テーブルのフォルダー                                                                     |
 | `docString`      | `string` | テーブルをドキュメント化する文字列                                                       |
-| `compressed`     | `bool`   | 設定した場合、blob がファイルとして圧縮されるかどうかを示します。 `.gz`                  |
-| `includeHeaders` | `string` | CSV または TSV blob の場合、blob にヘッダーが含まれているかどうかを示します                     |
-| `namePrefix`     | `string` | 設定すると、blob のプレフィックスを示します。 書き込み操作では、すべての blob がこのプレフィックスを使用して書き込まれます。 読み取り操作では、このプレフィックスを持つ blob だけが読み取られます。 |
-| `fileExtension`  | `string` | 設定すると、blob のファイル拡張子が示されます。 書き込み時には、blob 名はこのサフィックスで終了します。 読み取り時には、このファイル拡張子を持つ blob だけが読み取られます。           |
+| `compressed`     | `bool`   | 設定すると、ファイルがファイルとして圧縮されるかどうかを示します `.gz` ([エクスポートシナリオ](data-export/export-data-to-an-external-table.md)でのみ使用)。 |
+| `includeHeaders` | `string` | CSV または TSV ファイルの場合は、ファイルにヘッダーが含まれているかどうかを示します。                     |
+| `namePrefix`     | `string` | 設定した場合、ファイルのプレフィックスを示します。 書き込み操作では、すべてのファイルがこのプレフィックスを使用して書き込まれます。 読み取り操作では、このプレフィックスを持つファイルだけが読み取られます。 |
+| `fileExtension`  | `string` | 設定すると、ファイルの拡張子を示します。 書き込み時には、ファイル名の末尾がこのサフィックスになります。 読み取り時には、このファイル拡張子を持つファイルのみが読み取られます。           |
 | `encoding`       | `string` | テキストのエンコード方法を示します。 `UTF8NoBOM` (既定値) または `UTF8BOM` 。             |
 
-クエリでの外部テーブルパラメーターの詳細については、「[アーティファクトフィルター処理ロジック](#artifact-filtering-logic)」を参照してください。
-
-> [!NOTE]
-> * テーブルが存在する場合、 `.create` コマンドは失敗し、エラーが表示されます。 `.alter`既存のテーブルを変更するには、を使用します。 
-> * 外部 blob テーブルのスキーマ、形式、またはパーティション定義の変更はサポートされていません。 
-
-に対する[データベースユーザー権限](../management/access-control/role-based-authorization.md) `.create` と、の[Table admin 権限](../management/access-control/role-based-authorization.md)が必要です `.alter` 。 
+> [!TIP]
+> `namePrefix`クエリ中のデータファイルフィルタリングでのロールおよびプロパティの詳細について `fileExtension` は、「[ファイルフィルタリングロジック](#file-filtering)」を参照してください。
  
+<a name="examples"></a>
 **例** 
 
-パーティション分割されていない外部テーブルです。 すべての成果物は、定義されているコンテナーの直下にあると想定されます。
+パーティション分割されていない外部テーブルです。 データファイルは、定義されているコンテナーの直下に配置されることが予想されます。
 
 ```kusto
-.create external table ExternalBlob (x:long, s:string) 
-kind=blob
-dataformat=csv
+.create external table ExternalTable (x:long, s:string)  
+kind=blob 
+dataformat=csv 
 ( 
-   h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
-)
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"
-)  
+   h@'https://storageaccount.blob.core.windows.net/container1;secretKey' 
+) 
 ```
 
-DateTime でパーティション分割された外部テーブル。 アーティファクトは、定義されているパスの下の "yyyy/MM/dd" 形式のディレクトリにあります。
+日付でパーティション分割された外部テーブル。 日付ファイルは、既定の datetime 形式のディレクトリに配置されることが想定されてい `yyyy/MM/dd` ます。
 
 ```kusto
-.create external table ExternalAdlGen2 (Timestamp:datetime, x:long, s:string) 
+.create external table ExternalTable (Timestamp:datetime, x:long, s:string) 
 kind=adl
-partition by bin(Timestamp, 1d)
-dataformat=csv
+partition by (Date:datetime = bin(Timestamp, 1d)) 
+dataformat=csv 
 ( 
    h@'abfss://filesystem@storageaccount.dfs.core.windows.net/path;secretKey'
 )
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"
-)  
 ```
 
-DateTime でパーティション分割され、"year = yyyy/month = MM/day = dd" というディレクトリ形式の外部テーブル。
+月でパーティション分割された外部テーブル。ディレクトリ形式は `year=yyyy/month=MM` 次のとおりです。
 
 ```kusto
-.create external table ExternalPartitionedBlob (Timestamp:datetime, x:long, s:string) 
-kind=blob
-partition by format_datetime="'year='yyyy/'month='MM/'day='dd" bin(Timestamp, 1d)
-dataformat=csv
+.create external table ExternalTable (Timestamp:datetime, x:long, s:string) 
+kind=blob 
+partition by (Month:datetime = startofmonth(Timestamp)) 
+pathformat = (datetime_pattern("'year='yyyy'/month='MM", Month)) 
+dataformat=csv 
+( 
+   h@'https://storageaccount.blob.core.windows.net/container1;secretKey' 
+) 
+```
+
+最初に顧客名でパーティション分割され、次に日付によって分割された外部テーブル。 次のようなディレクトリ構造が必要です `customer_name=Softworks/2019/02/01` 。
+
+```kusto
+.create external table ExternalTable (Timestamp:datetime, CustomerName:string) 
+kind=blob 
+partition by (CustomerNamePart:string = CustomerName, Date:datetime = startofday(Timestamp)) 
+pathformat = ("customer_name=" CustomerNamePart "/" Date)
+dataformat=csv 
+(  
+   h@'https://storageaccount.blob.core.windows.net/container1;secretKey' 
+)
+```
+
+最初に顧客名ハッシュ (剰余 10) によってパーティション分割され、次に日付でパーティション分割された外部テーブル。 たとえば、ディレクトリ構造が必要です `customer_id=5/dt=20190201` 。 データファイル名の末尾に拡張子が付いている `.txt` :
+
+```kusto
+.create external table ExternalTable (Timestamp:datetime, CustomerName:string) 
+kind=blob 
+partition by (CustomerId:long = hash(CustomerName, 10), Date:datetime = startofday(Timestamp)) 
+pathformat = ("customer_id=" CustomerId "/dt=" datetime_pattern("yyyyMMdd", Date)) 
+dataformat=csv 
 ( 
    h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
 )
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"
-)
+with (fileExtension = ".txt")
 ```
 
-月単位のデータパーティションと "yyyy/MM" のディレクトリ形式を持つ外部テーブル:
+**サンプル出力**
+
+|TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
+|---------|---------|------|---------|----------|-----------------|----------|----------|
+|ExternalTable|BLOB|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
+
+<a name="virtual-columns"></a>
+**仮想列**
+
+データが Spark からエクスポートされると、パーティション列 (データフレーム writer のメソッドで指定 `partitionBy` ) はデータファイルに書き込まれません。 このプロセスでは、"フォルダー" という名前のデータが既に存在するため、データの重複が回避されます。 たとえば、 `column1=<value>/column2=<value>/` 、、および Spark は、読み取り時にそれを認識できます。
+
+外部テーブルでは、仮想列を指定するための次の構文がサポートされています。
 
 ```kusto
-.create external table ExternalPartitionedBlob (Timestamp:datetime, x:long, s:string) 
-kind=blob
-partition by format_datetime="yyyy/MM" bin(Timestamp, 1d)
-dataformat=csv
-( 
-   h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
-)
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"
-)
-```
-
-2つのパーティションを持つ外部テーブルです。 ディレクトリ構造は、両方のパーティションを連結したものです。書式設定された様の後に既定の dateTime 形式が適用されます。 たとえば、"様: softworks/2011/11/11" のようになります。
-
-```kusto
-.create external table ExternalMultiplePartitions (Timestamp:datetime, CustomerName:string) 
-kind=blob
-partition by 
-   "CustomerName="CustomerName,
-   bin(Timestamp, 1d)
-dataformat=csv
-( 
-   h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
-)
-with 
-(
-   docstring = "Docs",
-   folder = "ExternalTables"   
-)
-```
-
-**出力**
-
-|TableName|TableType|フォルダー|DocString|プロパティ|ConnectionStrings|メジャー グループ|
-|---|---|---|---|---|---|---|
-|External多重パーティション|Blob|ExternalTables|ドキュメント|{"Format": "Csv"、"圧縮": false、"CompressionType": null、"FileExtension": "csv"、"IncludeHeaders": "None"、"Encoding": null、"NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;*******"]}|[{"StringFormat": "様名 = {0} ", "ColumnName": "様"、"ColumnName": "様"、"序数": 0}、PartitionBy ":" 1.00:00:00 "、" ColumnName ":" Timestamp "、" Ordinal ": 1}]|
-
-### <a name="artifact-filtering-logic"></a>アーティファクトのフィルター処理ロジック
-
-外部テーブルに対してクエリを実行する場合、クエリエンジンは、無関係の外部ストレージアーティファクト (blob) を除外することによってパフォーマンスを向上させます。 Blob を反復処理し、blob を処理する必要があるかどうかを判断するプロセスを次に示します。
-
-1. Blob が検出される場所を表す URI パターンを作成します。 最初、URI パターンは、外部テーブル定義の一部として指定された接続文字列に相当します。 パーティションが定義されている場合は、URI パターンに追加されます。
-たとえば、接続文字列が `https://storageaccount.blob.core.windows.net/container1` で、datetime パーティションが定義されている場合、対応する URI パターンは次のようになります。 `partition by format_datetime="yyyy-MM-dd" bin(Timestamp, 1d)` `https://storageaccount.blob.core.windows.net/container1/yyyy-MM-dd` このパターンに一致する場所にある blob が検索されます。
-追加の文字列パーティションが `"CustomerId" customerId` 定義されている場合、対応する URI パターンはに `https://storageaccount.blob.core.windows.net/container1/yyyy-MM-dd/CustomerId=*` なります。
-
-1. 作成した URI パターンに含まれるすべての*ダイレクト*blob について、次のことを確認します。
-
-   * パーティション値は、クエリで使用される述語と一致します。
-   * `NamePrefix`このようなプロパティが定義されている場合、Blob 名はで始まります。
-   * `FileExtension`このようなプロパティが定義されている場合、Blob 名はで終了します。
-
-すべての条件が満たされると、blob がフェッチされ、クエリエンジンによって処理されます。
-
-### <a name="spark-virtual-columns-support"></a>Spark 仮想列のサポート
-
-データが Spark からエクスポートされると、パーティション列 (データフレーム writer のメソッドで指定 `partitionBy` ) はデータファイルに書き込まれません。 このプロセスでは、"フォルダー" という名前のデータが既に存在するため、データの重複が回避されます。 たとえば、 `column1=<value>/column2=<value>/` 、、および Spark は、読み取り時にそれを認識できます。 ただし、Kusto では、パーティション列がデータ自体に存在する必要があります。 Kusto での仮想列のサポートは計画されています。 それまでは、次の回避策を使用してください。 Spark からデータをエクスポートする場合は、データフレームを書き込む前に、データがパーティション分割されているすべての列のコピーを作成します。
-
-```kusto
-df.withColumn("_a", $"a").withColumn("_b", $"b").write.partitionBy("_a", "_b").parquet("...")
-```
-
-Kusto に外部テーブルを定義する場合は、次の例のようにパーティション列を指定します。
-
-```kusto
-.create external table ExternalSparkTable(a:string, b:datetime) 
-kind=blob
-partition by 
-   "_a="a,
-   format_datetime="'_b='yyyyMMdd" bin(b, 1d)
+.create external table ExternalTable (EventName:string, Revenue:double)  
+kind=blob  
+partition by (CustomerName:string, Date:datetime)  
+pathformat = ("customer=" CustomerName "/date=" datetime_pattern("yyyyMMdd", Date))  
 dataformat=parquet
 ( 
    h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
 )
 ```
 
+<a name="file-filtering"></a>
+**ファイルフィルタリングロジック**
+
+外部テーブルに対してクエリを実行すると、クエリエンジンによって、関連性のない外部ストレージファイルが除外され、パフォーマンスが向上します。 ファイルを反復処理し、ファイルを処理する必要があるかどうかを判断するプロセスを次に示します。
+
+1. ファイルが存在する場所を表す URI パターンを作成します。 最初、URI パターンは、外部テーブル定義の一部として指定された接続文字列に相当します。 パーティションが定義されている場合は、 *[Pathformat](#path-format)* を使用してレンダリングされた後、URI パターンに追加されます。
+
+2. 作成された URI パターンの下にあるすべてのファイルについて、次のことを確認します。
+
+   * パーティション値は、クエリで使用される述語と一致します。
+   * `NamePrefix`このようなプロパティが定義されている場合、Blob 名はで始まります。
+   * `FileExtension`このようなプロパティが定義されている場合、Blob 名はで終了します。
+
+すべての条件が満たされると、ファイルはクエリエンジンによってフェッチおよび処理されます。
+
+> [!NOTE]
+> 初期 URI パターンは、クエリ述語値を使用して作成されます。 これは、文字列値の限定されたセット、およびクローズされた時間範囲に最適です。 
+
 ## <a name="show-external-table-artifacts"></a>。外部テーブルの成果物を表示する
 
-* 指定された外部テーブルに対してクエリを実行するときに処理されるすべてのアイテムの一覧を返します。
-* [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
+指定された外部テーブルに対してクエリを実行するときに処理されるすべてのファイルの一覧を返します。
+
+> [!NOTE]
+> 操作には、[データベースユーザーのアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
 **構文 :** 
 
-`.show` `external` `table` *TableName* `artifacts`
+`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults*]
+
+ここで、 *MaxResults*は省略可能なパラメーターであり、結果の数を制限するように設定できます。
 
 **出力**
 
 | 出力パラメーター | Type   | 説明                       |
 |------------------|--------|-----------------------------------|
-| URI              | string | 外部ストレージの成果物の URI |
+| URI              | string | 外部ストレージデータファイルの URI |
+
+> [!TIP]
+> 外部テーブルによって参照されるすべてのファイルに対する反復処理は、ファイルの数によっては非常にコストがかかることがあります。 `limit`URI の例をいくつか確認するだけの場合は、パラメーターを使用してください。
 
 **例:**
 

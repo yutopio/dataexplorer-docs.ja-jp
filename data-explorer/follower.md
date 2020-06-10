@@ -7,12 +7,12 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/07/2019
-ms.openlocfilehash: 35fd37db22b2f07dcee9d7f67c700414a4cfc5d3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 942c0577b8fb784af74cf09aec4c8a68a7be8dda
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373848"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294561"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>フォロワー データベースを使用して Azure Data Explorer にデータベースをアタッチする
 
@@ -34,7 +34,7 @@ ms.locfileid: "83373848"
 
 ## <a name="attach-a-database"></a>データベースのアタッチ
 
-データベースのアタッチにはさまざまな方法があります。 この記事では、C# または Azure Resource Manager テンプレートを使用してデータベースをアタッチする方法について説明します。 データベースをアタッチするには、リーダー クラスターとフォロワー クラスターに対するアクセス許可が必要です。 アクセス許可について詳しくは、「[アクセス許可の管理](#manage-permissions)」をご覧ください。
+データベースのアタッチにはさまざまな方法があります。 この記事では、C#、Python または Azure Resource Manager テンプレートを使用してデータベースをアタッチする方法について説明します。 データベースをアタッチするには、リーダー クラスターとフォロワー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。 [Azure portal](/azure/role-based-access-control/role-assignments-portal)、[PowerShell](/azure/role-based-access-control/role-assignments-powershell)、[Azure CLI](/azure/role-based-access-control/role-assignments-cli) および [Resource Manager テンプレート](/azure/role-based-access-control/role-assignments-template)を使用して、ロールの割り当てを追加または削除することができます。 詳細については、「[Azure のロールベースのアクセス制御 (Azure RBAC)](/azure/role-based-access-control/overview)」および[各種ロール](/azure/role-based-access-control/rbac-and-directory-admin-roles)に関する記事をご覧ください。 
 
 ### <a name="attach-a-database-using-c"></a>C# を使用したデータベースのアタッチ
 
@@ -252,6 +252,9 @@ var attachedDatabaseConfigurationsName = "uniqueName";
 resourceManagementClient.AttachedDatabaseConfigurations.Delete(followerResourceGroupName, followerClusterName, attachedDatabaseConfigurationsName);
 ```
 
+フォロワー側からデータベースをデタッチするには、フォロワー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。
+上の例では、サービス プリンシパルを使用します。
+
 ### <a name="detach-the-attached-follower-database-from-the-leader-cluster"></a>リーダー クラスターにアタッチされたフォロワー データベースをデタッチする
 
 リーダー クラスターにアタッチされたデータベースは、次の方法でデタッチできます。
@@ -281,6 +284,8 @@ var followerDatabaseDefinition = new FollowerDatabaseDefinition()
 
 resourceManagementClient.Clusters.DetachFollowerDatabases(leaderResourceGroupName, leaderClusterName, followerDatabaseDefinition);
 ```
+
+リーダー側からデータベースをデタッチするには、リーダー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。 上の例では、サービス プリンシパルを使用します。
 
 ## <a name="detach-the-follower-database-using-python"></a>Python を使用したフォロワー データベースのデタッチ
 
@@ -314,6 +319,8 @@ attached_database_configurationName = "uniqueName"
 #Returns an instance of LROPoller, see https://docs.microsoft.com/python/api/msrest/msrest.polling.lropoller?view=azure-python
 poller = kusto_management_client.attached_database_configurations.delete(follower_resource_group_name, follower_cluster_name, attached_database_configurationName)
 ```
+フォロワー側からデータベースをデタッチするには、フォロワー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。
+上の例では、サービス プリンシパルを使用します。
 
 ### <a name="detach-the-attached-follower-database-from-the-leader-cluster"></a>リーダー クラスターにアタッチされたフォロワー データベースをデタッチする
 
@@ -353,6 +360,9 @@ cluster_resource_id = "/subscriptions/" + follower_subscription_id + "/resourceG
 #Returns an instance of LROPoller, see https://docs.microsoft.com/python/api/msrest/msrest.polling.lropoller?view=azure-python
 poller = kusto_management_client.clusters.detach_follower_databases(resource_group_name = leader_resource_group_name, cluster_name = leader_cluster_name, cluster_resource_id = cluster_resource_id, attached_database_configuration_name = attached_database_configuration_name)
 ```
+
+リーダー側からデータベースをデタッチするには、リーダー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。
+上の例では、サービス プリンシパルを使用します。
 
 ## <a name="manage-principals-permissions-and-caching-policy"></a>プリンシパル、アクセス許可、キャッシュ ポリシーの管理
 

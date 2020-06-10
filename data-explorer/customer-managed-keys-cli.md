@@ -7,12 +7,12 @@ ms.reviewer: astauben
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/01/2020
-ms.openlocfilehash: 570ec818a330074cdf46075571d831c718273e64
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: bc8ce7a3d85a64a2a19e4194e7c9e6ab23b0fef6
+ms.sourcegitcommit: a7e040fc844098323aa1c00e254bcbcd41fe587f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84262116"
+ms.lasthandoff: 06/04/2020
+ms.locfileid: "84426535"
 ---
 # <a name="configure-customer-managed-keys-using-azure-cli"></a>Azure CLI を使用してカスタマー マネージド キーを構成する
 
@@ -21,11 +21,11 @@ ms.locfileid: "84262116"
 > * [C#](customer-managed-keys-csharp.md)
 > * [Azure Resource Manager テンプレート](customer-managed-keys-resource-manager.md)
 > * [CLI](customer-managed-keys-cli.md)
+> * [PowerShell](customer-managed-keys-powershell.md)
 
 [!INCLUDE [data-explorer-configure-customer-managed-keys](includes/data-explorer-configure-customer-managed-keys.md)]
 
-## <a name="enable-encryption-with-customer-managed-keys-in-the-azure-portal"></a>Azure portal でカスタマー マネージド キーによる暗号化を有効にする
-
+## <a name="enable-encryption-with-customer-managed-keys-using-azure-cli"></a>Azure CLI を使用してカスタマー マネージド キーによる暗号化を有効にする
 この記事では、Azure CLI クライアントを使用してカスタマー マネージド キーによる暗号化を有効にする方法について説明します。 既定では、Azure Data Explorer の暗号化では Microsoft のマネージド キーが使用されます。 カスタマー マネージド キーを使用するように Azure Data Explorer クラスターを構成し、そのクラスターに関連付けるキーを指定します。
 
 1. 次のコマンドを実行して、Azure にサインインします。

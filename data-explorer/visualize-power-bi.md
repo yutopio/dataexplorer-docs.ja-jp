@@ -1,20 +1,20 @@
 ---
-title: 'チュートリアル: Power BI で Azure データ エクスプローラーからデータを視覚化する'
+title: チュートリアル:Power BI で Azure Data Explorer のデータを視覚化する
 description: このチュートリアルでは、Power BI で Azure データ エクスプローラーに接続して、データを視覚化する方法について説明します。
 author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: tutorial
-ms.date: 09/24/2018
-ms.openlocfilehash: d37cef094bfc1200182f7cf23dc68d396c126eb2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.date: 06/02/2020
+ms.openlocfilehash: bde567a3c41a226ca0a8304d7ab4ed42f3fa65bf
+ms.sourcegitcommit: 8953d09101f4358355df60ab09e55e71bc255ead
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491957"
+ms.lasthandoff: 06/04/2020
+ms.locfileid: "84420919"
 ---
-# <a name="tutorial-visualize-data-from-azure-data-explorer-in-power-bi"></a>チュートリアル: Power BI で Azure データ エクスプローラーからデータを視覚化する
+# <a name="tutorial-visualize-data-from-azure-data-explorer-in-power-bi"></a>チュートリアル:Power BI で Azure Data Explorer のデータを視覚化する
 
 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Power BI はビジネス分析ソリューションであり、データを視覚化して、組織全体で結果を共有することができます。 このチュートリアルでは、最初に Azure データ エクスプローラーでビジュアルをレンダリングする方法を説明します。 次に、Azure データ エクスプローラーを Power BI と接続し、サンプル データに基づいてレポートを作成して、レポートを Power BI サービスに発行します。
 
@@ -85,7 +85,7 @@ Power BI Desktop で Azure データ エクスプローラーに接続します�
 
     ![データを取得する](media/visualize-power-bi/get-data-more.png)
 
-1. *Azure Data Explorer* を検索し、 **[Azure Data Explorer (Beta)]\(Azure Data Explorer (ベータ)\)** を選択して、 **[接続]** を選択します。
+1. *Azure Data Explorer* を検索し、 **[Azure Data Explorer]** を選択して、 **[接続]** を選択します。
 
     ![データを検索して取得する](media/visualize-power-bi/search-get-data.png)
 

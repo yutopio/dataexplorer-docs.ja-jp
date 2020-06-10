@@ -7,19 +7,29 @@ ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 01/30/2020
-ms.openlocfilehash: b1d888471c93409826abe523ae6ae4df39e120c3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.date: 06/02/2020
+ms.openlocfilehash: b1351ceb9fe4b81a818ca41728a588dddfb4c5a2
+ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374259"
+ms.lasthandoff: 06/02/2020
+ms.locfileid: "84294680"
 ---
 # <a name="data-visualization-with-azure-data-explorer"></a>Azure Data Explorer でのデータの視覚化 
 
 Azure Data Explorer は、膨大な量のデータの複雑な分析ソリューションを構築するために使用される、ログおよびテレメトリ データ用の高速でスケーラブルなデータ探索サービスです。 Azure Data Explorer にはさまざまな視覚化ツールが統合されているため、データを視覚化して、組織全体で結果を共有することができます。 このデータを、ビジネスに影響を与える実用的な分析情報に変換できます。
 
 データの視覚化とレポートは、データ分析プロセスの重要な手順です。 Azure Data Explorer では多数の BI サービスがサポートされているため、シナリオや予算に最適なものを使用することができます。
+
+## <a name="azure-data-explorer-dashboards"></a>Azure Data Explorer のダッシュボード
+
+Azure Data Explorer のダッシュボードは、スタンドアロンの Web アプリケーションである [Web UI](web-query-data.md) でクエリを実行し、ダッシュボードを構築できるようにする Web アプリケーションです。 Azure Data Explorer のダッシュボードには、次の 3 つの主な利点があります。
+
+* Web UI から Azure Data Explorer ダッシュボードにクエリをネイティブでエクスポートできます。 
+* Web UI でデータを探索できます。
+* ダッシュボードのレンダリング パフォーマンスが最適化されています。
+
+詳細については、「[Azure Data Explorer ダッシュボードを使用してデータを視覚化する](azure-data-explorer-dashboards.md)」を参照してください。
 
 ## <a name="kusto-query-language-visualizations"></a>Kusto クエリ言語の視覚化
 
@@ -45,7 +55,7 @@ Azure Data Explorer には、[組み込みのネイティブ Excel コネクタ]
 
 ## <a name="kibana"></a>Kibana
 
-Azure Data Explorer は、オープン ソース コネクタである K2Bridge を使用して [Kibana ([Discover] ページ)](https://www.elastic.co/guide/en/kibana/6.8/discover.html) に接続する機能を提供します。 [Kibana のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](k2bridge.md)。
+Azure Data Explorer は、オープン ソース コネクタである K2Bridge を使用して [Kibana](https://www.elastic.co/guide/en/kibana/6.8/discover.html) に接続する機能を提供します。 [Kibana のデータ ソースとして Azure Data Explorer を設定し、データを視覚化します](k2bridge.md)。
 
 ## <a name="odbc-connector"></a>ODBC コネクタ
 

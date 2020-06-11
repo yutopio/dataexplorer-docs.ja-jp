@@ -145,7 +145,11 @@
     - name: データの視覚化
       items:
         - name: Azure Data Explorer のダッシュボード
-          href: azure-data-explorer-dashboards.md
+          items:
+            - name: ダッシュボードの使用
+              href: azure-data-explorer-dashboards.md
+            - name: ダッシュボード パラメーターの使用
+              href: dashboard-parameters.md
         - name: Power BI
           items:
             - name: ベスト プラクティス

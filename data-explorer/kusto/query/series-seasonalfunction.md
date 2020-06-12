@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 88160a55ba8342e3ed6bce90ec77c5a370ab7358
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 054d4be758001609fbc3100a4a6c8698ef8f69f6
+ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372465"
+ms.lasthandoff: 06/11/2020
+ms.locfileid: "84717310"
 ---
 # <a name="series_seasonal"></a>series_seasonal()
 
@@ -27,24 +27,19 @@ ms.locfileid: "83372465"
 
 * *series*: 入力数値動的配列
 * *period* (省略可能): 各季節期間の整数のビン数を指定します。可能な値は次のとおりです。
-    *  -1 (既定値): しきい値が*0.7*の[series_periods_detect ()](series-periods-detectfunction.md)を使用して期間を自動検出します。季節性が検出されない場合は0を返します
-    * 正の整数: 季節コンポーネントの期間として使用されます
-    * その他の値: 季節性を無視し、一連のゼロを返します。
+    *  -1 (既定値): しきい値が*0.7*の[series_periods_detect ()](series-periods-detectfunction.md)を使用して、自動検出します。 季節性が検出されない場合は0を返します
+    * 正の整数: 季節コンポーネントの期間として使用されます。
+    * その他の値: 季節性を無視し、一連のゼロを返します
 
 **戻り値**
 
-系列の計算された季節成分を含む*系列*入力と同じ長さの動的配列。 季節成分は、期間におけるビンの位置に対応するすべての値の*中央*値として計算されます。
+系列の計算された季節成分を含む*系列*入力と同じ長さの動的配列。 季節成分は、区間の位置に対応するすべての値の*中央*値として計算されます。
 
-**関連項目:**
+## <a name="examples"></a>例
 
-* [series_periods_detect()](series-periods-detectfunction.md)
-* [series_periods_validate()](series-periods-validatefunction.md)
+### <a name="auto-detect-the-period"></a>期間を自動検出する
 
-**使用例**
-
-**1. 期間を自動検出します**
-
-次の例では、系列の期間が自動的に検出され、最初の系列の期間が6ビン、2番目の5ビン、3番目のシリーズの期間が短すぎて検出されないため、一連のゼロが返されます (期間を強制する方法については次の例を参照してください)。
+次の例では、系列のピリオドが自動的に検出されます。 最初のシリーズの期間は6ビン、2つ目は5ビンとして検出されます。3番目の系列のピリオドは短すぎて検出されないため、一連のゼロを返します。 この[期間を強制する方法](#force-a-period)については、次の例を参照してください。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -60,11 +55,9 @@ print s=dynamic([2,5,3,4,3,2,1,2,3,4,3,2,1,2,3,4,3,2,1,2,3,4,3,2,1])
 |[8、12、14、12、10、10、12、14、12、10、10、12、14、12、10、10、12、14、12、10]|[10.0、12.0、14.0、12.0、10.0、10.0、12.0、14.0、12.0、10.0、10.0、12.0、14.0、12.0、10.0、10.0、12.0、14.0、12.0、10.0]|
 |[1、3、5、2、4、6、1、3、5、2、4、6]|[0.0、0.0、0.0、0.0、0.0、0.0、0.0、0.0、0.0、0.0、0.0、0.0]|
 
+### <a name="force-a-period"></a>期間を強制する
 
-
-**2. 強制的にピリオドを強制する**
-
-次の例では、系列のピリオドが短すぎて[series_periods_detect ()](series-periods-detectfunction.md)によって検出されないため、季節を明示的に季節パターンを取得します。
+この例では、系列のピリオドが短すぎて[series_periods_detect ()](series-periods-detectfunction.md)によって検出されないため、季節パターンを明示的に取得します。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -77,3 +70,8 @@ print s=dynamic([1,3,5,1,3,5,2,4,6])
 |---|---|
 |[1、3、5、1、3、5、2、4、6]|[1.0、3.0、5.0、1.0、3.0、5.0、1.0、3.0、5.0]|
 |[1、3、5、2、4、6、1、3、5、2、4、6]|[1.5、3.5、5.5、1.5、3.5、5.5、1.5、3.5、5.5、1.5、3.5、5.5]|
+ 
+## <a name="next-steps"></a>次のステップ
+
+* [series_periods_detect()](series-periods-detectfunction.md)
+* [series_periods_validate()](series-periods-validatefunction.md)

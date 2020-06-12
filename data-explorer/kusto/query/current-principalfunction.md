@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 12/10/2019
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: b1d45fb8b0749a4be30854dd9b0120a7eb127bf2
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 43e92edd74861acc8207a855243f9ec1e012070a
+ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227300"
+ms.lasthandoff: 06/11/2020
+ms.locfileid: "84717361"
 ---
 # <a name="current_principal"></a>current_principal()
 
 ::: zone pivot="azuredataexplorer"
 
-クエリを実行している現在のプリンシパル名を返します。
+クエリを実行する現在のプリンシパル名を返します。
 
 **構文**
 
@@ -29,8 +29,8 @@ ms.locfileid: "83227300"
 
 **戻り値**
 
-としての現在のプリンシパル (完全修飾名) `string` 。  
-この文字列の形式は次のとおりです。  
+としての現在のプリンシパルの完全修飾名 (すべての形式) `string` 。  
+文字列の形式は次のとおりです。  
 *PrinciplaType* `=`*PrincipalId* `;`*TenantId*
 
 **例**

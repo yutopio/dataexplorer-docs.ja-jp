@@ -329,6 +329,10 @@
               href: ./kusto/query/schema-entities/index.md
             - name: エンティティ名
               href: ./kusto/query/schema-entities/entity-names.md
+            - name: エンティティ参照
+              href: ./kusto/query/schema-entities/entity-references.md
+            - name: データベース
+              href: ./kusto/query/schema-entities/databases.md
             - name: テーブル
               href: ./kusto/query/schema-entities/tables.md
             - name: '[列]'
@@ -363,6 +367,8 @@
               href: ./kusto/query/scalar-data-types/timespan.md
             - name: Null 値
               href: ./kusto/query/scalar-data-types/null-values.md
+            - name: サポートされないスカラー データ型
+              href: /kusto/query/scalar-data-types/unsupported-data-types.md
         - name: 関数
           items:
             - name: 関数の種類
@@ -1237,7 +1243,7 @@
                 - name: テーブルの概要
                   href: ./kusto/management/tables.md
                 - name: .alter マージ テーブル
-                  href: ./kusto/management/alter-table-command.md
+                  href: ./kusto/management/alter-merge-table-command.md
                 - name: .alter テーブル
                   href: ./kusto/management/alter-table-command.md
                 - name: .alter テーブル ドキュメント文字列
@@ -1256,6 +1262,8 @@
                   href: ./kusto/management/create-table-command.md
                 - name: .create テーブル
                   href: ./kusto/management/create-tables-command.md
+                - name: .create-merge tables
+                  href: ./kusto/management/create-merge-tables-command.md
                 - name: .drop テーブル
                   href: ./kusto/management/drop-table-command.md
                 - name: .rename テーブル

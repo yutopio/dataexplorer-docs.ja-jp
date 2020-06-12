@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 768f07307a6f43c2af2db79bc1221c140b7c9a6f
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: 2a54d6e8bdb891500778f2043f2b1aa4094162d2
+ms.sourcegitcommit: 743e8b1def28bc8f875b22b857ec345eeb7e5acc
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 06/10/2020
-ms.locfileid: "84664978"
+ms.locfileid: "84671446"
 ---
 # <a name="data-partitioning-policy"></a>データのパーティション分割ポリシー
 
@@ -187,17 +187,16 @@ ms.locfileid: "84664978"
 
 クラスター内のパーティション分割の進行状況または状態を監視するには、 [. show diagnostics](../management/diagnostics.md#show-diagnostics)コマンドを使用します。
 
-    ```kusto
-    .show diagnostics
-    | project MinPartitioningPercentageInSingleTable,
-              TableWithMinPartitioningPercentage
-    ```
+```kusto
+.show diagnostics
+| project MinPartitioningPercentageInSingleTable, TableWithMinPartitioningPercentage
+```
 
-    The output includes:
+出力には次のものが含まれます。
 
-    * `MinPartitioningPercentageInSingleTable`: クラスター内にデータのパーティション分割ポリシーがあるすべてのテーブルにわたる、パーティション分割されたデータの最小割合。
-      * この割合が常に90% 未満の場合は、クラスターのパーティション分割容量を評価します (「[容量](partitioningpolicy.md#capacity)」を参照してください)。
-    * `TableWithMinPartitioningPercentage`: パーティションの割合が上に表示されるテーブルの完全修飾名。
+  * `MinPartitioningPercentageInSingleTable`: クラスター内にデータのパーティション分割ポリシーがあるすべてのテーブルにわたる、パーティション分割されたデータの最小割合。
+    * この割合が常に90% 未満の場合は、クラスターのパーティション分割容量を評価します (「[容量](partitioningpolicy.md#capacity)」を参照してください)。
+  * `TableWithMinPartitioningPercentage`: パーティションの割合が上に表示されるテーブルの完全修飾名。
 
 を使用[します。](commands.md)パーティション分割コマンドとそのリソース使用率を監視するには、コマンドを表示します。 次に例を示します。
 

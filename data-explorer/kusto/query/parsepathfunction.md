@@ -8,21 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 16b80c86f526cb05514577359603e9e21de80064
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: ba74b7c1e78d568cc34845d56dc9768f2628192f
+ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224886"
+ms.lasthandoff: 06/11/2020
+ms.locfileid: "84717378"
 ---
 # <a name="parse_path"></a>parse_path()
 
-ファイルパスを解析 `string` し、 [`dynamic`](./scalar-data-types/dynamic.md) path の次の部分を含むオブジェクトを返します。 Scheme、Rootpath、DirectoryPath、DirectoryName、FileName、Extension、AlternateDataStreamName。
-両方の種類のスラッシュを持つ単純なパスに加えて、スキーマを使用したパス (例: "file://")、共有パス (例: " \\ shareddrive\users...")、長いパス (例 \\ : "? \c:...")、代替データストリーム (例: "file1: file2") をサポートします。
+ファイルパスを解析 `string` し、 [`dynamic`](./scalar-data-types/dynamic.md) パスの次の部分を含むオブジェクトを返します。
+* Scheme
+* RootPath
+* DirectoryPath
+* DirectoryName
+* FileName
+* 拡張子
+* AlternateDataStreamName
+
+この関数では、両方の種類のスラッシュを持つ単純なパスに加えて、次のようなパスがサポートされています。
+* スキーマ。 たとえば、"file://..." のようになります。
+* 共有パス。 たとえば、"shareddrive\users..." のようになります。 \\
+* 長いパス。 たとえば、" \\ ? \c:..." のようになります。
+* 代替データ ストリーム。 たとえば、"file1.exe:file2.exe" のようになります。
 
 **構文**
 
-`parse_path(`*道*`)`
+`parse_path(`*path*`)`
 
 **引数**
 
@@ -52,6 +64,6 @@ datatable(p:string)
 |---|---
 |C:\temp\file.txt|{"Scheme": "", "RootPath": "C:", "DirectoryPath": "C: \\ temp", "DirectoryName": "temp", "Filename": "file.txt", "Extension": "txt", "AlternateDataStreamName": ""}
 |temp\file.txt|{"Scheme": "", "RootPath": "", "DirectoryPath": "temp", "DirectoryName": "temp", "Filename": "file.txt", "Extension": "txt", "AlternateDataStreamName": ""}
-|file://C:/temp/file.txt:some.exe|{"Scheme": "file", "RootPath": "C:", "DirectoryPath": "C:/temp", "DirectoryName": "temp", "Filename": "file.txt", "Extension": "txt", "AlternateDataStreamName": "some .exe"}
-|\\shared\users\temp\file.txt.gz|{"Scheme": "", "RootPath": "", "DirectoryPath": " \\ \\shared \\ users \\ temp "," DirectoryName ":" temp "," Filename ":" file.txt "," Extension ":" gz "," AlternateDataStreamName ":" "}
+|file://C:/temp/file.txt:some.exe|{"Scheme": "file"、"RootPath": "C:"、"DirectoryPath": "C:/temp"、"DirectoryName": "temp"、"Filename": "file.txt"、"Extension": "txt"、"AlternateDataStreamName": "some.exe"}
+|\\shared\users\temp\file.txt gz|{"Scheme": "", "RootPath": "", "DirectoryPath": " \\ \\shared \\ users \\ temp "," DirectoryName ":" temp "," Filename ":" file.txt. gz "," Extension ":" gz "," AlternateDataStreamName ":" "}
 |/usr/lib/temp/file.txt|{"Scheme": "", "RootPath": "", "DirectoryPath": "/usr/lib/temp", "DirectoryName": "temp", "Filename": "file.txt", "Extension": "txt", "AlternateDataStreamName": ""}

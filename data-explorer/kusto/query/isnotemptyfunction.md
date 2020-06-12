@@ -1,6 +1,6 @@
 ---
-title: isnotempty() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの isempty() について説明します。
+title: isnotempty ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの isnotempty () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 14111be0fc0247dd151ef7454121e6b90a32ff0d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5a21031b07df3a4fa654fd13eb3761618308337b
+ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513534"
+ms.lasthandoff: 06/11/2020
+ms.locfileid: "84717344"
 ---
 # <a name="isnotempty"></a>isnotempty()
 
-引数`true`が空の文字列でも null でもない場合に返します。
+引数が空の文字列ではなく、null でない場合は、を返し `true` ます。
 
 ```kusto
 isnotempty("") == false
@@ -27,4 +27,4 @@ isnotempty("") == false
 
 `isnotempty(`[*値*]`)`
 
-`notempty(`[*値*]`)` -- エイリアス`isnotempty`
+`notempty(`[*値*] `)`--のエイリアス`isnotempty`

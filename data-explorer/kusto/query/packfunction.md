@@ -1,6 +1,6 @@
 ---
-title: パック() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの pack() について説明します。
+title: pack ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの pack () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,27 +8,27 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a7b43be96f272ab929434f10cac910bd4072e650
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a94629ae8f4795e28cbfb0c41f06596731cdd8d9
+ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511834"
+ms.lasthandoff: 06/11/2020
+ms.locfileid: "84717327"
 ---
 # <a name="pack"></a>pack()
 
-名前と`dynamic`値のリストからオブジェクト (プロパティ バッグ) を作成します。
+`dynamic`名前と値のリストからオブジェクト (プロパティバッグ) を作成します。
 
-エイリアスを`pack_dictionary()`使用して機能します。
+エイリアスが `pack_dictionary()` 機能します。
 
 **構文**
 
-`pack(`*キー1*`,`*値1*`,`*キー2*`,`*値2*`,... )`
+`pack(`*key1* `,`*value1* `,`*key2* `,`*value2*`,... )`
 
 **引数**
 
-* キーと値の交互のリスト (リストの全長は偶数である必要があります)
-* すべてのキーは空でない定数文字列でなければなりません
+* キーと値の交互のリスト (リスト全体の長さは偶数である必要があります)
+* すべてのキーは、空でない定数文字列である必要があります
 
 **使用例**
 
@@ -38,23 +38,23 @@ ms.locfileid: "81511834"
 pack("Level", "Information", "ProcessID", 1234, "Data", pack("url", "www.bing.com"))
 ```
 
-2つのテーブル、SmsMessagesとMmsMessagesを取ることができます:
+では、SmsMessages と MmsMessages という2つのテーブルを取得できます。
 
-テーブル Sms メッセージ 
+テーブル SmsMessages 
 
-|ソース番号 |ターゲット番号| 文字数
+|SourceNumber |TargetNumber| CharsCount
 |---|---|---
 |555-555-1234 |555-555-1212 | 46 
 |555-555-1234 |555-555-1213 | 50 
 |555-555-1212 |555-555-1234 | 32 
 
-テーブル Mms メッセージ 
+テーブル MmsMessages 
 
-|ソース番号 |ターゲット番号| アタッシェムネットサイズ | アタッシェネットタイプ | アタッシェネット名
+|SourceNumber |TargetNumber| AttachmentSize | Attachmenttype が | 添付名
 |---|---|---|---|---
-|555-555-1212 |555-555-1213 | 200 | JPEG | ピック1
-|555-555-1234 |555-555-1212 | 250 | JPEG | ピック2
-|555-555-1234 |555-555-1213 | 300 | png | ピック3
+|555-555-1212 |555-555-1213 | 200 | jpeg | Pic1
+|555-555-1234 |555-555-1212 | 250 | jpeg | Pic2
+|555-555-1234 |555-555-1213 | 300 | png | Pic3
 
 次のクエリ:
 ```kusto
@@ -62,15 +62,15 @@ SmsMessages
 | extend Packed=pack("CharsCount", CharsCount) 
 | union withsource=TableName kind=inner 
 ( MmsMessages 
-  | extend Packed=pack("AttachmnetSize", AttachmnetSize, "AttachmnetType", AttachmnetType, "AttachmnetName", AttachmnetName))
+  | extend Packed=pack("AttachmentSize", AttachmentSize, "AttachmentType", AttachmentType, "AttachmentName", AttachmentName))
 | where SourceNumber == "555-555-1234"
 ``` 
 
 戻り値:
 
-|TableName |ソース番号 |ターゲット番号 | パック
+|TableName |SourceNumber |TargetNumber | パック
 |---|---|---|---
-|メッセージ|555-555-1234 |555-555-1212 | {"文字数": 46}
-|メッセージ|555-555-1234 |555-555-1213 | {"文字数": 50}
-|メッセージ|555-555-1234 |555-555-1212 | {"添付ネットサイズ": 250, "添付ネットタイプ": "jpeg", "アタッシェネット名": "Pic2"}
-|メッセージ|555-555-1234 |555-555-1213 | {"添付ネットサイズ": 300, "添付ネットタイプ": "png", "アクトネット名": "Pic3"}
+|SmsMessages|555-555-1234 |555-555-1212 | {"CharsCount":46}
+|SmsMessages|555-555-1234 |555-555-1213 | {"CharsCount":50}
+|MmsMessages|555-555-1234 |555-555-1212 | {"AttachmentSize": 250、"Attachmentsize": "jpeg"、"Attachmentsize": "Pic2"}
+|MmsMessages|555-555-1234 |555-555-1213 | {"AttachmentSize": 300、"Attachmentsize": "png"、"Attachmentsize": "Pic3"}

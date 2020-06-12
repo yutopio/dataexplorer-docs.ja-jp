@@ -1,6 +1,6 @@
 ---
-title: シリアル化演算子 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのシリアル化演算子について説明します。
+title: serialize 操作-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの serialize 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5402d1e1fcceb42f02643bf24918ed07beddaed7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 708a5ccd5f8402dedb074a6ab8c17b1d7762839c
+ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81509114"
+ms.lasthandoff: 06/11/2020
+ms.locfileid: "84717123"
 ---
 # <a name="serialize-operator"></a>serialize 演算子
 
-ウィンドウ関数の使用に対して入力行セットの順序が安全であることを示します。
+入力行セットの順序を、ウィンドウ関数に対して安全に使用できることを示します。
 
-演算子は宣言的な意味を持ち、入力行セットをシリアル化 (順序付き) としてマークして[、ウィンドウ関数](./windowsfunctions.md)を適用できるようにします。
+演算子は、宣言的な意味を持ちます。 入力行セットをシリアル化 (順序付け) としてマークし、[ウィンドウ関数](./windowsfunctions.md)を適用できるようにします。
 
 ```kusto
 T | serialize rn=row_number()
@@ -27,9 +27,9 @@ T | serialize rn=row_number()
 
 **構文**
 
-`serialize`[*名前 1* `=` *エクスプル 1* [`,`名前*2* `=` *Expr2*].
+`serialize`[*Name1* `=`*Expr1 or* [ `,` *Name2* `=` *Expr2*]...]
 
-* *名前*/*Expr*ペアは[、拡張演算子](./extendoperator.md)のペアと似ています。
+* *名前*の / *Expr*のペアは、 [extend 演算子](./extendoperator.md)の組に似ています。
 
 **例**
 
@@ -43,12 +43,12 @@ Traces
 | serialize rn = row_number()
 ```
 
-次の演算子の出力行セットは、シリアル化済みとしてマークされます。
+次の演算子の出力行セットは、シリアル化としてマークされます。
 
-[範囲](./rangeoperator.md),[並べ替え](./sortoperator.md),[順序](./orderoperator.md),[トップ](./topoperator.md),[トップヒッター ,](./tophittersoperator.md)[ゲットスキーマ](./getschemaoperator.md).
+[range](./rangeoperator.md)、 [sort](./sortoperator.md)、 [order](./orderoperator.md)、 [top](./topoperator.md)、 [top-hitters](./tophittersoperator.md)、 [getschema](./getschemaoperator.md)。
 
-次の演算子の出力行セットは、シリアル化されていないとしてマークされます。
+次の演算子の出力行セットは、非シリアル化としてマークされます。
 
-[サンプル](./sampleoperator.md),[サンプル別 ,](./sampledistinctoperator.md)[個別](./distinctoperator.md)の ,[結合](./joinoperator.md),[トップネスト](./topnestedoperator.md),[カウント](./countoperator.md),[集計](./summarizeoperator.md),[ファセット](./facetoperator.md), [mv-expand](./mvexpandoperator.md),[評価](./evaluateoperator.md)[,](./reduceoperator.md)メイク[シリーズ](./make-seriesoperator.md)
+[sample](./sampleoperator.md)、 [sample-distinct](./sampledistinctoperator.md)、 [distinct](./distinctoperator.md)、 [join](./joinoperator.md)、 [top nested](./topnestedoperator.md)、 [count](./countoperator.md)、[要約](./summarizeoperator.md)、[ファセット](./facetoperator.md)、 [mv-展開](./mvexpandoperator.md)、[評価](./evaluateoperator.md)、[縮小](./reduceoperator.md)、および[シリーズ](./make-seriesoperator.md)
 
-他のすべての演算子は、シリアル化プロパティを保持します (入力行セットがシリアル化されている場合は、出力行セットも同じになります)。
+その他のすべての演算子は、シリアル化プロパティを保持します。 入力行セットがシリアル化されている場合は、出力行セットもシリアル化されます。

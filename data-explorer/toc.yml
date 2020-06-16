@@ -75,7 +75,9 @@
             - name: 既存のテーブルへのワンクリックでのインジェスト
               href: one-click-ingestion-existing-table.md
         - name: ストリーミング インジェスト
-          href: ingest-data-streaming.md
+          items:
+            - name: ストリーミング インジェスト
+              href: ingest-data-streaming.md
         - name: LightIngest の使用
           href: lightingest.md
         - name: イベント ハブ
@@ -609,6 +611,8 @@
               href: ./kusto/query/atan2function.md
             - name: bag_keys()
               href: ./kusto/query/bagkeysfunction.md
+            - name: bag_merge()
+              href: ./kusto/query/bag-merge-function.md
             - name: base64_decode_toarray()
               href: ./kusto/query/base64_decode_toarrayfunction.md
             - name: base64_decode_tostring()
@@ -773,7 +777,7 @@
               href: ./kusto/query/isnanfunction.md
             - name: isnotempty()、notempty()
               href: ./kusto/query/isnotemptyfunction.md
-            - name: isnotnull()、notempty()
+            - name: isnotnull()、notnull()
               href: ./kusto/query/isnotnullfunction.md
             - name: isnull()
               href: ./kusto/query/isnullfunction.md
@@ -1238,6 +1242,8 @@
                   href: ./kusto/management/alter-database.md
                 - name: .show database schema
                   href: ./kusto/management/show-schema-database.md
+                - name: .execute database script
+                  href: ./kusto/management/execute-database-script.md
             - name: テーブル
               items:
                 - name: テーブルの概要
@@ -1422,6 +1428,12 @@
               href: ./kusto/management/data-ingestion/eventhub.md
             - name: IoT Hub からの取り込み
               href: ./kusto/management/data-ingestion/iothub.md
+            - name: ストリーミング インジェスト
+              items:
+                - name: ストリーミング インジェストとスキーマ変更
+                  href: ./kusto/management/data-ingestion/streaming-ingestion-schema-changes.md
+                - name: ストリーミング インジェスト用のスキーマ キャッシュのクリア
+                  href: ./kusto/management/data-ingestion/clear-schema-cache-command.md
         - name: データのエクスポート
           href: ./kusto/management/data-export/index.md
           items:

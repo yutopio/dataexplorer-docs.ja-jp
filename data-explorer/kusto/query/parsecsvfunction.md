@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f01faae3d9339aa23e7e2bb2b1fdae7a652db360
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: b61934ec2efbfb22c17fe93a4f3969a1592cefab
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271215"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780662"
 ---
 # <a name="parse_csv"></a>parse_csv()
 
-コンマ区切り値の1つのレコードを表す指定された文字列を分割し、これらの値を持つ文字列配列を返します。
+コンマ区切り値の1つのレコードを表す特定の文字列を分割し、これらの値を持つ文字列配列を返します。
 
 ```kusto
 parse_csv("aaa,bbb,ccc") == ["aaa","bbb","ccc"]
@@ -35,9 +35,9 @@ parse_csv("aaa,bbb,ccc") == ["aaa","bbb","ccc"]
 
 分割された値を格納している文字列配列。
 
-**メモ**
+**ノート**
 
-埋め込み行フィード、コンマ、および引用符は二重引用符 (' "') を使用してエスケープすることができます。 この関数では、行ごとに複数のレコードがサポートされません (最初のレコードのみが取得されます)。
+埋め込み行フィード、コンマ、および引用符は、二重引用符 (' "') を使用してエスケープできます。 この関数では、行ごとに複数のレコードがサポートされません (最初のレコードのみが取得されます)。
 
 **使用例**
 

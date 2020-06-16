@@ -1,6 +1,6 @@
 ---
-title: schema_mergeプラグイン - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーschema_mergeプラグインについて説明します。
+title: schema_merge プラグイン-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの schema_merge プラグインについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,20 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 67326a0e7a92d064613ee3a3de2851addb502fc9
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b1f3ef10ac5cee3eb9bc1c1dca4c0de26bd85477
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81509250"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780203"
 ---
-# <a name="schema_merge-plugin"></a>schema_mergeプラグイン
+# <a name="schema_merge-plugin"></a>schema_merge プラグイン
 
 表形式スキーマ定義を統合スキーマにマージします。 
 
-スキーマ定義は[、getschema](./getschemaoperator.md)演算子によって生成される形式であることが想定されます。
+スキーマ定義は、演算子によって生成される形式であることが必要です [`getschema`](./getschemaoperator.md) 。
 
-スキーマのマージ操作は、入力スキーマに表示される列を結合し、データ型を共通のデータ型に減らそうとします (データ型を減らすことができない場合は、問題のある列にエラーが表示されます)。
+`schema merge`操作は入力スキーマの列を結合し、データ型を共通のデータ型に縮小しようとします。 データ型を減らすことができない場合は、問題のある列にエラーが表示されます。
 
 ```kusto
 let Schema1=Table1 | getschema;
@@ -31,15 +31,15 @@ union Schema1, Schema2 | evaluate schema_merge()
 
 **構文**
 
-`T``|``evaluate`*PreserveOrder*保存`schema_merge(`順序`)`
+`T``|` `evaluate` `schema_merge(`*PreserveOrder*`)`
 
 **引数**
 
-* *PreserveOrder*: (オプション)`true`に設定すると、最初の表形式スキーマで定義されている列の順序が保持されることを検証するようにプラグインに指示します。 つまり、複数のスキーマに同じ列が含まれている場合、列序数は最初に出現したスキーマと同じである必要があります。 既定値は `true` です。
+* *PreserveOrder*: (省略可能) に設定すると `true` 、保持されている最初の表形式スキーマで定義されている列の順序を検証するようにプラグインに指示します。 同じ列が複数のスキーマに含まれている場合、列の序数は、その列が表示されている最初のスキーマの列の序数に似ている必要があります。 既定値は `true` です。
 
 **戻り値**
 
-プラグイン`schema_merge`は[、getschema](./getschemaoperator.md)演算子が返すものに出力シミアーを返します。
+プラグインは、 `schema_merge` 演算子が返すものと同様の出力を返し [`getschema`](./getschemaoperator.md) ます。
 
 **使用例**
 
@@ -59,7 +59,7 @@ union schema1, schema2 | evaluate schema_merge()
 |HttpStatus|1|System.Int32|INT|
 |Referrer|2|System.String|string|
 
-異なる列の順序 (新しいバリアント`HttpStatus`の順序の変更`1`) を`2`持つスキーマとマージします。
+異なる列順序を持つスキーマ ( `HttpStatus` 新しいバリアントのからへの序数変更) でマージ `1` `2` します。
 
 ```kusto
 let schema1 = datatable(Uri:string, HttpStatus:int)[] | getschema;
@@ -73,9 +73,9 @@ union schema1, schema2 | evaluate schema_merge()
 |---|---|---|---|
 |Uri|0|System.String|string|
 |Referrer|1|System.String|string|
-|HttpStatus|-1|エラー(不明な CSL 型:ERROR(列が順序付けられていません))|エラー(列が順序どおりになっている)|
+|HttpStatus|-1|エラー (不明な CSL の種類: エラー (列が正しくありません))|エラー (列が順序どおりではありません)|
 
-異なる列の順序を持つスキーマをマージします`PreserveOrder`が、`false`次の時刻に設定します。
+列の順序が異なるが、がに設定されているスキーマを使用してマージ `PreserveOrder` `false` します。
 
 ```kusto
 let schema1 = datatable(Uri:string, HttpStatus:int)[] | getschema;

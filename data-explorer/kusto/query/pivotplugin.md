@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a046cc369dd466defa50916ee78b2c29f5f88ea0
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 4662b1bd9f68778cab1f799f564499e23add5812
+ms.sourcegitcommit: 6a0bd5b84f9bd739510c6a75277dec3a9e851edd
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373225"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84788904"
 ---
 # <a name="pivot-plugin"></a>ピボットプラグイン
 
@@ -30,14 +30,14 @@ T | evaluate pivot(PivotColumn)
 **引数**
 
 * *pivotcolumn*: 回転する列。 この列からの一意の値はそれぞれ、出力テーブルの列になります。
-* *集計関数*: (省略可能) 入力テーブル内の複数の行を出力テーブルの単一の行に集計します。 現在サポートされている関数:、、、、、、、 `min()` `max()` `any()` `sum()` `dcount()` `avg()` `stdev()` `variance()` 、および `count()` (既定値は `count()` )。
+* *集計関数*: (省略可能) 入力テーブル内の複数の行を出力テーブルの単一の行に集計します。 現在サポートされている関数:、、、、、、、、、、 `min()` `max()` `any()` `sum()` `dcount()` `avg()` `stdev()` `variance()` `make_list()` `make_bag()` `make_set()` 、 `count()` (既定値は `count()` )。
 * *column1*、 *column2*、...: (省略可能) 列名。 出力テーブルには、指定された列ごとに追加の列が含まれます。 既定値: ピボットされた列と集計列以外のすべての列。
 
 **戻り値**
 
 Pivot は、指定された列 (*column1*、 *column2*、...) とピボット列のすべての一意の値を含む、回転したテーブルを返します。 ピボットされた列の各セルには、集計関数の計算が含まれます。
 
-**注**
+**注:**
 
 プラグインの出力スキーマ `pivot` はデータに基づいているため、クエリを実行すると、2つの実行に対して異なるスキーマが生成される可能性があります。 これは、アンパックされた列を参照しているクエリがいつでも "壊れている" 可能性があることも意味します。 この理由により、automation ジョブにこのプラグインを使用することは推奨されません。
 

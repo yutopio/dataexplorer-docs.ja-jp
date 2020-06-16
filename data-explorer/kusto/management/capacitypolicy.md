@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: bb3ee687e995af7d4161ca111f9efbe91c1b9ca0
-ms.sourcegitcommit: a60ad8da32f16c5d9ce35b62e7331d7439081e3d
+ms.openlocfilehash: a7f34f51ee38b10c51c469c0145081f5bb702d8f
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/06/2020
-ms.locfileid: "84466308"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780220"
 ---
 # <a name="capacity-policy"></a>キャパシティ ポリシー
 
-容量ポリシーは、クラスターでのデータ管理操作に使用されるコンピューティングリソースを制御するために使用されます。
+容量ポリシーは、クラスターでのデータ管理操作のコンピューティングリソースを制御するために使用されます。
 
 ## <a name="the-capacity-policy-object"></a>容量ポリシーオブジェクト
 
@@ -31,38 +31,37 @@ ms.locfileid: "84466308"
 
 ## <a name="ingestion-capacity"></a>インジェスト容量
 
-|プロパティ                           |Type    |Description                                                                                                                                                                               |
+|プロパティ                           |Type    |説明                                                                                                                                                                               |
 |-----------------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|ClusterMaximumConcurrentOperations |long    |クラスター内の同時インジェスト操作数の最大値                                                                                                            |
-|CoreUtilizationCoefficient         |double  |インジェスト容量を計算するときに使用するコアの割合の係数 (計算の結果は常にによって正規化されます `ClusterMaximumConcurrentOperations` ) |                                                                                                                             |
+|ClusterMaximumConcurrentOperations |long    |クラスター内の同時インジェスト操作数の最大値                                          |
+|CoreUtilizationCoefficient         |double  |インジェスト容量を計算するときに使用するコアの割合の係数。 計算の結果は常にによって正規化されます。`ClusterMaximumConcurrentOperations`                          |
 
-クラスターのインジェスト容量の合計 (で示されているように、「[容量の表示](../management/diagnostics.md#show-capacity)」を参照) は次の方法で計算されます。
+で示されているように、クラスターのインジェスト容量の合計は次のように計算され[ます。容量を表示](../management/diagnostics.md#show-capacity)します。
 
 最小値 ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 最大 (1, `Core count per node`  *  `CoreUtilizationCoefficient` ))
 
 > [!Note]
-> 3つ以上のノードがあるクラスターでは、管理ノードがインジェスト操作の実行に参加していません。 `Number of nodes in cluster`が1つ減少します。
+> 3つ以上のノードがあるクラスターでは、管理ノードはインジェスト操作に関与しません。 `Number of nodes in cluster`が1つ減少します。
 
 ## <a name="extents-merge-capacity"></a>エクステントのマージ容量
 
-|プロパティ                           |Type    |Description                                                                                                |
+|プロパティ                           |Type    |説明                                                                                                |
 |-----------------------------------|--------|-----------------------------------------------------------------------------------------------------------|
-|MinimumConcurrentOperationsPerNode |long    |1つのノードでの同時実行エクステントのマージ/再構築操作の数の最小値。 既定値: 1 |
-|MaximumConcurrentOperationsPerNode |long    |1つのノードに対するマージ/再構築操作の同時実行数の最大値。 既定値は5 |
+|MinimumConcurrentOperationsPerNode |long    |1つのノードでの同時実行エクステントのマージ/再構築操作の数の最小値。 既定値は1です。 |
+|MaximumConcurrentOperationsPerNode |long    |1つのノードに対するマージ/再構築操作の同時実行数の最大値。 既定値は5です。 |
 
-クラスターの合計エクステントマージ容量 (で示されているように、「[容量の表示](../management/diagnostics.md#show-capacity)」を参照) は次の方法で計算されます。
+に示されているように、クラスターの合計エクステントのマージ容量[。容量の表示](../management/diagnostics.md#show-capacity)は次のように計算されます。
 
 `Number of nodes in cluster`閉じる`Concurrent operations per node`
 
 の有効値は、 `Concurrent operations per node` システムによって [,] の範囲で自動的に調整され `MinimumConcurrentOperationsPerNode` `MaximumConcurrentOperationsPerNode` ます。
-
 
 > [!Note]
 > * 3つ以上のノードがあるクラスターでは、管理ノードはマージ操作の実行に関与しません。 `Number of nodes in cluster`が1つ減少します。
 
 ## <a name="extents-purge-rebuild-capacity"></a>エクステント消去の再構築容量
 
-|プロパティ                           |Type    |Description                                                                                                                           |
+|プロパティ                           |Type    |説明                                                                                                                           |
 |-----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------|
 |MaximumConcurrentOperationsPerNode |long    |1つのノードでの消去操作の同時再構築エクステント数の最大値 |
 
@@ -75,28 +74,28 @@ ms.locfileid: "84466308"
 
 ## <a name="export-capacity"></a>容量のエクスポート
 
-|プロパティ                           |Type    |Description                                                                                                                                                                            |
+|プロパティ                           |Type    |説明                                                                                                                                                                            |
 |-----------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクスポート操作数の最大値。                                                                                                           |
+|ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクスポート操作数の最大値。                                           |
 |CoreUtilizationCoefficient         |double  |エクスポート容量を計算するときに使用するコアの割合の係数。 計算の結果は、常にによって正規化され `ClusterMaximumConcurrentOperations` ます。 |
 
-クラスターの合計エクスポート容量 (で示されているように、「[容量の表示](../management/diagnostics.md#show-capacity)」を参照) は、次の方法で計算されます。
+に示されているように、クラスターの合計エクスポート容量[。容量の表示](../management/diagnostics.md#show-capacity)は次のように計算されます。
 
 最小値 ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 最大 (1, `Core count per node`  *  `CoreUtilizationCoefficient` ))
 
 > [!Note]
-> 3つ以上のノードがあるクラスターでは、管理ノードがエクスポート操作の実行に参加していません。 `Number of nodes in cluster`が1つ減少します。
+> 3つ以上のノードがあるクラスターでは、管理ノードはエクスポート操作に参加しません。 `Number of nodes in cluster`が1つ減少します。
 
 ## <a name="extents-partition-capacity"></a>エクステントパーティション容量
 
-|プロパティ                           |Type    |Description                                                                                         |
+|プロパティ                           |Type    |説明                                                                                         |
 |-----------------------------------|--------|----------------------------------------------------------------------------------------------------|
 |ClusterMinimumConcurrentOperations |long    |クラスター内の同時エクステントのパーティション操作数の最小値。 既定値: 1  |
 |ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクステントのパーティション操作数の最大値。 既定値:16 |
 
 クラスターのエクステントの合計エクステント容量 (で示されているように)。[容量を表示](../management/diagnostics.md#show-capacity)します。
 
-の有効値は、 `Concurrent operations` システムによって [,] の範囲で自動的に調整され `ClusterMinimumConcurrentOperations` `ClusterMaximumConcurrentOperations` ます。
+の有効値 `Concurrent operations` は、システムによって [,] の範囲で自動的に調整され `ClusterMinimumConcurrentOperations` `ClusterMaximumConcurrentOperations` ます。
 
 ## <a name="defaults"></a>[既定値]
 
@@ -138,9 +137,9 @@ Kusto は、次のユーザーによって開始されるコマンドの同時�
    * 制限は、[容量ポリシー](#capacity-policy)で定義されているとおりです。
 * 破棄
    * 現在、グローバルはクラスターごとに1つずつ修正されています。
-   * Purge rebuild capacity は、purge コマンドの実行中の同時再構築操作の数を決定するために、内部的に使用されます。 このプロセスにより、purge コマンドはブロックまたは制限されませんが、削除の再構築容量によっては、処理速度が速くなるか遅くなります。
+   * Purge rebuild capacity は、purge コマンドの実行中の同時再構築操作の数を決定するために、内部的に使用されます。 このプロセスにより、purge コマンドはブロックまたは調整されませんが、削除の再構築容量によっては、高速または低速になります。
 * Exports
    * 制限は、[容量ポリシー](#capacity-policy)で定義されているとおりです。
 
-操作が許可されている同時実行操作を超えたことがクラスターによって検出されると、429 ("調整済み") HTTP コードを使用して応答します。
+操作が許可されている同時実行操作を超えたことをクラスターが検出すると、429、"調整済み"、HTTP コードで応答します。
 バックオフの後に操作を再試行してください。

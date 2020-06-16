@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 296c6e245b7157c09c7af59132fd8bfa686fc9f7
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: 7bcba1cbcbcbd712278696d897febaee5714703f
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84665046"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780594"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -214,9 +214,9 @@ with (fileExtension = ".txt")
 
 **サンプル出力**
 
-|TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
+|TableName|TableType|Folder|DocString|プロパティ|ConnectionStrings|メジャー グループ|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
-|ExternalTable|BLOB|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
+|ExternalTable|Blob|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
 
 <a name="virtual-columns"></a>
 **仮想列**
@@ -297,14 +297,14 @@ dataformat=parquet
 **例** 
  
 ```kusto
-.create external table MyExternalTable JSON mapping "Mapping1" '[{ "column" : "rownumber", "datatype" : "int", "path" : "$.rownumber"},{ "column" : "rowguid", "path" : "$.rowguid" }]'
+.create external table MyExternalTable json mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
 ```
 
 **出力例**
 
 | 名前     | 種類 | マッピング                                                           |
 |----------|------|-------------------------------------------------------------------|
-| mapping1 | JSON | [{"ColumnName": "rownumber", "ColumnType": "int", "Properties": {"Path": "$. rownumber"}}, {"ColumnName": "rowguid", "ColumnType": "", "Properties": {"Path": "$. rowguid"}}] |
+| mapping1 | JSON | [{"ColumnName": "rownumber", "Properties": {"=": "$. rownumber"}}, {"ColumnName": "rowguid", "Properties": {"Path": "$. rowguid"}}] |
 
 ## <a name="alter-external-table-mapping"></a>。外部テーブルマッピングを変更します。
 
@@ -315,14 +315,14 @@ dataformat=parquet
 **例** 
  
 ```kusto
-.alter external table MyExternalTable JSON mapping "Mapping1" '[{ "column" : "rownumber", "path" : "$.rownumber"},{ "column" : "rowguid", "path" : "$.rowguid" }]'
+.alter external table MyExternalTable json mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
 ```
 
 **出力例**
 
 | 名前     | 種類 | マッピング                                                                |
 |----------|------|------------------------------------------------------------------------|
-| mapping1 | JSON | [{"ColumnName": "rownumber", "ColumnType": "", "Properties": {"Path": "$. rownumber"}}, {"ColumnName": "rowguid", "ColumnType": "", "Properties": {"Path": "$. rowguid"}}] |
+| mapping1 | JSON | [{"ColumnName": "rownumber", "Properties": {"=": "$. rownumber"}}, {"ColumnName": "rowguid", "Properties": {"Path": "$. rowguid"}}] |
 
 ## <a name="show-external-table-mappings"></a>。外部テーブルマッピングを表示します。
 
@@ -335,16 +335,16 @@ dataformat=parquet
 **例** 
  
 ```kusto
-.show external table MyExternalTable JSON mapping "Mapping1" 
+.show external table MyExternalTable json mapping "Mapping1" 
 
-.show external table MyExternalTable JSON mappings 
+.show external table MyExternalTable json mappings 
 ```
 
 **出力例**
 
 | 名前     | 種類 | マッピング                                                                         |
 |----------|------|---------------------------------------------------------------------------------|
-| mapping1 | JSON | [{"ColumnName": "rownumber", "ColumnType": "", "Properties": {"Path": "$. rownumber"}}, {"ColumnName": "rowguid", "ColumnType": "", "Properties": {"Path": "$. rowguid"}}] |
+| mapping1 | JSON | [{"ColumnName": "rownumber", "Properties": {"=": "$. rownumber"}}, {"ColumnName": "rowguid", "Properties": {"Path": "$. rowguid"}}] |
 
 ## <a name="drop-external-table-mapping"></a>。外部テーブルマッピングを削除します。
 
@@ -355,7 +355,7 @@ dataformat=parquet
 **例** 
  
 ```kusto
-.drop external table MyExternalTable JSON mapping "Mapping1" 
+.drop external table MyExternalTable json mapping "Mapping1" 
 ```
 ## <a name="next-steps"></a>次のステップ
 

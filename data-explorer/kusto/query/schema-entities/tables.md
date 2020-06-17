@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: f51e05abac44b85ab328e7df5645eeab51d2a274
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: fa97777da8173034098037f1aceec385a4c206de
+ms.sourcegitcommit: 3848b8db4c3a16bda91c4a5b7b8b2e1088458a3a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550624"
+ms.lasthandoff: 06/16/2020
+ms.locfileid: "84818597"
 ---
 # <a name="tables"></a>テーブル
 
@@ -22,7 +22,7 @@ ms.locfileid: "83550624"
 テーブルは、[格納され](./stored-functions.md)ている関数と同じ名前空間を占有します。
 格納されている関数とテーブルの両方に同じ名前が指定されている場合は、格納されている関数が選択されます。
 
-**メモ**  
+**ノート**  
 
 * テーブル名は大文字と小文字が区別されます。
 * テーブル名は、[エンティティ名](./entity-names.md)の規則に従います。
@@ -60,3 +60,6 @@ cluster("https://help.kusto.windows.net").database("Samples").StormEvents
 let counter=(TableName:string) { table(TableName) | count };
 counter("StormEvents")
 ```
+
+> [!NOTE]
+> `table()`テーブルデータスコープを明示的に指定するには、特殊な関数を使用します。 たとえば、この関数を使用して、ホットキャッシュ内のテーブル内のデータに対する処理を制限します。

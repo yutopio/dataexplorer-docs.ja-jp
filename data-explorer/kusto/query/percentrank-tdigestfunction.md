@@ -8,16 +8,17 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 8220c52b70eec8a0a297c5826fff3a6e2a0483b3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: cafb52b7254041a18a9cae956ed338f45bc67a54
+ms.sourcegitcommit: 3848b8db4c3a16bda91c4a5b7b8b2e1088458a3a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373233"
+ms.lasthandoff: 06/16/2020
+ms.locfileid: "84818572"
 ---
 # <a name="percentrank_tdigest"></a>percentrank_tdigest()
 
-セット内の値のおおよその順位を計算します。順位は、セットのサイズに対する比率として表されます。 この関数は、パーセンタイルの逆として表示できます。
+セット内の値のおおよその順位を計算します。順位は、セットのサイズに対する比率として表されます。
+この関数は、パーセンタイルの逆として表示できます。
 
 **構文**
 
@@ -34,7 +35,7 @@ ms.locfileid: "83373233"
 
 **ヒント**
 
-1) 2番目のパラメーターの型と tdigest 内の要素の型は同じである必要があります。
+1) 2番目のパラメーターの型と、内の要素の型は同じである `tdigest` 必要があります。
 
 2) 最初のパラメーターは、 [tdigest ()](tdigest-aggfunction.md)または[tdigest_merge ()](tdigest-merge-aggfunction.md)によって生成された tdigest である必要があります
 

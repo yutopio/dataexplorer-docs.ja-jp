@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 96409849823850ef9fd939f9e359d75d3e6d5bf1
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 83af540389087f0e1d9fdbd04266ab7ecaca0c5a
+ms.sourcegitcommit: b12e03206c79726d5b4055853ec3fdaa8870c451
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382150"
+ms.lasthandoff: 06/18/2020
+ms.locfileid: "85069162"
 ---
 # <a name="ingestion-without-kustoingest-library"></a>Kusto によるインジェストを使用した取り込み
 
@@ -22,7 +22,7 @@ Azure データエクスプローラーにデータを取り込みする場合�
 この記事では、Azure データエクスプローラーへの*キューインジェスト*を使用して、運用レベルのパイプラインを作成する方法について説明します。
 
 > [!NOTE]
-> 次のコードは C# で記述されており、Azure Storage SDK、ADAL 認証ライブラリ、および NewtonSoft. JSON パッケージを使用して、サンプルコードを単純化しています。 必要に応じて、対応するコードを適切な[Azure Storage REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api)呼び出し、 [non-.NET ADAL パッケージ](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries)、および使用可能な任意の JSON 処理パッケージに置き換えることができます。
+> 次のコードは C# で記述されており、Azure Storage SDK、ADAL 認証ライブラリ、およびパッケージの NewtonSoft.JSを利用して、サンプルコードを簡略化しています。 必要に応じて、対応するコードを適切な[Azure Storage REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api)呼び出し、 [non-.NET ADAL パッケージ](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries)、および使用可能な任意の JSON 処理パッケージに置き換えることができます。
 
 この記事では、推奨されるインジェストモードについて説明します。 Kusto. インジェストライブラリの場合、対応するエンティティは[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)インターフェイスです。 ここでは、クライアントコードが azure キューにインジェスト通知メッセージを投稿することによって、Azure データエクスプローラーサービスと対話します。 メッセージへの参照は、Kusto データ管理 (インジェスト) サービスから取得されます。 サービスとの対話は、Azure Active Directory (Azure AD) を使用して認証される必要があります。
 
@@ -240,7 +240,7 @@ internal static string UploadFileToBlobContainer(string filePath, string blobCon
 
 ### <a name="compose-the-azure-data-explorer-ingestion-message"></a>Azure データエクスプローラーインジェストメッセージを作成する
 
-NewtonSoft. JSON パッケージは、ターゲットデータベースとテーブルを識別する有効なインジェスト要求を再度作成し、blob を指します。
+パッケージの NewtonSoft.JSによって、ターゲットデータベースとテーブルを識別するための有効なインジェスト要求が再度作成され、その blob が参照されます。
 メッセージは、関連する Kusto データ管理サービスがリッスンしている Azure キューに送信されます。
 
 ここでは、考慮すべき点をいくつか紹介します。
@@ -265,14 +265,15 @@ internal static string PrepareIngestionMessage(string db, string table, string d
     message.Add("DatabaseName", db);
     message.Add("TableName", table);
     message.Add("RetainBlobOnSuccess", true);   // Do not delete the blob on success
-    message.Add("Format", "json");              // Data is in JSON format
     message.Add("FlushImmediately", true);      // Do not aggregate
     message.Add("ReportLevel", 2);              // Report failures and successes (might incur perf overhead)
     message.Add("ReportMethod", 0);             // Failures are reported to an Azure Queue
 
     message.Add("AdditionalProperties", new JObject(
                                             new JProperty("authorizationContext", identityToken),
-                                            new JProperty("jsonMappingReference", mappingRef)));
+                                            new JProperty("jsonMappingReference", mappingRef),
+                                            // Data is in JSON format
+                                            new JProperty("format", "json")));
     return message.ToString();
 }
 ```
@@ -344,7 +345,7 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
 |DatabaseName |ターゲットデータベース名 |
 |TableName |ターゲットテーブル名 |
 |RetainBlobOnSuccess |に設定すると `true` 、インジェストが正常に完了した後、blob は削除されません。 既定値は `false` です |
-|形式 |非圧縮データ形式 |
+|フォーマット |非圧縮データ形式 |
 |FlushImmediately ちに |に設定する `true` と、すべての集計がスキップされます。 既定値は `false` です |
 |ReportLevel |成功/エラー報告レベル: 0-失敗、1-なし、2-すべて |
 |ReportMethod |レポートメカニズム: 0-キュー、1-テーブル |

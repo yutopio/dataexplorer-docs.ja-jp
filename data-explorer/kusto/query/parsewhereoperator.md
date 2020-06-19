@@ -4,20 +4,21 @@ description: この記事では、Azure データエクスプローラー内の�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/12/2020
-ms.openlocfilehash: 646ec00531d528efd51b4a168fde3de660a85ced
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 48231d24ca1e49938629dd9912804c5858d11ae1
+ms.sourcegitcommit: f9d3f54114fb8fab5c487b6aea9230260b85c41d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271096"
+ms.lasthandoff: 06/18/2020
+ms.locfileid: "85071895"
 ---
 # <a name="parse-where-operator"></a>parse-where 演算子
 
-文字列式を評価し、その値を1つ以上の計算列に解析します。 結果は、正常に解析された文字列のみになります。
+文字列式を評価し、その値を1つ以上の計算列に解析します。 結果は、正常に解析された文字列のみになります。 
+
 解析できなかった文字列に対して null を生成する[parse operator](parseoperator.md)を参照してください。
 
 ```kusto
@@ -87,7 +88,7 @@ T | parse-where Text with "ActivityName=" name ", ActivityType=" type
 
 演算子を使用すると、 `parse-where` `extend` 同じ式で複数のアプリケーションを使用して、テーブルに効率的にテーブルを提供 `extract` `string` できます。 これは、テーブルに、 `string` 個々の列に分割する複数の値を含む列がある場合に最も役立ちます。 たとえば、開発者のトレース (" `printf` "/"") ステートメントによって生成された列を分割でき `Console.WriteLine` ます。
 
-### <a name="using-parse"></a>`parse` の使用
+### <a name="using-parse"></a>`parse` を使用する
 
 次の例では、テーブルの列にという `EventText` `Traces` 形式の文字列が含まれてい `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})` ます。 次の操作は、、、、、、、、およびの6つの列を含むテーブルを拡張します `resourceName` `totalSlices` `sliceNumber` `lockTime ` `releaseTime` `previouLockTime` `Month` `Day` 。 
 
@@ -118,7 +119,7 @@ Traces
 |PipelineScheduler|27|20|02/17/2016 08:40:01|2016-02-17 08:40: 01.0000000|2016-02-17 08:39: 01.0000000|
 |PipelineScheduler|27|22|02/17/2016 08:41:01|2016-02-17 08:41: 00.0000000|2016-02-17 08:40: 01.0000000|
 
-### <a name="using-parse-where"></a>`parse-where` の使用 
+### <a name="using-parse-where"></a>`parse-where` を使用する 
 
 ' Parse ' を使用すると、結果から解析された文字列をフィルターで除外できます。
 

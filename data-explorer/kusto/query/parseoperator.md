@@ -4,20 +4,21 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8255f3d0c3dc0006029f06c7a0da4b41dfbaa1b7
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 07318a64781678410374f902ff8fe5514a4bdd17
+ms.sourcegitcommit: f9d3f54114fb8fab5c487b6aea9230260b85c41d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271339"
+ms.lasthandoff: 06/18/2020
+ms.locfileid: "85071906"
 ---
 # <a name="parse-operator"></a>parse 演算子
 
-文字列式が評価され、その値が 1 つまたは複数の計算列に解析されます。 解析が失敗した文字列の場合、計算列には null が含まれます。
+文字列式が評価され、その値が 1 つまたは複数の計算列に解析されます。 解析が失敗した文字列の場合、計算列には null が含まれます。 
+
 解析[に](parsewhereoperator.md)失敗した文字列を除外する parse 演算子を参照してください。
 
 ```kusto

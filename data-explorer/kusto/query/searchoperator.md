@@ -1,6 +1,6 @@
 ---
-title: 検索オペレーター - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの検索演算子について説明します。
+title: 検索演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの検索演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: de63aa3fde421996809334b8a746ea4dee8cb026
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: edd35e5e259666e8ce4360c072aaac6717e6f8c3
+ms.sourcegitcommit: f9d3f54114fb8fab5c487b6aea9230260b85c41d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81509199"
+ms.lasthandoff: 06/18/2020
+ms.locfileid: "85071878"
 ---
 # <a name="search-operator"></a>search 演算子
 
-検索演算子は、複数テーブル/複数列の検索エクスペリエンスを提供します。
+検索操作では、複数テーブル/複数列の検索エクスペリエンスが提供されます。
 
 ## <a name="syntax"></a>構文
 
-* [*表形式ソース*`|`]`search` [`kind=`*大文字と小文字の区別 ]*[`in` `(`*テーブルソース*`)`]*検索述語*
+* [*TabularSource* `|` ]`search`[ `kind=` *CaseSensitivity*] [ `in` `(` *TableSources* `)` ] *searchpredicate*
 
 ## <a name="arguments"></a>引数
 
-* *表形式ソース*: テーブル名、[共用体演算子](unionoperator.md)、表形式クエリの結果など、検索対象のデータ ソースとして機能するオプションの表形式式です。*TableSources*を含むオプションのフレーズと一緒に表示することはできません。
+* *TabularSource*: テーブル名、 [union 演算子](unionoperator.md)、表形式クエリの結果など、検索対象のデータソースとして機能するオプションの表形式の式。*TableSources*を含むオプションの語句と共に使用することはできません。
 
-* *大文字と小文字の区別*: 大文字と小文字の区別`string`に関してすべてのスカラー演算子の動作を制御するオプションのフラグ。 `default`有効な値は、2 つの`case_insensitive`同義語と (大文字小文字を`has`区別しない演算子の既定値) と`case_sensitive`(すべての演算子を大文字と小文字を区別する一致モードに強制します) です。
+* *CaseSensitivity*: `string` 大文字小文字の区別に関して、すべてのスカラー演算子の動作を制御する省略可能なフラグ。 有効な値は、2つのシノニム `default` と (などの演算子 (たとえば、大文字と小文字を区別しない) および (大文字と小文字を区別 `case_insensitive` `has` `case_sensitive` する一致モードにすべての演算子を強制する) です。
 
-* *テーブルソース*: 検索に参加する「ワイルドカード」テーブル名のカンマ区切りリストです。
-  このリストは[、union 演算子](unionoperator.md)のリストと同じ構文を持ちます。
-  *オプションの表形式ソース*と一緒に表示することはできません。
+* *TableSources*: 検索の一部として使用する "ワイルドカード" テーブル名のコンマ区切りのリストです (省略可能)。
+  この一覧には、 [union 演算子](unionoperator.md)の一覧と同じ構文があります。
+  オプションの*TabularSource*と一緒に表示することはできません。
 
-* *SearchPredicate*: 検索対象を定義する必須述語 (つまり、入力内のすべてのレコードについて評価され、返された`true`場合は レコードが出力されるブール式)。*SearchPredicate*の構文は、ブール式の通常の Kusto 構文を拡張および変更します。
+* *Searchpredicate*: 検索対象を定義する必須の述語です (つまり、入力内のすべてのレコードに対して評価されるブール式であり、返される場合、 `true` レコードは出力されます)。*Searchpredicate*の構文は、ブール式の通常の Kusto 構文を拡張し、次のように変更します。
 
-  **文字列一致拡張**: *SearchPredicate*で用語として出現する文字列リテラルは、これらの演算子の反転 ( `has`) `hasprefix``hassuffix`または大文字小文字を区別`!``sc`するバージョンを使用して、すべての列とリテラルの間の用語の一致を示します。 を`has`適用するか、`hasprefix`または を適用`hassuffix`するかの決定は、リテラルがアスタリスク ( )`*`で開始するか終了するか (またはその両方) であるかによって異なります。 リテラル内のアスタリスクは使用できません。
+  **文字列照合拡張機能**: *searchpredicate*の用語として表示される文字列リテラルは `has` 、、、 `hasprefix` `hassuffix` 、および反転 ( `!` )、または大文字と小文字を区別する ( `sc` ) バージョンの演算子を使用して、すべての列とリテラルの用語が一致することを示します。 、、またはを適用するかどうかは、 `has` `hasprefix` `hassuffix` リテラルの開始または終了 (またはその両方) がアスタリスク () であるかどうかによって決まり `*` ます。 リテラル内のアスタリスクは使用できません。
 
     |リテラル   |演算子   |
     |----------|-----------|
@@ -45,20 +45,20 @@ ms.locfileid: "81509199"
     |`*billg*` |`contains` |
     |`bi*lg`   |`matches regex`|
 
-  **列の制限**: デフォルトでは、文字列一致の拡張子は、データ セットのすべての列と照合しようとします。 この一致を特定の列に制限するには、次の構文を使用します *。*`:`*StringLiteral*
+  **列の制限**: 既定では、文字列照合拡張機能は、データセットのすべての列に対して照合を試みます。 次の構文を使用して、この照合を特定の列に限定することができます: *ColumnName* `:` *stringliteral*。
 
-  **文字列の等価性**: 列が (用語一致ではなく) 文字列値に対して完全に一致する場合は *、"列名文字列*`==`*リテラル*" という構文を使用して行うことができます。
+  **文字列の等価性**: 文字列値に対する列の完全一致 (用語一致ではなく) は、 *ColumnName* `==` *stringliteral*構文を使用して行うことができます。
 
-  **その他のブール式**: すべての標準の Kusto ブール式は、構文でサポートされています。
-    たとえば、`"error" and x==123`列に用語`error`が含まれているレコードを検索し、その列に値`123`を`x`含めることを意味します。
+  **その他のブール式**: すべての正規 Kusto ブール式は、構文によってサポートされています。
+    たとえば、 `"error" and x==123` は、いずれかの列に用語が含まれ、 `error` 列に値があるレコードを検索し `123` `x` ます。
 
-  **正規表現一致**: 正規表現の一致は *、列*`matches regex`*文字列リテラル*構文*StringLiteral*を使用して示されます。
+  **Regex の一致**: 正規表現の一致は、stringliteral で表現される構文*を使用し*て示されます `matches regex` *StringLiteral* 。 *stringliteral*は、regex パターンです。
 
-*表形式ソース*と*テーブルソース*の両方を省略すると、スコープ内のデータベースのすべての無制限のテーブルとビューに対して検索が実行されることに注意してください。
+*TabularSource*と*TableSources*の両方を省略した場合、スコープ内のデータベースの制限のないすべてのテーブルとビューに対して検索が実行されることに注意してください。
 
-## <a name="summary-of-string-matching-extensions"></a>文字列一致の拡張機能の概要
+## <a name="summary-of-string-matching-extensions"></a>文字列一致拡張機能の概要
 
-  |# |構文                                 |意味 (`where`相当)           |説明|
+  |# |構文                                 |意味 (同等 `where` )           |コメント|
   |--|---------------------------------------|---------------------------------------|--------|
   | 1|`search "err"`                         |`where * has "err"`                    ||
   | 2|`search in (T1,T2,A*) and "err"`       |<code>union T1,T2,A* &#124; where * has "err"<code>   ||
@@ -67,19 +67,19 @@ ms.locfileid: "81509199"
   | 5|`search "err*"`                        |`where * hasprefix "err"`              ||
   | 6|`search "*err"`                        |`where * hassuffix "err"`              ||
   | 7|`search "*err*"`                       |`where * contains "err"`               ||
-  | 8|`search "Lab*PC"`                      |`where * matches regex @"\bLab\w*PC\b"`||
+  | 8|`search "Lab*PC"`                      |`where * matches regex @"\bLab.*PC\b"`||
   | 9|`search *`                             |`where 0==0`                           ||
   |10|`search col matches regex "..."`       |`where col matches regex "..."`        ||
-  |11|`search kind=case_sensitive`           |                                       |すべての文字列比較では大文字と小文字が区別されます。|
+  |11|`search kind=case_sensitive`           |                                       |すべての文字列比較で大文字と小文字が区別されます|
   |12|`search "abc" and ("def" or "hij")`    |`where * has "abc" and (* has "def" or * has hij")`||
   |13|`search "err" or (A>a and A<b)`        |`where * has "err" or (A>a and A<b)`   ||
 
-## <a name="remarks"></a>解説
+## <a name="remarks"></a>Remarks
 
-find[演算子](findoperator.md)とは`search`**異なり**、演算子は次をサポートしていません。
+[検索演算子](findoperator.md)**とは異なり**、 `search` 演算子は次の機能をサポートしていません。
 
-1. `withsource=`: 出力には、各レコードが取得`$table`されたテーブル`string`名 (またはソースがテーブルではなく複合式の場合はシステム生成名) を持つ型と呼ばれる列が常に含まれます。
-2. `project=`、 `project-smart`: 出力スキーマは出力`project-smart`スキーマと同等です。
+1. `withsource=`: 出力には、各レコードを取得したテーブル名を値とする型の列が常に含まれます `$table` `string` (ソースがテーブルではなく、複合式である場合は、システムによって生成された名前です)。
+2. `project=`、 `project-smart` : 出力スキーマは出力スキーマに相当し `project-smart` ます。
 
 ## <a name="examples"></a>例
 
@@ -113,5 +113,5 @@ union C*, TF | search "billg" or "davec" or "steveb"
 
   |# |ヒント                                                                                  |Prefer                                        |Over                                                                    |
   |--|-------------------------------------------------------------------------------------|----------------------------------------------|------------------------------------------------------------------------|
-  | 1| 複数の連続`search`した演算子`search`に対して単一の演算子を使用することを好む|`search "billg" and ("steveb" or "satyan")`   |<code>search "billg" &#124; search "steveb" or "satyan"<code>           ||
-  | 2| 演算子の内部をフィルタリング`search`することを好む                                       |`search "billg" and "steveb"`                 |<code>search * &#124; where * has "billg" and * has "steveb"<code>      ||
+  | 1| 複数の連続する演算子に対して1つの演算子を使用することを優先します。 `search` `search`|`search "billg" and ("steveb" or "satyan")`   |<code>search "billg" &#124; search "steveb" or "satyan"<code>           ||
+  | 2| 演算子内のフィルター処理を優先します `search`                                       |`search "billg" and "steveb"`                 |<code>search * &#124; where * has "billg" and * has "steveb"<code>      ||

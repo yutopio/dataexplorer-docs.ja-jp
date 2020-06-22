@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/19/2019
-ms.openlocfilehash: d31765d72d37b0146cf7ba8a42e02722296bf80e
-ms.sourcegitcommit: 436cd515ea0d83d46e3ac6328670ee78b64ccb05
+ms.openlocfilehash: a69362b590acee99fbe9b57d9303099f0033d458
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/21/2020
-ms.locfileid: "81663465"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128497"
 ---
-# <a name="entities"></a>エンティティ
+# <a name="entity-types"></a>エンティティの種類
 
 Kusto クエリは、Kusto クラスターに接続されている Kusto データベースのコンテキストで実行されます。 データベース内のデータは、クエリが参照できるテーブルに配置され、テーブル内では列と行からなる四角形のグリッドとして編成されます。 さらに、クエリはデータベース内のストアド関数 (再利用が可能なクエリ フラグメント) を参照する場合があります。
 

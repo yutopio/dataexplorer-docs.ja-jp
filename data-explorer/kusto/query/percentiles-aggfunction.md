@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: dfb957189eb0d9be552cf12b32ef57452a375c51
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: b70ee322d4718f78a37144b650a147c5c9965a60
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512556"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85129024"
 ---
-# <a name="percentile-percentiles"></a>百分位 ()、パーセンタイル ()
+# <a name="percentile-percentiles-aggregation-function"></a>百分位 ()、パーセンタイル () (集計関数)
 
 によって定義された、指定された人口の[最も近い順位の百分位](#nearest-rank-percentile)の推定値を返し `*Expr*` ます。
 精度は、パーセンタイル リージョンの人口密度によって異なります。 この関数は[、集計の](summarizeoperator.md)コンテキストでのみ使用できます。

@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 12/10/2019
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 6e383ce9fdcf373452c0b7d710302669e7987395
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 778b8c276d6264b890c0b0be7b127f578663a64d
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737846"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85129058"
 ---
-# <a name="query-statements"></a>クエリ ステートメント
+# <a name="query-statement-types"></a>クエリ ステートメントの種類
 
 ::: zone pivot="azuredataexplorer"
 
-クエリは、セミコロン (`;`) で区切られた1つ以上の**クエリステートメント**で構成されます。
+クエリは、セミコロン () で区切られた1つ以上の**クエリステートメント**で構成さ `;` れます。
 これらのクエリステートメントの少なくとも1つは、[表形式の式ステートメント](./tabularexpressionstatements.md)である必要があります。
 表形式の式ステートメントは、1つまたは複数の表形式の結果を生成します。
 クエリに複数の表形式式ステートメントがある場合、クエリにはテーブル式ステートメントの[バッチ](./batches.md)が含まれ、これらのステートメントによって生成される表形式の結果はすべてクエリによって返されます。

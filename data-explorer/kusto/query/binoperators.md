@@ -1,6 +1,6 @@
 ---
-title: ビット単位 (バイナリ) 演算子 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでビット単位 (バイナリ) 演算子について説明します。
+title: ビットごとの (二項) 演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのビットごとの (二項) 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 216008d66bf80e391cef375d2218ee0c5ff1c99c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 6038ee8214ef06a7feb88e95d68f4688fc8a88f4
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517410"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128922"
 ---
-# <a name="bitwise-binary-operators"></a>ビットごとの (バイナリ) 演算子
+# <a name="bitwise-binary-operators"></a>ビットごとの (二項) 演算子
 
-Kusto は、整数の間のビット単位 (バイナリ) 演算子の数をサポートしています。
+Kusto では、整数の間でビットごとの (二項) 演算子を複数サポートしています。
 
 * [binary_and](binary-andfunction.md)
 * [binary_not](binary-notfunction.md)

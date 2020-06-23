@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: d876f26de796008e83b620e4511a31cdb4e23888
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: 1e93764058c6d890568e90f67472ec4306a092f8
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550692"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128701"
 ---
-# <a name="window-functions"></a>ウィンドウ関数
+# <a name="window-functions-overview"></a>ウィンドウ関数の概要
 
 ウィンドウ関数は、一度に複数の行 (レコード) を行セットで操作します。 集計関数とは異なり、ウィンドウ関数では、行セット内の行をシリアル化する必要があります (特定の順序を指定できます)。 ウィンドウ関数は、結果を判断するために順序に依存する場合があります。
 

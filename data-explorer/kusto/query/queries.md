@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: fb842bcda70c2986bd754f55184413eec594d412
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: a93a8b493959b6d335f01b9d3fcda24ae7c31748
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373125"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128939"
 ---
-# <a name="queries"></a>クエリ
+# <a name="query-operators"></a>クエリ演算子
 
 クエリは、Kusto エンジンクラスターの取り込まれたデータに対する読み取り専用操作です。 クエリは、常にクラスター内の特定のデータベースのコンテキストで実行されます (ただし、別のデータベースまたは別のクラスター内のデータを参照している場合もあります)。
 

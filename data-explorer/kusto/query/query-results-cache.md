@@ -2,28 +2,28 @@
 title: クエリ結果のキャッシュ-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーのクエリ結果キャッシュ機能について説明します。
 services: data-explorer
-author: amitof
-ms.author: amitof
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 3c1e1eec2bb0ad4d856ca690039dea9aedd78e8f
-ms.sourcegitcommit: a8575e80c65eab2a2118842e59f62aee0ff0e416
+ms.openlocfilehash: 7373af48ef581e4b64f1cfc34ece0c16a416fc08
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/17/2020
-ms.locfileid: "84943134"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128905"
 ---
 # <a name="query-results-cache"></a>クエリ結果のキャッシュ
 
-Kusto には、クエリ結果のキャッシュが含まれています。 クエリを発行するときに、キャッシュされた結果を取得することを示すことができます。 クエリの結果がキャッシュによって返される場合、クエリのパフォーマンスが向上し、結果に "staleness" を犠牲にしてリソースの消費量が少なくなります。
+Kusto には、クエリ結果のキャッシュが含まれています。 クエリを発行するときに、キャッシュされた結果を取得するように選択できます。 クエリの結果がキャッシュによって返される場合は、クエリのパフォーマンスが向上し、リソースの消費が少なくなります。 ただし、このパフォーマンスは、結果の一部の "staleness" によって発生します。
 
-## <a name="indicating-willingness-to-use-the-cache"></a>キャッシュを使用する意思を示す
+## <a name="use-the-cache"></a>キャッシュの使用
 
-クエリ `query_results_cache_max_age` の一部としてオプションを設定して、クエリ結果のキャッシュを使用する意欲を示します。 このオプションは、クエリテキストまたはクライアント要求プロパティのどちらかで設定できます。 次に例を示します。
+クエリ `query_results_cache_max_age` 結果キャッシュを使用するには、オプションをクエリの一部として設定します。 このオプションは、クエリテキストまたはクライアント要求プロパティで設定できます。 次に例を示します。
 
 ```kusto
 set query_results_cache_max_age = time(5m);
@@ -34,28 +34,43 @@ GithubEvent
 
 オプション値は、 `timespan` クエリの開始時刻から計測される、結果キャッシュの最大の "age" を示すです。 Set timespan 以外では、キャッシュエントリは互換性のために残されており、再度使用されることはありません。 値を0に設定することは、オプションを設定しないことと同じです。
 
-## <a name="how-compatibility-between-queries-is-determined"></a>クエリ間の互換性を確認する方法
+## <a name="compatibility-between-queries"></a>クエリ間の互換性
+
+### <a name="identical-queries"></a>同一のクエリ
 
 Query_results_cache は、以前にキャッシュされたクエリと "同一" と見なされるクエリに対してのみ結果を返します。 次の条件がすべて満たされている場合、2つのクエリは同一であると見なされます。
 
 * 2つのクエリは、(UTF-8 文字列として) 同じ表現を持ちます。
-
 * 2つのクエリが同じデータベースに対して行われます。
-
 * 2つのクエリは、同じ[クライアント要求のプロパティ](../api/netfx/request-properties.md)を共有します。 キャッシュの目的では、次のプロパティは無視されます。
    * [ClientRequestId](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)
    * [アプリケーション](../api/netfx/request-properties.md#the-application-x-ms-app-named-property)。
    * [User](../api/netfx/request-properties.md#the-user-x-ms-user-named-property)
 
-## <a name="if-the-query-results-cache-cant-find-a-valid-cache-entry"></a>クエリ結果キャッシュで有効なキャッシュエントリが見つからない場合
+### <a name="incompatible-queries"></a>互換性のないクエリ
+
+次の条件のいずれかに該当する場合、クエリ結果はキャッシュされません。
+ 
+* このクエリは、 [RestrictedViewAccess](../management/restrictedviewaccesspolicy.md)ポリシーが有効になっているテーブルを参照します。
+* このクエリは、 [Rowlevelsecurity](../management/rowlevelsecuritypolicy.md)ポリシーが有効になっているテーブルを参照します。
+* クエリでは、次の関数のいずれかを使用します。
+    * [current_principal](current-principalfunction.md)
+    * [current_principal_details](current-principal-detailsfunction.md)
+    * [current_principal_is_member_of](current-principal-ismemberoffunction.md)
+* クエリは[クラスター間クエリ](cross-cluster-or-database-queries.md)です。
+* このクエリは、[外部テーブル](schema-entities/externaltables.md)または[外部データ](externaldata-operator.md)にアクセスします。
+* このクエリでは、 [evaluate plugin](evaluateoperator.md)演算子を使用します。
+
+## <a name="no-valid-cache-entry"></a>有効なキャッシュエントリがありません
 
 時間制約を満たすキャッシュされた結果が見つからなかった場合、またはキャッシュ内の "同一" クエリからキャッシュされた結果がない場合は、次の場合に限り、クエリが実行され、その結果がキャッシュされます。 
 
 * クエリの実行は正常に完了し、
 * クエリ結果のサイズが 16 MB を超えていません。
 
-## <a name="how-the-service-indicates-that-the-query-results-are-being-served-from-the-cache"></a>クエリ結果がキャッシュから提供されていることをサービスが示す方法
+## <a name="results-from-the-cache"></a>キャッシュの結果
 
+クエリ結果がキャッシュから提供されているかどうかは、サービスによってどのように示されますか。
 Kusto は、クエリに応答するときに、列と列を含む追加の[Extendedproperties](../api/rest/response.md)応答テーブルを送信し `Key` `Value` ます。
 キャッシュされたクエリ結果には、そのテーブルに追加の行が追加されます。
 * 行の列には `Key` 、という文字列が含まれます。`ServerCache`

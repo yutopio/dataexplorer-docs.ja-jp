@@ -10,14 +10,14 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 3f1371fe298b2d0e066fc3a278cc3b560050416c
-ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
+ms.openlocfilehash: 8da464bca228df5a813f50e68fab5ddb2aa926cf
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84011586"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128667"
 ---
-# <a name="partitioning-and-composing-intermediate-results-of-aggregations"></a>集計の中間結果のパーティション分割と作成
+# <a name="using-hll-and-tdigest"></a>hll() と tdigest() の使用
 
 過去7日間にわたる個別のユーザーの数を毎日計算するとします。 `summarize dcount(user)`過去7日間にフィルター処理されたスパンを使用して1日に1回実行できます。 このメソッドは非効率的です。計算が実行されるたびに、前の計算と6日間の重複が発生します。 また、1日の集計を計算し、これらの集計を結合することもできます。 この方法では、最後の6つの結果を "記憶する" 必要がありますが、はるかに効率的です。
 
@@ -211,7 +211,7 @@ on $left.Day1 == $right.Day
 | project Day1, Day2, Percentage = count_*100.0/count_1
 ```
 
-|Day1|Day2|割合|
+|Day1|Day2|パーセント|
 |---|---|---|
 |2016-05-01 00:00: 00.0000000|2016-05-02 00:00: 00.0000000|34.0645725975255|
 |2016-05-01 00:00: 00.0000000|2016-05-03 00:00: 00.0000000|16.618368960101|
@@ -241,7 +241,7 @@ Stats
 | project day1, day2, Percentage = intersection_size*100.0 / pages1
 ```
 
-|day1|day2.ps1|割合|
+|day1|day2.ps1|パーセント|
 |---|---|---|
 |2016-05-01 00:00: 00.0000000|2016-05-02 00:00: 00.0000000|33.2298494510578|
 |2016-05-01 00:00: 00.0000000|2016-05-03 00:00: 00.0000000|16.9773830213667|

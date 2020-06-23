@@ -1,6 +1,6 @@
 ---
-title: totimespan() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの totimespan() について説明します。
+title: totimespan ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの totimespan () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 504d4a74e8c1b58a8a97fd80d6c846fcf7e3f527
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b785f346dd95a9c6a8cb9d6148e889c42ac4b02c
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505867"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85129041"
 ---
 # <a name="totimespan"></a>totimespan()
 
-入力を[タイムスパン](./scalar-data-types/timespan.md)スカラーに変換します。
+入力を[timespan](./scalar-data-types/timespan.md)スカラーに変換します。
 
 ```kusto
 totimespan("0.00:01:00") == time(1min)
@@ -25,14 +25,13 @@ totimespan("0.00:01:00") == time(1min)
 
 **構文**
 
-`totimespan(`*Expr*`)`
+`totimespan(Expr)`
 
 **引数**
 
-* *Expr*:[タイムスパン](./scalar-data-types/timespan.md)に変換される式 。 
+* *`Expr`*: [Timespan](./scalar-data-types/timespan.md)に変換される式。
 
 **戻り値**
 
-変換が成功すると、結果は[タイムスパン](./scalar-data-types/timespan.md)値になります。
-変換が成功しなかった場合、結果は null になります。
- 
+変換が成功した場合、結果は[timespan](./scalar-data-types/timespan.md)値になります。
+それ以外の場合、結果は null になります。

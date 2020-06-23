@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/26/2020
-ms.openlocfilehash: 293ee468f31fafafdf08da1632c93b04b0a8adf2
-ms.sourcegitcommit: f7101c6b41ec250d05f4cb6092e2939958b37b40
+ms.openlocfilehash: 8e419d471419a291b3680c4b91d3e6908b2e7f2e
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/03/2020
-ms.locfileid: "84329012"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128837"
 ---
 # <a name="external-table-general-control-commands"></a>外部テーブル全般制御コマンド
 
@@ -28,7 +28,7 @@ ms.locfileid: "84329012"
 
 `.show` `external` `tables`
 
-`.show``external` `table` *TableName*
+`.show` `external` `table` *TableName*
 
 **出力**
 
@@ -50,7 +50,7 @@ ms.locfileid: "84329012"
 
 | TableName | TableType | フォルダー         | DocString | Properties |
 |-----------|-----------|----------------|-----------|------------|
-| T         | BLOB      | ExternalTables | ドキュメント      | {}         |
+| T         | Blob      | ExternalTables | Docs      | {}         |
 
 
 ## <a name="show-external-table-schema"></a>。外部テーブルスキーマを表示します
@@ -62,7 +62,7 @@ ms.locfileid: "84329012"
 
 `.show``external` `table` *TableName* `schema` `as` ( `json`  |  `csl` )
 
-`.show``external` `table` *TableName*`cslschema`
+`.show` `external` `table` *TableName* `cslschema`
 
 **出力**
 
@@ -91,14 +91,14 @@ ms.locfileid: "84329012"
 
 | TableName | スキーマ    | DatabaseName | フォルダー         | DocString |
 |-----------|----------------------------------|--------------|----------------|-----------|
-| T         | {"Name": "ExternalBlob",<br>"Folder": "ExternalTables",<br>"DocString": "Docs",<br>"OrderedColumns": [{"Name": "x", "Type": "system.string", "DocString", "Type": "system.string", "CslType": "string", "DocString": ""}]} を指定すると、"{" Name ":" x "," Type ":" system.object "," " | DB           | ExternalTables | ドキュメント      |
+| T         | {"Name": "ExternalBlob",<br>"Folder": "ExternalTables",<br>"DocString": "Docs",<br>"OrderedColumns": [{"Name": "x", "Type": "system.string", "DocString", "Type": "system.string", "CslType": "string", "DocString": ""}]} を指定すると、"{" Name ":" x "," Type ":" system.object "," " | DB           | ExternalTables | Docs      |
 
 
 *csl*
 
 | TableName | スキーマ          | DatabaseName | フォルダー         | DocString |
 |-----------|-----------------|--------------|----------------|-----------|
-| T         | x:long、-string | DB           | ExternalTables | ドキュメント      |
+| T         | x:long、-string | DB           | ExternalTables | Docs      |
 
 ## <a name="drop-external-table"></a>。外部テーブルを削除します。
 
@@ -108,7 +108,7 @@ ms.locfileid: "84329012"
 
 **構文 :**  
 
-`.drop``external` `table` *TableName*
+`.drop``external` `table` *TableName* [ `ifexists` ]
 
 **出力**
 
@@ -122,9 +122,9 @@ ms.locfileid: "84329012"
 
 | TableName | TableType | フォルダー         | DocString | スキーマ       | Properties |
 |-----------|-----------|----------------|-----------|-----------------------------------------------------|------------|
-| T         | BLOB      | ExternalTables | ドキュメント      | [{"Name": "x", "CslType": "long"},<br> {"Name": "s", "CslType": "string"}] | {}         |
+| T         | Blob      | ExternalTables | Docs      | [{"Name": "x", "CslType": "long"},<br> {"Name": "s", "CslType": "string"}] | {}         |
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 * [Azure Storage または Azure Data Lake の外部テーブルを作成および変更する](external-tables-azurestorage-azuredatalake.md)
 * [外部 SQL テーブルを作成および変更する](external-sql-tables.md)

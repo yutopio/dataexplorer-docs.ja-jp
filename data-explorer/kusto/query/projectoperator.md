@@ -1,6 +1,6 @@
 ---
-title: プロジェクトオペレーター - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのプロジェクト オペレーターについて説明します。
+title: Project 演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの Project operator について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: de13c240180d00b82736a0dd35cb83c08639682f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 76ead8fabe755d5e3e200a767cb8b7518121b2ac
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510933"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128956"
 ---
-# <a name="project-operator"></a>プロジェクト演算子
+# <a name="project-operator"></a>project 演算子
 
 含める列、名前を変更する列、または削除する列を選択し、新しい計算列を挿入します。 
 
-結果の列の順序は、引数の順序によって指定されます。 引数に指定された列のみが結果に含まれます。 入力内の他の列は削除されます。  (逆の処理を実行する `extend`も組み合わせて使います)。
+結果の列の順序は、引数の順序によって指定されます。 引数に指定された列だけが結果に含まれます。 入力内のその他の列は削除されます。  (逆の処理を実行する `extend`も組み合わせて使います)。
 
 ```kusto
 T | project cost=price*quantity, price
@@ -27,17 +27,17 @@ T | project cost=price*quantity, price
 
 **構文**
 
-*T* `| project` *列名*[`=` `,`*式*] [ ..]
+*T* `| project` *ColumnName* [ `=` *式*] [ `,` ...]
   
 or
   
-*T* `| project` [*列名* | `(``,`*列名*]`,` [ ]`)` `=`*式*[ .]
+*T* `| project` [*columnname*  |  `(` *columnname*[ `,` ] `)` `=` ]*式*[ `,` ...]
 
 **引数**
 
 * *T*: 入力テーブル。
-* *列名:* 出力に表示する列の名前 (省略可能)。 *式*がない場合 *、ColumnName*は必須であり、その名前の列が入力に含まれている必要があります。 省略すると、名前が自動的に生成されます。 *Expression*が複数の列を返す場合は、列名のリストをかっこで囲んで指定できます。 この場合 *、Expression*の出力列には指定された名前が付けられます。 列名のリストが指定されていない場合、生成された名前を持つ*すべての式*の出力列が出力に追加されます。
-* *Expression:* 入力列を参照する、省略可能なスカラー式。 *列名*を省略しない場合は *、式*は必須です。
+* *ColumnName:* 出力に表示される列の名前 (省略可能)。 *式*が存在しない場合は、 *ColumnName*が必須であり、その名前の列が入力に含まれている必要があります。 省略した場合、名前は自動的に生成されます。 *Expression*から複数の列が返される場合は、列名のリストをかっこで囲んで指定できます。 この場合、*式*の出力列には指定された名前が付けられ、残りの出力列はすべて削除されます。 列名のリストが指定されていない場合は、生成された名前を持つすべての*式*の出力列が出力に追加されます。
+* *Expression:* 入力列を参照する、省略可能なスカラー式。 *ColumnName*が省略されていない場合、*式*は必須です。
 
     入力内の既存の列と同じ名前を持つ新しい計算列を返すことは、問題ありません。
 

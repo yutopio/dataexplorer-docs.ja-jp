@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4741da4367bb1a350c7310ea21ebe5ce9b91b06b
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: d23d76fdcc592435a8ec7fa24ef5d0dfd5186c68
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271487"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128466"
 ---
-# <a name="joining-within-time-window"></a>時間枠内での結合
+# <a name="time-window-join"></a>時間枠内での結合
 
 多くの場合、大規模なカーディナリティキー (操作 ID やセッション ID など) で2つの大きなデータセットを結合し、左側の `$right` `$left` 列と右側の列の間に "時間の距離" の制限を追加することで、各左側の () レコードに対して一致する必要がある右側の () レコードを制限し `datetime` ます。 これは、通常の Kusto 結合操作とは異なり、"等結合" 部分 (高カーディナリティキーまたは左右のデータセットに一致) に加えて、システムは distance 関数を適用し、それを使用して結合の速度を大幅に向上させることもできます。 Distance 関数は等値として動作しないことに注意してください (つまり、との両方が true の場合は、 `dist(x,y)` `dist(y,z)` これも true になりません `dist(x,z)` )。*内部的には、これを "対角線結合" と呼ぶことがあります。*
 
@@ -74,7 +74,7 @@ T
 
 ```
 
-|SessionId|[開始]|End|
+|SessionId|開始|End|
 |---|---|---|
 |0|2017-10-01 00:00: 00.0000000|2017-10-01 00:01: 00.0000000|
 
@@ -110,7 +110,7 @@ T
 | project SessionId, Start, End 
 ```
 
-|SessionId|[開始]|End|
+|SessionId|開始|End|
 |---|---|---|
 |0|2017-10-01 00:00: 00.0000000|2017-10-01 00:01: 00.0000000|
 
@@ -146,7 +146,7 @@ T
 | project SessionId, Start, End 
 ```
 
-|SessionId|[開始]|End|
+|SessionId|開始|End|
 |---|---|---|
 |0|2017-10-01 00:00: 00.0000000|2017-10-01 00:01: 00.0000000|
 

@@ -1,6 +1,6 @@
 ---
-title: トダブル()/トリアル() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで todouble()/toreal() を説明します。
+title: todouble ()/再生 ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの todouble ()/再出力 () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: eb9c976f1646f71fcf8b345899037461f58f4ef0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e62432773d99d74a46022cad3199f3bab0cae50b
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506326"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128465"
 ---
-# <a name="todoubletoreal"></a>トダブル()/トリアル()
+# <a name="todouble-toreal"></a>todouble ()、は、再生 ()
 
-入力を type 型に変換します`real`。 (`todouble()`と`toreal()`は同義語です。
+入力を型の値に変換し `real` ます。 ( `todouble()` と `toreal()` はシノニムです)。
 
 ```kusto
 toreal("123.4") == 123.4
@@ -25,16 +25,16 @@ toreal("123.4") == 123.4
 
 **構文**
 
-`toreal(`*エクス*`)`
-プル`todouble(`*エクスプル*`)`
+`toreal(`*Expr* `)` 
+ Expr `todouble(`*Expr*`)`
 
 **引数**
 
-* *Expr*: 値が type の値に変換される`real`式。
+* *Expr*: 値が型の値に変換される式 `real` 。
 
 **戻り値**
 
-変換が成功すると、結果は type の値`real`になります。
-変換が成功しなかった場合、結果は値`real(null)`です。
+変換が成功した場合、結果は型の値になり `real` ます。
+変換に失敗した場合、結果は値になり `real(null)` ます。
 
-*注意*: 可能な場合[は double() または real() を](./scalar-data-types/real.md)使用することを優先します。
+*注*: 可能であれば[、double () または real ()](./scalar-data-types/real.md)を使用することをお勧めします。

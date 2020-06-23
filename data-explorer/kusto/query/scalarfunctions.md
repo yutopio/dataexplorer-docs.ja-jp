@@ -8,16 +8,16 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: ccbd01faae3e71941c1bf4542f473410753155cf
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: 640c331b177642735d875f615772dcdbb6ec68d8
+ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294578"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85128871"
 ---
-# <a name="scalar-functions"></a>スカラー関数
+# <a name="scalar-function-types"></a>スカラー関数の種類
 
-## <a name="binary-functions"></a>バイナリ関数
+## <a name="binary-functions"></a>Binary 関数
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
@@ -36,10 +36,10 @@ ms.locfileid: "84294578"
 |[tobool()](toboolfunction.md)|入力をブール値 (符号付き8ビット) 表現に変換します。|
 |[todatetime()](todatetimefunction.md)|入力を datetime スカラーに変換します。|
 |[todouble ()/再生 ()](todoublefunction.md)|入力を real 型の値に変換します。 (todouble () と、は、シノニムです)。|
-|[tostring ()](tostringfunction.md)|入力を文字列形式に変換します。|
+|[tostring()](tostringfunction.md)|入力を文字列形式に変換します。|
 |[totimespan()](totimespanfunction.md)|入力を timespan スカラーに変換します。|
 
-## <a name="datetimetimespan-functions"></a>DateTime/Timespan 関数
+## <a name="datetimetimespan-functions"></a>DateTime/timespan 関数
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
@@ -99,7 +99,7 @@ ms.locfileid: "84294578"
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
-|[次へ ()](nextfunction.md)|シリアル化された行セットの場合、はオフセットに従って、後の行から指定された列の値を返します。|
+|[next()](nextfunction.md)|シリアル化された行セットの場合、はオフセットに従って、後の行から指定された列の値を返します。|
 |[prev()](prevfunction.md)|シリアル化された行セットの場合、はオフセットに従って前の行から指定された列の値を返します。|
 |[row_cumsum()](rowcumsumfunction.md)|列の累積合計を計算します。|
 |[row_number()](rownumberfunction.md)|指定されたインデックスから始まる連続した数値、または既定で1から始まる、シリアル化された行セット内の行の番号を返します。|
@@ -139,19 +139,18 @@ ms.locfileid: "84294578"
 |[log10()](log10-function.md)|常用対数関数を返します。|
 |[log2()](log2-function.md)|底2の対数関数を返します。|
 |[loggamma()](loggammafunction.md)|ガンマ関数の絶対値のログを計算します。|
-|[not ()](notfunction.md)|Bool 引数の値を反転させます。|
+|[not()](notfunction.md)|Bool 引数の値を反転させます。|
 |[pi()](pifunction.md)|Pi (π) の定数値を返します。|
 |[pow()](powfunction.md)|を累乗した結果を返します。|
 |[radians()](radiansfunction.md)|数式ラジアン = (PI/180) * 角度 (°) を使用して、角度の角度を度数で値に変換します。|
-|[rand ()](randfunction.md)|乱数を返します。|
-|[範囲 ()](rangefunction.md)|等間隔に並んだ一連の値を保持する動的配列を生成します。|
+|[rand()](randfunction.md)|乱数を返します。|
+|[range()](rangefunction.md)|等間隔に並んだ一連の値を保持する動的配列を生成します。|
 |[round()](roundfunction.md)|丸められたソースを指定した有効桁数に戻します。|
 |[sign()](signfunction.md)|数値式の符号。|
 |[sin()](sinfunction.md)|サイン関数を返します。|
 |[sqrt()](sqrtfunction.md)|平方根関数を返します。|
 |[tan()](tanfunction.md)|タンジェント関数を返します。|
 |[welch_test()](welch-testfunction.md)|は、の p-[検定関数](https://en.wikipedia.org/wiki/Welch%27s_t-test)の値を計算します。|
-
 
 ## <a name="metadata-functions"></a>メタデータ関数
 
@@ -169,7 +168,6 @@ ms.locfileid: "84294578"
 |[extent_tags()](extenttagsfunction.md)|現在のレコードが存在するデータシャード ("extent") のタグを持つ動的配列を返します。|
 |[ingestion_time()](ingestiontimefunction.md)|レコードの $IngestionTime 非表示の datetime 列、または null を取得します。|
 
-
 ## <a name="rounding-functions"></a>丸め関数
 
 |関数名     |説明                                          |
@@ -177,15 +175,14 @@ ms.locfileid: "84294578"
 |[bin()](binfunction.md)|値を切り捨てて、指定された bin サイズの倍数である整数にします。|
 |[bin_at()](binatfunction.md)|ビンの開始点を制御して、値を固定サイズの "ビン" に切り捨てます。 (「Bin 関数」も参照してください)。|
 |[ceiling()](ceilingfunction.md)|指定した数値式以上の最小の整数を計算します。|
-|[floor ()](floorfunction.md)|値を切り捨てて、指定された bin サイズの倍数である整数にします。|
-
+|[floor()](floorfunction.md)|値を切り捨てて、指定された bin サイズの倍数である整数にします。|
 
 ## <a name="conditional-functions"></a>条件関数
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[case()](casefunction.md)|述語の一覧を評価し、述語が満たされている最初の結果式を返します。|
-|[合体 ()](coalescefunction.md)|式のリストを評価し、null 以外の最初の式 (文字列の場合は空でない) を返します。|
+|[coalesce()](coalescefunction.md)|式のリストを評価し、null 以外の最初の式 (文字列の場合は空でない) を返します。|
 |[iif ()/iff ()](iiffunction.md)|1番目の引数 (述語) を評価し、述語が true (second) または false (3 番目) のどちらに評価されたかに応じて、2番目または3番目の引数の値を返します。|
 |[max_of()](max-offunction.md)|複数の評価された数値式の最大値を返します。|
 |[min_of()](min-offunction.md)|複数の評価された数値式の最小値を返します。|
@@ -249,13 +246,13 @@ ms.locfileid: "84294578"
 |[parse_csv()](parsecsvfunction.md)|コンマ区切り値を表す特定の文字列を分割し、これらの値を含む文字列配列を返します。|
 |[parse_ipv4()](parse-ipv4function.md)|入力を long (符号付き64ビット) 数値表現に変換します。|
 |[parse_ipv4_mask()](parse-ipv4-maskfunction.md)|入力文字列と IP プレフィックスマスクを long (符号付き64ビット) 数値表現に変換します。|
-|[parse_ipv6 ()](parse-ipv6function.md)|IPv6 または IPv4 文字列を正規の IPv6 文字列形式に変換します。|
-|[parse_ipv6_mask ()](parse-ipv6-maskfunction.md)|IPv6 または IPv4 の文字列とネットマスクを正規の IPv6 文字列形式に変換します。|
+|[parse_ipv6()](parse-ipv6function.md)|IPv6 または IPv4 文字列を正規の IPv6 文字列形式に変換します。|
+|[parse_ipv6_mask()](parse-ipv6-maskfunction.md)|IPv6 または IPv4 の文字列とネットマスクを正規の IPv6 文字列形式に変換します。|
 |[parse_json()](parsejsonfunction.md)|は文字列を JSON 値として解釈し、値を動的として返します。|
 |[parse_url()](parseurlfunction.md)|絶対 URL 文字列を解析し、URL のすべての部分を含む動的オブジェクトを返します。|
 |[parse_urlquery()](parseurlqueryfunction.md)|Url クエリ文字列を解析し、動的オブジェクトにクエリパラメーターが含まれていることを返します。|
 |[parse_version()](parse-versionfunction.md)|バージョンの入力文字列形式を、比較可能な10進数に変換します。|
-|[replace ()](replacefunction.md)|正規表現のすべての一致を別の文字列に置き換えます。|
+|[replace()](replacefunction.md)|正規表現のすべての一致を別の文字列に置き換えます。|
 |[reverse()](reversefunction.md)|関数は、入力文字列を逆にします。|
 |[split()](splitfunction.md)|指定された区切り記号に従って指定された文字列を分割し、含まれている部分文字列を含む文字列配列を返します。|
 |[strcat()](strcatfunction.md)|1 ~ 64 の引数を連結します。|
@@ -263,8 +260,8 @@ ms.locfileid: "84294578"
 |[strcmp()](strcmpfunction.md)|2 つの文字列を比較します。|
 |[strlen()](strlenfunction.md)|入力文字列の長さを文字数で返します。|
 |[strrep()](strrepfunction.md)|指定された文字列を繰り返す回数 (既定値-1)。|
-|[substring ()](substringfunction.md)|あるインデックスから文字列の末尾までの位置から、ソース文字列から部分文字列を抽出します。|
-|[toupper ()](toupperfunction.md)|文字列を大文字に変換します。|
+|[substring()](substringfunction.md)|あるインデックスから文字列の末尾までの位置から、ソース文字列から部分文字列を抽出します。|
+|[toupper()](toupperfunction.md)|文字列を大文字に変換します。|
 |[translate()](translatefunction.md)|指定された文字列の文字セット (' searchList ') を別の文字セット (' replacementList ') に置換します。|
 |[trim()](trimfunction.md)|指定した正規表現の先頭と末尾の一致をすべて削除します。|
 |[trim_end()](trimendfunction.md)|指定した正規表現の末尾の一致を削除します。|
@@ -276,16 +273,16 @@ ms.locfileid: "84294578"
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
-|[ipv4_compare ()](ipv4-comparefunction.md)|2つの IPv4 文字列を比較します。|
-|[ipv4_is_match ()](ipv4-is-matchfunction.md)|2つの IPv4 文字列を一致と見なします。|
+|[ipv4_compare()](ipv4-comparefunction.md)|2つの IPv4 文字列を比較します。|
+|[ipv4_is_match()](ipv4-is-matchfunction.md)|2つの IPv4 文字列を一致と見なします。|
 |[parse_ipv4()](parse-ipv4function.md)|入力文字列を long (符号付き64ビット) 数値表現に変換します。|
 |[parse_ipv4_mask()](parse-ipv4-maskfunction.md)|入力文字列と IP プレフィックスマスクを long (符号付き64ビット) 数値表現に変換します。|
-|[ipv6_compare ()](ipv6-comparefunction.md)|2つの IPv4 または IPv6 文字列を比較します。|
-|[ipv6_is_match ()](ipv6-is-matchfunction.md)|2つの IPv4 または IPv6 文字列を照合します。|
-|[parse_ipv6 ()](parse-ipv6function.md)|IPv6 または IPv4 文字列を正規の IPv6 文字列形式に変換します。|
-|[parse_ipv6_mask ()](parse-ipv6-maskfunction.md)|IPv6 または IPv4 の文字列とネットマスクを正規の IPv6 文字列形式に変換します。|
+|[ipv6_compare()](ipv6-comparefunction.md)|2つの IPv4 または IPv6 文字列を比較します。|
+|[ipv6_is_match()](ipv6-is-matchfunction.md)|2つの IPv4 または IPv6 文字列を照合します。|
+|[parse_ipv6()](parse-ipv6function.md)|IPv6 または IPv4 文字列を正規の IPv6 文字列形式に変換します。|
+|[parse_ipv6_mask()](parse-ipv6-maskfunction.md)|IPv6 または IPv4 の文字列とネットマスクを正規の IPv6 文字列形式に変換します。|
 
-## <a name="type-functions"></a>型関数
+## <a name="type-functions"></a>Type 関数
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|

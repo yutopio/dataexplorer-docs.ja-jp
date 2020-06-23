@@ -1,31 +1,49 @@
 ---
-title: count() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで count() (集計関数) について説明します。
+title: count () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの count () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 01/23/2020
-ms.openlocfilehash: 59b898d44507d844db1f714ef15effa004e5546f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.date: 06/21/2020
+ms.openlocfilehash: 6a06be43773a356e903b25b2697e75b8342ed7f8
+ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517002"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85133475"
 ---
-# <a name="count-aggregation-function"></a>カウント()(集計関数)
+# <a name="count-aggregation-function"></a>count () (集計関数)
 
-集計グループごとのレコード数を返します (集計がグループ化なしで行われた場合は合計で返します)。
+概要作成グループあたりのレコード数を返します (集計がグループ化されていない場合は合計で)。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
-* [countif](countif-aggfunction.md)集計関数を使用して、一部の述語が`true`返すレコードのみをカウントします。
+* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
+* 一部の述語が返すレコードのみをカウントするには、 [countif](countif-aggfunction.md)集計関数を使用し `true` ます。
 
 **構文**
 
-要約`count()`
+まとめ`count()`
 
 **戻り値**
 
-集計グループごとのレコード数を返します (集計がグループ化なしで行われた場合は合計で返します)。
+概要作成グループあたりのレコード数を返します (集計がグループ化されていない場合は合計で)。
+
+**例**
+
+次の文字で始まる状態のイベントをカウントする `W` :
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+StormEvents
+| where State startswith "W"
+| summarize Count=count() by State
+```
+
+|State|Count|
+|---|---|
+|ウェストバージニア|757|
+|ワイオミング州|396|
+|都|261|
+|ウィスコンシン|1850|

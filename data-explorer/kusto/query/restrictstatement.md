@@ -10,24 +10,24 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 094cec5b467c35eb9dbeeb756362bd13c77873ce
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 8476680ad5b8206dcd7dfe98bf116bb5b6dcefdc
+ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737778"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85133455"
 ---
 # <a name="restrict-statement"></a>restrict ステートメント
 
 ::: zone pivot="azuredataexplorer"
 
-Restrict ステートメントは、その後に続くクエリステートメントで参照できるテーブル/ビューエンティティのセットを制限します。 たとえば、2つのテーブル`A`(、 `B`) を含むデータベースでは、アプリケーションがクエリの残りの部分にアクセス`B`できないようにし、ビューを使用して`A`限られた形式のテーブルだけを表示することができます。
+Restrict ステートメントは、その後に続くクエリステートメントで参照できるテーブル/ビューエンティティのセットを制限します。 たとえば、2つのテーブル (、) を含むデータベースでは、 `A` `B` アプリケーションがクエリの残りの部分にアクセスできないようにし、ビューを使用して `B` 限られた形式のテーブルだけを表示することができ `A` ます。
 
-Restrict ステートメントの主なシナリオは、ユーザーからのクエリを受け入れ、それらのクエリに行レベルのセキュリティメカニズムを適用する中間層アプリケーションの場合です。 中間層アプリケーションは、ユーザーのクエリにプレフィックスとして**論理モデル**を付けることができます。これは、ユーザーのデータへのアクセスを制限するビュー `T | where UserId == "..."`を定義する let ステートメントのセットです (たとえば、)。 最後に追加されたステートメントとして、ユーザーのアクセスを論理モデルのみに制限します。
+Restrict ステートメントの主なシナリオは、ユーザーからのクエリを受け入れ、それらのクエリに行レベルのセキュリティメカニズムを適用する中間層アプリケーションの場合です。 中間層アプリケーションは、ユーザーのクエリにプレフィックスとして**論理モデル**を付けることができます。これは、ユーザーのデータへのアクセスを制限するビューを定義する let ステートメントのセットです (たとえば、 `T | where UserId == "..."` )。 最後に追加されたステートメントとして、ユーザーのアクセスを論理モデルのみに制限します。
 
 **構文**
 
-`restrict``access` `,` [Entityspecifier 子 [...]]*EntitySpecifier* `to` `(``)`
+`restrict``access` `to` `(`[*Entityspecifier 子*[ `,` ...]]`)`
 
 *Entityspecifier 子*は次のいずれかになります。
 * Let ステートメントで表形式ビューとして定義された識別子。
@@ -36,14 +36,14 @@ Restrict ステートメントの主なシナリオは、ユーザーからの�
 
 Restrict ステートメントで指定されていないすべてのテーブル、表形式ビュー、またはパターンは、クエリの残りの部分で "非表示" になります。 
 
-**メモ**
+**ノート**
 
 Restrict ステートメントを使用して、別のデータベースまたはクラスター内のエンティティへのアクセスを制限することができます (クラスター名ではワイルドカードはサポートされていません)。
 
 **引数**
 
 Restrict ステートメントでは、エンティティの名前解決時に制限の制限を定義するパラメーターを1つ以上取得できます。 エンティティは次のようになります。
-- [let statement](./letstatement.md)ステートメントの前に`restrict`ステートメントを記述します。 
+- ステートメントの前に[ステートメントを記述](./letstatement.md) `restrict` します。 
 
 ```kusto
 // Limit access to 'Test' let statement only
@@ -105,7 +105,7 @@ RestrictedData | summarize IrsLovesMe=sum(Salary) by Year, Month
 restrict access to (database().Table1);
 Table1 | count
 
-// Restricting acess to Table1 in the current database and Table2 in database 'DB2'
+// Restricting access to Table1 in the current database and Table2 in database 'DB2'
 restrict access to (database().Table1, database('DB2').Table2);
 union 
     (Table1),

@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: 348d9d1e9f50beb258138febf064b97b8c18c488
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 693c639ab3240ac555916a5f6862e7d57dba65e5
+ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372168"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85133432"
 ---
 # <a name="sql-to-kusto-query-translation"></a>SQL から Kusto へのクエリ変換
 
 Kusto は、SQL 言語のサブセットをサポートしています。 サポートされていない機能の完全な一覧については、 [SQL の既知の問題](../api/tds/sqlknownissues.md)の一覧を参照してください。
 
-Kusto と対話するための主な言語は KQL (Kusto クエリ言語) です。また、移行と学習を容易にするために、Kusto サービスを使用して SQL クエリを KQL に変換することができます。 これを実現するには、SQL クエリを Kusto サービスに送信して、' 説明 ' 動詞をプレフィックスとして指定します。
+Kusto と対話する主な言語は KQL (Kusto クエリ言語) です。 移行と学習の操作性を向上させるために、Kusto を使用して SQL クエリを KQL に変換できます。 Kusto に SQL クエリを送信します。これにプレフィックスとして動詞 ' 説明 ' を付けます。
 
 次に例を示します。
 
@@ -35,7 +35,7 @@ SELECT COUNT_BIG(*) as C FROM StormEvents
 
 ## <a name="sql-to-kusto-cheat-sheet"></a>SQL から Kusto カンニングペーパー
 
-次の表は、SQL のサンプルクエリとその KQL equivalients を示しています。
+次の表は、SQL のサンプルクエリと、それらに対応する KQL を示しています。
 
 |カテゴリ |SQL クエリ |Kusto クエリ
 |---|---|---

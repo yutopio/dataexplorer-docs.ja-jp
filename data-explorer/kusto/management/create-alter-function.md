@@ -1,6 +1,6 @@
 ---
-title: .create-or-alter 関数 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの .create 関数または alter 関数について説明します。
+title: . create-または alter function-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの create/alter 関数について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/11/2020
-ms.openlocfilehash: 9e9c24f7fda44d6c44b8f78d8622b525268a341a
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: f19ca38f344f10b9dd8e4491b467eaad5ca022bc
+ms.sourcegitcommit: a034b6a795ed5e62865fcf9340906f91945b3971
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744273"
+ms.lasthandoff: 06/22/2020
+ms.locfileid: "85197244"
 ---
 # <a name="create-or-alter-function"></a>.create-or-alter function
 
-ストアドファンクションを作成するか、既存の関数を変更してデータベースメタデータに格納します。
+格納されている関数を作成するか、既存の関数を変更してデータベースメタデータ内に格納します。
 
 ```kusto
 .create-or-alter function [with (docstring = '<description>', folder='<name>')] [FunctionName] ([paramName:paramType], ...) { CSL-statement }
 ```
 
-指定された*FunctionName を*持つ関数がデータベース メタデータに存在しない場合、コマンドは新しい関数を作成します。 関数が既に存在する場合は、その関数が変更されます。
+指定された*FunctionName*の関数がデータベースメタデータに存在しない場合、コマンドは新しい関数を作成します。 それ以外の場合は、その関数が変更されます。
 
 **例**
 
@@ -34,6 +34,6 @@ ms.locfileid: "81744273"
 } 
 ```
 
-|名前|パラメーター|Body|Folder|ドクスト文字列|
+|名前|パラメーター|本文|フォルダー|DocString|
 |---|---|---|---|---|
-|テスト関数|(マイリミット:int)|{ ストームイベント&#124; myLimit }|マイフォルダ|パラメーター付きのデモ関数|
+|TestFunction|(myLimit: int)|{StormEvents &#124; myLimit を受け取る}|MyFolder|パラメーターを使用したデモ関数|

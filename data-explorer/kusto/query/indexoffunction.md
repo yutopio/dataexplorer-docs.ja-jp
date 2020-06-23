@@ -1,6 +1,6 @@
 ---
-title: インデックスの() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの indexof() について説明します。
+title: indexof ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーにおける indexof () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,40 +8,40 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 698cc7c13c3d665f9f5cfe25a31269dc763c51fb
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2d5accaa0e6f6c4c6e5d5261a9709ba965de6965
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513942"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264964"
 ---
 # <a name="indexof"></a>indexof()
 
-Function は、入力文字列内で指定された文字列が最初に出現した場合の 0 から始まるインデックスを報告します。
+指定した文字列が入力文字列内で最初に見つかった位置の0から始まるインデックスをレポートします。
 
-検索文字列または入力文字列が文字列型でない場合は、強制的に値を文字列にキャストします。
+Lookup または入力文字列が*文字列*型でない場合、関数は強制的に値を*文字列*にキャストします。
 
-を[`indexof_regex()`](indexofregexfunction.md)参照してください。
+詳細については、「[`indexof_regex()`](indexofregexfunction.md)」を参照してください。
 
 **構文**
 
-`indexof(`*ソース*`,`*ルックアップ*`[,`*length**start_index*`[,`start_index長さが*発生*しています`[,``]]])`
+`indexof(`*ソース* `,`*参照* `[,`*start_index* `[,`*長さ* `[,`*発生回数*`]]])`
 
 **引数**
 
-* *ソース*: 入力文字列。  
-* *検索*: シークする文字列。
-* *start_index*: 検索開始位置 (オプション)。
-* *長さ*: 検査する文字位置の数、-1 は無制限の長さを定義します (オプション)。
-* *オカレンス*: は、発生するデフォルト 1 (オプション) です。
+* *source*: 入力文字列。  
+* *lookup*: 検索する文字列。
+* *start_index*: 開始位置を検索します。 省略可能。
+* *length*: 検査する文字位置の数。 値-1 は無制限の長さを意味します。 省略可能。
+* *オカレンス*: 発生回数。 既定値 1。 省略可能。
 
 **戻り値**
 
-*検索*のインデックス位置を 0 から始めます。
+*検索*の0から始まるインデックス位置。
 
-入力に文字列が見つからない場合は -1 を返します。
+入力に文字列が見つからない場合は、-1 を返します。
 
-無関係 (0 未満) *start_index*の*場合、または*(-1 未満)*長さ*パラメーター - *null*を返します。
+無関係 (0 未満) *start_index*、*出現*、または (-1 未満) の*長さ*のパラメーター-は*null*を返します。
 
 **使用例**
 ```kusto

@@ -1,5 +1,5 @@
 ---
-title: 行レベルセキュリティ (プレビュー)-Azure データエクスプローラー |Microsoft Docs
+title: 行レベルセキュリティ (プレビュー)-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーでの行レベルセキュリティ (プレビュー) について説明します。
 services: data-explorer
 author: orspod
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/25/2020
-ms.openlocfilehash: 2d535e47f5b05c1c45ef2cf1993681aa8aa2133d
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: b5bc65b94c45e27087345cfbaf7252ccc4bcaf40
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863304"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264422"
 ---
 # <a name="row-level-security-preview"></a>行レベルセキュリティ (プレビュー)
 
 グループメンバーシップまたは実行コンテキストを使用して、データベーステーブル内の行へのアクセスを制御します。
 
-行レベルセキュリティ (RLS) を使用すると、データ行へのアクセスに制限を適用できるため、アプリケーションのセキュリティの設計とコーディングが簡単になります。 たとえば、部門に関連する行へのユーザーのアクセスを制限したり、顧客のアクセスを会社に関連するデータのみに制限したりすることができます。
+行レベルセキュリティ (RLS) は、セキュリティの設計とコーディングを簡略化します。 これにより、アプリケーションのデータ行へのアクセスに制限を適用できます。 たとえば、部門に関連する行へのユーザーのアクセスを制限したり、顧客のアクセスを会社に関連するデータのみに制限したりすることができます。
 
-アクセス制限のロジックは、別のアプリケーション層のデータから離れた場所ではなく、データベース層に配置されます。 データベースシステムは、任意のレベルからデータアクセスが試行されるたびにアクセス制限を適用します。 これによりセキュリティ システムの外部からのアクセスが減り、そのシステムの信頼性と堅牢性が向上します。
+アクセス制限のロジックは、別のアプリケーション層のデータから離れた場所ではなく、データベース層に配置されます。 データベースシステムは、任意のレベルからデータアクセスが試行されるたびにアクセス制限を適用します。 このロジックにより、セキュリティシステムのセキュリティを強化することで、セキュリティシステムの信頼性と堅牢性が向上します。
 
 RLS を使用すると、テーブルの特定の部分にのみ、他のアプリケーションやユーザーへのアクセスを提供できます。 たとえば、次の場合です。
 
 * 条件を満たす行にのみアクセス権を付与する
 * 一部の列のデータを匿名化
-* 上記の両方
+* 上記のすべて
 
 詳細については、「[行レベルセキュリティポリシーを管理するための制御コマンド](../management/row-level-security-policy.md)」を参照してください。
 
-> [!Note]
+> [!NOTE]
 > 運用データベースで構成する RLS ポリシーも、フォロワーデータベースで有効になります。 運用データベースとフォロワーデータベースで異なる RLS ポリシーを構成することはできません。
 
 ## <a name="limitations"></a>制限事項
@@ -40,14 +40,14 @@ RLS を使用すると、テーブルの特定の部分にのみ、他のアプ�
 
 テーブルで RLS ポリシーを有効にすることはできません。
 * [連続データのエクスポート](../management/data-export/continuous-data-export.md)が構成されている。
-* これは、[更新ポリシー](./updatepolicy.md)のクエリによって参照されます。
+* [更新ポリシー](./updatepolicy.md)のクエリによって参照されます。
 * [制限付きビューアクセスポリシー](./restrictedviewaccesspolicy.md)が構成されている。
 
-## <a name="examples"></a>例
+## <a name="examples"></a>使用例
 
-### <a name="limiting-access-to-sales-table"></a>Sales テーブルへのアクセスの制限
+### <a name="limit-access-to-sales-table"></a>Sales テーブルへのアクセスを制限する
 
-という名前のテーブルでは、各行に `Sales` 売上に関する詳細が含まれています。 列の1つに、営業担当者の名前が含まれています。 販売員にのすべてのレコードへのアクセス権を付与するのではなく `Sales` 、このテーブルの行レベルセキュリティポリシーを有効にして、営業担当者が現在のユーザーであるレコードのみを返すことができます。
+という名前のテーブルでは、各行に `Sales` 売上に関する詳細が含まれています。 列の1つに、販売員の名前が含まれています。 販売員にのすべてのレコードへのアクセス権を付与するのではなく `Sales` 、このテーブルの行レベルセキュリティポリシーを有効にして、販売員が現在のユーザーであるレコードのみを返すようにします。
 
 ```kusto
 Sales | where SalesPersonAadUser == current_principal()
@@ -71,7 +71,7 @@ Sales
 | where Country in (UserToCountryMapping | where User == current_principal_details()["UserPrincipalName"] | project Country)
 ```
 
-営業担当者の上司が含まれている AAD グループがある場合は、すべての行にアクセスできるようにすることができます。 これは、行レベルセキュリティポリシーで次のクエリを実行することで実現できます。
+マネージャーが含まれているグループがある場合は、すべての行へのアクセス権を付与することができます。 行レベルセキュリティポリシーに対してクエリを実行します。
 
 ```kusto
 let IsManager = current_principal_is_member_of('aadgroup=sales_managers@domain.com');
@@ -81,9 +81,9 @@ union AllData, PartialData
 | extend CreditCardNumber = "****"
 ```
 
-### <a name="exposing-different-data-to-members-of-different-aad-groups"></a>異なる AAD グループのメンバーにさまざまなデータを公開する
+### <a name="expose-different-data-to-members-of-different-azure-ad-groups"></a>異なる Azure AD グループのメンバーにさまざまなデータを公開する
 
-複数の AAD グループがあり、各グループのメンバーに異なるデータのサブセットが表示されるようにするには、この構造に従って RLS クエリを実行します (ユーザーが属することができるのは1つの AAD グループのみであると仮定します)。
+複数の Azure AD グループがあり、各グループのメンバーに異なるデータのサブセットが表示されるようにする場合は、この構造を RLS クエリに使用します。 1人のユーザーが所属できるのは1つの Azure AD グループのみであると仮定します。
 
 ```kusto
 let IsInGroup1 = current_principal_is_member_of('aadgroup=group1@domain.com');
@@ -95,9 +95,11 @@ let DataForGroup3 = Customers | where IsInGroup3 and <filtering specific for gro
 union DataForGroup1, DataForGroup2, DataForGroup3
 ```
 
-### <a name="applying-the-same-rls-function-on-multiple-tables"></a>複数のテーブルに同じ RLS 関数を適用する
+### <a name="apply-the-same-rls-function-on-multiple-tables"></a>複数のテーブルに同じ RLS 関数を適用する
 
-まず、テーブル名を文字列パラメーターとして受け取り、演算子を使用してテーブルを参照する関数を定義し `table()` ます。 次に例を示します。
+まず、テーブル名を文字列パラメーターとして受け取り、演算子を使用してテーブルを参照する関数を定義し `table()` ます。 
+
+次に例を示します。
 
 ```
 .create-or-alter function RLSForCustomersTables(TableName: string) {
@@ -108,6 +110,7 @@ union DataForGroup1, DataForGroup2, DataForGroup3
 
 次に、次のようにして、複数のテーブルで RLS を構成します。
 
+
 ```
 .alter table Customers1 policy row_level_security enable "RLSForCustomersTables('Customers1')"
 .alter table Customers2 policy row_level_security enable "RLSForCustomersTables('Customers2')"
@@ -116,11 +119,11 @@ union DataForGroup1, DataForGroup2, DataForGroup3
 
 ## <a name="more-use-cases"></a>その他のユースケース
 
-* コールセンターのサポート担当者は、社会保障番号またはクレジットカード番号のいくつかの数字によって呼び出し元を識別できます。 これらの数値は、サポート担当者には完全に公開されません。 RLS ポリシーをテーブルに適用すると、任意のクエリの結果セット内の任意の社会保障番号またはクレジットカード番号の最後の4桁以外のすべての数字をマスクすることができます。
-* 個人を特定できる情報 (PII) をマスクする RLS ポリシーを設定します。これにより、開発者は、コンプライアンス規制に違反することなく、運用環境にクエリを実行してトラブルシューティングを実行できます。
+* コールセンターのサポート担当者は、社会保障番号またはクレジットカード番号のいくつかの数字によって呼び出し元を識別できます。 これらの番号は、サポート担当者に完全に公開しないでください。 RLS ポリシーをテーブルに適用すると、任意のクエリの結果セット内の任意の社会保障番号またはクレジットカード番号の最後の4桁以外のすべての数字をマスクすることができます。
+* 個人を特定できる情報 (PII) をマスクする RLS ポリシーを設定します。これにより、開発者は、コンプライアンス規制に違反することなく、運用環境にクエリを実行してトラブルシューティングを行うことができます。
 * 病院は、看護師が患者のデータ行のみを表示できるようにする RLS ポリシーを設定できます。
 * 銀行では、従業員の事業部門またはロールに基づいて、財務データの行へのアクセスを制限する RLS ポリシーを設定できます。
-* マルチテナントアプリケーションでは、多数のテナントのデータを1つの tableset (非常に効率的) に格納できます。 RLS ポリシーを使用して、他のすべてのテナントの行から各テナントのデータ行を論理的に分離することにより、各テナントはそのデータ行のみを参照できます。
+* マルチテナントアプリケーションでは、多くのテナントのデータを1つの tableset (効率的) に格納できます。 RLS ポリシーを使用して、他のすべてのテナントの行から各テナントのデータ行を論理的に分離することにより、各テナントはそのデータ行のみを参照できます。
 
 ## <a name="performance-impact-on-queries"></a>クエリのパフォーマンスへの影響
 
@@ -138,7 +141,7 @@ let PartialData = MyTable | where IsRestrictedUser and (...);
 union AllData, PartialData
 ```
 
-ユーザーがの一部ではない場合、 some_group@domain.com `IsRestrictedUser` はに評価される `false` ため、評価されるクエリは次のようになります。
+ユーザーがの一部でない場合 *some_group@domain.com* 、 `IsRestrictedUser` はに評価され `false` ます。 評価されるクエリは次のようになります。
 
 ```kusto
 let AllData = MyTable;           // the condition evaluates to `true`, so the filter is dropped
@@ -150,7 +153,7 @@ union AllData, PartialData       // this will just return AllData, as PartialDat
 
 ### <a name="improve-query-performance-when-rls-is-used"></a>RLS が使用されたときのクエリパフォーマンスの向上
 
-* 高カーディナリティ列 (DeviceID など) にフィルターが適用されている場合は、[パーティション分割ポリシー](./partitioningpolicy.md)または[行順序ポリシー](./roworderpolicy.md)の使用を検討してください。
+* フィルターが高カーディナリティ列 (DeviceID など) に適用されている場合は、[パーティション分割ポリシー](./partitioningpolicy.md)または[行順序ポリシー](./roworderpolicy.md)の使用を検討してください。
 * 低中のカーディナリティ列にフィルターが適用されている場合は、[行順序ポリシー](./roworderpolicy.md)を使用することを検討してください。
 
 ## <a name="performance-impact-on-ingestion"></a>インジェストのパフォーマンスへの影響

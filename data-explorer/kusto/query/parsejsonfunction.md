@@ -1,6 +1,6 @@
 ---
-title: parse_json() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでparse_json() について説明します。
+title: parse_json ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの parse_json () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,47 +8,47 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f87c2155864f039fb5b261786d0fa6eb6770af2f
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: ac6bf9a8dbd54c3afca1c00f487e6ba564e65ce9
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744680"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264982"
 ---
 # <a name="parse_json"></a>parse_json()
 
-を`string`JSON 値として解釈し、値を`dynamic`として返します。 
+を `string` JSON 値として解釈し、値をとして返し `dynamic` ます。
 
-JSON 複合オブジェクトの複数の要素を抽出する必要がある場合は[、extractjson() 関数](./extractjsonfunction.md)を使用するよりも優れています。
+JSON 複合オブジェクトの複数の要素を抽出する必要がある場合、この関数は[extractjson () 関数](./extractjsonfunction.md)よりも優れています。
 
 **構文**
 
-`parse_json(`*Json*`)`
+`parse_json(`*json*`)`
 
 別名:
 - [todynamic()](./todynamicfunction.md)
-- [トオブジェクト()](./todynamicfunction.md)
+- [toobject ()](./todynamicfunction.md)
 
 **引数**
 
-* *json*: JSON`string`[形式の値](https://json.org/)を表す型 、または実際`dynamic`の値を表す[dynamic](./scalar-data-types/dynamic.md)型の式。
+* *json*: 型の式 `string` 。 これは、実際の値を表す、 [JSON 形式の値](https://json.org/)、または[dynamic](./scalar-data-types/dynamic.md)型の式を表し `dynamic` ます。
 
 **戻り値**
 
-json の値`dynamic`によって決定される型のオブジェクト。 *json*
-* *json*が型`dynamic`の場合、その値は、その値をそのとおりに使用します。
-* *json*が type`string`で[、適切な形式の JSON 文字列](https://json.org/)である場合、文字列は解析され、生成された値が返されます。
-* *json*が`string`型であるが、適切な[形式の JSON 文字列](https://json.org/)**でない**場合、戻り値は元`string`の値を保持`dynamic`する型のオブジェクトです。
+`dynamic` *Json*の値によって決定される型のオブジェクト。
+* *Json*の型がである場合 `dynamic` 、その値はその値として使用されます。
+* *Json*の型が `string` で、が適切に[書式設定](https://json.org/)された json 文字列である場合、文字列が解析され、生成された値が返されます。
+* *Json*の型が `string` であっても、[適切に書式設定](https://json.org/)された json 文字列ではない場合、戻り値は、元の値を保持する型のオブジェクトになり `dynamic` `string` ます。
 
 **例**
 
-次の例では、`context_custom_metrics` が `string` である場合、次のようになります。 
+次の例では、`context_custom_metrics` が `string` である場合、次のようになります。
 
 ```json
 {"duration":{"value":118.0,"count":5.0,"min":100.0,"max":150.0,"stdDev":0.0,"sampledValue":118.0,"sum":118.0}}
 ```
 
-次の CSL フラグメントは、オブジェクト内の`duration`スロットの値を取得し、そこから 2 つの`duration.value`スロットと`duration.min`(`118.0`と`110.0`) をそれぞれ取得します。
+次に、オブジェクト内のスロットの値を取得し、 `duration` 2 つのスロット `duration.value` `duration.min` ( `118.0` それぞれと) を取得し `110.0` ます。
 
 ```kusto
 T
@@ -56,16 +56,18 @@ T
 | extend duration_value=d.duration.value, duration_min=d["duration"]["min"]
 ```
 
-**メモ**
+**ノート**
 
-「スロット」の 1 つが別の JSON 文字列であるプロパティ バッグを記述する JSON 文字列を持つことは、やや一般的です。 次に例を示します。
+"スロット" の1つが別の JSON 文字列であるプロパティバッグを記述する JSON 文字列を使用するのが一般的です。 
+
+次に例を示します。
 
 ```kusto
 let d='{"a":123, "b":"{\\"c\\":456}"}';
 print d
 ```
 
-このような場合は、2 回呼び出す`parse_json`だけでなく、2 番目の呼び出し`tostring`で使用されることを確認する必要があります。 それ以外の場合、2`parse_json`番目の呼び出しは、宣言された型が`dynamic`:
+このような場合は、を2回呼び出すだけで `parse_json` なく、2番目の呼び出しでが使用されるようにする必要が `tostring` あります。 それ以外の場合、への2回目の呼び出しは、宣言された `parse_json` 型がであるため、入力をそのまま出力に渡します `dynamic` 。
 
 ```kusto
 let d='{"a":123, "b":"{\\"c\\":456}"}';

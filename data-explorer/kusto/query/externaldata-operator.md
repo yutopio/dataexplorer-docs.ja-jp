@@ -1,6 +1,6 @@
 ---
-title: externaldata オペレーター-Azure データエクスプローラー |Microsoft Docs
-description: この記事では、Azure データエクスプローラーの externaldata 演算子について説明します。
+title: externaldata オペレーター-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの外部データ演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: f8878a3c4589dca3cfacf935a787e8c754ab3ede
-ms.sourcegitcommit: a8575e80c65eab2a2118842e59f62aee0ff0e416
+ms.openlocfilehash: 4534705156669447a89cb5d85c360071dfcb2b2a
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/17/2020
-ms.locfileid: "84942677"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264999"
 ---
 # <a name="externaldata-operator"></a>externaldata 演算子
 
-演算子は、 `externaldata` クエリ自体でスキーマが定義され、外部ストレージアーティファクト (Azure Blob Storage 内の blob など) からデータを読み取るテーブルを返します。
+演算子は、 `externaldata` クエリ自体にスキーマが定義されていて、Azure Blob Storage の blob などの外部ストレージアーティファクトからデータを読み取るテーブルを返します。
 
 **構文**
 
@@ -25,7 +25,7 @@ ms.locfileid: "84942677"
 
 **引数**
 
-* *ColumnName*、 *ColumnType*: テーブルのスキーマを定義します。
+* *ColumnName*、 *ColumnType*: 引数は、テーブルのスキーマを定義します。
   構文は、 [create table](../management/create-table-command.md)でテーブルを定義するときに使用する構文と同じです。
 
 * *StorageConnectionString*:[ストレージ接続文字列](../api/connection-strings/storage.md)は、返されるデータを保持しているストレージアーティファクトを表します。
@@ -39,7 +39,7 @@ ms.locfileid: "84942677"
 
 **戻り値**
 
-演算子は、 `externaldata` 指定されたスキーマのデータテーブルを返します。このテーブルには、ストレージ接続文字列で示されている指定のストレージアーティファクトからデータが解析されています。
+演算子は、 `externaldata` 指定されたストレージの成果物からデータが解析された特定のスキーマのデータテーブルを返します。これは、ストレージ接続文字列によって示されます。
 
 **使用例**
 
@@ -68,7 +68,7 @@ with(format="csv")
 | summarize count() by ProductId
 ```
 
-上の例は、[外部テーブル](schema-entities/externaltables.md)を定義せずに複数のデータファイルに対してクエリを実行する簡単な方法と考えることができます。 
+上の例は、[外部テーブル](schema-entities/externaltables.md)を定義せずに、複数のデータファイルに対してクエリを実行する簡単な方法と考えることができます。
 
->[!NOTE]
->データのパーティション分割は演算子によって認識されません `externaldata()` 。
+> [!NOTE]
+> データのパーティション分割は演算子によって認識されません `externaldata()` 。

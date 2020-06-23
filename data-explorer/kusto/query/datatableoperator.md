@@ -1,6 +1,6 @@
 ---
-title: データテーブルオペレータ - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでデータテーブル演算子について説明します。
+title: datatable 演算子-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの datatable 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,42 +10,44 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 182f8030e3263ee5bf6bee4ca7444b0d5596e7d6
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 2a5881eacd0702720b7ea4b9a3237731a56a5180
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765385"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85265045"
 ---
 # <a name="datatable-operator"></a>datatable 演算子
 
-クエリ自体でスキーマと値が定義されているテーブルを返します。
+クエリ自体で定義されているスキーマと値を持つテーブルを返します。
 
-この演算子にパイプラインの入力はないことに注意してください。
+> [!NOTE]
+> この演算子にはパイプライン入力がありません。
 
 **構文**
 
-`datatable``(`*列名*`:`*列タイプ*`,` [ ..]`)`*ScalarValue*`,`*ScalarValue*スカラ値 [スカラ値.] `[``]`
+`datatable``(` *ColumnName* `:` *ColumnType* [ `,` ...] `)` `[` *ScalarValue* [ `,` *ScalarValue* ...]`]`
 
 **引数**
 
 ::: zone pivot="azuredataexplorer"
 
-* *列名*、*列型*: テーブルのスキーマを定義します。 使用される構文は、テーブルを定義する際に使用する構文とまったく同じです ( [.create table](../management/create-table-command.md)を参照)。
-* *ScalarValue*: テーブルに挿入する定数スカラー値。 値の数は、テーブル内の列の整数倍である必要があり *、n*'th の値は列*n* % *NumColumns*に対応する型を持つ必要があります。
+* *ColumnName*、 *ColumnType*: これらの引数は、テーブルのスキーマを定義します。 引数には、テーブルを定義するときと同じ構文を使用します。
+  詳細については、「 [create table](../management/create-table-command.md)」を参照してください。
+* *ScalarValue*: テーブルに挿入する定数スカラー値。 値の数は、テーブル内の列の倍数の整数である必要があります。 *N*' 番目の値には、列*n*  %  *numcolumns*に対応する型を指定しなければなりません。
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-* *列名*、*列型*: テーブルのスキーマを定義します。
-* *ScalarValue*: テーブルに挿入する定数スカラー値。 値の数は、テーブル内の列の整数倍である必要があり *、n*'th の値は列*n* % *NumColumns*に対応する型を持つ必要があります。
+* *ColumnName*、 *ColumnType*: これらの引数は、テーブルのスキーマを定義します。
+* *ScalarValue*: テーブルに挿入する定数スカラー値。 値の数は、テーブル内の列の倍数の整数である必要があります。 *N*' 番目の値には、列*n*  %  *numcolumns*に対応する型を指定しなければなりません。
 
 ::: zone-end
 
 **戻り値**
 
-この演算子は、指定されたスキーマとデータのデータ テーブルを返します。
+この演算子は、指定されたスキーマとデータのデータテーブルを返します。
 
 **例**
 

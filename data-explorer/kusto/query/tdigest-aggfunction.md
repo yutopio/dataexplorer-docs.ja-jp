@@ -8,41 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: b98c551cb1ded8da291d4510b45a86d560f325b1
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 5a8ce5a66da871dfaa6f65a0fbc8addeb0f42926
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83371024"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264593"
 ---
 # <a name="tdigest-aggregation-function"></a>tdigest () (集計関数)
 
-グループ全体のの中間結果を計算し [`percentiles()`](percentiles-aggfunction.md) ます。 
+グループ全体のの中間結果を計算し [`percentiles()`](percentiles-aggfunction.md) ます。
 
-* 集計のコンテキスト内でのみ使用できます[。](summarizeoperator.md)
+> [!NOTE]
+> 集計のコンテキストでのみ使用でき[ます。集計](summarizeoperator.md)の内部です。
 
-[基になるアルゴリズム (T ダイジェスト) と予想](percentiles-aggfunction.md#estimation-error-in-percentiles)されるエラーの詳細については、こちらを参照してください。
+詳細については、[基になるアルゴリズム (T ダイジェスト) と推定エラー](percentiles-aggfunction.md#estimation-error-in-percentiles)を参照してください。
 
 **構文**
 
-`summarize``tdigest(` *Expr* [ `,` *WeightExpr*]`)`
+`summarize` `tdigest`(*`Expr`* [`,` *`WeightExpr`*])
 
 **引数**
 
-* *Expr*: 集計計算に使用される式です。 
+* *Expr*: 集計計算に使用される式です。
 * *WeightExpr*: 集計計算の値の重みとして使用される式。
 
     
 **戻り値**
 
-グループ全体の*Expr*の重み付けパーセンタイルの中間結果。
+グループ全体における重み付けパーセンタイルの中間結果 `*Expr*` 。
  
  
 **ヒント**
 
-1) 集計関数[tdigest_merge ()](tdigest-merge-aggfunction.md)を使用して、tdigest の出力を別のグループにもう一度マージできます。
+* 集計関数[tdigest_merge ()](tdigest-merge-aggfunction.md)を使用して、の出力を `tdigest` 別のグループにもう一度マージします。
 
-2) 関数[percentile_tdigest ()](percentile-tdigestfunction.md)を使用して、tdigest の結果の百分位/percentilew を計算することができます。
+* 関数[percentile_tdigest ()](percentile-tdigestfunction.md)を使用して、結果の百分位/percentilew を計算し `tdigest` ます。
 
 **使用例**
 

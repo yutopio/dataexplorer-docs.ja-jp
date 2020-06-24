@@ -7,24 +7,36 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/29/2019
-ms.openlocfilehash: abef0650485ac1feb53d43f42559c5a7fdfb75c3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 4665064a645ad0001251a0c7246c9d799ff6e638
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374029"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780492"
 ---
 # <a name="machine-learning-capability-in-azure-data-explorer"></a>Azure Data Explorer の機械学習機能
 
-ビッグ データ分析プラットフォームである Azure Data Explorer では、組み込みの[異常検出と予測](anomaly-detection.md)機能を使用してサービスの正常性、QoS、または正常に機能していないデバイスの異常な動作を監視することができます。 異常なパターンが検出されると、異常を軽減または解決するために根本原因分析 (RCA) が実行されます。
+Azure Data Explorer は、ビッグ データ分析プラットフォームです。 これは、サービスの正常性、QoS、または正常に機能していないデバイスを監視するために使用されます。 組み込みの[異常検出と予測](anomaly-detection.md)機能では、異常な動作がチェックされます。 このようなパターンが検出されると、異常を軽減または解決するために根本原因分析 (RCA) が実行されます。
 
-診断プロセスは、複雑で時間がかかり、ドメインの専門家によって行われます。 このプロセスには、さまざまなソースからの同じ換算時間中の追加データの取り込みと結合、複数のディメンション上での値の分布の変化の検索、およびドメインに関する知識と直感に基づくその他の手法が含まれます。 これらの診断シナリオは Azure Data Explorer では一般的であることから、診断フェーズをより簡単にし、RCA の期間を短縮するための機械学習プラグインが提供されています。
+診断プロセスは、複雑で時間がかかり、ドメインの専門家によって行われます。 このプロセスには次のものが含まれます。
+* 同じ時間枠の異なるソースから追加データを取り込んで結合する
+* 複数のディメンション上での値の分布における変化を検索する
+* 追加の変数をグラフ化する
+* ドメインに関する知識と直感に基づくその他の手法
 
-Azure Data Explorer には、[`autocluster`](kusto/query/autoclusterplugin.md)、[`basket`](kusto/query/basketplugin.md)、および[`diffpatterns`](kusto/query/diffpatternsplugin.md) の 3 つ機械学習プラグインが用意されています。 すべてのプラグインで、クラスタリング アルゴリズムが実装されます。 `autocluster` プラグインと `basket` プラグインでは、単一のレコード セットがクラスター化され、`diffpatterns` プラグインでは 2 つのレコード セット間の差異がクラスター化されます。
+これらの診断シナリオは Azure Data Explorer では一般的であることから、診断フェーズをより簡単にし、RCA の期間を短縮するための機械学習プラグインが提供されています。
+
+Azure Data Explorer には、[`autocluster`](kusto/query/autoclusterplugin.md)、[`basket`](kusto/query/basketplugin.md)、および[`diffpatterns`](kusto/query/diffpatternsplugin.md) の 3 つ機械学習プラグインが用意されています。 すべてのプラグインで、クラスタリング アルゴリズムが実装されます。 `autocluster` と `basket` プラグインでは、単一のレコード セットがクラスター化され、`diffpatterns` プラグインでは 2 つのレコード セット間の差異がクラスター化されます。
 
 ## <a name="clustering-a-single-record-set"></a>単一レコード セットのクラスター化
 
-一般的なシナリオには、異常な動作、高温状態のデバイスの測定値、長時間におよんでいるコマンド、および消費量の多いユーザーを示している時間ウィンドウなど、特定の条件によって選択されたデータ セットが含まれます。 データ内の共通するパターン (セグメント) を簡単かつ迅速に検索する方法を必要としています。 パターンとは、複数のディメンション (カテゴリ列) にわたって同じ値を共有するレコードを持つデータ セットのサブセットです。 次のクエリでは、サービスの例外の時系列が 1 週間にわたり 10 分間のビンで作成され表示されます。
+一般的なシナリオには、次のような特定の条件によって選択されたデータ セットが含まれます。
+* 異常な動作を示す時間枠
+* 高温状態のデバイスの測定値
+* 長時間におよんでいるコマンド
+* 消費量の多いユーザー。データ内の共通するパターン (セグメント) を簡単かつ迅速に検索する方法が必要です。 パターンとは、複数のディメンション (カテゴリ列) にわたって同じ値を共有するレコードを持つデータ セットのサブセットです。 
+
+次のクエリでは、サービスの例外の時系列が 1 週間にわたり 10 分間のビンで作成され表示されます。
 
 **\[** [**クリックするとクエリが実行されます**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA5XPsaoCQQyF4d6nCFa7oHCtZd9B0F6G8ajByWTJZHS5+PDOgpVgYRn485EkOAnno9NAriWGFKw7QfQYUy0O43zZ0JNKFQnG/5jrbmeIXHBgwd6DjH2/JVqk2QrTL1aYvlifa4tni29YlzaiUK4yRK3Zu54006dBZ1N5/+X6PqpRI23+pFGGfIKRtz5egzk92K+dsycMyz3szhGEKWJ01lxI760O9ABuq0bMcvV2hqFoqnOz7F9BdSHlSgEAAA==) **\]**
 
@@ -38,9 +50,9 @@ demo_clustering1
 
 ![サービスの例外の時間グラフ](media/machine-learning-clustering/service-exceptions-timechart.png)
 
-サービスの例外の数は、サービスの全体のトラフィックと関連しています。 月曜日から金曜日までの営業日の毎日のパターンがはっきりとわかります。正午にサービスの例外の数が増加し、夜間にはその数が減少しています。 週末には数は少なく横ばい状態になっています。 Azure Data Explorer 内の[時系列の異常検出](anomaly-detection.md#time-series-anomaly-detection)を使用すれば、例外の急激な増加を検出できます。
+サービスの例外の数は、サービスの全体のトラフィックと関連しています。 月曜日から金曜日までの営業日の毎日のパターンがはっきりとわかります。 正午にサービスの例外の数が増加し、夜間にはその数が減少しています。 週末には数は少なく横ばい状態になっています。 Azure Data Explorer 内の[時系列の異常検出](anomaly-detection.md#time-series-anomaly-detection)を使用すれば、例外の急激な増加を検出できます。
 
-データの急激な増加が 2 番目に発生しているのは火曜日の午後です。 このような急激な増加を詳しく診断するには、次のクエリを使用します。 このクエリを使用すると、急激な増加を示している付近のグラフがより高い解像度 (1 分間のビンで 8 時間) で再描画され、鋭角で急増しているかどうかや、その境界を確認することができます。
+データの急激な増加が 2 番目に発生しているのは火曜日の午後です。 さらに詳しく診断してそれが急激な増加であるかどうかを確認するには、次のクエリを使用します。 このクエリでは、急激な増加を示している付近のグラフが、1 分間のビンで 8 時間というより高い解像度で再描画されます。その後、その境界を調べることができます。
 
 **\[** [**クリックするとクエリが実行されます**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAAyXNwQrCMBAE0Hu/YvHUooWkghSl/yDoyUsJyWpCk2xJNnjx403pbeYwbzwyBBdnnoxiZBewHYS89GLshzNIeRWiuzUGA83al8yYXPzI5gdBLdjnWjFDLGHSVCK3HVCEe0LtMj4r9mAVVngnCvsLMO3hOFqo2goyVCxhNJhgu9dWJYavY9uyY4/T4UV1XVm2CEM0kFe34AnkBhXGOs7kCzuKh+4P3/XM5M8AAAA=) **\]**
 
@@ -106,7 +118,7 @@ demo_clustering1
 
 ### <a name="use-autocluster-for-single-record-set-clustering"></a>autocluster() を使用して単一レコード セットをクラスタ化する
 
-例外の数が 1,000 未満であっても、各列には複数の値が含まれているため、共通するセグメントを見つけにくいことには変りありません。 [`autocluster()`](kusto/query/autoclusterplugin.md) を使用すれば、次のクエリに示されているように、共通するセグメントの小規模なリストを瞬時に抽出し、急激に増加した 2 分間において興味深いクラスターを検索することができます。
+例外の数が 1,000 未満であっても、各列には複数の値が含まれているため、共通するセグメントを見つけにくいことには変わりありません。 [`autocluster()`](kusto/query/autoclusterplugin.md) プラグインを使用すれば、次のクエリに示されているように、共通するセグメントの短いリストを瞬時に抽出し、急激に増加した 2 分間において興味深いクラスターを検索することができます。
 
 **\[** [**クリックするとクエリが実行されます**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA4WOsQrCMBRF937FG5OhJYkoovQfBN1DbC8aTNqSvlgHP94IQkf3c+65AUzRD3aCe1hue8dgHyGM0rta7WuzIb09KCWPVfii7vUPNQXtEUfbhTwzkh9uunrTckcCnRI6P+NSvDO7ONEVvACDWD80zRqRRcTThVxa5DKPv00hP81KL1+4AAAA) **\]**
 
@@ -126,9 +138,9 @@ demo_clustering1
 | 3 | 68 | 6.99588477366255 | scus | su3 | 90d3d2fc7ecc430c9621ece335651a01 |  |
 | 4 | 55 | 5.65843621399177 | weu | su4 | be1d6d7ac9574cbc9a22cb8ee20f16fc |  |
 
-上記の結果からは、最も際立っているセグメントには例外レコードの合計の 65.74% が含まれていて、そのセグメントでは 4 つのディメンションが共有されていることがわかります。 次のセグメントの場合、共通するものはずっと少なく、全レコードの 9.67% しか含まれていません。3 つのディメンションが共有されています。 その他のセグメントもすべて、共通するものは少なくなっています。 
+上記の結果からは、最も際立っているセグメントには例外レコードの合計の 65.74% が含まれていて、そのセグメントでは 4 つのディメンションが共有されていることがわかります。 次のセグメントでは、共通するものはずっと少なくなります。 それには全レコードの 9.67% だけが含まれ、3 つのディメンションが共有されています。 その他のセグメントもすべて、共通するものは少なくなっています。
 
-Autocluster では、複数のディメンションをマイニングして、興味深いセグメントを抽出するために独自のアルゴリズムが使用されています。 "興味深い" とは、各セグメントのレコード セットと機能セットの両方のカバレッジが重大であることを意味します。 セグメントも困難になった場合、それぞれが、他のユーザーから大幅に異なることを意味します。 これらのセグメントの 1 つまたは複数が、RCA プロセスに関連する可能性があります。 セグメントのレビューと評価を最小限に抑えるために、autocluster では小規模なセグメント リストのみが抽出されます。
+Autocluster では、複数のディメンションをマイニングして、興味深いセグメントを抽出するために独自のアルゴリズムが使用されています。 "興味深い" とは、各セグメントのレコード セットと機能セットの両方のカバレッジが重大であることを意味します。 セグメントも分岐しています。これは、それぞれが他のものとは異なることを意味しています。 これらのセグメントの 1 つまたは複数が、RCA プロセスに関連する可能性があります。 セグメントのレビューと評価を最小限に抑えるために、autocluster では小規模なセグメント リストのみが抽出されます。
 
 ### <a name="use-basket-for-single-record-set-clustering"></a>basket() を使用して単一レコード セットをクラスタ化する
 
@@ -160,15 +172,15 @@ demo_clustering1
 | 11 | 90 | 9.25925925925926 |  |  |  | 10007006 |  |
 | 12 | 57 | 5.8641975308642 |  |  |  |  | 00000000-0000-0000-0000-000000000000 |
 
-basket では、項目セットのマイニングのため Apriori アルゴリズムが実装され、レコード セットのカバレッジがしきい値 (既定値は 5%) を超えているすべてのセグメントが抽出されます。 より多くのセグメントが抽出され、類似のセグメント (たとえば、セグメント 0、1 または 2、3) が含まれていることがわかります。
+basket では、項目セットのマイニングのために *"Apriori"* アルゴリズムが実装されます。 これにより、レコード セットのカバレッジがしきい値 (既定値は 5%) を超えているすべてのセグメントが抽出されます。 より多くのセグメントが抽出され、類似のもの (たとえば、セグメント 0、1 または 2、3) が含まれていることがわかります。
 
-プラグインは両方とも強力で使いやすいのですが、いずれの場合も非監視モードの方法 (ラベルを使用しない) で単一のレコード セットがクラスター化されるため、大きな制限を伴います。 したがって、抽出されたパターンが、選択したレコード セット (異常なレコード) またはグローバルなレコード セットのいずれの特徴を示しているのかが明確ではありません。
+どちらのプラグインも強力で容易に使用できます。 それらに伴う制限は、ラベルを使用しない教師なしの方法で単一のレコード セットがクラスター化されることです。 抽出されたパターンが、選択したレコード セット、異常なレコード、またはグローバルなレコード セットのいずれの特徴を示しているのかが明確ではありません。
 
 ## <a name="clustering-the-difference-between-two-records-sets"></a>2 つのレコード セットの差異をクラスター化する
 
-[`diffpatterns()`](kusto/query/diffpatternsplugin.md) プラグインでは、`autocluster` と `basket` における制限が克服されています。 `Diffpatterns` を使用すると、2 つのレコード セットを受け取り、それらの間で異なっている主要なセグメントを抽出できます。 一方のセットには、通常、調査中の異常なレコード セットが含まれます (`autocluster` と `basket` によって分析されているもの)。 もう一方のセットには、参照レコード セット (ベースライン) が含まれています。 
+[`diffpatterns()`](kusto/query/diffpatternsplugin.md) プラグインでは、`autocluster` と `basket` における制限が克服されています。 `Diffpatterns` は、2 つのレコード セットを受け取り、異なっている主要なセグメントを抽出します。 一方のセットには、通常、調査中の異常なレコード セットが含まれます。 1 つは `autocluster` と `basket` によって分析されています。 もう一方のセットには、参照レコード セットであるベースラインが含まれています。
 
-次のクエリでは、`diffpatterns` を使用して、ベースライン内のクラスターとは異なる、急激に増加した 2 分間での興味深いクラスターが検索されます。 15 時 00 分 (急激な増加が始まった時刻) より前の 8 分をベースライン ウィンドウとして定義します。 また、特定のレコードがベースラインまたは異常セットのどちらに属するかを指定するバイナリ列 (AB) によって拡張する必要があります。 `Diffpatterns` では監視下学習アルゴリズムが実装されます。ここで、異常対ベースライン フラグ (AB) によって 2 つのクラス ラベルは生成済みです。
+次のクエリでは、`diffpatterns` によって、ベースライン内のクラスターとは異なる、急激に増加した 2 分間での興味深いクラスターが検索されます。 急激な増加が始まった時刻である 15 時 00 分より前の 8 分をベースライン ウィンドウとして定義します。 バイナリ列 (AB) によって拡張し、特定のレコードがベースラインまたは異常セットのどちらに属するかを指定します。 `Diffpatterns` では監視下学習アルゴリズムが実装されます。ここで、異常対ベースライン フラグ (AB) によって 2 つのクラス ラベルは生成済みです。
 
 **\[** [**クリックするとクエリが実行されます**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA42QzU+DQBDF7/wVcwOi5UtrmhJM4OzBRO9kWqbtpssuYacfGv94t0CrxFTd02by5jfvPUkMtVBlQ7gtOauQiUVNXhLFD5NoNknuIJ7Oo8hPHXmS4vEvaXKWWuoCDUmh6Jr8fj79Tv6HfOanEIbwRLgnQFhjAwviA5EC3hCcCYCq6gamEVsC1oB7LfoRt6iMYKEVvGtFQXfeNFKc7mXe2MjNVzl+mARR6lRU63Ipd4apFWodOx9w2FBL4D23tBSGXi3mhbG+OPPGVQTB+ITvg24dGN7vlN5JTxhc+dYAHZls4LzIxGr1k/B4iXcLbq50jfLNtd9i8OB2jD3KnW0dKstokG08Zby8uLbyCfX/tG46AgAA) **\]**
 
@@ -195,7 +207,7 @@ demo_clustering1
 | 5 | 55 | 252 | 5.66 | 20.45 | 14.8 | weu | su4 | be1d6d7ac9574cbc9a22cb8ee20f16fc |  |
 | 6 | 57 | 204 | 5.86 | 16.56 | 10.69 |  |  |  |  |
 
-最も際立っているセグメントは、`autocluster` によって抽出されたセグメントと同じです。2 分間の異常なウィンドウでのそのカバレッジは 65.74% です。 ただし、8 分間のベースライン ウィンドウでのそのカバレッジは 1.7% に過ぎません。 差異は 64.04% です。 この差異は、異常な急増に関連しているようです。 この想定を検証するには、次のクエリに示されるように、元のグラフを、この問題あるセグメントに属するレコードのグラフと他のセグメントに属するレコードのグラフに分割します。
+最も際立っているセグメントは、`autocluster` によって抽出されたセグメントと同じです。 2 分間の異常なウィンドウでのそのカバレッジも 65.74% です。 しかし、8 分間のベースライン ウィンドウでのそのカバレッジは 1.7% に過ぎません。 差異は 64.04% です。 この差異は、異常な急増に関連しているようです。 この想定を検証するには、元のグラフを、この問題あるセグメントに属するレコードと、他のセグメントのレコードに分割します。 次のクエリを参照してください。
 
 **\[** [**クリックするとクエリが実行されます**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA5WRsWrDMBCG9zzF4cmGGuJUjh2Ktw7tUkLTzuEsnRNRnRQkuSQlD185yRTo0EWIO913/J8MRWBttxE6iC5INOhzRey20owhktd2V8EZwsiMXv/Q9Dpfe5I60Idm2kTkQ1E8AczMxMLjf1h4/IN1PzY7Ax0jWQWBdomvhyF/p512FroOMsIxA0zdTdpKn1bHSzmMzbX8TAfjTkw2vqpLp69VpYQaatEogXOBsqrbtl5WDake6yabXWjkv7WkFxeuPGqG5VzWqhQrIUqx6B/L1WKB6aBViy01imT2ANnau94QT9c35xlNVqQAjF9UhpSHAtiRO+lGG/MCUoZ7CTB4x7ePie5mNbk4QDVn6E+ThUT0SQh5iGlM7tHHX4WFgLHOAQAA) **\]**
 
@@ -215,6 +227,6 @@ and ServiceHost == "e7f60c5d-4944-42b3-922a-92e98a8e7dec", "Problem", "Normal")
 
 ## <a name="summary"></a>まとめ
 
-Azure Data Explorer の機械学習プラグインは多くのシナリオで役に立ちます。 `autocluster` および `basket` では、非監視モードの学習アルゴリズムが実装され、両方とも使いやすくなっています。 `Diffpatterns` では監視モードの学習アルゴリズムが実装されます。より複雑になりますが、RCA のためにセグメントの差異を抽出する際はより力を発揮します。
+Azure Data Explorer の機械学習プラグインは多くのシナリオで役に立ちます。 `autocluster` および `basket` では、教師なし学習アルゴリズムが実装され、使いやすくなっています。 `Diffpatterns` では教師あり学習アルゴリズムが実装されます。より複雑になりますが、RCA のためにセグメントの差異を抽出する際はより力を発揮します。
 
-これらのプラグインは、アドホックのシナリオおよびリアルタイムに近い自動監視サービスにおいて、対話形式で使用されます。 Azure Data Explorer では、時系列の異常検の後に診断プロセスが続きます。このプロセスは必要なパフォーマンス基準を満たすように高度に最適化されます。
+これらのプラグインは、アドホックのシナリオおよびリアルタイムに近い自動監視サービスにおいて、対話形式で使用されます。 Azure Data Explorer では、時系列の異常検出の後に診断プロセスが続きます。 このプロセスは必要なパフォーマンス基準を満たすように高度に最適化されます。

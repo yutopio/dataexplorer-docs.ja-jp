@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/26/2020
-ms.openlocfilehash: 46e3821514ca5b06852f7e8428b12cf9f80e29a4
-ms.sourcegitcommit: a562ce255ac706ca1ca77d272a97b5975235729d
+ms.openlocfilehash: 7f012b5b99cdf12ab1ace452838860aff312a28d
+ms.sourcegitcommit: b0cbb89e88b64a36880e6d34b4d6779283174456
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83867798"
+ms.lasthandoff: 06/09/2020
+ms.locfileid: "84633752"
 ---
 # <a name="visualize-data-with-azure-data-explorer-dashboards"></a>Azure Data Explorer ダッシュボードを使用してデータを視覚化する
 
@@ -56,7 +56,7 @@ Azure Data Explorer のダッシュボードには、次の 3 つの主な利点
 
 ## <a name="use-parameters"></a>パラメーターを使用する
 
-パラメーターを使用すると、ダッシュボード フィルターを使用できます。 パラメーターを使用すると、ダッシュボードのレンダリング パフォーマンスが大幅に向上し、クエリのなるべく早い段階でフィルター値を使用できるようになります。
+パラメーターを使用すると、ダッシュボード フィルターを使用できます。 パラメーターを使用すると、ダッシュボードのレンダリング パフォーマンスが大幅に向上し、クエリのなるべく早い段階でフィルター値を使用できるようになります。 パラメーターの使用方法の詳細については、「[Azure Data Explorer ダッシュボードでパラメーターを使用する](dashboard-parameters.md)」を参照してください。
 
 1. 上部のバーで **[パラメーター]** を選択します。 **[パラメーター]** ペインで、 **[+ 新しいパラメーター]** ボタンを選択します。
 
@@ -102,4 +102,5 @@ Azure Data Explorer のダッシュボードには、次の 3 つの主な利点
 
 ## <a name="next-steps"></a>次の手順
 
+* [Azure Data Explorer ダッシュボードでパラメーターを使用する](dashboard-parameters.md)
 * [Azure Data Explorer でデータのクエリを実行する](web-query-data.md)

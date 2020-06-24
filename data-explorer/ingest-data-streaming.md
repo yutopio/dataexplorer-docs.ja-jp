@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/30/2019
-ms.openlocfilehash: 4bbb076b4c21ac2f93b2bdaf775d513483332934
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: 66118ad7b91d1bcfdd52679d4bfa3dc5ebc4c281
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84257962"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780237"
 ---
 # <a name="streaming-ingestion-preview"></a>ストリーミング インジェスト (プレビュー)
 
@@ -75,7 +75,7 @@ ms.locfileid: "84257962"
 * [データ マッピング](kusto/management/mappings.md)は、ストリーミング インジェストで使用するために[事前に作成](kusto/management/create-ingestion-mapping-command.md)する必要があります。 個々のストリーミング インジェスト要求は、インライン データ マッピングには対応していません。
 * ストリーミング インジェストのパフォーマンスと容量は、VM とクラスターのサイズを増やして拡張されます。 同時インジェスト要求の数は、コアあたり 6 個に制限されています。 たとえば、D14 や L16 などの 16 コアの SKU の場合、サポートされる最大負荷は 96 の同時インジェスト要求です。 D11 などの 2 コアの SKU の場合、サポートされる最大負荷は 12 の同時インジェスト要求です。
 * ストリーミング インジェスト要求のデータ サイズの制限は 4 MB です。
-* スキーマの更新は、ストリーミング インジェスト サービスで利用できるようになるまでに最大 5 分かかる場合があります。 これらの更新の例としては、テーブルおよびインジェスト マッピングの作成と変更があります。 
+* テーブルとインジェスト マッピングの作成や変更など、スキーマの更新には、ストリーミング インジェスト サービスに最大 5 分かかることがあります。 詳細については、「[ストリーミング インジェストとスキーマ変更](kusto/management/data-ingestion/streaming-ingestion-schema-changes.md)」を参照してください。
 * クラスターでストリーミング インジェストを有効にすると、データがストリーミング経由で取り込まれていない場合でも、インジェスト データをストリーミングするためにクラスター マシンのローカル SSD ディスクの一部を使用して、ホット キャッシュに使用できるストレージを減らします。
 * [extent タグ](kusto/management/extents-overview.md#extent-tagging)は、ストリーミング インジェスト データには設定できません。
 

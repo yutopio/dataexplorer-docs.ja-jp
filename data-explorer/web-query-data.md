@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
-ms.date: 07/04/2019
-ms.openlocfilehash: 145e452a3a914e1026d6da11f2ce38e85fa724f0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.date: 06/15/2020
+ms.openlocfilehash: 05c9a805e1391a34fe2d751c33178fcac16d15a9
+ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491297"
+ms.lasthandoff: 06/15/2020
+ms.locfileid: "84780135"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>クイック スタート:Azure Data Explorer の Web UI でデータのクエリを実行する
 
@@ -163,25 +163,62 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
 ## <a name="share-queries"></a>クエリを共有する
 
-作成したクエリを共有したいことがよくあります。 ディープ リンクを提供して、クラスターにアクセスできる他のユーザーがクエリを実行できるようにすることができます。
+作成したクエリを共有したいことがよくあります。 
 
 1. クエリ ウィンドウで、最初にコピーしたクエリを選択します。
 
-1. クエリ ウィンドウの上部にある **[Share]\(共有\)** を選択します。
+1. クエリ ウィンドウの上部にある **[Share]\(共有\)** を選択します。 
 
-1. **[Link, query to clipboard]\(リンク、クエリをクリップボードに\)** を選択します。
+:::image type="content" source="media/web-query-data/share-menu.png" alt-text="共有メニュー":::
+
+ドロップダウンでは、次のオプションを使用できます。
+* リンクをクリップボードに保存
+* [リンク、クエリをクリップボードに保存](#provide-a-deep-link)
+* リンク、クエリ、結果をクリップボードに保存
+* [ダッシュボードにピン留めする](#pin-to-dashboard)
+* [Power BI へのクエリ](power-bi-imported-query.md)
+
+### <a name="provide-a-deep-link"></a>ディープ リンクを提供する
+
+ディープ リンクを提供して、クラスターにアクセスできる他のユーザーがクエリを実行できるようにすることができます。
+
+1. **[共有]** で、 **[Link, query to clipboard]\(リンク、クエリをクリップボードに\)** を選択します。
 
 1. リンクとクエリをテキスト ファイルにコピーします。
 
 1. リンクを新しいブラウザー ウィンドウに貼り付けます。 クエリを実行した後の結果は次のようになります。
 
-    ![共有されたクエリ](media/web-query-data/shared-query.png)
+    :::image type="content" source="media/web-query-data/shared-query.png" alt-text="共有クエリのディープ リンク":::
+
+### <a name="pin-to-dashboard"></a>[ダッシュボードにピン留めする]
+
+Web UI でクエリを使用してデータ探索を完了し、必要なデータを見つけたら、それをダッシュボードにピン留めして継続的な監視を行うことができます。 
+
+クエリをピン留めするには:
+
+1. **[共有]** で、 **[ダッシュボードにピン留めする]** を選択します。
+
+1. **[ダッシュボードにピン留めする]** ペインで、次のようにします。
+    1. **[クエリ名]** を入力します。
+    1. **[既存のものを使用]** または **[新規作成]** を選択します。
+    1. **[ダッシュボード名]** を入力します。
+    1. **[View dashboard after creation]\(作成後にダッシュボードを表示する\)** チェックボックスをオンにします (新しいダッシュボードの場合)。
+    1. **[ピン留め]** の選択
+
+    :::image type="content" source="media/web-query-data/pin-to-dashboard.png" alt-text="[ダッシュボードにピン留めする] ペイン":::
+    
+> [!NOTE]
+> **[ダッシュボードにピン留めする]** では、選択したクエリのみがピン留めされます。 ダッシュボードのデータ ソースを作成し、レンダリング コマンドをダッシュボードでビジュアルに変換するには、データベースの一覧で、関連するデータベースを選択する必要があります。
+
+## <a name="export-query-results"></a>クエリ結果をエクスポートする
+
+クエリ結果を CSV ファイルにエクスポートするには、 **[ファイル]**  >  **[CSV にエクスポート]** を選択します。
+
+:::image type="content" source="media/web-query-data/export-results.png" alt-text="結果を CSV ファイルにエクスポートする":::
 
 ## <a name="provide-feedback"></a>フィードバックの提供
 
-Data Explorer は現在プレビュー段階であり、ユーザーの経験に関するフィードバックを歓迎します。 今すぐ行っても、もっと時間を費やすまで待ってもかまいません。
-
-1. アプリケーションの右上にあるフィードバック アイコンを選択します。 ![フィードバック アイコン](media/web-query-data/icon-feedback.png)。
+1. アプリケーションの右上にあるフィードバック アイコンを選択します ![フィードバック アイコン](media/web-query-data/icon-feedback.png)。
 
 1. フィードバックを入力し、 **[Submit]\(送信\)** を選択してください。
 

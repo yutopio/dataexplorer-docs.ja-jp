@@ -1,6 +1,6 @@
 ---
-title: データのパーティション分割ポリシー (プレビュー)-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーでのデータのパーティション分割ポリシー (プレビュー) について説明します。
+title: データのパーティション分割ポリシー-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでのデータのパーティション分割ポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 2a54d6e8bdb891500778f2043f2b1aa4094162d2
-ms.sourcegitcommit: 743e8b1def28bc8f875b22b857ec345eeb7e5acc
+ms.openlocfilehash: 3ab402833e4aebd5499fcb383dd803e9a6a815ed
+ms.sourcegitcommit: 93510ef1e5570ce4da2cbf76eb77946c93a7dec8
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84671446"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85372487"
 ---
 # <a name="data-partitioning-policy"></a>データのパーティション分割ポリシー
 
@@ -173,8 +173,9 @@ ms.locfileid: "84671446"
 * **MaxRowCountPerOperation**:
   * 1つのデータパーティション分割操作のソースエクステントの行数の合計の最大ターゲット。
   * このプロパティは省略可能です。 既定値は `0` で、既定のターゲットは500万レコードです。
+    * 5分よりも小さい値を設定することを検討できます。パーティション分割操作は、操作ごとに非常に大量のメモリ/CPU を消費します (#monitoring を参照してください)。
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>メモ
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 

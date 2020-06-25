@@ -8,14 +8,12 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
-zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 7373af48ef581e4b64f1cfc34ece0c16a416fc08
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 4bfc7b591683940e10d2737ec776421f65d1427a
+ms.sourcegitcommit: 93510ef1e5570ce4da2cbf76eb77946c93a7dec8
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128905"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85372470"
 ---
 # <a name="query-results-cache"></a>クエリ結果のキャッシュ
 
@@ -38,7 +36,7 @@ GithubEvent
 
 ### <a name="identical-queries"></a>同一のクエリ
 
-Query_results_cache は、以前にキャッシュされたクエリと "同一" と見なされるクエリに対してのみ結果を返します。 次の条件がすべて満たされている場合、2つのクエリは同一であると見なされます。
+クエリ結果のキャッシュでは、以前にキャッシュされたクエリに対して "同一" と見なされたクエリに対してのみ結果が返されます。 次の条件がすべて満たされている場合、2つのクエリは同一であると見なされます。
 
 * 2つのクエリは、(UTF-8 文字列として) 同じ表現を持ちます。
 * 2つのクエリが同じデータベースに対して行われます。
@@ -78,7 +76,7 @@ Kusto は、クエリに応答するときに、列と列を含む追加の[Exte
    * `OriginalClientRequestId`-元の要求の[Clientrequestid](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)を指定します。
    * `OriginalStartedOn`-元の要求の実行開始時刻を指定します。
 
-## <a name="distribution"></a>Distribution
+## <a name="distribution"></a>配布
 
 キャッシュはクラスターノードによって共有されていません。 すべてのノードは、専用のキャッシュを独自のプライベートストレージに保持します。 2つの同一のクエリが異なるノードに配置されると、クエリが実行され、両方のノードにキャッシュされます。 このプロセスは、[弱い整合性](../concepts/queryconsistency.md)が使用されている場合に発生する可能性があります。
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 5c430fd0ca18265c5800165b33bfe14126aee02a
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 5fd6221e4b877d066050f932a564f71d56d8c168
+ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373270"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85332559"
 ---
 # <a name="infer_storage_schema-plugin"></a>infer_storage_schema プラグイン
 
@@ -32,7 +32,7 @@ evaluate infer_storage_schema(options)
 
 **構文**
 
-`evaluate` `infer_storage_schema(` *Options* `)`
+`evaluate` `infer_storage_schema(` *オプション* `)`
 
 **引数**
 
@@ -51,6 +51,7 @@ evaluate infer_storage_schema(options)
 この `infer_storage_schema` プラグインは、CSL スキーマ文字列を保持する1つの行または列を含む単一の結果テーブルを返します。
 
 > [!NOTE]
+> * ストレージコンテナー URI の秘密キーには、*読み取り*に加えて、*リスト*に対するアクセス許可が必要です。
 > * スキーマ推論戦略 ' all ' は、検出された*すべて*のアイテムからの読み取りを意味し、スキーマをマージするため、非常に "高額" な操作です。
 > * 返される型の中には、誤った型推測 (または、スキーママージ処理の結果として) の結果として実際の型を使用できないものがあります。 このため、外部テーブルを作成する前に、結果を慎重に確認する必要があります。
 

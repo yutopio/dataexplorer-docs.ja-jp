@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 606d48c4bda583ad82404a1b25119ec9beb4c5a9
-ms.sourcegitcommit: 6f56b169fda0b74f9569004555a574d8973b1021
+ms.openlocfilehash: 8a979d91b008be7a93626aa7f58865cb5466076b
+ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84748936"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85332586"
 ---
 # <a name="the-dynamic-data-type"></a>動的データ型
 
@@ -101,7 +101,7 @@ print d=dynamic({"a": datetime(1970-05-11)})
 
 次の例で `dict` は、と `arr` は動的な型の列です。
 
-|正規表現                        | アクセサー式の型 | 意味                                                                              | コメント                                      |
+|正規表現                        | アクセサー式の型 | 説明                                                                              | コメント                                      |
 |----------------------------------|--------------------------|--------------------------------------------------------------------------------------|-----------------------------------------------|
 |辞書 [col]                         | エンティティ名 (列)     | キーとして列の値を使用してディクショナリを添字する `col`              | 列は文字列型でなければなりません                 | 
 |arr [インデックス]                        | エンティティインデックス (列)    | インデックスとして列の値を使用して配列の添字を指定する `index`              | 列は整数またはブール型である必要があります     | 
@@ -119,7 +119,7 @@ print d=dynamic({"a": datetime(1970-05-11)})
 
 > 動的オブジェクトを時した後、値を単純型にキャストする必要があります。
 
-|正規表現 | 値 | 型|
+|正規表現 | 値 | Type|
 |---|---|---|
 | X | parse_json (' [100101102] ')| array|
 |X [0]|parse_json (' 100 ')|動的|
@@ -168,6 +168,7 @@ print d=dynamic({"a": datetime(1970-05-11)})
 | *value* `!in` *array*| *array* に *value* と等しい要素がない場合は true。
 |[`array_length(`配列`)`](../arraylengthfunction.md)| 配列でない場合は null。
 |[`bag_keys(`bag`)`](../bagkeysfunction.md)| 動的プロパティバッグオブジェクト内のすべてのルートキーを列挙します。
+|[`bag_merge(`bag1,..., bagN`)`](../bag-merge-function.md)| 動的プロパティバッグを、すべてのプロパティがマージされた動的プロパティバッグにマージします。
 |[`extractjson(`path、object`)`](../extractjsonfunction.md)|オブジェクトに移動するためのパスを使用します。
 |[`parse_json(`電源`)`](../parsejsonfunction.md)| JSON 文字列を動的オブジェクトに変換します。
 |[`range(`from、to、step`)`](../rangefunction.md)| 値の配列。
@@ -179,4 +180,3 @@ print d=dynamic({"a": datetime(1970-05-11)})
 |[`summarize make_list_if(`列、述語 `)`](../makelistif-aggfunction.md)| 行のグループを平坦化し、列の値を配列に格納します (述語を含む)。
 |[`summarize make_list_with_nulls(`列 `)`](../make-list-with-nulls-aggfunction.md)| 行のグループを平坦化し、null 値を含む、列の値を配列に格納します。
 |[`summarize make_set(`項目`)`](../makeset-aggfunction.md) | 行のグループをフラット化し、列の値を重複しないように配列に格納します。
-|[`summarize make_bag(`項目`)`](../make-bag-aggfunction.md) | 列のプロパティバッグ (dictionary) 値を、キーの重複なしで1つのプロパティバッグにマージします。

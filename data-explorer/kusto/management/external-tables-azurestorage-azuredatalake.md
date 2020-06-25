@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 7bcba1cbcbcbd712278696d897febaee5714703f
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 828f2450db7f6afabf33f72d813af6f0007ada6b
+ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780594"
+ms.lasthandoff: 06/24/2020
+ms.locfileid: "85332588"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -89,7 +89,7 @@ ms.locfileid: "84780594"
 
 &nbsp;&nbsp;[*Stringseparator*]*Partition* [*stringseparator*] [*partition* [*stringseparator*]...]  
 
-ここで、 *partition*は in 句で宣言されたパーティションを指し `partition` `by` 、 *stringseparator*は引用符で囲まれた任意のテキストです。
+ここで、 *partition*は in 句で宣言されたパーティションを指し `partition` `by` 、 *stringseparator*は引用符で囲まれた任意のテキストです。 連続するパーティション要素は、 *Stringseparator*を使用して別に設定する必要があります。
 
 元のファイルパスプレフィックスは、文字列としてレンダリングされ、対応するテキスト区切り記号で区切られたパーティション要素を使用して作成できます。 Datetime パーティション値の表示に使用する形式を指定するには、次のマクロを使用できます。
 
@@ -214,7 +214,7 @@ with (fileExtension = ".txt")
 
 **サンプル出力**
 
-|TableName|TableType|Folder|DocString|プロパティ|ConnectionStrings|メジャー グループ|PathFormat|
+|TableName|TableType|フォルダー|DocString|プロパティ|ConnectionStrings|メジャー グループ|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
 |ExternalTable|Blob|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
 
@@ -235,6 +235,9 @@ dataformat=parquet
    h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
 )
 ```
+
+> [!NOTE]
+> 現在、仮想列は、、、、、、 `CSV` `TSV` `TSVE` `SCsv` `SOHsv` `PSV` 、 `RAW` および `TXT` の各データ形式ではサポートされていません。
 
 <a name="file-filtering"></a>
 **ファイルフィルタリングロジック**

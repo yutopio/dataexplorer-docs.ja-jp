@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 3ab402833e4aebd5499fcb383dd803e9a6a815ed
-ms.sourcegitcommit: 93510ef1e5570ce4da2cbf76eb77946c93a7dec8
+ms.openlocfilehash: 433d8786ad3664d02387efacd7dcd3865b4deb13
+ms.sourcegitcommit: ddafa58deb79417bd6f36e8bb3ad106d375b63e1
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85372487"
+ms.lasthandoff: 06/26/2020
+ms.locfileid: "85448504"
 ---
 # <a name="data-partitioning-policy"></a>データのパーティション分割ポリシー
 
@@ -22,7 +22,7 @@ ms.locfileid: "85372487"
 ポリシーの主な目的は、パーティション分割された列の値のデータセットを狭めることがわかっているクエリのパフォーマンスを向上させること、または高カーディナリティ文字列列に対して集計/結合を行うことです。 ポリシーによって、データの圧縮が向上する場合もあります。
 
 > [!CAUTION]
-> ポリシーを定義できるテーブルの数には、ハードコーディングされた制限はありません。 ただし、追加のテーブルごとに、クラスターのノードで実行されるバックグラウンドデータパーティション処理のオーバーヘッドが増加します。 これにより、より多くのクラスターリソースが使用される可能性があります。 詳細については、「[容量](#capacity)」を参照してください。
+> ポリシーを定義できるテーブルの数には、ハードコーディングされた制限はありません。 ただし、追加のテーブルごとに、クラスターのノードで実行されるバックグラウンドデータパーティション処理のオーバーヘッドが増加します。 これにより、より多くのクラスターリソースが使用される可能性があります。 詳細については、「[監視](#monitoring)と[容量](#capacity)」を参照してください。
 
 ## <a name="partition-keys"></a>パーティション キー
 
@@ -30,7 +30,7 @@ ms.locfileid: "85372487"
 
 |種類                                                   |列の型 |パーティションのプロパティ                    |パーティションの値                                        |
 |-------------------------------------------------------|------------|----------------------------------------|----------------------|
-|[Hash](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
+|[ハッシュ](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
 |[統一範囲](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`                | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
 
 ### <a name="hash-partition-key"></a>ハッシュパーティションキー

@@ -1,6 +1,6 @@
 ---
-title: テイクオペレーター - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの使用するオペレーターについて説明します。
+title: take operator-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの take 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,49 +8,49 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0c8f724e139e13bf9ece00d5af09f2a3cf25b03a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 98586f8f8380d4c1fc36a88b288b47798c10e09e
+ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506598"
+ms.lasthandoff: 06/29/2020
+ms.locfileid: "85517922"
 ---
 # <a name="take-operator"></a>take 演算子
 
-指定した行数までを返します。
+指定された行数まで返します。
 
 ```kusto
 T | take 5
 ```
 
-ソース データが並べ替えられない限り、どのレコードが返されるかは保証されません。
+ソースデータを並べ替える場合を除き、どのレコードが返されるかは保証されません。
 
 **構文**
 
-`take`*行数*
-`limit`*の数*
+`take`*Numberofrows* 
+ `limit`*Numberofrows*
 
-(`take`と`limit`は同義語です。
+( `take` と `limit` はシノニムです)。
 
-**メモ**
+**ノート**
 
-`take`データを対話的に参照するときに、レコードの小さなサンプルを表示するシンプルで迅速かつ効率的な方法ですが、データ セットが変更されていない場合でも、複数回実行しても結果の一貫性は保証されません。
+`take`は、データを対話的に参照しているときに小さなサンプルレコードを表示するためのシンプルで迅速かつ効率的な方法ですが、データセットが変更されていない場合でも、複数回実行しても結果の一貫性が保証されないことに注意してください。
 
-クエリによって返される行数がクエリによって明示的に制限されていない場合でも (演算子は使用`take`されません)、Kusto はデフォルトでその数を制限します。
-詳細については[、Kusto クエリの制限](../concepts/querylimits.md)を参照してください。
+クエリによって返される行の数がクエリによって明示的に制限されていない (演算子が使用されていない) 場合でも `take` 、Kusto はその数値を既定で制限します。
+詳細については、 [Kusto クエリの制限](../concepts/querylimits.md)に関する説明を参照してください。
 
-参照項目:[ソート演算子](sortoperator.md)
-[のトップネスト演算子](topoperator.md)
-[top-nested operator](topnestedoperator.md)
+参照: [sort operator](sortoperator.md) 
+ [top 演算子](topoperator.md)top 
+ [nested 演算子](topnestedoperator.md)
 
 ## <a name="does-kusto-support-paging-of-query-results"></a>Kusto はクエリ結果のページングをサポートしていますか?
 
-Kusto は組み込みのページングメカニズムを提供しません。
+Kusto には、組み込みのページングメカニズムが用意されていません。
 
-Kusto は、格納するデータを継続的に最適化して、膨大なデータ セットに対して優れたクエリ パフォーマンスを提供する複雑なサービスです。 ページングは、リソースが限られているステートレス クライアントにとって便利なメカニズムですが、クライアントの状態情報を追跡する必要があるバックエンド サービスに負担を移します。 その後、バックエンド サービスのパフォーマンスとスケーラビリティは大幅に制限されます。
+Kusto は、大量のデータセットに対する優れたクエリパフォーマンスを提供するために格納されるデータを継続的に最適化する、複雑なサービスです。 ページングはリソースが限られているステートレスクライアントに便利なメカニズムですが、クライアントの状態情報を追跡する必要があるバックエンドサービスに負荷を移すことになります。 その後、バックエンドサービスのパフォーマンスとスケーラビリティは厳しく制限されています。
 
-ページングのサポートでは、次の機能のいずれかを実装します。
+ページングをサポートするには、次の機能のいずれかを実装します。
 
-* クエリの結果を外部ストレージにエクスポートし、生成されたデータをページングする。
+* クエリの結果を外部ストレージにエクスポートし、生成されたデータをページングします。
 
-* Kusto クエリの結果をキャッシュすることによって、ステートフル ページング API を提供する中間層アプリケーションを作成する。
+* Kusto クエリの結果をキャッシュすることによって、ステートフルなページング API を提供する中間層アプリケーションを作成する。

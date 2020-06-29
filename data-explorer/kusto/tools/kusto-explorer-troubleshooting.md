@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 8fe86f16eef79fca0db22fd3048cc3841c57d189
-ms.sourcegitcommit: 8953d09101f4358355df60ab09e55e71bc255ead
+ms.openlocfilehash: 19ffbe2f5e14a2c003c24d145b713970e6bb31b8
+ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84420902"
+ms.lasthandoff: 06/29/2020
+ms.locfileid: "85517768"
 ---
 # <a name="troubleshooting"></a>トラブルシューティング
 
@@ -22,7 +22,7 @@ ms.locfileid: "84420902"
 
 ### <a name="kustoexplorer-shows-error-dialog-during-or-after-start-up"></a>Kusto. エクスプローラーの起動時または起動後にエラーダイアログが表示される
 
-**現象**
+**症状:**
 
 起動時に、Kusto. エクスプローラーにエラーが表示されます。 `InvalidOperationException`
 
@@ -34,7 +34,7 @@ ms.locfileid: "84420902"
 
 ## <a name="kustoexplorer-always-downloads-even-when-there-are-no-updates"></a>Kusto. エクスプローラーは、更新プログラムがない場合でも、常にダウンロードされます。
 
-**現象**
+**症状:**
 
 Kusto. エクスプローラーを開くたびに、新しいバージョンをインストールするように求められます。 Kusto. エクスプローラーは、インストール済みのバージョンを更新せずに、パッケージ全体をダウンロードします。
 
@@ -136,7 +136,7 @@ Following errors were detected during this operation.
 
 ### <a name="clickonce-error-your-administrator-has-blocked-this-application-because-it-potentially-poses-a-security-risk-to-your-computer"></a>ClickOnce エラー: コンピューターにセキュリティ上のリスクが生じる可能性があるため、管理者がこのアプリケーションをブロックしました
 
-**現象**  
+**症状:**  
 次のいずれかのエラーが発生しても、アプリケーションのインストールに失敗します。
 * `Your administrator has blocked this application because it potentially poses a security risk to your computer`.
 * `Your security settings do not allow this application to be installed on your computer.`
@@ -165,7 +165,7 @@ Kusto エクスプローラーアプリケーションによって保存され�
 1. で始まるすべての項目を選択し `Kusto.Explorer` ます。
 1. **[アンインストール]** を選択します。
 
-   この手順でアプリケーションのアンインストールに失敗した場合 (ClickOnce アプリケーションに関する既知の問題)、「この操作の実行方法について説明したこのスタックオーバーフローの記事」を参照してください。
+   この手順でアプリケーションをアンインストールできない場合 (ClickOnce アプリケーションに関する既知の問題)、[この記事の手順を](https://stackoverflow.com/questions/10896223/how-do-i-completely-uninstall-a-clickonce-application-from-my-computer)参照してください。
 
 1. フォルダーを削除し `%LOCALAPPDATA%\Kusto.Explorer` ます。これにより、すべての接続と履歴が削除されます。
 

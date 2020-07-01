@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: 097e175ff28d334532e85715f1f6401a96fa8f8c
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 753c2a21812c850613c2c2462394b6b0bde8b740
+ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374323"
+ms.lasthandoff: 06/29/2020
+ms.locfileid: "85517955"
 ---
 # <a name="create-an-azure-data-explorer-cluster-in-your-virtual-network"></a>仮想ネットワークに Azure Data Explorer クラスターを作成する
 
@@ -60,7 +60,7 @@ Azure Data Explorer では、仮想ネットワーク (VNet) のサブネット�
     | source | ServiceTag
     | 発信元サービス タグ | AzureDataExplorerManagement
     | Source port ranges | *
-    | 宛先 | VirtualNetwork
+    | 到着地 | VirtualNetwork
     | 宛先ポート範囲 | *
     | Protocol | TCP
     | アクション | Allow
@@ -97,9 +97,7 @@ Azure Data Explorer では、仮想ネットワーク (VNet) のサブネット�
 
 1. **[作成]** を選択して、パブリック IP アドレスを作成します。
 
-1. インジェスト (データ管理) パブリック IP アドレスを作成するには、同じ手順で次のように選択します 
-    * **[SKU]** : Basic
-    * **[IP アドレスの割り当て]** :静的
+1. インジェスト (データ管理) パブリック IP アドレスを作成するには、同じ手順を実行します。
 
 ## <a name="create-virtual-network-and-subnet"></a>仮想ネットワークとサブネットを作成する
 

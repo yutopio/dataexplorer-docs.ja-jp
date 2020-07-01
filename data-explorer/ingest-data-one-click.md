@@ -7,18 +7,26 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 16db3eb2d925d12ba8eefa605b27566e9b4c1b04
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 26b1633a13aa6ffbd98109e94113679620845160
+ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373817"
+ms.lasthandoff: 06/23/2020
+ms.locfileid: "85264515"
 ---
-# <a name="what-is-one-click-ingestion"></a>ワンクリックでのインジェストとは 
+# <a name="what-is-one-click-ingestion"></a>ワンクリックでのインジェストとは
 
-ワンクリックでのインジェストを使用すると、Azure Data Explorer にデータをすばやく取り込み、テーブルとマッピングの構造をデータ ソースに基づいて自動的に提案することができます。 
+ワンクリックでのインジェストを使用すると、データ インジェスト プロセスを簡単かつ迅速に、直感的に行うことができます。 ワンクリックでのインジェストは、データの取り込み、データベース テーブルの作成、マッピング構造の準備をすばやく行い、開始するのに役立ちます。 1 回限りまたは継続的なインジェスト プロセスとして、データ形式の異なるさまざまな種類のソースからデータを選択します。
 
-Azure Data Explorer の Web UI を使用して、ストレージ (BLOB ファイル)、ローカル ファイル、またはコンテナー (最大 10,000 BLOB) からデータを取り込むことができます。 コンテナーにイベント グリッドを定義して、継続的にデータを取り込むこともできます。 データは、JSON や CSV、[その他の形式](#file-formats)で、既存のテーブルまたは新しいテーブルに取り込むことができます。 ワンクリックでのインジェストは、新しいテーブルとテーブル マッピングの構造を、そのデータ ソースに基づいて提示できるほか、既存のテーブルと新しいテーブルのテーブル マッピングおよびテーブル構造を調整できる直感的なプラットフォームとなっています。 ワンクリックでのインジェストを使用すれば、ほんの数分でテーブルにデータを取り込むことができます。
+次の機能により、ワンクリックでのインジェストが使いやすくなります。
+
+* インジェスト ウィザードによる直感的なエクスペリエンス
+* わずか数分でのデータの取り込み
+* ローカル ファイル、BLOB、コンテナーなどの、さまざまな種類のソースからのデータの取り込み (最大 10,000 個の BLOB)
+* さまざまな[形式](#file-formats)のデータの取り込み
+* 新規または既存のテーブルへのデータの取り込み
+* テーブル マッピングとスキーマが推奨されており、簡単に変更できる
+* Event Grid でコンテナーから簡単かつ迅速に取り込みを続ける
 
 データの初回取り込み時やデータのスキーマに不慣れな場合に、ワンクリックでのインジェストは特に効果的です。
 
@@ -39,40 +47,76 @@ Azure Data Explorer の Web UI を使用して、ストレージ (BLOB ファイ
 * TSVE
 * PSV
 
+## <a name="ingest-new-data"></a>新しいデータを取り込む
+
+ワンクリックでのインジェスト ウィザードを使用すると、ワンクリックでのデータ取り込み手順を画面の指示に従って行うことができます。
+
+* クラスターの **[Welcome to Azure Data Explorer]\(Azure Data Explorer へようこそ\)** ホーム画面からワンクリックでのインジェスト ウィザードにアクセスするには、最初の 2 つの手順 ([クラスターの作成とデータベースの作成](#prerequisites)) を完了してから、 **[新しいデータの取り込み]** を選択します。
+
+    :::image type="content" source="media/ingest-data-one-click/welcome-ingestion.png" alt-text="[Welcome to Azure Data Explorer]\(Azure Data Explorer へようこそ\) からの新しいデータの取り込み":::
+
+* [Azure Data Explorer の Web UI](https://dataexplorer.azure.com/) からウィザードにアクセスするには、Azure Data Explorer の Web UI の左側のメニューで**データベース**または**テーブル**の行を右クリックし、 **[Ingest new data (preview)]\(新しいデータの取り込み (プレビュー)\)** を選択します。
+
+    :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Web UI 上でのワンクリックでのインジェストの選択":::
+
+<!-- TODO either change the local file tutorial to blob storage or create another one to show users how to do this-->
+
 ## <a name="one-click-ingestion-wizard"></a>ワンクリックでのインジェスト ウィザード
 
-ワンクリックでのインジェスト ウィザードを使用すると、ワンクリックでのデータ取り込み手順を画面の指示に従って行うことができます。 
+> [!NOTE]
+> ここでは、ウィザード全般について説明します。 選択するオプションは、取り込むデータの形式、取り込み元のデータ ソースの種類、新しいテーブルまたは既存のテーブルのどちらに取り込むかによって異なります。
+>
+> サンプル シナリオについては、以下をご覧ください。
+> * [CSV 形式でコンテナーから新しいテーブル](one-click-ingestion-new-table.md)に取り込む
+> * [JSON 形式でローカル ファイルから既存のテーブル](one-click-ingestion-existing-table.md)に取り込む 
 
-> [!Note]
-> ここでは、ウィザード全般について説明します。 選択するオプションは、データを新しいテーブルに取り込むか、既存のテーブルに取り込むかによって異なります。 詳細については、次を参照してください。
-    > * [新しいテーブル](one-click-ingestion-new-table.md)への取り込み
-    > * [既存のテーブル](one-click-ingestion-existing-table.md)への取り込み 
-    
-1. ウィザードにアクセスするには、Azure Data Explorer の Web UI の左側のメニューで "*データベース*" または "*テーブル*" の行を右クリックし、 **[Ingest new data (preview)]\(新しいデータの取り込み (プレビュー)\)** を選択します。
-
-    ![Web UI 上でワンクリックでのインジェストを選択します。](media/ingest-data-one-click/one-click-ingestion-in-webui.png)   
-
-1. ウィザードの指示に従って、次のオプションを選択します。
+* ウィザードの指示に従って、次のオプションを選択します。
     * [既存のテーブル](one-click-ingestion-existing-table.md)への取り込み
     * [新しいテーブル](one-click-ingestion-new-table.md)への取り込み
     * 次の場所からのデータの取り込み:
       * BLOB ストレージ
-      * ローカル ファイル
-      * コンテナー
-    * 1 行から 10,000 行のサンプル サイズを入力します (コンテナーからのみ)。
-       
-1. データ ソースを正しく選択すると、データのプレビューが表示されます。 
-    データをコンテナーから取り込む場合は、データにフィルターを適用して、特定のプレフィックスや拡張子を持つファイルだけを取り込むことができます。 たとえば、名前が *Europe* で始まるファイルや拡張子が *.json* であるファイルのみを取り込みの対象とすることができます。 
+      * [ローカル ファイル](one-click-ingestion-existing-table.md)
+      * [コンテナー](one-click-ingestion-new-table.md)
 
-1. **[スキーマの編集]** をクリックします。 自動生成されたスキーマとインジェストのプロパティ (データ形式、マッピング名など) を確認して調整します。
+### <a name="schema-mapping"></a>スキーマ マッピング
 
-1. データ インジェスト プロセスを開始します。
+* サービスでは、変更可能なスキーマおよびインジェストのプロパティが自動的に生成されます。 新しいテーブルまたは既存のテーブルのどちらに取り込むかによって、既存のマッピング構造を使用することも、新しいマッピング構造を作成することもできます。
 
-> [!Note]
-> データ ソースがコンテナーである場合、Azure Data Explorer のデータ インジェスト集計 (バッチ処理) ポリシーは、インジェスト プロセスを最適化するように設計されていることに注意してください。 既定では、このポリシーは 5 分または 500 MB のデータに構成されているため、待ち時間が生じることがあります。 集計オプションについては、[バッチ処理のポリシー](kusto/management/batchingpolicy.md)に関するページを参照してください。 他のソースからのデータ取り込みは、直ちに結果が反映されます。
+* **[スキーマ]** タブでは、次の操作を行うことができます。
+    * 自動生成された圧縮の種類を確認します。
+    * [データの形式](#file-formats)を選択します。 異なる形式を使用すると、さらに変更を加えることができます。
+      
+### <a name="editor-window"></a>エディター ウィンドウ
+
+**エディター** ウィンドウでは、必要に応じてデータ テーブルの列を調整できます。 
+
+|テーブルの種類です。  |使用可能な列の調整  |
+|---------|---------|
+|新規     | 新しい列、列の削除、昇順で並べ替え、降順で並べ替え  |
+|Existing     | 新しい列、昇順で並べ替え、降順で並べ替え  |
+
+>[!NOTE]
+> **[エディター]** ペインの上にある[コマンド エディター](one-click-ingestion-new-table.md#command-editor)をいつでも開くことができます。 コマンド エディターでは、ご自分の入力から生成された自動コマンドを表示およびコピーできます。
+
+### <a name="data-ingestion"></a>データ インジェスト
+
+スキーマ マッピングと列の操作が完了すると、インジェスト ウィザードでデータ インジェスト プロセスが開始されます。 
+
+* **コンテナー以外**のソースからデータを取り込む場合は、次のようになります。
+    * インジェストは直ちに反映されます。
+
+* データ ソースが**コンテナー**の場合は、次のようになります。
+    * Azure Data Explorer の[バッチ処理ポリシー](kusto/management/batchingpolicy.md)によりデータが集計されます。 
+    * インジェストが完了すると、インジェスト レポートをダウンロードして、処理された各 BLOB のパフォーマンスを確認できます。 
+    * **[Create continuous ingestion]\(継続的なインジェストの作成\)** を選択し、[Event Grid を使用して継続的なインジェスト](one-click-ingestion-new-table.md#continuous-ingestion---container-only)を設定することができます。
+ 
+### <a name="initial-data-exploration"></a>初期データ探索
+   
+インジェストが完了すると、ウィザードには、データの初期探索で **[クイック コマンド](one-click-ingestion-existing-table.md#quick-queries-and-tools)** を使用するためのオプションが表示されます。
 
 ## <a name="next-steps"></a>次のステップ
 
-* ワンクリックでのインジェストを使用してデータを[既存のテーブル](one-click-ingestion-existing-table.md)に取り込むか、[新しいテーブル](one-click-ingestion-new-table.md)に取り込むかを決めます。
+* [ワンクリックでのインジェストを使用して Azure Data Explorer の既存のテーブルにローカル ファイルの JSON データを取り込む](one-click-ingestion-existing-table.md)
+* [ワンクリックでのインジェストを使用して Azure Data Explorer の新しいテーブルにコンテナーの CSV データを取り込む](one-click-ingestion-new-table.md)
 * [Azure Data Explorer の Web UI でデータのクエリを実行する](web-query-data.md)
 * [Kusto クエリ言語を使用して Azure Data Explorer のクエリを作成する](write-queries.md)

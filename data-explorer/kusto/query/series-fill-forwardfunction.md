@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: dc421c8321985d001bb08ba85965cf017b1d51c6
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7ea5210f0370b495c48615d28e763bf6e396d46e
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372783"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763701"
 ---
 # <a name="series_fill_forward"></a>series_fill_forward()
 
@@ -31,13 +31,13 @@ ms.locfileid: "83372783"
 * *x*: 数値の配列である動的配列スカラー式。 
 * *missing_value_placeholder*: 省略可能なパラメーター。置換する欠損値のプレースホルダーを指定します。 既定値は `double` (*null*) です。
 
-**メモ**
+**ノート**
 
 * [Make シリーズ](make-seriesoperator.md)の後に補間関数を適用するには、 *null*を既定値として指定します。 
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
-make-series num=count() default=long(null) on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
+make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
 ```
 
 * *Missing_value_placeholder*は、実際の要素型に変換される任意の型にすることができます。 (Null) `double` と (null) の両方*null* `long` *null* `int` が同じ意味を持ちます。*null*

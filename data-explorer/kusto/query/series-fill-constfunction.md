@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7f7c6384bb49640890ae4d3cbd5a4f409688bcbe
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: e078919af16a9d2f7dadba0a309932b3a39b6ced
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372804"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763247"
 ---
 # <a name="series_fill_const"></a>series_fill_const()
 
@@ -32,17 +32,17 @@ ms.locfileid: "83372804"
 * *constant_value*: 置換する欠損値のプレースホルダーを指定するパラメーター。 既定値は*0*です。 
 * *missing_value_placeholder*: 省略可能な、置換対象の欠損値のプレースホルダーを指定するパラメーターです。 既定値は `double` (*null*) です。
 
-**メモ**
+**ノート**
 * DefaultValue 構文を使用して定数値を格納する系列を作成でき `default = ` *DefaultValue*ます (または、を省略すると0が想定されます)。 詳細については、「[作成シリーズ](make-seriesoperator.md)」を参照してください。
 
 ```kusto
-make-series num=count() default=-1 on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
+make-series num=count() default=-1 on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
 ```
   
 * [作成系列](make-seriesoperator.md)の後に補間関数を適用するには、既定値として*null*を指定します。 
 
 ```kusto
-make-series num=count() default=long(null) on TimeStamp in range(ago(1d), ago(1h), 1h) by Os, Browser
+make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
 ```
   
 * *Missing_value_placeholder*は任意の型にすることができ、これは実際の要素の型に変換されます。 そのため、 `double` (*null*)、 `long` (*null*)、 `int` (*null*) は同じ意味を持ちます。

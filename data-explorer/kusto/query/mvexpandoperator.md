@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: bba3c4e82c3c1ac53a6ebafcb9de4c327da77e37
-ms.sourcegitcommit: 4986354cc1ba25c584e4f3c7eac7b5ff499f0cf1
+ms.openlocfilehash: ee9c4b236344e21bbbc1da68b76710b15b519baa
+ms.sourcegitcommit: 56bb7b69654900ed63310ac9537ae08b72bf7209
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/16/2020
-ms.locfileid: "84856179"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85814213"
 ---
 # <a name="mv-expand-operator"></a>mv-expand 演算子
 
 複数値の配列またはプロパティバッグを展開します。
 
-`mv-expand`は、[動的](./scalar-data-types/dynamic.md)に型指定された列に適用されます。これにより、コレクション内の各値が個別の行を取得できるようになります。 展開された行内のその他の列はすべて複製されます。 
+`mv-expand`は、[動的](./scalar-data-types/dynamic.md)に型指定された配列またはプロパティバッグ列に適用されます。これにより、コレクション内の各値が個別の行を取得します。 展開された行内のその他の列はすべて複製されます。 
 
 **構文**
 
@@ -34,8 +34,10 @@ ms.locfileid: "84856179"
 * *Name:* 新しい列の名前。
 * *Typename:* 配列の要素の基になる型を示します。これは、演算子によって生成される列の型になります。 配列内の準拠していない値は変換されません。 代わりに、これらの値は値になり `null` ます。
 * *RowLimit:* 元の各行から生成される行の最大数。 既定値は2147483647です。 
-  > [!Note] 
+
+  > [!Note]
   > 演算子のレガシおよび旧形式では、行の上限として128が設定されてい `mvexpand` ます。
+
 * *Indexcolumnname:*`with_itemindex`を指定した場合、出力には、最初に展開されたコレクション内の項目のインデックス (0 から始まる) を含む追加の列 ( *indexcolumnname*) が含まれます。 
 
 **戻り値**
@@ -49,7 +51,9 @@ ms.locfileid: "84856179"
 * `bagexpansion=bag`: プロパティ バッグは、単一エントリのプロパティ バッグに展開されます。 このモードは、既定の展開です。
 * `bagexpansion=array`: プロパティバッグは2要素の `[` *キー* `,` *値*配列構造に展開され `]` 、キーと値への一貫したアクセスを可能にします (たとえば、プロパティ名に対して個別のカウントの集計を実行します)。 
 
-**使用例**
+## <a name="examples"></a>使用例
+
+### <a name="single-column"></a>1列
 
 1つの列の単純な展開:
 
@@ -64,18 +68,23 @@ datatable (a:int, b:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"})]
 |1|{"prop1": "a"}|
 |1|{"prop2": "b"}|
 
+### <a name="zipped-two-columns"></a>圧縮2列
+
 2つの列を展開すると、該当する列が最初に "zip" され、次に展開されます。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
-datatable (a:int, b:dynamic, c:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"}), dynamic([5])]
-| mv-expand b, c 
+datatable (a:int, b:dynamic, c:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"}), dynamic([5, 4, 3])]
+| mv-expand b, c
 ```
 
 |a|b|c|
 |---|---|---|
 |1|{"prop1": "a"}|5|
-|1|{"prop2": "b"}||
+|1|{"prop2": "b"}|4|
+|1||3|
+
+### <a name="cartesian-product-of-two-columns"></a>2つの列のデカルト積
 
 2つの列を展開するデカルト積を取得する場合は、もう一方を展開します。
 
@@ -91,6 +100,26 @@ datatable (a:int, b:dynamic, c:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"}), d
 |1|{"prop1": "a"}|5|
 |1|{"prop2": "b"}|5|
 
+### <a name="convert-output"></a>出力の変換
+
+Mv の出力を特定の型に強制的に展開する場合 (既定値は dynamic)、次のように指定し `to typeof` ます。
+
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
+```kusto
+datatable (a:string, b:dynamic, c:dynamic)["Constant", dynamic([1,2,3,4]), dynamic([6,7,8,9])]
+| mv-expand b, c to typeof(int)
+| getschema 
+```
+
+ColumnName|ColumnOrdinal|DateType|[列の型]
+-|-|-|-
+a|0|System.String|string
+b|1|System.Object|動的
+c|2|System.Int32|INT
+
+については、「」をご覧 `b` `dynamic` `c` `int` ください。
+
+### <a name="using-with_itemindex"></a>With_itemindex の使用
 
 配列の展開に使用する `with_itemindex` もの:
 
@@ -107,14 +136,10 @@ range x from 1 to 4 step 1
 |2|1|
 |3|2|
 |4|3|
+ 
+## <a name="see-also"></a>関連項目
 
-
-**その他の例**
-
-[時間の経過に伴うライブアクティビティの数を](./samples.md#chart-concurrent-sessions-over-time)ご覧ください。
-
-**参照**
-
-- [mv-apply](./mv-applyoperator.md)演算子。
-- [make_list () を集計](makelist-aggfunction.md)します。これにより、逆の関数が行われます。
-- プロパティバッグキーを使用して動的 JSON オブジェクトを列に拡張するための[bag_unpack ()](bag-unpackplugin.md)プラグイン。
+* その他の例については、「一定期間における[ライブアクティビティの数](./samples.md#chart-concurrent-sessions-over-time)」を参照してください。
+* [mv-apply](./mv-applyoperator.md)演算子。
+* [make_list () を集計](makelist-aggfunction.md)します。これは、mv の逆の機能です。
+* プロパティバッグキーを使用して動的 JSON オブジェクトを列に拡張するための[bag_unpack ()](bag-unpackplugin.md)プラグイン。

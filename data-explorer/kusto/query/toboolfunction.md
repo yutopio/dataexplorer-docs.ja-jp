@@ -1,6 +1,6 @@
 ---
-title: tobool() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで tobool() について説明します。
+title: tobool ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでの tobool () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3e1867c99ae241b3f7e09ab8ee873d5ae5d374e0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f99406d94e1cd64da8605e5000aa99136c2b119a
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506360"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763781"
 ---
 # <a name="tobool"></a>tobool()
 
-入力をブール (符号付き 8 ビット) 表現に変換します。
+入力をブール値 (符号付き8ビット) 表現に変換します。
 
 ```kusto
 tobool("true") == true
@@ -28,15 +28,14 @@ tobool(123) == true
 
 **構文**
 
-`tobool(`*エクス*`)`
-プル`toboolean(`*エクスプ*`)`
+`tobool(`*Expr* `)` 
+ Expr `toboolean(`*Expr* `)`エイリアス
 
 **引数**
 
-* *Expr*: ブール値に変換される式。 
+* *Expr*: ブール型に変換される式。 
 
 **戻り値**
 
-変換が成功すると、結果はブール値になります。
-変換が成功しなかった場合は、 が`null`返されます。
- 
+変換が成功した場合、結果はブール値になります。
+変換に失敗した場合、結果はになり `null` ます。

@@ -1,6 +1,6 @@
 ---
-title: make_bag_if() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの make_bag_if() (集計関数) について説明します。
+title: make_bag_if () (集計関数)-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの make_bag_if () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,38 +8,38 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 201de637df387bb8925995a5e52c048255d1535c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2603aab066a7f77ff36553d8898bb713ace990b7
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512973"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763802"
 ---
-# <a name="make_bag_if-aggregation-function"></a>make_bag_if() (集計関数)
+# <a name="make_bag_if-aggregation-function"></a>make_bag_if () (集計関数)
 
-グループ内`dynamic`の*Expr*のすべての値の (JSON) プロパティ バッグ (ディクショナリ) を*Predicate*返します`true`。
+述語が `dynamic` に評価される、グループ内の *' Expr '* のすべての値の (JSON) プロパティバッグ (ディクショナリ*Predicate* ) を返し `true` ます。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
+> [!NOTE]
+> 集計のコンテキストでのみ使用でき[ます。](summarizeoperator.md)
 
 **構文**
 
-`summarize``make_bag_if(`*エクスプル*,*述語*[`,` *最大サイズ*]`)`
+`summarize``make_bag_if(` *Expr*、*述語*[ `,` *MaxSize*]`)`
 
 **引数**
 
-* *Expr*: 集計`dynamic`計算に使用される型の式。
-* *述語*: *Expr* `true`を結果に追加するために評価する必要がある述語。
-* *MaxSize*は、返される要素の最大数に対するオプションの整数の制限です (既定値は*1048576)。* MaxSize 値は 1048576 を超えることはできません。
+* *Expr*: `dynamic` 集計計算に使用される型の式です。
+* *述語*: `true` 結果に *' Expr '* を追加するために、に評価する必要がある述語。
+* *MaxSize*: 返される要素の最大数に対する整数の制限 (省略可能) (既定値は*1048576*)。 MaxSize 値は1048576を超えることはできません。
 
 **戻り値**
 
-Predicate`dynamic`が評価されるプロパティ バッグ (ディクショナリ) であるグループ内の*Expr*のすべての値の (JSON) プロパティ バッグ*Predicate*(ディクショナリ)`true`を返します。
-非ディクショナリ値はスキップされます。
-キーが複数の行に表示される場合は、任意の値 (このキーに指定できる値のうち) が選択されます。
+`dynamic`*述語*がに評価されるプロパティバッグ (ディクショナリ) である、グループ内の *' Expr '* のすべての値の (JSON) プロパティバッグ (ディクショナリ) を返し `true` ます。
+ディクショナリ以外の値はスキップされます。
+1つのキーが複数の行に表示されている場合は、このキーに指定できる値から任意の値が選択されます。
 
-**参照**
-
-[`make_bag`](./make-bag-aggfunction.md)述語式なしで同じことを行う関数。
+> [!NOTE]
+> 関数は、 [`make_bag`](./make-bag-aggfunction.md) 述語式のない make_bag_if () に似ています。
 
 **使用例**
 
@@ -58,9 +58,9 @@ T
 
 |dict|
 |----|
-|{ "prop01": "val_a", "prop03": "val_c" } |
+|{"prop01": "val_a", "prop03": "val_c"} |
 
-make_bag_if() 出力内のバッグキーを列に変換するには[、bag_unpack](bag-unpackplugin.md)プラグインを使用します。 
+Make_bag_if () 出力のバッグキーを列に変換するには、 [bag_unpack ()](bag-unpackplugin.md)プラグインを使用します。 
 
 ```kusto
 let T = datatable(prop:string, value:string, predicate:bool)
@@ -72,10 +72,10 @@ let T = datatable(prop:string, value:string, predicate:bool)
 T
 | extend p = pack(prop, value)
 | summarize bag=make_bag_if(p, predicate)
-| evaluate bag_unpack(bag) 
+| evaluate bag_unpack(bag)
 
 ```
 
-|プロップ01|プロップ03|
+|prop01|prop03|
 |---|---|
 |val_a|val_c|

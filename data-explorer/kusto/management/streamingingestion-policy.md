@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 55ed390a1c98a307d2bb38476458f29fc9c92997
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: e8d02634ad0c56b2e1e369d4c2cd86c63bdad155
+ms.sourcegitcommit: 56bb7b69654900ed63310ac9537ae08b72bf7209
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84258013"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85814196"
 ---
 # <a name="streaming-ingestion-policy-management"></a>ストリーミングインジェストポリシーの管理
 
@@ -114,7 +114,8 @@ ms.locfileid: "84258013"
 ### <a name="streaming-ingestion-policy-object"></a>ストリーミングインジェストポリシーオブジェクト
 
 ストリーミングインジェストポリシーオブジェクトは、管理コマンドの入力と出力で、次のプロパティを含む JSON 形式の文字列です。
-|プロパティ  |Type    |説明                                                       |必須/オプション |
-|----------|--------|------------------------------------------------------------------|-------|
-|IsEnabled |`bool`  |エンティティのストリーミングインジェストが有効になっている| 必須|
-|HintAllocatedRate|`double`|データはの推定速度 (Gb/時間)| 省略可能|
+
+|プロパティ|Type|説明|必須/オプション
+|---|---|---|---
+|IsEnabled|`bool`|エンティティのストリーミングインジェストが有効になっている| 必須
+|HintAllocatedRate|`double`|データはの推定速度 (Gb/時間)|オプション

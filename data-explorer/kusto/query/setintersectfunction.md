@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: f611f660a791117159ad5fce4c024914d9e6909b
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 6739b01f996c04829a1fdb78eab96f6e51b011bb
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264744"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763664"
 ---
 # <a name="set_intersect"></a>set_intersect()
 
@@ -25,7 +25,7 @@ ms.locfileid: "85264744"
 
 **引数**
 
-* *arr1...arrN*: 交差セットを作成するための入力配列 (少なくとも2つの配列)。 すべての引数は動的配列である必要があります ( [pack_array](packarrayfunction.md)を参照してください)。 
+* *arr1...arrN*: 交差セットを作成するための入力配列 (少なくとも2つの配列)。 すべての引数は動的配列である必要があります。 詳細については、「 [pack_array](packarrayfunction.md)」を参照してください。 
 
 **戻り値**
 
@@ -46,8 +46,8 @@ range x from 1 to 3 step 1
 |Column1|
 |---|
 | [1]|
-|3|
-|番|
+|[2]|
+|[3]|
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

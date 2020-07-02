@@ -1,6 +1,6 @@
 ---
-title: welch_test() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで welch_test() について説明します。
+title: welch_test ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの welch_test () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a9f4b3d86bf3d679fd4fdd320b394956c71d3e97
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1bb995874bf6ac552350c602c6d3742a08b1273b
+ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81504490"
+ms.lasthandoff: 07/01/2020
+ms.locfileid: "85763683"
 ---
 # <a name="welch_test"></a>welch_test()
 
-[ウェルチテスト関数のp_valueを計算します。](https://en.wikipedia.org/wiki/Welch%27s_t-test)
+の p_value を計算し[ます。](https://en.wikipedia.org/wiki/Welch%27s_t-test)
 
 ```kusto
 // s1, s2 values are from https://en.wikipedia.org/wiki/Welch%27s_t-test
@@ -33,19 +33,19 @@ print
 
 **構文**
 
-`welch_test(`*平均1*`, `*分散1*`, `*個数1*`, `*平均2*`, `*分散2*`, `*カウント2*`)`
+`welch_test(`*mean1* `, `*variance1* `, `*count1* `, `*mean2* `, `*variance2* `, `*count2*`)`
 
 **引数**
 
-* *平均1*: 第1系列の平均値を表す式
-* *variance1*: 第 1 系列の分散値を表す式
-* *count1*: 第 1 系列の値の数を表す式
-* *平均2*: 第2系列の平均値を表す式
-* *variance2*: 第 2 系列の分散値を表す式
-* *count2*: 第 2 系列の値の数を表す式
+* *mean1*: 最初の系列の平均 (平均) 値を表す式
+* *variance1*: 最初の系列の分散値を表す式
+* *count1*: 最初の系列の値の数を表す式
+* *mean2*: 2 番目の系列の平均 (平均) 値を表す式
+* *variance2*: 2 番目の系列の分散値を表す式
+* *count2*: 2 番目の系列の値の数を表す式
 
 **戻り値**
 
-[ウィキペディア](https://en.wikipedia.org/wiki/Welch%27s_t-test)から :
+[Wikipedia](https://en.wikipedia.org/wiki/Welch%27s_t-test)から:
 
-統計では、ウェルチのt検定、または不均一な分散t検定は、2つの集団が等しい平均を有するという仮説をテストするために使用される2サンプルの位置テストです。 Welchのt検定は、学生のt検定の適応であり、つまり、Studentのt検定の助けを借りて導き出され、2つのサンプルが不均一な分散と不均一なサンプルサイズを有する場合、より信頼性が高い。 これらの検定は、比較対象の 2 つのサンプルの基になる統計単位が重複していない場合に適用されるため、しばしば「非対」または「独立サンプル」t検定と呼ばれます。 Welchのt検定はStudentのt-testよりも人気がなく、読者にはあまり馴染みがないかもしれないことを考えると、より有益な名前は簡潔さのために「ウェルチの不平等な分散t-test」または「不平等な分散t検定」です。
+Statistics では、次の2つのサンプルの場所テストを使用して、2つの母集団が等しいという仮説をテストします。 この t 検定は、スチューデントの t 検定を適合させるものであり、2つのサンプルの差異が等しくなく、サンプルサイズが等しくない場合にも信頼性が高くなります。 これらのテストは、"対になっていない" または "独立したサンプル" と呼ばれることがよくあります。 テストは通常、比較対象の2つのサンプルの基になる統計単位が重複していない場合に適用されます。 この t 検定は、スチューデントの t 検定よりも一般的ではありません。閲覧者にとってはあまりなじみがありません。 このテストは、"" "という名前の" "は、" ' 等分散の等しくない差異 "と呼ばれることもあります。

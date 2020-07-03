@@ -283,16 +283,18 @@
               href: data-factory-template.md
             - name: Azure Data Factory を使用して制御コマンドを実行する
               href: data-factory-command-activity.md
-        - name: Microsoft Flow コネクタ
+        - name: Power Automate
           items:
-            - name: Microsoft Flow コネクタ
+            - name: Power Automate フロー コネクタ
               href: flow.md
-            - name: Microsoft Flow コネクタの使用例
+            - name: Power Automate コネクタの使用例
               href: flow-usage.md
         - name: Logic Apps
           href: kusto/tools/logicapps.md
         - name: Apache Spark コネクタ
           href: spark-connector.md
+        - name: Cosmos DB
+          href: 'https://github.com/Azure/azure-kusto-labs/tree/master/cosmosdb-adx-integration'
         - name: Python を使用して Databricks から接続する
           href: connect-from-databricks.md
         - name: Jupyter Notebook と Kqlmagic でデータを分析する

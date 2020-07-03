@@ -8,24 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: e44aa2b14aa8babdab95a6ad8c6f7ef5ed026ff9
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 9ba9f8b0f0a940357eab2277eb24e18b92718bc4
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617428"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85901801"
 ---
 # <a name="restrictedviewaccess-policy"></a>RestrictedViewAccess ポリシー
 
-*RestrictedViewAccess*は、データベース内のテーブルで有効にできるオプションのポリシーです。
+*RestrictedViewAccess*は、データベースのテーブルに対して有効にできるオプションのポリシーです。
 
-テーブルでこのポリシーが有効になっている場合、テーブル内のデータは、データベースの[UnrestrictedViewer](../management/access-control/role-based-authorization.md)ロールに追加されたプリンシパルに対して*のみ*クエリを実行できます。
+テーブルに対してこのポリシーが有効になっている場合、テーブル内のデータは、データベースに[UnrestrictedViewer](../management/access-control/role-based-authorization.md)ロールを持つプリンシパルだけがクエリを実行できます。
+[UnrestrictedViewer](../management/access-control/role-based-authorization.md)データベースレベルのロールに登録されていないプリンシパルは、テーブル内のデータに対してクエリを実行できません。 未登録のテーブル/データベース/クラスター管理者でもあります。
 
-テーブルでポリシーが有効になっている場合、 [UnrestrictedViewer](../management/access-control/role-based-authorization.md)データベースレベルのロールに含まれていないプリンシパル (テーブル/データベース/クラスター管理者であっても) は、テーブル内のデータを照会することはできません。
-
-[UnrestrictedViewer](../management/access-control/role-based-authorization.md)ロールは、現在のプリンシパルがデータベース (データベース管理者/ユーザー/ビューアー) に対してクエリを実行する権限を既に持っていると仮定して、ポリシーが有効になっているデータベース内の*すべて*のテーブルに view 権限を付与します。 ロールに対してプリンシパルの追加や削除を行うには、 [Databaseadmin](../management/access-control/role-based-authorization.md)を使用します。
+[UnrestrictedViewer](../management/access-control/role-based-authorization.md)ロールは、ポリシーが有効になっているデータベース内の*すべて*のテーブルに対して view 権限を付与します。
+現在のプリンシパル (データベース管理者/ユーザー/ビューアー) は、既にデータベースのクエリを実行する権限を持っています。 プリンシパルの追加または削除は、 [Databaseadmin](../management/access-control/role-based-authorization.md)で行うことができます。
 
 > [!NOTE]
 > [行レベルセキュリティポリシー](./rowlevelsecuritypolicy.md)が有効になっているテーブルでは、RestrictedViewAccess ポリシーを構成できません。
 
-RestrictedViewAccess ポリシーを管理するための制御コマンドの詳細については、[こちらを参照してください](../management/restrictedviewaccess-policy.md)。
+詳細については、「 [RestrictedViewAccess ポリシー](../management/restrictedviewaccess-policy.md)を管理するための制御コマンド」を参照してください。

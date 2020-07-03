@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2fbc870eafc45c8c63bea98a64f492d161af4c9b
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 4d90bc3b6222896d45374d771ce5f87f4bdf6786
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226348"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85902021"
 ---
 # <a name="sliding_window_counts-plugin"></a>sliding_window_counts プラグイン
 
-[ここで](samples.md#performing-aggregations-over-a-sliding-window)説明する手法を使用して、スライド式ウィンドウのカウントと個別の値の数を確認します。
+[ここで](samples.md#perform-aggregations-over-a-sliding-window)説明する手法を使用して、スライド式ウィンドウのカウントと個別の値の数を確認します。
 
 たとえば、 *1 日*につき、前の*週*のユーザーのカウントと個別のカウントを計算します。 
 
@@ -83,7 +83,7 @@ T | evaluate sliding_window_counts(UserId, Timestamp, start, end, lookbackWindow
 
 ```
 
-|Timestamp|カウント|`dcount`|
+|Timestamp|Count|`dcount`|
 |---|---|---|
 |2017-08-01 00:00: 00.0000000|5|3|
 |2017-08-02 00:00: 00.0000000|8|5|

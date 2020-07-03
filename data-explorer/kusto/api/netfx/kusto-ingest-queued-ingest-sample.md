@@ -8,21 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/05/2020
-ms.openlocfilehash: 0e6564e6c27c62621678ae350514bf1df39c73ae
-ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
+ms.openlocfilehash: 6963c118742593d2402d5ae81d8ff4373a2ff600
+ms.sourcegitcommit: d40fe44e7581d87f63cc0cb939f3aa9c3996fc08
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83722084"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85839428"
 ---
 # <a name="data-ingestion-with-the-kustoingest-library"></a>Kusto インジェストライブラリを使用したデータインジェスト
 
-この記事では、データインジェストのために Kusto. インジェストクライアントライブラリを使用するサンプルコードを示します。 このコードは、キューインジェストと呼ばれる、運用レベルのパイプラインのインジェストの推奨モードを詳細に説明しています。 Kusto. インジェストライブラリの場合、対応するエンティティは[IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)インターフェイスです。 クライアントコードは、azure キューにインジェスト通知を送信することによって、Azure データエクスプローラーサービスとやり取りします。 キューへの参照は、インジェストを担当するデータ管理エンティティから取得されます。 
+この記事では、データインジェストのために Kusto. インジェストクライアントライブラリを使用するサンプルコードを示します。 このコードは、キューインジェストと呼ばれる、運用レベルのパイプラインのインジェストの推奨モードを詳細に説明しています。 Kusto. インジェストライブラリの場合、対応するエンティティは[IKustoQueuedIngestClient インターフェイス](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient)です。
+クライアントコードは、azure キューにインジェスト通知を送信することによって、Azure データエクスプローラーサービスとやり取りします。 キューへの参照は、インジェストを担当するデータ管理エンティティから取得されます。 
 
 > [!NOTE]
 > データ管理サービスとの対話は、Azure Active Directory (Azure AD) を使用して認証される必要があります。
 
-このサンプルでは Azure AD ユーザー認証を使用し、対話型ユーザーの id で実行します。
+このサンプルコードでは Azure AD ユーザー認証を使用し、対話型ユーザーの id で実行します。
 
 ## <a name="dependencies"></a>依存関係
 

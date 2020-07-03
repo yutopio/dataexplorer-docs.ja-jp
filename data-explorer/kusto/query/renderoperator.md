@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/29/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 20e512d55568f39ea21d3ddcb383adaf0fa7dab3
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 90b2a08d4fdde6ab6a74b12632c9310029f8fc1b
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373030"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85902102"
 ---
 # <a name="render-operator"></a>render 演算子
 
@@ -40,9 +40,9 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 
 ::: zone pivot="azuredataexplorer"
 
-|*グラフ*     |説明|
+|*視覚化*     |説明|
 |--------------------|-|
-| `anomalychart`     | 線上と同様ですが、 [series_decompose_anomalies](./series-decompose-anomaliesfunction.md)関数を使用した[異常を強調](./samples.md#get-more-out-of-your-data-in-kusto-using-machine-learning)表示します。 |
+| `anomalychart`     | 線上と同様ですが、 [series_decompose_anomalies](./series-decompose-anomaliesfunction.md)関数を使用した[異常を強調](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)表示します。 |
 | `areachart`        | 面グラフ。 最初の列は x 軸で、数値型の列である必要があります。 その他の数値列は y 軸です。 |
 | `barchart`         | 最初の列は x 軸で、テキスト、datetime、または数値を指定できます。 その他の列は数値であり、横方向のストリップとして表示されます。|
 | `card`             | 最初の結果レコードは、スカラー値のセットとして扱われ、カードとして表示されます。 |
@@ -61,7 +61,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 
 ::: zone pivot="azuremonitor"
 
-|*グラフ*     |説明|
+|*視覚化*     |説明|
 |--------------------|-|
 | `areachart`        | 面グラフ。 最初の列は x 軸で、数値型の列である必要があります。 その他の数値列は y 軸です。 |
 | `barchart`         | 最初の列は x 軸で、テキスト、datetime、または数値を指定できます。 その他の列は数値であり、横方向のストリップとして表示されます。|
@@ -110,9 +110,9 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 ::: zone-end
 
 いくつかの視覚化は、プロパティを指定することによってさらに詳細にすることができ `kind` ます。
-次のとおりです。
+これらのボタンの役割は、次のとおりです。
 
-|*グラフ*|`kind`             |説明                        |
+|*視覚化*|`kind`             |説明                        |
 |---------------|-------------------|-----------------------------------|
 |`areachart`    |`default`          |各 "区分" は独自のものです。     |
 |               |`unstacked`        |`default` と同じ。                 |
@@ -135,7 +135,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 
 |`ysplit`  |説明                                                       |
 |----------|------------------------------------------------------------------|
-|`none`    |すべての系列データに対して1つの y 軸が表示されます。 (既定値)。       |
+|`none`    |すべての系列データに対して1つの y 軸が表示されます。 (既定)       |
 |`axes`    |1つのグラフが、複数の y 軸 (系列ごとに1つ) と共に表示されます。|
 |`panels`  |値ごとに1つのグラフが表示され `ycolumn` ます (上限まで)。|
 
@@ -170,6 +170,6 @@ range x from -2 to 2 step 0.1
 
 [チュートリアルのレンダリング例](./tutorial.md#render-display-a-chart-or-table)。
 
-[異常検出](./samples.md#get-more-out-of-your-data-in-kusto-using-machine-learning)
+[異常検出](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)
 
 ::: zone-end

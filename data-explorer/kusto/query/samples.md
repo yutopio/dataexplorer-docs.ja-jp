@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ffb14b110904bcf94a69d3abeed2fc0b542b0448
-ms.sourcegitcommit: 31af2dfa75b5a2f59113611cf6faba0b45d29eb5
+ms.openlocfilehash: 1408bfa0af8c07166bde94c2738b53cd0065ec97
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84454135"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85902166"
 ---
 # <a name="samples"></a>サンプル
 
@@ -34,13 +34,13 @@ StormEvents
 
 * 最初の列は x 軸を形成します。 数値、datetime、または文字列を指定できます。 
 * 、、およびを使用して、 `where` `summarize` 表示する `top` データの量を制限します。
-* X 軸の順序を定義するために、結果を並べ替えます。
+* 結果を並べ替えて x 軸の順序を定義します。
 
 :::image type="content" source="images/samples/060.png" alt-text="060":::
 
 ## <a name="get-sessions-from-start-and-stop-events"></a>開始および停止イベントからのセッションの取得
 
-イベントのログがあり、一部のイベントで拡張アクティビティまたはセッションの開始または終了がマークされているとします。 
+イベントのログがあるとします。 一部のイベントは、拡張されたアクティビティまたはセッションの開始または終了をマークします。 
 
 |名前|City|SessionId|Timestamp|
 |---|---|---|---|
@@ -48,10 +48,10 @@ StormEvents
 |Game|London|2817330|2015-12-09T10:12:52.45|
 |開始|Manchester|4267667|2015-12-09T10:14:02.23|
 |Stop|London|2817330|2015-12-09T10:23:43.18|
-|キャンセル|Manchester|4267667|2015-12-09T10:27:26.29|
+|Cancel|Manchester|4267667|2015-12-09T10:27:26.29|
 |Stop|Manchester|4267667|2015-12-09T10:28:31.72|
 
-すべてのイベントには SessionId があるため、問題は、開始イベントと停止イベントを同じ id で照合することです。
+すべてのイベントには SessionId があります。 問題は、開始イベントと停止イベントを同じ ID に一致させることです。
 
 ```kusto
 let Events = MyLogTable | where ... ;
@@ -66,8 +66,11 @@ Events
 | project City, SessionId, StartTime, StopTime, Duration = StopTime - StartTime
 ```
 
-[`let`](./letstatement.md)結合に入る前に、できるだけ減らす下にあるテーブルの射影に名前を付けて使用します。
-[`Project`](./projectoperator.md)は、開始時刻と終了時刻の両方が結果に表示されるように、タイムスタンプの名前を変更するために使用されます。 結果に表示する他の列を選択することもできます。 [`join`](./joinoperator.md)同じアクティビティの開始エントリと停止エントリを一致させ、アクティビティごとに1行を作成します。 最後に、 `project` はもう一度列を追加して、アクティビティ期間を表示します。
+1. [`let`](./letstatement.md)結合に入る前に、できるだけ減らす下にあるテーブルの射影に名前を付けて使用します。
+1. [`Project`](./projectoperator.md)開始時刻と終了時刻の両方が結果に表示されるように、を使用してタイムスタンプの名前を変更します。 
+   また、結果に表示される他の列も選択されます。 
+1. [`join`](./joinoperator.md)同じアクティビティの開始エントリと停止エントリを一致させ、アクティビティごとに1行を作成するには、を使用します。 
+1. 最後に、 `project` はもう一度列を追加して、アクティビティ期間を表示します。
 
 
 |City|SessionId|StartTime|StopTime|Duration|
@@ -75,9 +78,9 @@ Events
 |London|2817330|2015-12-09T10:12:02.32|2015-12-09T10:23:43.18|00:11:40.46|
 |Manchester|4267667|2015-12-09T10:14:02.23|2015-12-09T10:28:31.72|00:14:29.49|
 
-### <a name="get-sessions-without-session-id"></a>セッション ID なしのセッションの取得
+### <a name="get-sessions-without-session-id"></a>セッション ID を使用せずにセッションを取得する
 
-ここでは、不便なことに、開始および停止イベントにマッチングで使用できるセッション ID がないと仮定します。 ただし、セッションが行われたクライアントの IP アドレスはあります。 各クライアントのアドレスでは一度に 1 つのセッションしか行われないと仮定した場合、同じ IP アドレスから各開始イベントと次の停止イベントのマッチングを行うことができます。
+Start イベントと stop イベントには、一致させることのできるセッション ID がないとします。 ただし、セッションが行われたクライアントの IP アドレスはあります。 各クライアントのアドレスでは一度に 1 つのセッションしか行われないと仮定した場合、同じ IP アドレスから各開始イベントと次の停止イベントのマッチングを行うことができます。
 
 ```kusto
 Events 
@@ -95,23 +98,25 @@ Events
 | summarize arg_min(duration, *) by bin(StartTime,1s), ClientIp
 ```
 
-結合では、同じクライアントの IP アドレスから各開始時刻とすべての停止時刻のマッチングを行います。 したがって、まず、前の停止時刻と一致した時刻を削除します。
+結合では、同じクライアントの IP アドレスから各開始時刻とすべての停止時刻のマッチングを行います。 
+1. 以前の停止時刻と一致するものを削除します。
+1. 各セッションのグループを取得するには、[開始時刻と IP] でグループ化します。 
+1. `bin`StartTime パラメーターに関数を指定します。 そうでない場合、Kusto は、開始時刻と間違った停止時間を照合する1時間のビンを自動的に使用します。
 
-次に、開始時刻と ip でグループ化して、セッションごとにグループを取得します。 StartTime パラメーターに関数を指定する必要があり `bin` ます。そうしないと、Kusto は1時間のビンを自動的に使用します。これにより、開始時刻と間違った停止時刻が一致します。
-
-`arg_min`各グループの実行時間が最も小さい行を選択し `*` ます。パラメーターは、各列名にプレフィックス "min_" を付けますが、他のすべての列を通過します。 
+`arg_min`各グループの実行時間が最も小さい行を選択し、 `*` パラメーターは他のすべての列を通過します。 引数プレフィックス "min_" を各列名に指定します。 
 
 :::image type="content" source="images/samples/040.png" alt-text="040"::: 
 
-次に、コードを追加して、簡単にサイズ変更可能なビンに期間をカウントできます。横棒グラフの設定はわずかであるため、を使用して `1s` 、タイムスパンを数値に変換します。 
+コードを追加して、簡単にサイズ設定されたビンで期間をカウントします。この例では、横棒グラフの設定により、をで除算して、 `1s` 時間帯を数値に変換します。 
 
-
-      // Count the frequency of each duration:
+```
+    // Count the frequency of each duration:
     | summarize count() by duration=bin(min_duration/1s, 10) 
       // Cut off the long tail:
     | where duration < 300
       // Display in a bar chart:
     | sort by duration asc | render barchart 
+```
 
 :::image type="content" source="images/samples/050.png" alt-text="050":::
 
@@ -186,9 +191,9 @@ on UnitOfWorkId
 
 ## <a name="chart-concurrent-sessions-over-time"></a>同時セッションの時系列グラフ
 
-開始および終了時刻を含むアクティビティのテーブルがあるとします。  ここでは、一定時間における同時実行数を示す時系列グラフを使用します。
+開始時刻と終了時刻を含むアクティビティのテーブルがあるとします。 いつでも同時に実行されているアクティビティの数を示すグラフを表示します。
 
-次に、を呼び出す入力例を示し `X` ます。
+という入力例を次に示し `X` ます。
 
 |SessionId | StartTime | StopTime |
 |---|---|---|
@@ -196,15 +201,15 @@ on UnitOfWorkId
 | b | 10:01:29 | 10:03:10 |
 | c | 10:03:02 | 10:05:20 |
 
-1分のビンにグラフを作成する必要があるので、実行中のアクティビティごとにカウントできるように、1分ごとに作成する必要があります。
+1分のビンのグラフの場合は、実行中のアクティビティごとにカウントされるものを作成します。
 
-中間結果を以下に示します。
+ここでは、中間結果を示します。
 
 ```kusto
 X | extend samples = range(bin(StartTime, 1m), StopTime, 1m)
 ```
 
-`range` は指定された間隔で値の配列を生成します。
+`range`指定した間隔で値の配列を生成します。
 
 |SessionId | StartTime | StopTime  | サンプル|
 |---|---|---|---|
@@ -231,7 +236,7 @@ X | mv-expand samples = range(bin(StartTime, 1m), StopTime , 1m)
 | c | 10:03:12 | 10:04:30 | 10:03:00|
 | c | 10:03:12 | 10:04:30 | 10:04:00|
 
-これで、アクティビティごとの発生回数をカウントして、サンプル時間でグループ化できます。
+次に、これらをサンプル時間でグループ化して、各アクティビティの出現回数をカウントします。
 
 ```kusto
 X
@@ -239,8 +244,8 @@ X
 | summarize count(SessionId) by bin(todatetime(samples),1m)
 ```
 
-* [Mv で展開](./mvexpandoperator.md)すると動的な型の列が生成するため、todatetime () が必要です。
-* 数値や日付の場合、間隔を指定しないと集計では常に既定の間隔で bin 関数が適用されるため、bin() が必要になります。 
+* [Mv-expand](./mvexpandoperator.md)は動的な型の列を生成するので、todatetime () を使用します。
+* Bin () を使用します。数値と日付については、[集計] を指定しない場合は常に既定の間隔で bin 関数が適用されるためです。 
 
 
 | count_SessionId | サンプル|
@@ -252,11 +257,11 @@ X
 | 1 | 10:05:00|
 | 1 | 10:06:00|
 
-これは、棒グラフまたは時間グラフとして表示できます。
+結果は、横棒グラフまたは時間グラフとして表示できます。
 
 ## <a name="introduce-null-bins-into-summarize"></a>Null ビンを概要に導入する
 
-列で `summarize` 構成されるグループキーに演算子を適用すると `datetime` 、通常は、その値を固定幅のビンに "ビン" します。例えば：
+列で `summarize` 構成されるグループキーに演算子を適用すると `datetime` 、それらの値が固定幅のビンに "bin" されます。
 
 ```kusto
 let StartTime=ago(12h);
@@ -267,9 +272,9 @@ T
 | summarize Count=count() by bin(Timestamp, 5m)
 ```
 
-この操作では、 `T` 5 分間の各ビンに分類される、の行グループごとに1行のテーブルが生成されます。 では、"null ビン" を追加 `StartTime` し `StopTime` ます。には、に対応する行がないとの間の time bin 値の行が追加され `T` ます。 
+上の例では、 `T` 5 分の各ビンに分類される、の行グループごとに1行のテーブルが生成されます。 では、"null ビン" を追加 `StartTime` し `StopTime` ます。には、に対応する行がないとの間の time bin 値の行が追加され `T` ます。 
 
-多くの場合、これらのビンをテーブルに "埋め込む" 必要があります。これを行う1つの方法を次に示します。
+これらのビンにテーブルを "埋め込む" ことをお勧めします。これを行う1つの方法を次に示します。
 
 ```kusto
 let StartTime=ago(12h);
@@ -288,18 +293,18 @@ T
 
 上記のクエリのステップバイステップの説明を次に示します。 
 
-1. 演算子を使用 `union` すると、テーブルに行を追加できます。 これらの行は、式によってによって生成され `union` ます。
-2. 演算子を使用して、 `range` 1 つの行/列を含むテーブルを生成します。
+1. `union`演算子を使用すると、テーブルに行を追加できます。 これらの行は、式によって生成され `union` ます。
+1. 演算子は、 `range` 1 つの行または列を含むテーブルを生成します。
    では、テーブルがでは使用されません `mv-expand` 。
-3. 関数に `mv-expand` 対して演算子を使用 `range` すると、との間に5分のビンと同じ数の行が作成され `StartTime` `EndTime` ます。
-4. がのすべて `Count` の `0` 。
-5. 最後に、演算子を使用して、元の引数 ( `summarize` left、outer) から、内部引数に対するビン `union` (つまり、null ビン行) までのビンをグループ化します。 これにより、出力にはビンごとに1行が含まれ、その値は0または元のカウントになります。  
+1. `mv-expand`関数に対する演算子は、との `range` 間の5分のビンと同じ数の行を作成し `StartTime` `EndTime` ます。
+1. のを `Count` 使用 `0` します。
+1. 操作は、 `summarize` 元の引数 (left、outer) からにビンをグループ化し `union` ます。 また、演算子は内部引数からそれにビン分割します (null ビン行)。 このプロセスにより、出力にはビンごとに1行が含まれ、値は0または元のカウントになります。  
 
-## <a name="get-more-out-of-your-data-in-kusto-using-machine-learning"></a>Kusto を使用してデータをさらに活用する方法 Machine Learning 
+## <a name="get-more-out-of-your-data-in-kusto-with-machine-learning"></a>Kusto でデータをさらに活用するには、Machine Learning 
 
-機械学習アルゴリズムを活用し、テレメトリデータから興味深い洞察を得るために、多くの興味深いユースケースがあります。 多くの場合、これらのアルゴリズムは入力として非常に構造化されたデータセットを必要としますが、未加工のログデータは通常、必要な構造とサイズに一致しません。 
+機械学習アルゴリズムを活用し、テレメトリデータから興味深い洞察を得るために、多くの興味深いユースケースがあります。 多くの場合、これらのアルゴリズムでは、入力として非常に構造化されたデータセットが必要です。 通常、未加工のログデータは、必要な構造とサイズに一致しません。 
 
-ここでは、特定の Bing 推論サービスのエラー率の異常を調べることから始めます。 Logs テーブルには65B レコードがあり、以下の単純なクエリは250,000 エラーをフィルター処理し、異常検出関数[series_decompose_anomalies](series-decompose-anomaliesfunction.md)を利用するエラー数の時系列データを作成します。 異常は Kusto サービスによって検出され、タイムシリーズグラフの赤い点として強調表示されます。
+まず、特定の Bing 推論サービスのエラー率に異常がないか調べてください。 Logs テーブルには65B レコードがあります。 次の単純なクエリは、250,000 エラーをフィルター処理し、異常検出関数[series_decompose_anomalies](series-decompose-anomaliesfunction.md)を使用するエラー数の時系列データを作成します。 異常は Kusto サービスによって検出され、タイムシリーズグラフの赤い点として強調表示されます。
 
 ```kusto
 Logs
@@ -309,7 +314,11 @@ Logs
 | render anomalychart 
 ```
 
-サービスでは、疑わしいエラー率を持つ少数のタイムバケットが特定されました。 Kusto を使用して、この時間枠を拡大し、' Message ' 列で集計されたクエリを実行して、上位のエラーを検索しています。 ページに合わせるために、メッセージのスタックトレース全体から関連する部分を除去しました。 エラーメッセージは、データの変更を含む書式指定文字列によって作成されているので、上位8個のエラーですばらしい成功を収めたことがわかります。 
+サービスでは、疑わしいエラー率を持つ少数のタイムバケットが特定されました。 Kusto を使用して、この時間枠を拡大し、' Message ' 列を集計するクエリを実行します。 上位のエラーを検索してみてください。 
+
+メッセージのスタックトレース全体の関連部分は、ページに合わせてトリミングされます。 
+
+上位8個のエラーが正しく識別されていることを確認できます。 ただし、データの変更を含む書式指定文字列によってエラーメッセージが作成されたため、長い一連のエラーが発生します。 
 
 ```kusto
 Logs
@@ -323,17 +332,17 @@ Logs
 |count_|Message
 |---|---
 |7125|メソッド ' RunCycleFromInterimData ' の ExecuteAlgorithmMethod に失敗しました...
-|7125|InferenceHostService の呼び出しに失敗しました..NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません...
-|7124|予期しない推論システムエラーです。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません... 
-|5112|予期しない推論システムエラーです。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません。
-|174|InferenceHostService の呼び出しに失敗しました。 CommunicationException: パイプへの書き込み中にエラーが発生しました:...
+|7125|InferenceHostService は、tem failed..Sys呼び出します。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません...
+|7124|予期しない推論システム error..System。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません... 
+|5112|予期しない推論システム error..System。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません。
+|174|InferenceHostService call failed..System. CommunicationException: パイプへの書き込み中にエラーが発生しました:...
 |10|メソッド ' RunCycleFromInterimData ' の ExecuteAlgorithmMethod に失敗しました...
 |10|推論システムエラー..UserInterimDataManagerException (..........
-|3|InferenceHostService の呼び出しに失敗しました。 CommunicationObjectFaultedException:...
+|3|InferenceHostService 呼び出し failed..System:...
 |1|推論システムエラー..."%.......................AIS TraceId: 8292FC561AC64BED8FA243808FE74EFD...
 |1|推論システムエラー..."%.......................AIS TraceId: 5F19F7587-71 3EC9B641E02E701AFBF...
 
-ここで、 `reduce` 演算子が役に立ちます。 演算子は、 `reduce` コード内の同じトレースインストルメンテーションポイントによって発生した63の異なるエラーを特定し、その時間枠での意味のあるエラートレースに焦点を当てるのに役立ちました。
+ここで演算子が `reduce` 役に立ちます。 演算子は、コード内の同じトレースインストルメンテーションポイントによって発生した63の異なるエラーを特定し、その時間枠での意味のある追加のエラートレースに焦点を当てることができます。
 
 ```kusto
 Logs
@@ -346,16 +355,21 @@ Logs
 |Count|パターン
 |---|---
 |7125|メソッド ' RunCycleFromInterimData ' の ExecuteAlgorithmMethod に失敗しました...
-|  7125|InferenceHostService の呼び出しに失敗しました..NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません...
-|  7124|予期しない推論システムエラーです。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません...
-|  5112|予期しない推論システムエラーです。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません。
-|  174|InferenceHostService の呼び出しに失敗しました。 CommunicationException: パイプへの書き込み中にエラーが発生しました:...
+|  7125|InferenceHostService は、tem failed..Sys呼び出します。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません...
+|  7124|予期しない推論システム error..System。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません...
+|  5112|予期しない推論システム error..System。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません。
+|  174|InferenceHostService call failed..System. CommunicationException: パイプへの書き込み中にエラーが発生しました:...
 |  63|推論システムエラー..\*要求.: \* オブジェクトに書き込むための書き込み。: "%" というオブジェクトを書き込みます.. \* .
 |  10|メソッド ' RunCycleFromInterimData ' の ExecuteAlgorithmMethod に失敗しました...
 |  10|推論システムエラー..UserInterimDataManagerException (..........
-|  3|InferenceHostService の呼び出しに失敗しました..System.servicemodel. \* : オブジェクト (system.servicemodel... \* + \* ) \* \* は次の \* とおりです。  Syst...
+|  3|InferenceHostService は、tem failed..Sys呼び出します。ServiceModel. \* : オブジェクト (system.servicemodel... \* + \* ) \* \* は \* ...  Syst...
 
-検出された異常に起因する上位のエラーをよく見てきたので、システム間で発生したこれらのエラーの影響を理解したいと思います。 ' Logs ' テーブルには、' Component '、' Cluster ' などの追加のディメンションデータが含まれています...新しい "autocluster" プラグインは、単純なクエリを使用してその洞察を得るのに役立ちます。 次の例では、上位4つのエラーはそれぞれコンポーネントに固有であり、上位3つのエラーは DB4 クラスターに固有であり、4つ目はすべてのクラスターで発生していることがわかります。
+これで、検出された異常に起因する上位のエラーを確認できます。
+
+サンプルシステム間で発生したこれらのエラーの影響を理解するには、次の手順を実行します。 
+* ' Logs ' テーブルには、' Component '、' Cluster ' などの追加のディメンションデータが含まれています。
+* 新しい "autocluster" プラグインは、単純なクエリを使用してその洞察を導き出すのに役立ちます。 
+* 次の例では、上位4つのエラーはそれぞれコンポーネントに固有であることがわかります。 また、上位3つのエラーは DB4 クラスターに固有ですが、4つ目はすべてのクラスターで発生します。
 
 ```kusto
 Logs
@@ -371,10 +385,11 @@ Logs
 |7124|26.64|InferenceAlgorithmExecutor|DB4|予期しない推論システムエラー...
 |5112|19.11|InferenceAlgorithmExecutor|*|予期しない推論システムエラー... 
 
-## <a name="mapping-values-from-one-set-to-another"></a>あるセットから別のセットへの値のマッピング
+## <a name="map-values-from-one-set-to-another"></a>あるセットから別のセットに値をマップする
 
-一般的なユースケースでは、よりわかりやすい方法で結果を導入する際に役立つ、値の静的なマッピングを使用します。  
-たとえば、次のテーブルを使用することを検討してください。 DeviceModel デバイスのモデルを指定します。デバイス名を参照するのに非常に便利な形式ではありません。  
+一般的なユースケースとして、値の静的なマッピングがあります。これは、結果の体裁を向上させるのに役立ちます。
+たとえば、次のテーブルについて考えてみます。 
+`DeviceModel`デバイスのモデルを指定します。デバイス名を参照するのに非常に便利な形式ではありません。  
 
 
 |DeviceModel |Count 
@@ -385,7 +400,7 @@ Logs
 |iPhone5、2 |66 
 
   
-より良い表現は次のようになります。  
+次に、より優れた表現を示します。  
 
 |FriendlyName |Count 
 |---|---
@@ -394,11 +409,11 @@ Logs
 |iPhone 6 |55 
 |iPhone5 |66 
 
-次の2つの方法では、この方法を説明します。  
+次の2つの方法は、表現を実現する方法を示しています。  
 
 ### <a name="mapping-using-dynamic-dictionary"></a>動的ディクショナリを使用したマッピング
 
-次の方法は、動的ディクショナリと動的アクセサーを使用してマッピングを実現する方法を示しています。
+この方法では、動的ディクショナリと動的アクセサーを使用したマッピングが示されます。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -429,13 +444,11 @@ Source
 |iPhone 6|55|
 |iPhone5|66|
 
+### <a name="map-using-static-table"></a>静的テーブルを使用したマップ
 
-
-### <a name="mapping-using-static-table"></a>静的テーブルを使用したマッピング
-
-次の方法は、永続的なテーブルと結合演算子を使用してマッピングを実現する方法を示しています。
+この方法では、永続的なテーブルと結合演算子を使用したマッピングが示されます。
  
-マッピングテーブルを作成します (1 回だけ)。
+マッピングテーブルを1回だけ作成します。
 
 ```kusto
 .create table Devices (DeviceModel: string, FriendlyName: string) 
@@ -444,7 +457,7 @@ Source
     ["iPhone5,1","iPhone 5"]["iPhone3,2","iPhone 4"]["iPhone7,2","iPhone 6"]["iPhone5,2","iPhone5"]
 ```
 
-現在、デバイスのコンテンツは次のとおりです。
+現在、デバイスのコンテンツです。
 
 |DeviceModel |FriendlyName 
 |---|---
@@ -453,8 +466,7 @@ Source
 |iPhone7、2 |iPhone 6 
 |iPhone5、2 |iPhone5 
 
-
-テストテーブルソースの作成についても同じトリックを使用します。
+テストテーブルソースの作成にも同じトリックを使用します。
 
 ```kusto
 .create table Source (DeviceModel: string, Count: int)
@@ -462,8 +474,7 @@ Source
 .ingest inline into table Source ["iPhone5,1",32]["iPhone3,2",432]["iPhone7,2",55]["iPhone5,2",66]
 ```
 
-
-参加とプロジェクト:
+参加とプロジェクト。
 
 ```kusto
 Devices  
@@ -481,9 +492,9 @@ Devices
 |iPhone5 |66 
 
 
-## <a name="creating-and-using-query-time-dimension-tables"></a>クエリ時間ディメンションテーブルの作成と使用
+## <a name="create-and-use-query-time-dimension-tables"></a>クエリ時間ディメンションテーブルを作成して使用する
 
-多くの場合、クエリの結果と、データベースに格納されていないアドホックディメンションテーブルを結合する必要があります。 次のようにして、1つのクエリを対象とするテーブルを結果とする式を定義できます。
+多くの場合、クエリの結果は、データベースに格納されていないアドホックディメンションテーブルと結合する必要があります。 結果が1つのクエリにスコープが設定されたテーブルになる式を定義できます。 次に例を示します。
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -520,15 +531,19 @@ JobHistory
   | project JobName, StartTime, ExecutionTimeSpan, ResultString, ResultMessage
 ```
 
-## <a name="retrieving-the-latest-by-timestamp-records-per-identity"></a>Id ごとに最新 (タイムスタンプ) のレコードを取得する
+## <a name="retrieve-the-latest-records-by-timestamp-per-identity"></a>Id ごとに (タイムスタンプによる) 最新のレコードを取得する
 
-列を含むテーブル `id` (ユーザー Id やノード Id など、各行に関連付けられているエンティティを識別する) と、 `timestamp` (行の時間参照を提供する) 列とその他の列が含まれているとします。 目標は、列の各値について最新の2つのレコードを返すクエリを作成することです `id` 。 "latest" は、"最高値を持つ" と定義されてい `timestamp` ます。
+次のようなテーブルがあるとします。
+* `ID`ユーザー ID やノード ID など、各行が関連付けられているエンティティを識別する列
+* `timestamp`行の時間参照を提供する列
+* その他の列
 
-これは、[最上位の入れ子になった演算子](topnestedoperator.md)を使用して行うことができます。
-まずクエリを提供し、次に説明します。
+列の各値について最新の2つのレコードを返すクエリ。 `ID` "latest" は、 `timestamp` [最上位の入れ子になった演算子](topnestedoperator.md)で "最高値を持つ" と定義されています。
+
+次に例を示します。
 
 ```kusto
-datatable(id:string, timestamp:datetime, bla:string)           // (1)
+datatable(id:string, timestamp:datetime, bla:string)           // #1
   [
   "Barak",  datetime(2015-01-01), "1",
   "Barak",  datetime(2016-01-01), "2",
@@ -537,36 +552,40 @@ datatable(id:string, timestamp:datetime, bla:string)           // (1)
   "Donald", datetime(2017-01-18), "5",
   "Donald", datetime(2017-01-19), "6"
   ]
-| top-nested   of id        by dummy0=max(1),                  // (2)
-  top-nested 2 of timestamp by dummy1=max(timestamp),          // (3)
-  top-nested   of bla       by dummy2=max(1)                   // (4)
-| project-away dummy0, dummy1, dummy2                          // (5)
+| top-nested   of id        by dummy0=max(1),                  // #2
+  top-nested 2 of timestamp by dummy1=max(timestamp),          // #3
+  top-nested   of bla       by dummy2=max(1)                   // #4
+| project-away dummy0, dummy1, dummy2                          // #5
 ```
 
-Notes
-1. は、 `datatable` デモンストレーション目的でいくつかのテストデータを生成する方法にすぎません。 実際には、ここにデータがあります。
-2. この行は基本的に "すべての個別の値を返す" ことを意味 `id` します。
-3. 次に、この行は、列を最大化する上位2レコード、 `timestamp` 前のレベルの列 (ここではジャスト `id` )、およびこのレベルで指定された列 (ここでは) を返し `timestamp` ます。
-4. この行では、前の `bla` レベルで返された各レコードの列の値が追加されます。 テーブルに関心のある他の列がある場合は、その列ごとにこの行が繰り返されます。
-5. 最後に、プロジェクト外の[演算子](projectawayoperator.md)を使用して、によって導入された "extra" 列を削除し `top-nested` ます。
+以下のメモ番号は、コードサンプル内の数値を示しています。
 
-## <a name="extending-a-table-with-some-percent-of-total-calculation"></a>一部の割合の計算を使用したテーブルの拡張
+1. は、 `datatable` デモンストレーション用のテストデータを生成する方法です。 通常、ここでは実際のデータを使用します。
+1. この行は基本的に "すべての個別の値を返す" ことを意味 `id` します。
+1. 次に、を最大化する上位2つのレコードに対して、次の行が返されます。
+     * `timestamp`列
+     * 前のレベルの列 (ここでのみ `id` )
+     * このレベルで指定された列 (ここでは `timestamp` )
+1. この行では、前の `bla` レベルで返された各レコードの列の値が追加されます。 テーブルに関心のある他の列がある場合は、そのような列ごとにこの行を繰り返すことができます。
+1. 最後の行では、プロジェクト外の[演算子](projectawayoperator.md)を使用して、によって導入された "extra" 列を削除し `top-nested` ます。
 
-多くの場合、数値列を含む表形式の式があると、その列を合計の割合としてユーザーに表示することが望ましいされます。 たとえば、次のテーブルの値を持つクエリがあるとします。
+## <a name="extend-a-table-with-some-percent-of-total-calculation"></a>計算される合計の割合を使用してテーブルを拡張する
+
+数値列を含む表形式の式は、と共にユーザーに対して、全体に対する割合としての値と共に使用すると便利です。 たとえば、次のテーブルを生成するクエリがあるとします。
 
 |SomeSeries|Int|
 |----------|-------|
 |Foo       |    100|
 |横棒       |    200|
 
-このテーブルを表示するには、次のようにします。
+このテーブルを次のように表示する場合:
 
 |SomeSeries|Int|Pct |
 |----------|-------|----|
 |Foo       |    100|33.3|
 |横棒       |    200|66.6|
 
-これを行うには、列の合計 (合計) を計算 `SomeInt` してから、この列の各値を合計で割る必要があります。 [As 演算子](asoperator.md)を使用してこれらの結果を名前に指定することで、任意の結果に対してこれを行うことができます。
+次に、列の合計 (合計) を計算 `SomeInt` してから、この列の各値を合計で除算する必要があります。 任意の結果につい[ては、as 演算子](asoperator.md)を使用します。
 
 ```kusto
 // The following table literal represents a long calculation
@@ -582,10 +601,12 @@ datatable (SomeInt:int, SomeSeries:string) [
 | extend Pct = 100 * bin(todouble(SomeInt) / toscalar(X | summarize sum(SomeInt)), 0.001)
 ```
 
-## <a name="performing-aggregations-over-a-sliding-window"></a>スライディングウィンドウに対して集計を実行する
-次の例では、スライディングウィンドウを使用して列を集計する方法を示します。 たとえば、次のテーブルを使用します。これには、タイムスタンプによる果物の価格が含まれます。 7日間のスライディングウィンドウを使用して、各果物の1日あたりの最小、最大、および合計コストを計算するとします。 つまり、結果セットの各レコードは過去7日間を集計し、結果には分析期間の1日あたりのレコードが含まれます。  
+## <a name="perform-aggregations-over-a-sliding-window"></a>スライディングウィンドウに対して集計を実行する
 
-果物テーブル: 
+次の例では、スライディングウィンドウを使用して列を集計する方法を示します。
+次の表を使用します。このテーブルには、タイムスタンプによる果物の価格が含まれています。 7日間のスライディングウィンドウを使用して、1日あたりの各果物の最小、最大、および合計のコストを計算します。 結果セットの各レコードは過去7日間を集計し、結果には分析期間の1日あたりのレコードが含まれます。  
+
+果物テーブル:
 
 |Timestamp|Fruit|Price|
 |---|---|---|
@@ -604,7 +625,8 @@ datatable (SomeInt:int, SomeSeries:string) [
 |2018-10-06 08:00: 00.0000000|Plums|8|
 |2018-10-07 12:00: 00.0000000|バナナ|0|
 
-スライディングウィンドウ集計クエリ (説明はクエリ結果の下に表示されます): 
+スライディングウィンドウの集計クエリ。
+クエリの結果には、次のような説明が表示されます。
 
 ```kusto
 let _start = datetime(2018-09-24);
@@ -643,25 +665,26 @@ Fruits
 |2018-10-07 00:00: 00.0000000|Plums|4|8|12|
 |2018-10-07 00:00: 00.0000000|Apples|8|8|8|
 
-クエリの詳細: 
+クエリの詳細:
 
-このクエリでは、入力テーブル内の各レコードの実際の外観を7日後に "拡大" (重複) します。これにより、各レコードが実際に7回表示されます。 その結果、1日ごとに集計を実行すると、集計には過去7日間のすべてのレコードが含まれます。
+このクエリでは、入力テーブル内の各レコードが実際の外観から7日後に "ストレッチ" (重複) されます。 各レコードは実際には7回表示されます。
+その結果、日単位の集計には、過去7日間のすべてのレコードが含まれます。
 
-ステップバイステップの説明 (数値はクエリインラインコメント内の数値を参照します):
-1. 各レコードを 1d (_start を基準として) にビン分割します。 
+以下のステップバイステップの説明番号は、コードサンプルの数値を示しています。
+1. 各レコードを1日にビン分割します (_start)。 
 2. _Bin レコードあたりの範囲の終わりを決定します。 _(開始、終了)_ 範囲外である場合を除きます。ただし、この場合は調整されます。 
-3. 各レコードについて、現在のレコードの日から始まる7日間 (タイムスタンプ) の配列を作成します。 
+3. 各レコードについて、現在のレコードの日から始まる7日間の配列を作成します (タイムスタンプ)。 
 4. mv-配列を展開し、各レコードを7つのレコードに複製します。 
 5. 日ごとに集計関数を実行します。 #4 のため、これは_過去_7 日間をまとめたものです。 
-6. 最後に、最初の7d のデータは不完全であるため (最初の7日間は7d の期間がありません)、最終結果から最初の7日間を除外します (これらは2018-10-01 の集計にのみ参加します)。 
+6. 最初の7日間のデータは完全ではありません。 最初の7日間は、7d の期間がありません。 最初の7日間は、最終結果から除外されます。 この例では、2018-10-01 の集計にのみ参加します。
 
 ## <a name="find-preceding-event"></a>前のイベントを検索
 次の例では、2つのデータセット間の前のイベントを検索する方法を示します。  
 
-*目的:* : 2 つのデータセット (a と b) は、b の各レコードについて、その前のイベントをで検索します (つまり、"古い" が b よりも前の arg_max レコード)。 たとえば、次のサンプルデータセットに予想される出力を次に示します。 
+*目的:*: a と B の2つのデータセットがあります。B の各レコードについて、の前のイベントを検索します (つまり、"古い" が B よりも前の arg_max レコード)。 次のサンプルデータセットに予想される出力を次に示します。 
 
 ```kusto
-let A = datatable(Timestamp:datetime, Id:string, EventA:string)
+let A = datatable(Timestamp:datetime, ID:string, EventA:string)
 [
     datetime(2019-01-01 00:00:00), "x", "Ax1",
     datetime(2019-01-01 00:00:01), "x", "Ax2",
@@ -669,7 +692,7 @@ let A = datatable(Timestamp:datetime, Id:string, EventA:string)
     datetime(2019-01-01 00:00:05), "y", "Ay2",
     datetime(2019-01-01 00:00:00), "z", "Az1"
 ];
-let B = datatable(Timestamp:datetime, Id:string, EventB:string)
+let B = datatable(Timestamp:datetime, ID:string, EventB:string)
 [
     datetime(2019-01-01 00:00:03), "x", "B",
     datetime(2019-01-01 00:00:04), "x", "B",
@@ -679,56 +702,61 @@ let B = datatable(Timestamp:datetime, Id:string, EventB:string)
 A; B
 ```
 
-|Timestamp|Id|EventB|
+|Timestamp|id|EventB|
 |---|---|---|
 |2019-01-01 00:00: 00.0000000|x|Ax1|
 |2019-01-01 00:00: 00.0000000|z|Az1|
 |2019-01-01 00:00: 01.0000000|x|Ax2|
-|2019-01-01 00:00: 02.0000000|y|Ay1|
-|2019-01-01 00:00: 05.0000000|y|Ay2|
+|2019-01-01 00:00: 02.0000000|Y|Ay1|
+|2019-01-01 00:00: 05.0000000|Y|Ay2|
 
 </br>
 
-|Timestamp|Id|EventA|
+|Timestamp|id|EventA|
 |---|---|---|
 |2019-01-01 00:00: 03.0000000|x|B|
 |2019-01-01 00:00: 04.0000000|x|B|
-|2019-01-01 00:00: 04.0000000|y|B|
+|2019-01-01 00:00: 04.0000000|Y|B|
 |2019-01-01 00:02: 00.0000000|z|B|
 
 予想される出力: 
 
-|Id|Timestamp|EventB|A_Timestamp|EventA|
+|id|Timestamp|EventB|A_Timestamp|EventA|
 |---|---|---|---|---|
 |x|2019-01-01 00:00: 03.0000000|B|2019-01-01 00:00: 01.0000000|Ax2|
 |x|2019-01-01 00:00: 04.0000000|B|2019-01-01 00:00: 01.0000000|Ax2|
-|y|2019-01-01 00:00: 04.0000000|B|2019-01-01 00:00: 02.0000000|Ay1|
+|Y|2019-01-01 00:00: 04.0000000|B|2019-01-01 00:00: 02.0000000|Ay1|
 |z|2019-01-01 00:02: 00.0000000|B|2019-01-01 00:00: 00.0000000|Az1|
 
-この問題には、2つの異なる方法が提案されています。 特定のデータセットで両方をテストして、最適なものを見つける必要があります (異なるデータセットに対して異なる方法で実行される場合があります)。 
+この問題には、2つの異なる方法が提案されています。 お客様にとって最適なものを見つけるには、特定のデータセットで両方をテストする必要があります。
 
-### <a name="suggestion-1"></a>提案 #1:
-この提案は、Id とタイムスタンプで両方のデータセットをシリアル化した後、すべての B イベントをその前のすべてのイベントとグループ化し、 `arg_max` グループ内のすべてのからを取得します。 
+> [!NOTE] 
+> 各方法は、データセットごとに異なる方法で実行される場合があります。
+
+### <a name="suggestion-1"></a>提案 #1
+
+この提案では、ID とタイムスタンプで両方のデータセットをシリアル化した後、すべての B イベントをその前のすべてのイベントとグループ化し、 `arg_max` グループ内のすべてのを取得します。
 
 ```kusto
 A
 | extend A_Timestamp = Timestamp, Kind="A"
 | union (B | extend B_Timestamp = Timestamp, Kind="B")
-| order by Id, Timestamp asc 
-| extend t = iff(Kind == "A" and (prev(Kind) != "A" or prev(Id) != Id), 1, 0)
+| order by ID, Timestamp asc 
+| extend t = iff(Kind == "A" and (prev(Kind) != "A" or prev(Id) != ID), 1, 0)
 | extend t = row_cumsum(t)
-| summarize Timestamp=make_list(Timestamp), EventB=make_list(EventB), arg_max(A_Timestamp, EventA) by t, Id
+| summarize Timestamp=make_list(Timestamp), EventB=make_list(EventB), arg_max(A_Timestamp, EventA) by t, ID
 | mv-expand Timestamp to typeof(datetime), EventB to typeof(string)
 | where isnotempty(EventB)
 | project-away t
 ```
 
-### <a name="suggestion-2"></a>提案 #2:
-この提案では、最大のバック期間を定義する必要があります (つまり、内のレコードを B と比較することを許可する "以前" の数)。次に、Id の2つのデータセットと、このルックバック期間を結合します。 この結合によって、考えられるすべての候補 (B よりも前のすべてのレコードと、元の場所にあるレコード) が生成され、arg_min (タイムスタンプ b –タイムスタンプ a) によって、最も近いものが B にフィルター処理されます。 ルックバック期間が小さいほど、クエリのパフォーマンスが向上します。 
+### <a name="suggestion-2"></a>提案 #2
 
-次の例では、参照元の期間が1m に設定されています。したがって、Id ' z ' のレコードに対応する ' A ' イベントがありません (' A ' は 2 mb を超えているため)。
+この提案には、B と比較した場合に、最大のバック期間 (のレコードのうち、レコードの "古い" レコードがどれくらい古いか) が必要です。次に、メソッドは、ID とこの2つのデータセットを結合します。 結合により、可能なすべての候補が生成されます。これは、B よりも前のすべてのレコードと、元の場所にあるレコードであり、B に最も近いレコードは、arg_min (タイムスタンプ B –タイムスタンプ A) によってフィルター処理されます。 ルックバック期間が短くなるほど、クエリの結果が向上します。
 
-```kusto
+次の例では、参照元の期間が1m に設定されていて、ID が ' z ' のレコードに対応する ' A ' イベントがありません。これは、' A ' が 2 m を超えているためです。
+
+```kusto 
 let _maxLookbackPeriod = 1m;  
 let _internalWindowBin = _maxLookbackPeriod / 2;
 let B_events = B 
@@ -745,16 +773,16 @@ let A_events = A
 B_events
     | join kind=leftouter (
         A_events
-) on Id, _range
+) on ID, _range
 | where isnull(A_Timestamp) or (A_Timestamp <= B_Timestamp and B_Timestamp <= A_Timestamp + _maxLookbackPeriod)
 | extend diff = coalesce(B_Timestamp - A_Timestamp, _maxLookbackPeriod*2)
 | summarize arg_min(diff, *) by ID
-| project Id, B_Timestamp, A_Timestamp, EventB, EventA
+| project ID, B_Timestamp, A_Timestamp, EventB, EventA
 ```
 
 |Id|B_Timestamp|A_Timestamp|EventB|EventA|
 |---|---|---|---|---|
 |x|2019-01-01 00:00: 03.0000000|2019-01-01 00:00: 01.0000000|B|Ax2|
 |x|2019-01-01 00:00: 04.0000000|2019-01-01 00:00: 01.0000000|B|Ax2|
-|y|2019-01-01 00:00: 04.0000000|2019-01-01 00:00: 02.0000000|B|Ay1|
+|Y|2019-01-01 00:00: 04.0000000|2019-01-01 00:00: 02.0000000|B|Ay1|
 |z|2019-01-01 00:02: 00.0000000||B||

@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 83af540389087f0e1d9fdbd04266ab7ecaca0c5a
-ms.sourcegitcommit: b12e03206c79726d5b4055853ec3fdaa8870c451
+ms.openlocfilehash: eb13b53ba5f6785c79aaa586de50478074901c8d
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/18/2020
-ms.locfileid: "85069162"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85901922"
 ---
 # <a name="ingestion-without-kustoingest-library"></a>Kusto によるインジェストを使用した取り込み
 
@@ -283,7 +283,7 @@ internal static string PrepareIngestionMessage(string db, string table, string d
 最後に、作成したメッセージを、Azure データエクスプローラーから取得した選択したインジェストキューに送信します。
 
 > [!NOTE]
-> .Net ストレージクライアントを使用すると、既定でメッセージが base64 にエンコードされます。 詳細については、 [storage のドキュメント](https://docs.microsoft.com/dotnet/api/microsoft.windowsazure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage)を参照してください。このクライアントを使用していない場合は、メッセージの内容を正しくエンコードしてください。
+> .Net ストレージクライアントを使用すると、既定でメッセージが base64 にエンコードされます。 詳細については、 [storage のドキュメント](https://docs.microsoft.com/dotnet/api/microsoft.azure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet-legacy#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage)を参照してください。このクライアントを使用していない場合は、メッセージの内容を正しくエンコードしてください。
 
 ```csharp
 internal static void PostMessageToQueue(string queueUriWithSas, string message)
@@ -329,7 +329,6 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
     "DatabaseName": "<DatabaseName>",
     "TableName" : "<TableName>",
     "RetainBlobOnSuccess" : "<RetainBlobOnSuccess>",
-    "Format" : "<csv|tsv|...>",
     "FlushImmediately": "<true|false>",
     "ReportLevel" : <0-Failures, 1-None, 2-All>,
     "ReportMethod" : <0-Queue, 1-Table>,
@@ -345,11 +344,10 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
 |DatabaseName |ターゲットデータベース名 |
 |TableName |ターゲットテーブル名 |
 |RetainBlobOnSuccess |に設定すると `true` 、インジェストが正常に完了した後、blob は削除されません。 既定値は `false` です |
-|フォーマット |非圧縮データ形式 |
 |FlushImmediately ちに |に設定する `true` と、すべての集計がスキップされます。 既定値は `false` です |
 |ReportLevel |成功/エラー報告レベル: 0-失敗、1-なし、2-すべて |
 |ReportMethod |レポートメカニズム: 0-キュー、1-テーブル |
-|AdditionalProperties |タグなどの追加のプロパティ |
+|AdditionalProperties |、、など `format` の追加のプロパティ `tags` `creationTime` 。 詳細については、「[データインジェストのプロパティ](../../../ingestion-properties.md)」を参照してください。|
 
 ### <a name="ingestion-failure-message-structure"></a>インジェストエラーメッセージの構造
 
@@ -363,7 +361,7 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
 |失敗した場合 |失敗のタイムスタンプ |
 |IngestionSourceId |Azure データエクスプローラーが取り込みに失敗したデータチャンクを識別する GUID |
 |IngestionSourcePath |Azure データエクスプローラーが取り込みに失敗したデータチャンクへのパス (URI) |
-|詳細 |エラー メッセージ |
+|説明 |エラー メッセージ |
 |ErrorCode |Azure データエクスプローラーのエラーコード ([こちら](kusto-ingest-client-errors.md#ingestion-error-codes)のすべてのエラーコードを参照してください) |
 |FailureStatus |障害が永続的であるか一時的なものであるかを示します |
 |RootActivityId |サービス側での操作を追跡するために使用できる Azure データエクスプローラー関連付け識別子 (GUID) |

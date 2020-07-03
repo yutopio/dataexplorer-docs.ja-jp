@@ -1,6 +1,6 @@
 ---
-title: parse_version() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで parse_version() について説明します。
+title: parse_version ()-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの parse_version () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5cb35c12849568f24a6bde42461e8af66058f48f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5e4b318743380b13a26e90a7e83549c998926bd8
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511715"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85902109"
 ---
 # <a name="parse_version"></a>parse_version()
 
-version の入力文字列形式を比較可能な 10 進数に変換します。
+バージョンの入力文字列形式を、比較可能な10進数に変換します。
 
 ```kusto
 parse_version("0.0.0.1")
@@ -25,26 +25,25 @@ parse_version("0.0.0.1")
 
 **構文**
 
-`parse_version``(`*エクスプル*`)`
+`parse_version``(` *Expr*`)`
 
 **引数**
 
-* *Expr*: 解析対象のバージョン`string`を指定する型のスカラー式。
+* *`Expr`*: `string` 解析するバージョンを指定する型のスカラー式。
 
 **戻り値**
 
-変換が成功すると、結果は 10 進数になります。
-変換が成功しなかった場合は、 が`null`返されます。
+変換が成功した場合、結果は10進数になります。
+変換に失敗した場合、結果はになり `null` ます。
 
 **メモ**
 
-入力文字列には、1 ~ 4 個のバージョンの部分を含め、数字で表し、ドット ('') で区切る必要があります。
+入力文字列には、数値として表現され、ドット ('. ') で区切られた 1 ~ 4 個のバージョンの部分を含める必要があります。
 
-バージョンの各部分には、最大 8 桁 (最大値 - 9999999) を含めることができます。
+バージョンの各部分には、最大8桁を含めることができます。最大値は99999999です。
 
-部品の量が4未満の場合、欠落している部分はすべてトレーリング()`1.0` == `1.0.0.0`と見なされます。
+部分の数が4未満の場合、不足している部分はすべて末尾 () と見なされ `1.0`  ==  `1.0.0.0` ます。
 
- 
 **例**
 ```kusto
 let dt = datatable(v:string)
@@ -86,7 +85,3 @@ dt | project v1=v, _key=1
 |99999999.0.0.0|1.2.3.4|99999999.0.0.0|
 |1.2.3.4|1|1.2.3.4|
 |99999999.0.0.0|1|99999999.0.0.0|
-
-
-
-

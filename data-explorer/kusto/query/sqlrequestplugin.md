@@ -1,5 +1,5 @@
 ---
-title: sql_request プラグイン-Azure データエクスプローラー |Microsoft Docs
+title: sql_request プラグイン-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの sql_request プラグインについて説明します。
 services: data-explorer
 author: orspod
@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 06cb62256b3dc433d375a23991ebc26b4f703c56
-ms.sourcegitcommit: 3c86e21bd8a04eca39250a773d0e89ae05065b2e
+ms.openlocfilehash: c43f816cdf1ed2ef9504f93d2bb56edd52ea18bc
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/28/2020
-ms.locfileid: "84153643"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85901972"
 ---
 # <a name="sql_request-plugin"></a>sql_request プラグイン
 
@@ -27,19 +27,20 @@ ms.locfileid: "84153643"
 
 **引数**
 
-* *ConnectionString*: `string` SQL Server ネットワークエンドポイントを指す接続文字列を示すリテラルです。 認証の有効な方法と、ネットワークエンドポイントを指定する方法については、以下を参照してください。
+* *ConnectionString*: `string` SQL Server ネットワークエンドポイントを指す接続文字列を示すリテラルです。 [認証の有効な方法](#authentication)と、[ネットワークエンドポイント](#specify-the-network-endpoint)を指定する方法を参照してください。
 
 * *Sqlquery*: `string` SQL エンドポイントに対して実行されるクエリを示すリテラル。 1つ以上の行セットを返す必要がありますが、Kusto クエリの残りの部分では最初の行セットのみを使用できます。
 
 * *Sqlparameters*: `dynamic` クエリと共にパラメーターとして渡すキーと値のペアを保持する型の定数値。 任意。
   
-* *Options*: `dynamic` キーと値のペアとしてより高度な設定を保持する型の定数値。 現在 `token` 、設定できるのは、認証のために SQL エンドポイントに転送される呼び出し元が提供する AAD アクセストークンを渡すことだけです。 任意。
+* *Options*: `dynamic` キーと値のペアとしてより高度な設定を保持する型の定数値。 現時点では、 `token` 認証のために SQL エンドポイントに転送される呼び出し元提供の Azure AD アクセストークンを渡すためにのみ、設定できます。 任意。
 
-**使用例**
+## <a name="examples"></a>使用例
 
-次の例では、からすべてのレコードを取得する Azure SQL DB データベースに SQL クエリを送信 `[dbo].[Table]` し、Kusto 側で結果を処理します。 認証では、呼び出し元のユーザーの AAD トークンを再利用します。
+次の例では、Azure SQL DB データベースに SQL クエリを送信します。 からすべてのレコードを取得 `[dbo].[Table]` し、Kusto 側の結果を処理します。 認証では、呼び出し元のユーザーの Azure AD トークンを再利用します。 
 
-注: この方法では、データをフィルター処理または射影するための推奨事項としてこの例を使用することはできません。 通常、Kusto オプティマイザーは Kusto と SQL 間のクエリを最適化しようとしないので、SQL クエリは可能な限り最小のデータセットを返すように構築することをお勧めします。
+> [!NOTE]
+> この例は、この方法でデータをフィルター処理または射影するための推奨事項としては使用できません。 Kusto オプティマイザーが Kusto と SQL の間のクエリを最適化しようとしていないため、SQL クエリを構築して、可能な限り小さいデータセットを返す必要があります。
 
 ```kusto
 evaluate sql_request(
@@ -51,7 +52,7 @@ evaluate sql_request(
 | project Name
 ```
 
-次の例は、前の例と同じですが、ユーザー名/パスワードによって SQL 認証が行われる点が異なります。 機密性を確保するために、ここでは難読化された文字列を使用します。
+次の例は、前の例と同じですが、ユーザー名/パスワードによって SQL 認証が行われる点が異なります。 機密性を確保するために、ここでは難読化した文字列を使用します。
 
 ```kusto
 evaluate sql_request(
@@ -78,47 +79,56 @@ evaluate sql_request(
 | project Name
 ```
 
-**認証**
+## <a name="authentication"></a>認証
 
 Sql_request プラグインは、SQL Server エンドポイントに対する3つの認証方法をサポートしています。
 
-* **Aad 統合認証**( `Authentication="Active Directory Integrated"` ): これは推奨される方法です。この方法では、ユーザーまたはアプリケーションが Aad 経由で kusto に対して認証を行い、同じトークンを使用して SQL Server ネットワークエンドポイントにアクセスします。
+### <a name="azure-ad-integrated-authentication"></a>Azure AD 統合認証 
 
-* **ユーザー名/パスワード認証**( `User ID=...; Password=...;` ): AAD 統合認証を実行できない場合は、この方法のサポートが提供されます。 シークレット情報は Kusto に送信されるため、可能な場合はこの方法を使用しないようにしてください。
+`Authentication="Active Directory Integrated"`
 
-* **AAD アクセストークン**( `dynamic({'token': h"eyJ0..."})` ): この認証方法では、アクセストークンが呼び出し元によって生成され、kusto によって SQL エンドポイントに転送されます。 接続文字列には `Authentication` 、、 `User ID` 、またはのような認証情報を含めないでください `Password` 。 代わりに、アクセストークンは、 `token` sql_request プラグインの引数にプロパティとして渡され `Options` ます。
+  Azure AD 統合認証が推奨される方法です。 このメソッドでは、ユーザーまたはアプリケーションが Kusto Azure AD 経由で認証されます。 その後、同じトークンを使用して SQL Server ネットワークエンドポイントにアクセスします。
+
+### <a name="usernamepassword-authentication"></a>ユーザー名/パスワード認証
+
+`User ID=...; Password=...;`
+
+  Azure AD 統合認証を実行できない場合、ユーザー名とパスワードの認証がサポートされます。 シークレット情報は Kusto に送信されるため、可能な場合はこの方法を使用しないようにしてください。
+
+### <a name="azure-ad-access-token"></a>Azure AD アクセストークン
+
+`dynamic({'token': h"eyJ0..."})`
+
+   Azure AD アクセストークンの認証方法を使用すると、呼び出し元は、Kusto から SQL エンドポイントに転送されるアクセストークンを生成します。 接続文字列には `Authentication` 、、、またはのような認証情報を含めないで `User ID` `Password` ください。 代わりに、アクセストークンは、 `token` sql_request プラグインの引数にプロパティとして渡され `Options` ます。
      
 > [!WARNING]
-> 機密情報や保護が必要な情報を含む接続文字列とクエリは、すべての Kusto トレースから除外されるように難読化する必要があります。
+> 機密情報や保護が必要な情報を含む接続文字列とクエリは、すべての Kusto トレースから除外するように難読化する必要があります。
 > 詳細については、「[難読化文字列リテラル](scalar-data-types/string.md#obfuscated-string-literals)」を参照してください。
 
-**暗号化とサーバー検証**
+## <a name="encryption-and-server-validation"></a>暗号化とサーバー検証
 
-次の接続プロパティは、セキュリティ上の理由により、SQL Server ネットワークエンドポイントに接続するときに強制的に適用されます。
+セキュリティ上の理由により、SQL Server ネットワークエンドポイントに接続するときは、次の接続プロパティが強制されます。
 
 * `Encrypt`は無条件に設定され `true` ます。
 * `TrustServerCertificate`は無条件に設定され `false` ます。
 
 そのため、SQL Server は、有効な SSL/TLS サーバー証明書を使用して構成する必要があります。
 
-**ネットワークエンドポイントの指定**
+## <a name="specify-the-network-endpoint"></a>ネットワークエンドポイントの指定
 
 接続文字列の一部として SQL ネットワークエンドポイントを指定することは必須です。
 適切な構文は次のとおりです。
 
 `Server``=` `tcp:` *FQDN* [ `,` *ポート*]
 
-この場合、
+各値の説明:
 
 * *FQDN*は、エンドポイントの完全修飾ドメイン名です。
-
 * *Port*は、エンドポイントの TCP ポートです。 既定で `1433` は、が想定されます。
 
 > [!NOTE]
 > ネットワークエンドポイントを指定するその他の形式はサポートされていません。
 > たとえば、 `tcp:` プログラムで SQL クライアントライブラリを使用するときに、プレフィックスを省略することはできません。
-
-
 
 ::: zone-end
 

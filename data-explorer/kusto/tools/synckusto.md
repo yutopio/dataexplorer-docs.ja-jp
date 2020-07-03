@@ -1,23 +1,23 @@
 ---
-title: クストを同期する - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの同期の Kusto について説明します。
+title: Kusto-Azure データエクスプローラーの同期
+description: この記事では、Azure データエクスプローラーでの Kusto の同期について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: zivc
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/12/2019
-ms.openlocfilehash: 5f56b47d684441111aae397491336b5d819dedc8
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d132fd2bbb9f0a5a674955d586a208443a76d197
+ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81503283"
+ms.lasthandoff: 07/02/2020
+ms.locfileid: "85902090"
 ---
 # <a name="sync-kusto"></a>Kusto の同期
 
-Sync Kusto は、ローカル ファイル システム、Kusto データベース、Azure Dev Ops リポジトリ間でさまざまな Kusto スキーマ エンティティ (テーブル スキーマやストアド関数など) を同期できるツールです。
+Sync Kusto は、テーブルスキーマやストアド関数など、さまざまな Kusto スキーマエンティティをユーザーが同期できるツールです。 この同期は、ローカルファイルシステム、Kusto データベース、および Azure Dev Ops リポジトリ間で行われます。
 
-同期クストは GitHub で利用可能[https://github.com/microsoft/synckusto](https://github.com/microsoft/synckusto)です。
+Kusto の同期に[ついては、GitHub を](https://github.com/microsoft/synckusto)参照してください。
 

@@ -44,7 +44,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: Security
+    - name: セキュリティ
       items:
         - name: セキュリティの概要
           href: security.md
@@ -229,6 +229,7 @@
                 - name: Azure Resource Manager テンプレート
                   href: cluster-principal-resource-manager.md
             - name: クラスター言語拡張機能の管理
+              displayName: 'Python, R'
               href: language-extensions.md
         - name: データベース
           items:
@@ -742,6 +743,8 @@
               href: ./kusto/query/hash_combinefunction.md
             - name: hash_many()
               href: ./kusto/query/hash_manyfunction.md
+            - name: hash_md5()
+              href: ./kusto/query/md5hashfunction.md
             - name: hash_sha256()
               href: ./kusto/query/sha256hashfunction.md
             - name: hll_merge()

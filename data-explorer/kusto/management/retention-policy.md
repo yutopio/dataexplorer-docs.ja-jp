@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: e03e529e0c802f0d424deb4048c5809bbe845ddd
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: ebbd9aa5544d97ef1e980bcb3a53f74dbde66547
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617410"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967538"
 ---
-# <a name="retention-policy"></a>Retention ポリシー
+# <a name="retention-policy-command"></a>アイテム保持ポリシー コマンド
 
 この記事では、[保持ポリシー](retentionpolicy.md)を作成および変更するために使用する制御コマンドについて説明します。
 
@@ -28,11 +28,11 @@ ms.locfileid: "82617410"
 ```
 
 * `entity_type`: テーブルまたはデータベース
-* `database_or_table`: `database_name`また`database_name.table_name`は`table_name` (データベースコンテキストの場合)
+* `database_or_table`: `database_name` また `database_name.table_name` は `table_name` (データベースコンテキストの場合)
 
 **例**
 
-という名前`MyDatabase`のデータベースの保持ポリシーを表示します。
+という名前のデータベースの保持ポリシーを表示し `MyDatabase` ます。
 
 ```kusto
 .show database MyDatabase policy retention
@@ -49,11 +49,11 @@ ms.locfileid: "82617410"
 ```
 
 * `entity_type`: テーブルまたはデータベース
-* `database_or_table`: `database_name`また`database_name.table_name`は`table_name` (データベースコンテキストの場合)
+* `database_or_table`: `database_name` また `database_name.table_name` は `table_name` (データベースコンテキストの場合)
 
 **例**
 
-という名前`MyTable1`のテーブルの保持ポリシーを削除します。
+という名前のテーブルの保持ポリシーを削除し `MyTable1` ます。
 
 ```kusto
 .delete table MyTable policy retention
@@ -73,8 +73,8 @@ ms.locfileid: "82617410"
 ```
 
 * `entity_type`: テーブルまたはデータベース
-* `database_or_table`: `database_name`また`database_name.table_name`は`table_name` (データベースコンテキストの場合)
-* `table_name`: データベースコンテキスト内のテーブルの名前。  ワイルドカード (`*`ここでは許可されています)。
+* `database_or_table`: `database_name` また `database_name.table_name` は `table_name` (データベースコンテキストの場合)
+* `table_name`: データベースコンテキスト内のテーブルの名前。  ワイルドカード ( `*` ここでは許可されています)。
 * `retention_policy` :
 
 ```kusto
@@ -85,7 +85,7 @@ ms.locfileid: "82617410"
 
 **使用例**
 
-という名前`MyDatabase`のデータベースの保持ポリシーを表示します。
+という名前のデータベースの保持ポリシーを表示し `MyDatabase` ます。
 
 ```kusto
 .show database MyDatabase policy retention

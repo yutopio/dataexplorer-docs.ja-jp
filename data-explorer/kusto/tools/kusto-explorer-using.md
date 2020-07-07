@@ -1,5 +1,5 @@
 ---
-title: Kusto エクスプローラーの使用
+title: Kusto.Explorer の使用
 description: Kusto を使用する方法について説明します。
 author: orspod
 ms.author: orspodek
@@ -7,14 +7,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: 98a42fd72a28089e6add53aed5346ce2d0e5d993
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: fc8e34be3d61c690bc94795e6bd37f2559d247e0
+ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83866137"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "86013904"
 ---
-# <a name="using-kustoexplorer"></a>Kusto エクスプローラーの使用
+# <a name="using-kustoexplorer"></a>Kusto.Explorer の使用
 
 Kusto. エクスプローラーは、使いやすいユーザーインターフェイスで Kusto クエリ言語を使用してデータを探索できるデスクトップアプリケーションです。 この記事では、検索とクエリのモードを使用する方法、クエリを共有する方法、およびクラスター、データベース、およびテーブルを管理する方法について説明します。
 
@@ -83,7 +83,7 @@ StormEvents
 >
 > * 以下で説明するクライアント側クエリ parametrization は、Kusto. エクスプローラーアプリケーションの機能です。 これは、サービスによって実行されるように送信する前に、クエリに対して文字列置換操作を使用することと同じです。 次に示す構文はクエリ言語自体の一部ではなく、Kusto エクスプローラー以外の方法でサービスにクエリを送信するときには使用できません。
 
-複数のクエリまたは複数のタブで同じ値を使用する場合は、使用するすべての場所でその値を変更するのが非常に不便です。 そのため、Kusto. エクスプローラーはクエリパラメーターをサポートしています。 クエリパラメーターは、簡単に再利用できるように、タブ間で共有されます。 パラメーターは、角かっこで示され {} ます。 たとえば次のようになります。`{parameter1}`
+複数のクエリまたは複数のタブで同じ値を使用する場合は、使用するすべての場所でその値を変更するのが非常に不便です。 そのため、Kusto. エクスプローラーはクエリパラメーターをサポートしています。 クエリパラメーターは、簡単に再利用できるように、タブ間で共有されます。 パラメーターは、角かっこで示され {} ます。 例: `{parameter1}`
 
 スクリプトエディターでは、クエリパラメーターが強調表示されます。
 
@@ -135,7 +135,7 @@ Kusto. エクスプローラーは、クエリとクエリ結果を電子メー�
 
 ### <a name="limitations"></a>制限事項
 
-ブラウザーの制限、HTTP プロキシ、および Microsoft Outlook などのリンクを検証するツールによって、クエリの最大文字数は ~ 2000 文字に制限されています。 この制限は、クラスターとデータベース名の長さに依存しているため概数です。 詳細については、[https://support.microsoft.com/kb/208427](https://support.microsoft.com/kb/208427) をご覧ください。 文字制限に到達する可能性を減らすには、以下の「[短いリンクを取得](#getting-shorter-links)する」を参照してください。
+ブラウザーの制限、HTTP プロキシ、および Microsoft Outlook などのリンクを検証するツールによって、クエリの最大文字数は ~ 2000 文字に制限されています。 この制限は、クラスターとデータベース名の長さに依存しているため概数です。 詳細については、「[https://support.microsoft.com/kb/208427](https://support.microsoft.com/kb/208427)」を参照してください。 文字制限に到達する可能性を減らすには、以下の「[短いリンクを取得](#getting-shorter-links)する」を参照してください。
 
 URI の形式は次のとおりです。`https://<ClusterCname>.kusto.windows.net/<DatabaseName>web=0?query=<QueryToExecute>`
 
@@ -164,9 +164,9 @@ https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSs
 ディープリンクでパラメーター化クエリを使用できます。
 
 1. パラメーター化クエリとして書式設定するクエリを作成します (たとえば、 `KustoLogs | where Timestamp > ago({Period}) | count` )。 
-1. この場合は、URI 内のすべてのクエリパラメーターにパラメーターを指定します。
+1. 次のように、URI のすべてのクエリパラメーターにパラメーターを指定します。
 
-https://mycluster.kusto.windows.net/MyDatabase?web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h
+   `https://mycluster.kusto.windows.net/MyDatabase?web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
 
 ### <a name="getting-shorter-links"></a>短いリンクの取得
 
@@ -240,8 +240,8 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
 ## <a name="next-steps"></a>次のステップ
 
 * [Kusto. エクスプローラーのキーボードショートカット](kusto-explorer-shortcuts.md)
-* [Kusto. エクスプローラオプション](kusto-explorer-options.md)
-* [Kusto エクスプローラーのトラブルシューティング](kusto-explorer-troubleshooting.md)
+* [Kusto.Explorer のオプション](kusto-explorer-options.md)
+* [Kusto.Explorer のトラブルシューティング](kusto-explorer-troubleshooting.md)
 
 Kusto エクスプローラーのツールとユーティリティの詳細については、以下を参照してください。
 * [Kusto. エクスプローラーコードアナライザー](kusto-explorer-code-analyzer.md)

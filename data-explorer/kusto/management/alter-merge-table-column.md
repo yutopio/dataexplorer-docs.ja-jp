@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7dd36181be1140d3960369b1c8a5284ed55e48f5
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 9f71a46e6c747b7f9d9f6a3ba2d2f8a308635128
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82616492"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967215"
 ---
-# <a name="alter-merge-table-column-docstrings"></a>alter-merge table 列-docstrings
+# <a name="alter-merge-table-column-docstrings"></a>.alter-merge table column-docstring
 
-指定さ`docstring`れたテーブルの1つ以上の列のプロパティを設定します。 明示的に設定されていない列には、このプロパティの既存の値が**保持**されます (存在する場合)。
+`docstring`指定されたテーブルの1つ以上の列のプロパティを設定します。 明示的に設定されていない列には、このプロパティの既存の値が**保持**されます (存在する場合)。
 
 Alter table docstring については、[以下](#alter-table-column-docstrings)を参照してください。
 
 **構文**
 
-`.alter-merge``table` *TableName* `:` *Docstring1* *Col1* `:` *Docstring2*Col1 Docstring1 [`,` Col2 Docstring2]... *Col2* `column-docstring` `(``)`
+`.alter-merge``table` *TableName* `column-docstring` TableName `(`*Col1* `:`*Docstring1* [ `,` *Col2* `:` *Docstring2*]...`)`
 
 **例** 
 
@@ -33,11 +33,11 @@ Alter table docstring については、[以下](#alter-table-column-docstrings)
 
 ## <a name="alter-table-column-docstrings"></a>alter table 列-docstrings
 
-指定さ`docstring`れたテーブルの1つ以上の列のプロパティを設定します。 明示的に設定されていない列の場合、このプロパティは**削除**されます。
+`docstring`指定されたテーブルの1つ以上の列のプロパティを設定します。 明示的に設定されていない列の場合、このプロパティは**削除**されます。
 
 **構文**
 
-`.alter``table` *TableName* `:` *Docstring1* *Col1* `:` *Docstring2*Col1 Docstring1 [`,` Col2 Docstring2]... *Col2* `column-docstring` `(``)`
+`.alter``table` *TableName* `column-docstring` TableName `(`*Col1* `:`*Docstring1* [ `,` *Col2* `:` *Docstring2*]...`)`
 
 **例** 
 

@@ -1,6 +1,6 @@
 ---
-title: サンドボックス ポリシー - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのサンドボックス ポリシーについて説明します。
+title: サンドボックスポリシー-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのサンドボックスポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 7ac5a92b2084eaf2b447f296be34b2f4e79e1bb7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7d56d602f53db29f5ea558acb0e9e4288e5ac6e3
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520130"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967487"
 ---
-# <a name="sandbox-policy"></a>サンドボックス ポリシー
+# <a name="sandbox-policy-command"></a>サンドボックスポリシーコマンド
 
-次のコマンドを使用すると、Kusto エンジン サービスで[サンドボックス](../concepts/sandboxes.md)と[サンドボックス ポリシー](sandboxpolicy.md)を管理できます。
+次のコマンドを使用すると、Kusto エンジンサービスの[サンド](../concepts/sandboxes.md)[ボックスポリシーおよびサンドボックスポリシー](sandboxpolicy.md)を管理できます。
 
-コマンドには[、すべてのデータベース管理者の](access-control/role-based-authorization.md)アクセス許可が必要です。
+コマンドには[Alldatabasesadmin](access-control/role-based-authorization.md)アクセス許可が必要です。
 
-## <a name="sandbox-policy"></a>サンドボックス ポリシー
+## <a name="sandbox-policy"></a>Sandbox ポリシー
 
-### <a name="show-cluster-policy-sandbox"></a>.show クラスター ポリシーサンドボックス
+### <a name="show-cluster-policy-sandbox"></a>。クラスターポリシーサンドボックスを表示します
 
-構成済みのすべてのサンドボックス ポリシーをクラスター レベルで表示します。
+構成済みのすべてのサンドボックスポリシーがクラスターレベルで表示されます。
 
 ```kusto
 .show cluster policy sandbox
 ```
 
-### <a name="alter-cluster-policy-sandbox"></a>.alter クラスター ポリシーサンドボックス
+### <a name="alter-cluster-policy-sandbox"></a>. alter cluster policy sandbox
 
-クラスター レベルでのサンドボックス ポリシーのコレクションを変更します。
+クラスターレベルでサンドボックスポリシーのコレクションを変更します。
 
 ```kusto
 .alter cluster policy sandbox @'['
@@ -54,9 +54,9 @@ ms.locfileid: "81520130"
 ']'
 ```
 
-### <a name="drop-cluster-policy-sandbox"></a>.drop クラスター ポリシーサンドボックス
+### <a name="drop-cluster-policy-sandbox"></a>。クラスターポリシーサンドボックスを削除します。
 
-**すべての**サンドボックスポリシーを削除するには、次のコマンドを使用します。
+**すべて**のサンドボックスポリシーを削除するには、次のコマンドを使用します。
 
 ```kusto
 .delete cluster policy sandbox

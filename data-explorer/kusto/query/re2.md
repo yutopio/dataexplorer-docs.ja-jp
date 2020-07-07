@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/09/2019
-ms.openlocfilehash: 3bbd14031adbfee3b5fac07194f5ff879ff33693
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 6bdf666b46adea8105b61fc2b907fc060530ba96
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373074"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967589"
 ---
-# <a name="regular-expressions"></a>正規表現
+# <a name="re2-syntax"></a>RE2 構文
 
 RE2 正規表現の構文 Kusto (RE2) で使用される正規表現ライブラリの構文について説明します。
 正規表現を使用して文字列の一致、選択、抽出を実行する Kusto の関数がいくつかあります。
@@ -26,7 +26,7 @@ RE2 正規表現の構文 Kusto (RE2) で使用される正規表現ライブラ
 - [matches regex](datatypes-string-operators.md)
 - [parse 演算子](parseoperator.md)
 - [replace ()](replacefunction.md)
-- [trim ()](trimfunction.md)
+- [trim()](trimfunction.md)
 - [trimend ()](trimendfunction.md)
 - [trimstart ()](trimstartfunction.md)
 

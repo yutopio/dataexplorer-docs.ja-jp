@@ -1,6 +1,6 @@
 ---
-title: キャッシュ ポリシー - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのキャッシュ ポリシーについて説明します。
+title: キャッシュポリシー-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのキャッシュポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,37 +8,37 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: ca14703b2548bdb23dc3e6e352aeaacbc17303b4
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 319a71e5db7019ed28001f44a1d4a4bcb21984e9
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744472"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967249"
 ---
-# <a name="cache-policy"></a>Cache ポリシー
+# <a name="cache-policy-command"></a>キャッシュ ポリシー コマンド
 
-この資料では、[キャッシュ ポリシー](cachepolicy.md)の作成および変更に使用するコマンドについて説明します。 
+この記事では、[キャッシュポリシー](cachepolicy.md)の作成と変更に使用されるコマンドについて説明します。 
 
-## <a name="displaying-the-cache-policy"></a>キャッシュ ポリシーの表示
+## <a name="displaying-the-cache-policy"></a>キャッシュポリシーを表示しています
 
-ポリシーは、データまたはテーブルに設定でき、次のいずれかのコマンドを使用して表示されます。
+ポリシーはデータまたはテーブルに対して設定でき、次のいずれかのコマンドを使用して表示されます。
 
-* `.show``database`*データベース名*`policy``caching`
-* `.show``table`*データベース名*`.`*テーブル名*`policy``caching`
+* `.show``database` *DatabaseName* DatabaseName `policy``caching`
+* `.show``table` *DatabaseName* `.` *TableName* TableName `policy``caching`
 
-## <a name="altering-the-cache-policy"></a>キャッシュ ポリシーの変更
+## <a name="altering-the-cache-policy"></a>キャッシュポリシーの変更
 
 ```kusto
 .alter <entity_type> <database_or_table_name> policy caching hot = <timespan>
 ```
 
-複数のテーブルのキャッシュ ポリシーを変更する (同じデータベース コンテキスト内):
+複数のテーブルのキャッシュポリシーを変更する (同じデータベースコンテキスト内):
 
 ```kusto
 .alter tables (table_name [, ...]) policy caching hot = <timespan>
 ```
 
-キャッシュ ポリシー:
+キャッシュポリシー:
 
 ```kusto
 {
@@ -51,13 +51,13 @@ ms.locfileid: "81744472"
 }
 ```
 
-* `entity_type`: テーブル、データベース、またはクラスタ
-* `database_or_table`: entity がテーブルまたはデータベースの場合、その名前は次のようにコマンドで指定する必要があります。 
-  - `database_name` または 
-  - `database_name.table_name` または 
-  - `table_name`(特定のデータベースのコンテキストで実行する場合)
+* `entity_type`: テーブル、データベース、またはクラスター
+* `database_or_table`: エンティティがテーブルまたはデータベースの場合は、次のようにコマンドでその名前を指定する必要があります。 
+  - `database_name` 
+  - `database_name.table_name` 
+  - `table_name`(特定のデータベースのコンテキストで実行されている場合)
 
-## <a name="deleting-the-cache-policy"></a>キャッシュ ポリシーの削除
+## <a name="deleting-the-cache-policy"></a>キャッシュポリシーを削除しています
 
 ```kusto
 .delete <entity_type> <database_or_table_name> policy caching
@@ -65,31 +65,31 @@ ms.locfileid: "81744472"
 
 **使用例**
 
-データベース`MyTable``MyDatabase`のテーブルのキャッシュ ポリシーを表示する :
+データベースのテーブルのキャッシュポリシーを表示する `MyTable` `MyDatabase` :
 
 ```kusto
 .show table MyDatabase.MyTable policy caching 
 ```
 
-(データベース コンテキスト内`MyTable`の) テーブルのキャッシュ ポリシーを 3 日間に設定します。
+テーブルのキャッシュポリシー `MyTable` (データベースコンテキスト) を3日間に設定します。
 
 ```kusto
 .alter table MyTable policy caching hot = 3d
 ```
 
-複数のテーブルのポリシーを (データベースコンテキストで) 3 日間に設定する:
+(データベースコンテキストでの) 複数のテーブルのポリシーを、3日間に設定します。
 
 ```kusto
 .alter tables (MyTable1, MyTable2, MyTable3) policy caching hot = 3d
 ```
 
-テーブルのポリシー セットの削除:
+テーブルに設定されるポリシーを削除します。
 
 ```kusto
 .delete table MyTable policy caching
 ```
 
-データベースのポリシー・セットの削除:
+データベースで設定されるポリシーを削除します。
 
 ```kusto
 .delete database MyDatabase policy caching

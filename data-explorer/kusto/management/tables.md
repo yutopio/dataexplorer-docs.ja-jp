@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/27/2020
-ms.openlocfilehash: ed70e01f7d955ba92806e7e11f740490e87cc664
-ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
+ms.openlocfilehash: 4de0e749ad47b8f2e3f2c0f26d5d18466efaff97
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84011450"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967300"
 ---
 # <a name="tables-management"></a>テーブル管理
 
-このトピックでは、テーブルと関連付けられているコントロールコマンドのライフサイクルについて説明します。
+このトピックでは、テーブルのライフサイクルと関連付けられている制御コマンドについて説明します。テーブルの探索、作成、および変更に役立ちます。
 
 詳細については、次の表のリンクを選択してください。
 
@@ -32,7 +32,7 @@ ms.locfileid: "84011450"
 ## <a name="crud-naming-conventions-for-tables"></a>テーブルの CRUD 名前付け規則 
 (上記の表のリンク先のセクションの詳細を参照してください)。
  
-| コマンド構文                             | Semantics                                                                                                             |
+| コマンド構文                             | セマンティクス                                                                                                             |
 |--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | `.create entityType entityName ...`        | その型と名前のエンティティが存在する場合、はエンティティを返します。 それ以外の場合は、エンティティを作成します。                          |
 | `.create-merge entityType entityName...`   | その種類と名前のエンティティが存在する場合は、既存のエンティティを指定されたエンティティにマージします。 それ以外の場合は、エンティティを作成します。 |

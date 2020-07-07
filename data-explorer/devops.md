@@ -8,12 +8,12 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/05/2019
-ms.openlocfilehash: cf6724a0f363eda510b5aa9cde195ec4fd3db65b
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7d0c45a587a396da934bcb3465d60e101d0150a0
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373863"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967164"
 ---
 # <a name="azure-devops-task-for-azure-data-explorer"></a>Azure Data Explorer の Azure DevOps タスク
 
@@ -42,7 +42,7 @@ Git リポジトリでサンプル フォルダー (*Functions*、*Policies*、*
 ![フォルダーを作成します。](media/devops/create-folders.png)
 
 > [!TIP]
-> 独自のワークフローを作成するとき、コードをべき等にすることをお勧めします。 たとえば、[.create テーブル](kusto/management/create-table-command.md)の代わりに [.create-merge テーブル](kusto/management/create-table-command.md#create-merge-table)を使用し、[.create](kusto/management/create-function.md) 関数の代わりに [.create-or-alter](kusto/management/create-alter-function.md) 関数を使用します。
+> 独自のワークフローを作成するとき、コードをべき等にすることをお勧めします。 たとえば、[.create テーブル](kusto/management/create-table-command.md)の代わりに [.create-merge テーブル](kusto/management/create-merge-table-command.md)を使用し、[.create](kusto/management/create-function.md) 関数の代わりに [.create-or-alter](kusto/management/create-alter-function.md) 関数を使用します。
 
 ## <a name="create-a-release-pipeline"></a>リリース パイプラインを作成する
 

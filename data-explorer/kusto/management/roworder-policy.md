@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 63aad71854c73a3d1f1837c3665a152db8b48d13
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: bf8844a72d2b4fc3d9dec4f24fdfa6ac36ee84d7
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84258030"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967504"
 ---
-# <a name="roworder-policy"></a>RowOrder ポリシー
+# <a name="roworder-policy-command"></a>roworder policy コマンド
 
 この記事では、[行の順序ポリシー](../management/roworderpolicy.md)を作成および変更するために使用する制御コマンドについて説明します。
 

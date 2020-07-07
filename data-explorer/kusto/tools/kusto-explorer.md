@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 05/19/2020
-ms.openlocfilehash: 15c9ff61067f25f8a0f63ce4078b158277740db3
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
-ms.translationtype: HT
+ms.openlocfilehash: 6c36ace478e9bc026c028bfb6393bcfdf4eebdfa
+ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863560"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "86013924"
 ---
 # <a name="getting-started-with-kustoexplorer"></a>Kusto エクスプローラーの概要
 
@@ -26,9 +26,9 @@ Kusto. エクスプローラーを使用すると、次のことができます�
 
 ## <a name="installing-kustoexplorer"></a>Kusto のインストール
 
-* [Kusto エクスプローラーツール](https://aka.ms/ke)をインストールする
+* [Kusto エクスプローラーツール](https://aka.ms/ke)をインストールします。
 
-* 代わりに、: [https://<your_cluster>. kusto.windows.net](https://your_cluster.kusto.windows.net)のブラウザーで Kusto クラスターにアクセスします。 <your_cluster> を Azure データエクスプローラークラスター名に置き換えます。
+* お使いのブラウザーで Kusto クラスターにアクセスでき `https://<your_cluster>.kusto.windows.net` ます。 ( `<your_cluster>` を Azure データエクスプローラークラスター名に置き換えます)。
 
 ### <a name="using-chrome-and-kustoexplorer"></a>Chrome と Kusto. エクスプローラーを使用する
 
@@ -51,8 +51,8 @@ Kusto. エクスプローラーユーザーインターフェイスは、他の 
 
 Kusto. エクスプローラーのメニューパネルには、次のタブがあります。
 
-* [ホーム](#home-tab)
-* [[最近使ったファイル]](#file-tab)
+* [Home](#home-tab)
+* [ファイル](#file-tab)
 * [接続](#connections-tab)
 * [表示](#view-tab)
 * [ツール](#tools-tab)
@@ -219,11 +219,11 @@ Kusto. エクスプローラーのメニューパネルには、次のタブが�
 ||---------*検討*---------|
 |クエリ アナライザー| クエリアナライザーツールを起動します。|
 |クエリチェッカー | 現在のクエリを分析し、適用可能な改善に関する推奨事項のセットを出力します。|
-|Calculator| 電卓を起動します|
+|計算機| 電卓を起動します|
 ||---------*解析*---------|
 |分析レポート| データ分析用にビルド済みの複数のレポートを含むダッシュボードを開きます|
 ||---------*翻訳*---------|
-|クエリを Power BI| クエリをのの使用に適した形式に変換し Power BI|
+|Power BI へのクエリ| クエリをのの使用に適した形式に変換し Power BI|
 ||---------*オプション*---------|
 |リセットオプション| アプリケーション設定を既定値に設定します|
 |オプション| アプリケーション設定を構成するためのツールを開きます。 詳細について[は、Kusto. エクスプローラオプション](kusto-explorer-options.md)に関するページを参照してください。|
@@ -258,8 +258,8 @@ Kusto. エクスプローラーのメニューパネルには、次のタブが�
 |メニュー             | 動作|
 |-----------------|---------|
 ||---------*書*---------|
-|Help             | Kusto オンラインドキュメントへのリンクを開きます。  | 
-|新機能       | すべての Kusto エクスプローラーの変更を一覧表示するドキュメントを開きます。|
+|ヘルプ             | Kusto オンラインドキュメントへのリンクを開きます。  | 
+|新着情報       | すべての Kusto エクスプローラーの変更を一覧表示するドキュメントを開きます。|
 |Report Issue (問題の報告)      |次の2つのオプションでダイアログを開きます。 <ul><li>サービスに関連する問題を報告する</li><li>クライアントアプリケーションの問題を報告する</li></ul> | 
 |機能の提案  | Kusto フィードバックフォーラムへのリンクを開きます。 | 
 |更新プログラムの確認     | お使いのバージョンの Kusto に更新プログラムがあるかどうかを確認します。 | 
@@ -319,10 +319,10 @@ Kusto。エクスプローラーは、結果パネルで各行の重大度また
 
 Kusto の操作の詳細については、次を参照してください。
 
-* [Kusto エクスプローラーの使用](kusto-explorer-using.md)
+* [Kusto.Explorer の使用](kusto-explorer-using.md)
 * [Kusto. エクスプローラーのキーボードショートカット](kusto-explorer-shortcuts.md)
-* [Kusto. エクスプローラオプション](kusto-explorer-options.md)
-* [Kusto エクスプローラーのトラブルシューティング](kusto-explorer-troubleshooting.md)
+* [Kusto.Explorer のオプション](kusto-explorer-options.md)
+* [Kusto.Explorer のトラブルシューティング](kusto-explorer-troubleshooting.md)
 
 Kusto エクスプローラーのツールとユーティリティの詳細については、以下を参照してください。
 * [Kusto. エクスプローラーコードアナライザー](kusto-explorer-code-analyzer.md)

@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: e8d02634ad0c56b2e1e369d4c2cd86c63bdad155
-ms.sourcegitcommit: 56bb7b69654900ed63310ac9537ae08b72bf7209
+ms.openlocfilehash: 6f7efe2916bc5c5344bf4a6c4fa4a60bfaa167b7
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85814196"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967351"
 ---
-# <a name="streaming-ingestion-policy-management"></a>ストリーミングインジェストポリシーの管理
+# <a name="streaming-ingestion-policy-command"></a>ストリーミングインジェストポリシーコマンド
 
 ストリーミングインジェストポリシーをテーブルに設定して、このテーブルへのストリーミングインジェストを許可することができます。 また、データベースレベルでポリシーを設定して、現在のテーブルと将来のテーブルの両方に同じ設定を適用することもできます。
 

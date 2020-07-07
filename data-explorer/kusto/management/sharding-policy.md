@@ -1,6 +1,6 @@
 ---
-title: シャーディング ポリシー管理 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのシャーディング ポリシー管理について説明します。
+title: シャーディングポリシー管理-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのシャーディングポリシー管理について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7770e0834e4b00f42158732e667d41eb636cec5b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fb4ff4ade5e3fb0e2f01de0adc74aecd27381a3d
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520045"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85967470"
 ---
-# <a name="sharding-policy-management"></a>シャーディングポリシー管理
+# <a name="sharding-policy-command"></a>シャーディング ポリシー コマンド
 
-## <a name="show-policy"></a>ポリシーを表示する
+## <a name="show-policy"></a>ポリシーの表示
 
 ```kusto
 .show table [table_name] policy sharding
@@ -27,52 +27,52 @@ ms.locfileid: "81520045"
 .show database [database_name] policy sharding
 ```
 
-`Show`ポリシーは、データベースまたはテーブルのシャーディング ポリシーを表示します。 指定された名前が 「*」の場合、指定されたエンティティタイプ (データベースまたはテーブル) のすべてのポリシーが表示されます。
+`Show`ポリシーデータベースまたはテーブルのシャーディングポリシーを表示します。 指定された名前が ' * ' の場合、特定のエンティティ型 (データベースまたはテーブル) のすべてのポリシーが表示されます。
 
 ### <a name="output"></a>出力
 
 |ポリシー名 | エンティティ名 | ポリシー | 子エンティティ | エンティティの種類
 |---|---|---|---|---
-|エクステントシャーディングポリシー | データベース/テーブル名 | ポリシーを表す json 形式の文字列 | テーブルのリスト (データベース用)|データベース/テーブル
+|ExtentsShardingPolicy | データベース/テーブル名 | ポリシーを表す json 形式の文字列 | テーブルの一覧 (データベース用)|データベース/テーブル
 
 ## <a name="alter-policy"></a>ポリシーの変更
 
 ### <a name="examples"></a>例
 
-次の例では、エンティティの更新されたエクステント シャーディング ポリシーを返し、データベースまたはテーブルを修飾名として指定して、その出力として返します。
+次の例では、エンティティに対して更新されたエクステントシャーディングポリシーが返されます。これは、データベースまたはテーブルが修飾名として指定され、出力として指定されます。
 
-#### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>ポリシーのすべてのプロパティをテーブル レベルで明示的に設定する
+#### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>テーブルレベルでポリシーのすべてのプロパティを明示的に設定する
 
 ```kusto
 .alter table [table_name] policy sharding 
 @'{ "MaxRowCount": 750000, "MaxExtentSizeInMb": 1024, "MaxOriginalSizeInMb": 2048}'
 ```
 
-#### <a name="setting-all-properties-of-the-policy-explicitly-at-database-level"></a>ポリシーのすべてのプロパティをデータベース レベルで明示的に設定する
+#### <a name="setting-all-properties-of-the-policy-explicitly-at-database-level"></a>データベースレベルでポリシーのすべてのプロパティを明示的に設定する
 
 ```kusto
 .alter database [database_name] policy sharding
 @'{ "MaxRowCount": 750000, "MaxExtentSizeInMb": 1024, "MaxOriginalSizeInMb": 2048}'
 ```
 
-#### <a name="setting-the-default-sharding-policy-at-database-level"></a>データベース レベルでの*既定*のシャーディング ポリシーの設定
+#### <a name="setting-the-default-sharding-policy-at-database-level"></a>データベースレベルでの*既定*のシャーディングポリシーの設定
 
 ```kusto
 .alter database [database_name] policy sharding @'{}'
 ```
 
-#### <a name="altering-a-single-property-of-the-policy-at-database-level"></a>データベース レベルでのポリシーの単一のプロパティの変更 
+#### <a name="altering-a-single-property-of-the-policy-at-database-level"></a>データベースレベルでのポリシーの1つのプロパティの変更 
 
-他のすべてのプロパティはそのままにします。
+その他のプロパティはすべてそのままにしておきます。
 
 ```kusto
 .alter-merge database [database_name] policy sharding
 @'{ "MaxExtentSizeInMb": 1024}'
 ```
 
-#### <a name="altering-a-single-property-of-the-policy-at-table-level"></a>テーブル レベルでのポリシーの単一のプロパティの変更
+#### <a name="altering-a-single-property-of-the-policy-at-table-level"></a>テーブルレベルでポリシーの1つのプロパティを変更する
 
-他のすべてのプロパティをそのまま保持
+その他のプロパティはすべてそのままにしておきます。
 
 ```kusto
 .alter-merge table [table_name] policy sharding
@@ -87,4 +87,4 @@ ms.locfileid: "81520045"
 .delete database [database_name] policy sharding
 ```
 
-このコマンドは、指定されたエンティティの現在のシャーディング ポリシーを削除します。
+このコマンドは、指定されたエンティティの現在のシャーディングポリシーを削除します。

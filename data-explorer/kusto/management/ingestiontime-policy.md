@@ -8,19 +8,19 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 907c6ddf84d772f800fce45d3c1245bbd11b0c85
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: f5ffc7ae648a9254564af0705cda84f3c79da99b
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82616458"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85966943"
 ---
-# <a name="ingestiontime-policy"></a>IngestionTime ポリシー
+# <a name="ingestiontime-policy-command"></a>ingestiontime ポリシー コマンド
 
 IngestionTime policy は、テーブルに対して設定されたオプションのポリシーです (既定では有効になっています)。
 テーブルへのレコードの取り込みのおおよその時間を提供します。
 
-インジェスト time 値には、関数を使用し`ingestion_time()`たクエリ時にアクセスできます。
+インジェスト time 値には、関数を使用したクエリ時にアクセスでき `ingestion_time()` ます。
 
 ```kusto
 T | extend ingestionTime = ingestion_time()

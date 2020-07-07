@@ -1,33 +1,33 @@
 ---
-title: .create テーブル - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのテーブルの作成について説明します。
+title: . テーブルを作成する-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでテーブルを作成する方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 02/04/2020
-ms.openlocfilehash: f76c4d4a2780b58d9596537aea183d026d086fc5
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.date: 07/05/2020
+ms.openlocfilehash: ff8b3cfae6d3364b4d094f588c8130761fa5cb31
+ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744034"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "85966994"
 ---
 # <a name="create-tables"></a>.create テーブル
 
-一括操作として新しい空のテーブルを作成します。
+新しい空のテーブルを一括操作として作成します。
 
 コマンドは、特定のデータベースのコンテキストで実行する必要があります。
 
-[データベース ユーザーのアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
+[データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 **構文**
 
-`.create``tables`*テーブル名1* ([列名:列タイプ]、.)[`,` *テーブル名 2* ([列名:列の種類]、.)
+`.create``tables` *TableName1* ([columnname: columnType],...) [ `,` *TableName2* ([columnname: columnType],...)...] [ `with` `(` `folder` `=` *FolderName*] `)` ]
 
-テーブルが既に存在する場合、コマンドは成功を返します。
+テーブルが既に存在する場合、コマンドは success を返します。
  
 **例** 
 

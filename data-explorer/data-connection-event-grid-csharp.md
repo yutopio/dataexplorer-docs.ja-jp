@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: d2432d302640d20bb199972bc686dadab41278f1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 627c60b1d5c39aa3e5c84f6ee87340c418fa542e
+ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493095"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "86013873"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-c"></a>C# を使用して Azure Data Explorer 用に Event Grid データ接続を作成する
 
@@ -32,7 +32,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 * [クラスターとデータベース](create-cluster-database-csharp.md)を作成します
 * [テーブルと列のマッピング](net-standard-ingest-data.md#create-a-table-on-your-test-cluster)を作成します
 * [データベースとテーブルのポリシー](database-table-policies-csharp.md) (オプション) を設定します
-* [Event Grid サブスクリプションでストレージ アカウント](ingest-data-event-grid.md#create-an-event-grid-subscription-in-your-storage-account)を作成します
+* [Event Grid サブスクリプションでストレージ アカウント](../data-explorer/kusto/management/data-ingestion/eventgrid.md#create-an-event-grid-subscription-in-your-storage-account)を作成します
 
 [!INCLUDE [data-explorer-data-connection-install-nuget-csharp](includes/data-explorer-data-connection-install-nuget-csharp.md)]
 
@@ -97,16 +97,23 @@ await kustoManagementClient.DataConnections.CreateOrUpdateAsync(resourceGroupNam
 
 ## <a name="generate-sample-data"></a>サンプル データを作成する
 
-Azure Data Explorer とストレージ アカウントが接続されたので、サンプル データを作成して BLOB ストレージにアップロードできます。
+Azure Data Explorer とストレージ アカウントが接続されたので、サンプル データを作成してストレージにアップロードできます。
 
-このスクリプトは、ストレージ アカウントに新しいコンテナーを作成し、そのコンテナーに既存ファイルを (BLOB として) アップロードしてから、コンテナー内の BLOB を一覧表示します。
+> [!NOTE]
+> Azure Data Explorer では、BLOB 投稿の取り込みは削除されません。 BLOB の削除を管理する [Azure Blob Storage のライフサイクル](/azure/storage/blobs/storage-lifecycle-management-concepts?tabs=azure-portal)を使用して、BLOB を 3 から 5 日間保持します。
+
+### <a name="upload-file-using-azure-blob-storage-sdk"></a>Azure Blob Storage SDK を使用してファイルをアップロードする
+
+次のコード スニペットは、ストレージ アカウントに新しいコンテナーを作成し、そのコンテナーに既存ファイルを (BLOB として) アップロードしてから、コンテナー内の BLOB を一覧表示します。
 
 ```csharp
 var azureStorageAccountConnectionString=<storage_account_connection_string>;
 
-var containerName=<container_name>;
-var blobName=<blob_name>;
-var localFileName=<file_to_upload>;
+var containerName = <container_name>;
+var blobName = <blob_name>;
+var localFileName = <file_to_upload>;
+var uncompressedSizeInBytes = <uncompressed_size_in_bytes>;
+var mapping = <mappingReference>;
 
 // Creating the container
 var azureStorageAccount = CloudStorageAccount.Parse(azureStorageAccountConnectionString);
@@ -116,15 +123,49 @@ container.CreateIfNotExists();
 
 // Set metadata and upload file to blob
 var blob = container.GetBlockBlobReference(blobName);
-blob.Metadata.Add("rawSizeBytes", "4096‬"); // the uncompressed size is 4096 bytes
-blob.Metadata.Add("kustoIngestionMappingReference", "mapping_v2‬");
+blob.Metadata.Add("rawSizeBytes", uncompressedSizeInBytes);
+blob.Metadata.Add("kustoIngestionMappingReference", mapping);
 blob.UploadFromFile(localFileName);
 
 // List blobs
 var blobs = container.ListBlobs();
 ```
 
+### <a name="upload-file-using-azure-data-lake-sdk"></a>Azure Data Lake SDK を使用してファイルをアップロードする
+
+Data Lake Storage Gen2 を使用する場合は、[Azure Data Lake SDK](https://www.nuget.org/packages/Azure.Storage.Files.DataLake/) を使用してファイルをストレージにアップロードできます。 次のコード スニペットは、Azure Data Lake Storage に新しいファイル システムを作成し、そのファイル システムにメタデータを含むローカル ファイルをアップロードします。
+
+```csharp
+var accountName = <storage_account_name>;
+var accountKey = <storage_account_key>;
+var fileSystemName = <file_system_name>;
+var fileName = <file_name>;
+var localFileName = <file_to_upload>;
+var uncompressedSizeInBytes = <uncompressed_size_in_bytes>;
+var mapping = <mapping_reference>;
+
+var sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);
+var dfsUri = "https://" + accountName + ".dfs.core.windows.net";
+var dataLakeServiceClient = new DataLakeServiceClient(new Uri(dfsUri), sharedKeyCredential);
+
+// Create the filesystem and an empty file
+var dataLakeFileSystemClient = dataLakeServiceClient.CreateFileSystem(fileSystemName).Value;
+var dataLakeFileClient = dataLakeFileSystemClient.CreateFile(fileName).Value;
+
+// Set metadata
+IDictionary<String, String> metadata = new Dictionary<string, string>();
+metadata.Add("rawSizeBytes", uncompressedSizeInBytes);
+metadata.Add("kustoIngestionMappingReference", mapping);
+dataLakeFileClient.SetMetadata(metadata);
+
+// Write to the file and close it
+var fileStream = File.OpenRead(localFileName);
+var fileSize = fileStream.Length;
+dataLakeFileClient.Append(fileStream, offset: 0);
+dataLakeFileClient.Flush(position: fileSize, close: true); // Note: This line triggers the event being processed by the data connection
+```
+
 > [!NOTE]
-> Azure Data Explorer では、BLOB 投稿の取り込みは削除されません。 BLOB の削除を管理する [Azure Blob Storage のライフサイクル](https://docs.microsoft.com/azure/storage/blobs/storage-lifecycle-management-concepts?tabs=azure-portal)を使用して、BLOB を 3 から 5 日間保持します。
+> [Azure Data Lake SDK](https://www.nuget.org/packages/Azure.Storage.Files.DataLake/) を使用してファイルをアップロードする場合、[CreateFile](/dotnet/api/azure.storage.files.datalake.datalakefilesystemclient.createfile?view=azure-dotnet) の最初の 呼び出しでは、サイズが 0 の Event Grid イベントがトリガーされますが、このイベントは Azure Data Explorer によって無視されます。 "close" パラメーターを "true" に設定して Flush を呼び出すと、別のイベントがトリガーされます。 このイベントは、これが最終更新であり、ファイル ストリームがクローズされたことを示します。 このイベントは、Event Grid データ接続によって処理されます。 フラッシュについて詳しくは、[Azure Data Lake の Flush メソッド](/dotnet/api/azure.storage.files.datalake.datalakefileclient.flush?view=azure-dotnet)に関するページを参照してください。
 
 [!INCLUDE [data-explorer-data-connection-clean-resources-csharp](includes/data-explorer-data-connection-clean-resources-csharp.md)]

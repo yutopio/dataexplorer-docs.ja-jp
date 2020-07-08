@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: 69779e42f14a1dfc512d8752f2cc9989897b2cc6
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: cad16cf68b5b923c4ffef36370adb6506255dafd
+ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741983"
+ms.lasthandoff: 07/06/2020
+ms.locfileid: "86014021"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Event Grid の通知をサブスクライブすることで Azure Data Explorer に BLOB を取り込む
 
@@ -22,52 +22,23 @@ ms.locfileid: "82741983"
 > * [Python](data-connection-event-grid-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)
 
-Azure Data Explorer は、ログと利用統計情報のための高速でスケーラブルなデータ探索サービスです。 BLOB コンテナーに書き込まれた BLOB からの継続的な取り込み (データの読み込み) を実行できます。 
+Azure Data Explorer は、ログと利用統計情報のための高速でスケーラブルなデータ探索サービスです。 BLOB コンテナーに書き込まれた BLOB からの継続的な取り込み (データの読み込み) を実行できます。
 
-この記事では、[Azure Event Grid](/azure/event-grid/overview) サブスクリプションの設定方法、およびイベント ハブを使用して Azure Data Explorer にイベントをルーティングする方法について説明します。 まずは、Azure Event Hubs に通知を送信する イベント グリッド サブスクリプションを持つストレージ アカウントが必要です。 次に、Event Grid データ接続を作成して、システム全体のデータ フローを確認します。
+この記事では、Event Grid データ接続を使用して、ストレージ アカウントから Azure Data Explorer に BLOB を取り込む方法を説明します。 [Azure Event Grid](/azure/event-grid/overview) サブスクリプションを設定する Event Grid データ接続を作成します。 Event Grid サブスクリプションは、Azure Event Hub 経由でストレージアカウントから Azure Data Explorer にイベントをルーティングします。 その後、システム全体のデータ フローの例が表示されます。
 
 ## <a name="prerequisites"></a>前提条件
 
 * Azure サブスクリプション。 [無料の Azure アカウント](https://azure.microsoft.com/free/)を作成します。
 * [クラスターとデータベース](create-cluster-database-portal.md)。
-* [ストレージ アカウント](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal)。
-* [イベント ハブ](https://docs.microsoft.com/azure/event-hubs/event-hubs-create)。
+* [ストレージ アカウント](/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal)。
 
-## <a name="create-an-event-grid-subscription-in-your-storage-account"></a>お使いのストレージ アカウント内に Event Grid サブスクリプションを作成する
-
-1. Azure portal でストレージ アカウントを検索します。
-1. **[イベント]**  >  **[イベント サブスクリプション]** を選択します。
-
-    ![アプリケーションの [クエリ] リンク](media/ingest-data-event-grid/create-event-grid-subscription.png)
-
-1. **[基本]** タブの **[イベント サブスクリプションの作成]** ウィンドウで、次の値を指定します。
-
-    **設定** | **推奨値** | **フィールドの説明**
-    |---|---|---|
-    | 名前 | *test-grid-connection* | 作成するイベント グリッドの名前。|
-    | イベント スキーマ | *Event Grid スキーマ* | イベント グリッドで使用するスキーマ。 |
-    | トピックの種類 | *ストレージ アカウント* | イベント グリッド トピックの種類。 |
-    | トピックのリソース | *gridteststorage* | ご利用のストレージ アカウントの名前。 |
-    | すべてのイベントの種類をサブスクライブする | *オフ* | すべてのイベントの通知は取得しません。 |
-    | 定義済みのイベントの種類 | *作成された BLOB* | 通知を取得する特定のイベント。 |
-    | エンドポイントの種類 | *Event Hubs* | イベントの送信先であるエンドポイントの種類。 |
-    | エンドポイント | *test-hub* | 作成したイベント ハブ。 |
-    | | |
-
-1. 特定のコンテナーからのファイルを追跡する場合は、 **[フィルター]** タブを選択します。 次のように、通知用のフィルターを設定します。
-    * **[次で始まるサブジェクト]** フィールドは、BLOB コンテナーの*リテラル* プレフィックスです。 適用されるパターンは *startswith* であるため、複数のコンテナーにまたがることができます。 ワイルドカードは使用できません。
-        * BLOB コンテナーに対してフィルターを定義するには、フィールドを *`/blobServices/default/containers/[container prefix]`* のように設定する "*必要があります*"。 
-        * BLOB プレフィックス (または ADLS gen2 のフォルダー) に対してフィルターを定義するには、フィールドを *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`* のように設定する "*必要があります*"。 
-    * **[Subject Ends With]\(指定の値で終わる件名\)** フィールドは、BLOB の "*リテラル*" サフィックスです。 ワイルドカードは使用できません。
-    * イベントのフィルター処理の詳細については、[Blob Storage のイベント](https://docs.microsoft.com/azure/storage/blobs/storage-blob-event-overview#filtering-events)に関するセクションを参照してください。 
-    
 ## <a name="create-a-target-table-in-azure-data-explorer"></a>Azure データ エクスプローラーでターゲット テーブルを作成する
 
 Azure Data Explorer で、Event Hubs のデータの送信先となるテーブルを作成します。 前提条件で準備したクラスターとデータベース内にテーブルを作成します。
 
 1. Azure portal のクラスターで、 **[クエリ]** を選択します。
 
-    ![アプリケーションの [クエリ] リンク](media/ingest-data-event-grid/query-explorer-link.png)
+    :::image type="content" source="media/ingest-data-event-grid/query-explorer-link.png" alt-text="クエリ エクスプローラーへのリンク":::    
 
 1. 次のコマンドをウィンドウにコピーし、 **[実行]** を選択して、取り込んだデータを受け取るテーブル (TestTable) を作成します。
 
@@ -75,7 +46,7 @@ Azure Data Explorer で、Event Hubs のデータの送信先となるテーブ�
     .create table TestTable (TimeStamp: datetime, Value: string, Source:string)
     ```
 
-    ![クエリの作成の実行](media/ingest-data-event-grid/run-create-table.png)
+    :::image type="content" source="media/ingest-data-event-grid/run-create-table.png" alt-text="コマンド create table の実行":::
 
 1. 次のコマンドをウィンドウにコピーし、 **[実行]** を選択して、テーブル (TestTable) の列名とデータ型に受信 JSON データをマップします。
 
@@ -85,50 +56,73 @@ Azure Data Explorer で、Event Hubs のデータの送信先となるテーブ�
 
 ## <a name="create-an-event-grid-data-connection-in-azure-data-explorer"></a>Azure Data Explorer でイベント グリッド データ接続を作成する
 
-ここで、Azure Data Explorer から Event Grid に接続して、BLOB コンテナーに送信されるデータがテスト テーブルにストリーミングされるようにします。 
-
-1. ツールバーの **[通知]** を選択して、イベント ハブのデプロイが成功したことを確認します。
+ここで、ストレージ アカウントを Azure Data Explorer に接続して、ストレージに送信されるデータがテスト テーブルにストリーミングされるようにします。 
 
 1. 作成したクラスターの **[データベース]**  >  **[TestDatabase]** を選択します。
 
-    ![テスト データベースの選択](media/ingest-data-event-grid/select-test-database.png)
+    :::image type="content" source="media/ingest-data-event-grid/select-test-database.png" alt-text="テスト データベースの選択":::
 
 1. **[データ インジェスト]**  >  **[データ接続の追加]** を選択します。
 
-    ![データ インジェスト](media/ingest-data-event-grid/data-ingestion-create.png)
+    :::image type="content" source="media/ingest-data-event-grid/data-ingestion-create.png" alt-text="[データ インジェスト] の [データ接続の追加]":::
 
-1.  次の接続の種類を選択します:**Blob Storage**。
+1. 次の接続の種類を選択します: **[Blob ストレージ]** 。
 
-1. フォームに次の情報を入力し、 **[作成]** を選択します。
+1. フォームに次の情報を入力します。
 
-    ![イベント ハブの接続](media/ingest-data-event-grid/create-event-grid-data-connection.png)
+    :::image type="content" source="media/ingest-data-event-grid/create-event-grid-data-connection-basics.png" alt-text="Event Grid フォームへの接続の基本の入力":::
 
      データ ソース:
 
-    **設定** | **推奨値** | **フィールドの説明**
+    |**設定** | **推奨値** | **フィールドの説明**|
     |---|---|---|
-    | データ接続名 | *test-hub-connection* | Azure Data Explorer で作成する接続の名前。|
+    | データ接続名 | *test-grid-connection* | Azure Data Explorer で作成する接続の名前。|
     | ストレージ アカウントのサブスクリプション | サブスクリプション ID | ストレージ アカウントが存在するサブスクリプション ID。|
-    | ストレージ アカウント | *gridteststorage* | 作成済みのストレージ アカウントの名前。|
-    | Event Grid | *test-grid-connection* | 作成したイベント グリッドの名前。 |
-    | イベント ハブ名 | *test-hub* | 作成したイベント ハブ。 このフィールドは、イベント グリッドを選択すると、自動的にデータが入力されます。 |
-    | コンシューマー グループ | *test-group* | 作成したイベント ハブに定義されているコンシューマー グループ。 |
-    | | |
+    | ストレージ アカウント | *gridteststorage1* | 作成済みのストレージ アカウントの名前。|
+    | リソースの作成 | *自動* | Azure Data Explorer で Event Grid サブスクリプション、イベント ハブの名前空間、およびイベント ハブを自動作成するかどうかを定義します。 Event Grid サブスクリプションを手動作成する方法については、「[お使いのストレージ アカウント内に Event Grid サブスクリプションを作成する](../data-explorer/kusto/management/data-ingestion/eventgrid.md#create-an-event-grid-subscription-in-your-storage-account)」セクションの参照で詳しく説明しています。|
 
-    ターゲット テーブル: 
+1. 特定のサブジェクトを追跡するには、 **[Filter settings]\(フィルターの設定\)** を選択します。 次のように、通知用のフィルターを設定します。
+    * **[Prefix]\(プレフィックス\)** フィールドはサブジェクトの "*リテラル*" プレフィックスです。 適用されるパターンは *startswith* であるため、複数のコンテナー、フォルダー、BLOB を対象にできます。 ワイルドカードは使用できません。
+        * BLOB コンテナーに対してフィルターを定義するには、フィールドを *`/blobServices/default/containers/[container prefix]`* のように設定する "*必要があります*"。
+        * BLOB プレフィックス (または Azure Data Lake Gen2 のフォルダー) に対してフィルターを定義するには、フィールドを *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`* のように設定する "*必要があります*"。
+    * **[Suffix]\(サフィックス\)** フィールドは、BLOB の "*リテラル*" サフィックスです。 ワイルドカードは使用できません。
+    * **[Case Sensitive]\(大文字と小文字の区別\)** フィールドは、プレフィックスとサフィックスのフィルターで大文字と小文字が区別されるかどうかを示します
+    * イベントのフィルター処理の詳細については、[Blob Storage のイベント](/azure/storage/blobs/storage-blob-event-overview#filtering-events)に関するページを参照してください。
+    
+    :::image type="content" source="media/ingest-data-event-grid/filter-settings.png" alt-text="Event Grid のフィルター設定":::    
+
+1. **次へ:Ingest properties\(次へ: 取り込みのプロパティ\)** を選択します。
+
+1. フォームに次の情報を入力し、 **[次へ: 確認と作成]** を選択します。 テーブル名とマッピング名では大文字と小文字が区別されます。
+
+   :::image type="content" source="media/ingest-data-event-grid/create-event-grid-data-connection-ingest-properties.png" alt-text="テーブルとマッピングの取り込みのプロパティの確認と作成":::
+
+    Ingest properties (取り込みのプロパティ):
 
      **設定** | **推奨値** | **フィールドの説明**
     |---|---|---|
     | テーブル | *TestTable* | **TestDatabase** に作成したテーブル。 |
-    | データ形式 | *JSON* | サポートされている形式は、Avro、CSV、JSON、MULTILINE JSON、PSV、SOH、SCSV、TSV、RAW、TXT です。 サポートされている圧縮オプションは、Zip と GZip です。 |
-    | 列マッピング | *TestMapping* | **TestDatabase** に作成したマッピング。受信 JSON データを **TestTable** の列名とデータ型にマッピングします。|
-    | | |
-    
+    | データ形式 | *JSON* | サポートされている形式は、Avro、CSV、JSON、MULTILINE JSON、ORC、PARQUET、PSV、SCSV、SOHSV、TSV、TXT、および TSVE です。 サポートされている圧縮オプションは、Zip と GZip です。 |
+    | マッピング | *TestMapping* | **TestDatabase** に作成したマッピング。受信 JSON データを **TestTable** の列名とデータ型にマッピングします。|
+
+1. 自動的に作成されたリソースを確認し、 **[作成]** を選択します。
+
+    :::image type="content" source="media/ingest-data-event-grid/create-event-grid-data-connection-review-create.png" alt-text="Event Grid のデータ接続の確認と作成":::
+
+1. デプロイが完了するまでお待ちください。 デプロイが失敗した場合は、失敗したステージの横にある **[操作の詳細]** を選択して、失敗の原因に関する詳細情報を取得できます。 **[再デプロイ]** を選択してリソースのデプロイを再試行することもできます。
+
+    :::image type="content" source="media/ingest-data-event-grid/deploy-event-grid-resources.png" alt-text="Event Grid リソースのデプロイ":::
+
 ## <a name="generate-sample-data"></a>サンプル データを作成する
 
-Azure Data Explorer とストレージ アカウントが接続されたので、サンプル データを作成して BLOB ストレージにアップロードできます。
+Azure Data Explorer とストレージ アカウントが接続されたので、サンプル データを作成してストレージ コンテナーにアップロードできます。
 
-Azure Storage リソースを操作するいくつかの基本的な Azure CLI コマンドを発行する、簡単なシェル スクリプトを使用します。 このスクリプトは、ストレージ アカウントに新しいコンテナーを作成し、そのコンテナーに既存ファイルを (BLOB として) アップロードしてから、コンテナー内の BLOB を一覧表示します。 [Azure Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/overview) を使用して、このスクリプトをポータルで直接実行できます。
+Azure Storage リソースを操作するいくつかの基本的な Azure CLI コマンドを発行する、簡単なシェル スクリプトを使用します。 このスクリプトでは、次のアクションを実行します。 
+1. ストレージ アカウントに新しいコンテナーを作成する。
+1. 既存のファイルを (BLOB として) そのコンテナーにアップロードする。
+1. コンテナー内の BLOB を一覧表示する。 
+
+[Azure Cloud Shell](/azure/cloud-shell/overview) を使用して、このスクリプトをポータルで直接実行できます。
 
 ファイルにデータを保存し、このスクリプトでそれをアップロードします。
 
@@ -182,7 +176,7 @@ BLOB メタデータを使用して、BLOB インジェストの[インジェス
 > [!NOTE]
 > Azure Data Explorer では、BLOB 投稿の取り込みは削除されません。
 > 3 から 5 日間、BLOB が保持されます。
-> [Azure BLOB ストレージのライフサイクル](https://docs.microsoft.com/azure/storage/blobs/storage-lifecycle-management-concepts?tabs=azure-portal)を使用して、BLOB の削除を管理してください。 
+> [Azure BLOB ストレージのライフサイクル](/azure/storage/blobs/storage-lifecycle-management-concepts?tabs=azure-portal)を使用して、BLOB の削除を管理してください。 
 
 ## <a name="review-the-data-flow"></a>データ フローの確認
 
@@ -193,7 +187,7 @@ BLOB メタデータを使用して、BLOB インジェストの[インジェス
 
 1. アプリの実行中に Azure portal でイベント グリッドを確認すると、アクティビティの急上昇が見られます。
 
-    ![イベント グリッド グラフ](media/ingest-data-event-grid/event-grid-graph.png)
+    :::image type="content" source="media/ingest-data-event-grid/event-grid-graph.png" alt-text="Event Grid のアクティビティ グラフ":::
 
 1. これまでにデータベースに届いたメッセージ数を確認するには、テスト データベースで次のクエリを実行します。
 
@@ -208,23 +202,43 @@ BLOB メタデータを使用して、BLOB インジェストの[インジェス
     TestTable
     ```
 
-    結果は次のようになります。
+    結果セットは次の図のようになります。
 
-    ![メッセージの結果セット](media/ingest-data-event-grid/table-result.png)
+    :::image type="content" source="media/ingest-data-event-grid/table-result.png" alt-text="Event Grid のメッセージの結果セット":::
 
 ## <a name="clean-up-resources"></a>リソースをクリーンアップする
 
-このイベント グリッドを今後使用する予定がない場合は、コストが発生しないように **test-hub-rg** をクリーンアップします。
+Event Grid を再度使用する予定がない場合は、自動的に作成された Event Grid サブスクリプション、イベント ハブの名前空間、およびイベント ハブをクリーンアップしてコストが発生しないようにします。
 
-1. Azure Portal の左端で **[リソース グループ]** を選択し、作成したリソース グループを選択します。  
+1. Azure portal で、左側のメニューに移動して **[すべてのリソース]** を選択します。
 
-    左側のメニューが折りたたまれている場合は、 ![展開ボタン](media/ingest-data-event-grid/expand.png) をクリックして展開します。
+    :::image type="content" source="media/ingest-data-event-grid/clean-up-resources-select-all-resource.png" alt-text="Event Grid のクリーンアップ用にすべてのリソースを選択":::    
 
-   ![削除するリソース グループの選択](media/ingest-data-event-grid/delete-resources-select.png)
+1. イベント ハブの名前空間を検索し、 **[削除]** を選択して削除します。
 
-1. **test-resource-group** で **[リソース グループの削除]** を選択します。
+    :::image type="content" source="media/ingest-data-event-grid/clean-up-resources-find-eventhub-namespace-delete.png" alt-text="イベント ハブの名前空間のクリーンアップ":::
 
-1. 新しいウィンドウで、削除するリソース グループの名前 (*test-hub-rg*) を入力し、 **[削除]** を選択します。
+1. [リソースの削除] フォームで、削除を確認して、イベント ハブの名前空間とイベント ハブのリソースを削除します。
+
+1. ストレージ アカウントに移動します。 左側のメニューで **[イベント]** を選択します
+
+    :::image type="content" source="media/ingest-data-event-grid/clean-up-resources-select-events.png" alt-text="Event Grid でクリーンアップするイベントの選択":::
+
+1. グラフの下で Event Grid サブスクリプションを選択し、 **[削除]** を選択して削除します。
+
+    :::image type="content" source="media/ingest-data-event-grid/delete-event-grid-subscription.png" alt-text="Event Grid サブスクリプションの削除":::
+
+1. Event Grid データ接続を削除するには、Azure Data Explorer クラスターにアクセスします。 メニューで **[データべース]** を選択します。
+
+1. データベース **TestDatabase** を選択します。
+
+    :::image type="content" source="media/ingest-data-event-grid/clean-up-resources-select-database.png" alt-text="リソースをクリーンアップするデータベースの選択":::
+
+1. メニューで **[データ インジェスト]** を選択します。
+
+    :::image type="content" source="media/ingest-data-event-grid/clean-up-resources-select-data-ingestion.png" alt-text="[データ インジェスト] を選択してリソースをクリーンアップ":::
+
+1. データ接続 *test-grid-connection* を選択し、 **[削除]** を選んで削除します。
 
 ## <a name="next-steps"></a>次のステップ
 

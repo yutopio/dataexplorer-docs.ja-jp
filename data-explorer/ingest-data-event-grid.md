@@ -91,7 +91,7 @@ Azure Data Explorer で、Event Hubs のデータの送信先となるテーブ�
     
     :::image type="content" source="media/ingest-data-event-grid/filter-settings.png" alt-text="Event Grid のフィルター設定":::    
 
-1. **次へ:Ingest properties\(次へ: 取り込みのプロパティ\)** を選択します。
+1. **[Next:Ingest properties]\(次へ: 取り込みのプロパティ\)** を選択します。
 
 1. フォームに次の情報を入力し、 **[次へ: 確認と作成]** を選択します。 テーブル名とマッピング名では大文字と小文字が区別されます。
 

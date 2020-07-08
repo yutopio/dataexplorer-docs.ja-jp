@@ -70,9 +70,9 @@
           items:
             - name: ワンクリックでのインジェストの概要
               href: ingest-data-one-click.md
-            - name: 新しいテーブルへのワンクリックでのインジェスト
+            - name: コンテナーから新しいテーブルへの CSV データ
               href: one-click-ingestion-new-table.md
-            - name: 既存のテーブルへのワンクリックでのインジェスト
+            - name: ローカル ファイルから既存のテーブルへの JSON データ
               href: one-click-ingestion-existing-table.md
         - name: ストリーミング インジェスト
           items:
@@ -1486,7 +1486,21 @@
             - name: エクステント (データ シャード) の概要
               href: ./kusto/management/extents-overview.md
             - name: エクステント コマンド
-              href: ./kusto/management/extents-commands.md
+              items:
+                - name: .alter extent
+                  href: ./kusto/management/alter-extent.md
+                - name: .drop extents
+                  href: ./kusto/management/drop-extents.md
+                - name: .drop extent tags
+                  href: ./kusto/management/drop-extent-tags.md
+                - name: .merge extents
+                  href: ./kusto/management/merge-extents.md
+                - name: .move extents
+                  href: ./kusto/management/move-extents.md
+                - name: .replace extents
+                  href: ./kusto/management/replace-extents.md
+                - name: .show extents
+                  href: ./kusto/management/show-extents.md
             - name: クラスター フォロワー
               href: ./kusto/management/cluster-follower.md
             - name: データの消去

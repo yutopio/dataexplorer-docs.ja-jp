@@ -8,12 +8,11 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 433d8786ad3664d02387efacd7dcd3865b4deb13
-ms.sourcegitcommit: ddafa58deb79417bd6f36e8bb3ad106d375b63e1
-ms.translationtype: MT
+ms.openlocfilehash: ca9d455bb1ca5a8736c279388d848ab1347c11e6
+ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/26/2020
-ms.locfileid: "85448504"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86058832"
 ---
 # <a name="data-partitioning-policy"></a>データのパーティション分割ポリシー
 
@@ -173,9 +172,9 @@ ms.locfileid: "85448504"
 * **MaxRowCountPerOperation**:
   * 1つのデータパーティション分割操作のソースエクステントの行数の合計の最大ターゲット。
   * このプロパティは省略可能です。 既定値は `0` で、既定のターゲットは500万レコードです。
-    * 5分よりも小さい値を設定することを検討できます。パーティション分割操作は、操作ごとに非常に大量のメモリ/CPU を消費します (#monitoring を参照してください)。
+    * パーティション分割操作が操作ごとに非常に大量のメモリまたは CPU を消費している場合は、5分よりも小さい値を設定できます。 詳細については、「 [Monitoring](#monitoring)」を参照してください。
 
-## <a name="notes"></a>メモ
+## <a name="notes"></a>ノート
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 
@@ -196,7 +195,7 @@ ms.locfileid: "85448504"
 出力には次のものが含まれます。
 
   * `MinPartitioningPercentageInSingleTable`: クラスター内にデータのパーティション分割ポリシーがあるすべてのテーブルにわたる、パーティション分割されたデータの最小割合。
-    * この割合が常に90% 未満の場合は、クラスターのパーティション分割容量を評価します (「[容量](partitioningpolicy.md#capacity)」を参照してください)。
+    * この割合が常に90% 未満の場合は、クラスターのパーティション分割[容量](partitioningpolicy.md#capacity)を評価します。
   * `TableWithMinPartitioningPercentage`: パーティションの割合が上に表示されるテーブルの完全修飾名。
 
 を使用[します。](commands.md)パーティション分割コマンドとそのリソース使用率を監視するには、コマンドを表示します。 次に例を示します。

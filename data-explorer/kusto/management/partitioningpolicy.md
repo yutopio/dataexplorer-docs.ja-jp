@@ -8,11 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: ca9d455bb1ca5a8736c279388d848ab1347c11e6
-ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.openlocfilehash: 7f299a730b451f608e0d2c81fc78565d515fc029
+ms.sourcegitcommit: bcb87ed043aca7c322792c3a03ba0508026136b4
+ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86058832"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86127316"
 ---
 # <a name="data-partitioning-policy"></a>データのパーティション分割ポリシー
 
@@ -34,7 +35,8 @@ ms.locfileid: "86058832"
 
 ### <a name="hash-partition-key"></a>ハッシュパーティションキー
 
-テーブルの型の列にハッシュパーティションキーを適用する `string` のは、クエリの大部分で等値フィルター (,) を使用する場合、または、、、など `==` `in()` `string` の*大規模なディメンション*の特定の型の列 (たとえば、10 mb 以上) に対して集計/結合を行う場合に適してい `application_ID` `tenant_ID` `user_ID` ます。
+> [!NOTE]
+> テーブルの型の列にハッシュパーティションキーを適用する `string` のは、 **only**クエリの大部分が等値フィルター (,) を使用している場合、または、、、など `==` `in()` `string` の*大規模ディメンション*の特定型の列 (たとえば、10 mb 以上) に対して集計/結合を行う場合 `application_ID` `tenant_ID` にのみ適しています `user_ID` 。
 
 * ハッシュ剰余関数は、データをパーティション分割するために使用されます。
 * 同じパーティションに属するすべての同種 (パーティション分割) エクステントは、同じデータノードに割り当てられます。
@@ -77,7 +79,10 @@ ms.locfileid: "86058832"
 
 ### <a name="uniform-range-datetime-partition-key"></a>Uniform range datetime パーティションキー
 
-テーブル内の型指定された列に対して uniform range datetime パーティションキーを適用する `datetime` ことは、テーブルへのデータ取り込まれたがこの列に従って並べ替えられる可能性が低い場合に適しています。 エクステント間でデータを再シャッフルして、各エクステントが一定期間のレコードを含むようにすると便利な場合があります。 再シャッフルを実行すると、 `datetime` クエリ時に列のフィルターの効率が向上します。
+> [!NOTE] 
+> テーブル内の型指定された列に対して uniform range datetime パーティションキーを適用する `datetime` ことは、テーブルへのデータ取り込まれたがこの列に従って並べ替えられる可能性が低い場合に**のみ**適しています。
+
+このような場合は、エクステント間でデータを再シャッフルして、各エクステントが一定期間のレコードを含むようにすると便利です。 これにより、その列のフィルターが `datetime` クエリ時により効率的になります。
 
 * 使用されるパーティション関数は[bin_at ()](../query/binatfunction.md)であり、カスタマイズすることはできません。
 
@@ -174,7 +179,7 @@ ms.locfileid: "86058832"
   * このプロパティは省略可能です。 既定値は `0` で、既定のターゲットは500万レコードです。
     * パーティション分割操作が操作ごとに非常に大量のメモリまたは CPU を消費している場合は、5分よりも小さい値を設定できます。 詳細については、「 [Monitoring](#monitoring)」を参照してください。
 
-## <a name="notes"></a>ノート
+## <a name="notes"></a>メモ
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 

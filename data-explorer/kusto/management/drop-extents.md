@@ -10,11 +10,12 @@ ms.topic: reference
 ms.date: 07/02/2020
 ms.openlocfilehash: dfa462ca82cd5e94adff77b3893b3b02d60c6cdc
 ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 07/07/2020
 ms.locfileid: "86060726"
 ---
-# <a name="drop-extents"></a>。エクステントを削除します。
+# <a name="drop-extents"></a>.drop extents
 
 指定されたデータベースまたはテーブルからエクステントを削除します。
 

@@ -10,11 +10,12 @@ ms.topic: reference
 ms.date: 07/02/2020
 ms.openlocfilehash: 6b633358713b0ff48d14fc9c5ca2a907bad0afab
 ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 07/07/2020
 ms.locfileid: "86060759"
 ---
-# <a name="merge-extents"></a>。エクステントをマージします。
+# <a name="merge-extents"></a>.merge extents
 
 このコマンドは、指定されたテーブル内の Id で示されるエクステントをマージします。 
 
@@ -59,7 +60,7 @@ Duration |TimeSpan |マージ操作を完了するために要した期間。
 .merge MyTable (12345050-a1e2-4dad-8552-1f5cf47cab69, 98765b2d-9dd2-4d2c-a45e-b24c65aa6687)
 ```
 
-## <a name="notes"></a>ノート
+## <a name="notes"></a>メモ
 
 * 一般に、 `.merge` コマンドを手動で実行することはできません。 これらのコマンドは、テーブルおよびデータベースの[マージポリシー](mergepolicy.md)に従って、継続的に、クラスターのバックグラウンドで自動的に実行されます。  
   * 複数のエクステントを1つにマージするための条件の詳細については、「[マージポリシー](mergepolicy.md)」を参照してください。

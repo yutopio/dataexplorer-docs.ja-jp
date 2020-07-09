@@ -10,6 +10,7 @@ ms.topic: reference
 ms.date: 07/02/2020
 ms.openlocfilehash: 00c4cfbb4b6415afcd68e8e41864ca4a68cc097e
 ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 07/07/2020
 ms.locfileid: "86060679"
@@ -46,7 +47,7 @@ ms.locfileid: "86060679"
 |OriginalExtentId |string |タグが変更された元のエクステントの一意識別子 (GUID)。 エクステントは操作の一部として削除されます。|
 |ResultExtentId |string |変更されたタグを持つ結果エクステントの一意識別子 (GUID)。 エクステントが作成され、操作の一部として追加されます。 失敗時-"失敗"。|
 |ResultExtentTags |string |結果エクステントにタグが付けられたタグのコレクション。操作が失敗した場合は "null"。|
-|説明 |string |操作が失敗した場合のエラーの詳細が含まれます。|
+|詳細 |string |操作が失敗した場合のエラーの詳細が含まれます。|
 
 ## <a name="examples"></a>例
 
@@ -68,7 +69,7 @@ ms.locfileid: "86060679"
 
 ## <a name="sample-output"></a>サンプル出力
 
-|OriginalExtentId |ResultExtentId | ResultExtentTags | 説明
+|OriginalExtentId |ResultExtentId | ResultExtentTags | 詳細
 |---|---|---|---
 |e133f050-a1e2-4dad-8552-1f5cf47cab69 |0d96ab2d-9dd2-4d2c-a45e-b24c65aa6687 | ドロップダウン: MyNewTag MyOtherNewTag| 
 |cdbeb35b-87ea-499f-b545-defbae091b57 |a90a303c-8a14-4207-8f35-d8ea94ca45be | ドロップダウン: MyNewTag MyOtherNewTag| 

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/23/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8898f772af37e86ec33bff66e43779dfbaf4c053
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 2060d2996338cf1eee33b5905e9929c46040afa9
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370685"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188593"
 ---
 # <a name="tutorial"></a>チュートリアル
 
@@ -44,7 +44,7 @@ Kusto クエリ言語について学習する最善の方法は、いくつか�
 StormEvents | count
 ```
 
-結果は次のとおりです。
+結果は次のようになります。
 
 |Count|
 |-----|
@@ -68,7 +68,7 @@ StormEvents
 | project StartTime, EndTime , State , EventType , EpisodeNarrative
 ```
 
-|StartTime|EndTime|State|EventType|EpisodeNarrative|
+|StartTime|EndTime|状態|EventType|EpisodeNarrative|
 |---|---|---|---|---|
 |2007-02-19 00:00: 00.0000000|2007-02-19 08:00: 00.0000000|カリフォルニア|洪水|南のサンホアキンバレーで正面システムを移動すると、午前19時の午前1時に、雨の雨を西洋のに簡単に移行できます。 軽微なフラッディングは、Taft 付近の州幹線道路166で報告されています。|
 
@@ -83,7 +83,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|EventType|State|EventNarrative|
+|StartTime|EndTime|EventType|状態|EventNarrative|
 |---|---|---|---|---|
 |2007-09-18 20:00: 00.0000000|2007-09-19 18:00: 00.0000000|重い雨|フロリダ|Coastal Volusia 郡の一部にわたって24時間のうち9インチの雨がいます。|
 |2007-09-20 21:57: 00.0000000|2007-09-20 22:05: 00.0000000|Tornado|フロリダ|Eustis 町で触れた tornado は、西 Crooked Lake の北端にあります。 Tornado は、北北西を Eustis 移動したときに EF1 の強さをすばやく極めるします。 このトラックは、長さが2マイル未満で、最大幅が300ヤードになっています。  Tornado は7本の自宅を破壊しています。 20個の自宅が、大きなダメージを受け、81の自宅が軽微な損害を報告しました。 重大な負傷や、プロパティの破損は $620万に設定されていました。|
@@ -108,7 +108,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|EventType|State|EventNarrative|
+|StartTime|EndTime|EventType|状態|EventNarrative|
 |---|---|---|---|---|
 |2007-12-31 22:30: 00.0000000|2007-12-31 23:59: 00.0000000|冬の嵐|ミシガン|この大きな雪のイベントは、新年の朝に続きます。|
 |2007-12-31 22:30: 00.0000000|2007-12-31 23:59: 00.0000000|冬の嵐|ミシガン|この大きな雪のイベントは、新年の朝に続きます。|
@@ -138,7 +138,7 @@ StormEvents
 | project StartTime, EndTime, Duration, EventType, State
 ```
 
-|StartTime|EndTime|Duration|EventType|State|
+|StartTime|EndTime|期間|EventType|状態|
 |---|---|---|---|---|
 |2007-09-18 20:00: 00.0000000|2007-09-19 18:00: 00.0000000|22:00:00|重い雨|フロリダ|
 |2007-09-20 21:57: 00.0000000|2007-09-20 22:05: 00.0000000|00:08:00|Tornado|フロリダ|
@@ -156,7 +156,7 @@ print x=1
 | extend x = x + 1
 ```
 
-|x|y|
+|x|Y|
 |---|---|
 |3|1|
 
@@ -184,7 +184,7 @@ StormEvents
 | top 5 by StormCount desc
 ```
 
-|State|StormCount|TypeOfStorms|
+|状態|StormCount|TypeOfStorms|
 |---|---|---|
 |テキサス州|4701|27|
 |カンザス|3166|21|
@@ -450,7 +450,8 @@ LightningStorms
 | distinct State
 ```
 
-> ヒント: Kusto クライアントでは、このの部分の間に空白行を入れないでください。 必ず、すべて間を空けずに実行してください。
+> [!TIP]
+> Kusto エクスプローラークライアントでは、このの部分の間に空白行を入れないでください。 必ず、すべて間を空けずに実行してください。
 
 ## <a name="combining-data-from-several-databases-in-a-query"></a>クエリ内の複数のデータベースからのデータの結合
 
@@ -486,7 +487,8 @@ union Requests, database("Diagnostics").Logs | ...
 Logs | join cluster("TelemetryCluster").database("Telemetry").Metrics on Request MachineId | ...
 ```
 
-> 注: クラスターが指定されている場合、データベースは必須です
+> [!NOTE]
+> クラスターが指定されている場合、データベースは必須です
 
 ::: zone-end
 

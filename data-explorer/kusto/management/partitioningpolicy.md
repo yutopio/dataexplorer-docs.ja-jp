@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 7f299a730b451f608e0d2c81fc78565d515fc029
-ms.sourcegitcommit: bcb87ed043aca7c322792c3a03ba0508026136b4
+ms.openlocfilehash: 0bf2960d1bf585efc6b356a1b7075a27ca6616da
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86127316"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188372"
 ---
 # <a name="data-partitioning-policy"></a>データのパーティション分割ポリシー
 
@@ -36,7 +36,9 @@ ms.locfileid: "86127316"
 ### <a name="hash-partition-key"></a>ハッシュパーティションキー
 
 > [!NOTE]
-> テーブルの型の列にハッシュパーティションキーを適用する `string` のは、 **only**クエリの大部分が等値フィルター (,) を使用している場合、または、、、など `==` `in()` `string` の*大規模ディメンション*の特定型の列 (たとえば、10 mb 以上) に対して集計/結合を行う場合 `application_ID` `tenant_ID` にのみ適しています `user_ID` 。
+> 次のインスタンスでのみ、テーブルの型の列にハッシュパーティションキーを適用し `string` ます。
+> * クエリの大部分で、等値フィルター (,) を使用する場合 `==` `in()` 。
+> * クエリの大部分は `string` 、、、などの*大規模なディメンション*(10 mb 以上のカーディナリティ) の特定の型指定された列に対して集計/結合を `application_ID` `tenant_ID` `user_ID` 行います。
 
 * ハッシュ剰余関数は、データをパーティション分割するために使用されます。
 * 同じパーティションに属するすべての同種 (パーティション分割) エクステントは、同じデータノードに割り当てられます。
@@ -80,11 +82,11 @@ ms.locfileid: "86127316"
 ### <a name="uniform-range-datetime-partition-key"></a>Uniform range datetime パーティションキー
 
 > [!NOTE] 
-> テーブル内の型指定された列に対して uniform range datetime パーティションキーを適用する `datetime` ことは、テーブルへのデータ取り込まれたがこの列に従って並べ替えられる可能性が低い場合に**のみ**適しています。
+> テーブル `datetime` へのデータ取り込まれたがこの列に従って並べ替えられない場合は、テーブル内の型指定された列に対してのみ、uniform range datetime パーティションキーを適用します。
 
 このような場合は、エクステント間でデータを再シャッフルして、各エクステントが一定期間のレコードを含むようにすると便利です。 これにより、その列のフィルターが `datetime` クエリ時により効率的になります。
 
-* 使用されるパーティション関数は[bin_at ()](../query/binatfunction.md)であり、カスタマイズすることはできません。
+使用されるパーティション関数は[bin_at ()](../query/binatfunction.md)であり、カスタマイズすることはできません。
 
 #### <a name="partition-properties"></a>パーティションのプロパティ
 
@@ -179,7 +181,7 @@ ms.locfileid: "86127316"
   * このプロパティは省略可能です。 既定値は `0` で、既定のターゲットは500万レコードです。
     * パーティション分割操作が操作ごとに非常に大量のメモリまたは CPU を消費している場合は、5分よりも小さい値を設定できます。 詳細については、「 [Monitoring](#monitoring)」を参照してください。
 
-## <a name="notes"></a>メモ
+## <a name="notes"></a>Notes
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 
@@ -228,6 +230,6 @@ ms.locfileid: "86127316"
 
 どちらの場合も、データを "修正" するか、インジェストの前または後にデータ内の不要なレコードをフィルターで除外して、クラスターでのデータのパーティション分割のオーバーヘッドを軽減する必要があります。 たとえば、[更新ポリシー](updatepolicy.md)を使用します。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 [パーティション分割ポリシー制御コマンド](../management/partitioning-policy.md)を使用して、テーブルのデータのパーティション分割ポリシーを管理します。

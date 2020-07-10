@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/29/2019
-ms.openlocfilehash: b454b9453c7afd0835041ac78d13318de73432e2
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 6804b71ff3985de17460dddfa60f081f3bb910c0
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382071"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188423"
 ---
 # <a name="using-the-net-client-libraries-from-powershell"></a>PowerShell からの .NET クライアントライブラリの使用
 
@@ -24,9 +24,10 @@ Powershell スクリプトは、任意の (PowerShell 以外の) .NET ライブ�
 PowerShell を使用して Azure データエクスプローラー .NET クライアントライブラリの操作を開始するには
 
 1. [ `Microsoft.Azure.Kusto.Tools` NuGet パッケージ](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/)をダウンロードします。
+    * Powershell 7 (またはそれ以上) を使用している場合は、 [ `Microsoft.Azure.Kusto.Tools.NETCore` NuGet パッケージ](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools.NETCore/)をダウンロードします。
 1. パッケージ内の ' tools ' ディレクトリの内容を抽出します (などのアーカイブツールを使用し `7-zip` ます)。
 1. `[System.Reflection.Assembly]::LoadFrom("path")`PowerShell からを呼び出して、必要なライブラリを読み込みます。 
-    - コマンドのパラメーターは、抽出された `path` ファイルの場所を示します。
+    * コマンドのパラメーターは、抽出された `path` ファイルの場所を示します。
 1. すべての依存 .NET アセンブリが読み込まれると、次のようになります。
    1. Kusto 接続文字列を作成します。
    1. *クエリプロバイダー*または*管理プロバイダー*をインスタンス化します。
@@ -65,6 +66,10 @@ $kcsb = New-Object Kusto.Data.KustoConnectionStringBuilder ($clusterUrl, $databa
 #     $applicationKey = "application key goes here"
 #     $authority = "authority goes here"
 #     $kcsb = $kcsb.WithAadApplicationKeyAuthentication($applicationId, $applicationKey, $authority)
+#
+#   NOTE: if you're running with Powershell 7 (or above) and the .NET Core library,
+#         AAD user authentication with prompt will not work, and you should choose
+#         a different authentication method.
 ```
 
 ### <a name="example-running-an-admin-command"></a>例: 管理コマンドの実行
@@ -107,7 +112,7 @@ $dataView | Sort StartTime -Descending | Format-Table -AutoSize
 
 出力は次のようになります。
 
-|StartTime           |EndTime             |EpisodeID |EventID |State          |EventType         |InjuriesDirect |InjuriesIndirect |DeathsDirect |DeathsIndirect
+|StartTime           |EndTime             |EpisodeID |EventID |状態          |EventType         |InjuriesDirect |InjuriesIndirect |DeathsDirect |DeathsIndirect
 |---------           |-------             |--------- |------- |-----          |---------         |-------------- |---------------- |------------ |--------------
 |2007-12-30 16:00:00 |2007-12-30 16:05:00 |    11749 |  64588 |グルジア        |雷雨風 |             0 |               0 |           0 |             0
 |2007-12-20 07:50:00 |2007-12-20 07:53:00 |    12554 |  68796 |MISSISSIPPI    |雷雨風 |             0 |               0 |           0 |             0

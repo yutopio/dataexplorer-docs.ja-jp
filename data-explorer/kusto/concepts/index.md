@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6c09bea9cfe25ea7ebe86170f71593db4db7d9a2
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: a1382703c4c70263ff0d8a066860071fd07ef179
+ms.sourcegitcommit: bf2c9da0c23ebcaec19b229d2079032d54a2cc82
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264353"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86140520"
 ---
 # <a name="getting-started-with-kusto"></a>Kusto の概要
 
@@ -33,7 +33,7 @@ Azure Data Explorer は、ビッグ データに対する対話型分析を格�
 ## <a name="interacting-with-azure-data-explorer"></a>Azure Data Explorer との対話
 
 ユーザーが Azure Data Explorer (Kusto) と対話するための主な方法:
-* 利用可能な多数の [クライアント ツール](../tools/index.md)の 1 つを使用します。 
+* [クエリ ツール](../../tools-integrations-overview.md#azure-data-explorer-query-tools)のいずれかを使用します。 
 * [SQL クエリ](../api/tds/t-sql.md)。
 *  [Kusto クエリ言語](../query/index.md)は、対話の主な手段です。 KQL を使用すると、データ クエリを送信したり、[制御コマンド](../management/index.md)を使用してエンティティを管理したり、メタデータを検出したりすることができます。
 クエリと制御コマンドは、どちらも短いテキスト "プログラム" です。

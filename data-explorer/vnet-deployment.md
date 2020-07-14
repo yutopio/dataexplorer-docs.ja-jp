@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/31/2019
-ms.openlocfilehash: 5505eca4435521ea82c347bcd204ff3d68a14176
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: dcc196675b29ac1989fb0753e87ef5f1bf0477aa
+ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862124"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86291578"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
@@ -68,7 +68,7 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 
 ### <a name="network-security-groups-configuration"></a>ネットワーク セキュリティ グループ構成
 
-[ネットワーク セキュリティ グループ (NSG)](/azure/virtual-network/security-overview) は、VNet 内でネットワーク アクセスを制御する機能を提供します。 Azure Data Explorer には、2 つのエンドポイント、HTTPs (443) および TDS (1433) を使用してアクセスできます。 クラスターの管理、監視、および適切な操作のために、これらのエンドポイントへのアクセスを許可するように次の NSG ルールを構成する必要があります。
+[ネットワーク セキュリティ グループ (NSG)](/azure/virtual-network/security-overview) は、VNet 内でネットワーク アクセスを制御する機能を提供します。 Azure Data Explorer には、2 つのエンドポイント、HTTPs (443) および TDS (1433) を使用してアクセスできます。 クラスターの管理、監視、および適切な操作のために、これらのエンドポイントへのアクセスを許可するように次の NSG ルールを構成する必要があります。 追加のルールは、セキュリティのガイドラインによって異なります。
 
 #### <a name="inbound-nsg-configuration"></a>受信 NSG 構成
 
@@ -112,8 +112,8 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 | インド中部 | 40.81.249.251, 104.211.98.159 |
 | 米国中部 | 40.67.188.68 |
 | 米国中部 EUAP | 40.89.56.69 |
-| 中国東部 2 | 139.217.236.210 |
-| 中国北部 2 | 40.73.6.21 |
+| 中国東部 2 | 139.217.184.92 |
+| 中国北部 2 | 139.217.60.6 |
 | 東アジア | 20.189.74.103 |
 | 米国東部 | 52.224.146.56 |
 | 米国東部 2 | 52.232.230.201 |
@@ -228,6 +228,18 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 | インド西部 | 13.71.25.187 |
 | 米国西部 | 40.78.70.148 |
 | 米国西部 2 | 52.151.20.103 |
+
+## <a name="disable-access-to-azure-data-explorer-from-the-public-ip"></a>パブリック IP から Azure Data Explorer へのアクセスを無効にする
+
+パブリック IP アドレスを使用した Azure Data Explorer へのアクセスを完全に無効にする場合は、NSG で別の受信規則を作成します。 この規則にはより低い[優先順位](/azure/virtual-network/security-overview#security-rules) (より大きい数値) が必要です。 
+
+| **用途**   | **ソース** | **ソース サービス タグ** | **ソース ポート範囲**  | **宛先** | **宛先ポート範囲** | **プロトコル ** | **操作** | **優先順位 ** |
+| ---   | --- | --- | ---  | --- | --- | --- | --- | --- |
+| インターネットからのアクセスを無効にする | サービス タグ | インターネット | *  | VirtualNetwork | * | Any | 拒否 | 上記の規則よりも大きい数値 |
+
+この規則を使用すると、次の DNS レコード (各サービスのプライベート IP にマップされている) を介してのみ、Azure Data Explorer クラスターに接続できます。
+* `private-[clustername].[geo-region].kusto.windows.net` (エンジン)
+* `private-ingest-[clustername].[geo-region].kusto.windows.net` (データ管理)
 
 ## <a name="expressroute-setup"></a>ExpressRoute セットアップ
 

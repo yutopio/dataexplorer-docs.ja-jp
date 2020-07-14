@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/24/2020
-ms.openlocfilehash: bbbf120c0a24a7ed14bc558b7dcd739bf2cae595
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 6eab8ab3097876c74cc6aaa9116c8923ca9fc3db
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83374269"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188406"
 ---
 # <a name="troubleshoot-access-ingestion-and-operation-of-your-azure-data-explorer-cluster-in-your-virtual-network"></a>仮想ネットワーク内の Azure Data Explorer クラスターのアクセス、インジェスト、操作に関するトラブルシューティング
 
@@ -28,43 +28,40 @@ ms.locfileid: "83374269"
 
 # <a name="windows"></a>[Windows](#tab/windows)
 
-   1. クラスターに接続しているマシンに、[TCping](https://www.elifulkerson.com/projects/tcping.php) をダウンロードします。
-   1. 次のコマンドを使用して、ソース マシンからターゲットに ping を実行します。
+1. クラスターに接続しているマシンに、[TCping](https://www.elifulkerson.com/projects/tcping.php) をダウンロードします。
+1. 次のコマンドを使用して、ソース マシンからターゲットに ping を実行します。
 
-    ```cmd
-     C:\> tcping -t yourcluster.kusto.windows.net 443 
-    
-     ** Pinging continuously.  Press control-c to stop **
-    
-     Probing 1.2.3.4:443/tcp - Port is open - time=100.00ms
-     ```
+   ```cmd
+   C:\> tcping -t yourcluster.kusto.windows.net 443 
+   ** Pinging continuously.  Press control-c to stop **
+   Probing 1.2.3.4:443/tcp - Port is open - time=100.00ms
+   ```
 
 # <a name="linux"></a>[Linux](#tab/linux)
 
-   1. クラスターに接続しているマシンに、*netcat* をインストールします
+1. クラスターに接続しているマシンに、*netcat* をインストールします
 
-    ```bash
-    $ apt-get install netcat
-     ```
+   ```bash
+   $ apt-get install netcat
+   ```
 
-   1. 次のコマンドを使用して、ソース マシンからターゲットに ping を実行します。
+1. 次のコマンドを使用して、ソース マシンからターゲットに ping を実行します。
 
-     ```bash
-     $ netcat -z -v yourcluster.kusto.windows.net 443
-    
-     Connection to yourcluster.kusto.windows.net 443 port [tcp/https] succeeded!
-     ```
+   ```bash
+   $ netcat -z -v yourcluster.kusto.windows.net 443
+   Connection to yourcluster.kusto.windows.net 443 port [tcp/https] succeeded!
+   ```
 ---
 
 テストが成功しなかった場合は、次の手順に進みます。 テストが成功した場合、問題は TCP 接続の問題によるものではありません。 [操作の問題](#cluster-creation-and-operations-issues)に関する説明に移動し、さらにトラブルシューティングを行います。
 
 ### <a name="check-the-network-security-group-nsg"></a>ネットワーク セキュリティ グループ (NSG) を確認する
 
-   クラスターのサブネットに接続されている[ネットワーク セキュリティ グループ](/azure/virtual-network/security-overview) (NSG) に、ポート 443 のクライアント マシンの IP からのアクセスを許可する受信規則があることを確認します。
+クラスターのサブネットに接続されている[ネットワーク セキュリティ グループ](/azure/virtual-network/security-overview) (NSG) に、ポート 443 のクライアント マシンの IP からのアクセスを許可する受信規則があることを確認します。
 
 ### <a name="check-route-table"></a>ルート テーブルを確認する
 
-   クラスターのサブネットで、ファイアウォールに対して強制トンネリングが設定されている場合 (既定のルート '0.0.0.0/0' を含む[ルート テーブル](/azure/virtual-network/virtual-networks-udr-overview)を持つサブネット)、マシンの IP アドレスに、[次ホップの種類](/azure/virtual-network/virtual-networks-udr-overview)が VirtualNetwork または Internet になっているルートがあることを確認します。 このルートは、非対称ルートの問題を防ぐために必要です。
+クラスターのサブネットで、ファイアウォールに対して強制トンネリングが設定されている場合 (既定のルート '0.0.0.0/0' を含む[ルート テーブル](/azure/virtual-network/virtual-networks-udr-overview)を持つサブネット)、マシンの IP アドレスに、[次ホップの種類](/azure/virtual-network/virtual-networks-udr-overview)が VirtualNetwork または Internet になっているルートがあることを確認します。 このルートは、非対称ルートの問題を防ぐために必要です。
 
 ## <a name="ingestion-issues"></a>インジェストの問題
 
@@ -85,6 +82,10 @@ ms.locfileid: "83374269"
 ## <a name="cluster-creation-and-operations-issues"></a>クラスターの作成と操作の問題
 
 クラスターの作成または操作の問題が発生しており、それが仮想ネットワークのセットアップに関するものと思われる場合は、これらの手順に従って問題のトラブルシューティングを行います。
+
+### <a name="check-the-dns-servers-configuration"></a>"DNS サーバー" の構成を確認する
+
+カスタム DNS サーバーはサポートされていません。 Virtual Network の **[DNS サーバー]** 構成セクションでは、既定のオプションを使用してください。
 
 ### <a name="diagnose-the-virtual-network-with-the-rest-api"></a>REST API を使用して仮想ネットワークを診断する
 

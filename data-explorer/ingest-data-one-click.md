@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 26b1633a13aa6ffbd98109e94113679620845160
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 98cfbf8b196d0496b4c7e86b03d6d2787ba6919f
+ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264515"
+ms.lasthandoff: 07/09/2020
+ms.locfileid: "86188457"
 ---
 # <a name="what-is-one-click-ingestion"></a>ワンクリックでのインジェストとは
 
@@ -35,17 +35,6 @@ ms.locfileid: "85264515"
 * Azure サブスクリプションをお持ちでない場合は、開始する前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
 * [Azure Data Explorer クラスターとデータベース](create-cluster-database-portal.md)を作成します。
 * [Azure Data Explorer の Web UI にサインイン](https://dataexplorer.azure.com/)して、[クラスターへの接続を追加](web-query-data.md#add-clusters)します。
-
-## <a name="file-formats"></a>ファイル形式
-
-ワンクリックでのインジェストでは、次の形式のソース データから新しいテーブルにデータを取り込むことができます。
-* JSON
-* CSV
-* TSV
-* SCSV
-* SOHSV
-* TSVE
-* PSV
 
 ## <a name="ingest-new-data"></a>新しいデータを取り込む
 
@@ -70,22 +59,34 @@ ms.locfileid: "85264515"
 > * [CSV 形式でコンテナーから新しいテーブル](one-click-ingestion-new-table.md)に取り込む
 > * [JSON 形式でローカル ファイルから既存のテーブル](one-click-ingestion-existing-table.md)に取り込む 
 
-* ウィザードの指示に従って、次のオプションを選択します。
-    * [既存のテーブル](one-click-ingestion-existing-table.md)への取り込み
-    * [新しいテーブル](one-click-ingestion-new-table.md)への取り込み
-    * 次の場所からのデータの取り込み:
+ウィザードの指示に従って、次のオプションを選択します。
+   * [既存のテーブル](one-click-ingestion-existing-table.md)への取り込み
+   * [新しいテーブル](one-click-ingestion-new-table.md)への取り込み
+   * 次の場所からのデータの取り込み:
       * BLOB ストレージ
       * [ローカル ファイル](one-click-ingestion-existing-table.md)
       * [コンテナー](one-click-ingestion-new-table.md)
 
+
 ### <a name="schema-mapping"></a>スキーマ マッピング
 
-* サービスでは、変更可能なスキーマおよびインジェストのプロパティが自動的に生成されます。 新しいテーブルまたは既存のテーブルのどちらに取り込むかによって、既存のマッピング構造を使用することも、新しいマッピング構造を作成することもできます。
+サービスでは、変更可能なスキーマおよびインジェストのプロパティが自動的に生成されます。 新しいテーブルまたは既存のテーブルのどちらに取り込むかによって、既存のマッピング構造を使用することも、新しいマッピング構造を作成することもできます。
 
-* **[スキーマ]** タブでは、次の操作を行うことができます。
-    * 自動生成された圧縮の種類を確認します。
-    * [データの形式](#file-formats)を選択します。 異なる形式を使用すると、さらに変更を加えることができます。
-      
+**[スキーマ]** タブで、次の操作を行います。
+   * 自動生成された圧縮の種類を確認します。
+   * [データの形式](#file-formats)を選択します。 異なる形式を使用すると、さらに変更を加えることができます。
+
+#### <a name="file-formats"></a>ファイル形式
+
+ワンクリックでのインジェストでは、次の形式のソース データから新しいテーブルにデータを取り込むことができます。
+* JSON
+* CSV
+* TSV
+* SCSV
+* SOHSV
+* TSVE
+* PSV
+
 ### <a name="editor-window"></a>エディター ウィンドウ
 
 **エディター** ウィンドウでは、必要に応じてデータ テーブルの列を調整できます。 
@@ -102,13 +103,12 @@ ms.locfileid: "85264515"
 
 スキーマ マッピングと列の操作が完了すると、インジェスト ウィザードでデータ インジェスト プロセスが開始されます。 
 
-* **コンテナー以外**のソースからデータを取り込む場合は、次のようになります。
-    * インジェストは直ちに反映されます。
+* **コンテナー以外**のソースからのデータ取り込みは、直ちに結果が反映されます。
 
 * データ ソースが**コンテナー**の場合は、次のようになります。
     * Azure Data Explorer の[バッチ処理ポリシー](kusto/management/batchingpolicy.md)によりデータが集計されます。 
     * インジェストが完了すると、インジェスト レポートをダウンロードして、処理された各 BLOB のパフォーマンスを確認できます。 
-    * **[Create continuous ingestion]\(継続的なインジェストの作成\)** を選択し、[Event Grid を使用して継続的なインジェスト](one-click-ingestion-new-table.md#continuous-ingestion---container-only)を設定することができます。
+    * **[Create continuous ingestion]\(継続的なインジェストの作成\)** を選択し、[Event Grid を使用して継続的なインジェスト](one-click-ingestion-new-table.md#create-continuous-ingestion-for-container)を設定することができます。
  
 ### <a name="initial-data-exploration"></a>初期データ探索
    

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/28/2020
-ms.openlocfilehash: 983a9af42772209df2f48c1b1480e8ff0f34b5d6
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1edca77125f46c59402edfde251262cebe5c1b70
+ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494195"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86291595"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Azure Data Explorer を使用して Azure Monitor でデータのクエリを実行する (プレビュー)
 
@@ -88,6 +88,20 @@ union <ADX table>, cluster(CL1).database(<workspace-name>).<table name>
    [ ![Azure Data Explorer プロキシからのクロス クエリ](media/adx-proxy/cross-query-adx-proxy.png)](media/adx-proxy/cross-query-adx-proxy.png#lightbox)
 
 union の代わりに [`join` 演算子](kusto/query/joinoperator.md)を使用するには、それを (プロキシに対してではなく) Azure Data Explorer ネイティブ クラスターに対して実行するための [`hint`](kusto/query/joinoperator.md#join-hints) が必要になる場合があります。 
+
+## <a name="function-supportability"></a>関数のサポート
+Azure Data Explorer プロキシ クラスターでは、Application Insights と Log Analytics の両方の関数がサポートされています。
+これにより、クロス クラスター クエリで Azure Monitor の表形式関数を直接参照できます。
+以下のコマンドがプロキシによってサポートされています。
+
+```kusto
+.show functions
+.show function {FunctionName}
+.show database {DataBaseName} schema as json
+```
+
+> [!NOTE]
+> Azure Monitor は表形式の関数のみをサポートします。 表形式関数ではパラメーターはサポートされていません。
 
 ## <a name="additional-syntax-examples"></a>その他の構文例
 

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 03/29/2020
-ms.openlocfilehash: 4a390e0501d12b6d70d924e9a5c5576e77cec435
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 2c7cd53053582c02f610f364eb36e87ecdf5b03a
+ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85265326"
+ms.lasthandoff: 07/07/2020
+ms.locfileid: "86058868"
 ---
 # <a name="use-one-click-ingestion-to-ingest-csv-data-from-a-container-to-a-new-table-in-azure-data-explorer"></a>ワンクリックでのインジェストを使用して Azure Data Explorer の新しいテーブルにコンテナーの CSV データを取り込む
 
@@ -36,25 +36,25 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
     > [!NOTE]
     > テーブル名は、1 から 1024 文字にする必要があります。
 
-:::image type="content" source="media/one-click-ingestion-new-table/create-new-table.png" alt-text="ワンクリック インジェストによる新しいテーブルの作成":::
+    :::image type="content" source="media/one-click-ingestion-new-table/create-new-table.png" alt-text="ワンクリック インジェストによる新しいテーブルの作成":::
 
 ## <a name="select-an-ingestion-type"></a>インジェストの種類を選択する
 
-* **[インジェストの種類]** で、次の手順を実行します。
+**[インジェストの種類]** で、次の手順を実行します。
    
   1. **[コンテナーから]** を選択します。 
   1. **[ストレージへのリンク]** フィールドにコンテナーの [SAS URL](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) を追加し、必要に応じてサンプル サイズを入力します。
 
       :::image type="content" source="media/one-click-ingestion-new-table/from-container.png" alt-text="コンテナーからのワンクリックでのインジェスト":::
 
- > [!TIP] 
- > **ファイルから**のインジェストについては、[ワンクリックでのインジェストを使用した、Azure Data Explorer の既存のテーブルへのローカル ファイルの JSON データの取り込み](one-click-ingestion-existing-table.md#select-an-ingestion-type)に関するページを参照してください
+     > [!TIP] 
+     > **ファイルから**のインジェストについては、[ワンクリックでのインジェストを使用した、Azure Data Explorer の既存のテーブルへのローカル ファイルの JSON データの取り込み](one-click-ingestion-existing-table.md#select-an-ingestion-type)に関するページを参照してください
 
-* データのサンプルが表示されます。 必要に応じて、特定の文字で始まる、または終わるファイルだけを取り込むようにフィルター処理することができます。 フィルターを調整すると、プレビューが自動的に更新されます。
+データのサンプルが表示されます。 必要に応じて、特定の文字で始まる、または終わるファイルだけを取り込むようにフィルター処理することができます。 フィルターを調整すると、プレビューが自動的に更新されます。
   
-  たとえば、*data* という単語で始まり、 *.csv.gz* 拡張子で終わるすべてのファイルを表示するようにフィルター処理できます。
+ * たとえば、*data* という単語で始まり、 *.csv.gz* 拡張子で終わるすべてのファイルを表示するようにフィルター処理できます。
 
-  :::image type="content" source="media/one-click-ingestion-new-table/from-container-with-filter.png" alt-text="ワンクリックでのインジェスト フィルター":::
+    :::image type="content" source="media/one-click-ingestion-new-table/from-container-with-filter.png" alt-text="ワンクリックでのインジェスト フィルター":::
   
 ## <a name="edit-the-schema"></a>スキーマを編集する
 
@@ -68,8 +68,8 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
         この場合、データ形式は **CSV** です
 
-    > [!TIP]
-    > **JSON** ファイルを使用する場合は、[ワンクリックでのインジェストを使用した、Azure Data Explorer の既存のテーブルへのローカル ファイルの JSON データの取り込み](one-click-ingestion-existing-table.md#edit-the-schema)に関するページを参照してください。
+        > [!TIP]
+        > **JSON** ファイルを使用する場合は、[ワンクリックでのインジェストを使用した、Azure Data Explorer の既存のテーブルへのローカル ファイルの JSON データの取り込み](one-click-ingestion-existing-table.md#edit-the-schema)に関するページを参照してください。
 
     * ファイルの見出し行が無視されるように、 **[列名を含む]** チェック ボックスをオンにすることができます。
 
@@ -81,14 +81,14 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
 ### <a name="table"></a>テーブル
 
-1. この表で、 
-    * 編集するには、新しい列の名前をダブルクリックします。
-    * 新しい列ヘッダーを選択して、次のいずれかの操作を行います。
+この表で、 
+ * 編集するには、新しい列の名前をダブルクリックします。
+ * 新しい列ヘッダーを選択して、次のいずれかの操作を行います。
 
-[!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
+    [!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
 
-> [!NOTE]
-> 表形式データの列はそれぞれ Azure Data Explorer の 1 つの列に取り込むことができます。
+    > [!NOTE]
+    > 表形式データの列はそれぞれ Azure Data Explorer の 1 つの列に取り込むことができます。
 
 [!INCLUDE [data-explorer-one-click-command-editor](includes/data-explorer-one-click-command-editor.md)]
 
@@ -106,7 +106,7 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
 [!INCLUDE [data-explorer-one-click-ingestion-query-data](includes/data-explorer-one-click-ingestion-query-data.md)]
 
-## <a name="continuous-ingestion---container-only"></a>継続的なインジェスト - コンテナーのみ
+## <a name="create-continuous-ingestion-for-container"></a>コンテナー用の継続的なインジェストを作成する
 
 継続的なインジェストを使用すると、ソース コンテナー内の新しいファイルをリッスンするイベント グリッドを作成できます。 あらかじめ定義されたパラメーターの条件 (プレフィックス、サフィックスなど) を満たす新しいファイルがすべて自動的にターゲット テーブルに取り込まれます。 
 

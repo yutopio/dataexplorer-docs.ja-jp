@@ -8,16 +8,16 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: 39d5b35a80ff9354a5fb6987866ff024471d7305
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: c4396087018e25c57f064e8d2f99a83cc0840c3a
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83232441"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280591"
 ---
-# <a name="geo_polygon_to_s2cells"></a>geo_polygon_to_s2cells ()
+# <a name="geo_polygon_to_s2cells"></a>geo_polygon_to_s2cells()
 
-地球上の多角形または multipolygon をカバーする S2 セルトークンを計算します。
+地球上の多角形または multipolygon をカバーする S2 セルトークンを計算します。 この関数は、便利な地理空間結合ツールです。
 
 [S2 セル階層](https://s2geometry.io/devguide/s2cell_hierarchy)の詳細については、こちらをご覧ください。
 
@@ -36,10 +36,11 @@ ms.locfileid: "83232441"
 
 > [!NOTE]
 >
-> * ポリゴンと S2 セルトークンをカバーすることは、これらの座標を含む可能性のあるポリゴンと座標を照合する場合に役立ちます。
+> * ポリゴンを S2 セルトークンと組み合わせて使用すると、これらの座標や多角形との一致する多角形を多角形に一致させることができます。
 > * ポリゴンのカバートークンは、同じ S2 セルレベルです。
 > * ポリゴンあたりのトークンの最大数は65536です。
-> * 地球の測定に使用される[測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum)は球です。 多角形のエッジは、球体の geodesics です。
+> * 地球の測定に使用される[測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum)は球です。 多角形のエッジは、球体の[Geodesics](https://en.wikipedia.org/wiki/Geodesic)です。
+> * 入力ポリゴンのエッジが直交直線の場合は、平面エッジを geodesics に変換するために[geo_polygon_densify ()](geo-polygon-densify-function.md)を使用することを検討してください。
 
 **S2 セルトークンを使用してポリゴンをカバーするための動機**
 
@@ -91,7 +92,7 @@ Polygons | extend dummy=1
    - S2 セルレベル5では、対象となる国に適していることが証明されている可能性があります。
    - S2 セルレベル16は、高密度で比較的小さなマンハッタン (ニューヨーク) の少数隣接に対応できます。
    - S2 セルレベル11は、オーストラリアの郊外をカバーするために使用できます。
-* S2 セルレベルの値が異なるため、クエリの実行時間とメモリの消費が異なる場合があります。
+* S2 セルレベルの値が異なると、クエリの実行時間とメモリ消費が異なる場合があります。
 
 > [!WARNING]
 > 小さい領域のセルを含む大領域の多角形をカバーすると、多くのカバーセルが生じる可能性があります。 その結果、クエリは null を返す可能性があります。

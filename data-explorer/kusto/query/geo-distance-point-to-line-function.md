@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: 304b40a00fd471b7735ff11c01bdaa8b6ca3a8ec
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: b4a30aa4285b8f6e22e5d4057fe7d408d548a27b
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227463"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280548"
 ---
 # <a name="geo_distance_point_to_line"></a>geo_distance_point_to_line()
 
@@ -35,7 +35,8 @@ ms.locfileid: "83227463"
 
 > [!NOTE]
 > * 地理空間座標は、 [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home)座標参照システムによって表されるものとして解釈されます。
-> * 地球上の距離を測定するために使用される[測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum)は球です。 線の端は、球体の geodesics です。
+> * 地球上の距離を測定するために使用される[測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum)は球です。 線の端は、球体の[geodesics](https://en.wikipedia.org/wiki/Geodesic)です。
+> * 入力行のエッジが直交直線の場合は、平面エッジを geodesics に変換するために[geo_line_densify ()](geo-line-densify-function.md)を使用することを検討してください。
 
 **LineString の定義と制約**
 

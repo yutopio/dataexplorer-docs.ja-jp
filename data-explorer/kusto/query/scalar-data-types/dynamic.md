@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/09/2020
-ms.openlocfilehash: 1ac715f06945e3db99de1a00b09237ae6f6e241d
-ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
+ms.openlocfilehash: e909754a040308d752b19155e1e69a10097ab219
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86188559"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280501"
 ---
 # <a name="the-dynamic-data-type"></a>動的データ型
 
@@ -52,7 +52,7 @@ print o=dynamic({"a":123, "b":"hello", "c":[1,2,3], "d":{}})
 ```
 
 便宜上、 `dynamic` クエリテキスト自体に表示されるリテラルには、、、、、、、および型の他の kusto リテラルも含まれる場合があり `datetime` `timespan` `real` `long` `guid` `bool` `dynamic` ます。
-文字列を解析する場合 (関数を使用する場合やデータを取り込みする場合など)、JSON に対するこの拡張機能は使用できません `parse_json` が、次の操作を行うことができます。
+文字列を解析する場合 (関数を使用する場合やデータを取り込みする場合など)、JSON を超えるこの拡張機能は使用できません `parse_json` が、次の操作を行うことができます。
 
 ```kusto
 print d=dynamic({"a": datetime(1970-05-11)})
@@ -102,7 +102,7 @@ print d=dynamic({"a": datetime(1970-05-11)})
 
 次の例で `dict` は、と `arr` は動的な型の列です。
 
-|式                        | アクセサー式の型 | 意味                                                                              | コメント                                      |
+|Expression                        | アクセサー式の型 | 意味                                                                              | コメント                                      |
 |----------------------------------|--------------------------|--------------------------------------------------------------------------------------|-----------------------------------------------|
 |辞書 [col]                         | エンティティ名 (列)     | キーとして列の値を使用してディクショナリを添字する `col`              | 列は文字列型でなければなりません                 | 
 |arr [インデックス]                        | エンティティインデックス (列)    | インデックスとして列の値を使用して配列の添字を指定する `index`              | 列は整数またはブール型である必要があります     | 
@@ -120,11 +120,11 @@ print d=dynamic({"a": datetime(1970-05-11)})
 
 > 動的オブジェクトを時した後、値を単純型にキャストする必要があります。
 
-|式 | 値 | 種類|
+|Expression | 値 | 型|
 |---|---|---|
 | X | parse_json (' [100101102] ')| array|
 |X [0]|parse_json (' 100 ')|動的|
-|toint (X [1])|101| int|
+|toint (X [1])|101| INT|
 | Y | parse_json (' {"a1": 100, "a b c": "2015-01-01"} ')| ディクショナリ|
 |X.y|parse_json (' 100 ')|動的|
 |Y ["a b c"]| parse_json ("2015-01-01")|動的|
@@ -163,11 +163,11 @@ print d=dynamic({"a": datetime(1970-05-11)})
 
 ## <a name="operators-and-functions-over-dynamic-types"></a>動的な型に対する演算子と関数
 
-|||
+|演算子または関数|動的データ型の使用|
 |---|---|
 | *value* `in` *array*| *array* に *value* と等しい要素がある場合は true。<br/>`where City in ('London', 'Paris', 'Rome')`
 | *value* `!in` *array*| *array* に *value* と等しい要素がない場合は true。
-|[`array_length(`array`)`](../arraylengthfunction.md)| 配列でない場合は null。
+|[`array_length(`配列`)`](../arraylengthfunction.md)| 配列でない場合は null。
 |[`bag_keys(`bag`)`](../bagkeysfunction.md)| 動的プロパティバッグオブジェクト内のすべてのルートキーを列挙します。
 |[`bag_merge(`bag1,..., bagN`)`](../bag-merge-function.md)| 動的プロパティバッグを、すべてのプロパティがマージされた動的プロパティバッグにマージします。
 |[`extractjson(`path、object`)`](../extractjsonfunction.md)|オブジェクトに移動するためのパスを使用します。

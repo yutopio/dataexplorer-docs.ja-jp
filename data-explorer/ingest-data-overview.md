@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
-ms.openlocfilehash: 6fa60c3c82a889d1161b30529586b225cee3efbd
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: e6b329380d507e93161415f51515656628564500
+ms.sourcegitcommit: bf2c9da0c23ebcaec19b229d2079032d54a2cc82
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863279"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "86140539"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Azure Data Explorer のデータ インジェスト概要 
 
@@ -34,7 +34,6 @@ Azure Data Explorer は、外部ソースからデータをプルし、保留中
 
 * **アクセス許可**:データを取り込むプロセスでは、[データベース インジェスター レベルのアクセス許可](kusto/management/access-control/role-based-authorization.md)が必要です。 クエリなどの他の操作では、データベース管理者、データベース ユーザー、またはテーブル管理者のアクセス許可が必要になる場合があります。
 
-
 ## <a name="batching-vs-streaming-ingestion"></a>バッチ処理とストリーミング インジェスト
 
 * バッチ処理インジェストでは、データのバッチ処理が行われ、高インジェスト スループットのために最適化されます。 この方法は、推奨される、最もパフォーマンスの高い種類のインジェストです。 データはインジェスト プロパティに従ってバッチ処理されます。 データの小さなバッチはその後マージされ、高速なクエリ結果用に最適化されます。 [インジェスト バッチ](kusto/management/batchingpolicy.md) ポリシーは、データベースまたはテーブルに対して設定できます。 既定では、バッチ処理の最大値は、5 分、1000 項目、または合計サイズ 500 MB です。
@@ -54,6 +53,12 @@ Azure Data Explorer では複数のインジェスト方法がサポートされ
 * **[Event Hubs](https://azure.microsoft.com/services/event-hubs/)** :サービスから Azure Data Explorer にイベントを転送するパイプライン。 詳細については、[イベント ハブから Azure Data Explorer へのデータの取り込み](ingest-data-event-hub.md)に関するページを参照してください。
 
 * **[IoT Hub](https://azure.microsoft.com/services/iot-hub/)** :サポートされている IoT デバイスから Azure Data Explorer にデータを転送するために使用されるパイプライン。 詳細については、[IoT Hub からの取り込み](ingest-data-iot-hub.md)に関する記事を参照してください。
+
+* **Azure Data Factory (ADF)** Azure の分析ワークロード用のフル マネージド データ統合サービス。 Azure Data Factory は 90 を超えるサポートされるソースに接続して、効率的で回復性があるデータ転送を提供します。 ADF では、さまざまな方法で監視できる分析情報を提供するために、データが準備、変換、強化されます。 このサービスは、1 回限りのソリューションとして、または定期的なタイムラインで使用したり、特定のイベントによってトリガーしたりすることができます。 
+  * [Azure Data Explorer と Azure Data Factory の統合](data-factory-integration.md)。
+  * [Azure Data Factory を使用してサポートされソースから Azure Data Explorer にデータをコピーする](/azure/data-explorer/data-factory-load-data)。
+  * [Azure Data Factory テンプレートを使用してデータベースから Azure Data Explorer に一括コピーする](data-factory-template.md)。
+  * [Azure Data Factory コマンド アクティビティを使用して Azure Data Explorer 制御コマンドを実行する](data-factory-command-activity.md)。
 
 ### <a name="ingestion-using-connectors-and-plugins"></a>コネクタとプラグインを使用したインジェスト
 
@@ -84,12 +89,6 @@ Azure データ エクスプローラーで提供されている SDK を使用�
 * [GO API](kusto/api/golang/kusto-golang-client-library.md)
 
 ### <a name="tools"></a>ツール
-
-* **Azure Data Factory (ADF)** Azure の分析ワークロード用のフル マネージド データ統合サービス。 Azure Data Factory は 90 を超えるサポートされるソースに接続して、効率的で回復性があるデータ転送を提供します。 ADF では、さまざまな方法で監視できる分析情報を提供するために、データが準備、変換、強化されます。 このサービスは、1 回限りのソリューションとして、または定期的なタイムラインで使用したり、特定のイベントによってトリガーしたりすることができます。 
-  * [Azure Data Explorer と Azure Data Factory の統合](data-factory-integration.md)。
-  * [Azure Data Factory を使用してサポートされソースから Azure Data Explorer にデータをコピーする](/azure/data-explorer/data-factory-load-data)。
-  * [Azure Data Factory テンプレートを使用してデータベースから Azure Data Explorer に一括コピーする](data-factory-template.md)。
-  * [Azure Data Factory コマンド アクティビティを使用して Azure Data Explorer 制御コマンドを実行する](data-factory-command-activity.md)。
 
 * **[ワンクリック インジェスト](ingest-data-one-click.md)** :さまざまな種類のソースからテーブルを作成および調整することにより、データを迅速に取り込むことができます。 ワンクリック インジェストでは、Azure Data Explorer 内のデータ ソースに基づいて、テーブルとマッピングの構造が自動的に提案されます。 ワンクリック インジェストは、1 回限りのインジェストに使用したり、データが取り込まれたされたコンテナー上の Event Grid を使用した継続的インジェストを定義するために使用したりすることができます。
 

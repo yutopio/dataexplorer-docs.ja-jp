@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 300f7961fd11b433ef4e420d5a20b9ad9150b269
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 1f5584233a24c834e0ca6c28ed60aa5d7496b411
+ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737625"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86291527"
 ---
 # <a name="extent_id"></a>extent_id()
 
 ::: zone pivot="azuredataexplorer"
 
-現在のレコードが存在するデータシャード ("エクステント") を識別する一意の識別子を返します。 
+現在のレコードが存在するデータシャード ("エクステント") を識別する一意の識別子を返します。
 
 データシャードにアタッチされていない計算データにこの関数を適用すると、空の guid (すべてゼロ) が返されます。
 
@@ -31,11 +31,11 @@ ms.locfileid: "82737625"
 
 **戻り値**
 
-現在のレコードの`guid`データシャードを識別する型の値、または空の guid (すべてゼロ)。
+`guid`現在のレコードのデータシャードを識別する型の値、または空の guid (すべてゼロ)。
 
 **例**
 
-次の例では、1時間前のレコードを含むすべてのデータシャードの一覧を取得し、その列`ActivityId`に特定の値を設定する方法を示します。 この例では、一部のクエリ演算子 ( `where`ここでは演算子でもあります`extend`が`project`、とにも当てはまります) を示しています。これは、レコードをホストしているデータシャードに関する情報を保持します。
+次の例では、1時間前のレコードを含むすべてのデータシャードの一覧を取得し、その列に特定の値を設定する方法を示し `ActivityId` ます。 この例では、一部のクエリ演算子 (ここでは、 `where` 演算子、および `extend` およびも) で `project` 、レコードをホストしているデータシャードに関する情報を保持しています。
 
 ```kusto
 T

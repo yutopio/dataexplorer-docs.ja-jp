@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/06/2020
-ms.openlocfilehash: f5ea896d4701aa5aec1b22c1ff20853aea18f065
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: 0580088bf04bffafd36990a3f42c32aa5c4ede53
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84664944"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280472"
 ---
 # <a name="materialize"></a>materialize()
 
@@ -35,13 +35,13 @@ ms.locfileid: "84664944"
 
 * 具現化は、キャッシュされた結果に名前を指定した場合にのみ、let ステートメントで使用できます。
 
-**注:**
+**注**
 
 * 具体化のキャッシュサイズは**5 GB**です。 
   この制限はクラスターノードごとに行われ、同時に実行されるすべてのクエリに共通です。
   クエリでが使用され `materialize()` ていて、それ以上のデータをキャッシュが保持できない場合、クエリはエラーで中止されます。
 
-**使用例**
+## <a name="examples-of-query-performance-improvement"></a>クエリパフォーマンスの向上の例
 
 次の例では、を `materialize()` 使用してクエリのパフォーマンスを向上させる方法を示します。
 式 `_detailed_data` は関数を使用して定義される `materialize()` ため、1回だけ計算されます。
@@ -72,7 +72,7 @@ _detailed_data
 
 
 次の例では、乱数のセットを生成し、を計算します。 
-* セット内の個別の値の数 (Dcount)
+* set 内の個別の値の数 ( `Dcount` )
 * セット内の上位3つの値 
 * セット内のこれらのすべての値の合計 
  
@@ -97,7 +97,7 @@ randomSet | summarize Sum=sum(value)
 
 結果セット 2: 
 
-|value|
+|値|
 |---|
 |9999998|
 |9999998|
@@ -105,6 +105,66 @@ randomSet | summarize Sum=sum(value)
 
 結果セット 3: 
 
-|SUM|
+|Sum|
 |---|
 |15002960543563|
+
+## <a name="examples-of-using-materialize"></a>具体化 () の使用例
+
+> [!TIP]
+> ほとんどのクエリでは、大量の行にわたって動的オブジェクトからフィールドを抽出する場合、インジェスト時に列を具体化します。
+> 
+> 複数回使用する値を含むステートメントを使用するには `let` 、[具体化 () 関数](./materializefunction.md)を使用します。
+> 詳細については、「[ベストプラクティス](best-practices.md)」を参照してください。
+
+具体化されたデータセットを減らすことができるすべての演算子をプッシュし、引き続きクエリのセマンティクスを維持します。 たとえば、フィルターを使用するか、必要な列のみを射影します。
+
+```kusto
+    let materializedData = materialize(Table
+    | where Timestamp > ago(1d));
+    union (materializedData
+    | where Text !has "somestring"
+    | summarize dcount(Resource1)), (materializedData
+    | where Text !has "somestring"
+    | summarize dcount(Resource2))
+```
+
+に対するフィルター `Text` は相互に適用され、具体化式にプッシュできます。
+クエリに必要なのは、列 `Timestamp` 、、 `Text` `Resource1` 、およびだけ `Resource2` です。 具体化された式の中でこれらの列を射影します。
+    
+```kusto
+    let materializedData = materialize(Table
+    | where Timestamp > ago(1d)
+    | where Text !has "somestring"
+    | project Timestamp, Resource1, Resource2, Text);
+    union (materializedData
+    | summarize dcount(Resource1)), (materializedData
+    | summarize dcount(Resource2))
+```
+    
+このクエリでフィルターが同じでない場合は、次のようになります。  
+
+```kusto
+    let materializedData = materialize(Table
+    | where Timestamp > ago(1d));
+    union (materializedData
+    | where Text has "String1"
+    | summarize dcount(Resource1)), (materializedData
+    | where Text has "String2"
+    | summarize dcount(Resource2))
+ ```
+
+結合フィルターによって具体化された結果が劇的に減る場合は、具体化された結果に対する両方のフィルターを、次のクエリのような論理式で結合し `or` ます。 ただし、クエリのセマンティクスを維持するために、各共用体区間にフィルターを保持します。
+     
+```kusto
+    let materializedData = materialize(Table
+    | where Timestamp > ago(1d)
+    | where Text has "String1" or Text has "String2"
+    | project Timestamp, Resource1, Resource2, Text);
+    union (materializedData
+    | where Text has "String1"
+    | summarize dcount(Resource1)), (materializedData
+    | where Text has "String2"
+    | summarize dcount(Resource2))
+```
+    

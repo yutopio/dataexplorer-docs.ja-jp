@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: 25eb68a942eb0ff84ea34e47c94ea1a21cd09c90
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 96e3cfeba0002aa48a4300a994e9e12610deb9a3
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227242"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280579"
 ---
 # <a name="geo_point_in_polygon"></a>geo_point_in_polygon()
 
@@ -35,7 +35,8 @@ ms.locfileid: "83227242"
 
 > [!NOTE]
 > * 地理空間座標は、 [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home)座標参照システムによって表されるものとして解釈されます。
-> * 地球の測定に使用される[測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum)は球です。 多角形のエッジは、球体の geodesics です。
+> * 地球の測定に使用される[測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum)は球です。 多角形のエッジは、球体の[geodesics](https://en.wikipedia.org/wiki/Geodesic)です。
+> * 入力ポリゴンのエッジが直交直線の場合は、 [geo_polygon_densify ()](geo-polygon-densify-function.md)を使用して平面エッジを geodesics に変換することを検討してください。
 
 **Polygon の定義と制約**
 

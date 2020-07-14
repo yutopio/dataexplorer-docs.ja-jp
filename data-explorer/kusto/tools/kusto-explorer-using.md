@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: fc8e34be3d61c690bc94795e6bd37f2559d247e0
-ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.openlocfilehash: 0b2daf955515e4c023cdb7312fbd82039ca598bc
+ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "86013904"
+ms.lasthandoff: 07/13/2020
+ms.locfileid: "86280640"
 ---
 # <a name="using-kustoexplorer"></a>Kusto.Explorer の使用
 
@@ -28,11 +28,11 @@ Search + + モードでは、1つまたは複数のテーブルで検索構文�
 1. [編集] ボックスに検索語句を入力し、[検索]**を選択し**ます。
 1. [テーブル/タイムスロット] グリッドのヒートマップには、表示される用語と表示される場所が示されます。
 
-:::image type="content" source="images/kusto-explorer-using/search-plus-plus.png" alt-text="+ + Kusto Explorer への検索":::
+    :::image type="content" source="images/kusto-explorer-using/search-plus-plus.png" alt-text="+ + Kusto Explorer への検索":::
 
 1. グリッド内のセルを選択し、[**詳細の表示**] を選択すると、結果ペインに関連するエントリが表示されます。
 
-:::image type="content" source="images/kusto-explorer-using/search-plus-plus-results.png" alt-text="Kusto Explorer の検索 + + 結果":::
+    :::image type="content" source="images/kusto-explorer-using/search-plus-plus-results.png" alt-text="Kusto Explorer の検索 + + 結果":::
 
 ## <a name="query-mode"></a>クエリモード
 
@@ -117,17 +117,17 @@ Kusto. エクスプローラーは、クエリとクエリ結果を電子メー�
 1. Kusto. エクスプローラーで[クエリを実行](#basic-queries)します。
 1. [ホーム] タブの [共有] セクションで、[**クリップボードにエクスポート**] を選択します (または、Ctrl + Shift + C キーを押します)。
 
-:::image type="content" source="images/kusto-explorer-using/menu-export.png" alt-text="クリップボードにエクスポート":::
+    :::image type="content" source="images/kusto-explorer-using/menu-export.png" alt-text="クリップボードにエクスポート":::
 
-    Kusto.Explorer pastes the following to the clipboard:
-    * Your query
-    * The query results (table or chart)
-    * The connection details for the Kusto cluster and database
-    * A link that will rerun the query automatically
+    次のものをクリップボードに貼り付けます。
+     * クエリ
+     * クエリ結果 (テーブルまたはグラフ)
+     * Kusto クラスターとデータベースの接続の詳細
+     * 自動的にクエリを再実行するリンク
 
 1. クリップボードの内容を新しい電子メールメッセージに貼り付けます。
 
-:::image type="content" source="images/kusto-explorer-using/share-results-2.png" alt-text="結果を電子メールで共有":::
+    :::image type="content" source="images/kusto-explorer-using/share-results-2.png" alt-text="結果を電子メールで共有":::
 
 ### <a name="deep-linking-queries"></a>ディープリンククエリ
 
@@ -164,9 +164,13 @@ https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSs
 ディープリンクでパラメーター化クエリを使用できます。
 
 1. パラメーター化クエリとして書式設定するクエリを作成します (たとえば、 `KustoLogs | where Timestamp > ago({Period}) | count` )。 
-1. 次のように、URI のすべてのクエリパラメーターにパラメーターを指定します。
+1. 次のように、URI のすべてのクエリパラメーターにパラメーターを指定します。 
+    
+    `https://<your_cluster>.kusto.windows.net/MyDatabase?
+web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
 
-   `https://mycluster.kusto.windows.net/MyDatabase?web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
+    &lt;Your_cluster &gt; を Azure データエクスプローラークラスター名に置き換えます。
+
 
 ### <a name="getting-shorter-links"></a>短いリンクの取得
 
@@ -237,7 +241,7 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
     :::image type="content" source="images/kusto-explorer-using/confirm-drop-authorized-principals.png" alt-text="承認されたプリンシパルの削除の確認":::
 
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 * [Kusto. エクスプローラーのキーボードショートカット](kusto-explorer-shortcuts.md)
 * [Kusto.Explorer のオプション](kusto-explorer-options.md)

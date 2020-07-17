@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 828f2450db7f6afabf33f72d813af6f0007ada6b
-ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
+ms.openlocfilehash: 1b857ee464b0fff973293cd03afadecc8c893af2
+ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85332588"
+ms.lasthandoff: 07/16/2020
+ms.locfileid: "86422986"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -133,7 +133,7 @@ Blob コンテナーまたは Azure Data Lake Store ファイルシステム (�
 <a name="properties"></a>
 *省略可能なプロパティ*
 
-| プロパティ         | Type     | 説明       |
+| プロパティ         | 種類     | 説明       |
 |------------------|----------|-------------------------------------------------------------------------------------|
 | `folder`         | `string` | テーブルのフォルダー                                                                     |
 | `docString`      | `string` | テーブルをドキュメント化する文字列                                                       |
@@ -142,6 +142,8 @@ Blob コンテナーまたは Azure Data Lake Store ファイルシステム (�
 | `namePrefix`     | `string` | 設定した場合、ファイルのプレフィックスを示します。 書き込み操作では、すべてのファイルがこのプレフィックスを使用して書き込まれます。 読み取り操作では、このプレフィックスを持つファイルだけが読み取られます。 |
 | `fileExtension`  | `string` | 設定すると、ファイルの拡張子を示します。 書き込み時には、ファイル名の末尾がこのサフィックスになります。 読み取り時には、このファイル拡張子を持つファイルのみが読み取られます。           |
 | `encoding`       | `string` | テキストのエンコード方法を示します。 `UTF8NoBOM` (既定値) または `UTF8BOM` 。             |
+| `sampleUris`     | `bool`   | 設定すると、外部テーブルの定義によって想定されているように、コマンドの結果に外部データファイルの URI の例がいくつか表示されます。 |
+| `validateNotEmpty` | `bool`   | 設定すると、接続文字列にコンテンツが含まれているかどうかが検証されます。 指定された URI の場所が存在しない場合、またはアクセスするための十分なアクセス許可がない場合、コマンドは失敗します。 |
 
 > [!TIP]
 > `namePrefix`クエリ中のデータファイルフィルタリングでのロールおよびプロパティの詳細について `fileExtension` は、「[ファイルフィルタリングロジック](#file-filtering)」を参照してください。
@@ -214,9 +216,9 @@ with (fileExtension = ".txt")
 
 **サンプル出力**
 
-|TableName|TableType|フォルダー|DocString|プロパティ|ConnectionStrings|メジャー グループ|PathFormat|
+|TableName|TableType|Folder|DocString|プロパティ|ConnectionStrings|メジャー グループ|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
-|ExternalTable|Blob|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
+|ExternalTable|BLOB|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
 
 <a name="virtual-columns"></a>
 **仮想列**
@@ -272,7 +274,7 @@ dataformat=parquet
 
 **出力**
 
-| 出力パラメーター | Type   | 説明                       |
+| 出力パラメーター | 種類   | 説明                       |
 |------------------|--------|-----------------------------------|
 | URI              | string | 外部ストレージデータファイルの URI |
 

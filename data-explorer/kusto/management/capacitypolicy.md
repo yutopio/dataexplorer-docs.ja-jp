@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: a7f34f51ee38b10c51c469c0145081f5bb702d8f
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 98841c57c8e7c405eb113e3242df75bedf1ea3b7
+ms.sourcegitcommit: 8611ac88cc42178f2dead5385432d71fa7216c82
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780220"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86437572"
 ---
 # <a name="capacity-policy"></a>キャパシティ ポリシー
 
@@ -31,7 +31,7 @@ ms.locfileid: "84780220"
 
 ## <a name="ingestion-capacity"></a>インジェスト容量
 
-|プロパティ                           |Type    |説明                                                                                                                                                                               |
+|プロパティ                           |種類    |説明                                                                                                                                                                               |
 |-----------------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |ClusterMaximumConcurrentOperations |long    |クラスター内の同時インジェスト操作数の最大値                                          |
 |CoreUtilizationCoefficient         |double  |インジェスト容量を計算するときに使用するコアの割合の係数。 計算の結果は常にによって正規化されます。`ClusterMaximumConcurrentOperations`                          |
@@ -45,10 +45,10 @@ ms.locfileid: "84780220"
 
 ## <a name="extents-merge-capacity"></a>エクステントのマージ容量
 
-|プロパティ                           |Type    |説明                                                                                                |
+|プロパティ                           |種類    |説明                                                                                                |
 |-----------------------------------|--------|-----------------------------------------------------------------------------------------------------------|
 |MinimumConcurrentOperationsPerNode |long    |1つのノードでの同時実行エクステントのマージ/再構築操作の数の最小値。 既定値は1です。 |
-|MaximumConcurrentOperationsPerNode |long    |1つのノードに対するマージ/再構築操作の同時実行数の最大値。 既定値は5です。 |
+|MaximumConcurrentOperationsPerNode |long    |1つのノードに対するマージ/再構築操作の同時実行数の最大値。 既定値は3です。 |
 
 に示されているように、クラスターの合計エクステントのマージ容量[。容量の表示](../management/diagnostics.md#show-capacity)は次のように計算されます。
 
@@ -61,7 +61,7 @@ ms.locfileid: "84780220"
 
 ## <a name="extents-purge-rebuild-capacity"></a>エクステント消去の再構築容量
 
-|プロパティ                           |Type    |説明                                                                                                                           |
+|プロパティ                           |種類    |説明                                                                                                                           |
 |-----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------|
 |MaximumConcurrentOperationsPerNode |long    |1つのノードでの消去操作の同時再構築エクステント数の最大値 |
 
@@ -74,7 +74,7 @@ ms.locfileid: "84780220"
 
 ## <a name="export-capacity"></a>容量のエクスポート
 
-|プロパティ                           |Type    |説明                                                                                                                                                                            |
+|プロパティ                           |種類    |説明                                                                                                                                                                            |
 |-----------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクスポート操作数の最大値。                                           |
 |CoreUtilizationCoefficient         |double  |エクスポート容量を計算するときに使用するコアの割合の係数。 計算の結果は、常にによって正規化され `ClusterMaximumConcurrentOperations` ます。 |
@@ -88,9 +88,9 @@ ms.locfileid: "84780220"
 
 ## <a name="extents-partition-capacity"></a>エクステントパーティション容量
 
-|プロパティ                           |Type    |説明                                                                                         |
+|プロパティ                           |種類    |説明                                                                                         |
 |-----------------------------------|--------|----------------------------------------------------------------------------------------------------|
-|ClusterMinimumConcurrentOperations |long    |クラスター内の同時エクステントのパーティション操作数の最小値。 既定値: 1  |
+|ClusterMinimumConcurrentOperations |long    |クラスター内の同時エクステントのパーティション操作数の最小値。 既定値は1  |
 |ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクステントのパーティション操作数の最大値。 既定値:16 |
 
 クラスターのエクステントの合計エクステント容量 (で示されているように)。[容量を表示](../management/diagnostics.md#show-capacity)します。
@@ -101,14 +101,15 @@ ms.locfileid: "84780220"
 
 既定の容量ポリシーには、次の JSON 表現があります。
 
-```kusto 
+```json
 {
   "IngestionCapacity": {
     "ClusterMaximumConcurrentOperations": 512,
     "CoreUtilizationCoefficient": 0.75
   },
   "ExtentsMergeCapacity": {
-    "MaximumConcurrentOperationsPerNode": 1
+    "MinimumConcurrentOperationsPerNode": 1,
+    "MaximumConcurrentOperationsPerNode": 3
   },
   "ExtentsPurgeRebuildCapacity": {
     "MaximumConcurrentOperationsPerNode": 1
@@ -116,6 +117,10 @@ ms.locfileid: "84780220"
   "ExportCapacity": {
     "ClusterMaximumConcurrentOperations": 100,
     "CoreUtilizationCoefficient": 0.25
+  },
+  "ExtentsPartitionCapacity": {
+    "ClusterMinimumConcurrentOperations": 1,
+    "ClusterMaximumConcurrentOperations": 16
   }
 }
 ```
@@ -129,7 +134,7 @@ ms.locfileid: "84780220"
 
 * クラスター[ポリシーの容量を変更](capacity-policy.md#alter-cluster-policy-capacity)して、クラスターの容量ポリシーを変更してください。
 
-## <a name="throttling"></a>Throttling
+## <a name="throttling"></a>調整
 
 Kusto は、次のユーザーによって開始されるコマンドの同時要求数を制限します。
 

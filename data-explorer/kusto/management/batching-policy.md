@@ -1,6 +1,6 @@
 ---
-title: Kusto IngestionBatching ポリシー管理-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーの IngestionBatching ポリシーについて説明します。
+title: Kusto IngestionBatching ポリシー管理コマンド-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーの IngestionBatching policy コマンドについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: e9823fd0cd44dd2e5bd0731cc59086961ce86d8c
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 04c59b33d780db1c9731ac71d1f905315afbc302
+ms.sourcegitcommit: 4405ae34e119948778e0de5021077638d24da812
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82617767"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86448046"
 ---
-# <a name="ingestionbatching-policy"></a>IngestionBatching ポリシー
+# <a name="ingestionbatching-policy-command"></a>IngestionBatching policy コマンド
 
 [IngestionBatching ポリシー](batchingpolicy.md)は、指定された設定に従ってデータの取り込み中にデータの集計をいつ停止するかを決定するポリシーオブジェクトです。
 
-ポリシーをに`null`設定することができます。この場合、既定値が使用され、最大バッチ処理時間が5分に、1000項目、合計バッチサイズが1g であるか、Kusto に設定された既定のクラスター値に設定されます。
+ポリシーをに設定することができます `null` 。この場合、既定値が使用され、最大バッチ処理時間が5分に、1000項目、合計バッチサイズが1g であるか、Kusto に設定された既定のクラスター値に設定されます。
 
 ポリシーが特定のエンティティに対して設定されていない場合は、上位階層レベルのポリシーが検索されます。すべて null に設定されている場合は、既定値が使用されます。 
 
@@ -30,7 +30,7 @@ ms.locfileid: "82617767"
 このポリシーは、データベースまたはテーブルに対して設定でき、次のいずれかのコマンドを使用して表示されます。
 
 * `.show``database` *DatabaseName* DatabaseName `policy``ingestionbatching`
-* `.show``table` *DatabaseName*DatabaseName`.`*TableName* TableName `policy``ingestionbatching`
+* `.show``table` *DatabaseName* `.` *TableName* TableName `policy``ingestionbatching`
 
 ## <a name="altering-the-ingestionbatching-policy"></a>IngestionBatching ポリシーを変更する
 
@@ -56,8 +56,8 @@ IngestionBatching ポリシー:
 
 * `entity_type`: テーブル、データベース
 * `database_or_table`: エンティティがテーブルまたはデータベースの場合は、次のようにコマンドでその名前を指定する必要があります。 
-  - `database_name` または 
-  - `database_name.table_name` または 
+  - `database_name` 
+  - `database_name.table_name` 
   - `table_name`(特定のデータベースのコンテキストで実行されている場合)
 
 ## <a name="deleting-the-ingestionbatching-policy"></a>IngestionBatching ポリシーを削除しています

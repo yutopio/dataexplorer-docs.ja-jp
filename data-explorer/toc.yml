@@ -78,8 +78,10 @@
               href: one-click-ingestion-existing-table.md
         - name: ストリーミング インジェスト
           items:
-            - name: ストリーミング インジェスト
+            - name: Azure portal
               href: ingest-data-streaming.md
+            - name: C#
+              href: ingest-data-streaming-csharp.md
         - name: LightIngest の使用
           href: lightingest.md
         - name: イベント ハブ
@@ -112,8 +114,8 @@
               href: data-connection-iot-hub-python.md
             - name: Azure Resource Manager テンプレート
               href: data-connection-iot-hub-resource-manager.md
-            - name: Azure Data Factory
-              items: null
+        - name: Azure Data Factory
+          items:
             - name: Data Factory との統合
               href: data-factory-integration.md
             - name: Azure Data Factory を使用してデータをコピーする
@@ -317,7 +319,7 @@
           href: troubleshoot-database-table.md
 - name: リファレンス
   items:
-    - name: Kusto クエリ
+    - name: Kusto クエリ言語
       items:
         - name: 概要
           href: ./kusto/query/index.md
@@ -1219,45 +1221,14 @@
                   href: ./kusto/tools/kusto-explorer-troubleshooting.md
             - name: Kusto.Cli
               href: ./kusto/tools/kusto-cli.md
-    - name: 概念
-      href: ./kusto/concepts/index.md
-      items:
-        - name: 作業の開始
-          href: ./kusto/concepts/index.md
-          items:
-            - name: サンドボックス
-              href: ./kusto/concepts/sandboxes.md
-        - name: その他およびエラー
-          items:
-            - name: クエリの制限
-              href: ./kusto/concepts/querylimits.md
-            - name: 部分的なクエリ エラー
-              href: ./kusto/concepts/partialqueryfailures.md
-              items:
-                - name: 結果の切り捨て
-                  href: ./kusto/concepts/resulttruncation.md
-                - name: ランナウェイ クエリ
-                  href: ./kusto/concepts/runawayqueries.md
-                - name: オーバーフロー
-                  href: ./kusto/concepts/overflow.md
-            - name: クロスクラスター クエリとスキーマ変更
-              href: ./kusto/concepts/crossclusterandschemachanges.md
-            - name: クエリの一貫性
-              href: ./kusto/concepts/queryconsistency.md
-            - name: ネイティブ コードのエラー
-              href: ./kusto/concepts/errorsinnativecode.md
-            - name: ファクトとディメンション テーブル
-              href: ./kusto/concepts/fact-and-dimension-tables.md
     - name: 管理
-      href: ./kusto/management/index.md
       items:
         - name: 管理 (制御コマンド) の概要
           href: ./kusto/management/index.md
+        - name: スキーマ
           items:
             - name: スキーマ デザインのベスト プラクティス
               href: ./kusto/management/best-practices.md
-        - name: スキーマ
-          items:
             - name: データベース管理
               href: ./kusto/management/databases.md
               items:
@@ -1535,10 +1506,36 @@
               href: ./kusto/management/cluster-follower.md
             - name: データの消去
               href: ./kusto/concepts/data-purge.md
-    - name: API
-      href: ./kusto/api/index.md
+    - name: 概念
       items:
-        - name: 概要
+        - name: 作業の開始
+          href: ./kusto/concepts/index.md
+        - name: その他およびエラー
+          items:
+            - name: サンドボックス
+              href: ./kusto/concepts/sandboxes.md
+            - name: クエリの制限
+              href: ./kusto/concepts/querylimits.md
+            - name: 部分的なクエリ エラー
+              href: ./kusto/concepts/partialqueryfailures.md
+              items:
+                - name: 結果の切り捨て
+                  href: ./kusto/concepts/resulttruncation.md
+                - name: ランナウェイ クエリ
+                  href: ./kusto/concepts/runawayqueries.md
+                - name: オーバーフロー
+                  href: ./kusto/concepts/overflow.md
+            - name: クロスクラスター クエリとスキーマ変更
+              href: ./kusto/concepts/crossclusterandschemachanges.md
+            - name: クエリの一貫性
+              href: ./kusto/concepts/queryconsistency.md
+            - name: ネイティブ コードのエラー
+              href: ./kusto/concepts/errorsinnativecode.md
+            - name: ファクトとディメンション テーブル
+              href: ./kusto/concepts/fact-and-dimension-tables.md
+    - name: API
+      items:
+        - name: API の概要
           href: ./kusto/api/index.md
           items:
             - name: クライアント ライブラリ

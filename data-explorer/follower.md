@@ -7,12 +7,12 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/07/2019
-ms.openlocfilehash: 942c0577b8fb784af74cf09aec4c8a68a7be8dda
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: b1855d12872c291e1ae45f62da1ad1fe0e792617
+ms.sourcegitcommit: aacea5c4c397479e8254c1fe6ed0b2f333307b14
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84294561"
+ms.lasthandoff: 07/20/2020
+ms.locfileid: "86470113"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>フォロワー データベースを使用して Azure Data Explorer にデータベースをアタッチする
 
@@ -182,7 +182,7 @@ poller = kusto_management_client.attached_database_configurations.create_or_upda
         {
             "name": "[concat(parameters('followerClusterName'), '/', parameters('attachedDatabaseConfigurationsName'))]",
             "type": "Microsoft.Kusto/clusters/attachedDatabaseConfigurations",
-            "apiVersion": "2019-09-07",
+            "apiVersion": "2020-02-15",
             "location": "[parameters('location')]",
             "properties": {
                 "databaseName": "[parameters('databaseName')]",
@@ -393,7 +393,6 @@ poller = kusto_management_client.clusters.detach_follower_databases(resource_gro
 * [カスタマー マネージド キー](security.md#customer-managed-keys-with-azure-key-vault)を使用したデータ暗号化は、リーダー クラスターとフォロワー クラスターの両方でサポートされていません。 
 * 別のクラスターにアタッチされているデータベースは、デタッチ前に削除することはできません。
 * 別のクラスターにアタッチされているデータベースを持つクラスターは、デタッチ前に削除することはできません。
-* フォロワー データベースまたはリーダー データベースがアタッチされているクラスターを停止することはできません。 
 
 ## <a name="next-steps"></a>次のステップ
 

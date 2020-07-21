@@ -8,12 +8,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: 9ddb94e005e88855bbeddd7d3cf8ab537a42d413
-ms.sourcegitcommit: a8575e80c65eab2a2118842e59f62aee0ff0e416
+ms.openlocfilehash: 68d6493176696f0241467303f166b8c7160859b7
+ms.sourcegitcommit: cf1da667be12656a8c4727c23144421b5a4b1099
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/17/2020
-ms.locfileid: "84943121"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86565438"
 ---
 # <a name="clear-query-results-cache"></a>クエリ結果キャッシュのクリア
 
@@ -21,7 +21,7 @@ ms.locfileid: "84943121"
 
 **構文**
 
-`.clear` `database` `cache` `queryresults`
+`.clear` `database` `cache` `query_results`
 
 **戻り値**
 
@@ -30,7 +30,7 @@ ms.locfileid: "84943121"
 |Column    |種類    |説明
 |---|---|---
 |NodeId|`string`|クラスターノードの識別子。
-|エントリ|`long`|ノードによってクリアされたエントリの数。
+|Count|`long`|ノードによって削除されたエントリの数。
 
 **例**
 

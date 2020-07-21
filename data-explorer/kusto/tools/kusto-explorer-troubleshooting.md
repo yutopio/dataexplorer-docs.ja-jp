@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 19ffbe2f5e14a2c003c24d145b713970e6bb31b8
-ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
+ms.openlocfilehash: dd312c4a36bb095dbe4b5e475e758c141bbab6e0
+ms.sourcegitcommit: aacea5c4c397479e8254c1fe6ed0b2f333307b14
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/29/2020
-ms.locfileid: "85517768"
+ms.lasthandoff: 07/20/2020
+ms.locfileid: "86470096"
 ---
 # <a name="troubleshooting"></a>トラブルシューティング
 
@@ -152,7 +152,7 @@ Following errors were detected during this operation.
 
 前のトラブルシューティングの手順を実行しても Kusto を開始できない場合があります。エクスプローラーを起動するには、ローカルに保存されているデータをクリーニングすることができます。
 
-Kusto エクスプローラーアプリケーションによって保存されるデータについては、「」を参照してください。 `C:\Users\\[your alias]\AppData\Local\Kusto.Explorer`
+Kusto エクスプローラーアプリケーションによって保存されるデータについては、「」を参照してください。 `C:\Users\[your username]\AppData\Local\Kusto.Explorer`
 
 > [!NOTE]
 > データをクリーニングすると、開いているタブ (回復フォルダー)、保存された接続 (接続フォルダー)、およびアプリケーションの設定 (UserSettings フォルダー) が失われる可能性があります。

@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: 0b2daf955515e4c023cdb7312fbd82039ca598bc
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: c95ac178e82e414df41dd5a6d4456f344bb39c2f
+ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280640"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86870126"
 ---
 # <a name="using-kustoexplorer"></a>Kusto.Explorer の使用
 
@@ -75,9 +75,15 @@ StormEvents
 
 [Kusto クエリ言語](https://docs.microsoft.com/azure/kusto/query/)の詳細については、こちらを参照してください。
 
+> [!NOTE]
+> クエリ式の空白行は、クエリのどの部分が実行されるかに影響を与える可能性があります。
+>
+> テキストが選択されていない場合は、クエリまたはコマンドが空の行で区切られていることを前提としています。
+> テキストが選択されている場合は、選択したテキストが実行されます。
+
 ## <a name="client-side-query-parameterization"></a>クライアント側のクエリのパラメーター化
 
-> [!Note]
+> [!NOTE]
 > Kusto には、次の2種類のクエリ parametrization 手法があります。
 > * [統合言語クエリ parametrization](../query/queryparametersstatement.md)は、クエリエンジンの一部として実装されており、プログラムによってサービスをクエリするアプリケーションによって使用されます。 この方法については、このドキュメントでは説明しません。
 >
@@ -139,11 +145,11 @@ Kusto. エクスプローラーは、クエリとクエリ結果を電子メー�
 
 URI の形式は次のとおりです。`https://<ClusterCname>.kusto.windows.net/<DatabaseName>web=0?query=<QueryToExecute>`
 
-次に例を示します。  [https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10](https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10)
+例: [https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10](https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10)
  
 この URI は Kusto. エクスプローラーを開き、 `Help` kusto クラスターに接続して、データベースに対して指定されたクエリを実行します `Samples` 。 既に実行されている Kusto. エクスプローラーのインスタンスがある場合は、実行中のインスタンスによって新しいタブが開き、そこでクエリが実行されます。
 
-> [!Note] 
+> [!NOTE] 
 > セキュリティ上の理由から、コントロールコマンドではディープリンクが無効になっています。
 
 ### <a name="creating-a-deep-link"></a>ディープリンクの作成
@@ -221,7 +227,7 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
 
 ## <a name="manage-clusters-databases-tables-or-function-authorized-principals"></a>クラスター、データベース、テーブル、または関数の承認されたプリンシパルの管理
 
-> [!Note]
+> [!NOTE]
 > 承認されたプリンシパルを独自のスコープ内に追加または削除できるのは[管理者](../management/access-control/role-based-authorization.md)だけです。
 
 [[接続] パネル](kusto-explorer.md#connections-tab)でターゲットエンティティを右クリックし、[**クラスターの承認**されたプリンシパルの管理] を選択します。 (このオプションは、[管理] メニューからも選択できます)。
@@ -241,7 +247,7 @@ Kusto.Explorer.exe c:\temp\script.kql uri=https://help.kusto.windows.net/Samples
     :::image type="content" source="images/kusto-explorer-using/confirm-drop-authorized-principals.png" alt-text="承認されたプリンシパルの削除の確認":::
 
 
-## <a name="next-steps"></a>次の手順
+## <a name="next-steps"></a>次のステップ
 
 * [Kusto. エクスプローラーのキーボードショートカット](kusto-explorer-shortcuts.md)
 * [Kusto.Explorer のオプション](kusto-explorer-options.md)

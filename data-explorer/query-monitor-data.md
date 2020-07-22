@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/28/2020
-ms.openlocfilehash: 1edca77125f46c59402edfde251262cebe5c1b70
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.openlocfilehash: b3f4ed8e0bb37b62c7f31c9444b373529cf24df9
+ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291595"
+ms.lasthandoff: 07/16/2020
+ms.locfileid: "86423037"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Azure Data Explorer を使用して Azure Monitor でデータのクエリを実行する (プレビュー)
 
@@ -36,7 +36,7 @@ Azure Data Explorer プロキシのフロー:
 
 1. Azure Data Explorer の UI (https://dataexplorer.azure.com/clusters) ) で、 **[クラスターの追加]** を選択します。
 
-1. **[クラスターの追加]** ウィンドウで、LA または AI クラスターへの URL を追加します。 
+1. **[クラスターの追加]** ウィンドウで、LA または AI クラスターの URL を追加します。 
     
     * LA の場合: `https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
     * AI の場合: `https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>`
@@ -51,6 +51,9 @@ Azure Data Explorer プロキシのフロー:
 
     ![Log Analytics クラスターと Azure Data Explorer クラスター](media/adx-proxy/la-adx-clusters.png)
 
+> [!NOTE]
+> マップできる Azure Monitor ワークスペースの数は、100 に制限されています。
+
 ## <a name="run-queries"></a>クエリを実行する
 
 Kusto クエリをサポートするクライアント ツールを使用してクエリを実行できます。例:Kusto Explorer、ADX Web UI、Jupyter Kqlmagic、Flow、PowerQuery、PowerShell、Jarvis、Lens、REST API。
@@ -64,7 +67,7 @@ Kusto クエリをサポートするクライアント ツールを使用して�
 ### <a name="direct-query-from-your-la-or-ai-adx-proxy-cluster"></a>LA または AI ADX プロキシ クラスターからの直接クエリ
 
 LA または AI クラスターでクエリを実行します。 左側のペインでクラスターが選択されていることを確認します。 
-
+ 
 ```kusto
 Perf | take 10 // Demonstrate query through the proxy on the LA workspace
 ```
@@ -90,15 +93,18 @@ union <ADX table>, cluster(CL1).database(<workspace-name>).<table name>
 union の代わりに [`join` 演算子](kusto/query/joinoperator.md)を使用するには、それを (プロキシに対してではなく) Azure Data Explorer ネイティブ クラスターに対して実行するための [`hint`](kusto/query/joinoperator.md#join-hints) が必要になる場合があります。 
 
 ## <a name="function-supportability"></a>関数のサポート
+
 Azure Data Explorer プロキシ クラスターでは、Application Insights と Log Analytics の両方の関数がサポートされています。
-これにより、クロス クラスター クエリで Azure Monitor の表形式関数を直接参照できます。
+この機能により、クロス クラスター クエリで Azure Monitor の表形式関数を直接参照できます。
 以下のコマンドがプロキシによってサポートされています。
 
-```kusto
-.show functions
-.show function {FunctionName}
-.show database {DataBaseName} schema as json
-```
+* `.show functions`
+* `.show function {FunctionName}`
+* `.show database {DatabaseName} schema as json`
+
+次の図は、Azure Data Explorer の Web UI から表形式関数にクエリを実行する例を示しています。 関数を使用するには、[クエリ] ウィンドウで名前を実行します。
+
+  [ ![Azure Data Explorer の Web UI から表形式関数のクエリを実行する](media/adx-proxy/function-query-adx-proxy.png)](media/adx-proxy/function-query-adx-proxy.png#lightbox)
 
 > [!NOTE]
 > Azure Monitor は表形式の関数のみをサポートします。 表形式関数ではパラメーターはサポートされていません。

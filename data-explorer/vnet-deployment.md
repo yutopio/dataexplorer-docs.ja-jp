@@ -7,12 +7,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/31/2019
-ms.openlocfilehash: dcc196675b29ac1989fb0753e87ef5f1bf0477aa
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.openlocfilehash: 0b831b236c2604ef7d87c77f6955e6b5eaf2aae1
+ms.sourcegitcommit: 4ae1508bbaa8fe9642dcfc8618d77f009bc8ec9f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291578"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86405489"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
@@ -223,6 +223,11 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 | 東南アジア | 52.148.86.165 |
 | 英国南部 | 52.174.4.112 |
 | 英国西部 | 52.169.237.246 |
+| USDoD 中部 | 13.72.37.111 |
+| USDoD 東部 | 13.72.37.111 |
+| USGov アリゾナ | 13.72.37.111 |
+| USGov テキサス | 13.72.37.111 |
+| USGov バージニア州 | 13.72.37.111 |
 | 米国中西部 | 52.161.31.69 |
 | 西ヨーロッパ | 52.174.4.112 |
 | インド西部 | 13.71.25.187 |

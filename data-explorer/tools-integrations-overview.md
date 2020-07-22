@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: 3a2b5cfb9ca02ec255e8cca7d40c103be18a0450
-ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
+ms.openlocfilehash: 166f109f96695380c979dd4060e324187c5b5efc
+ms.sourcegitcommit: 4ae1508bbaa8fe9642dcfc8618d77f009bc8ec9f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86188542"
+ms.lasthandoff: 07/15/2020
+ms.locfileid: "86405472"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Azure Data Explorer のツールと統合の概要
 
@@ -38,7 +38,7 @@ Azure Data Explorer には、データ インジェスト、クエリ、視覚�
 ### <a name="ingestion-integrations"></a>インジェストの統合
 
 * イベント ハブ
-    * [イベント ハブからの取り込み]([イベント ハブからの取り込み](kusto/management/data-ingestion/eventhub.md)
+    * [イベント ハブからの取り込み](kusto/management/data-ingestion/eventhub.md)
     * [Azure portal](ingest-data-event-hub.md)、[C#](data-connection-event-hub-csharp.md)、[Python](data-connection-event-hub-python.md) または [Azure Resource Manager テンプレート](data-connection-event-hub-resource-manager.md)を使用したイベント ハブからの取り込み
 * Event Grid
     * [Event Grid からの取り込み](kusto/management/data-ingestion/eventgrid.md)
@@ -78,7 +78,7 @@ Azure Data Explorer クエリを実行するために使用できるツールが
 * [Azure Data Lake](data-lake-query-data.md)
 * [Apache Spark](spark-connector.md)
 * Microsoft Power Apps
-* Azure Data Studio
+* [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic)
 
 ## <a name="visualizations-dashboards-and-reporting"></a>視覚化、ダッシュボード、レポート
 
@@ -88,7 +88,7 @@ Azure Data Explorer クエリを実行するために使用できるツールが
 
 * [Azure Notebooks](azure-notebooks.md)
 * [Jupyter Notebook](kqlmagic.md)
-* Azure Data Studio
+* [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic)
 
 ## <a name="orchestration"></a>オーケストレーション
 

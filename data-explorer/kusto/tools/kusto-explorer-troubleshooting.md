@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: dd312c4a36bb095dbe4b5e475e758c141bbab6e0
-ms.sourcegitcommit: aacea5c4c397479e8254c1fe6ed0b2f333307b14
+ms.openlocfilehash: 6dd52dbe9b69000b109f613957d1405190194b13
+ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470096"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86870092"
 ---
 # <a name="troubleshooting"></a>トラブルシューティング
 
@@ -42,7 +42,7 @@ Kusto. エクスプローラーを開くたびに、新しいバージョンを�
 
 この現象は、ローカルの ClickOnce ストアが破損した場合に発生する可能性があります。 管理者特権でのコマンドプロンプトで次のコマンドを実行して、ローカルの ClickOnce ストアを消去できます。
 
-> [!Important]
+> [!IMPORTANT]
 > 1. ClickOnce アプリケーションまたはの他のインスタンスがある場合は `dfsvc.exe` 、このコマンドを実行する前にそれらを終了します。
 > 1. アプリショートカットに格納されている元のインストール場所にアクセスできる場合は、すべての ClickOnce アプリが次回の実行時に自動的に再インストールされます。 アプリのショートカットは削除されません。
 
@@ -159,7 +159,7 @@ Kusto エクスプローラーアプリケーションによって保存され�
 
 ## <a name="reset-kustoexplorer"></a>Kusto をリセットします。
 
-必要に応じて、Kusto を完全にリセットできます。 次の手順では、コンピューターから完全に削除されて最初からインストールする必要があるため、Kusto をプログレッシブにリセットする方法について説明します。
+必要に応じて、Kusto を完全にリセットできます。 次の手順では、コンピューターから削除されて最初からインストールする必要があるため、Kusto をプログレッシブにリセットする方法について説明します。
 
 1. Windows で、[**プログラムの変更と削除**] ( **[プログラムと機能**] とも呼ばれます) を開きます。
 1. で始まるすべての項目を選択し `Kusto.Explorer` ます。

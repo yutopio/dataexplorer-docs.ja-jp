@@ -7,12 +7,12 @@ ms.reviewer: vladikb
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/07/2020
-ms.openlocfilehash: 7b26d0585e4d6bc2ff8edfb9a906dd305278f967
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: 8a31c4a482f047f9f92edd75fe1119c1729deaf9
+ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280616"
+ms.lasthandoff: 07/16/2020
+ms.locfileid: "86423010"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-net-sdk"></a>Azure Data Explorer NET SDK 使用してデータを取り込む 
 
@@ -165,7 +165,7 @@ using (var kustoClient = KustoClientFactory.CreateCslAdminProvider(kustoConnecti
 
 ## <a name="define-batching-policy-for-your-table"></a>テーブルのバッチ処理ポリシーを定義する
 
-Azure Data Explorer のインジェストでは、受信データのバッチ処理を実行して、データのシャード サイズが最適化されます。 このプロセスは [インジェスト バッチ処理ポリシー](/kusto/management/batchingpolicy)によって制御され、[制御コマンド](/kusto/management/batching-policy)によって変更できます。 このポリシーを使用すると、低速なデータの待機時間を短縮できます。
+Azure Data Explorer のインジェストでは、受信データのバッチ処理を実行して、データのシャード サイズが最適化されます。 このプロセスは [インジェスト バッチ処理ポリシー](kusto/management/batchingpolicy.md)によって制御され、[インジェスト バッチ処理ポリシー制御コマンド](kusto/management/batching-policy.md)によって変更できます。 このポリシーを使用すると、低速なデータの待機時間を短縮できます。
 
 ```kusto
 using (var kustoClient = KustoClientFactory.CreateCslAdminProvider(kustoConnectionStringBuilder))

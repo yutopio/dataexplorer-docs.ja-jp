@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 05/19/2020
-ms.openlocfilehash: 1f3b273260451dc0ce36730d20f1bc357a453397
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: d5cb54ab0171a7f7a7e6b7353f723abe2caf69ff
+ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280543"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86870143"
 ---
 # <a name="getting-started-with-kustoexplorer"></a>Kusto エクスプローラーの概要
 
@@ -53,7 +53,7 @@ Kusto. エクスプローラーユーザーインターフェイスは、他の 
 Kusto. エクスプローラーのメニューパネルには、次のタブがあります。
 
 * [Home](#home-tab)
-* [File](#file-tab)
+* [[最近使ったファイル]](#file-tab)
 * [接続](#connections-tab)
 * [表示](#view-tab)
 * [ツール](#tools-tab)
@@ -67,7 +67,7 @@ Kusto. エクスプローラーのメニューパネルには、次のタブが�
 
 [ホーム] タブには、最近使用した関数がセクションに分けて表示されます。
 
-* [Query](#query-section)
+* [クエリ](#query-section)
 * [共有](#share-section)
 * [視覚化](#visualizations-section)
 * [表示](#view-section)
@@ -266,7 +266,7 @@ Kusto. エクスプローラーのメニューパネルには、次のタブが�
 |メニュー             | 動作|
 |-----------------|---------|
 ||---------*書*---------|
-|ヘルプ             | Kusto オンラインドキュメントへのリンクを開きます。  | 
+|Help             | Kusto オンラインドキュメントへのリンクを開きます。  | 
 |新着情報       | すべての Kusto エクスプローラーの変更を一覧表示するドキュメントを開きます。|
 |Report Issue (問題の報告)      |次の2つのオプションでダイアログを開きます。 <ul><li>サービスに関連する問題を報告する</li><li>クライアントアプリケーションの問題を報告する</li></ul> | 
 |機能の提案  | Kusto フィードバックフォーラムへのリンクを開きます。 | 
@@ -306,7 +306,7 @@ Data Source=https://CLUSTER_NAME.kusto.windows.net;Initial Catalog=DATABASE_NAME
 * `AAD_TENANT_OF_CLUSTER`は、クラスターがホストされている AAD テナントのドメイン名または AAD テナント ID (GUID) です。 これは、通常、クラスターを所有する組織のドメイン名です (など) `contoso.com` 。 
 * USER_DOMAIN は、そのテナントに招待されたユーザーの id です (など `user@example.com` )。 
 
->[!Note]
+>[!NOTE]
 > ユーザーのドメイン名は、クラスターをホストしているテナントの名前と必ずしも同じではありません。
 
 :::image type="content" source="images/kusto-explorer/advanced-connection-string.png" alt-text="Kusto Explorer の高度な接続文字列":::
@@ -323,7 +323,7 @@ Kusto。エクスプローラーは、結果パネルで各行の重大度また
 
 :::image type="content" source="images/kusto-explorer/ke-color-scheme.png" alt-text="Kusto Explorer の配色の変更":::
 
-## <a name="next-steps"></a>次の手順
+## <a name="next-steps"></a>次のステップ
 
 Kusto の操作の詳細については、次を参照してください。
 

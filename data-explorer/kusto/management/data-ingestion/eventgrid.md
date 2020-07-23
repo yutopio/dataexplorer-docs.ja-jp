@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: 3a69add7e395bbb5b18c390c4089a2e8ad80f674
-ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.openlocfilehash: 88a95ea2fc8e1f417114cfcfd89c4e5003d9bef2
+ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "86013772"
+ms.lasthandoff: 07/22/2020
+ms.locfileid: "86946106"
 ---
 # <a name="ingest-from-storage-using-event-grid-subscription"></a>Event Grid サブスクリプションを使用したストレージからの取り込み
 
@@ -43,7 +43,7 @@ Blob メタデータを使用して、blob インジェストの[インジェス
 | kustoIngestionMappingReference |  使用する既存のインジェスト マッピングの名前。 **データ接続**ブレードで設定されている**列マッピング**を上書きします。|
 | kustoIgnoreFirstRecord | に設定されている場合 `true` 、Azure データエクスプローラーは blob の最初の行を無視します。 表形式のデータ (CSV、TSV など) でヘッダーを無視するために使用します。 |
 | kustoExtentTags | 結果のエクステントに添付される[タグ](../extents-overview.md#extent-tagging)を表す文字列。 |
-| kustoCreationTime |  Blob の[$IngestionTime](../../query/ingestiontimefunction.md?pivots=azuredataexplorer)を ISO 8601 文字列形式でオーバーライドします。 バックフィルに使用します。 |
+| kustoCreationTime |  ISO 8601 の文字列として書式設定されている、BLOB の [$IngestionTime](../../query/ingestiontimefunction.md?pivots=azuredataexplorer) をオーバーライドします。 バックフィルに使用します。 |
 
 ## <a name="events-routing"></a>イベントのルーティング
 
@@ -107,12 +107,15 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
    * **[サブジェクト フィルタリングを有効にする]** を選択します。
    * Subject は、subject の*リテラル*プレフィックスである Field**で始まり**ます。 適用されるパターンは*startswith*であるため、複数のコンテナー、フォルダー、または blob にまたがることができます。 ワイルドカードは使用できません。
        * BLOB コンテナーに対してフィルターを定義するには、フィールドを *`/blobServices/default/containers/[container prefix]`* のように設定する "*必要があります*"。
-       * Blob プレフィックス (または Azure Data Lake Gen2 内のフォルダー) に対してフィルターを定義するには、フィールドを次のように設定する*必要があり* *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`* ます。
+       * BLOB プレフィックス (または Azure Data Lake Gen2 のフォルダー) に対してフィルターを定義するには、フィールドを *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`* のように設定する "*必要があります*"。
    * **[Subject Ends With]\(指定の値で終わる件名\)** フィールドは、BLOB の "*リテラル*" サフィックスです。 ワイルドカードは使用できません。
    * **大文字と小文字を区別する件名一致**フィールドは、プレフィックスとサフィックスのフィルターで大文字と小文字を区別するかどうかを示します。
    * イベントのフィルター処理の詳細については、[Blob Storage のイベント](/azure/storage/blobs/storage-blob-event-overview#filtering-events)に関するセクションを参照してください。
     
         :::image type="content" source="../images/eventgrid/filters-tab.png" alt-text="[フィルター] タブのイベントグリッド":::
+
+> [!NOTE]
+> エンドポイントがイベントの受信を認識しない場合、Azure Event Grid は再試行メカニズムをアクティブ化します。 この再試行の配信が失敗した場合、Event Grid 配信*不能*のプロセスを使用して、配信されていないイベントをストレージアカウントに配信します。 詳細については、[Event Grid のメッセージの配信と再試行](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration)に関する記事を参照してください。
 
 ### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Azure データエクスプローラーへのデータインジェスト接続
 

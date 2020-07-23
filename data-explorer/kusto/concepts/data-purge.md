@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/12/2020
-ms.openlocfilehash: 144e56ee89cb35900b8e55cdbcdce597b26f8a68
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: ad659f9208bd057719a1adc31f8370c0cb11ffd3
+ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226001"
+ms.lasthandoff: 07/22/2020
+ms.locfileid: "86946140"
 ---
 # <a name="data-purge"></a>データの消去
 
@@ -36,10 +36,10 @@ Azure データエクスプローラーに個人データを格納する前に�
 
 Azure データエクスプローラーからデータを選択的に消去するプロセスは、次の手順で行われます。
 
-1. フェーズ 1: Azure データエクスプローラーテーブル名とレコードごとの述語を使用して、削除するレコードを示す入力を指定します。 Kusto は、データの消去に参加するデータシャードを特定するために、テーブルをスキャンします。 指定されたシャードは、述語が true を返す1つ以上のレコードを持つものです。
-1. フェーズ 2: (論理的な削除) テーブル内の各データシャード (手順 (1) で特定) を reingested バージョンに置き換えます。 Reingested のバージョンには、述語が true を返すレコードが含まれていてはなりません。 新しいデータがテーブルに取り込まれたされていない場合、このフェーズの最後までは、述語が true を返すデータは返されなくなります。 論理削除の消去フェーズの期間は、次のパラメーターによって異なります。 
+1. フェーズ 1: Azure データエクスプローラーテーブル名とレコードごとの述語を使用して、削除するレコードを示す入力を指定します。 Kusto は、データの消去に参加するデータエクステントを識別するために、テーブルをスキャンします。 特定されたエクステントとは、述語が true を返す1つ以上のレコードを持つものです。
+1. フェーズ 2: (論理的な削除) テーブル内の各データエクステント (手順 (1) で識別されます) を reingested バージョンに置き換えます。 Reingested のバージョンには、述語が true を返すレコードが含まれていてはなりません。 新しいデータがテーブルに取り込まれたされていない場合、このフェーズの最後までは、述語が true を返すデータは返されなくなります。 論理削除の消去フェーズの期間は、次のパラメーターによって異なります。 
      * 削除する必要があるレコードの数 
-     * クラスター内のデータシャード間での分散の記録 
+     * クラスター内のデータエクステント全体に分散を記録する 
      * クラスター内のノードの数  
      * パージ操作用の予備容量
      * 他にも、フェーズ2の期間は数秒から数時間に変化する要因がいくつかあります。
@@ -49,15 +49,15 @@ Azure データエクスプローラーからデータを選択的に消去す�
 
 ## <a name="purge-limitations-and-considerations"></a>パージの制限事項と考慮事項
 
-* 消去プロセスは最終処理であり、元に戻すことができません。 このプロセスを元に戻したり、削除されたデータを回復したりすることはできません。 [テーブル削除の取り消し](../management/undo-drop-table-command.md)などのコマンドは、消去されたデータを回復できません。 以前のバージョンへのデータのロールバックは、最新の purge コマンドの前に進むことはできません。
+* 消去プロセスは最終処理であり、元に戻すことはできません。 このプロセスを元に戻したり、削除されたデータを回復したりすることはできません。 [テーブル削除の取り消し](../management/undo-drop-table-command.md)などのコマンドは、消去されたデータを回復できません。 以前のバージョンへのデータのロールバックは、最新の purge コマンドの前に進むことはできません。
 
 * 消去を実行する前に、クエリを実行し、結果が予期される結果と一致することを確認して、述語を確認します。 また、2段階のプロセスを使用して、削除される予定のレコード数を返すこともできます。 
 
 * `.purge`データ管理エンドポイントに対してコマンドが実行され `https://ingest-[YourClusterName].[region].kusto.windows.net` ます。
-   コマンドには、関連するデータベースに対する[データベース管理者](../management/access-control/role-based-authorization.md)権限が必要です。 
+   このコマンドを実行するには、関連するデータベースに対する[データベース管理者](../management/access-control/role-based-authorization.md)権限が必要です。 
 * 消去プロセスのパフォーマンスに影響があり、[消去のガイドライン](#purge-guidelines)に従っていることを保証するために、呼び出し元はデータスキーマを変更することを想定しています。これにより、最小限のテーブルに関連するデータが含まれるようになり、テーブルごとのバッチコマンドを実行して、消去プロセスの大きな COGS の影響を軽減できます。
 * Purge `predicate` コマンドのパラメーターは、消去するレコードを指定するために使用されます[。](#purge-table-tablename-records-command)
-`Predicate`サイズは 63 KB に制限されています。 を構築する場合 `predicate` :
+`Predicate` のサイズは 63 KB に制限されています。 を構築する場合 `predicate` :
     * たとえば、 [' in ' 演算子](../query/inoperator.md)を使用し `where [ColumnName] in ('Id1', 'Id2', .. , 'Id1000')` ます。 
     * [' In ' 演算子](../query/inoperator.md)の制限 (リストには最大値を含めることができます) に注意して `1,000,000` ください。
     * クエリのサイズが大きい場合は、 [ `externaldata` 演算子](../query/externaldata-operator.md)を使用します。たとえば、のように `where UserId in (externaldata(UserId:string) ["https://...blob.core.windows.net/path/to/file?..."])` します。 ファイルには、削除する Id の一覧が格納されます。
@@ -83,7 +83,7 @@ Azure データエクスプローラーからデータを選択的に消去す�
 
 Purge コマンドは、さまざまな使用シナリオに対して2つの方法で呼び出すことができます。
 
-* プログラムによる呼び出し: アプリケーションによって呼び出される1つの手順です。 このコマンドを直接呼び出すと、実行シーケンスの消去がトリガーします。
+* プログラムによる呼び出し:アプリケーションによって呼び出されることを目的とした単一の手順。 このコマンドを直接呼び出すと、実行シーケンスの消去がトリガーします。
 
     **構文**
 
@@ -97,7 +97,7 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
     > [!NOTE]
     > このコマンドは、 [Kusto クライアントライブラリ](../api/netfx/about-kusto-data.md)NuGet パッケージの一部として利用可能な CslCommandGenerator API を使用して生成します。
 
-* 人間による呼び出し: 個別の手順として明示的な確認を必要とする2段階のプロセス。 コマンドの最初の呼び出しでは、検証トークンが返されます。これは実際の消去を実行するために提供される必要があります。 このシーケンスにより、誤ったデータが誤って削除されるリスクが軽減されます。 このオプションを使用すると、大幅なコールドキャッシュデータを含む大きなテーブルでの完了に時間がかかる場合があります。
+* ユーザーによる呼び出し:独立した手順として明確な確認を必要とする 2 段階のプロセス。 コマンドの最初の呼び出しでは、検証トークンが返されます。これは実際の消去を実行するために提供される必要があります。 このシーケンスにより、誤ったデータが誤って削除されるリスクが軽減されます。 大きなテーブルでこのオプションを使用すると、完了に時間がかかり、大量のコールド キャッシュ データが使用される可能性があります。
     <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
 
      **構文**
@@ -159,7 +159,7 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 
     | `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
     |--|--|--|--|--|--|--|--|--|--|--|--|--|--|
-    | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
+    | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール済み | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
 
 #### <a name="example-single-step-purge"></a>例: 単一ステップの消去
 
@@ -176,7 +176,7 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 
 | `OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`|
 |--|--|--|--|--|--|--|--|--|--|--|--|--|--|
-| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
+| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール済み | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
 
 ### <a name="cancel-purge-operation-command"></a>消去操作の取り消しコマンド
 
@@ -309,7 +309,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 
     | パラメーター  |説明  |
     |---------|---------|
-    | `DatabaseName`   |   データベース名。      |
+    | `DatabaseName`   |   データベースの名前です。      |
     | `TableName`    |     テーブルの名前。    |
     | `noregrets`    |     設定すると、シングルステップのアクティブ化がトリガーします。    |
     | `verificationtoken`     |  2段階のアクティブ化のシナリオ ( `noregrets` 設定されていません) では、このトークンを使用して2番目のステップを実行し、アクションをコミットできます。 が `verificationtoken` 指定されていない場合は、コマンドの最初のステップがトリガーされます。 このステップでは、コマンドに戻るためのトークンが返され、#2 ステップが実行されます。|

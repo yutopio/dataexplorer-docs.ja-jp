@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/25/2020
-ms.openlocfilehash: c07a2e624d8f2657889431df51958017228774a8
-ms.sourcegitcommit: d79d3aa9aaa70cd23e3107ef12296159322e1eb5
+ms.openlocfilehash: 9952a7a7d95f03ee431b699a1833aa23b21d341b
+ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86475594"
+ms.lasthandoff: 07/23/2020
+ms.locfileid: "87106350"
 ---
 # <a name="row-level-security-preview"></a>行レベルセキュリティ (プレビュー)
 
@@ -122,6 +122,19 @@ union DataForGroup1, DataForGroup2, DataForGroup3
 .alter table Customers2 policy row_level_security enable "RLSForCustomersTables('Customers2')"
 .alter table Customers3 policy row_level_security enable "RLSForCustomersTables('Customers3')"
 ```
+
+### <a name="produce-an-error-upon-unauthorized-access"></a>未承認のアクセス時にエラーを生成する
+
+許可されていないテーブルユーザーが空のテーブルを返す代わりにエラーを受信するようにするには、関数を使用し `[assert()](../query/assert-function.md)` ます。 次の例は、RLS 関数でこのエラーを生成する方法を示しています。
+
+```
+.create-or-alter function RLSForCustomersTables() {
+    MyTable
+    | where assert(current_principal_is_member_of('aadgroup=mygroup@mycompany.com') == true, "You don't have access")
+}
+```
+
+この方法を他の例と組み合わせることができます。 たとえば、異なる AAD グループのユーザーに異なる結果を表示し、他のすべてのユーザーに対してエラーを生成することができます。
 
 ## <a name="more-use-cases"></a>その他のユースケース
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: 88a95ea2fc8e1f417114cfcfd89c4e5003d9bef2
-ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
+ms.openlocfilehash: b8b72c2bc3b34f6d42ea71903272893ffde773fc
+ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86946106"
+ms.lasthandoff: 07/23/2020
+ms.locfileid: "87106456"
 ---
 # <a name="ingest-from-storage-using-event-grid-subscription"></a>Event Grid サブスクリプションを使用したストレージからの取り込み
 
@@ -115,7 +115,7 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
         :::image type="content" source="../images/eventgrid/filters-tab.png" alt-text="[フィルター] タブのイベントグリッド":::
 
 > [!NOTE]
-> エンドポイントがイベントの受信を認識しない場合、Azure Event Grid は再試行メカニズムをアクティブ化します。 この再試行の配信が失敗した場合、Event Grid 配信*不能*のプロセスを使用して、配信されていないイベントをストレージアカウントに配信します。 詳細については、[Event Grid のメッセージの配信と再試行](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration)に関する記事を参照してください。
+> エンドポイントがイベントの受信を認識しない場合、Azure Event Grid は再試行メカニズムをアクティブ化します。 この再試行の配信が失敗した場合、Event Grid は配信*不能*なプロセスを使用して、配信されていないイベントをストレージアカウントに配信できます。 詳細については、[Event Grid のメッセージの配信と再試行](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration)に関する記事を参照してください。
 
 ### <a name="data-ingestion-connection-to-azure-data-explorer"></a>Azure データエクスプローラーへのデータインジェスト接続
 

@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/12/2020
-ms.openlocfilehash: ad659f9208bd057719a1adc31f8370c0cb11ffd3
-ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
+ms.openlocfilehash: 86712a2e85f2785666b0b6245962aca39cd82729
+ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86946140"
+ms.lasthandoff: 07/23/2020
+ms.locfileid: "87106496"
 ---
 # <a name="data-purge"></a>データの消去
 
@@ -76,7 +76,7 @@ Azure データエクスプローラーからデータを選択的に消去す�
 
 ## <a name="trigger-the-purge-process"></a>消去プロセスをトリガーします
 
-> [!Note]
+> [!NOTE]
 > データ管理エンドポイントで[purge Table *TableName* records](#purge-table-tablename-records-command)コマンドを実行すると、消去実行が呼び出され https://ingest- ます [YourClusterName]. [Region]。 kusto. windows. net.
 
 ### <a name="purge-table-tablename-records-command"></a>テーブル TableName レコードの消去コマンド
@@ -85,24 +85,24 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 
 * プログラムによる呼び出し:アプリケーションによって呼び出されることを目的とした単一の手順。 このコマンドを直接呼び出すと、実行シーケンスの消去がトリガーします。
 
-    **構文**
+  **構文**
 
-     ```kusto
-     // Connect to the Data Management service
-     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
-     
-     .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
-     ```
+  ```kusto
+  // Connect to the Data Management service
+  #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+ 
+  .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
+   ```
 
-    > [!NOTE]
-    > このコマンドは、 [Kusto クライアントライブラリ](../api/netfx/about-kusto-data.md)NuGet パッケージの一部として利用可能な CslCommandGenerator API を使用して生成します。
+  > [!NOTE]
+  > このコマンドは、 [Kusto クライアントライブラリ](../api/netfx/about-kusto-data.md)NuGet パッケージの一部として利用可能な CslCommandGenerator API を使用して生成します。
 
 * ユーザーによる呼び出し:独立した手順として明確な確認を必要とする 2 段階のプロセス。 コマンドの最初の呼び出しでは、検証トークンが返されます。これは実際の消去を実行するために提供される必要があります。 このシーケンスにより、誤ったデータが誤って削除されるリスクが軽減されます。 大きなテーブルでこのオプションを使用すると、完了に時間がかかり、大量のコールド キャッシュ データが使用される可能性があります。
     <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
 
-     **構文**
+  **構文**
 
-     ```kusto
+  ```kusto
      // Connect to the Data Management service
      #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
      
@@ -111,7 +111,7 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 
      // Step #2 - input the verification token to execute purge
      .purge table [TableName] records in database [DatabaseName] with (verificationtoken='<verification token from step #1>') <| [Predicate]
-     ```
+  ```
     
     | パラメーター  | 説明  |
     |---------|---------|
@@ -132,50 +132,50 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 
 2段階のアクティブ化シナリオで purge を開始するには、コマンドの手順 #1 を実行します。
 
-    ```kusto
+ ```kusto
     // Connect to the Data Management service
      #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
      
     .purge table MyTable records in database MyDatabase <| where CustomerId in ('X', 'Y')
-    ```
+ ```
 
-    **Output**
+**出力**
 
-    | NumRecordsToPurge 関するお願い | EstimatedPurgeExecutionTime| VerificationToken
-    |--|--|--
-    | 1596 | 00:00:02 | e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
+ | NumRecordsToPurge 関するお願い | EstimatedPurgeExecutionTime| VerificationToken
+ |---|---|---
+ | 1596 | 00:00:02 | e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
 
-    Then, validate the NumRecordsToPurge before running step #2. 
+次に、ステップ #2 を実行する前に、NumRecordsToPurge 検証します。 
 
 2段階のアクティブ化シナリオで消去を完了するには、手順 #1 から返された検証トークンを使用して、手順 #2 を実行します。
 
-    ```kusto
-    .purge table MyTable records in database MyDatabase
-    with (verificationtoken='e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b')
-    <| where CustomerId in ('X', 'Y')
-    ```
+```kusto
+.purge table MyTable records in database MyDatabase
+ with(verificationtoken='e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b')
+<| where CustomerId in ('X', 'Y')
+```
 
-    **Output**
+**出力**
 
-    | `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
-    |--|--|--|--|--|--|--|--|--|--|--|--|--|--|
-    | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール済み | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
+| `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール済み | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
 
 #### <a name="example-single-step-purge"></a>例: 単一ステップの消去
 
 シングルステップライセンス認証のシナリオで消去をトリガーするには、次のコマンドを実行します。
 
-    ```kusto
-    // Connect to the Data Management service
-     #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
-     
-    .purge table MyTable records in database MyDatabase with (noregrets='true') <| where CustomerId in ('X', 'Y')
-    ```
+```kusto
+// Connect to the Data Management service
+ #connect "https://ingest-[YourClusterName].[region].kusto.windows.net" 
+ 
+.purge table MyTable records in database MyDatabase with (noregrets='true') <| where CustomerId in ('X', 'Y')
+```
 
 **出力**
 
 | `OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`|
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール済み | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
 
 ### <a name="cancel-purge-operation-command"></a>消去操作の取り消しコマンド
@@ -189,28 +189,28 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 
 ```kusto
  .cancel purge <OperationId>
- ```
+```
 
 **例**
 
 ```kusto
  .cancel purge aa894210-1c60-4657-9d21-adb2887993e1
- ```
+```
 
 **出力**
 
 このコマンドの出力は、"削除操作の*表示" コマンド*の出力と同じであり、取り消された消去操作の更新状態が示されます。 試行が成功した場合、操作の状態はに更新され `Abandoned` ます。 それ以外の場合、操作の状態は変更されません。 
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |Abandoned | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...
 
 ## <a name="track-purge-operation-status"></a>削除操作の状態の追跡 
 
-> [!Note]
+> [!NOTE]
 > 消去操作は、データ管理エンドポイントに対して実行される [削除の[表示](#show-purges-command)] コマンドを使用して追跡でき https://ingest- ます [YourClusterName]. [region]。 kusto. windows. net.
 
-Status = ' Completed ' は、消去操作の最初のフェーズが正常に完了したことを示します。つまり、レコードは論理的に削除され、クエリに使用できなくなります。 お客様は、2番目のフェーズ (ハード削除) の完了を追跡して確認することは期待されてい**ませ**ん。 このフェーズは、Azure データエクスプローラーによって内部的に監視されます。
+Status = ' Completed ' は、消去操作の最初のフェーズが正常に完了したことを示します。つまり、レコードは論理的に削除され、クエリに使用できなくなります。 お客様は、2番目のフェーズ (ハード削除) の完了を追跡して確認することは期待されていません。 このフェーズは、Azure データエクスプローラーによって内部的に監視されます。
 
 ### <a name="show-purges-command"></a>削除コマンドの表示
 
@@ -225,7 +225,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 
 | Properties  |説明  |必須/省略可能|
 |---------|------------|-------|
-|`OperationId `   |      1フェーズまたは2番目のフェーズを実行した後に出力されるデータ管理操作 Id。   |Mandatory
+|`OperationId `   |      1フェーズまたは2番目のフェーズを実行した後に出力されるデータ管理操作 ID。   |Mandatory
 |`StartDate`    |   フィルター処理の制限時間を短くします。 省略した場合、既定値は現在の時刻よりも24時間前になります。      |省略可能
 |`EndDate`    |  フィルター処理の上限時間。 省略した場合、既定値は現在の時刻になります。       |省略可能
 |`DatabaseName`    |     結果をフィルター処理するデータベース名。    |省略可能
@@ -246,7 +246,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 **出力** 
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 33.6782130 |2019-01-20 11:42: 34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |完了 |消去が正常に完了しました (削除を保留中の記憶域アイテム) |2019-01-20 11:41: 34.6486506 |00:00: 04.4687310 |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...
 
 * `OperationId`-purge の実行時に返される DM 操作 ID。 
@@ -272,7 +272,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 
 テーブルを削除するには、テーブルを削除し、削除済みとしてマークします。これにより、[パージプロセス](#purge-process)で記述されたハード削除処理が実行されます。 削除せずにテーブルを削除しても、そのテーブルのすべてのストレージアーティファクトは削除されません。 これらのアーティファクトは、テーブルに最初に設定されたハードリテンション期間ポリシーに従って削除されます。 コマンドは短時間で `purge table allrecords` 効率的であり、シナリオに該当する場合は、レコードの消去プロセスに適しています。 
 
-> [!Note]
+> [!NOTE]
 > このコマンドは、データ管理エンドポイント [YourClusterName] で、[テーブルの削除*TableName* allrecords](#purge-table-tablename-allrecords-command)コマンドを実行することによって呼び出され https://ingest- ます。 [region]。 kusto. windows. net.
 
 ### <a name="purge-table-tablename-allrecords-command"></a>Purge table *TableName* allrecords コマンド
@@ -328,7 +328,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
     **出力**
 
     | `VerificationToken`|
-    |--|
+    |---|
     | e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b|
 
 1.  2段階のアクティブ化シナリオで消去を完了するには、手順 #1 から返された検証トークンを使用して、手順 #2 を実行します。
@@ -342,7 +342,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 
     **出力**
 
-    |  TableName|DatabaseName|Folder|DocString
+    |  TableName|DatabaseName|フォルダー|DocString
     |---|---|---|---
     |  OtherTable|MyDatabase|---|---
 
@@ -362,7 +362,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 
 **出力**
 
-|TableName|DatabaseName|Folder|DocString
+|TableName|DatabaseName|フォルダー|DocString
 |---|---|---|---
 |OtherTable|MyDatabase|---|---
 

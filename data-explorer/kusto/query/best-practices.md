@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/03/2020
-ms.openlocfilehash: 301917f363176fb8e3bbf2fe4286a86b7a5674ea
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: e37d3733909b84a2991c54a9242d7f44b18d64cb
+ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280514"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87264683"
 ---
 # <a name="query-best-practices"></a>クエリのベスト プラクティス
 
 ここでは、クエリの実行を高速化するためのベストプラクティスをいくつか紹介します。
 
-|アクション  |用途  |使用しない  |メモ  |
+|アクション  |用途  |使用しない  |Notes  |
 |---------|---------|---------|---------|
 | **時間フィルター** | 最初に時間フィルターを使用する。 ||Kusto は、時間フィルターを使用するように高度に最適化されています。| 
 |**文字列演算子**      | 演算子を使用する `has`     | 使用しない`contains`     | 完全なトークンを検索する場合は、 `has` 部分文字列が検索されないため、はより適切に機能します。   |
@@ -43,3 +43,4 @@ ms.locfileid: "86280514"
 |**同じ形式またはパターンを共有する文字列を使用して列の値を抽出する**|  [Parse 演算子](./parseoperator.md)を使用する | 複数のステートメントを使用しないで `extract()` ください。  | たとえば、次のような値です。`"Time = <time>, ResourceId = <resourceId>, Duration = <duration>, ...."`
 |**[extract () 関数](./extractfunction.md)**| 解析された文字列がすべて同じ形式またはパターンに従っていない場合は、を使用します。| |正規表現を使用して必要な値を抽出します。|
 | **[具体化 () 関数](./materializefunction.md)** | 具体化されたデータセットを減らすことができるすべての演算子をプッシュし、引き続きクエリのセマンティクスを維持します。 | |たとえば、フィルターを使用するか、必要な列のみを射影します。
+

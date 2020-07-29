@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/06/2020
-ms.openlocfilehash: 0580088bf04bffafd36990a3f42c32aa5c4ede53
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: 8858b261cb366842b475a76a1b2c3246b8a3e7b5
+ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280472"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87264700"
 ---
 # <a name="materialize"></a>materialize()
 
@@ -27,24 +27,19 @@ ms.locfileid: "86280472"
 
 * *式*: クエリの実行中に評価およびキャッシュされる表形式の式。
 
-**ヒント**
+> [!NOTE]
+> 具体化のキャッシュサイズは**5 GB**です。 この制限はクラスターノードごとに行われ、同時に実行されるすべてのクエリに共通です。 クエリでが使用され `materialize()` ていて、それ以上のデータをキャッシュが保持できない場合、クエリはエラーで中止されます。
 
-* オペランドに1回だけ実行できる相互サブクエリがある場合は、結合または共用体で具体化を使用します。 次の例を参照してください。
-
-* また、join/union の分岐が必要な場合にも役立ちます。
-
-* 具現化は、キャッシュされた結果に名前を指定した場合にのみ、let ステートメントで使用できます。
-
-**注**
-
-* 具体化のキャッシュサイズは**5 GB**です。 
-  この制限はクラスターノードごとに行われ、同時に実行されるすべてのクエリに共通です。
-  クエリでが使用され `materialize()` ていて、それ以上のデータをキャッシュが保持できない場合、クエリはエラーで中止されます。
+>[!TIP]
+>
+>* 具体化されたデータセットを減らしてクエリのセマンティクスを保持する、可能なすべての演算子をプッシュします。 たとえば、フィルターを使用するか、必要な列のみを射影します。
+>* オペランドに1回だけ実行できる相互サブクエリがある場合は、結合または共用体で具体化を使用します。 たとえば、結合/共用フォーク脚です。 「 [Join 演算子の使用例」を](#examples-of-query-performance-improvement)参照してください。
+>* 具現化は、キャッシュされた結果に名前を指定した場合にのみ、let ステートメントで使用できます。 [Let ステートメントの使用例を](#examples-of-using-materialize)参照してください。
 
 ## <a name="examples-of-query-performance-improvement"></a>クエリパフォーマンスの向上の例
 
 次の例では、を `materialize()` 使用してクエリのパフォーマンスを向上させる方法を示します。
-式 `_detailed_data` は関数を使用して定義される `materialize()` ため、1回だけ計算されます。
+式 `_detailed_data` は関数を使用して定義され `materialize()` ているため、1回だけ計算されます。
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -57,7 +52,7 @@ _detailed_data
 | top 10 by EventPercentage
 ```
 
-|State|EventType|EventPercentage|イベント|
+|状態|EventType|EventPercentage|events|
 |---|---|---|---|
 |ハワイ WATERS|Waterspout|100|2|
 |レイクオンタリオ|海上雷雨風|100|8|
@@ -105,7 +100,7 @@ randomSet | summarize Sum=sum(value)
 
 結果セット 3: 
 
-|Sum|
+|SUM|
 |---|
 |15002960543563|
 
@@ -113,11 +108,8 @@ randomSet | summarize Sum=sum(value)
 
 > [!TIP]
 > ほとんどのクエリでは、大量の行にわたって動的オブジェクトからフィールドを抽出する場合、インジェスト時に列を具体化します。
-> 
-> 複数回使用する値を含むステートメントを使用するには `let` 、[具体化 () 関数](./materializefunction.md)を使用します。
-> 詳細については、「[ベストプラクティス](best-practices.md)」を参照してください。
 
-具体化されたデータセットを減らすことができるすべての演算子をプッシュし、引き続きクエリのセマンティクスを維持します。 たとえば、フィルターを使用するか、必要な列のみを射影します。
+複数回使用する値を含むステートメントを使用するには `let` 、[具体化 () 関数](./materializefunction.md)を使用します。 具体化されたデータセットを減らすことができるすべての演算子をプッシュし、引き続きクエリのセマンティクスを維持します。 たとえば、フィルターを使用するか、必要な列のみを射影します。
 
 ```kusto
     let materializedData = materialize(Table
@@ -142,7 +134,7 @@ randomSet | summarize Sum=sum(value)
     | summarize dcount(Resource2))
 ```
     
-このクエリでフィルターが同じでない場合は、次のようになります。  
+フィルターが同じでない場合は、次のクエリのようになります。  
 
 ```kusto
     let materializedData = materialize(Table
@@ -154,7 +146,7 @@ randomSet | summarize Sum=sum(value)
     | summarize dcount(Resource2))
  ```
 
-結合フィルターによって具体化された結果が劇的に減る場合は、具体化された結果に対する両方のフィルターを、次のクエリのような論理式で結合し `or` ます。 ただし、クエリのセマンティクスを維持するために、各共用体区間にフィルターを保持します。
+結合フィルターが具体化された結果を劇的に減らす場合は、次のクエリのように、具体化された結果に対する両方のフィルターを論理式で結合し `or` ます。 ただし、クエリのセマンティクスを維持するために、各共用体区間にフィルターを保持します。
      
 ```kusto
     let materializedData = materialize(Table

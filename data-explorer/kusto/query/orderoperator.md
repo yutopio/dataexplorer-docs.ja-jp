@@ -1,6 +1,6 @@
 ---
-title: 注文オペレーター - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの注文オペレーターについて説明します。
+title: order 演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの order 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9e2c2adb86f1eb705856e95f8b8f4ee329cb3b43
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 35fa0c29bf00a8696d4e9d08d73c30bba6171ea1
+ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511970"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87264717"
 ---
 # <a name="order-operator"></a>order 演算子 
 
@@ -23,35 +23,17 @@ ms.locfileid: "81511970"
 T | order by country asc, price desc
 ```
 
-**エイリアス**
-
-[sort 演算子](sortoperator.md)
+> [!NOTE]
+> Order 演算子は、sort 演算子のエイリアスです。 詳細については、「 [sort 演算子](sortoperator.md)」を参照してください。
 
 **構文**
 
-*T*`| sort by`*column*列`asc` | `desc`[`nulls first` | `nulls last`]`,` [ ] [
+*T* `| order by` *列*[ `asc`  |  `desc` ] [ `nulls first`  |  `nulls last` ] [ `,` ...]
 
 **引数**
 
-* *T*: ソートするテーブル入力。
-* *column*: 並べ替えの基準となる*T*の列。 値の型は、数値、日付、時刻、または文字列にする必要があります。
+* *T*: 並べ替えの対象となるテーブル入力。
+* *列*: 並べ替えに使用する*T*の列。 値の型は、数値、日付、時刻、または文字列にする必要があります。
 * `asc` : 昇順で (小さい値から大きい値へ) 並べ替えます。 既定値は `desc`で、降順 (大きい値から小さい値へ) です。
-* `nulls first`(順序の`asc`デフォルト)は、最初に NULL 値を配置`nulls last`し、(順序`desc`のデフォルト)末尾に NULL 値を配置します。
+* `nulls first`(order の既定値 `asc` ) は、先頭に null 値を挿入し `nulls last` ます。(order の既定値 `desc` ) は、null 値を末尾に配置します。
 
-**例**
-
-```kusto
-Traces
-| where ActivityId == "479671d99b7b"
-| sort by Timestamp asc nulls first
-```
-
-特定の `ActivityId`を持つ Traces テーブルのすべての行が、タイムスタンプの順で並べ替えられます。 列`Timestamp`に NULL 値が含まれている場合、結果の最初の行に表示されます。
-
-結果から NULL 値を除外するには、並べ替えの呼び出しの前にフィルターを追加します。
-
-```kusto
-Traces
-| where ActivityId == "479671d99b7b" and isnotnull(Timestamp)
-| sort by Timestamp asc
-```

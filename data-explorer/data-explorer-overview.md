@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 09/24/2018
-ms.openlocfilehash: 02b239922f481240341225ea68d8d0ee7492c48b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: aae60156ec6035f354378e4f56f993efa33e0a7c
+ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491747"
+ms.lasthandoff: 07/22/2020
+ms.locfileid: "86946157"
 ---
 # <a name="what-is-azure-data-explorer"></a>Azure Data Explorerとは
 
@@ -20,13 +20,13 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 ## <a name="what-makes-azure-data-explorer-unique"></a>Azure データ エクスプローラーを唯一無二の存在にしている要素は何ですか?
 
-- テラバイト単位のデータに数分でスケール アップします。データ探索を高速で繰り返し、関連する分析情報を見つけることができます。
+* テラバイト単位のデータに数分でスケール アップします。データ探索を高速で繰り返し、関連する分析情報を見つけることができます。
 
-- 高性能なデータ分析のために最適化された画期的なクエリ言語を提供します。
+* 高性能な Data Analytics のために最適化された画期的なクエリ言語を提供します。
 
-- 大量の異種データ (構造化データと非構造化データ) を分析します。
+* 大量の異種データ (構造化データと非構造化データ) を分析します。
 
-- 他のサービスと組み合わせることで、包括的で対話型の高性能データ分析ソリューションを提供します。それにより、まさに必要としているものを構築し、デプロイすることができます。
+* 他のサービスと組み合わせることで、包括的で対話型の高性能データ分析ソリューションを提供します。それにより、まさに必要としているものを構築し、デプロイすることができます。
 
 ## <a name="data-warehousing-workflow"></a>データ ウェアハウスのワークフロー
 
@@ -48,11 +48,11 @@ Azure データ エクスプローラーの使用は一般的に次のパター�
 
 1. **データの取り込み:** クエリを実行できるように、データをデータベース テーブルに読み込みます。 [クイック スタート: イベント ハブから Azure Data Explorer にデータを取り込む](ingest-data-event-hub.md)
 
-1. **クエリ データベース:** Microsoft の Web アプリケーションを使用し、クエリを実行して結果を確認し、共有します。 これは Azure portal で利用できます。また、スタンドアロン アプリケーションとして利用できます。 さらに、(SDK を利用して) プログラミングでクエリを送信したり、REST API エンドポイントにクエリを送信したりできます。 [クイック スタート: Azure データ エクスプローラーでデータのクエリを実行する](web-query-data.md)
+1. **クエリ データベース:** Microsoft の Web アプリケーションを使用し、クエリを実行して結果を確認し、共有します。 これは Azure portal で利用できます。また、スタンドアロン アプリケーションとして利用できます。 SDK を利用してプログラミングでクエリを送信したり、REST API エンドポイントにクエリを送信したりすることもできます。 [クイック スタート: Azure データ エクスプローラーでデータのクエリを実行する](web-query-data.md)
 
 ## <a name="query-experience"></a>クエリの利用
 
-Azure データ エクスプローラーのクエリは読み取り専用の要求であり、データを処理し、その処理の結果を返します。データやメタデータが修正されることはありません。 分析を完了するまでクエリの微調整を続けます。 このプロセスは、Azure Data Explorer を利用してアドホック クエリを非常に速く実行できるようになるため、簡単になります。
+Azure データ エクスプローラーのクエリは読み取り専用の要求であり、データを処理し、その処理の結果を返します。データやメタデータが修正されることはありません。 分析を完了するまでクエリの微調整を続けます。 このプロセスは、Azure Data Explorer を利用してアドホック クエリを速く実行できるようになるため、簡単になります。
 
 Azure データ エクスプローラーでは、大量の構造化データ、半構造化データ (JSON に似た、入れ子にされた型)、非構造化データ (フリーテキスト) が等しく処理されます。 特定のテキスト語句を検索したり、特定のイベントを見つけたり、構造化データにメトリックスタイルの計算を実行したりできます。 Azure データ エクスプローラーは、自由形式のテキスト フィールドから実行時に値を抽出することで、構造化されていないテキスト ログの領域と構造化されている数字や次元の領域の橋渡しとなります。 データ探索は、高速のテキスト インデックス作成、列ストア、時系列操作を組み合わせることで簡素化されます。
 
@@ -60,13 +60,13 @@ Azure Data Explorer の機能は、[Azure Monitor ログ](/azure/log-analytics/)
 
 ## <a name="feedback"></a>フィードバック
 
-Azure データ エクスプローラーとそのクエリ言語に関するフィードバックをお待ちしております。次の方法をご利用ください。
+Azure Data Explorer とそのクエリ言語に関するフィードバックをお待ちしております。次の方法をご利用ください。
 
-- 質問する
-  - [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-data-explorer)
-  - [Microsoft Tech Community](https://techcommunity.microsoft.com/t5/Azure-Data-Explorer/bd-p/Kusto)
-  - [MSDN](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureKusto)
-- [ユーザーの声で製品について提案する](https://aka.ms/AzureDataExplorer.UserVoice)
+* 質問する
+  * [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-data-explorer)
+  * [Microsoft Q&A](https://docs.microsoft.com/answers/topics/azure-data-explorer.html)
+  * [Microsoft Tech Community](https://techcommunity.microsoft.com/t5/Azure-Data-Explorer/bd-p/Kusto)
+* [ユーザーの声で製品について提案する](https://aka.ms/AzureDataExplorer.UserVoice)
 
 ## <a name="next-steps"></a>次のステップ
 

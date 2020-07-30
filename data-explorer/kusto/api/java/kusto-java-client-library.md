@@ -1,26 +1,21 @@
 ---
-title: クスト Java SDK - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプ ローラーで Kusto Java SDK について説明します。
+title: Azure データエクスプローラー Java SDK-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラー Java SDK について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: vladikbr
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 10/23/2018
-ms.openlocfilehash: 62c23e2165a3ed9950ac49ea22b59ec6bb10c7a6
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.date: 07/28/2020
+ms.openlocfilehash: ffab19c9ef06b440f525c02c38fb06681de2e764
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81502688"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350487"
 ---
-# <a name="kusto-java-sdk"></a>クストジャワSDK
+# <a name="azure-data-explorer-java-sdk"></a>Azure データエクスプローラー Java SDK
 
-## <a name="overview"></a>概要
-
-*クスト Java クライアント*ライブラリは、Java を使用して Kusto クラスターを照会する機能を提供します。
-
-Kusto Java SDK は[GitHub](https://github.com)のソース ファイルとして利用でき、まもなく Maven から入手できるようになります。
-
-* [ギットハブレポ](https://github.com/Azure/azure-kusto-java)
+*Kusto java クライアント*ライブラリには、java を使用して Azure データエクスプローラークラスターに対してクエリを実行する機能が用意されています。
+Azure データエクスプローラー Java SDK は、 [azure](https://github.com/Azure/azure-kusto-java)で使用できます。

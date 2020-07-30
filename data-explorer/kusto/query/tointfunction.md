@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1efd06b8fa2961528be65b630933aae74614e9a0
-ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.openlocfilehash: 2daea4d190ed349c41a8eecf2eef53b2c2b93716
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "86013608"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350691"
 ---
 # <a name="toint"></a>toint()
 
@@ -23,15 +23,15 @@ ms.locfileid: "86013608"
 toint("123") == int(123)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `toint(`*With*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: 整数に変換される式。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 変換が成功した場合、結果は整数になります。
 変換が成功しなかった場合、結果はになり `null` ます。

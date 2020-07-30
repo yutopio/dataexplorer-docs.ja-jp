@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 054d4be758001609fbc3100a4a6c8698ef8f69f6
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: fb1f07c4b964615342adcf4d5ae51e7c99c05d13
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717310"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351286"
 ---
 # <a name="series_seasonal"></a>series_seasonal()
 
 検出または指定された季節期間に従って、系列の季節成分を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_seasonal(`*シリーズ* `[,`*期間*`])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *series*: 入力数値動的配列
 * *period* (省略可能): 各季節期間の整数のビン数を指定します。可能な値は次のとおりです。
@@ -31,7 +31,7 @@ ms.locfileid: "84717310"
     * 正の整数: 季節コンポーネントの期間として使用されます。
     * その他の値: 季節性を無視し、一連のゼロを返します
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 系列の計算された季節成分を含む*系列*入力と同じ長さの動的配列。 季節成分は、区間の位置に対応するすべての値の*中央*値として計算されます。
 
@@ -71,7 +71,7 @@ print s=dynamic([1,3,5,1,3,5,2,4,6])
 |[1、3、5、1、3、5、2、4、6]|[1.0、3.0、5.0、1.0、3.0、5.0、1.0、3.0、5.0]|
 |[1、3、5、2、4、6、1、3、5、2、4、6]|[1.5、3.5、5.5、1.5、3.5、5.5、1.5、3.5、5.5、1.5、3.5、5.5]|
  
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 * [series_periods_detect()](series-periods-detectfunction.md)
 * [series_periods_validate()](series-periods-validatefunction.md)

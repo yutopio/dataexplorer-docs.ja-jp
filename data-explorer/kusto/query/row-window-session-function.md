@@ -8,34 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 51bc5e26cdc2d002b29ec435a68421ba8768a7a4
-ms.sourcegitcommit: 9fe6ee7db15a5cc92150d3eac0ee175f538953d2
+ms.openlocfilehash: ce8da96733dd483b8600c7cfb3618ed986e9d2b0
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/07/2020
-ms.locfileid: "82907191"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351558"
 ---
 # <a name="row_window_session"></a>row_window_session()
 
 `row_window_session()`シリアル化された[行セット](./windowsfunctions.md#serialized-row-set)内の列のセッション開始値を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `row_window_session` `(` *`Expr`* `,` *`MaxDistanceFromFirst`* `,` *`MaxDistanceBetweenNeighbors`* [`,` *`Restart`*] `)`
 
 * *`Expr`* は、セッション内で値がグループ化された式です。
   Null 値によって null 値が生成され、次の値によって新しいセッションが開始されます。
-  *`Expr`* 型`datetime`のスカラー式である必要があります。
+  *`Expr`* 型のスカラー式である必要があり `datetime` ます。
 
-* *`MaxDistanceFromFirst`* 新しいセッションを開始するための1つの条件を設定します。現在*`Expr`* の値から、 *`Expr`* セッションの開始時のの値までの最大距離です。
-  これは型`timespan`のスカラー定数です。
+* *`MaxDistanceFromFirst`* 新しいセッションを開始するための1つの条件を設定します。現在の値から、 *`Expr`* *`Expr`* セッションの開始時のの値までの最大距離です。
+  これは型のスカラー定数です `timespan` 。
 
-* *`MaxDistanceBetweenNeighbors`* 新しいセッションを開始するための2番目の条件を確立します。 *`Expr`* 1 つの値から次の値への最大距離です。
-  これは型`timespan`のスカラー定数です。
+* *`MaxDistanceBetweenNeighbors`* 新しいセッションを開始するための2番目の条件を確立します。1つの値から次の値への最大距離です。 *`Expr`*
+  これは型のスカラー定数です `timespan` 。
 
-* *Restart*は、型`boolean`の省略可能なスカラー式です。 指定した場合、に`true`評価されるすべての値が直ちにセッションを再起動します。
+* *Restart*は、型の省略可能なスカラー式です `boolean` 。 指定した場合、に評価されるすべての値 `true` が直ちにセッションを再起動します。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 関数は、各セッションの開始時に値を返します。
 
@@ -43,23 +43,23 @@ ms.locfileid: "82907191"
 
 関数には、次の概念計算モデルがあります。
 
-1. 入力した値*`Expr`* のシーケンスを順番に表示します。
+1. 入力した値のシーケンスを *`Expr`* 順番に表示します。
 
 1. すべての値について、新しいセッションを確立するかどうかを判断します。
 
-1. 新しいセッションを確立する場合は、の*`Expr`* 値を出力します。 それ以外の場合は、の*`Expr`* 前の値を出力します。
+1. 新しいセッションを確立する場合は、の値を出力し *`Expr`* ます。 それ以外の場合は、の前の値を出力し *`Expr`* ます。
 
 値が新しいセッションを表すかどうかを決定する条件は、論理または次のいずれかの条件になります。
 
 * 以前のセッション値がなかった場合、または以前のセッション値が null の場合。
 
-* の*`Expr`* 値が以前のセッションの値にプラスを加え*`MaxDistanceFromFirst`* た値に等しいか、それを超えた場合。
+* の値が *`Expr`* 以前のセッションの値にプラスを加えた値に等しいか、それを超えた場合 *`MaxDistanceFromFirst`* 。
 
-* の*`Expr`* 値がまたはの前の値を*`Expr`* 加算*`MaxDistanceBetweenNeighbors`* した値を超えている場合は。
+* の値が *`Expr`* またはの前の値を加算した値を超えている場合は *`Expr`* *`MaxDistanceBetweenNeighbors`* 。
 
-**使用例**
+## <a name="examples"></a>例
 
-次の例では、2つの列を持つテーブルのセッション開始値を計算`ID`する方法を示します。1つ`Timestamp`はシーケンスを識別する列で、もう1つは各レコードが発生した時刻を示す列です。 この例では、セッションが1時間を超えることはできず、レコードが5分未満である間は継続されます。
+次の例では、2つの列を持つテーブルのセッション開始値を計算する方法を示します。1つはシーケンスを識別する列で、もう1つは `ID` `Timestamp` 各レコードが発生した時刻を示す列です。 この例では、セッションが1時間を超えることはできず、レコードが5分未満である間は継続されます。
 
 ```kusto
 datatable (ID:string, Timestamp:datetime) [

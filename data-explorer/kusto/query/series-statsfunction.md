@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/10/2020
-ms.openlocfilehash: 3fe88a5d53faaca4512d614d3e62204ac26e6fc5
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 69e09ec9528e99e250986657bf5d7cc0756b14f8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372445"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351252"
 ---
 # <a name="series_stats"></a>series_stats()
 
@@ -31,18 +31,18 @@ ms.locfileid: "83372445"
 > [!NOTE] 
 > この関数は複数の列を返します。そのため、別の関数の引数として使用することはできません。
 
-**構文**
+## <a name="syntax"></a>構文
 
 プロジェクト `series_stats(` *x* `[,` *ignore_nonfinite* `])` または `series_stats(` *x* `)` を拡張すると、前述のすべての列が、series_stats_x_min、series_stats_x_min_idx などの名前で返されます。
  
 project (m, mi) = `series_stats(` *x* `)` または extend (m, mi) = `series_stats(` *x*は `)` 、次の列を返します: m (min) と mi (min_idx)。
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の配列である動的配列のセル。 
 * *ignore_nonfinite*: `false` 非有限値 (*null*、 *NaN*、 *inf*など) を無視して統計を計算するかどうかを指定するブール値 (省略可能、既定値:) フラグ。 に設定されている場合 `false` 、 `null` 配列内に非有限値があると、戻り値はになります。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

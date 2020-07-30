@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 6c394c33af25e1891131c7ca2a47359f3cdcd059
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 1f8e6e8100472ed8e68a5dc1801c282b5a48ff77
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372657"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351473"
 ---
 # <a name="series_greater_equals"></a>series_greater_equals()
 
 `>=`2 つの数値系列入力の要素ごとのより大きいまたは等しい () 論理演算を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_greater_equals (`*Series1* `,`*Series2*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Series1, Series2*: 要素ごとに比較する数値配列を入力します。 すべての引数は動的配列である必要があります。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 2つの入力間の論理演算のうち、計算された要素ごとの or を含むブール値の動的配列。 数値以外の要素または存在しない要素 (異なるサイズの配列) は、 `null` 要素の値を生成します。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

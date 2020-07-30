@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 1f88cdfc1490f8b00d8104286441e366aaf46f3f
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 112fe4135b6ed996c798e5f03a34120e4078c623
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372576"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351388"
 ---
 # <a name="series_multiply"></a>series_multiply()
 
 2つの数値系列入力の要素ごとの乗算を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_multiply(`*series1* `,`*series2*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *series1, series2*: 入力数値配列。要素ごとに動的な配列の結果を乗算します。 すべての引数は動的配列である必要があります。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 2つの入力間の計算された要素ごとの乗算演算の動的配列。 数値以外の要素または存在しない要素 (異なるサイズの配列) は、 `null` 要素の値を生成します。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

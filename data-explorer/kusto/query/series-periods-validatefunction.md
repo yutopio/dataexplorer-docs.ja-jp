@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 0e93383cf1c9ff11fdf4a14ebad5d83c0dfa7a74
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 24b47981e90c15e8a0f295d845ca28a03f324a88
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717412"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351303"
 ---
 # <a name="series_periods_validate"></a>series_periods_validate()
 
@@ -27,11 +27,11 @@ ms.locfileid: "84717412"
 * *期間*: 検証する期間 (入力で指定) を格納する動的配列。
 * *スコア*: 0 ~ 1 のスコアを含む動的配列。 このスコア*は、期間配列内*のそれぞれの位置における期間の有意性を示します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_periods_validate(`*x* `,` *period1* [ `,` *period2* `,` 。 . . ] `)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の配列である動的配列スカラー式。通常は、[対](make-seriesoperator.md)数演算子または[make_list](makelist-aggfunction.md)演算子の結果の出力です。
 * *period1*、 *period2*など: `real` 検証する期間をビンサイズの単位で指定する数値。 たとえば、系列が1h ビンにある場合、週単位の期間は168ビンになります。
@@ -43,7 +43,7 @@ ms.locfileid: "84717412"
 > 
 > * 関数は、最大16の期間を受け入れて検証します。
 
-**例**
+## <a name="example"></a>例
 
 次のクエリは、1日に2回集計される、アプリケーションのトラフィックの月のスナップショットを埋め込みます (ビンのサイズは12時間です)。
 

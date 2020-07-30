@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b61934ec2efbfb22c17fe93a4f3969a1592cefab
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: eddf893d3c0d8096f57a3f624ddedf753fe35f91
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780662"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346356"
 ---
 # <a name="parse_csv"></a>parse_csv()
 
@@ -23,23 +23,23 @@ ms.locfileid: "84780662"
 parse_csv("aaa,bbb,ccc") == ["aaa","bbb","ccc"]
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `parse_csv(`*電源*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *source*: コンマ区切り値の1つのレコードを表すソース文字列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 分割された値を格納している文字列配列。
 
-**ノート**
+**メモ**
 
 埋め込み行フィード、コンマ、および引用符は、二重引用符 (' "') を使用してエスケープできます。 この関数では、行ごとに複数のレコードがサポートされません (最初のレコードのみが取得されます)。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

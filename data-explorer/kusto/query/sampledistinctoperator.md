@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5303801b983b326310065ea2a6ce6ded7d098001
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 3cb1de08604964d4d71c5868ef7564c728b1f2c4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373007"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351541"
 ---
 # <a name="sample-distinct-operator"></a>sample-distinct 演算子
 
@@ -25,11 +25,11 @@ ms.locfileid: "83373007"
 T | sample-distinct 5 of DeviceId
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| sample-distinct` *numberofvalues* `of` *ColumnName*
 
-**引数**
+## <a name="arguments"></a>引数
 * *Numberofvalues*: 返される*T*の個別の値の数。 任意の数値式を指定できます。
 
 **ヒント**
@@ -40,7 +40,7 @@ T | sample-distinct 5 of DeviceId
 
  (特定の列の値ではなく) データ行をサンプリングする場合は、「 [sample 演算子](sampleoperator.md)」を参照してください。
 
-**使用例**  
+## <a name="examples"></a>例  
 
 母集団から10個の個別の値を取得する
 

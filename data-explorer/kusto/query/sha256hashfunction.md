@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: cf47fd98027859ebb5f0cf22208b790a5396dc61
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: b813ce4c0901ef66177e8e7bdaa42a1744bd5912
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763752"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351116"
 ---
 # <a name="hash_sha256"></a>hash_sha256()
 
 入力値の sha256 ハッシュ値を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `hash_sha256(`*電源*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *source*: ハッシュされる値。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 16進数文字列としてエンコードされた、指定されたスカラーの sha256 ハッシュ値 (文字の文字列。それぞれが 0 ~ 255 の範囲の1つの16進数を表します)。
 
 > [!WARNING]
 > この関数 (SHA256) で使用されるアルゴリズムは、今後変更されることはありませんが、計算が非常に複雑です。 1つのクエリの実行中に "ライトウェイト" ハッシュ関数を必要とするユーザーには、代わりに関数[hash ()](./hashfunction.md)を使用することをお勧めします。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

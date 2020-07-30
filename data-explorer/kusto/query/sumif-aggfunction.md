@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7d97d31b2fb97d5541400bc0605ee40e83807b62
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: cd9900b5087ed0d6ae7e97d2f2dad809bb909331
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83371890"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350810"
 ---
 # <a name="sumif-aggregation-function"></a>sumif () (集計関数)
 
@@ -23,20 +23,20 @@ ms.locfileid: "83371890"
 
 また、 [sum ()](sum-aggfunction.md)関数を使用することもできます。この関数は、述語式のない行を合計します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `sumif(` *Expr* `,` *述語*の集計`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: 集計計算用の式。 
 * *述語*: 述語が true の場合、 *Expr*の計算値が合計に加算されます。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 *述語*がに評価される*Expr*の合計値 `true` 。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 let T = datatable(name:string, day_of_birth:long)

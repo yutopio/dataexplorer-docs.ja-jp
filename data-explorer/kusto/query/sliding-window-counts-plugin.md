@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4d90bc3b6222896d45374d771ce5f87f4bdf6786
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: af223d31f008b972bc1b61a6a9ace7e19c988ff7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902021"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351048"
 ---
 # <a name="sliding_window_counts-plugin"></a>sliding_window_counts プラグイン
 
@@ -25,11 +25,11 @@ ms.locfileid: "85902021"
 T | evaluate sliding_window_counts(id, datetime_column, startofday(ago(30d)), startofday(now()), 7d, 1d, dim1, dim2, dim3)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `sliding_window_counts(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *End* `,` *look backwindow* `,` *Bin* `,` [*dim1* `,` *dim2* `,` ...]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
@@ -40,7 +40,7 @@ T | evaluate sliding_window_counts(id, datetime_column, startofday(ago(30d)), st
 * *Bin*: 分析ステップ期間のスカラー定数値。 この値には、数値/日付/時刻/タイムスタンプ値を指定できます。 値が形式の文字列の場合 `week` / `month` / `year` 、すべての期間は[startofweek](startofweekfunction.md) / [startofmonth](startofmonthfunction.md) / [startofyear](startofyearfunction.md)になります。 
 * *dim1*、 *dim2*、...: (省略可能) アクティビティメトリックスの計算をスライスするディメンション列の一覧です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 各タイムライン期間 (ビン単位)、および既存のディメンションの組み合わせごとに、Id のカウントと個別のカウントの値を持つテーブルを返します。
 
@@ -51,7 +51,7 @@ T | evaluate sliding_window_counts(id, datetime_column, startofday(ago(30d)), st
 |型: as of *TimelineColumn*|..|..|..|long|long|
 
 
-**使用例**
+## <a name="examples"></a>例
 
 `dcounts`分析期間の各日について、過去1週間のカウントとユーザーの数を計算します。 
 

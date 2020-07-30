@@ -1,6 +1,6 @@
 ---
-title: sqrt() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの sqrt() について説明します。
+title: sqrt ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの sqrt () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 660235a60893732288a551e1febd9b7b044b4f00
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 76f5c8c5f8c1a0b9f685ae88df1ab624dc446150
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507261"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350963"
 ---
 # <a name="sqrt"></a>sqrt()
 
 平方根関数を返します。  
 
-**構文**
+## <a name="syntax"></a>構文
 
-`sqrt(`*X*`)`
+`sqrt(`*閉じる*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *x*: 実数>= 0。
+* *x*: 実数 >= 0 です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 * `sqrt(x) * sqrt(x) == x`
 * 引数が負であるか、`real` 値に変換できない場合は `null`。 

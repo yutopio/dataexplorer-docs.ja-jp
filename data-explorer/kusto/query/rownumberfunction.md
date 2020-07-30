@@ -1,6 +1,6 @@
 ---
-title: row_number() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで row_number() について説明します。
+title: row_number ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの row_number () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c8cb01ed098d24632154215ddf06dc2ab1d72695
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ea51e6171b8a7683a0454d177dc729ed754b8896
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510168"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351592"
 ---
 # <a name="row_number"></a>row_number()
 
-[シリアル化された行セット](./windowsfunctions.md#serialized-row-set)の現在の行のインデックスを返します。
-行インデックスは、最初の行`1`の既定で開始され、追加の行`1`ごとに増分されます。
-必要に応じて、行インデックスは、 と`1`は異なる値で開始できます。
-さらに、行インデックスは、指定された述語に従ってリセットされる場合があります。
+シリアル化された[行セット](./windowsfunctions.md#serialized-row-set)内の現在の行のインデックスを返します。
+行インデックスは、既定で最初の行のに対して開始され、 `1` `1` 追加の行ごとにによってインクリメントされます。
+必要に応じて、行インデックスをとは異なる値で開始することもでき `1` ます。
+また、指定された述語に従って行インデックスをリセットすることもできます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`row_number``(` [*インデックスの開始*]`,` *[ 再起動*] ]`)`
+`row_number``(`[*StartingIndex* [ `,` *再起動*]]`)`
 
-* *StartingIndex*は、開始位置`long`(または再開する行インデックス) の値を示す型の定数式です。 既定値は `1` です。
-* *[再開*] は、番号`bool`付けを*開始*インデックス値に再開するタイミングを示す、省略可能な型の引数です。 指定しない場合は、デフォルト値が`false`使用されます。
+* *StartingIndex*は、 `long` 開始する行インデックスの値を示す型の定数式です (または、に再起動します)。 既定値は `1` です。
+* *Restart*は、 `bool` 番号を*StartingIndex*値に再起動するタイミングを示す型の省略可能な引数です。 指定しない場合、の既定値 `false` が使用されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-この関数は、現在の行の行インデックスを type の`long`値として返します。
+関数は、現在の行の行インデックスを型の値として返し `long` ます。
 
-**使用例**
+## <a name="examples"></a>例
 
-次の例では、2 つの列を持つテーブル、`a`最初の列`10`( `1`) に下から`rn`から、 までの`1`数値を`10`含む 2 番目の列 ( ) を返します。
+次の例では、2つの列を含むテーブルが返されます。1つ目の列 ( `a` ) の下の数値は `10` `1` です。2番目の列 () の数値は、 `rn` 次のよう `1` に `10` なります。
 
 ```kusto
 range a from 1 to 10 step 1
@@ -43,7 +43,7 @@ range a from 1 to 10 step 1
 | extend rn=row_number()
 ```
 
-次の例は上記と同様で、2 番目の列`rn`( `7`) だけが で始まります。
+次の例は上記に似ていますが、2番目の列 () のみがから `rn` 始まり `7` ます。
 
 ```kusto
 range a from 1 to 10 step 1
@@ -51,7 +51,7 @@ range a from 1 to 10 step 1
 | extend rn=row_number(7)
 ```
 
-最後の例では、データをパーティション分割し、各パーティションごとに行に番号を付けることができる方法を示します。 ここでは、データをパーティション分割`Airport`します。
+最後の例では、データをパーティション分割し、各パーティションの行に番号を指定する方法を示します。 ここでは、次の方法でデータをパーティション分割し `Airport` ます。
 
 ```kusto
 datatable (Airport:string, Airline:string, Departures:long)
@@ -68,10 +68,10 @@ datatable (Airport:string, Airline:string, Departures:long)
 
 このクエリを実行すると、次の結果が生成されます。
 
-空港  | 航空会社  | 出発  | Rank
+空港  | 航空会社  | 離職  | 順位
 ---------|----------|-------------|------
 SEA      | BA       | 2           | 1
-SEA      | Lh       | 1           | 2
+SEA      | LH       | 1           | 2
 SEA      | LY       | 0           | 3
-Tlv      | LY       | 100         | 1
-Tlv      | Lh       | 1           | 2
+TLV      | LY       | 100         | 1
+TLV      | LH       | 1           | 2

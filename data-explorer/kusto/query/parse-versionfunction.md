@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5e4b318743380b13a26e90a7e83549c998926bd8
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: ae5268a4a062a6f45adb715650028d952cb89e0b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902109"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346390"
 ---
 # <a name="parse_version"></a>parse_version()
 
@@ -23,15 +23,15 @@ ms.locfileid: "85902109"
 parse_version("0.0.0.1")
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `parse_version``(` *Expr*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *`Expr`*: `string` 解析するバージョンを指定する型のスカラー式。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 変換が成功した場合、結果は10進数になります。
 変換に失敗した場合、結果はになり `null` ます。
@@ -44,7 +44,7 @@ parse_version("0.0.0.1")
 
 部分の数が4未満の場合、不足している部分はすべて末尾 () と見なされ `1.0`  ==  `1.0.0.0` ます。
 
-**例**
+## <a name="example"></a>例
 ```kusto
 let dt = datatable(v:string)
 ["0.0.0.5","0.0.7.0","0.0.3","0.2","0.1.2.0","1.2.3.4","1","99999999.0.0.0"];

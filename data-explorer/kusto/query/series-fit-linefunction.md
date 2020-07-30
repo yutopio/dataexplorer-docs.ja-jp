@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: f0401a5b10d2feb74c629e6b04b127e6d36057ad
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 0158753d3d2496e425247202d906633837aa023a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717178"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351490"
 ---
 # <a name="series_fit_line"></a>series_fit_line()
 
@@ -27,18 +27,18 @@ ms.locfileid: "84717178"
 * `interception`: 近似直線のインターセプト (y = ax + b の "b")。
 * `line_fit`: 最適な行の一連の値を保持する数値配列。 系列の長さは入力配列の長さと同じです。 グラフ作成に使用される値。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_fit_line(`*閉じる*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の動的配列。
 
 > [!TIP]
 > この関数を使用する最も便利な方法は、[系列の作成](make-seriesoperator.md)演算子の結果に適用することです。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -49,6 +49,6 @@ print id=' ', x=range(bin(now(), 1h)-11h, bin(now(), 1h), 1h), y=dynamic([2,5,6,
 
 :::image type="content" source="images/series-fit-line/series-fit-line.png" alt-text="系列の線を合わせる":::
 
-| rsquare | slope | Variance | rvariance | interception | LineFit                                                                                     |
+| rsquare | 傾き | Variance | rvariance | interception | LineFit                                                                                     |
 |---------|-------|----------|-----------|--------------|---------------------------------------------------------------------------------------------|
 | 0.982   | 2.730 | 98.628   | 1.686     | -1.666       | 1.064、3.7945、6.526、9.256、11.987、14.718、17.449、20.180、22.910、25.641、28.371、31.102 |

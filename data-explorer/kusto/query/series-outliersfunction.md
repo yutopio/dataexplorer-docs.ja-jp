@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: 80e20e70bc51045f68fd3ef2068f099d750b2b3f
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: c5ada33d74f5ed3e1c7b357321b23bd7a76be64e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512437"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351354"
 ---
 # <a name="series_outliers"></a>series_outliers()
 
@@ -21,11 +21,11 @@ ms.locfileid: "84512437"
 
 関数は、入力として動的な数値配列を含む式を受け取り、同じ長さの動的な数値配列を生成します。 配列の各値は、 ["Tukey のテスト"](https://en.wikipedia.org/wiki/Outlier#Tukey.27s_test)を使用して発生する可能性のある異常のスコアを示します。 入力の同じ要素の値が1.5 より大きい場合、異常が増加または拒否されたことを示します。 -1.5 未満の値は、異常が減少したことを示します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_outliers(`*x* `, `*種類* `, `*ignore_val* `, `*min_percentile* `, `*max_percentile*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の配列である動的配列セル
 * *kind*: 外れ値検出のアルゴリズム。 は現在 `"tukey"` (従来の "Tukey") と `"ctukey"` (カスタム "tukey") をサポートしています。 既定値は `"ctukey"` です
@@ -43,7 +43,7 @@ ms.locfileid: "84512437"
 > [!TIP]
 > この関数を使用する最良の方法は、[系列の作成](make-seriesoperator.md)演算子の結果に適用することです。
 
-**例**
+## <a name="example"></a>例
 
 ノイズがあるタイムシリーズでは、外れ値が発生します。 これらの外れ値 (ノイズ) を平均値で置き換えたい場合は、series_outliers () を使用して外れ値を検出し、それらを置き換えます。
 

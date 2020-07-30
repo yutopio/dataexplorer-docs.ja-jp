@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 8f86d7174e73f2ffbace935f695c1220572a0e38
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: c758cc9a60e8e785031450e09e50e37b8fbf44b7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372608"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351422"
 ---
 # <a name="series_less_equals"></a>series_less_equals()
 
 `<=`2 つの数値系列入力の要素ごとの () 論理演算を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_less_equals (`*Series1* `,`*Series2*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Series1, Series2*: 要素ごとに比較する数値配列を入力します。 すべての引数は動的配列である必要があります。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 2つの入力間の計算された要素ごとの、または等しい論理演算を含むブール値の動的配列。 数値以外の要素または存在しない要素 (異なるサイズの配列) は、 `null` 要素の値を生成します。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

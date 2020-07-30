@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: ba74b7c1e78d568cc34845d56dc9768f2628192f
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: e2914e913402de7442d2533cf5159c2bd30fac60
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717378"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346305"
 ---
 # <a name="parse_path"></a>parse_path()
 
@@ -23,7 +23,7 @@ ms.locfileid: "84717378"
 * DirectoryPath
 * DirectoryName
 * FileName
-* 拡張子
+* 拡張機能
 * AlternateDataStreamName
 
 この関数では、両方の種類のスラッシュを持つ単純なパスに加えて、次のようなパスがサポートされています。
@@ -32,19 +32,19 @@ ms.locfileid: "84717378"
 * 長いパス。 たとえば、" \\ ? \c:..." のようになります。
 * 代替データ ストリーム。 たとえば、"file1.exe:file2.exe" のようになります。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `parse_path(`*path*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *パス*: ファイルパスを表す文字列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 `dynamic`上に示したパスコンポーネントを含む型のオブジェクト。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

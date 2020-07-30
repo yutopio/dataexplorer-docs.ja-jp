@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: dd70b2135a485303cbf52d984e0b406052c4023a
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: f9dc6e49e9e3d04aadb5aecf8507b7132d8a366a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264949"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346322"
 ---
 # <a name="parse-operator"></a>parse 演算子
 
@@ -24,11 +24,11 @@ ms.locfileid: "85264949"
 T | parse Text with "ActivityName=" name ", ActivityType=" type
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| parse` [ `kind=regex` [ `flags=regex_flags` ] | `simple` | `relaxed` ]*式* `with` `*` (*stringconstant* *ColumnName* [ `:` *ColumnType*]) `*` ...
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル。
 * kind:
@@ -47,7 +47,7 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
   
 * *ColumnType:* Optional. 値の変換後の型を示すスカラー値。 既定値は `string` 型です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 入力テーブル。演算子に提供される列の一覧に従って拡張されます。
 
@@ -81,7 +81,7 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
         
     * `long`はに変換されました `\-\d+` 。
 
-**使用例**
+## <a name="examples"></a>例
 
 演算子を使用すると、 `parse` `extend` 同じ式で複数のアプリケーションを使用して、テーブルに効率的にテーブルを提供 `extract` `string` できます。 この結果は、テーブルに、 `string` 個別の列に分割する複数の値を含む列がある場合に便利です。 たとえば、開発者のトレース (" `printf` "/"") ステートメントによって生成された列など `Console.WriteLine` です。
 

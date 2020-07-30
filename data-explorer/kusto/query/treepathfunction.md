@@ -1,6 +1,6 @@
 ---
-title: ツリーパス() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの treepath() について説明します。
+title: treepath ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの treepath () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 27a0edc61a1d2317427454aaf74531ec395d067d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e52caa6da7d5746119e363d1676b39fcd9da0340
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505697"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350657"
 ---
 # <a name="treepath"></a>treepath()
 
@@ -21,11 +21,11 @@ ms.locfileid: "81505697"
 
 `treepath(`*動的オブジェクト*`)`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 パス式の配列。
 
-**使用例**
+## <a name="examples"></a>例
 
 |式|評価結果|
 |---|---|

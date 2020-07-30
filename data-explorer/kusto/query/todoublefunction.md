@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e62432773d99d74a46022cad3199f3bab0cae50b
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 34734f3975b1720c1d009f190d4fae2ebc54283f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128465"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350759"
 ---
-# <a name="todouble-toreal"></a>todouble ()、は、再生 ()
+# <a name="todouble-toreal"></a>todouble()、toreal()
 
 入力を型の値に変換し `real` ます。 ( `todouble()` と `toreal()` はシノニムです)。
 
@@ -23,16 +23,16 @@ ms.locfileid: "85128465"
 toreal("123.4") == 123.4
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `toreal(`*Expr* `)` 
  Expr `todouble(`*Expr*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: 値が型の値に変換される式 `real` 。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 変換が成功した場合、結果は型の値になり `real` ます。
 変換に失敗した場合、結果は値になり `real(null)` ます。

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e078919af16a9d2f7dadba0a309932b3a39b6ced
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: bb3f217b1ec0631f533a10433a7be368945667d7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763247"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87344537"
 ---
 # <a name="series_fill_const"></a>series_fill_const()
 
@@ -21,18 +21,18 @@ ms.locfileid: "85763247"
 
 動的な数値配列を含む式を入力として受け取り、missing_value_placeholder のすべてのインスタンスを指定された constant_value に置き換え、結果の配列を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_fill_const(`*x* `[, `*constant_value* `[,`*missing_value_placeholder*`]])`
 * では、すべてのインスタンスが*constant_value*に*missing_value_placeholder*置換された系列*x*が返されます。
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の配列である動的配列スカラー式。
 * *constant_value*: 置換する欠損値のプレースホルダーを指定するパラメーター。 既定値は*0*です。 
 * *missing_value_placeholder*: 省略可能な、置換対象の欠損値のプレースホルダーを指定するパラメーターです。 既定値は `double` (*null*) です。
 
-**ノート**
+**メモ**
 * DefaultValue 構文を使用して定数値を格納する系列を作成でき `default = ` *DefaultValue*ます (または、を省略すると0が想定されます)。 詳細については、「[作成シリーズ](make-seriesoperator.md)」を参照してください。
 
 ```kusto
@@ -48,7 +48,7 @@ make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) 
 * *Missing_value_placeholder*は任意の型にすることができ、これは実際の要素の型に変換されます。 そのため、 `double` (*null*)、 `long` (*null*)、 `int` (*null*) は同じ意味を持ちます。
 * 関数は、配列要素の元の型を保持します。 
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

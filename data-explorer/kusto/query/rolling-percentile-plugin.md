@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0ff4ad4adbae580e34c946eb9d18ca3337d3c49c
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 8d60ad8a5e2c9a94164fb816db9e9913dcff56ea
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128888"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345761"
 ---
 # <a name="rolling_percentile-plugin"></a>rolling_percentile () プラグイン
 
@@ -23,11 +23,11 @@ ms.locfileid: "85128888"
 T | evaluate rolling_percentile(ValueColumn, Percentile, IndexColumn, BinSize, BinsPerWindow)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `rolling_percentile(` *valuecolumn* `,` *センタイル* `,` *indexcolumn* `,` *binsize* `,` *binsperwindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Valuecolumn*: 百分位を計算する値を持つ列の名前。 
@@ -37,7 +37,7 @@ T | evaluate rolling_percentile(ValueColumn, Percentile, IndexColumn, BinSize, B
 * *Binsperwindow*: 各ウィンドウに含まれるビン数を含むスカラー。
 * *dim1*, *dim2*,...: (省略可能) スライスするディメンション列の一覧。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 各ビン (および指定されている場合は、次元の組み合わせ) ごとに1行のテーブルを返します。このテーブルには、ビンで終わるウィンドウ内の値の割合がロールアウトされます。 個別のカウント値、新しい値の個別の数、時間枠ごとの集計された個別のカウント。
 
@@ -48,7 +48,7 @@ T | evaluate rolling_percentile(ValueColumn, Percentile, IndexColumn, BinSize, B
 |---|---|---|---|---|
 
 
-**使用例**
+## <a name="examples"></a>例
 
 ### <a name="rolling-3-day-median-value-per-day"></a>1日に3日の中央値をローリングする 
 

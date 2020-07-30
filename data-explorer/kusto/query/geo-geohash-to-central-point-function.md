@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/27/2020
-ms.openlocfilehash: eb59eae0bc014c6ce9060d65f6c3aced80e4275c
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 40f3daa208c3c7ce18252d8c4f7276346206b250
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227130"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347852"
 ---
 # <a name="geo_geohash_to_central_point"></a>geo_geohash_to_central_point()
 
@@ -21,22 +21,22 @@ Geohash 四角形領域の中心を表す地理空間座標を計算します。
 
 詳細については [`geohash`](https://en.wikipedia.org/wiki/Geohash) 、を参照してください。  
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_geohash_to_central_point(`*geohash*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 *geohash*: [geo_point_to_geohash ()](geo-point-to-geohash-function.md)によって計算されたときの geohash 文字列値。 Geohash 文字列には、1 ~ 18 文字を使用できます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)および[動的](./scalar-data-types/dynamic.md)データ型の地理空間座標値。 Geohash が無効な場合は、クエリによって null の結果が生成されます。
 
 > [!NOTE]
 > GeoJSON 形式では、経度の最初と緯度の2番目のを指定します。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 7d5bdba030687c17c355eb72ce2fc9c358c10ebd
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 39252fb8e7233ddc3532003afc7a131505cd4282
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372841"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345081"
 ---
 # <a name="series_divide"></a>series_divide()
 
 2つの数値系列入力の要素ごとの除算を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_divide(`*series1* `,`*series2*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *series1, series2*: 入力数値配列。最初の要素は、2番目のを使用して動的配列の結果に分割されます。 すべての引数は動的配列である必要があります。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 2つの入力間の計算された要素ごとの除算演算の動的配列。 数値以外の要素または存在しない要素 (異なるサイズの配列) は、 `null` 要素の値を生成します。
 
 注: 入力が整数の場合でも、結果系列は double 型になります。 0による除算は、0による double 除算に従います (たとえば、2/0 は double (+ inf) を生成します)。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

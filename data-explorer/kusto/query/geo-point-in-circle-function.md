@@ -8,22 +8,22 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/03/2020
-ms.openlocfilehash: 6e6ef40fcdeb4942dc0924c86862ee8f6222ac12
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 1e94e8eca72e6cb679a84e7b91ea376b9ec4b29c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227174"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347818"
 ---
 # <a name="geo_point_in_circle"></a>geo_point_in_circle()
 
 空間座標が地球上の円の内側にあるかどうかを計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_point_in_circle(`*p_longitude* `, `*p_latitude* `, `*pc_longitude* `, `*pc_latitude* `, `*c_radius*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *p_longitude*: 地理空間座標の経度の値 (度)。 有効な値は、実数と範囲 [-180, + 180] です。
 * *p_latitude*: 地理空間座標緯度の値 (度)。 有効な値は、実数と範囲 [-90, + 90] です。
@@ -31,7 +31,7 @@ ms.locfileid: "83227174"
 * *pc_latitude*: 円中心の地理空間座標の緯度の値 (度)。 有効な値は、実数と範囲 [-90, + 90] です。
 * *c_radius*: 円の半径 (メートル単位)。 有効な値は正の値である必要があります。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 地理空間座標が円の内側にあるかどうかを示します。 座標または円が無効な場合は、クエリによって null の結果が生成されます。
 
@@ -40,7 +40,7 @@ ms.locfileid: "83227174"
 >* 地球上の距離を測定するために使用される[測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum)は球です。
 >* 円は地球の球キャップです。 キャップの半径は球の表面に沿って測定されます。
 
-**使用例**
+## <a name="examples"></a>例
 
 次のクエリでは、領域内のすべての場所が検索されます。半径は 18 km、center は [-122.317404, 47.609119] 座標です。
 

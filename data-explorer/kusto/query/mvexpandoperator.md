@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: ee9c4b236344e21bbbc1da68b76710b15b519baa
-ms.sourcegitcommit: 56bb7b69654900ed63310ac9537ae08b72bf7209
+ms.openlocfilehash: 8358bf9a8eb0dab38b8f5847521e069f21fe4a2c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85814213"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346696"
 ---
 # <a name="mv-expand-operator"></a>mv-expand 演算子
 
@@ -21,13 +21,13 @@ ms.locfileid: "85814213"
 
 `mv-expand`は、[動的](./scalar-data-types/dynamic.md)に型指定された配列またはプロパティバッグ列に適用されます。これにより、コレクション内の各値が個別の行を取得します。 展開された行内のその他の列はすべて複製されます。 
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| mv-expand ` [ `bagexpansion=` ( `bag`  |  `array` )] [ `with_itemindex=` *indexcolumnname*] *ColumnName* [ `,` *columnname* ...] [ `limit` *rowlimit*]
 
 *T* `| mv-expand ` [ `bagexpansion=` ( `bag`  |  `array` )] [*Name* `=` ] *arrayexpression* [ `to typeof(` *typename* `)` ] [, [*Name* `=` ] *arrayexpression* [ `to typeof(` *typename* `)` ]...] [ `limit` *rowlimit*]
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *ColumnName:* 結果では、指定された列内の配列が複数の行に展開されます。 
 * *ArrayExpression:* 配列を生成する式。 この形式を使用した場合は、新しい列が追加され、既存の列は保持されます。
@@ -40,7 +40,7 @@ ms.locfileid: "85814213"
 
 * *Indexcolumnname:*`with_itemindex`を指定した場合、出力には、最初に展開されたコレクション内の項目のインデックス (0 から始まる) を含む追加の列 ( *indexcolumnname*) が含まれます。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 指定された列または配列式に含まれる配列内の値ごとに複数の行。
 複数の列または式を指定した場合は、並列に拡張されます。 入力行ごとに、最も長い展開された式に含まれる要素の数と同数の出力行があります (短いリストには null が埋め込まれます)。 行の値が空の配列の場合、行は何も展開されません (結果セットには表示されません)。 ただし、行の値が配列でない場合、その行は結果セットのままになります。 
@@ -51,7 +51,7 @@ ms.locfileid: "85814213"
 * `bagexpansion=bag`: プロパティ バッグは、単一エントリのプロパティ バッグに展開されます。 このモードは、既定の展開です。
 * `bagexpansion=array`: プロパティバッグは2要素の `[` *キー* `,` *値*配列構造に展開され `]` 、キーと値への一貫したアクセスを可能にします (たとえば、プロパティ名に対して個別のカウントの集計を実行します)。 
 
-## <a name="examples"></a>使用例
+## <a name="examples"></a>例
 
 ### <a name="single-column"></a>1列
 

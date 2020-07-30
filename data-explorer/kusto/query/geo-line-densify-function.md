@@ -8,27 +8,27 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: 4aa11fd379bceb800a8d18a995a91ca188326faa
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: c5a66255f719d3bd0da962a8eb9d3cae23a8c254
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280715"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347835"
 ---
-# <a name="geo_line_densify"></a>geo_line_densify ()
+# <a name="geo_line_densify"></a>geo_line_densify()
 
 中間点を追加することにより、平面線のエッジを geodesics に変換します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_line_densify(`*lineString* `, `*許容範囲*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *lineString*: [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)の行と[動的](./scalar-data-types/dynamic.md)データ型。
 * *tolerance*: 元の平面エッジと変換された測地エッジチェーンの間の最大距離をメートル単位で定義する、省略可能な数値です。 サポートされている値の範囲は [0.1, 1万] です。 指定しない場合は、既定値 `10` が使用されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)の Densified 行と[動的](./scalar-data-types/dynamic.md)データ型。 行または許容範囲が無効である場合は、クエリによって null の結果が生成されます。
 
@@ -53,7 +53,7 @@ ms.locfileid: "86280715"
 * [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)では、2つの点の間のエッジを、直線デカルト直線として定義します。
 * 測地または平面エッジを使用するかどうかの決定は、データセットによって異なり、特に長いエッジに関連しています。
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例では、マンハッタンアイランド内の道路を densifies しています。 エッジは短く、平面エッジとその測地の間の距離が、tolerance によって指定された距離を下回っています。 そのため、結果は変更されません。
 

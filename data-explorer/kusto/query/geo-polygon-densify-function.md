@@ -8,27 +8,27 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: 6ef78d3078fc396d4ebfb782e54f31096a1e8777
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: bdb7bda617085ae1a7b3ead60c46c80c883943f4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280728"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347784"
 ---
-# <a name="geo_polygon_densify"></a>geo_polygon_densify ()
+# <a name="geo_polygon_densify"></a>geo_polygon_densify()
 
 中間点を追加することによって、多角形または multipolygon 平面のエッジを geodesics に変換します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_polygon_densify(`*polygon* `, `*許容範囲*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *polygon*: [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)および[動的](./scalar-data-types/dynamic.md)データ型の多角形または multipolygon。
 * *tolerance*: 元の平面エッジと変換された測地エッジチェーンの間の最大距離をメートル単位で定義する、省略可能な数値です。 サポートされている値の範囲は [0.1, 1万] です。 指定しない場合は、既定値 `10` が使用されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)の Densified polygon と[動的](./scalar-data-types/dynamic.md)データ型。 Polygon または tolerance が無効な場合は、クエリによって null の結果が生成されます。
 
@@ -60,7 +60,7 @@ ms.locfileid: "86280728"
 * [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)では、2つの点の間のエッジを、直線デカルト直線として定義します。
 * 測地または平面エッジを使用するかどうかの決定は、データセットによって異なり、特に長いエッジに関連しています。
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例では、densifies マンハッタン Central 公園 polygon です。 エッジは短く、平面エッジと、それに対応する測地の距離は、許容範囲で指定された距離よりも小さくなります。 そのため、結果は変更されません。
 

@@ -1,6 +1,6 @@
 ---
-title: 個別のオペレーター - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの個別のオペレーターについて説明します。
+title: distinct 演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの distinct 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,38 +8,38 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4287ca48d3fb5006e67a9266ea05287a7d8a06f6
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 233d3fdb0e25720b860a0c11515daec7c597dadd
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030372"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348345"
 ---
 # <a name="distinct-operator"></a>distinct 演算子
 
-入力テーブルの指定された列の異なる組み合わせを持つテーブルを生成します。 
+入力テーブルの指定された列の個別の組み合わせを含むテーブルを生成します。 
 
 ```kusto
 T | distinct Column1, Column2
 ```
 
-入力テーブル内のすべての列の個別の組み合わせを持つテーブルを生成します。
+入力テーブル内のすべての列の個別の組み合わせを含むテーブルを生成します。
 
 ```kusto
 T | distinct *
 ```
 
-**例**
+## <a name="example"></a>例
 
-果物と価格の明確な組み合わせを示します。
+果物と価格の個別の組み合わせを示します。
 
 ```kusto
 Table | distinct fruit, price
 ```
 
-:::image type="content" source="images/distinctoperator/distinct.PNG" alt-text="異なる":::
+:::image type="content" source="images/distinctoperator/distinct.PNG" alt-text="Distinct":::
 
 **メモ**
 
-* 演算子`summarize by ...`は、`distinct`グループ キーとしてアスタリスク`*`( ) を指定でき、ワイド テーブルの使用が容易になります。
-* キーによるグループが高いカーディナリティである場合`summarize by ...`は、[シャッフル戦略](shufflequery.md)を使用すると便利です。
+* とは異なり、 `summarize by ...` 演算子は、 `distinct` アスタリスク ( `*` ) をグループキーとして指定することをサポートしているため、幅の広いテーブルでの使用が簡単になります。
+* Group by キーの基数が高い場合は、 `summarize by ...` [シャッフル戦略](shufflequery.md)でを使用すると便利です。

@@ -1,6 +1,6 @@
 ---
-title: gettype() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで gettype() を説明します。
+title: gettype ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの gettype () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 3a28032320948f12b2f91febc9f59c7b35ad084e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0efa07b7a1b050fe81ce2f369e8df5af4c05e212
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514384"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347665"
 ---
 # <a name="gettype"></a>gettype()
 
-単一引数の実行時の型を返します。
+1つの引数のランタイム型を返します。
 
-ランタイム型は、名型が 、 である式の名義型 (静的`dynamic`) 型とは異なる場合があります。このような場合`gettype()`は、実際の値の t 型 (値がメモリでどのようにエンコードされているか) を明らかにするのに役立ちます。
+ランタイム型は、標準型がである式の場合には、標準 (静的) 型とは異なる場合があります。 `dynamic` このような場合は、 `gettype()` 実際の値の型 (値がメモリにエンコードされているかどうか) を明らかにするのに役立ちます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`gettype(`*Expr*`)`
+`gettype(`*With*`)`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-単一引数のランタイム型を表す文字列。
+1つの引数のランタイム型を表す文字列。
 
-**使用例**
+## <a name="examples"></a>例
 
 |式                          |戻り値      |
 |------------------------------------|-------------|

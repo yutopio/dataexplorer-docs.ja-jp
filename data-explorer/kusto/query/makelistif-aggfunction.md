@@ -1,6 +1,6 @@
 ---
-title: make_list_if() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでmake_list_if() (集計関数) について説明します。
+title: make_list_if () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの make_list_if () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b34c1dad7be709145c622c97b357734c25292bba
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: dda177c39959f860ad7e019371133f16e1de91e2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512735"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346934"
 ---
-# <a name="make_list_if-aggregation-function"></a>make_list_if() (集計関数)
+# <a name="make_list_if-aggregation-function"></a>make_list_if () (集計関数)
 
-グループ内`dynamic`の*Expr*のすべての値の (JSON) 配列を返します*Predicate*`true`。
+述語が `dynamic` に評価される、グループ内の*Expr*のすべての値の (JSON *Predicate* ) 配列を返し `true` ます。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
+* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`summarize``make_list_if(`*エクスプル*,*述語*[`,` *最大サイズ*]`)`
+`summarize``make_list_if(` *Expr*、*述語*[ `,` *MaxSize*]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Expr*: 集計の計算に使用する式。
-* *述語*: *Expr* `true`を結果に追加するために評価する必要がある述語。
-* *MaxSize*は、返される要素の最大数に対するオプションの整数の制限です (既定値は*1048576)。* MaxSize 値は 1048576 を超えることはできません。
+* *Expr*: 集計計算に使用される式です。
+* *述語*: `true` 結果に*Expr*を追加するために、に評価する必要がある述語。
+* *MaxSize*は、返される要素の最大数に対する整数制限 (省略可能) です (既定値は*1048576*)。 MaxSize 値は1048576を超えることはできません。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-グループ内`dynamic`の*Expr*のすべての値の (JSON) 配列を返します*Predicate*`true`。
-演算子への入力が`summarize`ソートされていない場合、結果の配列内の要素の順序は未定義です。
-演算子への入力が`summarize`ソートされている場合、結果の配列内の要素の順序は入力の順序を追跡します。
+述語が `dynamic` に評価される、グループ内の*Expr*のすべての値の (JSON *Predicate* ) 配列を返し `true` ます。
+演算子への入力 `summarize` が並べ替えられていない場合、結果として得られる配列内の要素の順序は定義されません。
+演算子への入力が並べ替えられている場合、結果として `summarize` 得られる配列内の要素の順序によって、入力の値が追跡されます。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 let T = datatable(name:string, day_of_birth:long)
@@ -53,8 +53,8 @@ T
 
 |list_name|
 |----|
-|[ジョージ、リンゴ]|
+|["ジョージ", "Ringo"]|
 
 **参照**
 
-[`make_list`](./makelist-aggfunction.md)述語式なしで同じことを行う関数。
+[`make_list`](./makelist-aggfunction.md)述語式を使用せずに同じを実行する関数。

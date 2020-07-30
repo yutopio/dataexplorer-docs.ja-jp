@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 5c1d25c0eaa0a3f52c18cf2f1e5e4200775b7d9d
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: 4f303726532da7ead1c2416f3d485979d045b0b2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550573"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346968"
 ---
 # <a name="make-series-operator"></a>make-series 演算子
 
@@ -23,11 +23,11 @@ ms.locfileid: "83550573"
 T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from datetime(2016-01-01) to datetime(2016-01-10) step 1d by fruit, supplier
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| make-series` [*MakeSeriesParamters*] [*列* `=` ]*集計*[ `default` `=` *DefaultValue*] [ `,` ...] `on` *軸列*[ `from` *開始*] [ `to` *終了*] `step` *ステップ*[ `by` [*列* `=` ] *groupexpression* [ `,` ...]]
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Column:* 結果列の省略可能な名前。 既定値は式から派生した名前です。
 * *DefaultValue:* 値が存在しない場合に使用される既定値。 *列*に特定の値が含まれていない場合*は、結果では、配列*の対応する要素に*DefaultValue*が割り当てられます。 *DefaultValue*を省略した場合、0が想定されます。 
@@ -43,7 +43,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
   |---------------|-------------------------------------|------------------------------------------------------------------------------|
   |`kind`          |`nonempty`                               |系列演算子の入力が空の場合に、既定の結果を生成します|                                
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 入力行は、式と同じ値を持つグループに配置され、 `by` `bin_at(` *列*の `, ` *ステップ* `, ` *開始* `)` 式になります。 次に、指定された集計関数によってグループごとに計算が行われ、各グループに対応する行が生成されます。 結果には、列、列の列、 `by` および計算される集計ごとに少なくとも1つの列が含まれます。 *AxisColumn* (複数の列または数値以外の結果はサポートされていません)。
 
@@ -53,7 +53,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 既定値による欠損ビンの塗りつぶしにより、結果として得られるピボットテーブルのビン数 (つまり、集計値) はすべての系列に対して同じになります。  
 
-**注**
+**注:**
 
 集計式とグループ化式の両方に任意の式を指定できますが、単純な列名を使用する方が効率的です。
 
@@ -73,22 +73,22 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 ## <a name="list-of-aggregation-functions"></a>集計関数の一覧
 
-|関数|[説明]|
+|機能|説明|
 |--------|-----------|
-|[any()](any-aggfunction.md)|グループの空でないランダムな値を返します|
+|[any ()](any-aggfunction.md)|グループの空でないランダムな値を返します|
 |[avg ()](avg-aggfunction.md)|グループ全体の平均値を返します|
 |[count ()](count-aggfunction.md)|グループの数を返します|
 |[countif()](countif-aggfunction.md)|グループの述語を使用してカウントを返します。|
 |[dcount()](dcount-aggfunction.md)|グループ要素の概数を返します。|
-|[max ()](max-aggfunction.md)|グループ全体の最大値を返します|
-|[min ()](min-aggfunction.md)|グループ全体の最小値を返します|
+|[max()](max-aggfunction.md)|グループ全体の最大値を返します|
+|[min()](min-aggfunction.md)|グループ全体の最小値を返します|
 |[stdev ()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
 |[sum ()](sum-aggfunction.md)|グループ内の要素の合計を返します。|
 |[variance()](variance-aggfunction.md)|グループ間の分散を返します。|
 
 ## <a name="list-of-series-analysis-functions"></a>系列分析関数の一覧
 
-|関数|[説明]|
+|機能|説明|
 |--------|-----------|
 |[series_fir()](series-firfunction.md)|[有限インパルス応答](https://en.wikipedia.org/wiki/Finite_impulse_response)フィルターを適用します|
 |[series_iir()](series-iirfunction.md)|[無限インパルス応答](https://en.wikipedia.org/wiki/Infinite_impulse_response)フィルターを適用します|
@@ -104,7 +104,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
   
 ## <a name="list-of-series-interpolation-functions"></a>系列補間関数の一覧
 
-|関数|説明|
+|機能|説明|
 |--------|-----------|
 |[series_fill_backward()](series-fill-backwardfunction.md)|系列内の欠損値の後方塗りつぶし補間を実行します|
 |[series_fill_const()](series-fill-constfunction.md)|系列の欠損値を指定された定数値に置き換えます|

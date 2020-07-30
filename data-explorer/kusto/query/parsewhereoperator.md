@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/12/2020
-ms.openlocfilehash: 48231d24ca1e49938629dd9912804c5858d11ae1
-ms.sourcegitcommit: f9d3f54114fb8fab5c487b6aea9230260b85c41d
+ms.openlocfilehash: c2936ec7461850aaad6fdb4e9daa7624dd561c49
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/18/2020
-ms.locfileid: "85071895"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346254"
 ---
 # <a name="parse-where-operator"></a>parse-where 演算子
 
@@ -25,11 +25,11 @@ ms.locfileid: "85071895"
 T | parse-where Text with "ActivityName=" name ", ActivityType=" type
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| parse-where` [ `kind=regex` [ `flags=regex_flags` ] | `simple` ]*式* `with` `*` (*stringconstant* *ColumnName* [ `:` *ColumnType*]) `*` ...
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル。
 
@@ -47,7 +47,7 @@ T | parse-where Text with "ActivityName=" name ", ActivityType=" type
   
 * *ColumnType:* 値の変換後の型を示す、省略可能なスカラー型を指定する必要があります。 既定値は string 型です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 入力テーブル。演算子に提供される列の一覧に従って拡張されます。
 
@@ -88,7 +88,7 @@ T | parse-where Text with "ActivityName=" name ", ActivityType=" type
 
 演算子を使用すると、 `parse-where` `extend` 同じ式で複数のアプリケーションを使用して、テーブルに効率的にテーブルを提供 `extract` `string` できます。 これは、テーブルに、 `string` 個々の列に分割する複数の値を含む列がある場合に最も役立ちます。 たとえば、開発者のトレース (" `printf` "/"") ステートメントによって生成された列を分割でき `Console.WriteLine` ます。
 
-### <a name="using-parse"></a>`parse` を使用する
+### <a name="using-parse"></a>`parse` の使用
 
 次の例では、テーブルの列にという `EventText` `Traces` 形式の文字列が含まれてい `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})` ます。 次の操作は、、、、、、、、およびの6つの列を含むテーブルを拡張します `resourceName` `totalSlices` `sliceNumber` `lockTime ` `releaseTime` `previouLockTime` `Month` `Day` 。 
 
@@ -119,7 +119,7 @@ Traces
 |PipelineScheduler|27|20|02/17/2016 08:40:01|2016-02-17 08:40: 01.0000000|2016-02-17 08:39: 01.0000000|
 |PipelineScheduler|27|22|02/17/2016 08:41:01|2016-02-17 08:41: 00.0000000|2016-02-17 08:40: 01.0000000|
 
-### <a name="using-parse-where"></a>`parse-where` を使用する 
+### <a name="using-parse-where"></a>`parse-where` の使用 
 
 ' Parse ' を使用すると、結果から解析された文字列をフィルターで除外できます。
 

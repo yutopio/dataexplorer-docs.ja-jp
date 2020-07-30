@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/28/2019
-ms.openlocfilehash: b8f9d6d27643855ba81b2c1791dfd939b53cac9a
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 2191a26a0ee0bccd708c492690e58767d3cf52e9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264880"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345625"
 ---
 # <a name="series_decompose_anomalies"></a>series_decompose_anomalies()
 
@@ -22,11 +22,11 @@ ms.locfileid: "85264880"
 
 関数は、入力として系列 (動的な数値配列) を含む式を取得し、スコアを使用して異常なポイントを抽出します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_decompose_anomalies (`*シリーズ* `[, `*しきい値* `,`*季節* `,` 性*傾向* `, `*Test_points* `, `*AD_method* `,`*Seasonality_threshold*`])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Series*: 数値の配列である動的配列のセル。通常は、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の結果の出力です。
 * *しきい*値: 異常しきい値、軽度またはより強力な異常を検出するための既定の 1.5 (k 値)
@@ -59,7 +59,7 @@ ms.locfileid: "85264880"
 1. [Series_outliers ()](series-outliersfunction.md)を、残余シリーズで選択した異常検出方法と共に適用して、ad_score シリーズを計算します。
 1. Ad_score にしきい値を適用することによって、ad_flag の系列を計算し、それぞれをマークアップ/ダウン/異常なしにマークします。
  
-## <a name="examples"></a>使用例
+## <a name="examples"></a>例
 
 ### <a name="detect-anomalies-in-weekly-seasonality"></a>週単位の季節性で異常を検出する
 

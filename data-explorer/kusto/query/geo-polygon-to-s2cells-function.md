@@ -3,17 +3,17 @@ title: geo_polygon_to_s2cells ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの geo_polygon_to_s2cells () について説明します。
 services: data-explorer
 author: orspod
-ms.author: orspod
+ms.author: orspodek
 ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: c4396087018e25c57f064e8d2f99a83cc0840c3a
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: d282dc6d25947aa20da3d1f05a1f76ab887ca21c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280591"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347733"
 ---
 # <a name="geo_polygon_to_s2cells"></a>geo_polygon_to_s2cells()
 
@@ -21,16 +21,16 @@ ms.locfileid: "86280591"
 
 [S2 セル階層](https://s2geometry.io/devguide/s2cell_hierarchy)の詳細については、こちらをご覧ください。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_polygon_to_s2cells(`*polygon* `, `*レベル*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *polygon*: [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)および[動的](./scalar-data-types/dynamic.md)データ型の多角形または multipolygon。 
 * *level*: `int` 要求されたセルレベルを定義する省略可能な。 サポートされている値の範囲は [0, 30] です。 指定しない場合は、既定値 `11` が使用されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 多角形または multipolygon をカバーする S2 セルトークン文字列の配列。 多角形またはレベルが無効である場合、またはセル数が制限を超えている場合は、クエリによって null の結果が生成されます。
 
@@ -97,7 +97,7 @@ Polygons | extend dummy=1
 > [!WARNING]
 > 小さい領域のセルを含む大領域の多角形をカバーすると、多くのカバーセルが生じる可能性があります。 その結果、クエリは null を返す可能性があります。
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例では、座標を多角形に分類しています。
 

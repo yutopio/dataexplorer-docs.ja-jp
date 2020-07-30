@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9aa85bcb12cd5f8d836f58ea9d16a318d8a40506
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: cdee53ad7f46aacb71b8a8277e5b875e60438874
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225957"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349824"
 ---
 # <a name="activity_engagement-plugin"></a>activity_engagement プラグイン
 
@@ -25,11 +25,11 @@ activity_engagement プラグインを使用して、DAU/WAU/MAU (毎日/毎週/
 T | evaluate activity_engagement(id, datetime_column, 1d, 30d)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `activity_engagement(` *idcolumn* `,` *TimelineColumn* `,` [*開始* `,` *終了* `,` ] *inneractivitywindow* `,` *outeractivitywindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
@@ -40,7 +40,7 @@ T | evaluate activity_engagement(id, datetime_column, 1d, 30d)
 * *Outeractivitywindow*: 外部スコープの分析ウィンドウ期間の値を持つスカラー。
 * *dim1*、 *dim2*、...: (省略可能) アクティビティメトリックスの計算をスライスするディメンション列の一覧です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 (内部スコープウィンドウ内の個別の ID 値のカウント、外側のスコープウィンドウ内での ID 値の個別カウント、アクティビティの比率) を含むテーブルを、内部スコープウィンドウの各期間と、既存の各ディメンションの組み合わせごとに返します。
 
@@ -51,7 +51,7 @@ T | evaluate activity_engagement(id, datetime_column, 1d, 30d)
 |型: as of *TimelineColumn*|long|long|double|..|..|..|
 
 
-**使用例**
+## <a name="examples"></a>例
 
 ### <a name="dauwau-calculation"></a>DAU/WAU の計算
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8fd83615de466c238a590273b228c118e2cd1b46
-ms.sourcegitcommit: 9fe6e34ef3321390ee4e366819ebc9b132b3e03f
+ms.openlocfilehash: 1f9cc982c213a9c2143b169dcf8a12103d617257
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/01/2020
-ms.locfileid: "84257842"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346713"
 ---
 # <a name="mv-apply-operator"></a>mv-apply 演算子
 
@@ -57,7 +57,7 @@ T | mv-apply Metric to typeof(real) on
 
 演算子は、 `mv-apply` 演算子の汎化と考えることができます [`mv-expand`](./mvexpandoperator.md) (実際には、サブクエリにプロジェクションしか含まれていない場合は、前者の場合は後者を実装できます)。
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `|` `mv-apply` [*itemindex*] *columnstoexpand* [*rowlimit*] `on` `(` *サブクエリ*`)`
 
@@ -75,7 +75,7 @@ T | mv-apply Metric to typeof(real) on
 
 および*サブクエリ*の構文は、任意のクエリステートメントと同じです。
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Itemindex*: 使用する場合、 `long` 配列展開フェーズの一部として入力に追加される型の列の名前を示し、展開された値の0から始まる配列インデックスを示します。
 
@@ -98,7 +98,7 @@ T | mv-apply Metric to typeof(real) on
 
 * 演算子とは異なり [`mv-expand`](./mvexpandoperator.md) 、 `mv-apply` 演算子は配列の拡張だけをサポートします。 プロパティバッグの拡張はサポートされていません。
 
-**使用例**
+## <a name="examples"></a>例
 
 ## <a name="getting-the-largest-element-from-the-array"></a>配列から最大の要素を取得する
 

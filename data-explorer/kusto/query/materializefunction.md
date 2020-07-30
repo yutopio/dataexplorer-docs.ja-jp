@@ -8,22 +8,22 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/06/2020
-ms.openlocfilehash: 8858b261cb366842b475a76a1b2c3246b8a3e7b5
-ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
+ms.openlocfilehash: 0e08857e01ffa3da1bcb23d16d1df4908336f76f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 07/28/2020
-ms.locfileid: "87264700"
+ms.locfileid: "87346866"
 ---
 # <a name="materialize"></a>materialize()
 
 他のサブクエリが部分的な結果を参照できるように、クエリの実行時にサブクエリの結果をキャッシュできます。
  
-**構文**
+## <a name="syntax"></a>構文
 
 `materialize(`*expression*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *式*: クエリの実行中に評価およびキャッシュされる表形式の式。
 
@@ -52,7 +52,7 @@ _detailed_data
 | top 10 by EventPercentage
 ```
 
-|状態|EventType|EventPercentage|events|
+|State|EventType|EventPercentage|events|
 |---|---|---|---|
 |ハワイ WATERS|Waterspout|100|2|
 |レイクオンタリオ|海上雷雨風|100|8|
@@ -92,7 +92,7 @@ randomSet | summarize Sum=sum(value)
 
 結果セット 2: 
 
-|値|
+|value|
 |---|
 |9999998|
 |9999998|

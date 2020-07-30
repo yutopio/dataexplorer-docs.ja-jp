@@ -1,6 +1,6 @@
 ---
-title: varianceif() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの varianceif() (集計関数) について説明します。
+title: varianceif () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの varianceif () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9dfebb3796f07dec6c91d36d788a018f84f70961
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: bf1009d2d269bf21ea5ae14a9c828724d8bf8c70
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81504677"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338475"
 ---
-# <a name="varianceif-aggregation-function"></a>分散関数(集計関数)
+# <a name="varianceif-aggregation-function"></a>varianceif () (集計関数)
 
-*述語*が 評価されるグループ全体の*Expr*の[分散](variance-aggfunction.md)を`true`計算します。
+*述語*がに評価されるグループ全体の*Expr*の[分散](variance-aggfunction.md)を計算し `true` ます。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
+* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`varianceif(` *Expr*`, `*述語*の要約`)`
+`varianceif(` *Expr* `, ` *述語*の集計`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Expr*: 集計の計算に使用する式。 
-* *述語*: true の場合 *、Expr*計算値が分散に追加される述語。
+* *Expr*: 集計計算に使用される式です。 
+* *述語*: true の場合、*式*の計算値が分散に追加されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-*述語*が 評価されるグループ全体にわたる*Expr*の`true`分散値。
+*述語*がに評価されるグループ全体の*Expr*の分散値 `true` 。
  
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 range x from 1 to 100 step 1

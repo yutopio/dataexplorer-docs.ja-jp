@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: 59c6f6a11b108cf6e74ceb59d3483ea1a95f7002
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: 4681f92155181f85cad5c46ed70a79cb173d437f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512386"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347546"
 ---
 # <a name="hll_merge-aggregation-function"></a>hll_merge () (集計関数)
 
@@ -23,15 +23,15 @@ ms.locfileid: "84512386"
 
 詳細については、[基になるアルゴリズム (*H*Yper*l*og*l*og) と推定精度](dcount-aggfunction.md#estimation-accuracy)に関する説明を参照してください。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `summarize``hll_merge(` *Expr*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * `*Expr*`: 集計計算に使用される式。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 関数は、グループ全体ののマージされた値を返し `hll` `*Expr*` ます。
  

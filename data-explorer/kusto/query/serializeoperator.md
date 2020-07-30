@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 708a5ccd5f8402dedb074a6ab8c17b1d7762839c
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 92ee54ce675c2e8396d842fdf029f2d3f3d5380b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717123"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345676"
 ---
 # <a name="serialize-operator"></a>serialize 演算子
 
@@ -25,13 +25,13 @@ ms.locfileid: "84717123"
 T | serialize rn=row_number()
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `serialize`[*Name1* `=`*Expr1 or* [ `,` *Name2* `=` *Expr2*]...]
 
 * *名前*の / *Expr*のペアは、 [extend 演算子](./extendoperator.md)の組に似ています。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 Traces

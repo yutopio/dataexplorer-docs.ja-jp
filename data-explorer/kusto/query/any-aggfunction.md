@@ -1,6 +1,6 @@
 ---
-title: any() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの any() (集計関数) について説明します。
+title: any () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのすべての () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,57 +8,57 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2a0b2aed48c9c5aa9d5b99bdb6cab68375827d2c
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: 73c3a660dc7a34f1f9fef840b13f47c13b4d1b2f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030211"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349739"
 ---
-# <a name="any-aggregation-function"></a>any() (集計関数)
+# <a name="any-aggregation-function"></a>any () (集計関数)
 
-[集計演算子](summarizeoperator.md)でグループごとに 1 つのレコードを任意に選択し、各レコードに対して 1 つ以上の式の値を返します。
+は、[集計演算子](summarizeoperator.md)のグループごとに1つのレコードを任意に選択し、そのようなレコードに対して1つ以上の式の値を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`summarize``any` *Expr* `,` *Expr2* ( エクスプル [ Expr2 ..]) | `(``*``)`
+`summarize``any` `(` (*Expr* [ `,` *Expr2* ...]) | `*``)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Expr*: 返す入力から選択された各レコードに対する式。
-* *Expr2* .. *ExprN*: 追加の式。
+* *Expr*: 入力から選択された各レコードの式を返します。
+* *Expr2* . *ExprN*: 追加の式。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-集計`any`関数は、集計演算子の各グループからランダムに選択された各レコードについて計算された式の値を返します。
+集計関数は、集計 `any` 演算子の各グループからランダムに選択された、各レコードに対して計算された式の値を返します。
 
-引数を`*`指定すると、式が、集計演算子に対する入力のすべての列であるかのように動作し、グループ化列がある場合は、その列を禁止します。
+引数が指定されている場合、 `*` 関数は、集計演算子への入力のすべての列が、group by 列がない場合は、それを除いたものとして動作します。
 
 **解説**
 
-この関数は、複合グループ キーの値ごとに 1 つ以上の列のサンプル値を取得する場合に便利です。
+この関数は、複合グループキーの値ごとに1つ以上の列のサンプル値を取得する場合に便利です。
 
-関数が単一の列参照で提供されると、null 以外の値が存在する場合は、null 以外の値を返そうとします。
+関数に1つの列参照が指定されている場合、その値が存在する場合は、null 以外の値または空でない値が返されます。
 
-この関数のランダムな性質の結果として、`summarize`演算子の単一のアプリケーションで複数回使用することは、複数の式で 1 回使用することとは異なります。 前者は各アプリケーションで異なるレコードを選択し、後者はすべての値が単一のレコード(個別のグループ単位)で計算されることを保証します。
+この関数にはランダムな性質があるため、演算子の1つのアプリケーションで複数回使用 `summarize` することは、複数の式で1回だけ使用することと同じではありません。 前者では、各アプリケーションで別のレコードを選択することができますが、後者の場合は、すべての値が1つのレコードに対して計算されます (個別のグループにつき)。
 
-**使用例**
+## <a name="examples"></a>例
 
-ランダム大陸を表示:
+ランダムな大陸を表示:
 
 ```kusto
 Continents | summarize any(Continent)
 ```
 
-:::image type="content" source="images/aggfunction/any1.png" alt-text="任意の 1":::
+:::image type="content" source="images/aggfunction/any1.png" alt-text="任意1":::
 
-ランダムレコードのすべての詳細を表示します。
+ランダムなレコードのすべての詳細を表示します。
 
 ```kusto
 Continents | summarize any(*)
 ```
 
-:::image type="content" source="images/aggfunction/any2.png" alt-text="任意の2":::
+:::image type="content" source="images/aggfunction/any2.png" alt-text="任意2":::
 
 各ランダム大陸のすべての詳細を表示します。
 
@@ -66,4 +66,4 @@ Continents | summarize any(*)
 Continents | summarize any(*) by Continent
 ```
 
-:::image type="content" source="images/aggfunction/any3.png" alt-text="任意の3":::
+:::image type="content" source="images/aggfunction/any3.png" alt-text="任意3":::

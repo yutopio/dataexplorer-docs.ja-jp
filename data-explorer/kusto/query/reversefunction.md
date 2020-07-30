@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 22fe505eb8fd391e7a61120dbf42c214cb61c120
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: fa87dae85b158e162cea90c276057abb210ea23b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264829"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345778"
 ---
 # <a name="reverse"></a>reverse()
 
 関数は、入力文字列の順序を逆にします。
 入力値が型でない場合、 `string` 関数は強制的に値を型にキャストし `string` ます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `reverse(`*電源*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *source*: 入力値。  
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 文字列値の逆の順序。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 print str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

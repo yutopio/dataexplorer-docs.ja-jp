@@ -1,6 +1,6 @@
 ---
-title: replace() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで replace() について説明します。
+title: replace ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの replace () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 84a741f10172ef418da7d92b8c1ad6ba26593d72
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 47e2724e76abde2133c075d9270783fa64ae73bb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510338"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345812"
 ---
 # <a name="replace"></a>replace()
 
 正規表現のすべての一致を別の文字列に置き換えます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`replace(`*正規表現*`,`*書き換え*`,`*テキスト*`)`
+`replace(`*regex* `,`*書き換え* `,`*テキスト*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *正規表現*:*テキスト*を検索するための[正規表現](https://github.com/google/re2/wiki/Syntax)。 複数のキャプチャ グループをかっこ内に含めることができます。 
-* *書き換え*: *matchRegex*によって行われた任意の一致の代わりの正規表現。 完全一致を参照する場合は `\0`、最初のキャプチャ グループの場合は `\1`、後続のキャプチャ グループの場合は `\2` などを使用します。
+* *regex*:*テキスト*を検索する[正規表現](https://github.com/google/re2/wiki/Syntax)。 複数のキャプチャ グループをかっこ内に含めることができます。 
+* *リライト*: *matchingRegex*によって行われたすべての一致の置換 regex。 完全一致を参照する場合は `\0`、最初のキャプチャ グループの場合は `\1`、後続のキャプチャ グループの場合は `\2` などを使用します。
 * *text*: 文字列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 *regex* のすべての一致を *rewrite* の評価で置き換えた後の *text*。 一致が重なり合うことはありません。
 
-**例**
+## <a name="example"></a>例
 
 次のステートメントを実行します。
 

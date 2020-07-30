@@ -1,6 +1,6 @@
 ---
-title: tolong() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで tolong() について説明します。
+title: tolong)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの tolong) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bd354a39c048631ab98390c74cb7cd78ee5376b2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fb209ff3784f6e24f184b576a1e8f94c52834ba4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506088"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340957"
 ---
 # <a name="tolong"></a>tolong()
 
-入力を long (符号付き 64 ビット) 数値表現に変換します。
+入力を long (符号付き64ビット) 数値表現に変換します。
 
 ```kusto
 tolong("123") == 123
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
-`tolong(`*Expr*`)`
+`tolong(`*With*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Expr*: 長整数型に変換される式。 
+* *Expr*: long 型に変換される式。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-変換が成功すると、結果は長い数値になります。
-変換が成功しなかった場合は、 が`null`返されます。
+変換が成功した場合、結果は長い数値になります。
+変換に失敗した場合、結果はになり `null` ます。
  
-*注意*: 可能な場合[は long() を](./scalar-data-types/long.md)使用することをお好みで
+*注*: 可能であれ[ば、long ()](./scalar-data-types/long.md)を使用することをお勧めします。

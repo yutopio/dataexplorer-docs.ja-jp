@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b40ca669df7671b1451166f6bfc1c7c680713166
-ms.sourcegitcommit: 1f50c6688a2b8d8a3976c0cd0ef40cde2ef76749
+ms.openlocfilehash: 75f1c92dfb76c56894d1f38dec24a31690f3f789
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84202961"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349841"
 ---
 # <a name="active_users_count-plugin"></a>active_users_count プラグイン
 
@@ -25,11 +25,11 @@ ms.locfileid: "84202961"
 T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), startofday(now()), 7d, 1d, 2, 7d, dim1, dim2, dim3)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `active_users_count(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *End* `,` *LookbackWindow* `,` *Period* `,` *ActivePeriodsCount* `,` *Bin* `,` [*dim1* `,` *dim2* `,` ...]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
@@ -42,7 +42,7 @@ T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), start
 * *Bin*: 分析ステップ期間のスカラー定数値。 には、数値/日付/時刻/タイムスタンプ値、またはの文字列を指定でき `week` / `month` / `year` ます。 すべての期間は、対応する[startofweek](startofweekfunction.md) / [startofmonth](startofmonthfunction.md) / [startofyear](startofyearfunction.md)関数になります。
 * *dim1*、 *dim2*、...: (省略可能) アクティビティメトリックスの計算をスライスするディメンション列の一覧です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 ActivePeriodCounts に表示された Id の個別のカウント値を持つテーブルを返します。次の期間、各タイムラインの期間、および既存の各ディメンションの組み合わせです。
 
@@ -53,7 +53,7 @@ ActivePeriodCounts に表示された Id の個別のカウント値を持つテ
 |型: as of *TimelineColumn*|..|..|..|long|
 
 
-**使用例**
+## <a name="examples"></a>例
 
 過去8日間に少なくとも3つの異なる日に出現した個別のユーザーの数を計算します。 分析期間: 2018 年7月。
 

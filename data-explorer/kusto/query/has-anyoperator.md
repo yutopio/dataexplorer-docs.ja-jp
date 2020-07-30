@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 19329b8822a1e1d484c5f751f5fbc2f8eb6343ac
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 4485dde5eb77478e5fd75ce388ada7f4232f2ddb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226739"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347631"
 ---
 # <a name="has_any-operator"></a>has_any 演算子
 
@@ -23,19 +23,19 @@ ms.locfileid: "83226739"
 Table1 | where col has_any ('value1', 'value2')
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `|` `where` *col* `has_any` `(` *スカラー式の*T col リスト`)`   
 *T* `|` `where` *列* `has_any` `(` *表形式式*`)`   
  
-**引数**
+## <a name="arguments"></a>引数
 
 * レコードをフィルター処理する*T*テーブルの入力。
 * *列-フィルター*処理します。
 * *式の一覧*-表形式、スカラー式、またはリテラル式のコンマ区切りの一覧  
 * *表形式の式*-値のセットを含む表形式の式-式に複数の列がある場合は、最初の列が使用されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 述語がある*T*内の行`true`
 

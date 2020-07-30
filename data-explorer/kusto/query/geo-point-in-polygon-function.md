@@ -8,28 +8,28 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: 96e3cfeba0002aa48a4300a994e9e12610deb9a3
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: 49b3e8b92d022ac5d1d8191bef8f00436b9f7211
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280579"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347801"
 ---
 # <a name="geo_point_in_polygon"></a>geo_point_in_polygon()
 
 空間座標が多角形の内側にあるか、地球上の multipolygon 内にあるかを計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_point_in_polygon(`*経度* `, `*緯度* `, `*polygon*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *経度*: 地理空間座標、経度値 (度単位)。 有効な値は、実数と範囲 [-180, + 180] です。
 * *緯度*: 地理空間座標、緯度の値 (度)。 有効な値は、実数と範囲 [-90, + 90] です。
 * *polygon*: [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)および[動的](./scalar-data-types/dynamic.md)データ型の多角形または multipolygon。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 地理空間座標が多角形内にあるかどうかを示します。 座標または多角形が無効な場合は、クエリによって null の結果が生成されます。 
 
@@ -57,7 +57,7 @@ ms.locfileid: "86280579"
 > * リテラルポリゴンを使用すると、パフォーマンスが向上する可能性があります。
 > * いずれかの多角形にポイントが含まれているかどうかを確認するには、次の手順を試してください。多角形のコレクションを1つの multipolygon にフォールドします。 その後、この multipolygon に対してクエリを実行します。 これにより、パフォーマンスが向上する可能性があります。 次の例を見てください。 
 
-**使用例**
+## <a name="examples"></a>例
 
 中央公園なしのマンハッタン島。
 

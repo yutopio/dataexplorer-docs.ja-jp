@@ -1,6 +1,6 @@
 ---
-title: row_cumsum() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで row_cumsum() について説明します。
+title: row_cumsum ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの row_cumsum () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 92ebec75dcd7e44d59f964dc735e857f22f1ad00
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 83dc48589fce7332c8e24d1e5a47c75a6cfca608
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510219"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345727"
 ---
 # <a name="row_cumsum"></a>row_cumsum()
 
-[シリアル化された行セット](./windowsfunctions.md#serialized-row-set)の列の累積合計を計算します。
+シリアル化された[行セット](./windowsfunctions.md#serialized-row-set)内の列の累積合計を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`row_cumsum``(`*用語*`,` [*再起動*]`)`
+`row_cumsum``(`*用語*[ `,` *再起動*]`)`
 
-* *用語*は、合計する値を示す式です。
-  式は`decimal`、 、 、 、`int`または`long``real`のいずれかの型のスカラーである必要があります。 Null*の用語*値は合計には影響しません。
-* *[再起動*] は、累積`bool`操作を再開する (0 に戻す) タイミングを示す、オプションの型引数です。 データのパーティションを示すために使用できます。以下の 2 番目の例を参照してください。
+* *Term*は、合計する値を示す式です。
+  式は、、、 `decimal` 、またはのいずれかの型のスカラーである必要があり `int` `long` `real` ます。 Null*用語*の値は、合計には影響しません。
+* *Restart*は `bool` 、累積操作を再起動するタイミング (0 に戻す) を示す型の省略可能な引数です。 データのパーティションを示すために使用できます。次の2番目の例を参照してください。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-この関数は、引数の累積合計を返します。
+関数は、引数の累積合計を返します。
 
-**使用例**
+## <a name="examples"></a>例
 
-次の例は、最初の数個の偶数の整数の累積合計を計算する方法を示しています。
+次の例では、最初のいくつかの整数の累積合計を計算する方法を示します。
 
 ```kusto
 datatable (a:long) [
@@ -51,7 +51,7 @@ a    | cs
 8    | 20
 10   | 30
 
-この例では、データがパーティション分割されている場合の`salary`累積合計 ( ここでは ) を計算する方法`name`を示します ( ここで ) 。
+この例では、 `salary` データがパーティション分割されたときの累積合計 (ここでは) を計算する方法を示します (ここでは `name` )。
 
 ```kusto
 datatable (name:string, month:int, salary:long)
@@ -67,7 +67,7 @@ datatable (name:string, month:int, salary:long)
 | extend total=row_cumsum(salary, name != prev(name))
 ```
 
-name   | month  | 給与  | total
+name   | month  | 給  | total
 -------|--------|---------|------
 Alice  | 1      | 1000    | 1000
 Alice  | 2      | 2000    | 3000

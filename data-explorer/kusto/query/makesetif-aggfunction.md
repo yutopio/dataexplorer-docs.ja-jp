@@ -1,6 +1,6 @@
 ---
-title: make_set_if() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの make_set_if() (集計関数) について説明します。
+title: make_set_if () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの make_set_if () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1393e063fb0abb91b38a8b9e1edc0110e78b3638
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 8d6b26a13539d88aae57774cc35cf57d321b67f4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512650"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346900"
 ---
-# <a name="make_set_if-aggregation-function"></a>make_set_if() (集計関数)
+# <a name="make_set_if-aggregation-function"></a>make_set_if () (集計関数)
 
-`dynamic` *Expr*がグループ内で取り込む一連*Expr*の個別値の配列 (JSON) を返します`true`。
+`dynamic`*述語*がと評価*される*グループ内の個別の値のセットの (JSON) 配列を返し `true` ます。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
+* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`summarize``make_set_if(`*エクスプル*,*述語*[`,` *最大サイズ*]`)`
+`summarize``make_set_if(` *Expr*、*述語*[ `,` *MaxSize*]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Expr*: 集計の計算に使用する式。
-* *述語*: 結果に追加`true`する*Expr*に対して評価する必要がある述部。
-* *MaxSize*は、返される要素の最大数に対するオプションの整数の制限です (既定値は*1048576)。* MaxSize 値は 1048576 を超えることはできません。
+* *Expr*: 集計計算に使用される式です。
+* *述語*: `true` 結果に追加される*Expr*をに評価する必要がある述語。
+* *MaxSize*は、返される要素の最大数に対する整数制限 (省略可能) です (既定値は*1048576*)。 MaxSize 値は1048576を超えることはできません。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-`dynamic` *Expr*がグループ内で取り込む一連*Expr*の個別値の配列 (JSON) を返します`true`。
-配列の並べ替え順序が未定義です。
+`dynamic`*述語*がと評価*される*グループ内の個別の値のセットの (JSON) 配列を返し `true` ます。
+配列の並べ替え順序が定義されていません。
 
 > [!TIP]
-> 個別の値のみをカウントするには[、dcountif() を](dcountif-aggfunction.md)使用します。
+> 個別の値のみをカウントするには、 [dcountif ()](dcountif-aggfunction.md)を使用します。
 
 **参照**
 
-[`make_set`](./makeset-aggfunction.md)述語式なしで同じことを行う関数。
+[`make_set`](./makeset-aggfunction.md)述語式を使用せずに同じを実行する関数。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 let T = datatable(name:string, day_of_birth:long)
@@ -59,4 +59,4 @@ T
 
 |set_name|
 |----|
-|[ジョージ、リンゴ]|
+|["ジョージ", "Ringo"]|

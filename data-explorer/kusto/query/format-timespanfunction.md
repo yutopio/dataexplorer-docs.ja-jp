@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ba4dffa50c605e9346807f28222809af7637ff09
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 923008d05ebc8c51a39955e29450e55af4100941
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227283"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347954"
 ---
 # <a name="format_timespan"></a>format_timespan()
 
@@ -23,22 +23,22 @@ ms.locfileid: "83227283"
 format_timespan(time(14.02:03:04.12345), 'h:m:s.fffffff') == "2:3:4.1234500"
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `format_timespan(`*timespan* `,`*形式*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * `timespan`: 型の値 `timespan` 。
 * `format`: 書式指定子文字列。1つ以上の[書式要素](#supported-formats)で構成されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 形式の結果を含む文字列。
 
 ## <a name="supported-formats"></a>サポートされるフォーマット
 
-|書式指定子   |説明    |使用例
+|書式指定子   |説明    |例
 |---|---|---
 |`d`-`dddddddd` |時間間隔の日数。 必要に応じて0で埋められます。|   15.13:45:30: d-> 15、dd-> 15、ddd > 015
 |`f`    |時間間隔の秒部分の1/10。 |15.13:45: 30.6170000-> 6、15.13:45: 30.05-> 0
@@ -68,7 +68,7 @@ format_timespan(time(14.02:03:04.12345), 'h:m:s.fffffff') == "2:3:4.1234500"
 
 書式指定子には、次の区切り文字を含めることができます。
 
-|区切り記号|解説|
+|区切り記号|コメント|
 |---------|-------|
 |`' '`| Space|
 |`'/'`||
@@ -80,7 +80,7 @@ format_timespan(time(14.02:03:04.12345), 'h:m:s.fffffff') == "2:3:4.1234500"
 |`'['`||
 |`']'`||
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

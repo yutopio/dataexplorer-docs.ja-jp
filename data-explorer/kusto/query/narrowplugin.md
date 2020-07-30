@@ -1,6 +1,6 @@
 ---
-title: 狭いプラグイン - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの狭いプラグインについて説明します。
+title: ナロープラグイン-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのナロープラグインについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,70 +8,70 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 75b211f32c15eefc60ca40b0408345be4a656652
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e597a2467da21a2c9e83aba28a1e83b242f61c75
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512242"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346679"
 ---
-# <a name="narrow-plugin"></a>狭いプラグイン
+# <a name="narrow-plugin"></a>narrow プラグイン
 
 ```kusto
 T | evaluate narrow()
 ```
 
-プラグイン`narrow`は、行番号、列タイプ、列値 (as) の 3 つの列を持つテーブルにワイドテーブル`string`を「アンピボット」します。
+この `narrow` プラグインは、幅の広いテーブルを、行番号、列の型、列の値 (as) の3つの列だけを含むテーブルに "unpivots `string` します。
 
-この`narrow`プラグインは、横スクロールを必要とせずに広いテーブルを快適に表示できるため、主に表示目的で設計されています。
+`narrow`このプラグインは主に表示を目的として設計されており、水平スクロールを必要とせずに幅の広いテーブルを簡単に表示できるようになっています。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `T | evaluate narrow()`
 
-**使用例**
+## <a name="examples"></a>例
 
-Kusto`.show diagnostics`コントロール コマンドの出力を簡単に読み取る方法を次の例に示します。
+次の例では、Kusto 制御コマンドの出力を読み取る簡単な方法を示して `.show diagnostics` います。
 
 ```kusto
 .show diagnostics
  | evaluate narrow()
 ```
 
-それ自体の`.show diagnostics`結果は、1 つの行と 33 列を持つテーブルです。 プラグインを`narrow`使用して、次のような出力を「回転」します。
+それ自体の結果は、 `.show diagnostics` 1 行と33列を含むテーブルになります。 プラグインを使用して `narrow` 、出力を次のように "回転" します。
 
 行  | 列                              | 値
 -----|-------------------------------------|-----------------------------
-0    | イズヘルシー                           | True
-0    | アイストリーバランスが必要                 | False
-0    | 必要なスケールアウト                  | False
-0    | マシン合計                       | 2
-0    | マシンオフライン                     | 0
-0    | ノードラストリスタートオン                 | 2017-03-14 10:59:18.9263023
-0    | アドミニスト選出                  | 2017-03-14 10:58:41.6741934
-0    | クラスターウォームデータキャパシティファクター       | 0.130552847673333
-0    | エクステント合計                        | 136
-0    | ディスクコールドアロケーションパーセンテージ        | 5
-0    | データ容量に基づいてインスタンスを作成します。  | 2
-0    | 合計Originalデータサイズ               | 5167628070
-0    | 合計範囲サイズ                     | 1779165230
+0    | IsHealthy                           | True
+0    | IsRebalanceRequired                 | False
+0    | IsScaleOutRequired                  | False
+0    | MachinesTotal                       | 2
+0    | オフラインのスケジュール                     | 0
+0    | NodeLastRestartedOn                 | 2017-03-14 10:59: 18.9263023
+0    | AdminLastElectedOn                  | 2017-03-14 10:58: 41.6741934
+0    | Clusterウォー Mdatacapacityfactor       | 0.130552847673333
+0    | ExtentsTotal                        | 136
+0    | Diskcold割り当て率        | 5
+0    | InstancesTargetBasedOnDataCapacity  | 2
+0    | TotalOriginalDataSize               | 5167628070
+0    | TotalExtentSize                     | 1779165230
 0    | IngestionsLoadFactor                | 0
-0    | インジェスティオンズインプログレス                | 0
-0    | インジェクション成功率               | 100
-0    | マージインプログレス                    | 0
+0    | IngestionsInProgress                | 0
+0    | IngestionsSuccessRate               | 100
+0    | MergesInProgress                    | 0
 0    | BuildVersion                        | 1.0.6281.19882
-0    | ビルドタイム                           | 2017-03-13 11:02:44.0000000
+0    | BuildTime                           | 2017-03-13 11:02: 44.0000000
 0    | ClusterDataCapacityFactor           | 0.130552847673333
-0    | 必要なデータの温暖化               | False
-0    | リバランスラストランオン                  | 2017-03-21 09:14:53.8523455
-0    | データウォーミングラストランオン                | 2017-03-21 09:19:54.1438800
-0    | 成功率をマージ                   | 100
-0    | 健康ではない理由                    | [null]
-0    | 必要なアテンション                 | False
-0    | 注意必須理由             | [null]
-0    | ProductVersion                      | KustoRelease_2017.03.13.2
-0    | 失敗したオペレーション              | 0
-0    | 失敗したマージ操作               | 0
-0    | シングルテーブル             | 64
-0    | テーブルウィズマックスエクステント                 | クストモニタリングパーシスタントデータベース.クストーモニタリングテーブル
-0    | ウォームエクステントサイズ                      | 1779165230
+0    | IsDataWarmingRequired               | False
+0    | RebalanceLastRunOn                  | 2017-03-21 09:14: 53.8523455
+0    | DataWarmingLastRunOn                | 2017-03-21 09:19: 54.1438800
+0    | MergesSuccessRate                   | 100
+0    | NotHealthyReason                    | 空白
+0    | IsAttentionRequired                 | False
+0    | AttentionRequiredReason             | 空白
+0    | ProductVersion                      | KustoRelease_2017。03.13.2
+0    | FailedIngestOperations              | 0
+0    | 失敗した Mergeoperation               | 0
+0    | MaxExtentsInSingleTable             | 64
+0    | TableWithMaxExtents                 | KustoMonitoringPersistentDatabase.KustoMonitoringTable
+0    | WarmExtentSize                      | 1779165230

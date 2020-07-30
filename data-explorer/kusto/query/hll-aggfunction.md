@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/15/2020
-ms.openlocfilehash: cbe1b0639a0379fe84bc9c100a629bbadd9c3a63
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: e602a920dd07089f688f39115805a2f99d505c9c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226569"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347563"
 ---
 # <a name="hll-aggregation-function"></a>hll () (集計関数)
 
@@ -21,11 +21,11 @@ ms.locfileid: "83226569"
 
 [基になるアルゴリズム (*H*Yper*l*og*l*og) と推定精度](dcount-aggfunction.md#estimation-accuracy)について確認します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `summarize hll(`*`Expr`* `[,` *`Accuracy`*`])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *`Expr`*: 集計計算に使用される式。 
 * *`Accuracy`* 指定されている場合、速度と精度のバランスを制御します。
@@ -38,7 +38,7 @@ ms.locfileid: "83226569"
   |`3` | high | slow | 0.28% |
   |`4` | 超高 | 時間 | 0.2% |
     
-**戻り値**
+## <a name="returns"></a>戻り値
 
 グループ全体の個別のカウントの中間結果 *`Expr`* 。
  
@@ -48,7 +48,7 @@ ms.locfileid: "83226569"
 
 1. 関数を使用すると、集計関数からを計算することができ [`dcount_hll`](dcount-hllfunction.md) `dcount` `hll`  /  `hll_merge` ます。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

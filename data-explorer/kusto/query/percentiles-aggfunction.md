@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: b70ee322d4718f78a37144b650a147c5c9965a60
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 13cc0edad5e0e4673c34e7e5b1b517f097fa4e9a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85129024"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346186"
 ---
 # <a name="percentile-percentiles-aggregation-function"></a>百分位 ()、パーセンタイル () (集計関数)
 
@@ -24,7 +24,7 @@ ms.locfileid: "85129024"
 * `percentilesw()`はに似てい `percentilew()` ますが、複数の重み付け百分位値を計算します。各百分位数を個別に計算するよりも高速です。
 * `percentilew()``percentilesw()`重み付けパーセンタイルを計算できます。 重み付けパーセンタイルは、指定されたパーセンタイルを入力で繰り返しているかのように処理することで、特定のを "重み付け" の方法で計算し `weight` ます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `percentile(` *Expr* `,` *百分位*の集計`)`
 
@@ -42,18 +42,18 @@ ms.locfileid: "85129024"
 
 `percentilesw_array(` *Expr* `,` *WeightExpr* `,` *動的配列*の集計`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * `*Expr*`: 集計計算に使用される式。
 * `*WeightExpr*`: 集計計算の値の重みとして使用される式。
 * `*Percentile*`: 百分位を指定する double 定数。
 * `*Dynamic array*`: 整数または浮動小数点数の動的配列内のパーセンタイルの一覧。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 `*Expr*`グループ内の指定されたパーセンタイルの見積もりを返します。 
 
-**使用例**
+## <a name="examples"></a>例
 
 の値が、 `Duration` サンプルセットの95% より大きく、サンプルセットの5% より小さい。
 
@@ -83,7 +83,7 @@ CallDetailRecords
 
 を使用し `summarize percentilesw(Duration, BucketSize, ...)` て、指定されたパーセンタイルを "重み付け" の方法で計算します。 各期間の値は、入力の BucketSize 回繰り返されたかのように処理します。実際には、これらのレコードを具体化する必要はありません。
 
-**例**
+## <a name="example"></a>例
 
 顧客は、ミリ秒単位で待機時間値のセットを持ちます `{ 1, 1, 2, 2, 2, 5, 7, 7, 12, 12, 15, 15, 15, 18, 21, 22, 26, 35 }` 。
 

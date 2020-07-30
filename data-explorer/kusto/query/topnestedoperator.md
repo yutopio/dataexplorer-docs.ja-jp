@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3fc4cfa307a283c4eb21ba60e3b83ba89b574757
-ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
+ms.openlocfilehash: 68b55ec5496f1eb68f979c56412f10191b9f5a68
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84626692"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340804"
 ---
 # <a name="top-nested-operator"></a>top-nested 演算子
 
@@ -28,7 +28,7 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 
 たとえば、演算子を使用すると、 `top-nested` 「国、販売員、販売量などの売上の数値を含むテーブルについて」という質問に答えることができます。売上の上位5国は何ですか。 各国の上位3人の販売員はどのようなものですか。」
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `|` `top-nested` *TopNestedClause2* [ `,` *TopNestedClause2*...]
 
@@ -36,7 +36,7 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 
 [*N*] `of` [ *`ExprName`* `=` ] *`Expr`* [ `with` `others` `=` *`ConstExpr`* `by` *`AggName`* `=` *`Aggregation`* `asc`  |  `desc` ] [] []
 
-**引数**
+## <a name="arguments"></a>引数
 
 各*Topnestedclause*の場合:
 
@@ -66,7 +66,7 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 
 * `asc`または `desc` (既定値) は、集計値の範囲の "下" または "上" から選択されているかどうかを制御するように表示される場合があります。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 この演算子は、各集計句に2つの列を持つテーブルを返します。
 
@@ -87,7 +87,7 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 
 集計の分布が非常に均一でない場合は、( *N*を使用して) 返される個別の値の数を制限し、ConstExpr オプションを使用して、 `with others=` *ConstExpr*その他のすべてのケースの "重み" を示す値を取得します。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

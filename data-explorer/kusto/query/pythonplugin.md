@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: e6439912d323b7677f6febc8b23068c880a735c2
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: 984e5c37f3d29a6c56f88c6eb9b6750635e48920
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902126"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345982"
 ---
 # <a name="python-plugin"></a>Python プラグイン
 
@@ -79,7 +79,7 @@ Python プラグインは、Python スクリプトを使用してユーザー定
     どちらの場合も、インジェストのボリュームと頻度、および Python ロジックで使用される複雑さとリソースについて、[サンドボックスの制限](../concepts/sandboxes.md#limitations)とクラスターの使用可能なリソースについて確認してください。 この操作を行わないと、[調整エラー](../concepts/sandboxes.md#errors)が発生する可能性があります。
 * 更新ポリシーの一部として定義されているクエリでプラグインを使用することはできません。このクエリでは、[ストリーミングインジェスト](../../ingest-data-streaming.md)を使用してソーステーブルを取り込まれたします。
 
-## <a name="examples"></a>使用例
+## <a name="examples"></a>例
 
 ```kusto
 range x from 1 to 360 step 1
@@ -134,7 +134,7 @@ print "This is an example for using 'external_artifacts'"
     * 入力データセットをパーティション分割するために、 [partition 演算子](partitionoperator.md)を使用することもできます。
 * Python スクリプトのロジックを実装するには、可能な限り Kusto のクエリ言語を使用します。
 
-    **例**
+    ## <a name="example"></a>例
 
     ```kusto    
     .show operations
@@ -159,7 +159,7 @@ print "This is an example for using 'external_artifacts'"
      * Python `"` スクリプトでの python 文字列リテラルの二重引用符文字 ()
 * [ `externaldata` オペレーター](externaldata-operator.md)を使用して、Azure Blob storage などの外部の場所に格納したスクリプトの内容を取得します。
   
-    **例**
+    ## <a name="example"></a>例
 
     ```kusto
     let script = 
@@ -183,7 +183,7 @@ print "This is an example for using 'external_artifacts'"
 
 次のようにパッケージをインストールします。
 
-### <a name="prerequisites"></a>必須コンポーネント
+### <a name="prerequisites"></a>前提条件
 
   1. パッケージをホストする blob コンテナーを作成します (可能であれば、クラスターと同じ場所に作成します)。 たとえば、 `https://artifcatswestus.blob.core.windows.net/python` クラスターが米国西部にあるとします。
   1. クラスターの[コールアウトポリシー](../management/calloutpolicy.md)を変更して、その場所にアクセスできるようにします。

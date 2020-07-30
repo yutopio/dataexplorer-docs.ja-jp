@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/29/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 90b2a08d4fdde6ab6a74b12632c9310029f8fc1b
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: cf10a18a699e1e93521b4927008858cbebd2baf8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902102"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345846"
 ---
 # <a name="render-operator"></a>render 演算子
 
@@ -30,11 +30,11 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 > * Render 操作では、データは変更されません。 結果の拡張プロパティに注釈 ("視覚化") が挿入されます。 注釈には、クエリ内の演算子によって提供される情報が含まれています。
 > * 視覚化情報の解釈は、ユーザーエージェントによって行われます。 さまざまなエージェント (Kusto. エクスプローラー、Kusto. WebExplorer など) では、さまざまな視覚エフェクトがサポートされる場合があります。
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `|` `render` *視覚化*[ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ]
 
-各値の説明:
+この場合、
 
 * *視覚化*は、使用する視覚エフェクトの種類を示します。 サポートされる値は
 
@@ -81,7 +81,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 |*PropertyName*|*PropertyValue*                                                                   |
 |--------------|----------------------------------------------------------------------------------|
 |`accumulate`  |各メジャーの値をそのすべての先行するに追加するかどうかを指定します。 ( `true` または `false` )|
-|`kind`        |視覚エフェクトの種類をさらに改善。 以下を参照してください。                         |
+|`kind`        |視覚エフェクトの種類をさらに改善。 次を参照してください。                         |
 |`legend`      |凡例を表示するかどうか ( `visible` または) を指定 `hidden` します。                       |
 |`series`      |レコードごとの値を結合してレコードが属する系列を定義する、コンマ区切りの列の一覧です。|
 |`ymin`        |Y 軸に表示される最小値。                                      |
@@ -92,7 +92,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 |`xtitle`      |X 軸の (型の `string` ) タイトル。                                       |
 |`yaxis`       |Y 軸のスケールを設定する方法 ( `linear` または `log` )                                      |
 |`ycolumns`    |X 列の値ごとに指定された値で構成される列のコンマ区切りの一覧。|
-|`ysplit`      |複数の視覚エフェクトを分割する方法。 以下を参照してください。                               |
+|`ysplit`      |複数の視覚エフェクトを分割する方法。 次を参照してください。                               |
 |`ytitle`      |Y 軸のタイトル (型 `string` )。                                       |
 |`anomalycolumns`|にのみ関連するプロパティ `anomalychart` です。 異常系列と見なされ、グラフ上にポイントとして表示される列のコンマ区切りの一覧|
 
@@ -102,7 +102,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 
 |*PropertyName*|*PropertyValue*                                                                   |
 |--------------|----------------------------------------------------------------------------------|
-|`kind`        |視覚エフェクトの種類をさらに改善。 以下を参照してください。                         |
+|`kind`        |視覚エフェクトの種類をさらに改善。 次を参照してください。                         |
 |`series`      |レコードごとの値を結合してレコードが属する系列を定義する、コンマ区切りの列の一覧です。|
 |`title`       |視覚化のタイトル (型 `string` )。                                |
 |`yaxis`       |Y 軸のスケールを設定する方法 ( `linear` または `log` )                                      |
@@ -155,7 +155,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 > * X 軸の順序を定義するためにデータを並べ替えます。
 > * ユーザーエージェントは、クエリで指定されていないプロパティの値を自由に "推測" できます。 具体的には、結果のスキーマに "意味のない" 列があると、誤った推測に変換される可能性があります。 そのような場合は、そのような列を射影してみてください。 
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

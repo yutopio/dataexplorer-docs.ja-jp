@@ -8,28 +8,28 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/11/2020
-ms.openlocfilehash: b4a30aa4285b8f6e22e5d4057fe7d408d548a27b
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.openlocfilehash: a7796c14098f773b73bd16735a3d2c9c879c8fd2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280548"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347869"
 ---
 # <a name="geo_distance_point_to_line"></a>geo_distance_point_to_line()
 
 地球の座標と線の間の最短距離を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_distance_point_to_line(`*経度* `, `*緯度* `, `*lineString*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *経度*: 地理空間座標経度の値 (度単位)。 有効な値は、実数と範囲 [-180, + 180] です。
 * *緯度*: 地理空間座標緯度の値 (度単位)。 有効な値は、実数と範囲 [-90, + 90] です。
 * *lineString*: [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)の行と[動的](./scalar-data-types/dynamic.md)データ型。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 地球の座標と線の間の最短距離 (メートル単位)。 座標または lineString が無効な場合は、クエリによって null の結果が生成されます。
 
@@ -49,7 +49,7 @@ ms.locfileid: "86280548"
 > [!TIP]
 > パフォーマンスを向上させるには、リテラル行を使用します。
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例では、北ラスベガス空港と近くの道路との最短距離を検索します。
 

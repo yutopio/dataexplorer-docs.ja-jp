@@ -1,6 +1,6 @@
 ---
-title: new_guid() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでnew_guid() について説明します。
+title: new_guid ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの new_guid () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5d8345eac99966e87b558727262f6012fa5b471a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1f4e4245ddd49d2340eab5a118e5ac94be1b4f77
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512191"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346645"
 ---
 # <a name="new_guid"></a>new_guid()
 
@@ -23,6 +23,6 @@ ms.locfileid: "81512191"
 new_guid()
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
-* `new_guid()`- 型の新しい値を`guid`生成します。
+* `new_guid()`-型の新しい値を生成 `guid` します。

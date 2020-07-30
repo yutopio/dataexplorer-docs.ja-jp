@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c8031cd28a04949515ed50dbe37d3f8171d595d8
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: a4aae88f6ad435469719f8444bae9123975ee618
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85129007"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346220"
 ---
 # <a name="pattern-statement"></a>pattern ステートメント
 
@@ -46,7 +46,7 @@ app("ApplicationX").StartEvents
 
 このクエリでは、Kusto から次のパターン呼び出しを解決できないことを示すエラーが生成され `app("ApplicationX")["StartEvents"]` ます。 `app("ApplicationX")["StopEvents"]`
 
-**構文**
+## <a name="syntax"></a>構文
 
 `declare``pattern`*パターン名*
 
@@ -67,7 +67,7 @@ app("ApplicationX").StartEvents
 
 一致する各パターンに対して指定される式は、テーブル名か[let ステートメント](letstatement.md)への参照のいずれかです。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `declare``pattern`*パターン*  =  名 `(`*Argname* `:`*Argtype* [ `,` ...] `)`[ `[` *パス名* `:` *pathargtype* `]` ]`{`
 &nbsp;&nbsp;&nbsp;&nbsp;`(` *ArgValue1* [ `,` *ArgValue2* ...] `)` [ `.[` * pathvalue `]` ] `=` `{` *式* `};` &nbsp; &nbsp; &nbsp; &nbsp; [ &nbsp; &nbsp; &nbsp; &nbsp; `(` *ArgValue1_2* [ `,` *ArgValue2_2* ...] `)` [ `.[` *PathValue_2* `]` ] `=` `{` *expression_2* `};` &nbsp; &nbsp; &nbsp; &nbsp; ... &nbsp; &nbsp; &nbsp; &nbsp; ]        `}`

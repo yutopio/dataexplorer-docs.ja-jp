@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8da464bca228df5a813f50e68fab5ddb2aa926cf
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: bd3e7a77a4de46b6dcebb2f58c98009a9edddb43
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128667"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338611"
 ---
 # <a name="using-hll-and-tdigest"></a>hll() と tdigest() の使用
 
@@ -81,7 +81,7 @@ MyTable
 |0|
 
 
-**例**
+## <a name="example"></a>例
 
 `PageViewsHllTDigest` `hll` 1 時間ごとに表示されるページの値を含むテーブルがあります。 これらの値ビンをにする必要が `12h` あります。 `hll`集計関数を使用して値をマージ `hll_merge()` し、タイムスタンプビンをに結合し `12h` ます。 関数を使用し `dcount_hll` て、最終的な値を返し `dcount` ます。
 
@@ -127,7 +127,7 @@ PageViewsHllTDigest
 |2016-05-02 12:00: 00.0000000|181315|
 |2016-05-03 00:00: 00.0000000|146817|
  
-**例**
+## <a name="example"></a>例
 
 Kusto の制限に達しているデータセットは、データセットに対して定期的なクエリを実行する必要がありますが、通常のクエリを実行して大規模なデータセットを計算する必要があり [`percentile()`](percentiles-aggfunction.md) [`dcount()`](dcount-aggfunction.md) ます。
 
@@ -178,7 +178,7 @@ PageViewsHllTDigest
 
 このクエリは、より小さなテーブルで実行されるため、パフォーマンスが向上します。 この例では、最初のクエリは ~ 215M レコードに対して実行され、2番目のクエリは32レコードのみで実行されます。
 
-**例**
+## <a name="example"></a>例
 
 保持クエリ。
 各 Wikipedia ページが表示された日時を集計するテーブルがあるとします (サンプルサイズは10万)。各 date1 を検索する場合は、date1 で表示されるページに対して、date1 と date2 の両方でレビューされたページの割合 (date1 < date2) を確認します。

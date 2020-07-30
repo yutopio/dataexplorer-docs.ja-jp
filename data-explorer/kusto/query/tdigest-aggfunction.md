@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 5a8ce5a66da871dfaa6f65a0fbc8addeb0f42926
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 47b6ab3db5f0ea252fa86ef925026613654afeea
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264593"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87341639"
 ---
 # <a name="tdigest-aggregation-function"></a>tdigest () (集計関数)
 
@@ -24,17 +24,17 @@ ms.locfileid: "85264593"
 
 詳細については、[基になるアルゴリズム (T ダイジェスト) と推定エラー](percentiles-aggfunction.md#estimation-error-in-percentiles)を参照してください。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `summarize` `tdigest`(*`Expr`* [`,` *`WeightExpr`*])
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: 集計計算に使用される式です。
 * *WeightExpr*: 集計計算の値の重みとして使用される式。
 
     
-**戻り値**
+## <a name="returns"></a>戻り値
 
 グループ全体における重み付けパーセンタイルの中間結果 `*Expr*` 。
  
@@ -45,7 +45,7 @@ ms.locfileid: "85264593"
 
 * 関数[percentile_tdigest ()](percentile-tdigestfunction.md)を使用して、結果の百分位/percentilew を計算し `tdigest` ます。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

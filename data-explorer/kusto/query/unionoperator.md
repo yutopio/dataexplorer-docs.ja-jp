@@ -1,6 +1,6 @@
 ---
-title: ユニオン オペレータ - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのユニオン 演算子について説明します。
+title: union 演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの union 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: b62c259e1abf1ff0e0e98a90ac4da5a000db5320
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: 6dd305ccf5e260666072a4ab2b0d8b6707894902
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765406"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87339495"
 ---
 # <a name="union-operator"></a>union 演算子
 
@@ -25,57 +25,57 @@ ms.locfileid: "81765406"
 Table1 | union Table2, Table3
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
-*[* `| union` *ユニオンパラメータ*]`kind=` `inner` | `outer`[`withsource=`[*列名*] [`isfuzzy=` `true` | `false`]*テーブル*[`,` *テーブル*]  
+*T* `| union` [*UnionParameters*] [ `kind=` `inner` | `outer` ] [ `withsource=` *ColumnName*] [ `isfuzzy=` `true` | `false` ]*テーブル*[ `,` *テーブル*]...  
 
 パイプ入力のない代替形式:
 
-`union`[*ユニオンパラメータ*][`kind=` `inner``isfuzzy=` `true` | `false` *Table* `,` *Table**ColumnName*`withsource=`] [ 列名 ] [ ] テーブル [ テーブル ] | `outer`  
+`union`[*UnionParameters*][ `kind=` `inner` | `outer` ] [ `withsource=` *ColumnName*] [ `isfuzzy=` `true` | `false` ]*テーブル*[ `,` *テーブル*]...  
 
-**引数**
+## <a name="arguments"></a>引数
 
 ::: zone pivot="azuredataexplorer"
 
 * `Table`:
     *  `Events`などのテーブルの名前
-    *  かっこで囲む必要があるクエリ式 。 `(Events | where id==42)` `(cluster("https://help.kusto.windows.net:443").database("Samples").table("*"))`または
-    *  ワイルドカードで指定されたテーブルのセット。 たとえば、`E*`名前が始まる`E`データベース内のすべてのテーブルの和集合を形成します。
+    *  またはなど、かっこで囲む必要があるクエリ式 `(Events | where id==42)` `(cluster("https://help.kusto.windows.net:443").database("Samples").table("*"))` 。
+    *  ワイルドカードで指定されたテーブルのセット。 たとえば、 `E*` は、名前が始まるデータベース内のすべてのテーブルの和集合を形成し `E` ます。
 * `kind`: 
     * `inner` - 結果には、すべての入力テーブルに共通する列のサブセットが含まれます。
-    * `outer`- (デフォルト)。 結果には、入力のいずれかで発生するすべての列が含まれます。 入力行で定義されていないセルは、 に`null`設定されます。
-* `withsource`=*列名*: 指定した場合、出力には*ColumnName*という列が含まれ、その値は各行にどのソース テーブルが貢献したかを示します。
-クエリが複数のデータベースからテーブルを効果的に参照する場合 (既定のデータベースは常にカウントされます)、この列の値はデータベースで修飾されたテーブル名になります。
-同様に、複数のクラスターが参照されている場合は、クラスター__とデータベース__の条件が値に存在します。 
-* `isfuzzy=``true` `isfuzzy` : に設定されている`true`場合 - ユニオンレッグのファジー解決を許可します。  |  `false` `Fuzzy`は、ソースの`union`セットに適用されます。 これは、クエリを分析して実行の準備をしているときに、共用体ソースのセットが、存在し、その時点でアクセス可能なテーブル参照のセットに縮小されることを意味します。 このようなテーブルが少なくとも 1 つ見つかった場合、解決エラーが発生すると、クエリステータスの結果に警告が表示されます (参照が欠落している場合は 1 つずつ) が、クエリの実行を妨げなくなります。解決が成功しなかった場合、クエリはエラーを返します。
+    * `outer`-(既定値)。 結果には、すべての入力に出現するすべての列が含まれます。 入力行で定義されていないセルはに設定され `null` ます。
+* `withsource`=*Columnname*: 指定した場合、出力には、行を提供したソーステーブルを示す*ColumnName*という列が含まれます。
+(ワイルドカードの照合後に) クエリが複数のデータベースのテーブルを参照している場合 (既定のデータベースは常にカウントされます)、この列の値は、データベースで修飾されたテーブル名になります。
+同じように、複数のクラスターが参照されている場合は、__クラスターとデータベース__の両方の要件が値に存在します。 
+* `isfuzzy=``true`  |  `false` : がに設定されている場合は `isfuzzy` `true` 、共用体の区間のあいまい解決を許可します。 `Fuzzy`ソースのセットに適用さ `union` れます。 これは、クエリを分析し、実行の準備をしている間に、一連の共用体のソースが存在し、その時点でアクセス可能なテーブル参照のセットに縮小されることを意味します。 少なくとも1つのテーブルが見つかった場合、解決エラーが発生すると、クエリの状態の結果 (参照が不足している場合は1つ) に警告が生成されますが、クエリの実行が妨げられることはありません。解決策が成功しなかった場合、クエリはエラーを返します。
 既定では、 `isfuzzy=` `false`です。
-* *UnionParameters*: 行一致操作と実行プランの動作を制御する*名前*`=`*値*の形式の 0 個以上 (スペースで区切られた) パラメーター。 サポートされているパラメーターは次のとおりです。 
+* *UnionParameters*: *Name* `=` 行一致操作と実行プランの動作を制御する名前*値*の形式の0個以上 (スペース区切り) のパラメーターです。 サポートされているパラメーターは次のとおりです。 
 
   |名前           |値                                        |説明                                  |
   |---------------|----------------------------------------------|---------------------------------------------|
-  |`hint.concurrency`|*数*|並列実行する演算子の同時サブクエリの数を`union`システムに示します。 *デフォルト*: クラスタの単一ノード上の CPU コアの量 (2 ~ 16)。|
-  |`hint.spread`|*数値*|同時`union`実行サブクエリで使用するノード数をシステムに示します。 *デフォルト*: 1.|
+  |`hint.concurrency`|*Number*|システムに対して、演算子の同時実行サブクエリの数を並列で実行するかどうかを `union` 指定します。 *既定値*: クラスターの単一ノードの CPU コアの量 (2 ~ 16)。|
+  |`hint.spread`|*Number*|同時実行のサブクエリによって使用されるノードの数をシステムにヒントし `union` ます。 *既定値*は1です。|
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
 * `Table`:
-    *  テーブルの名前(次の表)`Events`
-    *  かっこで囲む必要があるクエリ式。`(Events | where id==42)`
-    *  ワイルドカードで指定されたテーブルのセット。 たとえば、`E*`名前が始まる`E`データベース内のすべてのテーブルの和集合を形成します。
+    *  テーブルの名前 (など)`Events`
+    *  かっこで囲む必要があるクエリ式 (例)`(Events | where id==42)`
+    *  ワイルドカードで指定されたテーブルのセット。 たとえば、 `E*` は、名前が始まるデータベース内のすべてのテーブルの和集合を形成し `E` ます。
 * `kind`: 
     * `inner` - 結果には、すべての入力テーブルに共通する列のサブセットが含まれます。
-    * `outer`- (デフォルト)。 結果には、入力のいずれかで発生するすべての列が含まれます。 入力行で定義されていないセルは、 に`null`設定されます。
-* `withsource`=*列名*: 指定した場合、出力には*ColumnName*という列が含まれ、その値は各行にどのソース テーブルが貢献したかを示します。
-クエリが複数のデータベースからテーブルを効果的に参照する場合 (既定のデータベースは常にカウントされます)、この列の値はデータベースで修飾されたテーブル名になります。
-同様に、複数のクラスターが参照されている場合、__クラスターとデータベース__の条件も値に含まれます。 
-* `isfuzzy=``true` `isfuzzy` : に設定されている`true`場合 - ユニオンレッグのファジー解決を許可します。  |  `false` `Fuzzy`は、ソースの`union`セットに適用されます。 これは、クエリを分析して実行の準備をしているときに、共用体ソースのセットが、存在し、その時点でアクセス可能なテーブル参照のセットに縮小されることを意味します。 このようなテーブルが少なくとも 1 つ見つかった場合、解決エラーが発生すると、クエリステータスの結果に警告が表示されます (参照が欠落している場合は 1 つずつ) が、クエリの実行を妨げなくなります。解決が成功しなかった場合、クエリはエラーを返します。
+    * `outer`-(既定値)。 結果には、すべての入力に出現するすべての列が含まれます。 入力行で定義されていないセルはに設定され `null` ます。
+* `withsource`=*Columnname*: 指定した場合、出力には、各行を提供したソーステーブルを示す値を持つ*ColumnName*という列が含まれます。
+(ワイルドカードの照合後に) クエリが複数のデータベースのテーブルを参照している場合 (既定のデータベースは常にカウントされます)、この列の値は、データベースで修飾されたテーブル名になります。
+同様に、複数のクラスターが参照されている場合は、__クラスターとデータベース__の要件が値に含まれます。 
+* `isfuzzy=``true`  |  `false` : がに設定されている場合は `isfuzzy` `true` 、共用体の区間のあいまい解決を許可します。 `Fuzzy`ソースのセットに適用さ `union` れます。 これは、クエリを分析し、実行の準備をしている間に、一連の共用体のソースが存在し、その時点でアクセス可能なテーブル参照のセットに縮小されることを意味します。 少なくとも1つのテーブルが見つかった場合、解決エラーが発生すると、クエリの状態の結果 (参照が不足している場合は1つ) に警告が生成されますが、クエリの実行が妨げられることはありません。解決策が成功しなかった場合、クエリはエラーを返します。
 既定では、 `isfuzzy=false`です。
 
 ::: zone-end
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 すべての入力テーブルに存在する行と同数の行を含むテーブル。
 
@@ -83,34 +83,34 @@ Table1 | union Table2, Table3
 
 ::: zone pivot="azuredataexplorer"
 
-1. `union`scope は、[ビュー キーワード](./letstatement.md)で属性が設定されている場合に[let ステートメント](./letstatement.md)を含めることができます
-2. `union`スコープには[関数](../management/functions.md)が含まれません。 共用体スコープに関数を含めるには、ビューキーワードを指定して[let ステートメント](./letstatement.md)を定義[します。](./letstatement.md)
-3. 入力が`union`[テーブル](../management/tables.md)([表形式の式](./tabularexpressionstatements.md)ではなく) で、`union`に[where 演算子](./whereoperator.md)が続く場合は、パフォーマンスを向上させるために、両方を[find](./findoperator.md). オペレーターによって生成されるさまざまな[出力スキーマ](./findoperator.md#output-schema)に`find`注意してください。 
-4. `isfuzzy=true``union`ソースの解決フェーズにのみ適用されます。 ソース テーブルのセットが決定されると、追加のクエリ エラーが発生する可能性は抑制されません。
-5. を使用`outer union`すると、結果は、入力のいずれか、名前と種類の出現ごとに 1 つの列で発生するすべての列を持ちます。 つまり、1 つの列が複数のテーブルに存在し、複数の型が含まれる場合、その列には`union`、's の結果の各型に対応する列が存在します。 この列名の末尾には、'_' の後に元の列[の型](./scalar-data-types/index.md)が付きます。
+1. `union`[view キーワード](./letstatement.md)で属性が指定されている場合、スコープには[let ステートメント](./letstatement.md)を含めることができます
+2. `union`スコープには、[関数](../management/functions.md)は含まれません。 Union スコープに関数を含めるには、 [let ステートメント](./letstatement.md)を[view キーワード](./letstatement.md)と共に定義します。
+3. `union`入力が[テーブル](../management/tables.md)([表形式式](./tabularexpressionstatements.md)に oppose) であり、の後に where 演算子が続く場合、パフォーマンスを向上させるには、 `union` 両方を[find](./findoperator.md)に置き換えることを検討[where operator](./whereoperator.md)してください。 演算子によって生成された別の[出力スキーマ](./findoperator.md#output-schema)に注意して `find` ください。 
+4. `isfuzzy=true`ソースの解決フェーズにのみ適用さ `union` れます。 ソーステーブルのセットが決定されると、追加のクエリエラーが抑制されません。
+5. を使用する場合、結果には、 `outer union` すべての入力で発生するすべての列が含まれます。名前と型のオカレンスごとに1つの列があります。 つまり、1つの列が複数のテーブルに存在し、複数の型がある場合、その列の結果の型ごとに対応する列が作成され `union` ます。 この列名の末尾には、' _ '、元の列の[型](./scalar-data-types/index.md)が続きます。
 
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-1. `union`scope は、[ビュー キーワード](./letstatement.md)で属性が設定されている場合に[let ステートメント](./letstatement.md)を含めることができます
-2. `union`スコープには関数は含まれません。 共用体スコープに関数を含めるには、 view[キーワード](./letstatement.md)を使用して[let ステートメント](./letstatement.md)を定義します。
-3. 入力が`union`テーブル ([表形式の式](./tabularexpressionstatements.md)ではなく) で、`union`に[where 演算子](./whereoperator.md)が続く場合は、パフォーマンスを向上させるために両方を[find](./findoperator.md)に置き換えることを検討してください。 オペレーターによって生成されるさまざまな[出力スキーマ](./findoperator.md#output-schema)に`find`注意してください。 
-4. `isfuzzy=``true`は、ソースの解像度のフェーズにのみ適用`union`されます。 ソース テーブルのセットが決定されると、追加のクエリ エラーが発生する可能性は抑制されません。
-5. を使用`outer union`すると、結果は、入力のいずれか、名前と種類の出現ごとに 1 つの列で発生するすべての列を持ちます。 つまり、1 つの列が複数のテーブルに存在し、複数の型が含まれる場合、その列には`union`、's の結果の各型に対応する列が存在します。 この列名の末尾には、'_' の後に元の列[の型](./scalar-data-types/index.md)が付きます。
+1. `union`[view キーワード](./letstatement.md)で属性が指定されている場合、スコープには[let ステートメント](./letstatement.md)を含めることができます
+2. `union`スコープには、関数は含まれません。 Union スコープに関数を含めるには- [view キーワード](./letstatement.md)を使用して[let ステートメント](./letstatement.md)を定義する
+3. `union`入力がテーブル ([表形式式](./tabularexpressionstatements.md)に oppose) であり、の後に where 演算子が指定されている場合は、 `union` 両方を[find](./findoperator.md)に置き換えることをお勧めします。 [where operator](./whereoperator.md) 演算子によって生成された別の[出力スキーマ](./findoperator.md#output-schema)に注意してください `find` 。 
+4. `isfuzzy=``true`ソース解決のフェーズにのみ適用さ `union` れます。 ソーステーブルのセットが決定されると、追加のクエリエラーが抑制されません。
+5. を使用する場合、結果には、 `outer union` すべての入力で発生するすべての列が含まれます。名前と型のオカレンスごとに1つの列があります。 つまり、1つの列が複数のテーブルに存在し、複数の型がある場合、その列の結果の型ごとに対応する列が作成され `union` ます。 この列名の末尾には、' _ '、元の列の[型](./scalar-data-types/index.md)が続きます。
 
 ::: zone-end
 
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 union K* | where * has "Kusto"
 ```
 
-で始まる名前を持ち、任意の列`K`に が含`Kusto`まれるデータベース内のすべてのテーブルの行に.
+名前がで始まるデータベース内のすべてのテーブルの行。この場合、 `K` 列にはという単語が含まれ `Kusto` ます。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 union withsource=SourceTable kind=outer Query, Command
@@ -130,7 +130,7 @@ Query
 
 より効率的なこのバージョンでも同じ結果が生成されます。 和集合を作成する前に各テーブルをフィルター処理します。
 
-**例: 使用`isfuzzy=true`**
+**例: を使用する`isfuzzy=true`**
  
 ```kusto     
 // Using union isfuzzy=true to access non-existing view:                                     
@@ -148,7 +148,7 @@ union isfuzzy=true
 |---|
 |2|
 
-クエリの状態を監視する - 次の警告が返されます。`Failed to resolve entity 'View_3'`
+クエリの状態の監視-次の警告が返されました:`Failed to resolve entity 'View_3'`
 
 ```kusto
 // Using union isfuzzy=true and wildcard access:
@@ -163,9 +163,9 @@ union isfuzzy=true View*, SomeView*, OtherView*
 |---|
 |3|
 
-クエリの状態を監視する - 次の警告が返されます。`Failed to resolve entity 'SomeView*'`
+クエリの状態の監視-次の警告が返されました:`Failed to resolve entity 'SomeView*'`
 
-**例: ソース列の型が一致しない**
+**例: ソース列の型が一致しません**
  
 ```kusto     
 let View_1 = view () { print x=1 };
@@ -191,4 +191,4 @@ union withsource=TableName View_1, View_2, View_3
 |View_2   |       |2     |      |
 |View_3   |       |      |3     |
 
-サフィックス`x``_long`を`View_1`受け取った列で、結果スキーマ`x_long`に既に存在する列として、列名が重複解除され、新しい列が生成されました。`x_long1`
+列はサフィックスを受け取り、と `x` `View_1` `_long` いう名前の列が `x_long` 結果スキーマに既に存在するため、列名が重複除去され、新しい列が生成されます。`x_long1`

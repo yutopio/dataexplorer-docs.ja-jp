@@ -1,6 +1,6 @@
 ---
-title: trim_end() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでtrim_end() について説明します。
+title: trim_end ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの trim_end () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a6f6ffc264cb436fc61d74f08dfded915caa05d4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: cab78680a3b996234724bc052d75959928520289
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505646"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87339852"
 ---
 # <a name="trim_end"></a>trim_end()
 
-指定した正規表現の末尾一致を削除します。
+指定した正規表現の末尾の一致を削除します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`trim_end(`*正規表現*`,`*テキスト*`)`
+`trim_end(`*regex* `,`*テキスト*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *正規表現*:*テキスト*の末尾からトリミングする文字列または[正規表現](re2.md)。  
+* *regex*:*テキスト*の末尾から削除する文字列または[正規表現](re2.md)。  
 * *text*: 文字列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-*テキスト*の最後に見つかった*正規表現*の一致をトリミングした後の*テキスト*。
+*テキスト*の終わりで見つかった*regex*と一致するものをトリミングした後の*テキスト*。
 
-**例**
+## <a name="example"></a>例
 
-ステートメントベローズは *、string_to_trim*の終わりから*部分文字列*をトリミングします。
+ステートメントベルは、 *string_to_trim*の末尾から*部分文字列*をトリムします。
 
 ```kusto
 let string_to_trim = @"bing.com";
@@ -46,7 +46,7 @@ print string_to_trim = string_to_trim,trimmed_string = trim_end(substring,string
 |--------------|--------------|
 |bing.com      |bing.          |
 
-Next ステートメントは、文字列の末尾からすべての単語以外の文字をトリムします。
+次のステートメントは、文字列の末尾から単語以外のすべての文字をトリミングします。
 
 ```kusto
 print str = strcat("-  ","Te st",x,@"// $")
@@ -55,8 +55,8 @@ print str = strcat("-  ","Te st",x,@"// $")
 
 |str          |trimmed_str|
 |-------------|-----------|
-|- テ st1// $|- テ st1  |
-|- テ st2// $|- テ st2  |
-|- テ st3// $|- テ st3  |
-|- テ st4// $|- テ st4  |
-|- テ st5// $|- テ st5  |
+|-Te st1//$|-Te st1  |
+|-Te st2//$|-Te st2  |
+|-Te st3//$|-Te st3  |
+|-Te st4//$|-Te st4  |
+|-Te st5//$|-Te st5  |

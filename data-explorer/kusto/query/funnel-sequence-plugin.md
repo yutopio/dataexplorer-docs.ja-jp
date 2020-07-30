@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c68cac70223b4779b4ca0acf33cd9f66d8c91765
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 67a5e05a5720c8a9290523344f793c07c47c5ed2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227402"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347920"
 ---
 # <a name="funnel_sequence-plugin"></a>funnel_sequence プラグイン
 
@@ -23,11 +23,11 @@ ms.locfileid: "83227402"
 T | evaluate funnel_sequence(id, datetime_column, startofday(ago(30d)), startofday(now()), 10m, 1d, state_column, dynamic(['S1', 'S2', 'S3']))
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `funnel_sequence(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *End* `,` *maxsequencestepwindow*、 *Step*、 *statecolumn*、 *Sequence*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Idcolum*: 列参照。ソース式に存在する必要があります。
@@ -39,7 +39,7 @@ T | evaluate funnel_sequence(id, datetime_column, startofday(ago(30d)), startofd
 * *Statecolumn*: 状態を表す列参照は、ソース式に存在する必要があります。
 * *Sequence*: シーケンス値を持つ定数動的配列 (値はで検索され `StateColumn` ます)。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 は、次の3つの出力テーブルを返します。これは、分析されたシーケンスの sankey ダイアグラムを構築するのに役立ちます。
 
@@ -57,7 +57,7 @@ T | evaluate funnel_sequence(id, datetime_column, startofday(ago(30d)), startofd
     サンプル: 行のシーケンスに対応する (からの) Id の配列 `IdColumn` (最大128の id が返されます)。 
 
 
-**使用例**
+## <a name="examples"></a>例
 
 ### <a name="exploring-storm-events"></a>ストームイベントの調査 
 

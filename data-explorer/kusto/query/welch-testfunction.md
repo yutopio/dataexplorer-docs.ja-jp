@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1bb995874bf6ac552350c602c6d3742a08b1273b
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: cc0cc7ca77efeae583adeaf7a983d18498e5af96
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763683"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338271"
 ---
 # <a name="welch_test"></a>welch_test()
 
@@ -31,11 +31,11 @@ print
 // pValue = 0.021
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `welch_test(`*mean1* `, `*variance1* `, `*count1* `, `*mean2* `, `*variance2* `, `*count2*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *mean1*: 最初の系列の平均 (平均) 値を表す式
 * *variance1*: 最初の系列の分散値を表す式
@@ -44,7 +44,7 @@ print
 * *variance2*: 2 番目の系列の分散値を表す式
 * *count2*: 2 番目の系列の値の数を表す式
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 [Wikipedia](https://en.wikipedia.org/wiki/Welch%27s_t-test)から:
 

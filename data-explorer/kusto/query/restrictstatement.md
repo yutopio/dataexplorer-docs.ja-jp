@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8476680ad5b8206dcd7dfe98bf116bb5b6dcefdc
-ms.sourcegitcommit: 085e212fe9d497ee6f9f477dd0d5077f7a3e492e
+ms.openlocfilehash: a81c5faadb51b99cdcd233132f9b6a4843e3ce34
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85133455"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345795"
 ---
 # <a name="restrict-statement"></a>restrict ステートメント
 
@@ -25,7 +25,7 @@ Restrict ステートメントは、その後に続くクエリステートメ�
 
 Restrict ステートメントの主なシナリオは、ユーザーからのクエリを受け入れ、それらのクエリに行レベルのセキュリティメカニズムを適用する中間層アプリケーションの場合です。 中間層アプリケーションは、ユーザーのクエリにプレフィックスとして**論理モデル**を付けることができます。これは、ユーザーのデータへのアクセスを制限するビューを定義する let ステートメントのセットです (たとえば、 `T | where UserId == "..."` )。 最後に追加されたステートメントとして、ユーザーのアクセスを論理モデルのみに制限します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `restrict``access` `to` `(`[*Entityspecifier 子*[ `,` ...]]`)`
 
@@ -36,11 +36,11 @@ Restrict ステートメントの主なシナリオは、ユーザーからの�
 
 Restrict ステートメントで指定されていないすべてのテーブル、表形式ビュー、またはパターンは、クエリの残りの部分で "非表示" になります。 
 
-**ノート**
+**メモ**
 
 Restrict ステートメントを使用して、別のデータベースまたはクラスター内のエンティティへのアクセスを制限することができます (クラスター名ではワイルドカードはサポートされていません)。
 
-**引数**
+## <a name="arguments"></a>引数
 
 Restrict ステートメントでは、エンティティの名前解決時に制限の制限を定義するパラメーターを1つ以上取得できます。 エンティティは次のようになります。
 - ステートメントの前に[ステートメントを記述](./letstatement.md) `restrict` します。 
@@ -80,7 +80,7 @@ restricts access to (database('DB2').*);
 ```
 
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例では、中間層アプリケーションが、ユーザーが他のユーザーのデータを照会できないようにする論理モデルを使用して、ユーザーのクエリを前に付加する方法を示します。
 

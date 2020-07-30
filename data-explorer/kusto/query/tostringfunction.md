@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 634f54533e83575139d8399124cc068af56d8574
-ms.sourcegitcommit: 4f68d6dbfa6463dbb284de0aa17fc193d529ce3a
+ms.openlocfilehash: 2093ff1117cf7744af550cf93c3fe630fa40a6e6
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82741669"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340177"
 ---
 # <a name="tostring"></a>tostring()
 
@@ -23,16 +23,16 @@ ms.locfileid: "82741669"
 tostring(123) == "123"
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `tostring(`*`Expr`*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *`Expr`*: 文字列に変換される式。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-*`Expr`* 値が null 以外の場合、結果はの*`Expr`* 文字列表現になります。
+*`Expr`* 値が null 以外の場合、結果はの文字列表現になり *`Expr`* ます。
 *`Expr`* 値が null の場合、結果は空の文字列になります。
  

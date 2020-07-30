@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 073bf45977648bd654f72fff47b62f92ac1b3d27
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: d0a60a61e5319d9a190f6172b9c0bd8fb7fe1300
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227385"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347971"
 ---
 # <a name="format_datetime"></a>format_datetime()
 
@@ -23,22 +23,22 @@ ms.locfileid: "83227385"
 format_datetime(datetime(2015-12-14 02:03:04.12345), 'y-M-d h:m:s.fffffff') == "15-12-14 2:3:4.1234500"
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `format_datetime(`*datetime* `,`*形式*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * `datetime`: 型の値 `datetime` 。
 * `format`: 書式指定子文字列。1つ以上の[書式要素](#supported-formats)で構成されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 形式の結果を含む文字列。
 
 ## <a name="supported-formats"></a>サポートされるフォーマット
 
-|書式指定子   |説明    |使用例
+|書式指定子   |説明    |例
 |---|---|---
 |`d`    |月の日にち (1 ～ 31)。 | 2009-06-01T13:45:30-> 1、2009-06-15T13:45:30-> 15
 |`dd`   |月の日にち (01 ～ 31)。| 2009-06-01T13:45:30-> 01、2009-06-15T13:45:30-> 15
@@ -75,7 +75,7 @@ format_datetime(datetime(2015-12-14 02:03:04.12345), 'y-M-d h:m:s.fffffff') == "
 
 書式指定子には、次の区切り文字を含めることができます。
 
-|区切り記号|解説|
+|区切り記号|コメント|
 |---------|-------|
 |`' '`| Space|
 |`'/'`||
@@ -87,7 +87,7 @@ format_datetime(datetime(2015-12-14 02:03:04.12345), 'y-M-d h:m:s.fffffff') == "
 |`'['`||
 |`']'`||
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

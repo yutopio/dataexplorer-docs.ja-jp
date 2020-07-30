@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 167ba8818709f52ccc344452e275405c42b1796e
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: df7b994350297d911a0f3be59c791b6538899d67
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227674"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349790"
 ---
 # <a name="activity_counts_metrics-plugin"></a>activity_counts_metrics プラグイン
 
@@ -23,11 +23,11 @@ ms.locfileid: "83227674"
 T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `activity_counts_metrics(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *終了* `,` *ウィンドウ*[ `,` *cohort*] [ `,` *dim1* `,` *dim2* `,` ...] [ `,` *元に戻す*]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
@@ -37,7 +37,7 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 * *ウィンドウ*: 分析ウィンドウ期間の値を持つスカラー。 には、数値/日付/時刻/タイムスタンプ値、またはのいずれかの文字列を指定でき `week` / `month` / `year` ます。この場合、すべての期間は[startofweek](startofweekfunction.md) / [startofmonth](startofmonthfunction.md)または[startofyear](startofyearfunction.md)になります。 
 * *dim1*、 *dim2*、...: (省略可能) アクティビティメトリックスの計算をスライスするディメンション列の一覧です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 合計カウント値、個別のカウント値、個別の値の数、および時間枠ごとの集計された個別のカウントを含むテーブルを返します。
 
@@ -54,7 +54,7 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 * *`new_dcount`*: 時間枠内の個別の ID 値と、以前のすべての時間*枠との*差異。 
 * *`aggregated_dcount`*: 最初の時間枠から現在までの*dim*の個別の ID 値の合計 (を含む)。
 
-**使用例**
+## <a name="examples"></a>例
 
 ### <a name="daily-activity-counts"></a>日単位のアクティビティ数 
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: b1f3ef10ac5cee3eb9bc1c1dca4c0de26bd85477
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 2873f3d010464b82ef8cb6a9a3e09f7b0a56b8d9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780203"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345710"
 ---
 # <a name="schema_merge-plugin"></a>schema_merge プラグイン
 
@@ -29,19 +29,19 @@ let Schema2=Table2 | getschema;
 union Schema1, Schema2 | evaluate schema_merge()
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `T``|` `evaluate` `schema_merge(`*PreserveOrder*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *PreserveOrder*: (省略可能) に設定すると `true` 、保持されている最初の表形式スキーマで定義されている列の順序を検証するようにプラグインに指示します。 同じ列が複数のスキーマに含まれている場合、列の序数は、その列が表示されている最初のスキーマの列の序数に似ている必要があります。 既定値は `true` です。
+* *PreserveOrder*: (省略可能) に設定すると `true` 、保持されている最初の表形式スキーマで定義されている列の順序を検証するようにプラグインに指示します。 同じ列が複数のスキーマに含まれている場合、列の序数は、その列が表示されている最初のスキーマの列の序数に似ている必要があります。 既定値は `true`にする必要があります。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 プラグインは、 `schema_merge` 演算子が返すものと同様の出力を返し [`getschema`](./getschemaoperator.md) ます。
 
-**使用例**
+## <a name="examples"></a>例
 
 新しい列が追加されたスキーマとマージします。
 

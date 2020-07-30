@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 5e02c7ca2874a779cc5a626fd65522392439b491
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: b376afda0874fdb70934ffc6861192ef9028e9aa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271589"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347087"
 ---
 # <a name="new_activity_metrics-plugin"></a>new_activity_metrics プラグイン
 
@@ -22,11 +22,11 @@ ms.locfileid: "83271589"
 T | evaluate new_activity_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `new_activity_metrics(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *終了* `,` *ウィンドウ*[ `,` *cohort*] [ `,` *dim1* `,` *dim2* `,` ...] [ `,` *元に戻す*]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
@@ -38,7 +38,7 @@ T | evaluate new_activity_metrics(id, datetime_column, startofday(ago(30d)), sta
 * *dim1*、 *dim2*、...: (省略可能) アクティビティメトリックスの計算をスライスするディメンション列の一覧です。
 * ルック*バック*: (省略可能) ' 参照元 ' 期間に属する id のセットを含む表形式の式
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 "From" と "to" の各タイムラインの期間と、既存の各ディメンションの組み合わせについて、個別のカウント値、新しい値の個別のカウント、保持率、およびチャーン率を含むテーブルを返します。
 
@@ -61,7 +61,7 @@ T | evaluate new_activity_metrics(id, datetime_column, startofday(ago(30d)), sta
 の定義については、 `Retention Rate` `Churn Rate` [activity_metrics プラグイン](./activity-metrics-plugin.md)のドキュメントの「**メモ**」セクションを参照してください。
 
 
-**使用例**
+## <a name="examples"></a>例
 
 次のサンプルデータセットは、どのユーザーがどの日に表示されたかを示しています。 テーブルは、次のように、ソーステーブルに基づいて生成されました `Users` 。 
 

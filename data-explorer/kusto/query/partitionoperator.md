@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 417d4afb74e9170301baebde6be73d97df097f0f
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: 2b082e516a1118638bc8e61b545471326dd400e5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271538"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346237"
 ---
 # <a name="partition-operator"></a>partition 演算子
 
@@ -25,13 +25,13 @@ T | partition by Col1 ( top 10 by MaxValue )
 T | partition by Col1 { U | where Col2=toscalar(Col1) }
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `|` `partition` [*partitionparameters*] `by` *列* `(` *ContextualSubquery*`)`
 
 *T* `|` `partition` [*partitionparameters*] `by` *列*の `{` *サブクエリ*`}`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 演算子によって処理されるデータを含む表形式のソース。
 
@@ -46,10 +46,10 @@ T | partition by Col1 { U | where Col2=toscalar(Col1) }
   |名前               |値         |説明|
   |-------------------|---------------|-----------|
   |`hint.materialized`|`true`,`false` |に設定する `true` と、演算子のソースが具体化されます `partition` (既定値: `false` )。|
-  |`hint.concurrency`|*数値*|システムに対して、演算子の同時実行サブクエリの数を並列で実行するかどうかを `partition` 指定します。 *既定値*: クラスターの単一ノードの CPU コアの量 (2 ~ 16)。|
-  |`hint.spread`|*数値*|同時実行のサブクエリによって使用されるノードの数をシステムにヒントし `partition` ます。 *既定値*は1です。|
+  |`hint.concurrency`|*Number*|システムに対して、演算子の同時実行サブクエリの数を並列で実行するかどうかを `partition` 指定します。 *既定値*: クラスターの単一ノードの CPU コアの量 (2 ~ 16)。|
+  |`hint.spread`|*Number*|同時実行のサブクエリによって使用されるノードの数をシステムにヒントし `partition` ます。 *既定値*は1です。|
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 演算子は、サブクエリを入力データの各パーティションに適用した結果の和集合を返します。
 
@@ -76,7 +76,7 @@ StormEvents
 ) 
 
 ```
-|EventType|State|イベント|怪我|
+|EventType|State|events|怪我|
 |---|---|---|---|
 |ひょう|ワイオミング州|108|0|
 |高風|ワイオミング州|81|5|

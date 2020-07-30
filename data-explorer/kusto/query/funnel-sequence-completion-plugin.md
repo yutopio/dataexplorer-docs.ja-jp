@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/16/2020
-ms.openlocfilehash: 57cceb2fabb16956090430161b98c1287efdef97
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 3511d15ebf0f5e3708deeeed981a8a6808da2e48
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227325"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347937"
 ---
 # <a name="funnel_sequence_completion-plugin"></a>funnel_sequence_completion プラグイン
 
@@ -23,11 +23,11 @@ ms.locfileid: "83227325"
 T | evaluate funnel_sequence_completion(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, state_column, dynamic(['S1', 'S2', 'S3']), dynamic([10m, 30min, 1h]))
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `funnel_sequence_completion(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *End* `,` *Step* `,` *statecolumn* `,` *シーケンス* `,` *maxsequencestepwindows*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Idcolum*: 列参照。ソース式に存在する必要があります。
@@ -39,7 +39,7 @@ T | evaluate funnel_sequence_completion(id, datetime_column, startofday(ago(30d)
 * *Sequence*: シーケンス値を持つ定数動的配列 (値はで検索され `StateColumn` ます)。
 * *Maxsequencestepwindows*: シーケンス内の最初と最後の連続するステップ間の最大許容期間の値を持つスカラー定数動的配列。 配列の各ウィンドウ (ピリオド) では、じょうご分析の結果が生成されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 分析されたシーケンスのじょうごグラフを作成するのに役立つ単一のテーブルを返します。
 
@@ -48,7 +48,7 @@ T | evaluate funnel_sequence_completion(id, datetime_column, startofday(ago(30d)
 * `Period`: シーケンスの最初のステップから測定されたじょうごシーケンスのステップを完了するために使用できる最大期間 (ウィンドウ)。 *Maxsequencestepwindows*の各値によって、個別のピリオドでじょうご分析が生成されます。 
 * `dcount`: `IdColumn` 最初のシーケンス状態からの値に遷移した時間枠の個別のカウント `StateColumn` 。
 
-**使用例**
+## <a name="examples"></a>例
 
 ### <a name="exploring-storm-events"></a>ストームイベントの調査 
 

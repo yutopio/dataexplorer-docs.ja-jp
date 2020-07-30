@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 76ead8fabe755d5e3e200a767cb8b7518121b2ac
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 7a7cbb563a10b1cd1bdd91f12b0ce9d7da1c0e7b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128956"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346033"
 ---
 # <a name="project-operator"></a>project 演算子
 
@@ -25,7 +25,7 @@ ms.locfileid: "85128956"
 T | project cost=price*quantity, price
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| project` *ColumnName* [ `=` *式*] [ `,` ...]
   
@@ -33,7 +33,7 @@ or
   
 *T* `| project` [*columnname*  |  `(` *columnname*[ `,` ] `)` `=` ]*式*[ `,` ...]
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル。
 * *ColumnName:* 出力に表示される列の名前 (省略可能)。 *式*が存在しない場合は、 *ColumnName*が必須であり、その名前の列が入力に含まれている必要があります。 省略した場合、名前は自動的に生成されます。 *Expression*から複数の列が返される場合は、列名のリストをかっこで囲んで指定できます。 この場合、*式*の出力列には指定された名前が付けられ、残りの出力列はすべて削除されます。 列名のリストが指定されていない場合は、生成された名前を持つすべての*式*の出力列が出力に追加されます。
@@ -41,11 +41,11 @@ or
 
     入力内の既存の列と同じ名前を持つ新しい計算列を返すことは、問題ありません。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 引数で指定された列と、入力テーブルと同数の行が含まれるテーブル。
 
-**例**
+## <a name="example"></a>例
 
 次の例は、 `project` 演算子を使って実行できる何種類かの操作を示しています。 入力テーブル `T` には、`int` 型の列が 3 つあります (`A`、`B`、`C`)。 
 

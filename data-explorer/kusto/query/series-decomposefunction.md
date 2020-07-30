@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 4500ec5b58c93901e011ea6dd270563d3405ee01
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: fa17d27506c4930fa9b9f7fb0a24f5ff31e1c974
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372864"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345166"
 ---
 # <a name="series_decompose"></a>series_decompose()
 
@@ -21,11 +21,11 @@ ms.locfileid: "83372864"
 
 系列 (動的な数値配列) を含む式を入力として受け取り、季節、傾向、および残余コンポーネントに分解されします。
  
-**構文**
+## <a name="syntax"></a>構文
 
 `series_decompose(`*シリーズ* `[,`*季節* `,` 性*傾向* `,`*Test_points* `,`*Seasonality_threshold*`])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Series*: 数値の配列である動的配列のセル。通常は、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の結果の出力です。
 * *季節*性: 季節分析を制御する整数 (次のいずれかを含む)
@@ -39,7 +39,7 @@ ms.locfileid: "83372864"
 * *Test_points*: 0 (既定値) または正の整数。学習 (回帰) プロセスから除外する系列の末尾の点の数を指定します。 このパラメーターは、予測のために設定する必要があります。
 * *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値は、既定のスコアしきい値は `0.6` です。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
 
-**返し**
+**Return**
 
  関数は、次の各系列を返します。
 
@@ -66,7 +66,7 @@ ms.locfileid: "83372864"
 
 このメソッドは、通常、周期的な傾向または傾向の動作をマニフェストに必要とするメトリックの時系列に適用されます。 メソッドを使用して、将来のメトリック値を予測したり、異常な値を検出したりできます。 この回帰プロセスの暗黙的な前提は、季節と傾向の動作とは別に、タイムシリーズがストキャスティクスされ、ランダムに分散されることです。 残余部分を無視して、季節と傾向のコンポーネントから将来のメトリック値を予測します。 残留部分のみで外れ値の検出に基づいて異常な値を検出します。 詳細については、「[時系列分解](https://www.otexts.org/fpp/6)」の章を参照してください。
 
-**使用例**
+## <a name="examples"></a>例
 
 **週単位の季節性**
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 7aafc6ce041395a914787ed2b406d88aa9910238
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 21a57e4c49e982fbb113917abe173f89426c74ed
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717164"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345149"
 ---
 # <a name="series_decompose_forecast"></a>series_decompose_forecast()
 
@@ -21,11 +21,11 @@ ms.locfileid: "84717164"
 
 系列 (動的な数値配列) を含む式を入力として受け取り、最後の末尾の点の値を予測します。 詳細については、「 [series_decompose](series-decomposefunction.md)」を参照してください。
  
-**構文**
+## <a name="syntax"></a>構文
 
 `series_decompose_forecast(`*シリーズ* `,`*ポイント* `[,`*季節* `,` 性*傾向* `,`*Seasonality_threshold*`])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Series*: 数値の動的配列セル。 通常、結果として得られるのは、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の出力です。
 * *Points*: 予測する系列の末尾の点の数を指定する整数 (予測)。 これらのポイントは、learning (回帰) プロセスから除外されます。
@@ -39,7 +39,7 @@ ms.locfileid: "84717164"
     * `none`: 傾向がありません。このコンポーネントの抽出をスキップします。
 * *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値。 既定のスコアのしきい値は `0.6` です。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
 
-**返し**
+**Return**
 
  予測系列を含む動的配列。
 
@@ -47,7 +47,7 @@ ms.locfileid: "84717164"
 > * 元の入力系列の動的配列には、予測する*ポイント*スロットの数を含める必要があります。 予測を行うには、通常、[シリーズ](make-seriesoperator.md)を使用して、予測する期間を含む範囲の終了時刻を指定します。
 > * 季節性または傾向のいずれかを有効にする必要があります。それ以外の場合、関数は冗長であり、ゼロで塗りつぶされた系列を返します。
 
-**例**
+## <a name="example"></a>例
 
 次の例では、週単位の季節性と小さな上昇傾向を含む、1時間ごとの粒度で4週間のシリーズを生成します。 次に、を使用 `make-series` し、空の週を系列に追加します。 `series_decompose_forecast`は週 (24 * 7 ポイント) で呼び出され、季節性と傾向を自動的に検出し、5週間の期間全体の予測を生成します。
 

@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4662b1bd9f68778cab1f799f564499e23add5812
-ms.sourcegitcommit: 6a0bd5b84f9bd739510c6a75277dec3a9e851edd
+ms.openlocfilehash: d2f9db1dbace646c41d8751272cf44cf6d04c2c3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84788904"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346135"
 ---
-# <a name="pivot-plugin"></a>ピボットプラグイン
+# <a name="pivot-plugin"></a>pivot プラグイン
 
 入力テーブル内の1つの列の一意の値を出力テーブル内の複数の列に変換してテーブルを回転し、最終的な出力に必要なその他の列値に必要な集計を実行します。
 
@@ -23,17 +23,17 @@ ms.locfileid: "84788904"
 T | evaluate pivot(PivotColumn)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `T | evaluate pivot(`*Pivotcolumn* `[, `*集計 ationfunction* `] [,`*column1* `[,`*column2* ...`]])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *pivotcolumn*: 回転する列。 この列からの一意の値はそれぞれ、出力テーブルの列になります。
 * *集計関数*: (省略可能) 入力テーブル内の複数の行を出力テーブルの単一の行に集計します。 現在サポートされている関数:、、、、、、、、、、 `min()` `max()` `any()` `sum()` `dcount()` `avg()` `stdev()` `variance()` `make_list()` `make_bag()` `make_set()` 、 `count()` (既定値は `count()` )。
 * *column1*、 *column2*、...: (省略可能) 列名。 出力テーブルには、指定された列ごとに追加の列が含まれます。 既定値: ピボットされた列と集計列以外のすべての列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 Pivot は、指定された列 (*column1*、 *column2*、...) とピボット列のすべての一意の値を含む、回転したテーブルを返します。 ピボットされた列の各セルには、集計関数の計算が含まれます。
 
@@ -41,7 +41,7 @@ Pivot は、指定された列 (*column1*、 *column2*、...) とピボット列
 
 プラグインの出力スキーマ `pivot` はデータに基づいているため、クエリを実行すると、2つの実行に対して異なるスキーマが生成される可能性があります。 これは、アンパックされた列を参照しているクエリがいつでも "壊れている" 可能性があることも意味します。 この理由により、automation ジョブにこのプラグインを使用することは推奨されません。
 
-**使用例**
+## <a name="examples"></a>例
 
 ### <a name="pivot-by-a-column"></a>列でピボットする
 

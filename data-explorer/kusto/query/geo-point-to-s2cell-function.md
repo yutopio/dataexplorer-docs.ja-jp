@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: fe3af4218fcc8b714cd4d62e45e78d6f8c9c0270
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: a094644e6f8a96631e5e1bcf1d2d15cf1ba7caad
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226909"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347750"
 ---
 # <a name="geo_point_to_s2cell"></a>geo_point_to_s2cell()
 
@@ -21,17 +21,17 @@ ms.locfileid: "83226909"
 
 [S2 セル階層](https://s2geometry.io/devguide/s2cell_hierarchy)の詳細については、こちらをご覧ください。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_point_to_s2cell(`*経度* `, `*緯度* `, `*レベル*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *経度*: 地理的な場所の経度の値。 *X*が実数で、 *x*が [-180, + 180] の範囲内にある場合、経度*x*は有効と見なされます。 
 * *緯度*: 地理的な場所の緯度の値。 [-90, + 90] の範囲の y が実数と y の場合、緯度 y は有効と見なされます。 
 * *level*: `int` 要求されたセルレベルを定義する省略可能な。 サポートされている値の範囲は [0, 30] です。 指定しない場合は、既定値 `11` が使用されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 指定された地理的な場所の S2 セルトークン文字列値。 座標またはレベルが無効である場合は、クエリによって空の結果が生成されます。
 
@@ -48,7 +48,7 @@ ms.locfileid: "83226909"
 
 各レベルでは、S2 セルのサイズは似ていますが、まったく同じではありません。 隣接するセルのサイズが等しい傾向があります。
 
-|Level|最小ランダムセルのエッジ長 (UK)|最大ランダムセル長の長さ (US)|
+|レベル|最小ランダムセルのエッジ長 (UK)|最大ランダムセル長の長さ (US)|
 |--|--|--|
 |0|7842 km|7842 km|
 |1|3921 km|5004 km|
@@ -86,7 +86,7 @@ ms.locfileid: "83226909"
 
 「 [Geo_point_to_geohash ()](geo-point-to-geohash-function.md)」も参照してください。
 
-**使用例**
+## <a name="examples"></a>例
 
 S2cell によって集計された米国の嵐イベント。
 

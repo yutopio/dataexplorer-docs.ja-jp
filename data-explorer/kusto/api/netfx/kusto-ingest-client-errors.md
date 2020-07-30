@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 97798fa62d588769636966c7155dc5f398bd001a
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 6b94dfc0fab1150b598fad9d55beec2f3a81ad73
+ms.sourcegitcommit: f34535b0ca63cff22e65c598701cec13856c1742
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382320"
+ms.lasthandoff: 07/29/2020
+ms.locfileid: "87402340"
 ---
 # <a name="kustoingest-errors-and-exceptions"></a>Kusto. 取り込みエラーと例外
 クライアント側でのインジェスト処理中にエラーが発生した場合は、C# の例外によって示されます。
@@ -52,7 +52,7 @@ DataReader ソースを使用している間、キューにポストするデー
 `IngestFromDataReader`メソッドとメソッドでは、既定値がであるフラグによって、 `IngestFromDataReaderAsync` インジェストの `retainCsvOnFailure` `false` 失敗後にファイルを保持するかどうかが決定されます。 このフラグがに設定されている場合 `false` 、インジェストに失敗したデータは保存されず、問題が発生した原因を把握することが難しくなります。
 
 ### <a name="common-failures"></a>一般的なエラー
-|エラー                         |理由           |対応策                                   |
+|エラー                         |理由           |軽減策                                   |
 |------------------------------|-----------------|---------------------------------------------|
 |データベース <database name> 名が存在しません| データベースが存在しません|データベース名を確認し `kustoIngestionProperties` てください。 |
 |種類 ' Table ' のエンティティ ' テーブル名が存在しません。|このテーブルは存在しません。 CSV マッピングはありません。| CSV マッピングを追加する/必要なテーブルを作成する |
@@ -69,7 +69,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 |ErrorCode                                      |理由                                                        |
 |-----------------------------------------------|--------------------------------------------------------------|
-|不明                                        | 不明なエラーが発生しました|
+|Unknown                                        | 不明なエラーが発生しました|
 |Stream_LowMemoryCondition                      | メモリ不足により、操作が実行されました|
 |Stream_WrongNumberOfFields                     | CSV ドキュメントに含まれているフィールドの数が一致しません|
 |Stream_InputStreamTooLarge                     | インジェストのために送信されたドキュメントが、許可されているサイズを超えました|
@@ -87,7 +87,10 @@ DataReader ソースを使用している間、キューにポストするデー
 |UpdatePolicy_IngestionError                    | 更新ポリシーを呼び出せませんでした。 インジェストエラーが発生しました|
 |UpdatePolicy_UnknownError                      | 更新ポリシーを呼び出せませんでした。 不明なエラーが発生しました|
 |BadRequest_MissingJsonMappingtFailure          | JsonMapping パラメーターを使用して JSON パターンを取り込みませんでした|
-|BadRequest_InvalidOrEmptyBlob                  | Blob が無効であるか、空の zip アーカイブです|
+|BadRequest_InvalidBlob                         | エンジンが zip 以外の blob を開いて読み取ることができませんでした|
+|BadRequest_EmptyBlob                           | 空の blob|
+|BadRequest_EmptyArchive                        | Zip ファイルにアーカイブ済みの要素が含まれていません|
+|BadRequest_EmptyBlobUri                        | 指定された blob URI は空です|
 |BadRequest_DatabaseNotExist                    | データベースが存在しません|
 |BadRequest_TableNotExist                       | テーブルが存在しません|
 |BadRequest_InvalidKustoIdentityToken           | Kusto id トークンが無効です|
@@ -107,7 +110,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|フィールド名 |種類     |説明
+|フィールド名 |Type     |意味
 |-----------|---------|------------------------------|
 |エラー      | String  | DM からキューを取得しようとしたときに発生したエラー
                             
@@ -121,7 +124,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|フィールド名   |種類     |説明       
+|フィールド名   |Type     |意味       
 |-------------|---------|------------------------------|
 |KustoEndpoint| String  | 関連する DM のエンドポイント
                             
@@ -134,7 +137,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|フィールド名   |種類     |説明       
+|フィールド名   |Type     |意味       
 |-------------|---------|------------------------------------|
 |PropertyName | String  | 重複するプロパティの名前
                             
@@ -144,7 +147,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
 
-|フィールド名   |種類     |説明       
+|フィールド名   |Type     |意味       
 |-------------|---------|---------------------------------|
 |QueueUri     | String  | キューの URI
 |エラー        | String  | キューへの投稿を試行しているときに生成されたエラーメッセージ
@@ -186,7 +189,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基本クラス: IngestClientException
 
-|フィールド名   |種類     |説明       
+|フィールド名   |Type     |意味       
 |-------------|---------|-----------------------|
 |サイズ         | long    | インジェストソースのサイズ
 |MaxSize      | long    | インジェストに許可される最大サイズ
@@ -217,7 +220,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基本クラス: [AggregateException](https://msdn.microsoft.com/library/system.aggregateexception(v=vs.110).aspx)
 
-|フィールド名      |種類                             |説明       
+|フィールド名      |Type                             |意味       
 |----------------|---------------------------------|-----------------------|
 |IngestionErrors | IList<IngestClientException>    | 取り込みの試行中に発生したエラーと、それらに関連するソース
 |IsGlobalError   | [bool]                            | すべてのソースで例外が発生したかどうかを示します

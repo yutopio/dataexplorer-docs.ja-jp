@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: e3f874ecfc0bb1872f08efa3269c73b02971e4f3
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 1bfe42e18cfe0bb424e933b266eb9861c7676cea
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737642"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348583"
 ---
 # <a name="database-scope-function"></a>database () (スコープ関数)
 
@@ -28,13 +28,13 @@ database('Sample').StormEvents
 cluster('help').database('Sample').StormEvents
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `database(`*stringConstant*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Stringconstant*: 参照されているデータベースの名前。 識別されるデータベースに`DatabaseName`は`PrettyName`、またはを指定できます。 引数は、クエリを実行する前に_定数_にする必要があります。つまり、サブクエリの評価から取得することはできません。
+* *Stringconstant*: 参照されているデータベースの名前。 識別されるデータベースに `DatabaseName` は、またはを指定でき `PrettyName` ます。 引数は、クエリを実行する前に_定数_にする必要があります。つまり、サブクエリの評価から取得することはできません。
 
 **メモ**
 
@@ -55,7 +55,7 @@ database('Samples').StormEvents | count
 
 ### <a name="use-database-inside-let-statements"></a>Let ステートメント内で database () を使用する 
 
-データベース () 関数に渡されるパラメーター `dbName`を受け取るインライン関数 (let ステートメント) を使用するように、上記と同じクエリを書き換えることができます。
+データベース () 関数に渡されるパラメーターを受け取るインライン関数 (let ステートメント) を使用するように、上記と同じクエリを書き換えることができ `dbName` ます。
 
 ```kusto
 let foo = (dbName:string)
@@ -71,7 +71,7 @@ foo('help')
 
 ### <a name="use-database-inside-functions"></a>関数内で database () を使用する 
 
-上記と同じクエリは、データベース () 関数に渡されるパラメーター `dbName`を受け取る関数で使用するように書き直すことができます。
+上記と同じクエリは、 `dbName` データベース () 関数に渡されるパラメーターを受け取る関数で使用するように書き直すことができます。
 
 ```kusto
 .create function foo(dbName:string)

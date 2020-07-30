@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7ef4bf5607979cc02976d00250e8754f3a0c4e69
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 9321f30d2643f6e398d73cf7960490708626f723
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225175"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348362"
 ---
 # <a name="diffpatterns_text-plugin"></a>diffpatterns_text プラグイン
 
@@ -25,7 +25,7 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
 は、 `diffpatterns_text` 2 つのセット内のデータのさまざまな部分をキャプチャするテキストパターンのセットを返します (つまり、条件がのときに行の大きな割合をキャプチャし、 `true` 条件がの場合は行の割合を小さくします `false` )。 パターンは、(空白で区切られた) 連続するトークンから構築され、テキスト列のトークン、または `*` ワイルドカードを表すから作成されます。 各パターンは、結果内の行によって表されます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `T | evaluate diffpatterns_text(`TextColumn、BooleanCondition [、MinTokens、Threshold、MaxTokens]`)` 
 
@@ -55,7 +55,7 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
     結果パターンごとのトークンの最大数 (先頭から) を設定します。下限を指定すると、クエリの実行時間が短縮されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 Diffpatterns_text の結果は、次の列を返します。
 
@@ -68,7 +68,7 @@ Diffpatterns_text の結果は、次の列を返します。
 > [!NOTE]
 > パターンは必ずしも明確ではなく、データセット全体を網羅しているとは限りません。 パターンが重複している可能性があり、一部の行がどのパターンとも一致しない可能性があります。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -78,7 +78,7 @@ StormEvents
 | evaluate diffpatterns_text(EpisodeNarrative, EventType == "Extreme Cold/Wind Chill", 2)
 ```
 
-|Count_of_True|Count_of_False|Percent_of_True|Percent_of_False|パターン|
+|Count_of_True|Count_of_False|Percent_of_True|Percent_of_False|[パターン]|
 |---|---|---|---|---|
 |11|0|6.29|0|* Wake * で北西に移動する上空では、大きなレイク効果を snowfall ダウンウィンド * Lake trough に移行|
 |9|0|5.14|0|カナダの高負荷が決済された * * 地域 * 2 月 * 2006 以降、併置された温度が生成されました。 期間 * 固定温度|

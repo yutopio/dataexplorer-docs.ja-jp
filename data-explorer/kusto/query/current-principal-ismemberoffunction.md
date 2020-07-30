@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/09/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: fdd062abc02ff1d98ba935fc9016d0a1505e69c3
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: 67d589f15a414ed715a75cc1871549b06f3dba9b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550403"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348668"
 ---
 # <a name="current_principal_is_member_of"></a>current_principal_is_member_of()
 
@@ -31,11 +31,11 @@ print current_principal_is_member_of(
     )
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `current_principal_is_member_of`(`*list of string literals*`)
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *式の一覧*-文字列リテラルのコンマ区切りのリスト。各リテラルは、次のように構成されたプリンシパル完全修飾名 (文字列形式) です。  
 *PrinciplaType* `=`*PrincipalId* `;`*TenantId*
@@ -46,7 +46,7 @@ print current_principal_is_member_of(
 | AAD グループ       | `aadgroup=` |
 | AAD アプリケーション | `aadapp=`   |
 
-**戻り値**
+## <a name="returns"></a>戻り値
   
 この関数では次の値が返されます。
 * `true`: クエリを実行している現在のプリンシパルが、少なくとも1つの入力引数に対して正常に照合された場合。
@@ -60,7 +60,7 @@ print current_principal_is_member_of(
 > * `where current_principal_is_member_of('non-existing-group') != false` 
 
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

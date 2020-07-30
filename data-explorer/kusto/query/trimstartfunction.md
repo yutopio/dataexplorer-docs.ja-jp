@@ -1,6 +1,6 @@
 ---
-title: trim_start() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの trim_start() について説明します。
+title: trim_start ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの trim_start () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1d4ae71f73e76005f89766d974192c8eb24cd74d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4550fb07da37658ecf11a4eb04ecdf199d8ba989
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505578"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87339546"
 ---
 # <a name="trim_start"></a>trim_start()
 
-指定した正規表現の先頭に一致する文字列を削除します。
+指定された正規表現の先頭の一致を削除します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`trim_start(`*正規表現*`,`*テキスト*`)`
+`trim_start(`*regex* `,`*テキスト*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *正規表現*:*テキスト*の先頭からトリムする文字列または[正規表現](re2.md)。  
+* *regex*:*テキスト*の先頭からトリミングされる文字列または[正規表現](re2.md)。  
 * *text*: 文字列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-*テキスト*の先頭にある*正規表現*の一致をトリミングした後の*テキスト*。
+*テキスト*の先頭で見つかった*regex*と一致する文字列のトリミング後の*テキスト*です。
 
-**例**
+## <a name="example"></a>例
 
-ステートメントベローズは *、string_to_trim*の先頭から*部分文字列*をトリミングします。
+ステートメントベルは、 *string_to_trim*の先頭から*部分文字列*をトリムします。
 
 ```kusto
 let string_to_trim = @"https://bing.com";
@@ -46,7 +46,7 @@ print string_to_trim = string_to_trim,trimmed_string = trim_start(substring,stri
 |---|---|
 |https://bing.com|bing.com|
 
-Next ステートメントは、文字列の先頭からすべての単語以外の文字をトリムします。
+次のステートメントは、文字列の先頭から単語以外のすべての文字を取り除きます。
 
 ```kusto
 range x from 1 to 5 step 1
@@ -56,10 +56,10 @@ range x from 1 to 5 step 1
 
 |str|trimmed_str|
 |---|---|
-|- テ st1// $|テ st1// $|
-|- テ st2// $|テ st2// $|
-|- テ st3// $|テ st3// $|
-|- テ st4// $|テ st4// $|
-|- テ st5// $|テ st5// $|
+|-Te st1//$|Te st1//$|
+|-Te st2//$|Te st2//$|
+|-Te st3//$|Te st3//$|
+|-Te st4//$|Te st4//$|
+|-Te st5//$|Te st5//$|
 
  

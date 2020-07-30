@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8106d419f20dcacdec6386294a5b9ffb8d1bc8e2
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 69ba6a8ce3cd29d7459215184f7488b015d16558
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225906"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349807"
 ---
 # <a name="activity_metrics-plugin"></a>activity_metrics プラグイン
 
@@ -23,11 +23,11 @@ ms.locfileid: "83225906"
 T | evaluate activity_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `activity_metrics(` *idcolumn* `,` *TimelineColumn* `,` [*開始* `,` *終了* `,` ]*ウィンドウ*[ `,` *dim1* `,` *dim2* `,` ...]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
@@ -37,7 +37,7 @@ T | evaluate activity_metrics(id, datetime_column, startofday(ago(30d)), startof
 * *ウィンドウ*: 分析ウィンドウ期間の値を持つスカラー。 には、数値/日付/時刻/タイムスタンプ値、またはのいずれかの文字列を指定でき `week` / `month` / `year` ます。この場合、すべての期間は、それに応じて[startofweek](startofweekfunction.md) / [startofmonth](startofmonthfunction.md) / [startofyear](startofyearfunction.md)になります。 
 * *dim1*、 *dim2*、...: (省略可能) アクティビティメトリックスの計算をスライスするディメンション列の一覧です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 各タイムライン期間と、既存の各ディメンションの組み合わせについて、個別のカウント値、個別の数、新しい値の数、保有率、およびチャーン率を含むテーブルを返します。
 
@@ -90,7 +90,7 @@ T | evaluate activity_metrics(id, datetime_column, startofday(ago(30d)), startof
     [Retention rate] = 100.0% - [Churn Rate]
 
 
-**使用例**
+## <a name="examples"></a>例
 
 ### <a name="weekly-retention-rate-and-churn-rate"></a>週単位のリテンション率とチャーン率
 
@@ -114,7 +114,7 @@ range _day from _start to _end  step 1d
 
 |_day|retention_rate|churn_rate|
 |---|---|---|
-|2017-01-02 00:00: 00.0000000|(NaN)|(NaN)|
+|2017-01-02 00:00: 00.0000000|NaN|NaN|
 |2017-01-09 00:00: 00.0000000|0.179910044977511|0.820089955022489|
 |2017-01-16 00:00: 00.0000000|0.744374437443744|0.255625562556256|
 |2017-01-23 00:00: 00.0000000|0.612096774193548|0.387903225806452|

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 028bfb5a2d0ddf25f65cd16bca2c498d9dcb7059
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: fbb5d3765b4be20b55cd7e3fa155a26e429c61e8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737863"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351150"
 ---
 # <a name="set-statement"></a>set ステートメント
 
@@ -24,15 +24,15 @@ ms.locfileid: "82737863"
 `set`ステートメントは、クエリの実行中にクエリオプションを設定するために使用されます。
 クエリ オプションは、クエリの実行方法とクエリが結果を返す方法を制御します。 ブール型のフラグ (既定ではオフ)、または整数値を持つことができます。 クエリには任意の数の set ステートメントを含めることができます (含めなくてもかまいません)。 Set ステートメントは、プログラムの順序で記録される表形式の式ステートメントにのみ影響します。
 
-* クエリオプションは、 `ClientRequestProperties`プログラムでオブジェクトに設定することによって有効にすることもできます。 [こちら](../api/netfx/request-properties.md)を参照してください。
+* クエリオプションは、プログラムでオブジェクトに設定することによって有効にすることもでき `ClientRequestProperties` ます。 [こちら](../api/netfx/request-properties.md)を参照してください。
   
 * クエリオプションは、正式には Kusto 言語の一部ではなく、互換性のある言語の変更と見なされずに変更される可能性があります。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`set`*OptionName* [`=` *OptionValue*]
+`set`*OptionName* [ `=` *OptionValue*]
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 set querytrace;

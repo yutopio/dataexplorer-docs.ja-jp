@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b3dece66f3bafae989643afd418557aeaaa7d746
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: a02f275dc47e88c7b14b85d19040e907613d1b80
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225039"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348328"
 ---
 # <a name="diff-patterns-plugin"></a>diff パターンプラグイン
 
@@ -25,7 +25,7 @@ T | evaluate diffpatterns(splitColumn)
 ```
 
 
-**構文**
+## <a name="syntax"></a>構文
 
 `T | evaluate diffpatterns(SplitColumn, SplitValueA, SplitValueB [, WeightColumn, Threshold, MaxDimensions, CustomWildcard, ...])` 
 
@@ -76,7 +76,7 @@ T | evaluate diffpatterns(splitColumn)
 
     例: `T | extend splitColumn = iff(request-responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", "~", "~", "~", int(-1), double(-1), long(0), datetime(1900-1-1))`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 `Diffpatterns`2つのセット内のデータのさまざまな部分を取得するパターンの小さなセットを返します (つまり、1つ目のデータセット内の行の大部分をキャプチャし、2番目のセットの行の割合を低くします)。 各パターンは、結果内の行によって表されます。
 
@@ -109,7 +109,7 @@ T | evaluate diffpatterns(splitColumn)
 
 * 注: `diffpatterns` 重要なパターン (セット間のデータ差の部分をキャプチャする) を検索することを目的としていますが、行ごとの違いはありません。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

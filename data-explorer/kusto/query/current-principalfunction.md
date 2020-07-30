@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 12/10/2019
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 43e92edd74861acc8207a855243f9ec1e012070a
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 7fa1ad900eb91390436e88c44ad9fd7394ad087d
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717361"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348651"
 ---
 # <a name="current_principal"></a>current_principal()
 
@@ -23,17 +23,17 @@ ms.locfileid: "84717361"
 
 クエリを実行する現在のプリンシパル名を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `current_principal()`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 としての現在のプリンシパルの完全修飾名 (すべての形式) `string` 。  
 文字列の形式は次のとおりです。  
 *PrinciplaType* `=`*PrincipalId* `;`*TenantId*
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

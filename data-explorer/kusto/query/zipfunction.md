@@ -1,6 +1,6 @@
 ---
-title: zip() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで zip() について説明します。
+title: zip ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの zip () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bd407ce652d41471be5b30a15c2c09b9f608edb1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 28fc477d4dfc5432434261e493f36985514ea28b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81504235"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350555"
 ---
 # <a name="zip"></a>zip()
 
-この`zip`関数は、任意の数`dynamic`の配列を受け取り、その要素がそれぞれ同じインデックスの入力配列の要素を保持する配列を返します。
+関数は、 `zip` 任意の数の `dynamic` 配列を受け取り、同じインデックスの入力配列の要素を保持する配列を要素として持つ配列を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`zip(`*配列1*`,`*配列2*`, ... )`
+`zip(`*配列* `,` 1*配列 2*`, ... )`
 
-**引数**
+## <a name="arguments"></a>引数
 
 2 ~ 16 の動的配列。
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例は、 `[[1,2],[3,4],[5,6]]`を返します。
 

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 1f5584233a24c834e0ca6c28ed60aa5d7496b411
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.openlocfilehash: 22f1b36b851c6e629abd2524feb4c40c74bbb1fa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291527"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348141"
 ---
 # <a name="extent_id"></a>extent_id()
 
@@ -25,15 +25,15 @@ ms.locfileid: "86291527"
 
 データシャードにアタッチされていない計算データにこの関数を適用すると、空の guid (すべてゼロ) が返されます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `extent_id()`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 `guid`現在のレコードのデータシャードを識別する型の値、または空の guid (すべてゼロ)。
 
-**例**
+## <a name="example"></a>例
 
 次の例では、1時間前のレコードを含むすべてのデータシャードの一覧を取得し、その列に特定の値を設定する方法を示し `ActivityId` ます。 この例では、一部のクエリ演算子 (ここでは、 `where` 演算子、および `extend` およびも) で `project` 、レコードをホストしているデータシャードに関する情報を保持しています。
 

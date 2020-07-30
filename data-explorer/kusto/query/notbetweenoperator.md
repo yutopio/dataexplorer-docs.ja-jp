@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 213b69d1458d234e987c8a378ade82441e578d5e
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 3ae821e76c78f8beba465651ffc759bfefdfa001
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128616"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346611"
 ---
 # <a name="not-between-operator-between"></a>not-between 演算子 (!between)
 
@@ -26,7 +26,7 @@ Table1 | where Time !between (datetime(2017-01-01) .. datetime(2017-01-01))
 
 `!between`は、任意の数値、datetime、または timespan 式で操作できます。
  
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `|` `where` *expr* `!between` `(` *leftRange* ` .. ` *rightRange*`)`   
  
@@ -34,18 +34,18 @@ Table1 | where Time !between (datetime(2017-01-01) .. datetime(2017-01-01))
 
 *T* `|` `where` *expr* `!between` `(` *leftRangeDateTime* ` .. ` *rightRangeTimespan*`)`   
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T* -レコードが照合される表形式の入力。
 * *expr* -フィルター処理する式。
 * *leftRange* -左の範囲の式 (包括)。
 * *rightRange* -右側の範囲の式。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 の述語*T* (*expr*  <  *leftRange*または*expr*  >  *rightRange*) がに評価される T 内の行 `true` 。
 
-**使用例**  
+## <a name="examples"></a>例  
 
 **'! Between ' 演算子を使用して数値をフィルター処理しています**  
 

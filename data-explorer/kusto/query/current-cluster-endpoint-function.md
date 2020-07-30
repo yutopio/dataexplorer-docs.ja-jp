@@ -1,6 +1,6 @@
 ---
-title: current_cluster_endpoint() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでcurrent_cluster_endpoint() について説明します。
+title: current_cluster_endpoint ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの current_cluster_endpoint () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 65ce130b4dd3e0a3125eefc6c410775647f9b964
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2c3ddbee55e729ae8afbb6c1fbcc213bd6bfd9ce
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516849"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348719"
 ---
 # <a name="current_cluster_endpoint"></a>current_cluster_endpoint()
 
-照会されている現在のクラスターのネットワーク エンドポイント (DNS 名) を返します。
+照会されている現在のクラスターのネットワークエンドポイント (DNS 名) を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `current_cluster_endpoint()`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-クエリを実行している現在のクラスタのネットワーク エンドポイント (DNS 名) の値`string`として type を指定します。
+クエリ対象の現在のクラスターのネットワークエンドポイント (DNS 名) を型の値として指定し `string` ます。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 print strcat("This query executed on: ", current_cluster_endpoint())

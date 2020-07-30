@@ -1,6 +1,6 @@
 ---
-title: オペレーターを消費する - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの使用オペレーターについて説明します。
+title: 使用演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの使用演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 65c2f2befc074042131b5c0d705fa942a1622035
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 85fd891590e359e31224ed5d707a837b1cc0eb41
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517121"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348838"
 ---
 # <a name="consume-operator"></a>consume 演算子
 
-オペレータに渡される表形式のデータ ストリームを使用します。 
+演算子に渡された表形式のデータストリームを使用します。 
 
-演算子`consume`は、実際に結果を呼び出し元に返すことなく、クエリの副作用をトリガーするために使用されます。
+演算子は、ほとんどの場合、 `consume` 結果を呼び出し元に返さずに、クエリの副作用をトリガーするために使用されます。
 
 ```kusto
 T | consume
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
-`consume`[`decodeblocks` `=` *デコードブロック*]
+`consume`[ `decodeblocks` `=` *DecodeBlocks*]
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *デコードブロック*: 定数のブール値。 に`true`設定するか、request プロパティ`perftrace`が に`true`設定されている場合、`consume`演算子は入力時にレコードを列挙するだけでなく、実際にはそれらのレコードの各値を圧縮解除およびデコードします。
+* *DecodeBlocks*: 定数ブール値。 をに設定した場合、 `true` または要求プロパティがに設定されている場合、演算子はその入力のレコードを列挙するだけではなく、実際には、 `perftrace` `true` `consume` これらのレコード内の各値を強制的に圧縮解除およびデコードします。
 
-この`consume`演算子を使用すると、実際に結果をクライアントに返すことなく、クエリのコストを見積もることができます。
-(たとえば、推定はさまざまな理由で正確ではありません。たとえば、`consume`分散的に計算されるため`T | consume`、クラスターのノード間でテーブルのデータが送信されません)。
+演算子を使用すると、 `consume` 実際に結果をクライアントに返すことなく、クエリのコストを見積もることができます。
+(推定はさまざまな理由で正確ではありません。たとえば、は distributively と計算されるため、 `consume` `T | consume` はクラスターのノード間でテーブルのデータを転送しません)。
 
 <!--
 * *WithStats*: A constant Boolean value. If set to `true` (or if the global

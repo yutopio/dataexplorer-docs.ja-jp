@@ -1,6 +1,6 @@
 ---
-title: isnan() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの isnan() について説明します。
+title: isnan ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの isnan () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 123d9cd32d645bb1225983138973a17b6bb9ecf3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5597f21d5e426329e2793978a6b207efc3868d13
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513568"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347223"
 ---
 # <a name="isnan"></a>isnan()
 
-入力が数値ではない (NaN) 値かどうかを返します。  
+入力が非数 (NaN) 値かどうかを返します。  
 
-**構文**
+## <a name="syntax"></a>構文
 
-`isnan(`*X*`)`
+`isnan(`*閉じる*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 実数。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-x が NaN の場合はゼロ以外の値 (true) 。それ以外の場合はゼロ (false) です。
+X が NaN の場合は0以外の値 (true)。それ以外の場合は 0 (false) です。
 
 **参照**
 
-* 値が null かどうかを調べるには[、isnull()](isnullfunction.md)を参照してください。
-* 値が有限かどうかの検査については[、isfinite()](isfinitefunction.md)を参照してください。
-* 値が無限であるかどうかを確認するには[、isinf()](isinffunction.md)を参照してください。
+* 値が null かどうかを確認する方法については、「 [isnull ()](isnullfunction.md)」を参照してください。
+* 値が有限かどうかを確認する方法については、「 [isfinite ()](isfinitefunction.md)」を参照してください。
+* 値が無制限かどうかを確認する方法については、「 [isinf ()](isinffunction.md)」を参照してください。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 range x from -1 to 1 step 1
@@ -46,8 +46,8 @@ range x from -1 to 1 step 1
 | extend isnan=isnan(div)
 ```
 
-|x|y|div|Isnan|
+|x|Y|div|isnan|
 |---|---|---|---|
 |-1|1|-1|0|
-|0|0|(NaN)|1|
+|0|0|NaN|1|
 |1|-1|-1|0|

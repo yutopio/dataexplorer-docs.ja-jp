@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7c0d6ae10c21b1df55aaa3584f4f40e830b58d2c
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 18d0bf2eaa0f5215e38b8b787178ea5934fb3737
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763447"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347036"
 ---
 # <a name="make_bag-aggregation-function"></a>make_bag () (集計関数)
 
@@ -21,11 +21,11 @@ ms.locfileid: "85763447"
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `summarize``make_bag(` *`Expr`* [ `,` *MaxSize*]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: `dynamic` 集計計算に使用される型の式です。
 * *MaxSize*は、返される要素の最大数に対する整数の制限 (省略可能) です。 既定値は*1048576*です。 MaxSize 値は*1048576*を超えることはできません。
@@ -34,7 +34,7 @@ ms.locfileid: "85763447"
 
 従来の関数と古いバージョンの関数では、 `make_dictionary()` *MaxSize* = 128 の既定の制限が設定されています。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 `dynamic`グループ内ののすべての値の (JSON) プロパティバッグ (ディクショナリ) を返し *`Expr`* ます。これは、プロパティバッグです。
 ディクショナリ以外の値はスキップされます。
@@ -44,7 +44,7 @@ ms.locfileid: "85763447"
 
 動的 JSON オブジェクトをプロパティバッグキーを使用する列に展開するには、 [bag_unpack ()](bag-unpackplugin.md)プラグインを使用します。 
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 let T = datatable(prop:string, value:string)

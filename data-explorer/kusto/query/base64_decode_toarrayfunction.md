@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/22/2019
-ms.openlocfilehash: df10ea2bbdf4e48d32c087d35eb9361fc4d697b8
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 4cfe690b5ee2d32462552fb90300c9e3168b1f1d
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717208"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349314"
 ---
 # <a name="base64_decode_toarray"></a>base64_decode_toarray()
 
 Base64 文字列を長整数値の配列にデコードします。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `base64_decode_toarray(`*文字列*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *String*: BASE64 から UTF8 文字列にデコードする入力文字列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 Base64 文字列からデコードされた long 型の値の配列を返します。
 
 * Base64 文字列を UTF-8 文字列にデコードするには、「 [base64_decode_tostring ()](base64_decode_tostringfunction.md) 」を参照してください。
 * 文字列を base64 文字列にエンコードするには、「 [base64_encode_tostring ()](base64_encode_tostringfunction.md) 」を参照してください。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -53,6 +53,6 @@ print Quine=base64_decode_toarray("S3VzdG8=")
 print Empty=base64_decode_toarray("U3RyaW5n0KHR0tGA0L7Rh9C60LA=")
 ```
 
-|Empty|
+|空|
 |-----|
 ||

@@ -8,27 +8,27 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 54431e2d088f60fa8ea2a56bffea9faa374faeda
-ms.sourcegitcommit: aaada224e2f8824b51e167ddb6ff0bab92e5485f
+ms.openlocfilehash: 23285c0747e7fecbdce810536af195f72f27236f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84626660"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349722"
 ---
 # <a name="anyif-aggregation-function"></a>anyif () (集計関数)
 
 [集計演算子](summarizeoperator.md)内のグループごとに、述語が "true" であるレコードを任意に選択します。 関数は、このような各レコードに対する式の値を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `summarize``anyif` `(` *Expr*、*述語*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: 入力から選択された各レコードの式を返します。
 * *述語*: 評価の対象となるレコードを示す述語。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 集計関数は、集計 `anyif` 演算子の各グループからランダムに選択された各レコードに対して計算された式の値を返します。 *述語*が "true" を返すレコードのみが選択される可能性があります。 述語が "true" を返さない場合は、null 値が生成されます。
 
@@ -38,7 +38,7 @@ ms.locfileid: "84626660"
 
 この値が存在する場合、関数は null 以外の値または空でない値を返そうとします。
 
-**使用例**
+## <a name="examples"></a>例
 
 300から6億への人口があるランダム大陸を表示します。
 

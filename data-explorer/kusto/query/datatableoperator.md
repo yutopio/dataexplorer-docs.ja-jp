@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 2a5881eacd0702720b7ea4b9a3237731a56a5180
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: cc62fcd04ad6a528836cc60a5c336ed4e8d1aecf
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85265045"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348566"
 ---
 # <a name="datatable-operator"></a>datatable 演算子
 
@@ -24,11 +24,11 @@ ms.locfileid: "85265045"
 > [!NOTE]
 > この演算子にはパイプライン入力がありません。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `datatable``(` *ColumnName* `:` *ColumnType* [ `,` ...] `)` `[` *ScalarValue* [ `,` *ScalarValue* ...]`]`
 
-**引数**
+## <a name="arguments"></a>引数
 
 ::: zone pivot="azuredataexplorer"
 
@@ -45,11 +45,11 @@ ms.locfileid: "85265045"
 
 ::: zone-end
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 この演算子は、指定されたスキーマとデータのデータテーブルを返します。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 datatable (Date:datetime, Event:string)

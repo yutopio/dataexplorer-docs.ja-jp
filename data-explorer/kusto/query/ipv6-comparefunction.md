@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 7d63ce48ba54377fa79ccd13484b2b9b08794bc6
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: 92c2c512fc81176cfa849ecdd66c0cdcfad9d8d3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512369"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347325"
 ---
 # <a name="ipv6_compare"></a>ipv6_compare()
 
@@ -27,11 +27,11 @@ ipv6_compare('fe80::85d:e82c:9446:7994/127', 'fe80::85d:e82c:9446:7995/127') == 
 ipv6_compare('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == 0
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `ipv6_compare(`*Expr1 or* `, `*Expr2* `[ ,`*PrefixMask*`])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr1 or*, *Expr2*: IPv6 または IPv4 アドレスを表す文字列式。 IPv6 および IPv4 文字列は、IP プレフィックス表記を使用してマスクできます (注を参照)。
 * *PrefixMask*: 0 ~ 128 の整数で、考慮される最上位ビットの数を表します。
@@ -42,9 +42,10 @@ ipv6_compare('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == 0
 >一般的な方法で `IP-prefix notation` は、スラッシュ () 文字を使用して IP アドレスを定義し `/` ます。
 >スラッシュ () の左側の IP アドレス `/` は基本 ip アドレスで、スラッシュ () の右側にある番号 (1 ~ 127) `/` は、ネットマスクの連続した1ビット数です。 
 >
-> **例**: fe80:: 85d: e82c: 9446: 7994/120 には、120連続ビットを含む、関連付けられた net/subnetmask があります。
+> ## <a name="example"></a>例:
+> fe80:: 85d: e82c: 9446: 7994/120 には、120連続ビットを含む、関連付けられた net/subnetmask があります。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 * `0`: 最初の IPv6 文字列引数の長い形式が2番目の IPv6 文字列引数と等しい場合は。
 * `1`: 最初の IPv6 文字列引数の長い形式が2番目の IPv6 文字列引数より大きい場合。

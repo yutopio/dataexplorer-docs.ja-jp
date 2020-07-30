@@ -1,6 +1,6 @@
 ---
-title: isascii() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの isascii() について説明します。
+title: isascii ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの isascii () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: daba0f4015a4847155309964f8ac0909ff4bc9d0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d8a060e4a332988fd966e0dec9ed07b3c76d0e3f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513721"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347291"
 ---
 # <a name="isascii"></a>isascii()
 
-引数`true`が有効な ascii 文字列の場合に返します。
+`true`引数が有効な ascii 文字列である場合は、を返します。
     
 ```kusto
 isascii("some string") == true
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `isascii(`[*値*]`)`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 引数が有効な ascii 文字列であるかどうかを示します。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 T

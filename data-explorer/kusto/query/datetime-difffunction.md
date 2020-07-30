@@ -1,6 +1,6 @@
 ---
-title: datetime_diff() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで datetime_diff() について説明します。
+title: datetime_diff ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの datetime_diff () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,45 +8,45 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fd62e27ac4f9ef0ec813a311ddb2b16f0a6c9a65
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2e116661610e343c90276a43421d263bf74cd1b5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516441"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348532"
 ---
 # <a name="datetime_diff"></a>datetime_diff()
 
-2 つの日時値の間のカレンダーの差[を](./scalar-data-types/datetime.md)計算します。
+2つの[datetime](./scalar-data-types/datetime.md)値の calendarian の差を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`datetime_diff(`*期間*`,`*datetime_1datetime_2*`,`*datetime_2*`)`
+`datetime_diff(`*期間* `,`*datetime_1* `,`*datetime_2*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * `period`: `string`. 
-* `datetime_1`:[日時](./scalar-data-types/datetime.md)値。
-* `datetime_2`:[日時](./scalar-data-types/datetime.md)値。
+* `datetime_1`: [datetime](./scalar-data-types/datetime.md)値。
+* `datetime_2`: [datetime](./scalar-data-types/datetime.md)値。
 
-*期間*の可能な値 : 
-- 年
+有効*期間*の値: 
+- Year
 - Quarter
-- 月
+- Month
 - Week
 - 日
-- 時
+- Hour
 - 分
-- 秒
+- Second
 - Millisecond
-- マイクロ 秒
-- ナノ秒
+- Microsecond
+- Nanosecond
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-減算`periods`の結果の量を表す整数 (`datetime_1` - `datetime_2`)
+`periods`減算 () の結果の量を表す整数 `datetime_1`  -  `datetime_2` 。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 print

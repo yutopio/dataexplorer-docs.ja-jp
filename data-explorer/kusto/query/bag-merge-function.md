@@ -3,35 +3,35 @@ title: bag_merge ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの bag_merge () について説明します。
 services: data-explorer
 author: orspod
-ms.author: orspod
+ms.author: orspodek
 ms.reviewer: elgevork
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/18/2020
-ms.openlocfilehash: 0a23f6ece8be3ba451c1f61a90eb65452b68f9ce
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 66a05cdc03b155b8fceace0af8d86807a10d0da4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85265065"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349365"
 ---
 # <a name="bag_merge"></a>bag_merge()
 
 プロパティ `dynamic` バッグを、 `dynamic` すべてのプロパティがマージされたプロパティバッグにマージします。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `bag_merge(`*bag1* `, `*bag2* `[` 、` *bag3*, ...])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *bag1...bagN*: 入力 `dynamic` プロパティ-バッグ。 関数は、2 ~ 64 の引数を受け取ることができます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 `dynamic`プロパティバッグを返します。 すべての入力プロパティバッグオブジェクトを結合した結果。 複数の入力オブジェクトにキーが表示される場合は、任意の値 (このキーで使用可能な値のうちのいずれか) が選択されます。
 
-**例**
+## <a name="example"></a>例
 
 式:
 

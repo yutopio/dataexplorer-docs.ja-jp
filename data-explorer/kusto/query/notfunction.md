@@ -1,6 +1,6 @@
 ---
-title: not() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの not() について説明します。
+title: not ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーにおける not () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,29 +8,29 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 539e409a9e922afc390b097c863146b7fc30d7b3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fed2a55c8fa1c7689c087ccdeaa64ff576bea401
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512038"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346594"
 ---
 # <a name="not"></a>not()
 
-引数の値を`bool`反転します。
+引数の値を反転させ `bool` ます。
 
 ```kusto
 not(false) == true
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
-`not(`*Expr*`)`
+`not(`*with*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *expr*:`bool`逆にする式。
+* *expr*: `bool` 逆順にする式。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-引数の逆の論理値を`bool`返します。
+引数の反転された論理値を返し `bool` ます。

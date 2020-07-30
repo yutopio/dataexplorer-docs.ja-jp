@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2d5accaa0e6f6c4c6e5d5261a9709ba965de6965
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 8e237441d28f12ffc6f27f8a591980a701825e39
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264964"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347461"
 ---
 # <a name="indexof"></a>indexof()
 
@@ -23,19 +23,19 @@ Lookup または入力文字列が*文字列*型でない場合、関数は強�
 
 詳細については、「[`indexof_regex()`](indexofregexfunction.md)」を参照してください。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `indexof(`*ソース* `,`*参照* `[,`*start_index* `[,`*長さ* `[,`*発生回数*`]]])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *source*: 入力文字列。  
 * *lookup*: 検索する文字列。
 * *start_index*: 開始位置を検索します。 省略可能。
 * *length*: 検査する文字位置の数。 値-1 は無制限の長さを意味します。 省略可能。
-* *オカレンス*: 発生回数。 既定値 1。 省略可能。
+* *オカレンス*: 発生回数。 既定値は1です。 省略可能。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 *検索*の0から始まるインデックス位置。
 
@@ -43,7 +43,7 @@ Lookup または入力文字列が*文字列*型でない場合、関数は強�
 
 無関係 (0 未満) *start_index*、*出現*、または (-1 未満) の*長さ*のパラメーター-は*null*を返します。
 
-**使用例**
+## <a name="examples"></a>例
 ```kusto
 print
  idx1 = indexof("abcdefg","cde")    // lookup found in input string

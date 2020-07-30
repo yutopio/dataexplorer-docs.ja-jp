@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3a29621a18a364145585022b1f0651100cadab1c
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 18722a544ea3bbd0e19922d1d8988a3604b4d200
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618541"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87342905"
 ---
 # <a name="stdev-aggregation-function"></a>stdev () (集計関数)
 
@@ -25,19 +25,19 @@ ms.locfileid: "82618541"
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-集計`stdev(`の*Expr*`)`
+集計の `stdev(` *Expr*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: 集計計算に使用される式です。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 グループ全体の*Expr*の標準偏差値。
  
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 range x from 1 to 5 step 1

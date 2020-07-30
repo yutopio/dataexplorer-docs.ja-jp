@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: d01b3b5178801fe1b5e55f51987564674ce4aeae
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 519ac6b38a73cfc7334094ef503d1d20c7d2ecb9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128633"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348226"
 ---
 # <a name="evaluate-operator-plugins"></a>evaluate 演算子プラグイン
 
@@ -21,11 +21,11 @@ ms.locfileid: "85128633"
 
 `evaluate`演算子は、**プラグイン**と呼ばれるクエリ言語拡張機能を呼び出すことができる表形式演算子です。 プラグインは、有効または無効にすることができます (常に使用可能な他の言語コンストラクトとは異なります)。また、言語のリレーショナルな性質によって "バインド" されません (たとえば、事前に定義された、静的に決定された出力スキーマがない可能性があります)。
 
-**構文** 
+## <a name="syntax"></a>構文 
 
 [*T* `|` ] `evaluate` [ *evaluateparameters* ] *pluginname* `(` [*PluginArg1* [ `,` *PluginArg2*]...`)`
 
-各値の説明:
+この場合、
 
 * *T*は、プラグインに対する省略可能な表形式の入力です。 (一部のプラグインは入力を受け取らず、表形式のデータソースとして機能します)。
 * *Pluginname*は、呼び出されるプラグインの必須の名前です。
@@ -40,7 +40,7 @@ ms.locfileid: "85128633"
   |`hint.pass_filters` |`true`, `false`| `evaluate`オペレーターがプラグインの前に一致するフィルターをパススルーすることを許可します。 フィルターは、演算子の前に存在する列を参照している場合、' 一致する ' と見なされ `evaluate` ます。 既定値: `false` |
   |`hint.pass_filters_column` |*column_name*| プラグインオペレーターが、プラグインの前に*column_name*を参照するフィルターをパススルーできるようにします。 パラメーターは、異なる列名を使用して複数回使用できます。 |
 
-**ノート**
+**メモ**
 
 * 構文的には、 `evaluate` 表形式関数を呼び出す[invoke 演算子](./invokeoperator.md)と同様の動作をします。
 * 評価演算子によって指定されたプラグインは、クエリ実行または引数の評価の通常の規則ではバインドされていません。

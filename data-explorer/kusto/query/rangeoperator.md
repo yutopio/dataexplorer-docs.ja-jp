@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9dc64e6d91d6832dd57345bf58200848ad5a5db4
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 5c736492745d47428b5919d9791aa6115aaf8566
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373101"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345897"
 ---
 # <a name="range-operator"></a>range 演算子
 
@@ -21,11 +21,11 @@ ms.locfileid: "83373101"
 
 パイプラインの入力はないことに注目してください。 
 
-**構文**
+## <a name="syntax"></a>構文
 
 `range`*columnName* `from`*開始* `to`*停止* `step`*ステップ*
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *columnName*: 出力テーブル内の単一の列の名前。
 * *start*: 出力の最小値。
@@ -34,11 +34,11 @@ ms.locfileid: "83373101"
 
 この引数は、数値、日付、または期間の値である必要があります。 テーブルの列を参照することはできません (入力テーブルに基づいて範囲を計算する場合は、範囲関数を使用します。これは、おそらく mv-expand 演算子と同じです)。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 *ColumnName*という1つの列があり、値が*start*、 *start* `+` *step*、... であるテーブル。最大および終了まで*停止*します。
 
-**例**  
+## <a name="example"></a>例  
 
 過去 7 日間の深夜のテーブルです。 bin (floor) 関数により、各時刻が 1 日の開始時刻になっています。
 

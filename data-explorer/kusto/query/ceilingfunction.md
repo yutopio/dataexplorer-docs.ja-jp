@@ -1,6 +1,6 @@
 ---
-title: 天井() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの ceiling() について説明します。
+title: シーリング ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのシーリング () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f2ecd043c43bb1af6530364d200d5dc9db640f95
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e2a29d28b25d26d582aa49717d5ce5576276f450
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517257"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348906"
 ---
 # <a name="ceiling"></a>ceiling()
 
-指定した数値式より大きい、または等しい最小整数を計算します。
+指定した数値式以上の最小の整数を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`ceiling(`*X*`)`
+`ceiling(`*閉じる*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 実数。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-* 指定した数値式より大きい、または等しい最小整数。 
+* 指定された数値式以上の最小の整数。 
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 print c1 = ceiling(-1.1), c2 = ceiling(0), c3 = ceiling(0.9)

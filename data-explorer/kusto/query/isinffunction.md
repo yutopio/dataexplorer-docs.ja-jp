@@ -1,6 +1,6 @@
 ---
-title: isinf() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで isinf() について説明します。
+title: isinf ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの isinf () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d93697890ee05cabf9ca1830ac047d90d8c9e844
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 71a37d7a1bd700b5f929c009197a382315099e08
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513585"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347240"
 ---
 # <a name="isinf"></a>isinf()
 
-入力が無限 (正または負) の値かどうかを返します。  
+入力が無限 (正または負) の値であるかどうかを返します。  
 
-**構文**
+## <a name="syntax"></a>構文
 
-`isinf(`*X*`)`
+`isinf(`*閉じる*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 実数。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-x が正または負の無限大の場合は、ゼロ以外の値 (true) を返します。それ以外の場合はゼロ (false) です。
+X が正または負の無限の場合は、0以外の値 (true)。それ以外の場合は 0 (false) です。
 
 **参照**
 
-* 値が null かどうかを調べるには[、isnull()](isnullfunction.md)を参照してください。
-* 値が有限かどうかの検査については[、isfinite()](isfinitefunction.md)を参照してください。
-* 値が NaN (非番号) であるかどうかを確認する場合は[、isnan()](isnanfunction.md)を参照してください。
+* 値が null かどうかを確認する方法については、「 [isnull ()](isnullfunction.md)」を参照してください。
+* 値が有限かどうかを確認する方法については、「 [isfinite ()](isfinitefunction.md)」を参照してください。
+* 値が NaN (非数) であるかどうかを確認する方法については、「 [isnan ()](isnanfunction.md)」を参照してください。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 range x from -1 to 1 step 1
@@ -46,8 +46,8 @@ range x from -1 to 1 step 1
 | extend isinf=isinf(div)
 ```
 
-|x|y|div|isinf|
+|x|Y|div|isinf|
 |---|---|---|---|
 |-1|0|-∞|1|
-|0|0|(NaN)|0|
+|0|0|NaN|0|
 |1|0|∞|1|

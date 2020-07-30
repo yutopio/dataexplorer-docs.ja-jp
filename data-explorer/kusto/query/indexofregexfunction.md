@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 72797b54c3ba431b4a846f9e9661e9693359cceb
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 85c39128eeb9b6ded38366ccd3bea228820c67a7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780458"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347444"
 ---
 # <a name="indexof_regex"></a>indexof_regex()
 
@@ -21,22 +21,22 @@ ms.locfileid: "84780458"
 
 [`indexof()`](indexoffunction.md) を参照してください。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `indexof_regex(`*ソース* `,`*参照* `[,`*start_index* `[,`*長さ* `[,`*発生回数*`]]])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 |引数     | 説明                                     |必須またはオプション|
 |--------------|-------------------------------------------------|--------------------|
 |source        | 入力文字列                                    |必須            |
 |参照        | シークする文字列                                  |必須            |
-|start_index   | 検索開始位置                           |オプション            |
-|length        | 調べる文字位置の数。 -1 は無制限の長さを定義します |オプション            |
+|start_index   | 検索開始位置                           |省略可能            |
+|length        | 調べる文字位置の数。 -1 は無制限の長さを定義します |省略可能            |
 |occurrence    | パターンの N 番目の外観のインデックスを検索します。 
-                 既定値は1です。最初に見つかった位置のインデックスです。 |オプション            |
+                 既定値は1です。最初に見つかった位置のインデックスです。 |省略可能            |
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 *検索*の0から始まるインデックス位置。
 
@@ -47,7 +47,7 @@ ms.locfileid: "84780458"
      * 長さのパラメーターが-1 未満です。
 
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 print

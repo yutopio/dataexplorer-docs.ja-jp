@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: ec4c398d9079cd5e01875bd1d92ae06db0bb0908
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: a6c17f0505927c38d26c37a5e9872747541d129a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512573"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346441"
 ---
 # <a name="parse_ipv6_mask"></a>parse_ipv6_mask()
  
@@ -24,11 +24,11 @@ parse_ipv6_mask("127.0.0.1", 24) == '0000:0000:0000:0000:0000:ffff:7f00:0000'
 parse_ipv6_mask(":fe80::85d:e82c:9446:7994", 120) == 'fe80:0000:0000:0000:085d:e82c:9446:7900'
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `parse_ipv6_mask(`*`Expr`*`, `*`PrefixMask`*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *`Expr`*: 正規の IPv6 表記に変換される IPv6/IPv4 ネットワークアドレスを表す文字列式。 文字列には、 [IP プレフィックス表記](#ip-prefix-notation)を使用した net マスクを含めることができます。
 * *`PrefixMask`*: 考慮される最上位ビットの数を表す 0 ~ 128 の整数。
@@ -38,12 +38,12 @@ parse_ipv6_mask(":fe80::85d:e82c:9446:7994", 120) == 'fe80:0000:0000:0000:085d:e
 IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用して定義でき `/` ます。
 スラッシュ () の左側の IP アドレスは、 `/` 基本 ip アドレスです。 スラッシュ () の右側にある数字 (1 ~ 127) `/` は、ネットマスク内の連続した1ビットの数です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 変換が成功した場合、結果は正規の IPv6 ネットワークアドレスを表す文字列になります。
 変換に失敗した場合、結果はになり `null` ます。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2603aab066a7f77ff36553d8898bb713ace990b7
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 67e408653a4873dce3b5e8f21a91775573affbe2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763802"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347019"
 ---
 # <a name="make_bag_if-aggregation-function"></a>make_bag_if () (集計関数)
 
@@ -22,17 +22,17 @@ ms.locfileid: "85763802"
 > [!NOTE]
 > 集計のコンテキストでのみ使用でき[ます。](summarizeoperator.md)
 
-**構文**
+## <a name="syntax"></a>構文
 
 `summarize``make_bag_if(` *Expr*、*述語*[ `,` *MaxSize*]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: `dynamic` 集計計算に使用される型の式です。
 * *述語*: `true` 結果に *' Expr '* を追加するために、に評価する必要がある述語。
 * *MaxSize*: 返される要素の最大数に対する整数の制限 (省略可能) (既定値は*1048576*)。 MaxSize 値は1048576を超えることはできません。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 `dynamic`*述語*がに評価されるプロパティバッグ (ディクショナリ) である、グループ内の *' Expr '* のすべての値の (JSON) プロパティバッグ (ディクショナリ) を返し `true` ます。
 ディクショナリ以外の値はスキップされます。
@@ -41,7 +41,7 @@ ms.locfileid: "85763802"
 > [!NOTE]
 > 関数は、 [`make_bag`](./make-bag-aggfunction.md) 述語式のない make_bag_if () に似ています。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 let T = datatable(prop:string, value:string, predicate:bool)

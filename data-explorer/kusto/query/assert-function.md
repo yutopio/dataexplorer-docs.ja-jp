@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: b1f83f0b78e4bbb16de706a8d14ca04ee522c2ee
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: a477a8fd8e05bd6420f06c28f71f72431a343a31
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225560"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349467"
 ---
 # <a name="assert"></a>assert()
 
 条件をチェックします。 条件が false の場合、ではエラーメッセージが出力され、クエリは失敗します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `assert(`*条件* `, `*メッセージ*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *condition*: 評価する条件式。 条件がの場合 `false` 、指定されたメッセージはエラーを報告するために使用されます。 条件がの場合は `true` 、 `true` 評価結果としてを返します。 クエリ分析フェーズでは、条件を定数に評価する必要があります。
 * *message*: アサーションがに評価される場合に使用される `false` メッセージ。 *メッセージ*は文字列リテラルである必要があります。
 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 * `true`-条件がの場合`true`
 * 条件がに評価された場合にセマンティックエラーを発生させ `false` ます。
@@ -38,7 +38,7 @@ ms.locfileid: "83225560"
 
 * `condition`クエリ分析フェーズ中に定数に評価される必要があります。 言い換えると、定数を参照する他の式から構築することができ、行コンテキストにバインドすることはできません。
 
-**使用例**
+## <a name="examples"></a>例
 
 次のクエリでは、 `checkLength()` 入力文字列の長さをチェックし、を使用して `assert` 入力長パラメーターを検証する関数を定義します (これが0より大きいことを確認します)。
 

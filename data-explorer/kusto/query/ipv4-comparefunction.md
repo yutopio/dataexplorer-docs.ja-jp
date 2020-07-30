@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 67887aac4ab04e016ed63045e66ebcfab343c135
-ms.sourcegitcommit: 8953d09101f4358355df60ab09e55e71bc255ead
+ms.openlocfilehash: 247a653ead575b0fa04295d23b6b6071bd49edeb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84420868"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347359"
 ---
 # <a name="ipv4_compare"></a>ipv4_compare()
 
@@ -26,11 +26,11 @@ ipv4_compare('192.168.1.1/24', '192.168.1.255/24') == 0
 ipv4_compare('192.168.1.1', '192.168.1.255', 24) == 0
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `ipv4_compare(`*Expr1 or* `, `*Expr2* `[ ,`*PrefixMask*`])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr1 or*, *Expr2*: IPv4 アドレスを表す文字列式。 IPv4 文字列は[、IP プレフィックス表記](#ip-prefix-notation)を使用してマスクできます。
 * *PrefixMask*: 0 ~ 32 の整数で、考慮される最上位ビットの数を表します。
@@ -42,7 +42,7 @@ IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用し
 
 **例:** 192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 * `0`: 最初の IPv4 文字列引数の長い形式が2番目の IPv4 文字列引数と等しい場合
 * `1`: 最初の IPv4 文字列引数の長い形式が2番目の IPv4 文字列引数より大きい場合

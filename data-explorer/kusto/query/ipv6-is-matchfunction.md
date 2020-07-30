@@ -8,14 +8,14 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: d5bd270e016f1694c28f663a7fe8bf1d9a8f0903
-ms.sourcegitcommit: 41cd88acc1fd79f320a8fe8012583d4c8522db78
+ms.openlocfilehash: b6d76f8ed834ec40c53321644e5cd9b7f5f93168
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84301284"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347308"
 ---
-# <a name="ipv6_is_match"></a>ipv6_is_match ()
+# <a name="ipv6_is_match"></a>ipv6_is_match()
 
 2つの IPv6 または IPv4 ネットワークアドレス文字列を照合します。 2つの IPv6/IPv4 文字列は、引数のプレフィックスから計算された IP プレフィックスマスクとオプションの引数を考慮して、解析と比較を行い `PrefixMask` ます。
 
@@ -27,11 +27,11 @@ ipv6_is_match('fe80::85d:e82c:9446:7994/127', 'fe80::85d:e82c:9446:7995/127') ==
 ipv6_is_match('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == true
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `ipv6_is_match(`*Expr1 or* `, `*Expr2* `[ ,`*PrefixMask*`])`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr1 or*, *Expr2*: IPv6 または IPv4 アドレスを表す文字列式。 IPv6 および IPv4 文字列は、 [IP プレフィックス表記](#ip-prefix-notation)を使用してマスクできます。
 * *PrefixMask*: 0 ~ 128 の整数で、考慮される最上位ビットの数を表します。
@@ -41,9 +41,10 @@ ipv6_is_match('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == tr
 IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用して定義でき `/` ます。
 スラッシュ () の左側の IP アドレスは、 `/` 基本 ip アドレスです。 スラッシュ () の右側にある数字 (1 ~ 127) `/` は、ネットマスク内の連続した1ビットの数です。 
 
-**例**: fe80:: 85d: e82c: 9446: 7994/120 には、120連続ビットを含む、関連付けられた net/subnetmask があります。
+## <a name="example"></a>例:
+fe80:: 85d: e82c: 9446: 7994/120 には、120連続ビットを含む、関連付けられた net/subnetmask があります。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 * `true`: 最初の IPv6/IPv4 文字列引数の長い形式が2番目の IPv6/IPv4 文字列引数と等しい場合は。
 * `false`それ以外.

@@ -1,6 +1,6 @@
 ---
-title: maxif() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの maxif() (集計関数) について説明します。
+title: maxif () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの maxif () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,35 +8,35 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9be25615f9da61aec6b4d56543f624fa0c24c1c4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 471ca0e3d6623b77fd2d799949bfe060643798e2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512446"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346815"
 ---
-# <a name="maxif-aggregation-function"></a>maxif() (集計関数)
+# <a name="maxif-aggregation-function"></a>maxif () (集計関数)
 
-*Predicate*が 評価されるグループ全体の最大値を`true`返します。
+*述語*がに評価されるグループ全体の最大値を返し `true` ます。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
+* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-述語式なしでグループ全体の最大値を返す[max()](max-aggfunction.md)関数も参照してください。
+「- [Max ()](max-aggfunction.md)関数」も参照してください。述語式が指定されていないグループ全体で最大値が返されます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`summarize``maxif(`*エクスプラ*`,`*述部*`)`
+`summarize``maxif(` *Expr* `,` *述語*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Expr*: 集計の計算に使用する式。 
-* *述語*: 述語が true の場合 *、Expr*計算値の最大値がチェックされます。
+* *Expr*: 集計計算に使用される式です。 
+* *述語*: true の場合、*式*の計算値が最大値に対してチェックされます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-*述語*が 評価されるグループ全体の*Expr*の最大値`true`。
+*述語*がに評価されるグループ全体の*Expr*の最大値 `true` 。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 range x from 1 to 100 step 1

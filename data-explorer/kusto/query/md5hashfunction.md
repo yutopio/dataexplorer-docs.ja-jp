@@ -8,33 +8,33 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/29/2020
-ms.openlocfilehash: c09f30a4f13f16e15cfcc826f6976f1208fdabf1
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 17b3e0d13f8048ccac90add4eee6f02f3d2e2959
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85793631"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346798"
 ---
-# <a name="hash_md5"></a>hash_md5 ()
+# <a name="hash_md5"></a>hash_md5()
 
 入力値の MD5 ハッシュ値を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `hash_md5(`*電源*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *source*: ハッシュされる値。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 16進数文字列としてエンコードされた、指定されたスカラーの MD5 ハッシュ値 (文字の文字列)。これらの2つは、それぞれ0と255の間の1つの16進数を表します。
 
 > [!WARNING]
 > この関数 (MD5) で使用されるアルゴリズムは、今後変更されることがないことが保証されていますが、計算が非常に複雑です。 1つのクエリの実行中に "ライトウェイト" ハッシュ関数を必要とするユーザーには、代わりに関数[hash ()](./hashfunction.md)を使用することをお勧めします。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

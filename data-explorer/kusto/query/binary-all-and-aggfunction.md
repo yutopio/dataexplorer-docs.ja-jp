@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 9f0e1665010885a64e6d97151b074d3a03df829b
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 9086d00ecbc800174ce2b9cda2b4ae1ba59d52b5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227572"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349144"
 ---
 # <a name="binary_all_and-aggregation-function"></a>binary_all_and () (集計関数)
 
@@ -21,19 +21,19 @@ ms.locfileid: "83227572"
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 集計の `binary_all_and(` *Expr*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: long 数値。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 集計グループごとのレコードに対するバイナリ演算を使用して集計された値を返し `AND` ます (集約がグループ化されていない場合は合計で)。
 
-**例**
+## <a name="example"></a>例
 
 バイナリ演算を使用して ' カフェ ' を作成してい `AND` ます:
 

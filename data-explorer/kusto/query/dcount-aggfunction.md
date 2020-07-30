@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7f8464ed7dca8d712900bb7a1047875b6292d243
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 2fc8ee7e8c7ab3ce372d786ec87edf55265e1249
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85265016"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348447"
 ---
 # <a name="dcount-aggregation-function"></a>dcount () (集計関数)
 
 要約グループ内のスカラー式によって取得された個別の値の数の見積もりを返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 ... `|` `summarize` `dcount` `(`*`Expr`*[, *`Accuracy`*]`)` ...
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: 個別の値をカウントするスカラー式です。
 * *精度*: `int` 要求された推定精度を定義する省略可能なリテラルです。 サポートされる値については、以下を参照してください。 指定しない場合は、既定値 `1` が使用されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 グループ内のの個別の値の数の見積もりを返し *`Expr`* ます。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 PageViewLog | summarize countries=dcount(country) by continent
@@ -40,7 +40,7 @@ PageViewLog | summarize countries=dcount(country) by continent
 
 :::image type="content" source="images/dcount-aggfunction/dcount.png" alt-text="D カウント":::
 
-**ノート**
+**メモ**
 
 `dcount()`集計関数は、大きなセットのカーディナリティを推定するために主に役立ちます。 精度のためにパフォーマンスをトレードし、実行ごとに異なる結果が返される場合があります。 入力の順序は、出力に影響を与える可能性があります。
 

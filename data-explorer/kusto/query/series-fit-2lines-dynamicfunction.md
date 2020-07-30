@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 6f1a6e4a80bfbc02f9e6f552ceca2ba1bb54eb08
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 85a034751c6e29b2ca78f1df9de045c1ac07c7fa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372720"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87343908"
 ---
 # <a name="series_fit_2lines_dynamic"></a>series_fit_2lines_dynamic()
 
@@ -39,18 +39,18 @@ ms.locfileid: "83372720"
 
 この演算子は[series_fit_2lines](series-fit-2linesfunction.md)に似ています。 とは異なり `series-fit-2lines` 、動的なバッグを返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_fit_2lines_dynamic(`*閉じる*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の動的配列。  
 
 > [!TIP]
 > この関数を使用する最も便利な方法は、[系列の作成](make-seriesoperator.md)演算子の結果に適用することです。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

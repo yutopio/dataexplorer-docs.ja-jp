@@ -1,6 +1,6 @@
 ---
-title: log10() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで log10() について説明します。
+title: log10 ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの log10 () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,31 +8,31 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 9ccc83ff466d0414f793b7cfbbcf10d2ca169348
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 9db15900ea258d42e377f47de9ad12eecf52386d
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513194"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347121"
 ---
 # <a name="log10"></a>log10()
 
-`log10()`は、一般的な (10 をベース) 対数関数を返します。  
+`log10()`常用対数関数を返します。  
 
-**構文**
+## <a name="syntax"></a>構文
 
-`log10(`*X*`)`
+`log10(`*閉じる*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *x*: 実数は 0 >。
+* *x*: 実数 > 0 です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-* 一般的な対数は、底 10 の対数です。
-* `null`引数が負または null の場合、または`real`値に変換できない場合。 
+* 常用対数は10を底とする対数で、底が10の指数関数 (exp) の逆の対数です。
+* `null`引数が負の値または null の場合、または値に変換できない場合は `real` 。 
 
 **参照**
 
-* 自然 (底 e) 対数については、 [log()](log-function.md)を参照してください。
-* 底 2 の対数については[、log2() を](log2-function.md)参照してください。
+* 自然対数 (底-e) の場合は、 [log ()](log-function.md)を参照してください。
+* 底2の対数については、「 [log2 ()](log2-function.md) 」を参照してください。

@@ -1,6 +1,6 @@
 ---
-title: rand() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで rand() について説明します。
+title: rand ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの rand () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d3638d4b979b7318f58efec0bed0da4c31896a9d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 53fc7512c1a0fb2019526f48ade54fabbd351d05
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81510644"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345931"
 ---
 # <a name="rand"></a>rand()
 
@@ -24,7 +24,7 @@ rand()
 rand(1000)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
-* `rand()`- 範囲 [0.0, 1.0] の範囲で、分布が一様な型`real`の値を返します。
-* `rand(`*N* `)` - セット {0.0、 1.0、., `real` *N* - 1} から一様分布で選択された型の値を返します。
+* `rand()`- `real` [0.0, 1.0) の範囲内で一様分布を持つ型の値を返します。
+* `rand(`*N* `)` - `real` セット {0.0, 1.0,..., *n-1* } からの一様分布で選択された型の値を返します。

@@ -8,27 +8,27 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 29b35e5bd7265d89e65fe0129317a9f1672c7cad
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 143257a586bb951caeb116882551e55f89c8636e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373078"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345880"
 ---
 # <a name="rank_tdigest"></a>rank_tdigest()
 
 セット内の値のおおよその順位を計算します。 セット内の値のランク `v` `S` は、より小さいまたは等しいのメンバーの数として定義され `S` ます。これは、に `v` `S` よって表され `tdigest` ます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `rank_tdigest(`*`TDigest`*`,` *`Expr`*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Tdigest*: [tdigest ()](tdigest-aggfunction.md)または[tdigest_merge ()](tdigest-merge-aggfunction.md)によって生成された式
 * *Expr*: 順位付けの計算に使用される値を表す式。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 データセット内の rank foreach 値。
 
@@ -36,7 +36,7 @@ ms.locfileid: "83373078"
 
 1) ランクを取得する値は、と同じ型である必要があり `tdigest` ます。
 
-**使用例**
+## <a name="examples"></a>例
 
 並べ替えられたリスト (1-1000) では、685のランクは次のようになります。
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 98586f8f8380d4c1fc36a88b288b47798c10e09e
-ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
+ms.openlocfilehash: 4083c304711c4d77b15809221ac4ace4629fb4dd
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/29/2020
-ms.locfileid: "85517922"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87342106"
 ---
 # <a name="take-operator"></a>take 演算子
 
@@ -25,14 +25,14 @@ T | take 5
 
 ソースデータを並べ替える場合を除き、どのレコードが返されるかは保証されません。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `take`*Numberofrows* 
  `limit`*Numberofrows*
 
 ( `take` と `limit` はシノニムです)。
 
-**ノート**
+**メモ**
 
 `take`は、データを対話的に参照しているときに小さなサンプルレコードを表示するためのシンプルで迅速かつ効率的な方法ですが、データセットが変更されていない場合でも、複数回実行しても結果の一貫性が保証されないことに注意してください。
 

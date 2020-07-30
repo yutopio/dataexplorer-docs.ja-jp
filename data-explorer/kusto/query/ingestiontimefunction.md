@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: fea923b0d917beb505bd6a1cb9ee1339739d08c6
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.openlocfilehash: f40a592521082667815fe3ff38843a2376bda0aa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291561"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347410"
 ---
 # <a name="ingestion_time"></a>ingestion_time()
 
@@ -36,15 +36,15 @@ ms.locfileid: "86291561"
 > [!NOTE]
 > この関数によって返される値は、インジェスト処理が完了するまでに数分かかる場合があり、複数のインジェストアクティビティが同時に実行される場合があるため、概数です。 完全に1回保証されるテーブルのすべてのレコードを処理するには、[データベースカーソル](../management/databasecursor.md)を使用します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `ingestion_time()`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 `datetime`テーブルへのインジェストのおおよその時間を指定する値です。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 T

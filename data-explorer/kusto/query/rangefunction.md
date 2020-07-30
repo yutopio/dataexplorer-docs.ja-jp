@@ -1,6 +1,6 @@
 ---
-title: レンジ() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで range() について説明します。
+title: range ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの範囲 () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,28 +8,28 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 86558591e6312edd218230cda19a4afc17a13b27
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 2606746e89d645601fa53ed7f81d67ddae203c03
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744583"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345914"
 ---
 # <a name="range"></a>range()
 
-一連の等間隔の値を保持する動的配列を生成します。
+等間隔に並んだ一連の値を保持する動的配列を生成します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`range(`*開始*`,`*停止*`,` [*ステップ*]`)` 
+`range(`*開始* `,`*停止*[ `,` *ステップ*]`)` 
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *start*: 結果の配列の最初の要素の値。 
-* *stop*: 結果の配列の最後の要素の値、または結果の配列の最後の要素より大きい最小の値で、開始から*ステップ*の整数倍の中*に入ります*。
-* *step*: 配列の連続する 2 つの要素の違い。 *ステップ*のデフォルト値は数値`1`および`1h``timespan``datetime`
+* *start*: 結果として得られる配列内の最初の要素の値。 
+* *stop*: 結果として得られる配列内の最後の要素の値、または結果の配列内の最後の要素より大きい最小値、および*開始*からの*ステップ*の整数倍の値。
+* *step*: 配列の2つの連続する要素の差。 *ステップ*の既定値は、 `1` 数値の場合は、 `1h` `timespan` またはの場合はです。`datetime`
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例は、 `[1, 4, 7]`を返します。
 

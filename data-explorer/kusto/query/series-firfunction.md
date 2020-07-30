@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 616fee7b0a1b6852f66d3db22846b2645e03135f
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: ef72ce93dd0cc6d4ab95c46365bfb0351d9d565a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84665012"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87343976"
 ---
 # <a name="series_fir"></a>series_fir()
 
@@ -21,11 +21,11 @@ ms.locfileid: "84665012"
 
 関数は、入力として動的な数値配列を含む式を受け取り、[有限インパルス応答](https://en.wikipedia.org/wiki/Finite_impulse_response)フィルターを適用します。 係数を指定することによって、 `filter` 移動平均、スムージング、変更検出、その他多くのユースケースを計算するために使用できます。 関数は、動的配列とフィルターの係数の静的動的配列を含む列を入力として受け取り、列にフィルターを適用します。 フィルター処理された出力を含む、動的配列の新しい列が出力されます。  
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_fir(`*x* `,` *フィルター* [ `,` *正規化*[ `,` *中央*]]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の動的配列のセル。 通常、結果として得られるのは、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の出力です。
 * *フィルター*: フィルターの係数を含む定数式です (数値の動的配列として格納されます)。
@@ -33,7 +33,7 @@ ms.locfileid: "84665012"
 正規化は、係数の合計が1であることを確認するための便利な方法です。 その後、フィルターによってシリーズが増幅または減衰されることはありません。 たとえば、4つのビンの移動平均は、 *filter*= [1, 1, 1, 1] と*正規化*された = true で指定できますが、これは [0.25, 0.25.0.25, 0.25] を入力するよりも簡単です。
 * *center*: フィルターが現在のポイントの前後の時間枠で対称的に適用されるか、現在のポイントから後方にある時間枠で適用されるかを示す、省略可能なブール値。 既定では、center は false です。これは、データのストリーミングのシナリオに適しています。ここでは、現在と以前のポイントにのみフィルターを適用できます。 ただし、アドホック処理の場合は、をに設定して、時系列との同期を維持することができ `true` ます。 以下の例を参照してください。 このパラメーターは、フィルターの[グループ遅延](https://en.wikipedia.org/wiki/Group_delay_and_phase_delay)を制御します。
 
-**使用例**
+## <a name="examples"></a>例
 
 * *Filter*= [1, 1, 1, 1, 1] を設定し、*ノーマライズ* = (既定値) することで、5つのポイントの移動平均を計算し `true` ます。 *Center* = `false` (既定) `true` との効果に注意してください。
 

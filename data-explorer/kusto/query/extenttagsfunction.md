@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 146ab59c1c0cbcb86bfae94fa26c09f5afa0f216
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: f745d9cb180842e86c184a24ed24c4e2f024f129
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737591"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348124"
 ---
 # <a name="extent_tags"></a>extent_tags()
 
@@ -25,17 +25,17 @@ ms.locfileid: "82737591"
 
 データシャードにアタッチされていない計算データにこの関数を適用すると、空の値が返されます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `extent_tags()`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-現在のレコードの`dynamic`エクステントタグを保持している配列である型の値、または空の値。
+`dynamic`現在のレコードのエクステントタグを保持している配列である型の値、または空の値。
 
-**使用例**
+## <a name="examples"></a>例
 
-次の例では、1時間前のレコードを含むすべてのデータシャードのタグの一覧を取得し、その列`ActivityId`に特定の値を設定する方法を示します。 この例では、一部のクエリ演算子 ( `where`ここでは演算子でもあります`extend`が`project`、とにも当てはまります) を示しています。これは、レコードをホストしているデータシャードに関する情報を保持します。
+次の例では、1時間前のレコードを含むすべてのデータシャードのタグの一覧を取得し、その列に特定の値を設定する方法を示し `ActivityId` ます。 この例では、一部のクエリ演算子 (ここでは演算子でもありますが、 `where` とにも当てはまります) を示しています。これは、 `extend` `project` レコードをホストしているデータシャードに関する情報を保持します。
 
 ```kusto
 T
@@ -45,7 +45,7 @@ T
 | summarize by tostring(tags)
 ```
 
-次の例は、過去1時間のすべてのレコードの数を取得する方法を示しています。これは、タグ`MyTag` (および他のタグ) でタグ付けされてい`drop-by:MyOtherTag`てもタグでタグ付けされていないエクステントに格納されています。
+次の例は、過去1時間のすべてのレコードの数を取得する方法を示しています。これは、タグ `MyTag` (および他のタグ) でタグ付けされていてもタグでタグ付けされていないエクステントに格納されてい `drop-by:MyOtherTag` ます。
 
 ```kusto
 T

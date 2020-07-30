@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f0901bddbfa8854e902ab60197164cf830215948
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 00438528f00c91a95fde9a77a7aa18a75002fce9
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224954"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348243"
 ---
 # <a name="estimate_data_size"></a>estimate_data_size()
 
@@ -24,21 +24,21 @@ estimate_data_size(*)
 estimate_data_size(Col1, Col2, Col3)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `estimate_data_size(*)`
 
 `estimate_data_size(`*col1* `, `*col2* `, `...`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *col1*, *col2*: データサイズの推定に使用されるソース表形式式の列参照の選択。 すべての列を含めるには、 `*` (アスタリスク) 構文を使用します。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 * レコードサイズの推定データサイズ (バイト単位)。 推定は、データ型と値の長さに基づいています。
 
-**使用例**
+## <a name="examples"></a>例
 
 合計データサイズの計算に使用する `estimated_data_size()` もの:
 

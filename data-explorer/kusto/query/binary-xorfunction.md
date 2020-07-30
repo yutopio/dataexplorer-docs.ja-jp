@@ -1,6 +1,6 @@
 ---
-title: binary_xor() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでbinary_xor() について説明します。
+title: binary_xor ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの binary_xor () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,29 +8,29 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c2f487aa44f8885cbb443c31b8bb3a503e1a76fa
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 6f988fa3d14dab3188bf96825615972995291655
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517529"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349008"
 ---
 # <a name="binary_xor"></a>binary_xor()
 
-2 つの値のビットごとの`xor`演算の結果を返します。
+2つの値のビットごとの演算の結果を返し `xor` ます。
 
 ```kusto
 binary_xor(x,y)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
-`binary_xor(`*num1* `,` *num2*`)`
+`binary_xor(`*num1* `,`*num2*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *num1* *、num2*: 長い数値。
+* *num1*, *num2*: long 数値。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-数値の組み合わせに対する論理 XOR 演算を返します: num1 ^ num2。
+数値のペアに対して論理 XOR 演算を返します: num1 ^ num2。

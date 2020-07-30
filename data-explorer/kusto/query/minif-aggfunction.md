@@ -1,6 +1,6 @@
 ---
-title: minif() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの minif() (集計関数) について説明します。
+title: minif () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの minif () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,35 +8,35 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0aad254ec01e83bdb07734e5b309c1450512b446
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 91764aeb8c825a272c414df7a0572d3b8310e79f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81512361"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346747"
 ---
-# <a name="minif-aggregation-function"></a>minif() (集計関数)
+# <a name="minif-aggregation-function"></a>minif () (集計関数)
 
-*Predicate*が 評価されるグループ全体の最小値を`true`返します。
+*述語*がに評価されるグループ全体の最小値を返し `true` ます。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
+* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-述語式を使用せずにグループ全体の最小値を返す[min()](min-aggfunction.md)関数も参照してください。
+「- [Min ()](min-aggfunction.md)関数」を参照してください。この関数は、述語式が指定されていないグループ全体の最小値を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`summarize``minif(`*エクスプラ*`,`*述部*`)`
+`summarize``minif(` *Expr* `,` *述語*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Expr*: 集計の計算に使用する式。
-* *述語*: 述語が true の場合 *、Expr*計算値が最小値をチェックします。
+* *Expr*: 集計計算に使用される式です。
+* *述語*: true の場合、*式*の計算値が最小になるかどうかがチェックされます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-*述語*が 評価されるグループ全体の*Expr*の最小値`true`。
+*述語*がに評価されるグループ全体の*Expr*の最小値 `true` 。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 range x from 1 to 100 step 1

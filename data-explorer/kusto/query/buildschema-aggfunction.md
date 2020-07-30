@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: cf21443beffb327e2708b8990017ac37fbbc8d21
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: 2520849508c9cef829d7c8c07f22d3f8c64cfcea
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902048"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348940"
 ---
 # <a name="buildschema-aggregation-function"></a>buildschema () (集計関数)
 
@@ -21,22 +21,22 @@ ms.locfileid: "85902048"
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `buildschema(` *dynamicexpr*の概要`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Dynamicexpr*: 集計計算に使用される式です。 パラメーターの列の型はである必要があり `dynamic` ます。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 グループ全体のの最大値 *`Expr`* 。
 
 > [!TIP] 
 > に `buildschema(json_column)` よって構文エラーが発生する場合: * `json_column` 動的オブジェクトではなく文字列ですか?* 次に、を使用し `buildschema(parsejson(json_column))` ます。
 
-**例**
+## <a name="example"></a>例
 
 入力列に3つの動的な値が含まれているとします。
 

@@ -1,6 +1,6 @@
 ---
-title: countof() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで countof() について説明します。
+title: countof ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの countof () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1d932fbcea9b38849e7d7de09230c9a5aa9fa8e4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1d34b0611db134a6fc99daa49d04bfc19575a1c1
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516900"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348753"
 ---
 # <a name="countof"></a>countof()
 
@@ -24,21 +24,21 @@ countof("The cat sat on the mat", "at") == 3
 countof("The cat sat on the mat", @"\b.at\b", "regex") == 3
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
-`countof(`*テキスト*`,`*検索*`,` [*種類*]`)`
+`countof(`*テキスト* `,`*検索*[ `,` *kind*]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *text*: 文字列。
-* *search*:*テキスト*内で一致するプレーン文字列または[正規表現](./re2.md)。
-* *種類* `"normal"|"regex"` :`normal`デフォルト . 
+* *search*:*テキスト*内で一致するプレーン文字列または[正規](./re2.md)表現。
+* *kind*: `"normal"|"regex"` 既定値 `normal` 。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 コンテナー内で検索文字列が一致する回数。 プレーン文字列一致では、重なり合う可能性があります。正規表現では、重なり合いません。
 
-**使用例**
+## <a name="examples"></a>例
 
 |||
 |---|---

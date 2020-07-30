@@ -1,6 +1,6 @@
 ---
-title: bin_auto() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで bin_auto() について説明します。
+title: bin_auto ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの bin_auto () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,35 +8,35 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ebb214ae6a2676bf59a37e1e4e9cc3c085374bb3
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 6df5d9793f2d076eb8f97156e911fb49aba4cc9c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517835"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349161"
 ---
 # <a name="bin_auto"></a>bin_auto()
 
-クエリ プロパティによって提供されるビン サイズと開始点を制御して、値を固定サイズの "bin" に切り捨てます。
+値を固定サイズの "ビン" に丸めます。これは、クエリプロパティによって提供されるビンサイズと開始位置を制御します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `bin_auto``(`*式*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *式*: 丸める値を示す数値型のスカラー式。
+* *式*: 丸め対象の値を示す数値型のスカラー式。
 
 **クライアント要求のプロパティ**
 
 * `query_bin_auto_size`: 各ビンのサイズを示す数値リテラル。
-* `query_bin_auto_at`: "固定点" である*Expression*の 1 つの値 (つまり、`fixed_point`値`bin_auto(fixed_point)`==`fixed_point`を示す数値リテラル)
+* `query_bin_auto_at`: "固定ポイント" (つまり、値) である*Expression*の1つの値を示す数値リテラル `fixed_point` `bin_auto(fixed_point)` == `fixed_point` 。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-式の下の`query_bin_auto_at`最*Expression*も近い倍数`query_bin_auto_at`は、それ自体に翻訳されるようにシフトしました。
+次の式の最も近い倍数は、 `query_bin_auto_at` *Expression* `query_bin_auto_at` それ自体に変換されるようにシフトされます。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 set query_bin_auto_size=1h;
@@ -47,5 +47,5 @@ range Timestamp from datetime(2017-01-01 00:05) to datetime(2017-01-01 02:00) st
 
 |Timestamp                    | count_|
 |-----------------------------|-------|
-|2017-01-01 00:05:00.0000000  | 60    |
-|2017-01-01 01:05:00.0000000  | 56    |
+|2017-01-01 00:05: 00.0000000  | 60    |
+|2017-01-01 01:05: 00.0000000  | 56    |

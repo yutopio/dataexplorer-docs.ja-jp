@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 76b16098d9340a98fb3a456dfa947c089507da6c
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: a98fe59755e47be8f4f4e53595d25bb260004236
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227691"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349229"
 ---
 # <a name="beta_cdf"></a>beta_cdf()
 
@@ -27,17 +27,17 @@ beta_cdf(0.2, 10.0, 50.0)
 
 通常、ベータ分布は複数の標本を対象として割合の変化を分析する場合などに使用します。たとえば、複数の人が 1 日のうちにテレビを見ている時間の割合を算出するときなどに使用します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `beta_cdf(`*x* `, `*アルファ* `, `*ベータ版*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 関数を評価する値。
 * *α*: 分布のパラメーター。
 * *beta*: 分布のパラメーター。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 * [累積ベータ分布関数](https://en.wikipedia.org/wiki/Beta_distribution#Cumulative_distribution_function)です。
 
@@ -49,7 +49,7 @@ X < 0 または x > 1 の場合、beta_cdf () は NaN 値を返します。
 
 Α≤0または beta ≤0の場合、beta_cdf () は NaN 値を返します。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -63,12 +63,12 @@ datatable(x:double, alpha:double, beta:double, comment:string)
 | extend b = beta_cdf(x, alpha, beta)
 ```
 
-|x|alpha|beta|comment|b|
+|x|alpha|ベータ|コメント|b|
 |---|---|---|---|---|
 |0.9|10|20|有効な入力|0.999999999999959|
-|1.5|10|20|x > 1、NaN を生成します|(NaN)|
-|-10|10|20|x < 0、NaN を生成します|(NaN)|
-|0.1|-1|20|アルファは 0 <、NaN を生成します|(NaN)|
+|1.5|10|20|x > 1、NaN を生成します|NaN|
+|-10|10|20|x < 0、NaN を生成します|NaN|
+|0.1|-1|20|アルファは 0 <、NaN を生成します|NaN|
 
 
 **参照**

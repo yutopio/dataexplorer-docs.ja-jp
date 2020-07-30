@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 5fd6221e4b877d066050f932a564f71d56d8c168
-ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
+ms.openlocfilehash: f5ad4cdc2b74ddb62a4572249bb06fab6c656243
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85332559"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347427"
 ---
 # <a name="infer_storage_schema-plugin"></a>infer_storage_schema プラグイン
 
@@ -30,11 +30,11 @@ let options = dynamic({
 evaluate infer_storage_schema(options)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `evaluate` `infer_storage_schema(` *オプション* `)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 単一*オプション*の引数は、 `dynamic` 要求のプロパティを指定するプロパティバッグを保持する型の定数値です。
 
@@ -46,7 +46,7 @@ evaluate infer_storage_schema(options)
 |`FileNamePrefix`|いいえ|このプレフィックスで始まるファイルのみをスキャンします。 必須ではありませんが、指定するとプロセスが高速化される可能性があります。|
 |`Mode`|いいえ|スキーマの推論方法。次のいずれかに `any` `last` `all` なります。 (最初に検出された) ファイル、最後に書き込まれたファイル、またはすべてのファイルからデータスキーマを推論します。 既定値は `last` です。|
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 この `infer_storage_schema` プラグインは、CSL スキーマ文字列を保持する1つの行または列を含む単一の結果テーブルを返します。
 
@@ -55,7 +55,7 @@ evaluate infer_storage_schema(options)
 > * スキーマ推論戦略 ' all ' は、検出された*すべて*のアイテムからの読み取りを意味し、スキーマをマージするため、非常に "高額" な操作です。
 > * 返される型の中には、誤った型推測 (または、スキーママージ処理の結果として) の結果として実際の型を使用できないものがあります。 このため、外部テーブルを作成する前に、結果を慎重に確認する必要があります。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 let options = dynamic({

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ea57efe36fb86189d798e5f18fa3fe9470bfd634
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 410a0c84a1bafdfa1900ef8e21bc0a91327b64c3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227538"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348872"
 ---
 # <a name="coalesce"></a>coalesce()
 
@@ -23,22 +23,22 @@ ms.locfileid: "83227538"
 coalesce(tolong("not a number"), tolong("42"), 33) == 42
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `coalesce(`*expr_1* `, `*expr_2* `,`...)
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *expr_i*: 評価されるスカラー式。
 - すべての引数は同じ型である必要があります。
 - 最大64個の引数がサポートされています。
 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 値が null でない (文字列式の場合は空ではない) 最初の*expr_i*の値。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples  -->
 ```kusto

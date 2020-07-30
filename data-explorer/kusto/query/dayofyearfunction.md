@@ -1,6 +1,6 @@
 ---
-title: デイオブイヤー() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの dayofyear() について説明します。
+title: dayofyear ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの dayofyear () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,29 +8,29 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 41e7c5906da001e877dd9124124e126d729e886d
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 925b65846c6ba32163bd325fd2ee3321bc7fc802
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516220"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348464"
 ---
 # <a name="dayofyear"></a>dayofyear()
 
-整数を返し、指定した年の日の番号を表します。
+指定された年の日番号を表す整数を返します。
 
 ```kusto
 dayofyear(datetime(2015-12-14))
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `dayofweek(`*a_date*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* `a_date`: `datetime`。
+* `a_date`:`datetime`。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-`day number`与えられた年の。
+`day number`指定された年の。

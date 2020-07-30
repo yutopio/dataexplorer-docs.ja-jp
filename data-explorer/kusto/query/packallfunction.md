@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f34f2ac316f122034fcf8ee19a8e82e51b6221df
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: 6c157c014ec3b83aa39d4bdfcadda12e97e84f3e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780475"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346543"
 ---
 # <a name="pack_all"></a>pack_all()
 
 `dynamic`表形式の式のすべての列からオブジェクト (プロパティバッグ) を作成します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `pack_all()`
 
-**ノート**
+**メモ**
 
 返されたオブジェクトの表現は、実行間でバイトレベルの互換性が保証されていません。 たとえば、バッグに表示されるプロパティは、異なる順序で表示される場合があります。
 
-**使用例**
+## <a name="examples"></a>例
 
 指定されたテーブル SmsMessages 
 

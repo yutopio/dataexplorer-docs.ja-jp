@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bfa5286a03d06282682953a23c6b2a2705c58a9c
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 86e3ce4f1cbb957ebd126a8493ebb6b7bc5ac66b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717072"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349416"
 ---
 # <a name="autocluster-plugin"></a>autocluster プラグイン
 
@@ -23,11 +23,11 @@ T | evaluate autocluster()
 
 `autocluster`データ内の不連続属性 (ディメンション) の一般的なパターンを検索します。 次に、元のクエリの結果を、100か10万行でも、少数のパターンに減らします。 このプラグインは、エラー (例外やクラッシュなど) を分析するために開発されましたが、フィルター処理されたデータセットで動作する可能性があります。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `T | evaluate autocluster(`*引数*`)`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 この `autocluster` プラグインは、(通常は小さい) パターンのセットを返します。 このパターンでは、複数の不連続属性で共通の値を共有して、データの一部をキャプチャします。 結果内の各パターンは、行によって表されます。
 
@@ -66,7 +66,7 @@ StormEvents
 | evaluate autocluster(0.6)
 ```
 
-|セグメント ID|Count|Percent|状態|EventType|損害|
+|セグメント ID|Count|Percent|State|EventType|損害|
 |---|---|---|---|---|---|---|---|---|
 |0|2278|38.7||ひょう|NO
 |1|512|8.7||雷雨風|YES
@@ -83,7 +83,7 @@ StormEvents
 | evaluate autocluster(0.2, '~', '~', '*')
 ```
 
-|セグメント ID|Count|Percent|状態|EventType|損害|
+|セグメント ID|Count|Percent|State|EventType|損害|
 |---|---|---|---|---|---|---|---|---|
 |0|2278|38.7|\*|ひょう|NO
 |1|512|8.7|\*|雷雨風|YES

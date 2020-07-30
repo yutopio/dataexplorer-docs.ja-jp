@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/26/2019
-ms.openlocfilehash: d95bed91ab07be3feebecffbb97378866cb7c6c9
-ms.sourcegitcommit: a034b6a795ed5e62865fcf9340906f91945b3971
+ms.openlocfilehash: cf83690d61bb84d1b6b877e76a77d5776be35ad4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85197228"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349246"
 ---
-# <a name="basket-plugin"></a>バスケットプラグイン
+# <a name="basket-plugin"></a>basket プラグイン
 
 ```kusto
 T | evaluate basket()
@@ -23,11 +23,11 @@ T | evaluate basket()
 
 バスケットは、データ内の不連続属性 (ディメンション) のパターンをすべて検索します。 次に、元のクエリで頻度のしきい値に達した頻繁なパターンを返します。 バスケットはデータ内のすべての頻繁なパターンを検索することが保証されていますが、多項式のランタイムがあるとは限りません。 クエリの実行時間は行数に比例していますが、列数 (ディメンション) に指数関数を使用する場合もあります。 basket は、元はバスケット分析データ マイニング向けに開発された Apriori アルゴリズムに基づいています。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `T | evaluate basket(`*引数*`)`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 バスケットでは、行の比率のしきい値を超えた頻繁なパターンがすべて返されます。 既定のしきい値は0.05 です。 各パターンは、結果内の行によって表されます。
 
@@ -69,7 +69,7 @@ T | evaluate basket()
 
      `T | evaluate basket('~', '~', '~', '*', int(-1), double(-1), long(0), datetime(1900-1-1))`
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

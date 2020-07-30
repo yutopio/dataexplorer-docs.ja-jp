@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 35fa0c29bf00a8696d4e9d08d73c30bba6171ea1
-ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
+ms.openlocfilehash: 510e2de8a30a422955c0cbfcbdf3a0f50e46dbc5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 07/28/2020
-ms.locfileid: "87264717"
+ms.locfileid: "87346560"
 ---
 # <a name="order-operator"></a>order 演算子 
 
@@ -26,11 +26,11 @@ T | order by country asc, price desc
 > [!NOTE]
 > Order 演算子は、sort 演算子のエイリアスです。 詳細については、「 [sort 演算子](sortoperator.md)」を参照してください。
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| order by` *列*[ `asc`  |  `desc` ] [ `nulls first`  |  `nulls last` ] [ `,` ...]
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 並べ替えの対象となるテーブル入力。
 * *列*: 並べ替えに使用する*T*の列。 値の型は、数値、日付、時刻、または文字列にする必要があります。

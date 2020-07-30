@@ -1,6 +1,6 @@
 ---
-title: ビン() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの bin() について説明します。
+title: bin ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの bin () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3fb827c71fa63fde031a91bc9aec7f0ed108fd5c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 434d32a3b6597d71ea22c182a468d64d7971e6cb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81517427"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348974"
 ---
 # <a name="bin"></a>bin()
 
 値を切り捨てて、指定された bin サイズの倍数である整数にします。 
 
-と組み合[`summarize by ...`](./summarizeoperator.md)わせて頻繁に使用されます。
+と組み合わせて頻繁に使用され [`summarize by ...`](./summarizeoperator.md) ます。
 値が分散している場合に、特定の値ごとの小さなセットにグループ化されます。
 
-NULL 値、null ビン サイズ、または負のビン サイズは NULL になります。 
+Null 値、ビンサイズが null の場合、またはビンサイズが負の場合は、null になります。 
 
-エイリアスを`floor()`使用して機能します。
+エイリアスが `floor()` 機能します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`bin(`*値*`,`*ラウンドTo*`)`
+`bin(`*値* `,`*roundTo*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *値*: 数値、日付、または期間。 
-* *ラウンドTo*: "ビンサイズ" *value*を分割する数値、日付、または期間です。 
+* *値*: 数値、日付、または timespan。 
+* *roundTo*: "bin サイズ"。 *value*を分割する数値、日付、または期間です。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 *value* 未満で、*roundTo* の最も近い倍数。  
  
@@ -43,9 +43,9 @@ NULL 値、null ビン サイズ、または負のビン サイズは NULL に�
 (toint((value/roundTo))) * roundTo`
 ```
 
-**使用例**
+## <a name="examples"></a>例
 
-式 | 結果
+正規表現 | 結果
 ---|---
 `bin(4.5, 1)` | `4.0`
 `bin(time(16d), 7d)` | `14d`

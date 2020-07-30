@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 0373525d0f1e369af31b17595900128e0d4e0bf4
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 54c09908096f9df4ac8b568cd5e897c6e4ecc8c2
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763353"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345965"
 ---
 # <a name="query-parameters-declaration-statement"></a>クエリパラメーター宣言ステートメント
 
@@ -34,7 +34,7 @@ Kusto に送信されるクエリには、一連の名前または値のペア�
 
 クエリパラメーターを参照するには、クエリテキスト、または使用する関数が、最初に使用するクエリパラメーターを宣言する必要があります。 パラメーターごとに、宣言によって名前とスカラー型が提供されます。 必要に応じて、パラメーターに既定値を指定することもできます。 既定値は、要求がパラメーターの具体的な値を提供しない場合に使用されます。 次に、その型の通常の解析規則に従って、クエリパラメーターの値を解析します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `declare``query_parameters` `(` *Name1* `:` *Type1* [ `=` *DefaultValue1*] [ `,` ...]`);`
 
@@ -46,7 +46,7 @@ Kusto に送信されるクエリには、一連の名前または値のペア�
 > [!NOTE]
 > [ユーザー定義関数](functions/user-defined-functions.md)と同様に、型のクエリパラメーターに既定値を指定する `dynamic` ことはできません。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 declare query_parameters(UserName:string, Password:string);

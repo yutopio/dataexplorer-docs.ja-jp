@@ -8,31 +8,31 @@ ms.reviewer: slneimer
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/28/2020
-ms.openlocfilehash: 0296b41dc10092f0b274491c3fab3355fc82a2d9
-ms.sourcegitcommit: 4eb64e72861d07cedb879e7b61a59eced74517ec
+ms.openlocfilehash: f330c10e95cdc36eae497811ef895ef827918b43
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/29/2020
-ms.locfileid: "85518142"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346492"
 ---
-# <a name="parse_command_line"></a>parse_command_line ()
+# <a name="parse_command_line"></a>parse_command_line()
 
 Unicode コマンドライン文字列を解析し、コマンドライン引数の動的配列を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `parse_command_line(`*command_line*、*parser_type*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *command_line*: 解析するコマンドライン。
 * *parser_type*: 現在サポートされている唯一の値は `"Windows"` 、 [CommandLineToArgvW](https://docs.microsoft.com/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw)と同じようにコマンドラインを解析するです。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 コマンドライン引数の動的配列。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

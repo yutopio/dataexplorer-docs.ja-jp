@@ -1,6 +1,6 @@
 ---
-title: 抽出json() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの extractjson() について説明します。
+title: extractjson ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの extractjson () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6177a1c8a6ed4390093e6f6fd24c5f5e9fd04f8a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 21f366e8f211acf9c7c542b420006cfb23e683e7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515336"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348039"
 ---
 # <a name="extractjson"></a>extractjson()
 
@@ -25,22 +25,22 @@ ms.locfileid: "81515336"
 extractjson("$.hosts[1].AvailableMB", EventText, typeof(int))
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
-`extractjson(`*データ*`,`*ソース*`)` 
+`extractjson(`*Jsonpath* `,`*データソース*`)` 
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *jsonPath:* JSON ドキュメントへのアクセサーを定義する JsonPath 文字列。
-* *データソース*: JSON ドキュメント。
+* *jsonpath*: JSON ドキュメントへのアクセサーを定義する jsonpath 文字列。
+* *dataSource*: JSON ドキュメント。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 この関数は、有効な JSON 文字列が含まれている dataSource への JsonPath クエリを実行します。オプションで、その値を 3 番目の引数に基づいて他の型に変換することもできます。
 
-**例**
+## <a name="example"></a>例
 
-`[`括弧`]`表記とドット ()`.`表記は同等です。
+`[`角かっこの `]` 表記とドット ( `.` ) は等価です。
 
 ```kusto
 T 

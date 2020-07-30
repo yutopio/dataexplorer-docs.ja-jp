@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: b5847fec10eb76a6fe5a139809766d2a3ca4f089
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7b6de7d141f02703c5f369dd831d1fbac82cb45e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372916"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345523"
 ---
 # <a name="series_add"></a>series_add()
 
 2つの数値系列入力の要素ごとの加算を計算します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_add(`*series1* `,`*series2*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *series1, series2*: 動的配列の結果に要素ごとに追加される数値配列を入力します。 すべての引数は動的配列である必要があります。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 2つの入力間の計算された要素ごとの加算演算の動的配列。 数値以外の要素または存在しない要素 (異なるサイズの配列) は、 `null` 要素の値を生成します。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

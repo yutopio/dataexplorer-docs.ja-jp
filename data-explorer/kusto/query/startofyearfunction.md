@@ -1,6 +1,6 @@
 ---
-title: スタートオブイヤー() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの startofyear() について説明します。
+title: startofyear ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの startofyear () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,39 +8,39 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f91c749cc3833954d902eb4ebd7e230e32e3a991
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c4ff0509f0ed7de98daf9bcec6c40ed5b8d76fd3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507210"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87343364"
 ---
 # <a name="startofyear"></a>startofyear()
 
-指定した場合、日付を含む年の始まりを返します。
+指定されている場合、オフセットによってシフトされた日付を含む年の開始を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`startofyear(`*日付*`,`[*オフセット*]`)`
+`startofyear(`*日付*[ `,` *オフセット*]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* `date`: 入力日付。
-* `offset`: 入力日付からのオフセット年数 (整数、デフォルト - 0)。 
+* `date`: 入力された日付。
+* `offset`: 入力された日付からのオフセット年数 (省略可能) (整数、既定値-0)。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-指定された*日付*値の年の開始日を表す日時。(オフセットが指定されている場合)。
+指定された場合、オフセットを使用して、指定された*日付*値の年の開始を表す datetime。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
   range offset from -1 to 1 step 1
  | project yearStart = startofyear(datetime(2017-01-01 10:10:17), offset) 
 ```
 
-|年スタート|
+|yearStart|
 |---|
-|2016-01-01 00:00:00.0000000|
-|2017-01-01 00:00:00.0000000|
-|2018-01-01 00:00:00.0000000|
+|2016-01-01 00:00: 00.0000000|
+|2017-01-01 00:00: 00.0000000|
+|2018-01-01 00:00: 00.0000000|

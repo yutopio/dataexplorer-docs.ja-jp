@@ -1,6 +1,6 @@
 ---
-title: オペレーターとして - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでオペレーターとして説明します。
+title: as 演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの as 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,34 +8,34 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 05dc96fb7eec773d1e55d8b94a33cdda928622ff
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f9d7a60b3c39fb0b7357c2bbe68533252f794347
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518430"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349484"
 ---
 # <a name="as-operator"></a>as 演算子
 
-名前を演算子の入力テーブル式にバインドするため、クエリは、クエリを壊さずにテーブル式の値を複数回参照し、 [let ステートメント](letstatement.md)を使用して名前をバインドできます。
+演算子の入力表形式式に名前をバインドします。これにより、クエリを中断せずに、 [let ステートメント](letstatement.md)を使用して名前をバインドすることなく、テーブル式の値を複数回参照できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-*T* `|` T `as` `hint.materialized` [ `=` ]*名前*`true`
+*T* `|` `as` [ `hint.materialized` `=` `true` ]*名前*
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 表形式の式。
 * *名前*: 表形式の式の一時的な名前。
-* `hint.materialized`:`true`に設定すると、表形式の式の値は[、materialize()](./materializefunction.md)関数呼び出しでラップされたかのように具体化されます。
+* `hint.materialized`: に設定されている場合 `true` 、テーブル式の値は、[具体化 ()](./materializefunction.md)関数呼び出しによってラップされているかのように具体化されます。
 
-**メモ**
+**ノート**
 
-* 指定された`as`名前は[、union](./unionoperator.md)`source_`の`withsource=`列 、 [find](./findoperator.md)の列、 および`$table`[検索](./searchoperator.md)の列で使用されます。
+* によって指定された名前は、 `as` `withsource=` [union](./unionoperator.md)の列、 `source_` [find](./findoperator.md)列、および `$table` [search](./searchoperator.md)の列で使用されます。
 
-* [結合](./joinoperator.md)の外部の表形式入力 (`$left`) で演算子を使用して名前を付けた表形式の式は、結合の表`$right`形式の内部入力 ( ) でも使用できます。
+* [結合](./joinoperator.md)の外側の表形式入力 () で演算子を使用して名前が付けられた表形式の式は、 `$left` 結合の表形式の内部入力 () でも使用でき `$right` ます。
 
-**使用例**
+## <a name="examples"></a>使用例
 
 ```kusto
 // 1. In the following 2 example the union's generated TableName column will consist of 'T1' and 'T2'

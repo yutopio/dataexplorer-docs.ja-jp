@@ -1,6 +1,6 @@
 ---
-title: ソート演算子 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの並べ替え演算子について説明します。
+title: sort 操作-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの並べ替え演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 638783b28cddc51d64a80096d7d4d6e0f669d354
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4f9878b77ad2288395a54d5315864e460ca37875
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81507482"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351031"
 ---
 # <a name="sort-operator"></a>sort 演算子 
 
@@ -23,22 +23,22 @@ ms.locfileid: "81507482"
 T | sort by strlen(country) asc, price desc
 ```
 
-**エイリアス**
+**Alias**
 
 `order`
 
-**構文**
+## <a name="syntax"></a>構文
 
-*T*`| sort by`*expression*式`asc` | `desc`[`nulls first` | `nulls last`]`,` [ ] [ .]
+*T* `| sort by` *式*[ `asc`  |  `desc` ] [ `nulls first`  |  `nulls last` ] [ `,` ...]
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *T*: ソートするテーブル入力。
-* *式*: 並べ替えに使用するスカラー式。 値の型は、数値、日付、時刻、または文字列にする必要があります。
+* *T*: 並べ替えの対象となるテーブル入力。
+* *式*: の並べ替えに使用するスカラー式。 値の型は、数値、日付、時刻、または文字列にする必要があります。
 * `asc` : 昇順で (小さい値から大きい値へ) 並べ替えます。 既定値は `desc`で、降順 (大きい値から小さい値へ) です。
-* `nulls first`(順序の`asc`デフォルト)は、最初に NULL 値を配置`nulls last`し、(順序`desc`のデフォルト)末尾に NULL 値を配置します。
+* `nulls first`(order の既定値 `asc` ) は、先頭に null 値を挿入し `nulls last` ます。(order の既定値 `desc` ) は、null 値を末尾に配置します。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 Traces
@@ -46,9 +46,9 @@ Traces
 | sort by Timestamp asc nulls first
 ```
 
-特定の `ActivityId`を持つ Traces テーブルのすべての行が、タイムスタンプの順で並べ替えられます。 列`Timestamp`に NULL 値が含まれている場合、結果の最初の行に表示されます。
+特定の `ActivityId`を持つ Traces テーブルのすべての行が、タイムスタンプの順で並べ替えられます。 `Timestamp`列に null 値が含まれている場合は、結果の最初の行に表示されます。
 
-結果から NULL 値を除外するには、並べ替えの呼び出しの前にフィルターを追加します。
+結果から null 値を除外するには、並べ替えの呼び出しの前にフィルターを追加します。
 
 ```kusto
 Traces

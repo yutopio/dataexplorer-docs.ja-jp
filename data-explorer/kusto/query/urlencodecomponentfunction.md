@@ -1,6 +1,6 @@
 ---
-title: url_encode_component() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの url_encode_component() について説明します。
+title: url_encode_component ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの url_encode_component () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,42 +8,42 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/17/2020
-ms.openlocfilehash: bfdb40f362aa680a68bd8871769eecb5a2da19e6
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 44e77e2a0e34b66506852bd82d65e4a108b520fd
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505068"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338458"
 ---
 # <a name="url_encode_component"></a>url_encode_component()
 
-この関数は、入力 URL の文字をインターネット上で転送できる形式に変換します。 
+関数は、入力 URL の文字をインターネット経由で送信できる形式に変換します。 
 
-URL のエンコードとデコードの詳細については、 を[参照してください](https://en.wikipedia.org/wiki/Percent-encoding)。
-[url_encode](./urlencodefunction.md)とは異なり、スペースを'+' ではなく「20%」としてエンコードします。
+URL エンコードとデコードの詳細については、[こちら](https://en.wikipedia.org/wiki/Percent-encoding)を参照してください。
+は、スペースを ' 20% ' としてエンコードし、' + ' としてではなく、 [url_encode](./urlencodefunction.md)とは異なります。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`url_encode_component(`*Url*`)`
+`url_encode_component(`*先*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *url*: 入力 URL (文字列)  
+* *url*: 入力 url (文字列)。  
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-URL (文字列) をインターネット経由で転送できる形式に変換します。
+URL (文字列) をインターネット経由で送信できる形式に変換します。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 let url = @'https://www.bing.com/hello word/';
 print original = url, encoded = url_encode_component(url)
 ```
 
-|original|エンコード|
+|original|化|
 |---|---|
-|https://www.bing.com/hello単語/|https%3a%2f%2fwww.bing.com%2fhello%20ワード|
+|https://www.bing.com/helloテキスト|https %3 a %2 f %2 f www. bing .com% 2fhello% 20word|
 
 
  

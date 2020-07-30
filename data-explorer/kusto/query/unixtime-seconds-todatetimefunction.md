@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/25/2019
-ms.openlocfilehash: 87a2db1109fecfd7e27f29d4305449b596f7cd68
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 0dca68d410bc7444feca8df41a360bb4ac2a1ec3
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370420"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338645"
 ---
 # <a name="unixtime_seconds_todatetime"></a>unixtime_seconds_todatetime()
 
 Unix-エポック秒を UTC 日時に変換します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `unixtime_seconds_todatetime(*seconds*)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *秒*: 実数は、エポックタイムスタンプを秒単位で表します。 `Datetime`エポック時間 (1970-01-01 00:00:00) が負のタイムスタンプ値を持つ前に発生します。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 変換が成功した場合、結果は[datetime](./scalar-data-types/datetime.md)値になります。 変換に失敗した場合、結果は null になります。
 
@@ -37,7 +37,7 @@ Unix-エポック秒を UTC 日時に変換します。
 * [Unixtime_microseconds_todatetime ()](unixtime-microseconds-todatetimefunction.md)を使用して、unix-エポックマイクロ秒を UTC 日時に変換します。
 * [Unixtime_nanoseconds_todatetime ()](unixtime-nanoseconds-todatetimefunction.md)を使用して、unix-エポックナノ秒を UTC の datetime に変換します。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples  -->
 ```kusto

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 80f3f900649d2c4c36c7a50831e011f0ee018860
-ms.sourcegitcommit: 1faf502280ebda268cdfbeec2e8ef3d582dfc23e
+ms.openlocfilehash: 70118746a079d76b1b6729bed3aae96c48399538
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/01/2020
-ms.locfileid: "82618014"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338662"
 ---
 # <a name="variancep-aggregation-function"></a>variancep () (集計関数)
 
@@ -25,19 +25,19 @@ ms.locfileid: "82618014"
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-集計`variancep(`の*Expr*`)`
+集計の `variancep(` *Expr*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: 集計計算に使用される式です。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 グループ全体の*Expr*の分散値。
  
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 range x from 1 to 5 step 1

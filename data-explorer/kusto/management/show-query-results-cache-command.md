@@ -2,18 +2,18 @@
 title: クエリ結果キャッシュの表示-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーでクエリ結果キャッシュを表示する方法について説明します。
 services: data-explorer
-author: amitof
-ms.author: amitof
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: 84805cae07049af4ffa8a2fdb82e637261140f8f
-ms.sourcegitcommit: cf1da667be12656a8c4727c23144421b5a4b1099
+ms.openlocfilehash: 7b7a96a01a4ec2b6c84609b2f9c518637d174390
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86565430"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349892"
 ---
 # <a name="show-database-cache-query_results"></a>。データベースキャッシュ query_results を表示します
 

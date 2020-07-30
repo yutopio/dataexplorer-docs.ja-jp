@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/27/2020
-ms.openlocfilehash: 7eabcb3cb0c3fd001290848e73bb534ff8ea4218
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 30075b5a75e273061423a6f1540f44947ef93cec
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226824"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347716"
 ---
 # <a name="geo_s2cell_to_central_point"></a>geo_s2cell_to_central_point()
 
@@ -21,22 +21,22 @@ S2 セルの中心を表す地理空間座標を計算します。
 
 [S2 セル階層](https://s2geometry.io/devguide/s2cell_hierarchy)の詳細については、こちらをご覧ください。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_s2cell_to_central_point(`*s2cell*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 *s2cell*: S2 セルトークン文字列値は[geo_point_to_s2cell ()](geo-point-to-s2cell-function.md)によって計算されています。 S2 セルトークンの最大文字列長は16文字です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)および[動的](./scalar-data-types/dynamic.md)データ型の地理空間座標値。 S2 セルトークンが無効な場合、クエリでは null 結果が生成されます。
 
 > [!NOTE]
 > GeoJSON 形式では、経度の最初と緯度の2番目のを指定します。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

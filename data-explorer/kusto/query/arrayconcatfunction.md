@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 681178cc12d145b1c574357e87ae4f7b33d736c4
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: ecaca4aea221ca2b880b798757de64787901a0cb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225651"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349603"
 ---
 # <a name="array_concat"></a>array_concat()
 
 複数の動的配列を連結して1つの配列にします。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `array_concat(`*arr1* `[` 、 ` *arr2*, ...]` ) '
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *arr1...arrN*: 動的配列に連結する入力配列。 すべての引数は動的配列である必要があります ( [pack_array](packarrayfunction.md)を参照してください)。 
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 Arr1、arr2、...、arrN を含む配列の動的配列。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

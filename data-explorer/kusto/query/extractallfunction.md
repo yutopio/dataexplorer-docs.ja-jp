@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 55168d381ab69bf0d29e8560714e13cb635fd688
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: e52f90b911331bca6374318869d3f8ebf262d81f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780526"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348073"
 ---
 # <a name="extract_all"></a>extract_all()
 
@@ -24,19 +24,19 @@ ms.locfileid: "84780526"
 print extract_all(@"(\d+)", "a set of numbers: 123, 567 and 789") // results with the dynamic array ["123", "567", "789"]
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `extract_all(`*regex* `,`[*captureGroups* `,` ]*テキスト*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 |引数        |説明                                  |必須またはオプション  |
 |----------------|---------------------------------------------|----------------------|
 |regex           | [正規表現](./re2.md)。 式には、少なくとも1つのキャプチャグループと16以下のキャプチャグループが必要です。                                                         |必須              |
-|captureGroups   |抽出するキャプチャグループを示す動的配列定数。 有効な値は、1から正規表現内のキャプチャグループの数までです。 名前付きキャプチャグループも使用できます ([例](#examples)を参照)。|オプション         |
-|テキスト            |`string`検索する。                         |必須              |
+|captureGroups   |抽出するキャプチャグループを示す動的配列定数。 有効な値は、1から正規表現内のキャプチャグループの数までです。 名前付きキャプチャグループも使用できます ([例](#examples)を参照)。|省略可能         |
+|text            |`string`検索する。                         |必須              |
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 * *Regex*が*text*内で一致するものを検出すると、は、指定されたキャプチャグループの*captureGroups*、または*regex*内のすべてのキャプチャグループに対するすべての一致を含む動的配列を返します。
 * Number of *captureGroups*が1の場合: 返される配列には、一致する値の1つの次元があります。

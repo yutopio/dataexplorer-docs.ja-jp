@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/06/2020
-ms.openlocfilehash: 66ca1e5ff330a4b39ab769b0e3e8d6359eed9c00
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 3d0f389264d078d2b55ac06214bb3b820fcf7f13
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226671"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347597"
 ---
 # <a name="hash_many"></a>hash_many()
 
 複数の値の結合されたハッシュ値を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `hash_many(`*s1* `,`*s2* [ `,` *s3* ...]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *s1*、 *s2*、...、 *sN*: 入力値がまとめてハッシュされます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 指定されたスカラーの結合ハッシュ値。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

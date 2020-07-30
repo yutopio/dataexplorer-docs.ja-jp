@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: c431f17184570b294b9c8077028ac792719b4abd
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: de75014fb408b3d31acab37ad8e16923cabaadfd
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225209"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348413"
 ---
 # <a name="dcount_intersect-plugin"></a>dcount_intersect プラグイン
 
@@ -27,21 +27,21 @@ S<sub>1</sub> ∩ s<sub>2</sub> ∩...∩ S<sub>n</sub>
 
     T | evaluate dcount_intersect(hll_1, hll_2, hll_3)
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `dcount_intersect(` *hll_1*、 *hll_2*、[ `,` *hll_3* `,` ...]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *hll_i*: 関数<sub>で計算さ</sub>れた set S の値 [`hll()`](./hll-aggfunction.md) 。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 N 個の値を持つテーブルを返し `dcount` ます (列ごとに、集合の交差部分を表します)。
 列名は s0、s1、...(n-1 まで)。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

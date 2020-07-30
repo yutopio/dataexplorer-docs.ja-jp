@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/18/2020
-ms.openlocfilehash: 4915371127acd229845cc9eac1ea1400484c313f
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: b5d0624504744bb28dfdb68ee27c48b2119242b8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372980"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351507"
 ---
 # <a name="sample-operator"></a>sample 演算子
 
@@ -23,15 +23,15 @@ ms.locfileid: "83372980"
 T | sample 5
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 _T_ `| sample` _numberofrows_
 
-**引数**
+## <a name="arguments"></a>引数
 
 - _Numberofrows_: 返す_T_の行数。 任意の数値式を指定できます。
 
-**メモ**
+**ノート**
 
 - `sample`は、値の均等な分布ではなく、速度を重視しています。 具体的には、異なるサイズの2つのデータセット (or 演算子など) を共用する演算子の後で使用した場合、"公正な" 結果が生成されないことを意味し `union` `join` ます。 テーブル参照とフィルターの直後にを使用することをお勧めし `sample` ます。
 
@@ -72,7 +72,7 @@ StormEvents | where rand() < 0.1
 
 - 行ではなく、キーをサンプリングする場合 (例: サンプル10の Id と、これらの Id のすべての行を取得する場合) は [`sample-distinct`](./sampledistinctoperator.md) 、演算子と組み合わせて使用でき `in` ます。
 
-**使用例**
+## <a name="examples"></a>使用例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

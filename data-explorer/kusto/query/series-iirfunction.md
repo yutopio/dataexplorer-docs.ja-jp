@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: fbdf7b1a9a9f5b65e6c6ee7a78fe64afba2893af
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: e1b863b83e08fae680e1a387ca2fdd2a93d111a8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264795"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351439"
 ---
 # <a name="series_iir"></a>series_iir()
 
@@ -26,11 +26,11 @@ ms.locfileid: "85264795"
 
 関数は、動的配列を含む列と、フィルターの*a*および*b*係数の2つの静的動的配列を入力として受け取り、列にフィルターを適用します。 フィルター処理された出力を含む、動的配列の新しい列が出力されます。  
 
-**構文**
+## <a name="syntax"></a>構文
 
 `series_iir(`*x* `,` *b* `,` *a*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の配列である動的配列のセル。通常は、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の結果の出力です。
 * *b*: フィルターの分子係数を含む定数式 (数値の動的配列として格納されます)。
@@ -60,7 +60,7 @@ print x=x, y = series_iir(x, dynamic([1]), dynamic([1,-1]))
 | mv-expand x, y
 ```
 
-| x | y |
+| x | Y |
 |:--|:--|
 |1.0|1.0|
 |2.0|3.0|

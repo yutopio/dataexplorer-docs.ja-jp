@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e8da8a61b285b31f63f346ec82e5ba8a4ac00d27
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 7b4b3d2b43bea2eeb96c9bbca94131cb7887db8c
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83372928"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345693"
 ---
 # <a name="sequence_detect-plugin"></a>sequence_detect プラグイン
 
@@ -23,11 +23,11 @@ ms.locfileid: "83372928"
 T | evaluate sequence_detect(datetime_column, 10m, 1h, e1 = (Col1 == 'Val'), e2 = (Col2 == 'Val2'), Dim1, Dim2)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `sequence_detect` `(` *TimelineColumn* `,` *maxsequencestepwindow* `,` *MaxSequenceSpan* `,` *expr1 or* `,` *Expr2* `,` ..., *Dim1* `,` *Dim2* `,` ...`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *TimelineColumn*: タイムラインを表す列参照は、ソース式に存在する必要があります
@@ -36,7 +36,7 @@ T | evaluate sequence_detect(datetime_column, 10m, 1h, e1 = (Col1 == 'Val'), e2 
 * *Expr1 or*, *Expr2*,...: シーケンスステップを定義するブール述語式
 * *Dim1*, *Dim2*,...: シーケンスを関連付けるために使用されるディメンション式
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 1つのテーブルを返します。テーブルの各行は1つのシーケンスの出現を表します。
 
@@ -44,7 +44,7 @@ T | evaluate sequence_detect(datetime_column, 10m, 1h, e1 = (Col1 == 'Val'), e2 
 * *Expr1 or*_*TimelineColumn*、 *Expr2*_*TimelineColumn*、...: time 値を持つ列。各シーケンス手順のタイムラインを表します。
 * *Duration*: シーケンスの全体的な時間枠
 
-**使用例**
+## <a name="examples"></a>例
 
 ### <a name="exploring-storm-events"></a>ストームイベントの調査 
 

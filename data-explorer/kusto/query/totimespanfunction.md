@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b785f346dd95a9c6a8cb9d6148e889c42ac4b02c
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: 1edc5e3ef8c3c2dea65d332e6ceace653cc5c812
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85129041"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87340141"
 ---
 # <a name="totimespan"></a>totimespan()
 
@@ -23,15 +23,15 @@ ms.locfileid: "85129041"
 totimespan("0.00:01:00") == time(1min)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `totimespan(Expr)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *`Expr`*: [Timespan](./scalar-data-types/timespan.md)に変換される式。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 変換が成功した場合、結果は[timespan](./scalar-data-types/timespan.md)値になります。
 それ以外の場合、結果は null になります。

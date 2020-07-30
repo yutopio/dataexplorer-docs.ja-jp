@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1e173dcba48e8748562bad61e0f16786e957ca83
-ms.sourcegitcommit: 974d5f2bccabe504583e387904851275567832e7
+ms.openlocfilehash: c46430fe7acc75685b90d2322d709392c91ed6dc
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/18/2020
-ms.locfileid: "83550556"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351218"
 ---
 # <a name="session_count-plugin"></a>session_count プラグイン
 
@@ -23,11 +23,11 @@ ms.locfileid: "83550556"
 T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday(now()), 1min, 30min, dim1, dim2, dim3)
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| evaluate` `session_count(` *idcolumn* `,` *TimelineColumn* `,` *Start* `,` *End* `,` *Bin* `,` *look backwindow* [ `,` *dim1* `,` *dim2* `,` ...]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル式。
 * *Idcolumn*: ユーザーアクティビティを表す ID 値を持つ列の名前。 
@@ -38,7 +38,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 * ルックバック*ウィンドウ*: セッションのルックバック期間を表すスカラー定数値。 の ID が `IdColumn` 内の時間枠に表示される場合 `LookBackWindow` 、セッションは既存のものと見なされます。 ID が表示されない場合、セッションは新しいものと見なされます。
 * *dim1*、 *dim2*、...: (省略可能) セッション数の計算をスライスするディメンション列の一覧です。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 各タイムラインの期間と、既存のディメンションの組み合わせごとにセッション数の値を含むテーブルを返します。
 
@@ -49,7 +49,7 @@ T | evaluate session_count(id, datetime_column, startofday(ago(30d)), startofday
 |型: as of *TimelineColumn*|..|..|..|long|
 
 
-**例**
+## <a name="examples"></a>例
 
 この例では、データは決定的であり、2つの列を含むテーブルを使用します。
 - Timeline: 1 ~ 1万の実行数

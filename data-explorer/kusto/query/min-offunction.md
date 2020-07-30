@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0762b1416df32279b9801c47f129a6966772a7e2
-ms.sourcegitcommit: 733bde4c6bc422c64752af338b29cd55a5af1f88
+ms.openlocfilehash: ed8d14a4e793f253342c1b52269678874c96660f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83271368"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346764"
 ---
 # <a name="min_of"></a>min_of()
 
@@ -23,22 +23,22 @@ ms.locfileid: "83271368"
 min_of(10, 1, -3, 17) == -3
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `min_of``(` *expr_1* `,` *expr_2*を expr_1 しています...`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *expr_i*: 評価されるスカラー式。
 
 - すべての引数は同じ型である必要があります。
 - 最大64個の引数がサポートされています。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 すべての引数式の最小値。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples  -->
 ```kusto

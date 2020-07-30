@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/04/2020
-ms.openlocfilehash: c37789ac490814288c7331f0b1ae86b8b2178d67
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 7998726637a7d19413954a509dd0ad9b34202f03
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226926"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347767"
 ---
 # <a name="geo_point_to_geohash"></a>geo_point_to_geohash()
 
@@ -21,17 +21,17 @@ ms.locfileid: "83226926"
 
 [Geohash](https://en.wikipedia.org/wiki/Geohash)の詳細については、こちらをご覧ください。  
 
-**構文**
+## <a name="syntax"></a>構文
 
 `geo_point_to_geohash(`*経度* `, `*緯度* `, `[*精度*]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *経度*: 地理的な場所の経度の値。 "X" が実数で、[-180, + 180] の範囲内にある場合、経度 x は有効と見なされます。 
 * *緯度*: 地理的な場所の緯度の値。 Y が実数で、y が範囲 [-90, + 90] の場合、緯度 y は有効と見なされます。 
 * *精度*: 要求された精度を定義する省略可能な `int` 。 サポートされている値は [1, 18] の範囲内です。 指定しない場合は、既定値 `5` が使用されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 要求された精度の長さを持つ、指定された地理的な場所の geohash 文字列値。 座標または精度が無効な場合は、クエリによって空の結果が生成されます。
 
@@ -69,7 +69,7 @@ ms.locfileid: "83226926"
 
 「 [Geo_point_to_s2cell ()](geo-point-to-s2cell-function.md)」も参照してください。
 
-**使用例**
+## <a name="examples"></a>例
 
 Geohash によって集計された米国の嵐イベント。
 

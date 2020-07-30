@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: 99044d8762a1c7c7e86fb2633a8226ef48d66b55
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: a366120428d14c713b18aee6652460817c75433a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83225634"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349569"
 ---
 # <a name="array_index_of"></a>array_index_of()
 
 指定した項目を配列内で検索し、その位置を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `array_index_of(`*array*、*value*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *array*: 検索する入力配列。
 * *値*: 検索対象の値。 値の型は long、integer、double、datetime、timespan、decimal、string、または guid である必要があります。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 検索の0から始まるインデックス位置。
 値が配列に見つからない場合は、-1 を返します。
 
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7d157244a167e1264b454cd8cd3c103e297c3263
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 42eb17b6aca5fc722597bcbf656f18c6d92ba545
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373053"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87345863"
 ---
 # <a name="reduce-operator"></a>reduce 演算子
 
@@ -25,18 +25,18 @@ T | reduce by LogMessage with threshold=0.1
 
 このようなグループごとに、グループについて最もよく説明する**パターン**(たとえば、 `*` ワイルドカードを表すためにアスタリスク () 文字を使用する)、グループ内の値の**数、** グループの**代表者**(グループ内の元の値の1つ) が出力されます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `|` `reduce` [ `kind` `=` *reducekind*] `by` *Expr* [ `with` [ `threshold` `=` *しきい値*] [ `,` `characters` `=` *文字*]]
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Expr*: 値に評価される式 `string` 。
 * *Threshold*: `real` 範囲 (0 ..1) のリテラル。 既定値は0.1 です。 入力のサイズが大きい場合は、しきい値を小さくする必要があります。 
 * *文字*: `string` 語句を改行しない文字の一覧に追加する文字の一覧を含むリテラル。 (たとえば、とをそれぞれ1つの語句にする場合は、とを改行するので `aaa=bbbb` `aaa:bbb` はなく、 `=` `:` `":="` 文字列リテラルとしてを使用します)。
 * *Reducekind*: 縮小フレーバーを指定します。 時間の有効な値は、のみです `source` 。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 この演算子は、3つの列 ( `Pattern` 、 `Count` 、および `Representative` ) と、グループと同じ数の行を含むテーブルを返します。 `Pattern`は、グループのパターン値で、 `*` ワイルドカードとして使用されています (任意の挿入文字列を表します)。は、 `Count` 演算子への入力の行数をカウントし `Representative` ます。これは、このグループに含まれる入力の1つの値です。
 
@@ -45,7 +45,7 @@ T | reduce by LogMessage with threshold=0.1
 
 たとえば、 `reduce by city` の結果には次のものが含まれます。 
 
-|パターン     |Count |Representative|
+|[パターン]     |Count |Representative|
 |------------|------|--------------|
 | San *      | 5182 |San Bernard   |
 | Saint *    | 2846 |サン Lucy    |
@@ -62,11 +62,11 @@ range x from 1 to 1000 step 1
 | reduce by MyText  with threshold=0.001 , characters = "X" 
 ```
 
-|パターン         |Count|Representative   |
+|[パターン]         |Count|Representative   |
 |----------------|-----|-----------------|
 |各ラーニング *|1000 |MachineLearningX4|
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例は、"サニタイズされた" 入力に演算子を適用する方法を示しています。 `reduce` これは、縮小される列の guid が減少する前に置き換えられることを示しています。
 
@@ -86,6 +86,6 @@ Trace | take 10000
 
 [autocluster](./autoclusterplugin.md)
 
-**メモ**
+**ノート**
 
 演算子の実装 `reduce` は、主に、Risto Vaarandi によって[イベントログからマイニングパターンを作成するためのデータクラスターアルゴリズム](https://ristov.github.io/publications/slct-ipom03-web.pdf)です。

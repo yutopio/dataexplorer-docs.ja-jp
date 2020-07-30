@@ -1,6 +1,6 @@
 ---
-title: トリム() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで trim() について説明します。
+title: trim ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの trim () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: aef2a61e5ac13fe9af9d8bc0dd130f3d085a3604
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a28ca267612bef68c676118331b3010a8c947e36
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81505595"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350640"
 ---
 # <a name="trim"></a>trim()
 
 指定した正規表現の先頭と末尾の一致をすべて削除します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`trim(`*正規表現*`,`*テキスト*`)`
+`trim(`*regex* `,`*テキスト*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *regex*: 文字列または[正規表現](re2.md)を*テキスト*の先頭または末尾からトリミングします。  
+* *regex*:*テキスト*の先頭または末尾からトリミングされる文字列または[正規表現](re2.md)。  
 * *text*: 文字列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-*テキスト*の先頭および/または末尾に見つかった*正規表現*の一致をトリミングした後の*テキスト*。
+*テキスト*の先頭または末尾にある*regex*と一致したものをトリミングした後の*テキスト*。
 
-**例**
+## <a name="example"></a>例
 
-ステートメントベローズは *、string_to_trim*の先頭と末尾から*部分文字列*をトリミングします。
+ステートメントベルは、 *string_to_trim*の先頭と末尾から*部分文字列*をトリムします。
 
 ```kusto
 let string_to_trim = @"--https://bing.com--";
@@ -46,7 +46,7 @@ print string_to_trim = string_to_trim, trimmed_string = trim(substring,string_to
 |---|---|
 |--https://bing.com--|https://bing.com|
 
-Next ステートメントは、文字列の先頭と末尾からすべての単語以外の文字をトリミングします。
+次のステートメントは、文字列の先頭と末尾から単語以外のすべての文字をトリミングします。
 
 ```kusto
 range x from 1 to 5 step 1
@@ -56,11 +56,11 @@ range x from 1 to 5 step 1
 
 |str|trimmed_str|
 |---|---|
-|- テ st1// $|テ st1|
-|- テ st2// $|テ st2|
-|- テ st3// $|テ st3|
-|- テ st4// $|テ st4|
-|- テ st5// $|テ st5|
+|-Te st1//$|Te st1|
+|-Te st2//$|Te st2|
+|-Te st3//$|Te st3|
+|-Te st4//$|Te st4|
+|-Te st5//$|Te st5|
 
 
  

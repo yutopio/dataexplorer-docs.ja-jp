@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: 876966391e67ad2f8f25a900dfc4c92bf0bfd11e
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 2ee587bfa7d01ae0602cc870e6c0b776593d53c0
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763258"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351337"
 ---
 # <a name="series_periods_detect"></a>series_periods_detect()
 
@@ -29,11 +29,11 @@ ms.locfileid: "85763258"
 * *期間*: ビンサイズの単位で、検出された期間を含む動的配列。スコアに基づいて並べ替えられます。
 * *スコア*: 0 と1の間の値を格納している動的配列。 各配列*は、period 配列内*のそれぞれの位置にある期間の有意性を測定します。
  
-**構文**
+## <a name="syntax"></a>構文
 
 `series_periods_detect(`*x* `,` *min_period* `,` *max_period* `,` *num_periods*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の配列である動的配列スカラー式。通常は、[対](make-seriesoperator.md)数演算子または[make_list](makelist-aggfunction.md)演算子の結果の出力です。
 * *min_period*: `real` 検索する最小期間を指定する数値。
@@ -47,7 +47,7 @@ ms.locfileid: "85763258"
 >
 > * 入力した時系列は標準である必要があります。 つまり、常に[シリーズ](make-seriesoperator.md)を使用して作成されている場合は、定数ビンで集計されます。 そうでない場合、出力は意味のないものになります。
 
-**例**
+## <a name="example"></a>例
 
 次のクエリは、1日に2回集計された、アプリケーションのトラフィックの月のスナップショットを埋め込みます。 ビンのサイズは12時間です。
 

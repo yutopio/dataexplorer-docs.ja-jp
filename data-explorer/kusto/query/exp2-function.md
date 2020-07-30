@@ -1,6 +1,6 @@
 ---
-title: exp2() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの exp2() について説明します。
+title: exp2 ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの exp2 () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,27 +8,27 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 1302a64d52962d080dcf32403362125e60eceed2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 1c2fbf2067aa83963801b6d5ec7b9f4204e99f4d
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515608"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348175"
 ---
 # <a name="exp2"></a>exp2()
 
-x の底2の指数関数で、2 は累乗 x: 2 ^x に上げられます。  
+X の底2の指数関数。2は、power x: 2 ^ x に発生します。  
 
-**構文**
+## <a name="syntax"></a>構文
 
-`exp2(`*X*`)`
+`exp2(`*閉じる*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *x*: 実数、指数の値。
+* *x*: 指数部の実数部の値。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-* x の指数値。
-* 自然 (底 2) 対数については[、log2()](log2-function.md)を参照してください。
-* 底 e および 底 10 の対数の指数関数については[、exp()](exp-function.md) [、exp10()](exp10-function.md)を参照してください。
+* X の指数値。
+* 自然対数 (底 2) の場合は、「 [log2 ()](log2-function.md)」を参照してください。
+* 指数関数 (底 e と底10の対数) については、「 [exp ()](exp-function.md), [exp10 ()](exp10-function.md) 」を参照してください。

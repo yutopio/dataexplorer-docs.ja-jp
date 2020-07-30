@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4da07433be5a052d71740931d4dedd9df0399f56
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: f19883335149603fe7fc7429dabb62f565a0b402
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227370"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347988"
 ---
 # <a name="format_bytes"></a>format_bytes()
 
@@ -23,21 +23,21 @@ ms.locfileid: "83227370"
 format_bytes(1024) == '1 KB'"
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `format_bytes(`*値*[ `,` *有効桁数*[ `,` *単位*]]`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * `value`: データサイズ (バイト単位) として書式設定される数値。
 * `precision`: (省略可能) 値が丸められる桁数。 (既定値は 0)。
 * `units`: (省略可能) 文字列の書式設定で使用するターゲットデータサイズの単位 (、、、、 `Bytes` `KB` `MB` `GB` `TB` 、 `PB` )。 パラメーターが空の場合は、入力値に基づいて単位が自動選択されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 形式の結果を含む文字列。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

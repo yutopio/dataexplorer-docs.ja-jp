@@ -1,6 +1,6 @@
 ---
-title: 度() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの degrees() について説明します。
+title: degrees ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの degrees () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,36 +8,36 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1365d6c6629f4f4769d7c4b62491eaec25e4ec59
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 41d679ea1add3706de5012f4e4fbf382e1f7b3ee
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81516033"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348379"
 ---
 # <a name="degrees"></a>degrees()
 
-式を使用して、ラジアンの角度値を度単位の値に変換します。`degrees = (180 / PI ) * angle_in_radians`
+式を使用して、ラジアン単位の角度の値を度数で値に変換します。`degrees = (180 / PI ) * angle_in_radians`
 
-**構文**
+## <a name="syntax"></a>構文
 
-`degrees(`*A*`)`
+`degrees(`*ある*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *a*: ラジアン単位の角度 (実数)。
+* *a*: ラジアン (実数) の角度。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 * ラジアン単位で指定された角度に対応する角度 (度単位)。 
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 print degrees0 = degrees(pi()/4), degrees1 = degrees(pi()*1.5), degrees2 = degrees(0)
 
 ```
 
-|度0|度1|度2|
+|degrees0|degrees1|degrees2|
 |---|---|---|
 |45|270|0|

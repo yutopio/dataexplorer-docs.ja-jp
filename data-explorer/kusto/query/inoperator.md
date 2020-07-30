@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2019
-ms.openlocfilehash: 3f45f579ad47dbdc9bf1fca707826948a598f63d
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: ab2132908dad26f5f21cf945a1af4af1b8a049cd
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84780169"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347393"
 ---
 # <a name="in-and-in-operators"></a>in および !in 演算子
 
@@ -23,7 +23,7 @@ ms.locfileid: "84780169"
 Table1 | where col in ('value1', 'value2')
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 *大文字と小文字を区別する構文:*
 
@@ -41,21 +41,21 @@ Table1 | where col in ('value1', 'value2')
 *T* `|` `where` *col* `!in~` `(` *スカラー式の*T col リスト`)`  
 *T* `|` `where` *列* `!in~` `(` *表形式式*`)`   
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T* -レコードをフィルター処理するための表形式の入力。
 * *col* -フィルター処理する列。
 * *式の一覧*-表形式、スカラー式、またはリテラル式のコンマ区切りのリスト。
 * *表形式式*-値のセットを含む表形式の式です。 式に複数の列がある場合は、最初の列が使用されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 述語がである*T*内の行 `true` 。
 
 **ノート**
 
 * 式リストでは、最大値を生成でき `1,000,000` ます。
-* 入れ子になった配列は、1つの値リストにフラット化されます。 たとえば、`x in (dynamic([1,[2,3]]))` が `x in (1,2,3)` になります。
+* 入れ子になった配列は、1つの値リストにフラット化されます。 たとえば、`x in (dynamic([1,[2,3]]))` を `x in (1,2,3)` にします。
 * テーブル式では、結果セットの最初の列が選択されます。
 * 演算子に ' ~ ' を追加すると、値の検索で大文字と小文字が区別さ `x in~ (expression)` `x !in~ (expression)` れません: または。
 

@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 035be5910d173c75e585baa0b093dc6276bd4d63
-ms.sourcegitcommit: 3848b8db4c3a16bda91c4a5b7b8b2e1088458a3a
+ms.openlocfilehash: 36d31e88a89f23006dac73b92777b13db4933d06
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/16/2020
-ms.locfileid: "84818595"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346883"
 ---
 # <a name="make_string"></a>make_string()
 
 Unicode 文字によって生成された文字列を返します。
     
-**構文**
+## <a name="syntax"></a>構文
 
 `make_string (`*Arg1*[, *ArgN*]...`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *Arg1* ...*ArgN*: 整数 (int または long) の式、または整数の配列を保持する動的な値。
 
 * この関数は、最大64の引数を受け取ります。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 この関数の引数によって指定されたコードポイント値を持つ Unicode 文字から成る文字列を返します。 入力は、有効な Unicode の方法で構成されている必要があります。
 いずれかの引数が Unicode 文字にマップされていない場合、関数はを返し `null` ます。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 print str = make_string(75, 117, 115, 116, 111)

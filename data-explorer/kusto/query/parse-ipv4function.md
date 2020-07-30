@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: b0377cd8af302d2680c0ee451d05f4b4b083ccec
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: 1f4213af91cfee667fdfc87b2d352fe42df3f915
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512607"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346458"
 ---
 # <a name="parse_ipv4"></a>parse_ipv4()
 
@@ -24,11 +24,11 @@ parse_ipv4("127.0.0.1") == 2130706433
 parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `parse_ipv4(`*`Expr`*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *`Expr`*: Long 型に変換される IPv4 を表す文字列式。 文字列には、 [IP プレフィックス表記](#ip-prefix-notation)を使用した net マスクを含めることができます。
 
@@ -37,16 +37,16 @@ parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用して定義でき `/` ます。
 スラッシュ () の左側の IP アドレスは、 `/` 基本 ip アドレスです。 スラッシュ (/) の右側にある数字 (1 ~ 32) は、ネットマスク内の連続した1ビットの数です。
 
-**例**
+## <a name="example"></a>例
 
 192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 変換が成功した場合、結果は長い数値になります。
 変換に失敗した場合、結果はになり `null` ます。
  
-**例**
+## <a name="example"></a>例
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

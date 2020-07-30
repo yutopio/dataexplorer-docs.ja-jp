@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 092915c08b4b3d1e72722a4303e911403b2defd2
-ms.sourcegitcommit: d885c0204212dd83ec73f45fad6184f580af6b7e
+ms.openlocfilehash: 3e1f74d6605b4916a2718a00fd252141060d748f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/04/2020
-ms.locfileid: "82737200"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348889"
 ---
 # <a name="cluster-scope-function"></a>cluster () (スコープ関数)
 
@@ -27,15 +27,15 @@ ms.locfileid: "82737200"
 cluster('help').database('Sample').SomeTable
 ```
 
-**構文**
+## <a name="syntax"></a>構文
 
 `cluster(`*stringConstant*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Stringconstant*: 参照されているクラスターの名前。 クラスター名には、完全修飾 DNS 名か、サフィックスが付け`.kusto.windows.net`られた文字列を指定できます。 引数は、クエリの実行前には_定数_にする必要があります。つまり、サブクエリの評価から取得することはできません。
+* *Stringconstant*: 参照されているクラスターの名前。 クラスター名には、完全修飾 DNS 名か、サフィックスが付けられた文字列を指定でき `.kusto.windows.net` ます。 引数は、クエリの実行前には_定数_にする必要があります。つまり、サブクエリの評価から取得することはできません。
 
-**メモ**
+**ノート**
 
 * 同じクラスター内のデータベースにアクセスする場合は、 [database ()](databasefunction.md)関数を使用します。
 * クラスター間およびデータベース間のクエリの詳細について[は、こちら](cross-cluster-or-database-queries.md)を参照してください。  
@@ -58,7 +58,7 @@ cluster('help.kusto.windows.net').database('Samples').StormEvents | count
 
 ### <a name="use-cluster-inside-let-statements"></a>Let ステートメント内で cluster () を使用する 
 
-上記と同じクエリは、cluster () 関数に渡されるパラメーター `clusterName`を受け取るインライン関数 (let ステートメント) を使用するように書き換えることができます。
+上記と同じクエリは、 `clusterName` cluster () 関数に渡されるパラメーターを受け取るインライン関数 (let ステートメント) を使用するように書き換えることができます。
 
 ```kusto
 let foo = (clusterName:string)
@@ -74,7 +74,7 @@ foo('help')
 
 ### <a name="use-cluster-inside-functions"></a>Functions 内で cluster () を使用する 
 
-上記と同じクエリは、cluster () 関数に渡されるパラメーター `clusterName`を受け取る関数で使用するように書き直すことができます。
+上記と同じクエリは、 `clusterName` cluster () 関数に渡されるパラメーターを受け取る関数で使用するように書き直すことができます。
 
 ```kusto
 .create function foo(clusterName:string)

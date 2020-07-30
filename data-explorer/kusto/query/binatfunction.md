@@ -8,35 +8,35 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 90055f644dbf653eb65546202832f7cab834a0ac
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 8a480ad0af2d3f71dd3ae9279bb59b32d9654acb
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83227598"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348991"
 ---
 # <a name="bin_at"></a>bin_at()
 
 ビンの開始点を制御して、値を固定サイズの "ビン" に切り捨てます。
 (「」も参照してください [`bin function`](./binfunction.md) )。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `bin_at``(`*式*ビン `,` *サイズ* `, ` *fixedpoint*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *式*: 数値型のスカラー式 (およびを含む `datetime` `timespan` )。丸め対象の値を示します。
 * *Binsize*: 各ビンのサイズを示す*式*と同じ型のスカラー定数。 
 * *Fixedpoint*: "固定ポイント" (つまり、値*Expression* ) である*expression*の1つの値を示す式と同じ型のスカラー定数。 `fixed_point` `bin_at(fixed_point, bin_size, fixed_point) == fixed_point`
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 下にあるビン*サイズ*の最も近い倍数をシフトして、 *fixedpoint*がそれ自体に変換されるよう*にします*。
 
-**使用例**
+## <a name="examples"></a>例
 
-|正規表現                                                                    |結果                           |説明                   |
+|正規表現                                                                    |結果                           |コメント                   |
 |------------------------------------------------------------------------------|---------------------------------|---------------------------|
 |`bin_at(6.5, 2.5, 7)`                                                         |`4.5`                            ||
 |`bin_at(time(1h), 1d, 12h)`                                                   |`-12h`                           ||

@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 4534705156669447a89cb5d85c360071dfcb2b2a
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 698acc481a6313160602c939774a6029978df483
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264999"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348107"
 ---
 # <a name="externaldata-operator"></a>externaldata 演算子
 
 演算子は、 `externaldata` クエリ自体にスキーマが定義されていて、Azure Blob Storage の blob などの外部ストレージアーティファクトからデータを読み取るテーブルを返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `externaldata``(` *ColumnName* `:` *ColumnType* [ `,` ...] `)` `[` *StorageConnectionString* `]` [ `with` `(` *Prop1* `=` *Value1* [ `,` ...] `)` ]
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *ColumnName*、 *ColumnType*: 引数は、テーブルのスキーマを定義します。
   構文は、 [create table](../management/create-table-command.md)でテーブルを定義するときに使用する構文と同じです。
@@ -37,11 +37,11 @@ ms.locfileid: "85264999"
 > [!NOTE]
 > この演算子にはパイプライン入力がありません。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 演算子は、 `externaldata` 指定されたストレージの成果物からデータが解析された特定のスキーマのデータテーブルを返します。これは、ストレージ接続文字列によって示されます。
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例では、 `UserID` 列が既知の一連の id に分類され、外部 blob に1行ずつ保持される、テーブル内のすべてのレコードを検索する方法を示します。
 このセットはクエリによって間接的に参照されるので、大きくなることがあります。

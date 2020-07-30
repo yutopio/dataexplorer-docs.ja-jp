@@ -1,6 +1,6 @@
 ---
-title: asin() - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで asin() について説明します。
+title: アークサイン ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのアークサイン () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,26 +8,26 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 5db112daeba59dd841b02df8ba1a41185654ad6a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 360a936d136cd01760175cdf5b5da2718d0cfd91
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518549"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349501"
 ---
 # <a name="asin"></a>asin()
 
-指定した数値 (の逆の操作) が正弦の角度を[`sin()`](sinfunction.md)返します。
+サインが指定された数値 (の逆演算) である角度を返し [`sin()`](sinfunction.md) ます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`asin(`*X*`)`
+`asin(`*閉じる*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 範囲 [-1, 1] の実数。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-* アーク正弦の値`x`
-* `null`< `x` -1`x`または > 1
+* のアークサインの値`x`
+* `null``x`<-1 または `x` > 1 の場合

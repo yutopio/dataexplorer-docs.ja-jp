@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a94629ae8f4795e28cbfb0c41f06596731cdd8d9
-ms.sourcegitcommit: ae72164adc1dc8d91ef326e757376a96ee1b588d
+ms.openlocfilehash: 560f7ca9f423eb57fd9be0478e0e51dc2ce26755
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84717327"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346509"
 ---
 # <a name="pack"></a>pack()
 
@@ -21,16 +21,16 @@ ms.locfileid: "84717327"
 
 エイリアスが `pack_dictionary()` 機能します。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `pack(`*key1* `,`*value1* `,`*key2* `,`*value2*`,... )`
 
-**引数**
+## <a name="arguments"></a>引数
 
 * キーと値の交互のリスト (リスト全体の長さは偶数である必要があります)
 * すべてのキーは、空でない定数文字列である必要があります
 
-**使用例**
+## <a name="examples"></a>例
 
 次の例は、 `{"Level":"Information","ProcessID":1234,"Data":{"url":"www.bing.com"}}`を返します。
 

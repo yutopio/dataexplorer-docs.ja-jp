@@ -1,6 +1,6 @@
 ---
-title: string_size() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの string_size() について説明します。
+title: string_size ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの string_size () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,30 +8,30 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7886e7b8fd5039c9b197ae435bce4f40b93e5038
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4832d00703ab9e6d1478af5b3f45ec294dfb79ce
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506887"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350912"
 ---
 # <a name="string_size"></a>string_size()
 
 入力文字列のサイズ (バイト単位) を返します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`string_size(`*ソース*`)`
+`string_size(`*電源*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *source*: 文字列サイズを測定するソース文字列。
+* *source*: 文字列サイズに対して測定されるソース文字列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-入力文字列の長さ (バイト単位) を返します。
+入力文字列の長さをバイト単位で返します。
 
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 print size = string_size("hello")

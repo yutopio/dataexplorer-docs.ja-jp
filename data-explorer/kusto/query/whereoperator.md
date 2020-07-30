@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 116f585fe8a09b4befddd7d1429229ad1bac886f
-ms.sourcegitcommit: 188f89553b9d0230a8e7152fa1fce56c09ebb6d6
+ms.openlocfilehash: ed207a9db0b6440bae8f8fb4ae1c250d274565d7
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/08/2020
-ms.locfileid: "84512472"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87338220"
 ---
 # <a name="where-operator"></a>where 演算子
 
@@ -23,18 +23,18 @@ ms.locfileid: "84512472"
 T | where fruit=="apple"
 ```
 
-**Alias** `filter`
+**エイリアス**`filter`
 
-**構文**
+## <a name="syntax"></a>構文
 
 *T* `| where` *述語*
 
-**引数**
+## <a name="arguments"></a>引数
 
 * *T*: レコードをフィルター処理するための表形式の入力。
 * *述語*: `boolean` *T*の列に対する[式](./scalar-data-types/bool.md)。*T*の各行に対して評価されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 *Predicate* が `true` である *T* 内の行。
 
@@ -54,7 +54,7 @@ T | where fruit=="apple"
 
 詳細については、[使用可能な文字列演算子](./datatypes-string-operators.md)の概要と、[使用可能な数値演算子](./numoperators.md)の概要を参照してください。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 Traces
@@ -67,7 +67,7 @@ Traces
 
 インデックスを使用してスキャンを強制的に実行できないため、2つの列の比較が最後に行われることに注意してください。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 Traces | where * has "Kusto"

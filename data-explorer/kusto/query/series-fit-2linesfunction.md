@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: a364361ee5e5e260436486db24f1b61e2c21cbc9
-ms.sourcegitcommit: 9fc3d8b396dddd2e1d9912845ba7bcc8e31c0267
+ms.openlocfilehash: 89e93a3c4365e0f215a797ee0b01669e6bcbdcfa
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84720912"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87343891"
 ---
 # <a name="series_fit_2lines"></a>series_fit_2lines()
 
@@ -22,7 +22,7 @@ ms.locfileid: "84720912"
 動的な数値配列を含む式を入力として受け取り、 [2 つのセグメントの線形回帰](https://en.wikipedia.org/wiki/Segmented_regression)を適用して、系列の傾向の変化を識別および定量化します。 関数は、系列インデックスに対して反復処理を行います。 各反復処理では、関数によって系列が2つの部分に分割され、各部分に対して ( [series_fit_line ()](series-fit-linefunction.md)を使用して) 個別の行が配置され、合計の r-2 乗が計算されます。 最適な分割は r-2 乗を最大化したものです。この関数は次のパラメーターを返します。
 
 
-|パラメーター  |Description  |
+|パラメーター  |説明  |
 |---------|---------|
 |`rsquare`     | [R-2 乗](https://en.wikipedia.org/wiki/Coefficient_of_determination)は、適合品質の標準測定値です。 これは [0-1] の範囲の数値であり、1-は最適な適合で、0はデータが順序付けられておらず、どの行にも適合しないことを意味します。        |
 |`split_idx`     |   2つのセグメントのブレークポイントのインデックス (0 から始まる)。      |
@@ -44,7 +44,7 @@ ms.locfileid: "84720912"
 > [!Note]
 > この関数は複数の列を返します。そのため、別の関数の引数として使用することはできません。
 
-**構文**
+## <a name="syntax"></a>構文
 
 プロジェクト `series_fit_2lines(` *x*`)`
 * では、上記のすべての列が返されます。名前は series_fit_2lines_x_rsquare、series_fit_2lines_x_split_idx などです。
@@ -55,14 +55,14 @@ ms.locfileid: "84720912"
 拡張 (rs、si、v) = `series_fit_2lines(` *x*`)`
 * rs (r-2 乗)、si (分割インデックス)、v (差異) のみを返します。
   
-**引数**
+## <a name="arguments"></a>引数
 
 * *x*: 数値の動的配列。  
 
 > [!TIP]
 > この関数を使用する最も便利な方法は、これを[系列](make-seriesoperator.md)演算子の結果に適用することです。
 
-**使用例**
+## <a name="examples"></a>例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

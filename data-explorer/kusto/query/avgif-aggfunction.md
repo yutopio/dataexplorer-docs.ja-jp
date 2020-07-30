@@ -1,6 +1,6 @@
 ---
-title: avgif() (集計関数) - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの avgif() (集計関数) について説明します。
+title: avgif () (集計関数)-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの avgif () (集計関数) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 61352be628b7c5a05085c092d0c022deaa0d9b6e
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 587af53de774332db70ef9bffcadf74d9e2c069d
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81518260"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87349382"
 ---
-# <a name="avgif-aggregation-function"></a>avgif() (集計関数)
+# <a name="avgif-aggregation-function"></a>avgif () (集計関数)
 
-*述語*が 評価されるグループ全体の*Expr*の[平均](avg-aggfunction.md)を`true`計算します。
+*述語*がに評価されるグループ全体の*Expr*の[平均](avg-aggfunction.md)を計算し `true` ます。
 
-* 集計内の集計のコンテキストでのみ使用できます[。](summarizeoperator.md)
+* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`avgif(` *Expr*`, `*述語*の要約`)`
+`avgif(` *Expr* `, ` *述語*の集計`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *Expr*: 集計の計算に使用する式。 値を`null`持つレコードは無視され、計算には含まれません。
-* *述語*: true の場合 *、Expr*計算値が平均に加算される述語。
+* *Expr*: 集計計算に使用される式です。 値を持つレコード `null` は無視され、計算には含まれません。
+* *述語*: true の場合、*式*の計算値が平均に加算されます。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-*述語*が 評価されるグループ全体の*Expr*の`true`平均値。
+*述語*がに評価されるグループ全体の*Expr*の平均値 `true` 。
  
-**使用例**
+## <a name="examples"></a>例
 
 ```kusto
 range x from 1 to 100 step 1

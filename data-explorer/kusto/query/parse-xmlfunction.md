@@ -1,6 +1,6 @@
 ---
-title: parse_xml() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの parse_xml() について説明します。
+title: parse_xml ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの parse_xml () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,49 +8,49 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9743cbcb8d3c25707d97a4a6844f947352e63b0b
-ms.sourcegitcommit: e94be7045d71a0435b4171ca3a7c30455e6dfa57
+ms.openlocfilehash: 5e294a60545a081861597e772c39d2e7e99824e8
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81744618"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346373"
 ---
 # <a name="parse_xml"></a>parse_xml()
 
-を`string`XML 値として解釈し、値を JSON に変換して値を`dynamic`返します。
+を `string` XML 値として解釈し、値を JSON に変換して、値をとして返し `dynamic` ます。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `parse_xml(`*xml*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *xml*: XML`string`形式の値を表す型 の式。
+* *xml*: `string` xml 形式の値を表す型の式。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-XML 形式が無効な場合は*xml*または null の値によって決定される[dynamic](./scalar-data-types/dynamic.md)型のオブジェクト。
+*Xml*の値によって決定される[動的](./scalar-data-types/dynamic.md)型のオブジェクト。 xml 形式が無効な場合は null。
 
-XML から JSON への変換は[、xml2json](https://github.com/Cheedoong/xml2json)ライブラリを使用して行います。
+XML から JSON への変換は、 [xml2json](https://github.com/Cheedoong/xml2json)ライブラリを使用して行います。
 
 変換は次のように行われます。
 
 XML                                |JSON                                            |アクセス
 -----------------------------------|------------------------------------------------|--------------         
-`<e/>`                             | { "e" : null }                                  | o.e
-`<e>text</e>`                      | { "e" : "テキスト" }                                | o.e
-`<e name="value" />`               | { "e":{"@name": "値"} }                     | o.e["@name"]
-`<e name="value">text</e>`         | { "e" :@name{ " " " " "" "値" ", "#text" : "テキスト" } } | o.e["@name"" o.e["#text" ] ]
-`<e> <a>text</a> <b>text</b> </e>` | { "e": { "a" : "テキスト"、"b": "テキスト" } }          | o.e.a o.e.b
-`<e> <a>text</a> <a>text</a> </e>` | { "e": { "a": ["テキスト","テキスト"} } }             | o.e.a[0] o.e.a[1]
-`<e> text <a>text</a> </e>`        | { "e" : { "#text" : "テキスト"、"a": "text" } }      | 1'o.e[#text"] o.e.a
+`<e/>`                             | {"e": null}                                  | o. e
+`<e>text</e>`                      | {"e": "text"}                                | o. e
+`<e name="value" />`               | {"e": {" @name ": "value"}}                     | o. e [" @name "]
+`<e name="value">text</e>`         | {"e": {" @name ": "value", "#text": "text"}} | o. e [" @name "] o. e ["#text"]
+`<e> <a>text</a> <b>text</b> </e>` | {"e": {"a": "text", "b": "text"}}          | o.. e. a. b
+`<e> <a>text</a> <a>text</a> </e>` | {"e": {"a": ["text", "text"]}}             | o. a [0] o. a [1]
+`<e> text <a>text</a> </e>`        | {"e": {"#text": "text", "a": "text"}}      | 1 ' o. e ["#text"] o. e.
 
-**メモ**
+**ノート**
 
-* 最大入力`string`長`parse_xml`は 128 KB です。 長い文字列の解釈は、null オブジェクトになります。 
-* 要素ノード、属性、およびテキストノードのみが変換されます。 他のすべてがスキップされます
+* の最大入力 `string` 長 `parse_xml` は 128 KB です。 長い文字列を解釈すると、null オブジェクトになります。 
+* 要素ノード、属性、およびテキストノードのみが変換されます。 他のすべての操作はスキップされます
  
-**例**
+## <a name="example"></a>例
 
 次の例では、`context_custom_metrics` が `string` である場合、次のようになります。 
 
@@ -67,7 +67,7 @@ XML                                |JSON                                        
 </duration>
 ```
 
-次の CSL フラグメントは、XML を次の JSON に変換します。
+その後、次の CSL フラグメントは XML を次の JSON に変換します。
 
 ```json
 {
@@ -83,7 +83,7 @@ XML                                |JSON                                        
 }
 ```
 
-オブジェクト内の`duration`スロットの値を取得し、そこから 2 つのスロット`duration.value`と`duration.min`(`118.0`と`110.0`) を取得します。
+とは、オブジェクト内のスロットの値を取得し、 `duration` 2 つのスロット (それぞれと) を取得し `duration.value` `duration.min` `118.0` `110.0` ます。
 
 ```kusto
 T

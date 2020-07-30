@@ -1,6 +1,6 @@
 ---
-title: フォークオペレータ - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーのフォーク オペレータについて説明します。
+title: フォーク演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーのフォーク演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,46 +8,46 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 13cd837b3874a55ec758991f5609e089daba7c75
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b234a95b4a541099f3fc050501ca6b0fd9f67ccf
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81515200"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87348005"
 ---
 # <a name="fork-operator"></a>fork 演算子
 
-複数のコンシューマー演算子を並列で実行します。
+複数のコンシューマー操作を並行して実行します。
 
-**構文**
+## <a name="syntax"></a>構文
 
-*T* `|` `=``(``)` `=``(`*name*`)` *name**subquery* *subquery* [ 名前 ] サブクエリ [ 名前 ] サブクエリ .. `fork`
+*T* `|` `fork` [*name* `=` ] `(` *サブクエリ* `)` [*name* `=` ] `(` *サブクエリ* `)` ...
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *サブクエリ*はクエリ演算子のダウンストリーム パイプラインです。
-* *name*はサブクエリ結果テーブルの一時名です
+* *サブ*クエリはクエリ演算子の下流のパイプラインです
+* *name*は、サブクエリの結果テーブルの一時名です
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-複数の結果表 (各サブクエリに 1 つずつ)。
+複数の結果テーブル (サブクエリごとに1つ)。
 
 **サポートされる演算子**
 
 [`as`](asoperator.md), [`count`](countoperator.md), [`extend`](extendoperator.md), [`parse`](parseoperator.md), [`where`](whereoperator.md), [`take`](takeoperator.md), [`project`](projectoperator.md), [`project-away`](projectawayoperator.md), [`summarize`](summarizeoperator.md), [`top`](topoperator.md), [`top-nested`](topnestedoperator.md), [`sort`](sortoperator.md), [`mv-expand`](mvexpandoperator.md), [`reduce`](reduceoperator.md)
 
-**メモ**
+**ノート**
 
-* [`materialize`](materializefunction.md)機能は、フォーク脚の使用[`join`](joinoperator.md)または[`union`](unionoperator.md)フォーク脚の代替として使用できます。
-入力ストリームは、マテリアライズによってキャッシュされ、その後、キャッシュされた式を結合/結合脚で使用できます。
+* [`materialize`](materializefunction.md)関数 [`join`](joinoperator.md) は、分岐脚でまたはを使用するための代替として使用でき [`union`](unionoperator.md) ます。
+入力ストリームは具体化によってキャッシュされた後、結合/共用脚で使用できます。
 
-* 引数または演算子を`name`使用[`as`](asoperator.md)して指定された名前は、ツールの[`Kusto.Explorer`](../tools/kusto-explorer.md)結果タブに名前を付ける名前として使用されます。
+* 引数または using 演算子によって指定された名前は `name` [`as`](asoperator.md) 、ツールの [結果] タブに名前を付けるためにとして使用され [`Kusto.Explorer`](../tools/kusto-explorer.md) ます。
 
-* 単一`fork`のサブクエリでの使用は避けます。
+* 1つのサブクエリでを使用することは避けて `fork` ください。
 
-* 演算子よりも[batch](batches.md)表形式[`materialize`](materializefunction.md)の式ステートメントを使用`fork`してバッチを使用することを好みます。
+* 演算子に対してテーブル式ステートメントの[バッチ](batches.md)を使用することをお勧め [`materialize`](materializefunction.md) `fork` します。
 
-**使用例**
+## <a name="examples"></a>使用例
 
 ```kusto
 KustoLogs

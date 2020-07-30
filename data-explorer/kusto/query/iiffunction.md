@@ -1,6 +1,6 @@
 ---
-title: iif() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで iif() について説明します。
+title: iif ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの iif () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,38 +8,38 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 36ba98b9677055dffce32911d80e67a9161b673b
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 0d912f94a224b073fe9214f70077067d3a24c906
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81514044"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87347478"
 ---
 # <a name="iif"></a>iif()
 
-最初の引数 (述語) を評価し、2 番目または 3 番目の引数の値を`true``false`返します。
+1番目の引数 (述語) を評価し、述語が (second) に評価されたか、または (3 番目の) に評価されたかに応じて、2番目または3番目の引数の値を返し `true` `false` ます。
 
 2 番目と 3 番目の引数は、同じ型である必要があります。
 
-**構文**
+## <a name="syntax"></a>構文
 
-`iif(`*述語*`,`*の場合 True* `,` *の場合False*`)`
+`iif(`*述語* `,`*Iftrue* `,`*ifFalse*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *述語*:`boolean`値に評価される式。
-* *ifTrue*: 評価を受け取る式で、*述語*が に評価`true`された場合に関数から返される値です。
-* *ifFalse*: 評価を受け取る式で、*述語*が に評価`false`された場合に関数から返される値です。
+* *述語*: 値に評価される式 `boolean` 。
+* *Iftrue*:*述語*がと評価された場合に、評価され、その値が関数から返される `true` 式。
+* *ifFalse*:*述語*がと評価された場合に、評価され、その値が関数から返される `false` 式。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
 この関数は、*predicate* が `true` と評価された場合に *ifTrue* の値を返し、それ以外の場合に *ifFalse* の値を返します。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 T 
 | extend day = iif(floor(Timestamp, 1d)==floor(now(), 1d), "today", "anotherday")
 ```
 
-のエイリアス。 [`iff()`](ifffunction.md)
+の別名 [`iff()`](ifffunction.md) 。

@@ -1,6 +1,6 @@
 ---
-title: parse_url() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでparse_url() について説明します。
+title: parse_url ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの parse_url () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,37 +8,37 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: dfc093964ce5b91acc01f798f8f62651266ab153
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 94a35dbf742b6df31012e68b5f2b2f09bec9b7e5
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81511494"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87346288"
 ---
 # <a name="parse_url"></a>parse_url()
 
-絶対 URL`string`を解析し、URL 部分を含むオブジェクトを`dynamic`返します。
+絶対 URL を解析 `string` し、 `dynamic` url 部分を格納しているオブジェクトを返します。
 
 
-**構文**
+## <a name="syntax"></a>構文
 
-`parse_url(`*Url*`)`
+`parse_url(`*先*`)`
 
-**引数**
+## <a name="arguments"></a>引数
 
-* *url*: URL または URL のクエリ部分を表す文字列。
+* *url*: url または url のクエリ部分を表す文字列。
 
-**戻り値**
+## <a name="returns"></a>戻り値
 
-URL コンポーネントを含む[動的](./scalar-data-types/dynamic.md)な型のオブジェクト: スキーム、ホスト、ポート、パス、ユーザー名、パスワード、クエリ パラメーター、フラグメント。
+URL コンポーネント (Scheme、Host、Port、Path、Username、Password、Query Parameters、Fragment) を含む、 [dynamic](./scalar-data-types/dynamic.md)型のオブジェクト。
 
-**例**
+## <a name="example"></a>例
 
 ```kusto
 T | extend Result = parse_url("scheme://username:password@host:1234/this/is/a/path?k1=v1&k2=v2#fragment")
 ```
 
-結果になります
+結果は
 
 ```
  {

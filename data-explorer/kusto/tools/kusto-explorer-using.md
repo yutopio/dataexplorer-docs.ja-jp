@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: c95ac178e82e414df41dd5a6d4456f344bb39c2f
-ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
+ms.openlocfilehash: 601a2b90b3a9152df701f001f050ab0c48e8910d
+ms.sourcegitcommit: 6e84f50efc8c5c3fe57080341ed3effe72197886
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86870126"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87440035"
 ---
 # <a name="using-kustoexplorer"></a>Kusto.Explorer の使用
 
@@ -38,7 +38,7 @@ Search + + モードでは、1つまたは複数のテーブルで検索構文�
 
 Kusto. エクスプローラーには、アドホッククエリの作成、編集、および実行を可能にする強力なスクリプトモードが用意されています。 スクリプトモードには、構文の強調表示と IntelliSense が用意されているため、Kusto クエリ言語の知識をすばやく上げることができます。
 
-このドキュメントでは、Kusto エクスプローラーで基本的なクエリを実行する方法と、クエリにパラメーターを追加する方法について説明します。
+このセクションでは、Kusto エクスプローラーで基本的なクエリを実行する方法と、クエリにパラメーターを追加する方法について説明します。
 
 ## <a name="basic-queries"></a>基本的なクエリ
 
@@ -78,7 +78,7 @@ StormEvents
 > [!NOTE]
 > クエリ式の空白行は、クエリのどの部分が実行されるかに影響を与える可能性があります。
 >
-> テキストが選択されていない場合は、クエリまたはコマンドが空の行で区切られていることを前提としています。
+> テキストが選択されていない場合は、クエリまたはコマンドが空白行で区切られていると想定されます。
 > テキストが選択されている場合は、選択したテキストが実行されます。
 
 ## <a name="client-side-query-parameterization"></a>クライアント側のクエリのパラメーター化

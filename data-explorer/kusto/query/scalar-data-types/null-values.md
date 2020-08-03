@@ -1,6 +1,6 @@
 ---
-title: Null 値 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの Null 値について説明します。
+title: Null 値-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの Null 値について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,42 +10,42 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c3a48fdfca855a1ff2f848d4ed97d8162e97b931
-ms.sourcegitcommit: 01eb9aaf1df2ebd5002eb7ea7367a9ef85dc4f5d
+ms.openlocfilehash: c493431fcfa22ad0419659a5b6e036205f3bf299
+ms.sourcegitcommit: 194453a8eb11c3ccb54c473e887c84cb8e91b939
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "81765944"
+ms.lasthandoff: 07/31/2020
+ms.locfileid: "87473974"
 ---
 # <a name="null-values"></a>null 値
 
-Kusto のすべてのスカラー データ型には、欠損値を表す特別な値があります。
-この値は**null 値**、または単に null と呼**ばれます**。
+Kusto のすべてのスカラーデータ型には、欠損値を表す特別な値が含まれています。
+この値は、 **null 値**として、または単に**null**と呼ばれます。
 
-## <a name="null-literals"></a>NULL リテラル
+## <a name="null-literals"></a>null リテラル
 
-スカラー型`T`の null 値は、クエリ言語では null リテラル`T(null)`で表されます。
-したがって、次の例では、NULL 値の完全な単一行が返されます。
+スカラー型の null 値は、 `T` null リテラルによってクエリ言語で表され `T(null)` ます。
+したがって、次の例では、null の1行が返されます。
 
 ```kusto
 print bool(null), datetime(null), dynamic(null), guid(null), int(null), long(null), real(null), double(null), time(null)
 ```
 
 > [!WARNING]
-> 現在、この型は`string`null 値をサポートしていません。
+> 現時点では、 `string` 型は null 値をサポートしていないことに注意してください。
 
-## <a name="comparing-null-to-something"></a>null を何かに比較する
+## <a name="comparing-null-to-something"></a>Null と何かの比較
 
-null 値は、それ自体を含むデータ型の他の値と等しい比較しません。 (つまり、`null == null`偽です。値がヌル値かどうかを判別するには[、isnull()](../isnullfunction.md)関数と[isnotnull()](../isnotnullfunction.md)関数を使用します。
+Null 値は、それ自体を含むデータ型の他の値と等しいかどうかを比較しません。 (つまり、 `null == null` は false です)。値が null 値かどうかを判断するには、 [isnull ()](../isnullfunction.md)関数および[isnotnull ()](../isnotnullfunction.md)関数を使用します。
 
-## <a name="binary-operations-on-null"></a>NULL に対するバイナリ演算
+## <a name="binary-operations-on-null"></a>Null に対する二項演算
 
-一般に、null は二項演算子を囲む"スティッキー"な方法で動作します。NULL 値と他の値 (別の NULL 値を含む) の間のバイナリ演算では、NULL 値が生成されます。
+一般に、null の動作はバイナリ演算子を中心に "固定" される方法です。null 値と他の値 (他の null 値を含む) の間の二項演算では、null 値が生成されます。
 
-## <a name="data-ingestion-and-null-values"></a>データ取り込みと NULL 値
+## <a name="data-ingestion-and-null-values"></a>データインジェストと null 値
 
-ほとんどのデータ型では、データ ソース内の値が不足していると、対応するテーブル セルに null 値が生成されます。 例外は、型`string`と CSV のようなインジェストの列で、欠損値が空の文字列を生成します。
-たとえば、次の場合は、次の場合に使用します。 
+ほとんどのデータ型では、データソースの欠損値によって、対応するテーブルセルに null 値が生成されます。 の例外として、型の列 `string` と CSV 形式のインジェストがあります。この場合、欠損値によって空の文字列が生成されます。
+たとえば、次のような場合です。 
 
 ```kusto
 .create table T [a:string, b:int]
@@ -56,18 +56,18 @@ null 値は、それ自体を含むデータ型の他の値と等しい比較し
 [a,1]
 ```
 
-その後、以下を実行します。
+次のことを行います。
 
-|a     |b     |isnull(a)|は空です(a)|ストレン(a)|null(b)|
+|a     |b     |isnull (a)|isempty (a)|strlen (a)|isnull (b)|
 |------|------|---------|----------|---------|---------|
-|&nbsp;|&nbsp;|false    |true      |0        |true     |
-|&nbsp;|&nbsp;|false    |false     |1        |true     |
-|a     |1     |false    |false     |1        |false    |
+|&nbsp;|&nbsp;|False    |true      |0        |true     |
+|&nbsp;|&nbsp;|False    |False     |1        |true     |
+|a     |1     |False    |False     |1        |False    |
 
 ::: zone pivot="azuredataexplorer"
 
-* 上記のクエリを Kusto.Explorer で実行すると`true`、すべての値が`1`として削除され、すべての`false`値が`0`として表示されます。
+* Kusto エクスプローラーで上記のクエリを実行すると、すべて `true` の値がとして表示され、 `1` すべての `false` 値がとして表示され `0` ます。
 
 ::: zone-end
 
-* Kusto は、テーブルの列に NULL 値を設定しないように制限する方法を提供していません (つまり、SQL の`NOT NULL`制約と同等の値はありません)。
+* Kusto では、テーブルの列が null 値を持つことを制限する方法は提供されていません (つまり、SQL の制約に相当するものはありません `NOT NULL` )。

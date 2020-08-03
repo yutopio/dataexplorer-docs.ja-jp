@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの cou
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 10/23/2018
-ms.openlocfilehash: a5b69b50c0cf4c07934d7900937675bf6338eab9
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.date: 08/02/2020
+ms.openlocfilehash: 669978d8828f54926a8535f199ef7a9bc2ba7451
+ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348770"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87515772"
 ---
 # <a name="countif-aggregation-function"></a>countif () (集計関数)
 
@@ -29,11 +29,27 @@ ms.locfileid: "87348770"
 
 ## <a name="arguments"></a>引数
 
-* *述語*: 集計計算に使用される式。 
+*述語*: 集計計算に使用される式。 *述語*は、戻り値の型が bool (true/false に評価されます) の任意のスカラー式にすることができます。
 
 ## <a name="returns"></a>戻り値
 
 *Predicate* が `true` と評価された行の数を返します。
 
-> [!TIP]
-> `where filter | summarize count()` の代わりの `summarize countif(filter)` の使用
+## <a name="example"></a>例
+
+```kusto
+let T = datatable(name:string, day_of_birth:long)
+[
+   "John", 9,
+   "Paul", 18,
+   "George", 25,
+   "Ringo", 7
+];
+T
+| summarize countif(strlen(name) > 4)
+```
+
+|countif_|
+|----|
+|2|
+

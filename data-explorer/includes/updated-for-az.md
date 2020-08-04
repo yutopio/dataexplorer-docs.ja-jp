@@ -1,15 +1,15 @@
 ---
-author: sptramer
-ms.author: sttramer
+author: orspod
+ms.author: orspodek
 manager: carmonm
 ms.date: 04/17/2019
 ms.topic: include
-ms.openlocfilehash: 5069ca11313815375e0fb58ff8277e73a31d51d8
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ba79dc781b90661fe96a4f60b9c64b0b02ada4ad
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492983"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350318"
 ---
 > [!NOTE]
 > この記事は、新しい Azure PowerShell Az モジュールを使用するために更新されました。 AzureRM モジュールはまだ使用でき、少なくとも 2020 年 12 月までは引き続きバグ修正が行われます。

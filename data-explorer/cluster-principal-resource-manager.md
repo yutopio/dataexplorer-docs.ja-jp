@@ -1,18 +1,18 @@
 ---
 title: Azure Resource Manager テンプレートを使用して Azure Data Explorer 用のクラスター プリンシパルを追加する
 description: この記事では、Azure Resource Manager テンプレートを使用して Azure Data Explorer 用のクラスター プリンシパルを追加する方法について説明します。
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 02/03/2020
-ms.openlocfilehash: 22423568ab0b3b55d8d9566df4829eb6070b5f8c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 9577e6d583f7e2c936116d9802839b24481e5f8e
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492847"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350385"
 ---
 # <a name="add-cluster-principals-for-azure-data-explorer-by-using-an-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用して Azure Data Explorer 用のクラスター プリンシパルを追加する
 

@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/04/2019
-ms.openlocfilehash: 8237eb917f5123755898d281151ce34a08eb90db
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 99d242358f5b4a54f7e1faa246a1cfc64d1414d3
+ms.sourcegitcommit: 6e84f50efc8c5c3fe57080341ed3effe72197886
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492371"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87439873"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-redash"></a>Azure Data Explorer からのデータを Redash で視覚化する
 
@@ -27,7 +27,7 @@ ms.locfileid: "81492371"
 
 ## <a name="create-azure-data-explorer-connector-in-redash"></a>Redash で Azure Data Explorer コネクタを作成する 
 
-1. [Redash](https://www.redash.io/) にサインインします。 **[Get Started]\(開始\)** を選択してアカウントを作成します。
+1. [Redash](https://redash.io/) にサインインします。 **[Get Started]\(開始\)** を選択してアカウントを作成します。
 1. **[Let's get started]\(はじめに\)** で **[Connect a Data Source]\(データ ソースへの接続\)** を選択します。
 
     ![データ ソースに接続する](media/redash/connect-data-source.png)

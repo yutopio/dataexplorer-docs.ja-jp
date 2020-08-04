@@ -7,12 +7,12 @@ ms.reviewer: orhasban
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/01/2020
-ms.openlocfilehash: 52855651daccfe3c9baf5bb059530bcf7bfb0f19
-ms.sourcegitcommit: 653bfb3edf32553c52ef36b339c8b80713a601b0
+ms.openlocfilehash: 104b3e4db18334f33c54177da7b996bc679db2de
+ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/16/2020
-ms.locfileid: "81494547"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87515891"
 ---
 # <a name="manage-language-extensions-in-your-azure-data-explorer-cluster-preview"></a>Azure Data Explorer クラスターでの言語拡張機能の管理 (プレビュー)
 
@@ -64,6 +64,6 @@ ms.locfileid: "81494547"
 
 ## <a name="limitations"></a>制限事項
 
-* 言語拡張機能は[ディスクの暗号化](manage-cluster-security.md)をサポートしていません。 
+* 言語拡張機能は[ディスクの暗号化](cluster-disk-encryption.md)をサポートしていません。 
 * 言語拡張機能のランタイム サンドボックスでは、関連する言語のスコープでクエリが実行されていない場合でも、ディスク領域が割り当てられます。
 詳細な制限については、「[サンドボックス](kusto/concepts/sandboxes.md)」を参照してください。

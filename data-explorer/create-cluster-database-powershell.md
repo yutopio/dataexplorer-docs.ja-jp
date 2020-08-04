@@ -1,18 +1,18 @@
 ---
 title: PowerShell を使用して Azure Data Explorer クラスターと DB を作成する
 description: PowerShell を使用して Azure Data Explorer クラスターとデータベースを作成する方法を学習します
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: 0e812a6eba20398f07a983de8437279c1c7fcf23
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e4b13b57e7a9c70464be7c754ee2b0f74dbebe4d
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492979"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350320"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-powershell"></a>PowerShell を使用して Azure Data Explorer クラスターとデータベースを作成する
 

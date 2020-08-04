@@ -1,18 +1,18 @@
 ---
 title: Azure Resource Manager テンプレートを使用して Azure Data Explorer 用に IoT Hub データ接続を作成する
 description: この記事では、Azure Resource Manager テンプレートを使用して Azure Data Explorer 用に IoT Hub データ接続を作成する方法について学習します。
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/28/2019
-ms.openlocfilehash: 8c91808de3f3f32139c4d46047fa39d952ca953a
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: f38e6ffe4cec263585c3fe6e06bbb92c9127bbba
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493127"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350072"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用して Azure Data Explorer 用に IoT Hub データ接続を作成する
 

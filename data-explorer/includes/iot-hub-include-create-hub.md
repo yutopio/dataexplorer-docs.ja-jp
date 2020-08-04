@@ -1,19 +1,19 @@
 ---
 title: インクルード ファイル
 description: インクルード ファイル
-author: robinsh
+author: orspod
 ms.service: iot-hub
 services: iot-hub
 ms.topic: include
 ms.date: 02/14/2020
-ms.author: robinsh
+ms.author: orspodek
 ms.custom: include file
-ms.openlocfilehash: c3f1c40fd61d83fdb40bca0bda368d88d4096906
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 8009d1317817fe399952879ce5b524d6cea4da6f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82109892"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87375621"
 ---
 ここでは、[Azure portal](https://portal.azure.com) を使用して IoT ハブを作成する方法について説明します。
 
@@ -37,7 +37,7 @@ ms.locfileid: "82109892"
 
    ![Azure portal でハブを作成する](./media/iot-hub-include-create-hub/iot-hub-create-screen-basics.png)
 
-1. **Size and scale\(次へ: サイズとスケール\)** を選択して、ハブの作成を続けます。
+1. **次へ:Size and scale\(次へ: サイズとスケール\)** を選択して、ハブの作成を続けます。
 
    ![Azure portal を使用して新しいハブのサイズとスケールを設定する](./media/iot-hub-include-create-hub/iot-hub-create-screen-size-scale.png)
 
@@ -54,13 +54,13 @@ ms.locfileid: "82109892"
 
     - **[詳細設定]**  >  **[Device-to-cloud パーティション]** : このプロパティでは、device-to-cloud メッセージがそのメッセージの同時閲覧者数に関連付けられます。 ほとんどのハブでは、4 つのパーティションのみが必要となります。
 
-1.  **[Next]\(次へ\)** を選択して、次の画面に進みます。
+1.  **次へ:[Next]\(次へ\)** を選択して、次の画面に進みます。
 
     タグは、名前と値の組です。 複数のリソースおよびリソース グループに同じタグを割り当てることで、リソースを分類したり、課金情報を統合したりすることができます。 詳細については、「[タグを使用した Azure リソースの整理](/azure/azure-resource-manager/management/tag-resources)」を参照してください。
 
     ![Azure portal を使用してハブにタグを割り当てる](./media/iot-hub-include-create-hub/iot-hub-create-tabs.png)
 
-1.  **次へ: レビューと作成** をクリックして、選択内容を確認します。 次の画面のようになります。ただし、表示されるのはハブの作成時に選択した値です。 
+1.  **次へ:次へ: レビューと作成** をクリックして、選択内容を確認します。 次の画面のようになります。ただし、表示されるのはハブの作成時に選択した値です。 
 
     ![新しいハブを作成するための情報を確認する](./media/iot-hub-include-create-hub/iot-hub-create-review.png)
 

@@ -1,18 +1,18 @@
 ---
 title: Python による Azure Data Explorer へのエンドツーエンドの BLOB の取り込み
 description: この記事では、Python を使用するエンドツーエンドの例を用いて、Azure Data Explorer に BLOB を取り込む方法について説明します。
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 02/03/2020
-ms.openlocfilehash: 0aa6cd7957dfbd6d76068c8fb4b6c92544e603c1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: bc97ffad3ca4f6d824e10c85e570154764cc986a
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492611"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350470"
 ---
 # <a name="end-to-end-blob-ingestion-into-azure-data-explorer-through-python"></a>Python による Azure Data Explorer へのエンドツーエンドの BLOB の取り込み
 

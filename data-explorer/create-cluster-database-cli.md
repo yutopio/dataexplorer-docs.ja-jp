@@ -1,18 +1,18 @@
 ---
 title: Azure CLI を使用して Azure Data Explorer クラスターと DB を作成する
 description: Azure CLI を使用して Azure Data Explorer クラスターとデータベースを作成する方法を学習します
-author: radennis
-ms.author: radennis
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: radennis
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: b7e8611ba6427880f15d57137e31010047c39e01
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 673bf418bf38bf04d8b8fb9e81204f4db3499e19
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83224614"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350368"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-azure-cli"></a>Azure CLI を使用して Azure Data Explorer クラスターとデータベースを作成する
 

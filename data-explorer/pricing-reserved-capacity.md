@@ -1,18 +1,18 @@
 ---
 title: Azure Data Explorer 割増を前払いしてコストを削減する
 description: Azure Data Explorer の予約容量を購入して、Azure Data Explorer のコストを節約する方法について説明します。
-author: avneraa
-ms.author: avnera
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/03/2019
-ms.openlocfilehash: 6475a0190546ac577ae86ac1fde4adc41cd47595
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e954b66c59e480d7fc713841e9a029da61dabd8f
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494303"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350538"
 ---
 # <a name="prepay-for-azure-data-explorer-markup-units-with-azure-data-explorer-reserved-capacity"></a>Azure Data Explorer 予約容量を使用して Azure Data Explorer 割増ユニットを前払いする
 

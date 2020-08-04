@@ -1,18 +1,18 @@
 ---
 title: お使いの Azure Data Explorer クラスターに適した VM SKU を選択する
 description: この記事では、Azure Data Explorer クラスターに最適な SKU サイズを選択する方法について説明します。
-author: avneraa
-ms.author: avnera
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/14/2019
-ms.openlocfilehash: a2735a4f469ecf6dea9856a1ee8f0036ffc38fe5
-ms.sourcegitcommit: 8a88534eb6aa2c4260e97b7afd1818ce32786001
+ms.openlocfilehash: 61a43f767ea1f2bf048357e4032bb69025a85ad0
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/20/2020
-ms.locfileid: "83708462"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87351626"
 ---
 # <a name="select-the-correct-vm-sku-for-your-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターに適した VM SKU を選択する 
 

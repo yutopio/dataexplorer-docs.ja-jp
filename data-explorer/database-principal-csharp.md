@@ -1,18 +1,18 @@
 ---
 title: C# を使用して Azure Data Explorer 用のデータベース プリンシパルを追加する
 description: この記事では、C# を使用して Azure Data Explorer 用にデータベース プリンシパルを追加する方法について説明します。
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 02/03/2020
-ms.openlocfilehash: 17107c1164b0ff84600776afd32feb4ef40256ff
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 97e7b7430410ce73f3577fdf37a2635169ea191b
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493359"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350028"
 ---
 # <a name="add-database-principals-for-azure-data-explorer-by-using-c"></a>C# を使用して Azure Data Explorer 用のデータベース プリンシパルを追加する
 

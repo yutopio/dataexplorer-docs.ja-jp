@@ -1,18 +1,18 @@
 ---
 title: C# を使用して Azure Data Explorer 用に Event Grid データ接続を作成する
 description: この記事では、C# を使用して Azure Data Explorer 用に Event Grid データ接続を作成する方法について学習します。
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: 627c60b1d5c39aa3e5c84f6ee87340c418fa542e
-ms.sourcegitcommit: 0d15903613ad6466d49888ea4dff7bab32dc5b23
+ms.openlocfilehash: a93b29d6557afa435cacbbeeb43b685c0dfbf3af
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "86013873"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350215"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-c"></a>C# を使用して Azure Data Explorer 用に Event Grid データ接続を作成する
 

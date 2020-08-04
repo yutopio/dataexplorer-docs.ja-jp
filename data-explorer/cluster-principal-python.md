@@ -1,18 +1,18 @@
 ---
 title: Python を使用して Azure Data Explorer 用のクラスター プリンシパルを追加する
 description: この記事では、Python を使用して Azure Data Explorer 用にクラスター プリンシパルを追加する方法について説明します。
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 02/03/2020
-ms.openlocfilehash: 73956a73f5ae84529018abfce64c3a373b9a8ca1
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5532be47c957ae2251e71dc25a17e67a8e57f474
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492819"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350402"
 ---
 # <a name="add-cluster-principals-for-azure-data-explorer-by-using-python"></a>Python を使用して Azure Data Explorer 用のクラスター プリンシパルを追加する
 

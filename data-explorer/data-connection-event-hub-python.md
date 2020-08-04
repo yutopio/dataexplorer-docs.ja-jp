@@ -1,18 +1,18 @@
 ---
 title: Python を使用して Azure Data Explorer 用にイベント ハブ データ接続を作成する
 description: この記事では、Python を使用して Azure Data Explorer 用にイベント ハブ データ接続を作成する方法について学習します。
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: 36696a6fcdd74dc86705859ba62b608e9aa2ccf9
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7649a89208881ce323c0cbd970f3f247b0cf67da
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492331"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350147"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-python"></a>Python を使用して Azure Data Explorer 用にイベント ハブ データ接続を作成する
 

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 984e5c37f3d29a6c56f88c6eb9b6750635e48920
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 98888ddd5dd6155c9476163337e7c031e0f84a1e
+ms.sourcegitcommit: afc369ab4c4bcc74f2dce22b397a340572db8ecf
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345982"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87528148"
 ---
 # <a name="python-plugin"></a>Python プラグイン
 
@@ -79,7 +79,7 @@ Python プラグインは、Python スクリプトを使用してユーザー定
     どちらの場合も、インジェストのボリュームと頻度、および Python ロジックで使用される複雑さとリソースについて、[サンドボックスの制限](../concepts/sandboxes.md#limitations)とクラスターの使用可能なリソースについて確認してください。 この操作を行わないと、[調整エラー](../concepts/sandboxes.md#errors)が発生する可能性があります。
 * 更新ポリシーの一部として定義されているクエリでプラグインを使用することはできません。このクエリでは、[ストリーミングインジェスト](../../ingest-data-streaming.md)を使用してソーステーブルを取り込まれたします。
 
-## <a name="examples"></a>例
+## <a name="examples"></a>使用例
 
 ```kusto
 range x from 1 to 360 step 1
@@ -239,7 +239,7 @@ range ID from 1 to 3 step 1
     external_artifacts=pack('faker.zip', 'https://artifacts.blob.core.windows.net/kusto/Faker.zip?...'))
 ```
 
-| id | 名前         |
+| ID | 名前         |
 |----|--------------|
 |   1| Gary Tapia   |
 |   2| Emma Evans   |

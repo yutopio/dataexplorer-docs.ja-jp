@@ -44,7 +44,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: セキュリティ
+    - name: Security
       items:
         - name: セキュリティの概要
           href: security.md
@@ -204,8 +204,12 @@
               href: vnet-deployment.md
             - name: VNet のクラスターの作成、接続、操作のトラブルシューティング
               href: vnet-deploy-troubleshoot.md
-        - name: クラスターのセキュリティを管理する
-          href: manage-cluster-security.md
+        - name: 暗号化
+          items:
+            - name: クラスター ディスクの暗号化 - ポータル
+              href: cluster-disk-encryption.md
+            - name: 二重暗号化
+              href: double-encryption.md
         - name: マネージド ID の構成
           href: managed-identities.md
         - name: 顧客管理キーの構成

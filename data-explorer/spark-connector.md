@@ -3,16 +3,16 @@ title: Apache Spark 向け Azure Data Explorer コネクタを使用し、Azure 
 description: このトピックでは、Azure Data Explorer と Spark クラスターの間でデータを移動する方法について説明します。
 author: orspod
 ms.author: orspodek
-ms.reviewer: michazag
+ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 1/14/2020
-ms.openlocfilehash: 28dee67b6ac412a9c0497d5713a69c9617d3ae55
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.date: 7/29/2020
+ms.openlocfilehash: 31aa478647b902353db9d39a5ad36b5d5830c127
+ms.sourcegitcommit: 6e84f50efc8c5c3fe57080341ed3effe72197886
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370464"
+ms.lasthandoff: 07/30/2020
+ms.locfileid: "87439995"
 ---
 # <a name="azure-data-explorer-connector-for-apache-spark"></a>Apache Spark 用の Azure Data Explorer コネクタ
 
@@ -111,11 +111,14 @@ Azure Data Explorer Spark コネクタを使用すると、次のいずれかの
 
 Azure AD アプリケーション認証は、最も単純で最も一般的な認証方法であり、Azure Data Explorer Spark コネクタにお勧めします。
 
-|Properties  |説明  |
-|---------|---------|
-|**KUSTO_AAD_CLIENT_ID**     |   Azure AD アプリケーション (クライアント) ID。      |
-|**KUSTO_AAD_AUTHORITY_ID**     |  Azure AD 認証機関。 Azure AD Directory (テナント) ID。        |
-|**KUSTO_AAD_CLIENT_PASSWORD**    |    クライアントの Azure AD アプリケーション キー。     |
+|Properties  |オプション文字列  |説明  |
+|---------|---------|---------|
+|**KUSTO_AAD_APP_ID**     |kustoAadAppId     |   Azure AD アプリケーション (クライアント) ID。      |
+|**KUSTO_AAD_AUTHORITY_ID**     |kustoAadAuthorityID     |  Azure AD 認証機関。 Azure AD Directory (テナント) ID。        |
+|**KUSTO_AAD_APP_SECRET**    |kustoAadAppSecret     |    クライアントの Azure AD アプリケーション キー。     |
+
+> [!NOTE]
+> 以前の API バージョン (2.0.0 未満) には、"kustoAADClientID"、"kustoClientAADClientPassword"、"kustoAADAuthorityID" という名前が付けられています。
 
 ### <a name="azure-data-explorer-privileges"></a>Azure Data Explorer の特権
 
@@ -153,8 +156,8 @@ Azure Data Explorer のプリンシパル ロールの詳細については、[�
       .option(KustoSinkOptions.KUSTO_CLUSTER, cluster)
       .option(KustoSinkOptions.KUSTO_DATABASE, database)
       .option(KustoSinkOptions.KUSTO_TABLE, "Demo3_spark")
-      .option(KustoSinkOptions.KUSTO_AAD_CLIENT_ID, appId)
-      .option(KustoSinkOptions.KUSTO_AAD_CLIENT_PASSWORD, appKey)
+      .option(KustoSinkOptions.KUSTO_AAD_APP_ID, appId)
+      .option(KustoSinkOptions.KUSTO_AAD_APP_SECRET, appKey)
       .option(KustoSinkOptions.KUSTO_AAD_AUTHORITY_ID, authorityId)
       .option(KustoSinkOptions.KUSTO_TABLE_CREATE_OPTIONS, "CreateIfNotExist")
       .mode(SaveMode.Append)
@@ -204,8 +207,8 @@ Azure Data Explorer のプリンシパル ロールの詳細については、[�
 
     val query = s"$table | where (ColB % 1000 == 0) | distinct ColA"
     val conf: Map[String, String] = Map(
-          KustoSourceOptions.KUSTO_AAD_CLIENT_ID -> appId,
-          KustoSourceOptions.KUSTO_AAD_CLIENT_PASSWORD -> appKey
+          KustoSourceOptions.KUSTO_AAD_APP_ID -> appId,
+          KustoSourceOptions.KUSTO_AAD_APP_SECRET -> appKey
         )
 
     val df = spark.read.format("com.microsoft.kusto.spark.datasource").
@@ -242,8 +245,8 @@ Azure Data Explorer のプリンシパル ロールの詳細については、[�
 
         ```scala
          val conf3 = Map(
-              KustoSourceOptions.KUSTO_AAD_CLIENT_ID -> appId,
-              KustoSourceOptions.KUSTO_AAD_CLIENT_PASSWORD -> appKey
+              KustoSourceOptions.KUSTO_AAD_APP_ID -> appId,
+              KustoSourceOptions.KUSTO_AAD_APP_SECRET -> appKey
               KustoSourceOptions.KUSTO_BLOB_STORAGE_SAS_URL -> storageSas)
         val df2 = spark.read.kusto(cluster, database, "ReallyBigTable", conf3)
         

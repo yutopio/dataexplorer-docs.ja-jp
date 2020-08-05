@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/08/2020
-ms.openlocfilehash: 17c3481d741c07e8da6061a455549ff255c898b7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ca617629578e9f3830e4fa1edf1a5781b0317a81
+ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493411"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87515857"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>イベント ハブから Azure Data Explorer にデータを取り込む
 
@@ -159,7 +159,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 1. Visual Studio でサンプル アプリ ソリューションを開きます。
 
-1. *program.cs* ファイルで、`connectionString` 定数をイベント ハブ名前空間からコピーした接続文字列に変更します。
+1. *program.cs* ファイルで、`eventHubName` 定数をイベント ハブの名前に更新し、`connectionString` 定数をイベント ハブ名前空間からコピーした接続文字列に更新します。
 
     ```csharp
     const string eventHubName = "test-hub";

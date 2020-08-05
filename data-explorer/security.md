@@ -1,18 +1,18 @@
 ---
 title: Azure で Azure Data Explorer クラスターをセキュリティで保護する
 description: Azure Data Explorer のクラスターをセキュリティで保護する方法について説明します。
-author: saguiitay
-ms.author: itsagui
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/06/2020
-ms.openlocfilehash: d8220055549c3bfa2892e7267521b08c0591f817
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 0330d0bf51e3bf8844e6545c9b57543274d56ed0
+ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83370268"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87515738"
 ---
 # <a name="secure-azure-data-explorer-clusters-in-azure"></a>Azure で Azure Data Explorer クラスターをセキュリティで保護する
 
@@ -60,7 +60,7 @@ Azure Key Vault のカスタマー マネージド キーは、お使いのコ�
 
 ## <a name="next-steps"></a>次のステップ
 
-* 保存時の暗号化を有効にすることで、[Azure Data Explorer のクラスターをセキュリティで保護する - Portal](manage-cluster-security.md)
+* 保存時の暗号化を有効にすることで、[Azure Data Explorer のディスク暗号化を使用してをクラスターをセキュリティで保護する - ポータル](cluster-disk-encryption.md)
 * [Azure Data Explorer クラスターのマネージド ID を構成する](managed-identities.md)
 * [Azure Resource Manager テンプレートを使用してカスタマー マネージド キーを構成する](customer-managed-keys-resource-manager.md)
 * [C# を使用してカスタマー マネージド キーを構成する](customer-managed-keys-csharp.md)

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: a81c5faadb51b99cdcd233132f9b6a4843e3ce34
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 52cec808795024bd58b6a4ef6cf08e5b700c0e33
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345795"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803626"
 ---
 # <a name="restrict-statement"></a>restrict ステートメント
 
@@ -24,6 +24,9 @@ ms.locfileid: "87345795"
 Restrict ステートメントは、その後に続くクエリステートメントで参照できるテーブル/ビューエンティティのセットを制限します。 たとえば、2つのテーブル (、) を含むデータベースでは、 `A` `B` アプリケーションがクエリの残りの部分にアクセスできないようにし、ビューを使用して `B` 限られた形式のテーブルだけを表示することができ `A` ます。
 
 Restrict ステートメントの主なシナリオは、ユーザーからのクエリを受け入れ、それらのクエリに行レベルのセキュリティメカニズムを適用する中間層アプリケーションの場合です。 中間層アプリケーションは、ユーザーのクエリにプレフィックスとして**論理モデル**を付けることができます。これは、ユーザーのデータへのアクセスを制限するビューを定義する let ステートメントのセットです (たとえば、 `T | where UserId == "..."` )。 最後に追加されたステートメントとして、ユーザーのアクセスを論理モデルのみに制限します。
+
+> [!NOTE]
+> Restrict ステートメントを使用して、別のデータベースまたはクラスター内のエンティティへのアクセスを制限することができます (クラスター名ではワイルドカードはサポートされていません)。
 
 ## <a name="syntax"></a>構文
 
@@ -36,49 +39,44 @@ Restrict ステートメントの主なシナリオは、ユーザーからの�
 
 Restrict ステートメントで指定されていないすべてのテーブル、表形式ビュー、またはパターンは、クエリの残りの部分で "非表示" になります。 
 
-**メモ**
-
-Restrict ステートメントを使用して、別のデータベースまたはクラスター内のエンティティへのアクセスを制限することができます (クラスター名ではワイルドカードはサポートされていません)。
-
 ## <a name="arguments"></a>引数
 
 Restrict ステートメントでは、エンティティの名前解決時に制限の制限を定義するパラメーターを1つ以上取得できます。 エンティティは次のようになります。
-- ステートメントの前に[ステートメントを記述](./letstatement.md) `restrict` します。 
+* ステートメントの前に[ステートメントを記述](./letstatement.md) `restrict` します。 
 
-```kusto
-// Limit access to 'Test' let statement only
-let Test = () { print x=1 };
-restrict access to (Test);
-```
+  ```kusto
+  // Limit access to 'Test' let statement only
+  let Test = () { print x=1 };
+  restrict access to (Test);
+  ```
 
-- データベースメタデータで定義されている[テーブル](../management/tables.md)または[関数](../management/functions.md)。
+* データベースメタデータで定義されている[テーブル](../management/tables.md)または[関数](../management/functions.md)。
 
-```kusto
-// Assuming the database that the query uses has table Table1 and Func1 defined in the metadata, 
-// and other database 'DB2' has Table2 defined in the metadata
- 
-restrict access to (database().Table1, database().Func1, database('DB2').Table2);
-```
+    ```kusto
+    // Assuming the database that the query uses has table Table1 and Func1 defined in the metadata, 
+    // and other database 'DB2' has Table2 defined in the metadata
+    
+    restrict access to (database().Table1, database().Func1, database('DB2').Table2);
+    ```
 
-- [Let ステートメント](./letstatement.md)またはテーブル/関数の倍数に一致するワイルドカードパターン  
+* [Let ステートメント](./letstatement.md)またはテーブル/関数の倍数に一致するワイルドカードパターン  
 
-```kusto
-let Test1 = () { print x=1 };
-let Test2 = () { print y=1 };
-restrict access to (*);
-// Now access is restricted to Test1, Test2 and no tables/functions are accessible.
+    ```kusto
+    let Test1 = () { print x=1 };
+    let Test2 = () { print y=1 };
+    restrict access to (*);
+    // Now access is restricted to Test1, Test2 and no tables/functions are accessible.
 
-// Assuming the database that the query uses has table Table1 and Func1 defined in the metadata.
-// Assuming that database 'DB2' has table Table2 and Func2 defined in the metadata
-restricts access to (database().*);
-// Now access is restricted to all tables/functions of the current database ('DB2' is not accessible).
+    // Assuming the database that the query uses has table Table1 and Func1 defined in the metadata.
+    // Assuming that database 'DB2' has table Table2 and Func2 defined in the metadata
+    restricts access to (database().*);
+    // Now access is restricted to all tables/functions of the current database ('DB2' is not accessible).
 
-// Assuming the database that the query uses has table Table1 and Func1 defined in the metadata.
-// Assuming that database 'DB2' has table Table2 and Func2 defined in the metadata
-restricts access to (database('DB2').*);
-// Now access is restricted to all tables/functions of the database 'DB2'
-```
-
+    // Assuming the database that the query uses has table Table1 and Func1 defined in the metadata.
+    // Assuming that database 'DB2' has table Table2 and Func2 defined in the metadata
+    restricts access to (database('DB2').*);
+    // Now access is restricted to all tables/functions of the database 'DB2'
+    ```
 
 ## <a name="examples"></a>例
 

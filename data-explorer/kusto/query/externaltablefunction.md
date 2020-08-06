@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/21/2019
-ms.openlocfilehash: 4a3a1150996000742f5065df0eddc385074eaa48
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 13b244eb151d140e3626412188ac9bc9de242cc6
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348090"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87802980"
 ---
 # <a name="external_table"></a>external_table()
 
@@ -22,6 +22,11 @@ ms.locfileid: "87348090"
 ```kusto
 external_table('StormEvent')
 ```
+
+> [!NOTE]
+> * 関数には、 `external_table` [テーブル](tablefunction.md)関数と同様の制限があります。
+> * [外部テーブル](schema-entities/externaltables.md)
+> * [外部テーブルを管理するためのコマンド](../management/externaltables.md)
 
 ## <a name="syntax"></a>構文
 
@@ -33,11 +38,3 @@ external_table('StormEvent')
   種類がまたはの外部テーブルを参照する文字列リテラルである必要があり `blob` `adl` ます。 <!-- TODO: Document data formats supported -->
 
 * *MappingName*: 実際の (外部) データシャードのフィールドをこの関数によって出力される列にマップするマッピングオブジェクトの省略可能な名前です。
-
-**ノート**
-
-外部テーブルの詳細については、「[外部テーブル](schema-entities/externaltables.md)」を参照してください。
-
-「[外部テーブルを管理するためのコマンド](../management/externaltables.md)」も参照してください。
-
-関数には、 `external_table` [テーブル](tablefunction.md)関数と同様の制限があります。

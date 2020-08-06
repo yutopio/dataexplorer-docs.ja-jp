@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: babb4e023d29c7894661e3acf2c0a09e753011c2
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: be05a3a546bb6f1db003be14e4a1417841b54671
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87340821"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804068"
 ---
 # <a name="top-hitters-operator"></a>top-hitters 演算子
 
@@ -22,6 +22,9 @@ ms.locfileid: "87340821"
 ```kusto
 T | top-hitters 25 of Page by Views 
 ```
+
+> [!NOTE]
+> `top-hitters`は近似値のアルゴリズムであり、大規模なデータを使用して実行する場合に使用する必要があります。 Top-hitters の概数は、 [Count-Min スケッチ](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch)アルゴリズムに基づいています。  
 
 ## <a name="syntax"></a>構文
 
@@ -35,13 +38,9 @@ T | top-hitters 25 of Page by Views
     * *式*: top-hitters は、近似値の最大値 (*式*) を持つ*numberofrows*行を返します。 式には、列、または数値に評価されるその他の式を指定できます。 
     *  *Expression*が指定されていない場合は、top-hitters アルゴリズムによって*並べ替えキー*の出現回数がカウントされます。  
 
-**ノート**
+## <a name="examples"></a>例
 
-`top-hitters`は近似値のアルゴリズムであり、大規模なデータを使用して実行する場合に使用する必要があります。 Top-hitters の概数は、 [Count-Min スケッチ](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch)アルゴリズムに基づいています。  
-
-## <a name="example"></a>例
-
-## <a name="getting-top-hitters-most-frequent-items"></a>上位の top-hitters を取得する (最も頻繁に発生する項目) 
+### <a name="get-most-frequent-items"></a>最も頻繁に発生する項目を取得する 
 
 次の例は、Wikipedia のほとんどのページで上位5つの言語を検索する方法を示しています (2016 年4月の後にアクセス)。 
 
@@ -59,7 +58,7 @@ PageViews
 |ru|227003107|
 |fr|207943448|
 
-## <a name="getting-top-hitters-based-on-column-value-"></a>(列の値に基づいて) top top-hitters を取得する * * *
+### <a name="get-top-hitters-based-on-column-value"></a>列の値に基づいて top top-hitters を取得します。
 
 次の例では、2016年の Wikipedia の最もよく表示される英語のページを検索する方法を示します。 このクエリでは、' Views ' (整数数値) を使用してページの人気度 (ビュー数) を計算します。 
 

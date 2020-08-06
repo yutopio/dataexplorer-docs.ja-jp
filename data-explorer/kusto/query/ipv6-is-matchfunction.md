@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: b6d76f8ed834ec40c53321644e5cd9b7f5f93168
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d03e28c0f7df404d6bee81f7f749aab361cc45b9
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347308"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803881"
 ---
 # <a name="ipv6_is_match"></a>ipv6_is_match()
 
@@ -26,6 +26,9 @@ ipv6_is_match('192.168.1.1/24', '192.168.1.255/24') == true
 ipv6_is_match('fe80::85d:e82c:9446:7994/127', 'fe80::85d:e82c:9446:7995/127') == true
 ipv6_is_match('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == true
 ```
+
+> [!NOTE]
+> 関数は、IPv6 と IPv4 の両方のネットワークアドレスを表す引数を受け入れて比較できます。 呼び出し元が引数が IPv4 形式であることを認識している場合は、 [ipv4_is_match ()](./ipv4-is-matchfunction.md)関数を使用します。 この関数を実行すると、実行時のパフォーマンスが向上します。
 
 ## <a name="syntax"></a>構文
 
@@ -41,17 +44,13 @@ ipv6_is_match('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == tr
 IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用して定義でき `/` ます。
 スラッシュ () の左側の IP アドレスは、 `/` 基本 ip アドレスです。 スラッシュ () の右側にある数字 (1 ~ 127) `/` は、ネットマスク内の連続した1ビットの数です。 
 
-## <a name="example"></a>例:
-fe80:: 85d: e82c: 9446: 7994/120 には、120連続ビットを含む、関連付けられた net/subnetmask があります。
+たとえば、fe80:: 85d: e82c: 9446: 7994/120 には、120連続ビットを含む、関連付けられた net/subnetmask があります。
 
 ## <a name="returns"></a>戻り値
 
 * `true`: 最初の IPv6/IPv4 文字列引数の長い形式が2番目の IPv6/IPv4 文字列引数と等しい場合は。
 * `false`それ以外.
 * `null`: 2 つの IPv6/IPv4 文字列のいずれかの変換が成功しなかった場合。
-
-> [!Note]
-> 関数は、IPv6 と IPv4 の両方のネットワークアドレスを表す引数を受け入れて比較できます。 呼び出し元が引数が IPv4 形式であることを認識している場合は、 [ipv4_is_match ()](./ipv4-is-matchfunction.md)関数を使用します。 この関数を実行すると、実行時のパフォーマンスが向上します。
 
 ## <a name="examples"></a>例
 

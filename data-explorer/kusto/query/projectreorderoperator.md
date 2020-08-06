@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 233f5f7f6e6064b10d1385eaef8a28302368e74b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 98887c8044be6ea1b429c51953c6f3f9a899d090
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345999"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87802963"
 ---
 # <a name="project-reorder-operator"></a>project-reorder 演算子
 
@@ -33,20 +33,18 @@ T | project-reorder Col2, Col1, Col* asc
 * *Columnnameorpattern:* 出力に追加された列または列のワイルドカードパターンの名前。
 * ワイルドカードパターンの場合 `asc` : `desc` 列の名前を昇順または降順で指定したり、順序を指定したりします。 またはが指定されていない場合、 `asc` `desc` 順序は、ソーステーブルに出現する一致する列によって決定されます。
 
+> [!NOTE]
+> * あいまいな*Columnnameorpattern*一致では、列はパターンに一致する最初の位置に表示されます。
+> * の列の指定 `project-reorder` は省略可能です。 明示的に指定されていない列は、出力テーブルの最後の列として表示されます。
+> * [`project-away`](projectawayoperator.md)列を削除するには、を使用します。
+> * [`project-rename`](projectrenameoperator.md)列の名前を変更するには、を使用します。
+
+
 ## <a name="returns"></a>戻り値
 
 演算子引数で指定された順序で列を含むテーブル。 `project-reorder`では、テーブルの列の名前を変更したり、列を削除したりすることはありません。そのため、ソーステーブルに存在していたすべての列が結果テーブルに表示されます。
 
-**メモ**
-
-- あいまいな*Columnnameorpattern*一致では、列はパターンに一致する最初の位置に表示されます。
-- の列の指定 `project-reorder` は省略可能です。 明示的に指定されていない列は、出力テーブルの最後の列として表示されます。
-
-* [`project-away`](projectawayoperator.md)列を削除するには、を使用します。
-* [`project-rename`](projectrenameoperator.md)列の名前を変更するには、を使用します。
-
-
-## <a name="examples"></a>例
+## <a name="examples"></a>使用例
 
 3つの列 (a、b、c) を使用してテーブルの順序を変更すると、2番目の列 (b) が最初に表示されます。
 

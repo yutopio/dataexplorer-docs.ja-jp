@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f9d7a60b3c39fb0b7357c2bbe68533252f794347
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 857a48ab02ae04e68a8475b7109cebbb2275ca55
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349484"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803303"
 ---
 # <a name="as-operator"></a>as 演算子
 
@@ -29,11 +29,9 @@ ms.locfileid: "87349484"
 * *名前*: 表形式の式の一時的な名前。
 * `hint.materialized`: に設定されている場合 `true` 、テーブル式の値は、[具体化 ()](./materializefunction.md)関数呼び出しによってラップされているかのように具体化されます。
 
-**ノート**
-
-* によって指定された名前は、 `as` `withsource=` [union](./unionoperator.md)の列、 `source_` [find](./findoperator.md)列、および `$table` [search](./searchoperator.md)の列で使用されます。
-
-* [結合](./joinoperator.md)の外側の表形式入力 () で演算子を使用して名前が付けられた表形式の式は、 `$left` 結合の表形式の内部入力 () でも使用でき `$right` ます。
+> [!NOTE]
+> * によって指定された名前は、 `as` `withsource=` [union](./unionoperator.md)の列、 `source_` [find](./findoperator.md)列、および `$table` [search](./searchoperator.md)の列で使用されます。
+> * [結合](./joinoperator.md)の外側の表形式入力 () で演算子を使用して名前が付けられた表形式の式は、 `$left` 結合の表形式の内部入力 () でも使用でき `$right` ます。
 
 ## <a name="examples"></a>使用例
 

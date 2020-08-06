@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9321f30d2643f6e398d73cf7960490708626f723
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: b0a71f9db9062d83f55ebf9db1efabb6d86f9786
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348362"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803286"
 ---
 # <a name="diffpatterns_text-plugin"></a>diffpatterns_text プラグイン
 
@@ -29,7 +29,9 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
 `T | evaluate diffpatterns_text(`TextColumn、BooleanCondition [、MinTokens、Threshold、MaxTokens]`)` 
 
-**必須の引数**
+## <a name="arguments"></a>引数
+
+### <a name="required-arguments"></a>必須の引数
 
 * TextColumn- *column_name*
 
@@ -39,7 +41,7 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
     入力テーブルと比較する2つのレコードのサブセットを生成する方法を定義します。 このアルゴリズムでは、クエリが条件に従って "True" と "False" の2つのデータセットに分割され、その間の (テキスト) の相違点が分析されます。 
 
-**省略可能な引数**
+### <a name="optional-arguments"></a>省略可能な引数。
 
 その他の引数はすべて省略できますが、下記と同じ順序で指定する必要があります。 
 
@@ -78,7 +80,7 @@ StormEvents
 | evaluate diffpatterns_text(EpisodeNarrative, EventType == "Extreme Cold/Wind Chill", 2)
 ```
 
-|Count_of_True|Count_of_False|Percent_of_True|Percent_of_False|[パターン]|
+|Count_of_True|Count_of_False|Percent_of_True|Percent_of_False|Pattern|
 |---|---|---|---|---|
 |11|0|6.29|0|* Wake * で北西に移動する上空では、大きなレイク効果を snowfall ダウンウィンド * Lake trough に移行|
 |9|0|5.14|0|カナダの高負荷が決済された * * 地域 * 2 月 * 2006 以降、併置された温度が生成されました。 期間 * 固定温度|
@@ -86,4 +88,3 @@ StormEvents
 |0|42|0|7.71|* * * * * *、西洋コロラド州間で * * * * * * * *。 *|
 |0|45|0|8.26|* * 標準 *|
 |0|110|0|20.18|標準以下 *|
-

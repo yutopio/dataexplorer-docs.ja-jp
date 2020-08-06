@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: 601a2b90b3a9152df701f001f050ab0c48e8910d
-ms.sourcegitcommit: 6e84f50efc8c5c3fe57080341ed3effe72197886
+ms.openlocfilehash: 8688c7d6f2a5d68e0e1ae4436e099b011fd5faa0
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87440035"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803235"
 ---
 # <a name="using-kustoexplorer"></a>Kusto.Explorer の使用
 
@@ -139,20 +139,10 @@ Kusto. エクスプローラーは、クエリとクエリ結果を電子メー�
 
 ブラウザーで開いたときに Kusto をローカルで開き、指定した Kusto データベースに対して特定のクエリを実行する URI を作成できます。
 
-### <a name="limitations"></a>制限事項
-
-ブラウザーの制限、HTTP プロキシ、および Microsoft Outlook などのリンクを検証するツールによって、クエリの最大文字数は ~ 2000 文字に制限されています。 この制限は、クラスターとデータベース名の長さに依存しているため概数です。 詳細については、「[https://support.microsoft.com/kb/208427](https://support.microsoft.com/kb/208427)」を参照してください。 文字制限に到達する可能性を減らすには、以下の「[短いリンクを取得](#getting-shorter-links)する」を参照してください。
-
-URI の形式は次のとおりです。`https://<ClusterCname>.kusto.windows.net/<DatabaseName>web=0?query=<QueryToExecute>`
-
-例: [https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10](https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10)
- 
-この URI は Kusto. エクスプローラーを開き、 `Help` kusto クラスターに接続して、データベースに対して指定されたクエリを実行します `Samples` 。 既に実行されている Kusto. エクスプローラーのインスタンスがある場合は、実行中のインスタンスによって新しいタブが開き、そこでクエリが実行されます。
-
 > [!NOTE] 
 > セキュリティ上の理由から、コントロールコマンドではディープリンクが無効になっています。
 
-### <a name="creating-a-deep-link"></a>ディープリンクの作成
+#### <a name="creating-a-deep-link"></a>ディープリンクの作成
 
 ディープリンクを作成する最も簡単な方法は、Kusto エクスプローラーでクエリを作成し、を使用して `Export to Clipboard` クエリ (ディープリンクや結果を含む) をクリップボードにコピーする方法です。 その後、電子メールで共有できます。
         
@@ -165,7 +155,7 @@ https://help.kusto.windows.net:443/Samples[[クリックしてクエリを実行
 
 https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSspVuDlqlEoLs3NTSzKrEpVSM4vzSvR0FRIqlRIyszTCC5JLCoJycxN1VEwT9EEKS1KzUtJLVIoAYolZwAlFQCB3oo%2bTAAAAA%3d%3d
 
-### <a name="deep-links-and-parametrized-queries"></a>ディープリンクとパラメーター化クエリ
+#### <a name="deep-links-and-parametrized-queries"></a>ディープリンクとパラメーター化クエリ
 
 ディープリンクでパラメーター化クエリを使用できます。
 
@@ -177,6 +167,17 @@ web=0&query=KustoLogs+%7c+where+Timestamp+>+ago({Period})+%7c+count&Period=1h`
 
     &lt;Your_cluster &gt; を Azure データエクスプローラークラスター名に置き換えます。
 
+#### <a name="limitations"></a>制限事項
+
+ブラウザーの制限、HTTP プロキシ、および Microsoft Outlook などのリンクを検証するツールによって、クエリの最大文字数は ~ 2000 文字に制限されています。 この制限は、クラスターとデータベース名の長さに依存しているため概数です。 詳細については、「[https://support.microsoft.com/kb/208427](https://support.microsoft.com/kb/208427)」を参照してください。 
+
+文字制限に到達する可能性を減らすには、「[短いリンクを取得](#getting-shorter-links)する」を参照してください。
+
+URI の形式は次のとおりです。`https://<ClusterCname>.kusto.windows.net/<DatabaseName>web=0?query=<QueryToExecute>`
+
+例: [https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10](https://help.kusto.windows.net/Samples?web=0query=StormEvents+%7c+limit+10)
+ 
+この URI は Kusto. エクスプローラーを開き、 `Help` kusto クラスターに接続して、データベースに対して指定されたクエリを実行します `Samples` 。 既に実行されている Kusto. エクスプローラーのインスタンスがある場合は、実行中のインスタンスによって新しいタブが開き、そこでクエリが実行されます。
 
 ### <a name="getting-shorter-links"></a>短いリンクの取得
 
@@ -196,7 +197,7 @@ https://help.kusto.windows.net/Samples?web=0&query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSs
 
 コマンドライン引数は、[ディープリンクをクエリ](#creating-a-deep-link)する場合と同様の方法で、アプリケーションを開くために使用される URL の一部として渡されます。
 
-## <a name="command-line-argument-syntax"></a>コマンドライン引数の構文
+### <a name="command-line-argument-syntax"></a>コマンドライン引数の構文
 
 Kusto. エクスプローラーでは、次の構文でいくつかのコマンドライン引数がサポートされています (順序は重要です)。
 

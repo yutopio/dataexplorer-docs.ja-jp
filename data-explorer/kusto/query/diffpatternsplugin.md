@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a02f275dc47e88c7b14b85d19040e907613d1b80
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0be0dc12f48723bc83376a36db04f764991f7f0d
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348328"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803099"
 ---
 # <a name="diff-patterns-plugin"></a>diff パターンプラグイン
 
@@ -23,13 +23,16 @@ ms.locfileid: "87348328"
 ```kusto
 T | evaluate diffpatterns(splitColumn)
 ```
-
+> [!NOTE]
+> `diffpatterns`は、大きなパターン (セット間でデータの差分の部分をキャプチャする) を検索することを目的としており、行単位の違いを示すものではありません。
 
 ## <a name="syntax"></a>構文
 
 `T | evaluate diffpatterns(SplitColumn, SplitValueA, SplitValueB [, WeightColumn, Threshold, MaxDimensions, CustomWildcard, ...])` 
 
-**必須の引数**
+## <a name="arguments"></a>引数 
+
+### <a name="required-arguments"></a>必須の引数
 
 * SplitColumn - *column_name*
 
@@ -45,7 +48,7 @@ T | evaluate diffpatterns(splitColumn)
 
     例: `T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure") `
 
-**省略可能な引数**
+### <a name="optional-arguments"></a>省略可能な引数。
 
 その他の引数はすべて省略できますが、下記と同じ順序で指定する必要があります。 既定値を使用することを示すには、文字列チルダ値 '~' を使用します (以下の例を参照)。
 
@@ -100,14 +103,9 @@ T | evaluate diffpatterns(splitColumn)
 
 * 注: 多くの場合、パターンは区別されません。 これらは重複している可能性があり、通常は元のすべての行に対応していません。 一部の行は、どのパターンにも当てはまらない場合があります。
 
-
-**ヒント**
-
-入力パイプで[where](./whereoperator.md)および[project](./projectoperator.md)を使用して、関心のあるものだけにデータを減らします。
-
-関心がある行が見つかったら、 `where` フィルターに特定の値を追加して、より詳しく調べることができます。
-
-* 注: `diffpatterns` 重要なパターン (セット間のデータ差の部分をキャプチャする) を検索することを目的としていますが、行ごとの違いはありません。
+> [!TIP]
+> * 入力パイプで[where](./whereoperator.md)および[project](./projectoperator.md)を使用して、関心のあるものだけにデータを減らします。
+> * 関心がある行が見つかったら、 `where` フィルターに特定の値を追加して、より詳しく調べることができます。
 
 ## <a name="example"></a>例
 
@@ -120,7 +118,7 @@ StormEvents
 | evaluate diffpatterns(Damage, "0", "1" )
 ```
 
-|セグメント ID|CountA|CountB|PercentA|PercentB|PercentDiffAB|State|EventType|source|DamageCrops|
+|セグメント ID|CountA|CountB|PercentA|PercentB|PercentDiffAB|State|EventType|ソース|DamageCrops|
 |---|---|---|---|---|---|---|---|---|---|
 |0|2278|93|49.8|7.1|42.7||ひょう||0|
 |1|779|512|17.03|39.08|22.05||雷雨風|||

@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 92c2c512fc81176cfa849ecdd66c0cdcfad9d8d3
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ce14c466d927dd2431ae8e057bceec0d5fdd38b8
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347325"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803898"
 ---
 # <a name="ipv6_compare"></a>ipv6_compare()
 
@@ -27,6 +27,9 @@ ipv6_compare('fe80::85d:e82c:9446:7994/127', 'fe80::85d:e82c:9446:7995/127') == 
 ipv6_compare('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == 0
 ```
 
+> [!Note]
+> 関数は、IPv6 と IPv4 の両方のネットワークアドレスを表す引数を受け入れて比較できます。 ただし、呼び出し元が引数が IPv4 形式であることを認識している場合は、 [ipv4_is_compare ()](./ipv4-comparefunction.md)関数を使用します。 この関数を実行すると、実行時のパフォーマンスが向上します。
+
 ## <a name="syntax"></a>構文
 
 `ipv6_compare(`*Expr1 or* `, `*Expr2* `[ ,`*PrefixMask*`])`
@@ -36,14 +39,12 @@ ipv6_compare('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == 0
 * *Expr1 or*, *Expr2*: IPv6 または IPv4 アドレスを表す文字列式。 IPv6 および IPv4 文字列は、IP プレフィックス表記を使用してマスクできます (注を参照)。
 * *PrefixMask*: 0 ~ 128 の整数で、考慮される最上位ビットの数を表します。
 
-> [!Note] 
->**IP プレフィックスの表記**
-> 
->一般的な方法で `IP-prefix notation` は、スラッシュ () 文字を使用して IP アドレスを定義し `/` ます。
->スラッシュ () の左側の IP アドレス `/` は基本 ip アドレスで、スラッシュ () の右側にある番号 (1 ~ 127) `/` は、ネットマスクの連続した1ビット数です。 
->
-> ## <a name="example"></a>例:
-> fe80:: 85d: e82c: 9446: 7994/120 には、120連続ビットを含む、関連付けられた net/subnetmask があります。
+## <a name="ip-prefix-notation"></a>IP プレフィックスの表記
+
+一般的な方法で `IP-prefix notation` は、スラッシュ () 文字を使用して IP アドレスを定義し `/` ます。
+スラッシュ () の左側の IP アドレス `/` は基本 ip アドレスで、スラッシュ () の右側にある番号 (1 ~ 127) `/` は、ネットマスクの連続した1ビット数です。 
+
+たとえば、fe80:: 85d: e82c: 9446: 7994/120 には、120連続ビットを含む、関連付けられた net/subnetmask があります。
 
 ## <a name="returns"></a>戻り値
 
@@ -51,9 +52,6 @@ ipv6_compare('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == 0
 * `1`: 最初の IPv6 文字列引数の長い形式が2番目の IPv6 文字列引数より大きい場合。
 * `-1`: 最初の IPv6 文字列引数の長い形式が2番目の IPv6 文字列引数より小さい場合。
 * `null`: 2 つの IPv6 文字列のいずれかの変換が成功しなかった場合。
-
-> [!Note]
-> 関数は、IPv6 と IPv4 の両方のネットワークアドレスを表す引数を受け入れて比較できます。 ただし、呼び出し元が引数が IPv4 形式であることを認識している場合は、 [ipv4_is_compare ()](./ipv4-comparefunction.md)関数を使用します。 この関数を実行すると、実行時のパフォーマンスが向上します。
 
 ## <a name="examples-ipv6ipv4-comparison-equality-cases"></a>例: IPv6/IPv4 比較等値ケース
 

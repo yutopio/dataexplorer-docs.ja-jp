@@ -10,20 +10,22 @@ ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: e412c1ec4f08af9820018f4c8dc172bd8c748a7f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: e4752828b3e4b145026f7ee47a1ade3f8685262e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350980"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803473"
 ---
 # <a name="sql_request-plugin"></a>sql_request プラグイン
 
 ::: zone pivot="azuredataexplorer"
 
-  `evaluate``sql_request` `(` *ConnectionString* `,` *sqlquery* [ `,` *sqlquery* [ `,` *オプション*]]`)`
-
 プラグインは、 `sql_request` SQL Server ネットワークエンドポイントに SQL クエリを送信し、結果の最初の行セットを返します。
+
+## <a name="syntax"></a>構文
+
+  `evaluate``sql_request` `(` *ConnectionString* `,` *sqlquery* [ `,` *sqlquery* [ `,` *オプション*]]`)`
 
 ## <a name="arguments"></a>引数
 
@@ -31,11 +33,11 @@ ms.locfileid: "87350980"
 
 * *Sqlquery*: `string` SQL エンドポイントに対して実行されるクエリを示すリテラル。 1つ以上の行セットを返す必要がありますが、Kusto クエリの残りの部分では最初の行セットのみを使用できます。
 
-* *Sqlparameters*: `dynamic` クエリと共にパラメーターとして渡すキーと値のペアを保持する型の定数値。 省略可能。
+* *Sqlparameters*: `dynamic` クエリと共にパラメーターとして渡すキーと値のペアを保持する型の定数値。 任意。
   
-* *Options*: `dynamic` キーと値のペアとしてより高度な設定を保持する型の定数値。 現時点では、 `token` 認証のために SQL エンドポイントに転送される呼び出し元提供の Azure AD アクセストークンを渡すためにのみ、設定できます。 省略可能。
+* *Options*: `dynamic` キーと値のペアとしてより高度な設定を保持する型の定数値。 現時点では、 `token` 認証のために SQL エンドポイントに転送される呼び出し元提供の Azure AD アクセストークンを渡すためにのみ、設定できます。 任意。
 
-## <a name="examples"></a>例
+## <a name="examples"></a>使用例
 
 次の例では、Azure SQL DB データベースに SQL クエリを送信します。 からすべてのレコードを取得 `[dbo].[Table]` し、Kusto 側の結果を処理します。 認証では、呼び出し元のユーザーの Azure AD トークンを再利用します。 
 

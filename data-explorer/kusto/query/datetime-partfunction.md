@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: 2c1a73d2d7e31eb180b37fae3d392fd5792cd69b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: c786f0edc94a9b92ca0f4484d0d71166ee699883
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348515"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803983"
 ---
 # <a name="datetime_part"></a>datetime_part()
 
@@ -33,26 +33,25 @@ datetime_part("Day",datetime(2015-12-14))
 * `part`: `string`
 
 使用可能な値 `part` : 
-- Year
-- Quarter
-- Month
-- week_of_year
-- 日
-- DayOfYear
-- Hour
-- 分
-- Second
-- Millisecond
-- Microsecond
-- Nanosecond
+* Year
+* Quarter
+* Month
+* week_of_year
+* 日間
+* DayOfYear
+* Hour
+* 分
+* Second
+* Millisecond
+* Microsecond
+* Nanosecond
 
 ## <a name="returns"></a>戻り値
 
 抽出された部分を表す整数。
 
-**注:**
-
-`week_of_year`週番号を表す整数を返します。 週番号は、1年の最初の週から計算されます。これは、最初の木曜日を含んでいます。
+> [!NOTE]
+> `week_of_year`週番号を表す整数を返します。 週番号は、1年の最初の週から計算されます。これは、最初の木曜日を含んでいます。
 
 ## <a name="examples"></a>例
 
@@ -80,4 +79,4 @@ nanosecond = datetime_part("nanosecond", dt)
 
 > [!NOTE]
 > `weekofyear`は、一部の古いバリアントです `week_of_year` 。 `weekofyear`が ISO 8601 に準拠していませんでした。1年の最初の週は、年の最初の水曜日を含む週として定義されています。
-`week_of_year`は ISO 8601 に準拠しています。年の最初の週は、その年の最初の木曜日の週として定義されます。 [詳細情報](https://en.wikipedia.org/wiki/ISO_8601#Week_dates)。
+> `week_of_year`は ISO 8601 に準拠しています。年の最初の週は、その年の最初の木曜日の週として定義されます。 [詳細情報](https://en.wikipedia.org/wiki/ISO_8601#Week_dates)。

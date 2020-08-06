@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/28/2019
-ms.openlocfilehash: 2191a26a0ee0bccd708c492690e58767d3cf52e9
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 770eded43fff091c8c500fcda59efcc2d4f95d9e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345625"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803575"
 ---
 # <a name="series_decompose_anomalies"></a>series_decompose_anomalies()
 
@@ -44,7 +44,7 @@ ms.locfileid: "87345625"
     * "tukey": [tukey のフェンステスト](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences)標準 25-75 パーセンタイル範囲の詳細については、「」を参照してください[series_outliers](series-outliersfunction.md)
 * *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値。 既定のスコアのしきい値は `0.6` です。 詳細については、「」を参照してください[series_periods_detect](series-periods-detectfunction.md)
 
-**Return**
+## <a name="returns"></a>戻り値
 
  関数は、次の各系列を返します。
 

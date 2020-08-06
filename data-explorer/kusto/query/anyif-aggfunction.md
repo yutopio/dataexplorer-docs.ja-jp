@@ -8,16 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 23285c0747e7fecbdce810536af195f72f27236f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6d40b0a95b71999382f5fc4e83f108717ac5d683
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349722"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803388"
 ---
 # <a name="anyif-aggregation-function"></a>anyif () (集計関数)
 
 [集計演算子](summarizeoperator.md)内のグループごとに、述語が "true" であるレコードを任意に選択します。 関数は、このような各レコードに対する式の値を返します。
+
+> [!NOTE]
+> この関数は、複合グループキーの値ごとに1つの列のサンプル値を取得する場合に便利です。これは、"true" である述語によって決まります。
+> このような値が存在する場合、関数は null 以外の値または空でない値を返しようとします。
 
 ## <a name="syntax"></a>構文
 
@@ -31,12 +35,6 @@ ms.locfileid: "87349722"
 ## <a name="returns"></a>戻り値
 
 集計関数は、集計 `anyif` 演算子の各グループからランダムに選択された各レコードに対して計算された式の値を返します。 *述語*が "true" を返すレコードのみが選択される可能性があります。 述語が "true" を返さない場合は、null 値が生成されます。
-
-**解説**
-
-この関数は、複合グループキーの値ごとに1つの列のサンプル値を取得する場合に便利です。これは、"true" である述語によって決まります。
-
-この値が存在する場合、関数は null 以外の値または空でない値を返そうとします。
 
 ## <a name="examples"></a>例
 

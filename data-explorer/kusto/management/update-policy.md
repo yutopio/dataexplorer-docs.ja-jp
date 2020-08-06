@@ -7,15 +7,15 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 02/19/2020
-ms.openlocfilehash: 6bb4a99b9fe226ce84bd02ee5ba04fc7a82fcd4c
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.date: 08/04/2020
+ms.openlocfilehash: 111110ac69e726c8367af4a2741a79061df7531a
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967283"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803864"
 ---
-# <a name="update-policy-command"></a>更新ポリシー コマンド
+# <a name="update-policy-commands"></a>ポリシーの更新コマンド
 
 [更新ポリシー](updatepolicy.md)は、クエリを自動的に実行し、データが別のテーブルに取り込まれたされたときに結果を取り込みするテーブルレベルのポリシーオブジェクトです。
 
@@ -23,13 +23,13 @@ ms.locfileid: "85967283"
 
 このコマンドは、指定されたテーブルの更新ポリシー、または `*` がテーブル名として使用されている場合は既定のデータベース内のすべてのテーブルを返します。
 
-**構文**
+### <a name="syntax"></a>構文
 
-* `.show` `table` *TableName* `policy` `update`
+* `.show``table` *TableName* TableName `policy``update`
 * `.show``table` *DatabaseName* `.` *TableName* TableName `policy``update`
 * `.show` `table` `*` `policy` `update`
 
-**戻り値**
+### <a name="returns"></a>戻り値
 
 このコマンドは、テーブルごとに1つのレコードを含むテーブルを返します。
 
@@ -38,7 +38,7 @@ ms.locfileid: "85967283"
 |EntityName|`string`|更新ポリシーが定義されているエンティティの名前                                                                                                                |
 |ポリシー  |`string`|[更新ポリシーオブジェクト](updatepolicy.md#the-update-policy-object)として書式設定された、エンティティに対して定義されているすべての更新ポリシーを示す JSON 配列|
 
-**例**
+### <a name="example"></a>例
 
 ```kusto
 .show table DerivedTableX policy update 
@@ -52,7 +52,7 @@ ms.locfileid: "85967283"
 
 このコマンドは、指定されたテーブルの更新ポリシーを設定します。
 
-**構文**
+### <a name="syntax"></a>構文
 
 * `.alter``table` *TableName* `policy` TableName `update`*Arrayofupdatepolicyobjects*
 * `.alter``table` *DatabaseName* `.` *TableName* `policy` `update` *arrayofupdatepolicyobjects*
@@ -67,16 +67,16 @@ ms.locfileid: "85967283"
 >    * `Query` 
 >        * スキーマで定義されているスキーマが対象テーブルのいずれかと一致することを確認します。
 >        * クエリが更新ポリシーのテーブルを参照していることを確認し `source` ます。 
-        ソースを参照し*ない*更新ポリシークエリの定義は、のプロパティ (次の例を参照) でを設定することによって可能に `AllowUnreferencedSourceTable=true` なりますが、パフォーマンスの*with*問題により推奨されません。 ソーステーブルにインジェストを取り込むたびに、別のテーブル内の*すべて*のレコードが更新ポリシーの実行と見なされます。
+        ソースを参照しない更新ポリシークエリの定義は、のプロパティ (次の例を参照) でを設定することによって可能に `AllowUnreferencedSourceTable=true` なりますが、パフォーマンスの*with*問題により推奨されません。 ソーステーブルにインジェストを取り込むたびに、別のテーブル内のすべてのレコードが更新ポリシーの実行と見なされます。
  >       * ポリシーによって、ターゲットデータベースの更新ポリシーのチェーンに循環が作成されないことを確認します。
  > * がに設定されている場合 `IsTransactional` `true` 、は、 `TableAdmin` (ソーステーブル) に対してもアクセス許可が検証されることを確認し `Source` ます。
- > * 更新ポリシーまたは機能をテストして、ソーステーブルへのインジェストごとに実行するように適用します。 詳細については、「[更新ポリシーのパフォーマンスへの影響のテスト](updatepolicy.md#testing-an-update-policys-performance-impact)」を参照してください。
+ > * 更新ポリシーまたは機能をテストして、ソーステーブルへのインジェストごとに実行するように適用します。 詳細については、「[更新ポリシーのパフォーマンスへの影響のテスト](updatepolicy.md#performance-impact)」を参照してください。
 
-**戻り値**
+### <a name="returns"></a>戻り値
 
-このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトを設定し、対応するテーブル[テーブル更新ポリシー](#show-update-policy)コマンドの出力を返します。
+このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトを設定し、対応する[テーブル更新ポリシーの表示](#show-update-policy)コマンドの出力を返します。
 
-**例**
+### <a name="example"></a>例
 
 ```kusto
 // Create a function that will be used for update
@@ -99,7 +99,7 @@ MyUpdateFunction()
 ```
 
 * この場合、ソーステーブルへのインジェストが発生すると、 `MyTableX` そのテーブルに1つ以上のエクステント (data シャード) が作成されます。
-* `Query`更新ポリシーオブジェクトで定義されている (この場合は ' MyUpdateFunction ()) は、これらのエクステントでのみ実行され、テーブル全体では実行されません。
+* `Query`更新ポリシーオブジェクトで定義されているは、この場合は `MyUpdateFunction()` これらのエクステントでのみ実行され、テーブル全体では実行されません。
   * "スコープ" は、内部的には自動的に実行され、を定義するときには処理しないで `Query` ください。
   * 派生テーブルに取り込みするときに、インジェスト操作ごとに異なる、新しく取り込まれたレコードのみが考慮され `DerivedTableX` ます。
 
@@ -115,7 +115,7 @@ MyUpdateFunction()
 
 ```
 
-## <a name="alter-merge-table-table-policy-update"></a>. alter-マージテーブルのテーブルポリシーの更新
+## <a name="alter-merge-table-tablename-policy-update"></a>. alter-merge table *TableName*ポリシーの更新
 
 このコマンドは、指定されたテーブルの更新ポリシーを変更します。
 
@@ -133,7 +133,7 @@ MyUpdateFunction()
 
 **戻り値**
 
-このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトに追加し、対応する[テーブルテーブル更新ポリシー](#show-update-policy)コマンドの出力を返します。
+このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトに追加し、対応するの出力を返し[ます。テーブル*TableName*更新ポリシーの表示](#show-update-policy)コマンドです。
 
 **例**
 
@@ -142,18 +142,18 @@ MyUpdateFunction()
 @'[{"IsEnabled": true, "Source": "MyTableY", "Query": "MyUpdateFunction()", "IsTransactional": false}]'  
 ``` 
 
-## <a name="delete-table-table-policy-update"></a>。テーブルテーブルポリシーの更新を削除します。
+## <a name="delete-table-tablename-policy-update"></a>。テーブル*TableName*ポリシーの更新を削除します。
 
 指定されたテーブルの更新ポリシーを削除します。
 
 **構文**
 
-* `.delete` `table` *TableName* `policy` `update`
+* `.delete``table` *TableName* TableName `policy``update`
 * `.delete``table` *DatabaseName* `.` *TableName* TableName `policy``update`
 
 **戻り値**
 
-このコマンドは、テーブルの更新ポリシーオブジェクトを削除し、対応するテーブル[テーブル更新ポリシー](#show-update-policy)コマンドの出力を返します。
+このコマンドは、テーブルの更新ポリシーオブジェクトを削除し、対応するの出力を返し[ます。テーブル*TableName*更新ポリシー](#show-update-policy)コマンド。
 
 **例**
 

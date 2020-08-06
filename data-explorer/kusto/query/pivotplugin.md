@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d2f9db1dbace646c41d8751272cf44cf6d04c2c3
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ed7f6f69669cd580482beb2d3debd0e5c45bf54b
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346135"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803150"
 ---
 # <a name="pivot-plugin"></a>pivot プラグイン
 
@@ -22,6 +22,9 @@ ms.locfileid: "87346135"
 ```kusto
 T | evaluate pivot(PivotColumn)
 ```
+
+> [!NOTE]
+> プラグインの出力スキーマ `pivot` はデータに基づいているため、クエリを実行すると、2つの実行に対して異なるスキーマが生成される可能性があります。 これは、アンパックされた列を参照しているクエリがいつでも "壊れている" 可能性があることも意味します。 この理由により、automation ジョブにこのプラグインを使用することは推奨されません。
 
 ## <a name="syntax"></a>構文
 
@@ -36,10 +39,6 @@ T | evaluate pivot(PivotColumn)
 ## <a name="returns"></a>戻り値
 
 Pivot は、指定された列 (*column1*、 *column2*、...) とピボット列のすべての一意の値を含む、回転したテーブルを返します。 ピボットされた列の各セルには、集計関数の計算が含まれます。
-
-**注:**
-
-プラグインの出力スキーマ `pivot` はデータに基づいているため、クエリを実行すると、2つの実行に対して異なるスキーマが生成される可能性があります。 これは、アンパックされた列を参照しているクエリがいつでも "壊れている" 可能性があることも意味します。 この理由により、automation ジョブにこのプラグインを使用することは推奨されません。
 
 ## <a name="examples"></a>例
 
@@ -64,7 +63,7 @@ StormEvents
 |強風|22|0|
 
 
-### <a name="pivot-by-a-column-with-aggregation-function"></a>集計関数を含む列でピボットします。
+### <a name="pivot-by-a-column-with-aggregation-function"></a>集計関数を含む列でピボットする
 
 "AR" で始まる各 EventType と状態について、direct deaths の合計数を表示します。
 
@@ -87,7 +86,7 @@ StormEvents
 |暖房|3|0|
 
 
-### <a name="pivot-by-a-column-with-aggregation-function-and-a-single-additional-column"></a>集計関数と1つの追加列を含む列でピボットします。
+### <a name="pivot-by-a-column-with-aggregation-function-and-a-single-additional-column"></a>集計関数と1つの追加列を含む列でピボットする
 
 結果は前の例と同じです。
 
@@ -110,7 +109,7 @@ StormEvents
 |暖房|3|0|
 
 
-### <a name="specify-the-pivoted-column-aggregation-function-and-multiple-additional-columns"></a>ピボットされた列、集計関数、および複数の追加の列を指定します。
+### <a name="specify-the-pivoted-column-aggregation-function-and-multiple-additional-columns"></a>ピボットされた列、集計関数、および複数の追加列を指定します。
 
 各イベントの種類 (source および state) について、direct deaths の数を合計します。
 
@@ -122,7 +121,7 @@ StormEvents
 | evaluate pivot(State, sum(DeathsDirect), EventType, Source)
 ```
 
-|EventType|source|アーカンソー|州|
+|EventType|ソース|アーカンソー|州|
 |---|---|---|---|
 |重い雨|非常事態担当マネージャー|1|0|
 |雷雨風|非常事態担当マネージャー|1|0|

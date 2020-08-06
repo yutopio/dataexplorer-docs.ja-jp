@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: fb209ff3784f6e24f184b576a1e8f94c52834ba4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 36c0317f046f146d2812b8830d7fe571d5363c59
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87340957"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804119"
 ---
 # <a name="tolong"></a>tolong()
 
@@ -22,6 +22,9 @@ ms.locfileid: "87340957"
 ```kusto
 tolong("123") == 123
 ```
+
+> [!NOTE]
+> 可能であれ[ば、long ()](./scalar-data-types/long.md)を使用することをお勧めします。
 
 ## <a name="syntax"></a>構文
 
@@ -36,4 +39,3 @@ tolong("123") == 123
 変換が成功した場合、結果は長い数値になります。
 変換に失敗した場合、結果はになり `null` ます。
  
-*注*: 可能であれ[ば、long ()](./scalar-data-types/long.md)を使用することをお勧めします。

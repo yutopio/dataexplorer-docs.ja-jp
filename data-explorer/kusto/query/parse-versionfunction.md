@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ae5268a4a062a6f45adb715650028d952cb89e0b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 57ef9eef8f4df5564adc70ed6dd965329fa1807a
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346390"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804051"
 ---
 # <a name="parse_version"></a>parse_version()
 
@@ -31,20 +31,18 @@ parse_version("0.0.0.1")
 
 * *`Expr`*: `string` 解析するバージョンを指定する型のスカラー式。
 
+> [!NOTE]
+> * 入力文字列には、数値として表現され、ドット ('. ') で区切られた 1 ~ 4 個のバージョンの部分を含める必要があります。
+> * バージョンの各部分には、最大8桁を含めることができます。最大値は99999999です。
+> * 部分の数が4未満の場合、不足している部分はすべて末尾 () と見なされ `1.0`  ==  `1.0.0.0` ます。
+
 ## <a name="returns"></a>戻り値
 
 変換が成功した場合、結果は10進数になります。
 変換に失敗した場合、結果はになり `null` ます。
 
-**メモ**
-
-入力文字列には、数値として表現され、ドット ('. ') で区切られた 1 ~ 4 個のバージョンの部分を含める必要があります。
-
-バージョンの各部分には、最大8桁を含めることができます。最大値は99999999です。
-
-部分の数が4未満の場合、不足している部分はすべて末尾 () と見なされ `1.0`  ==  `1.0.0.0` ます。
-
 ## <a name="example"></a>例
+
 ```kusto
 let dt = datatable(v:string)
 ["0.0.0.5","0.0.7.0","0.0.3","0.2","0.1.2.0","1.2.3.4","1","99999999.0.0.0"];

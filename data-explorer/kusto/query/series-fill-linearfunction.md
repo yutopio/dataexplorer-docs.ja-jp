@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 0831251bd38df4475c271cc6bcec9c15668860ea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3fa07fee38ab42c61035f68773b603607d0aa858
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87344172"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803456"
 ---
 # <a name="series_fill_linear"></a>series_fill_linear()
 
@@ -34,14 +34,14 @@ ms.locfileid: "87344172"
 * *fill_edges*: 配列の先頭と末尾の*missing_value_placeholder*を最も近い値に置き換えるかどうかを示すブール値。 既定では*True*です。 *False*に設定すると、配列の先頭と末尾に*missing_value_placeholder*が保持されます。
 * *constant_value*: 配列だけに関連する省略可能なパラメーターは、すべて*null*値で構成されます。 このパラメーターは、系列に値を格納する定数値を指定します。 既定値は*0*です。 このパラメーターを `double` (*null*) に設定すると、事実上*null*値が保持されます。
 
-**メモ**
+## <a name="notes"></a>メモ
 
 * [作成系列](make-seriesoperator.md)の後に補間関数を適用するには、既定値として*null*を指定します。 
 
-<!-- csl: https://help.kusto.windows.net:443/Samples -->
-```kusto
-make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
-```
+    <!-- csl: https://help.kusto.windows.net:443/Samples -->
+    ```kusto
+    make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser
+    ```
 
 * *Missing_value_placeholder*は、実際の要素型に変換される任意の型にすることができます。 そのため、 `double` (*null*)、 `long` (*null*)、 `int` (*null*) は同じ意味を持ちます。
 * *Missing_value_placeholder*が `double` (*null*) の場合 (または同じ意味を持つ省略した場合)、結果に*null*値が含まれる可能性があります。 これらの*null*値を入力するには、他の補間関数を使用します。 現時点では、 [series_outliers ()](series-outliersfunction.md)のみが入力配列で*null*値をサポートしています。

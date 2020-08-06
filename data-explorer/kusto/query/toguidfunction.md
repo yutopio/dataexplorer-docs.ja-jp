@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a2eec6a582c4c8fc6cda6b3cf9a304f41ab48143
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 689ee6bf7b3fcb27dced20b06a9002659622902e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350734"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804136"
 ---
 # <a name="toguid"></a>toguid()
 
@@ -22,6 +22,9 @@ ms.locfileid: "87350734"
 ```kusto
 toguid("70fc66f7-8279-44fc-9092-d364d70fce44") == guid("70fc66f7-8279-44fc-9092-d364d70fce44")
 ```
+
+> [!NOTE]
+> 可能な場合は、 [guid ()](./scalar-data-types/guid.md)を使用することをお勧めします。
 
 ## <a name="syntax"></a>構文
 
@@ -35,5 +38,3 @@ toguid("70fc66f7-8279-44fc-9092-d364d70fce44") == guid("70fc66f7-8279-44fc-9092-
 
 変換が成功した場合、結果は [`guid`](./scalar-data-types/guid.md) スカラーになります。
 変換に失敗した場合、結果はになり `null` ます。
-
-*注*: 可能な場合は、 [guid ()](./scalar-data-types/guid.md)を使用することをお勧めします。

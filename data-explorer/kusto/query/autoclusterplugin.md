@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 86e3ce4f1cbb957ebd126a8493ebb6b7bc5ac66b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 959b11eca2dc369a3f737e01175f77ff6626f773
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349416"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803847"
 ---
 # <a name="autocluster-plugin"></a>autocluster プラグイン
 
@@ -22,6 +22,10 @@ T | evaluate autocluster()
 ```
 
 `autocluster`データ内の不連続属性 (ディメンション) の一般的なパターンを検索します。 次に、元のクエリの結果を、100か10万行でも、少数のパターンに減らします。 このプラグインは、エラー (例外やクラッシュなど) を分析するために開発されましたが、フィルター処理されたデータセットで動作する可能性があります。
+
+> [!NOTE]
+> `autocluster`は、主に、次のホワイトペーパーのシード拡張アルゴリズムに基づいています。[個別の属性を使用したテレメトリデータマイニングのアルゴリズム](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1)です。 
+
 
 ## <a name="syntax"></a>構文
 
@@ -40,7 +44,10 @@ T | evaluate autocluster()
 >
 > 関心がある行が見つかったら、 `where` フィルターに特定の値を追加して、より詳しく調べることができます。
 
-**引数 (すべて省略可能)**
+## <a name="arguments"></a>引数 
+
+> [!NOTE] 
+> すべての引数は省略可能です。
 
 `T | evaluate autocluster(`[*Sizeweight*、 *WeightColumn*、 *numseeds*、 *customwildcard*、 *customwildcard*、...]`)`
 
@@ -55,7 +62,7 @@ T | evaluate autocluster()
 
 ## <a name="examples"></a>例
 
-### <a name="example"></a>例
+### <a name="using-autocluster"></a>Autocluster の使用
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -72,7 +79,7 @@ StormEvents
 |1|512|8.7||雷雨風|YES
 |2|898|15.3|テキサス州||
 
-### <a name="example-with-custom-wildcards"></a>カスタム ワイルドカードを使用した例
+### <a name="using-custom-wildcards"></a>カスタムワイルドカードの使用
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -93,5 +100,3 @@ StormEvents
 
 * [basket](./basketplugin.md)
 * [落とし](./reduceoperator.md)
-
-* `autocluster`は、主に、次のホワイトペーパーのシード拡張アルゴリズムに基づいています。[個別の属性を使用したテレメトリデータマイニングのアルゴリズム](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1)です。 

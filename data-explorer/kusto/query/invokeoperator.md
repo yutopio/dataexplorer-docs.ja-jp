@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: debd0a83f4c27fa05415805404ad450bab1d3ca1
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0a94b4f0e274d01a15edd06cbb725547e65d8381
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347376"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803949"
 ---
 # <a name="invoke-operator"></a>invoke 演算子
 
@@ -23,6 +23,9 @@ ms.locfileid: "87347376"
 T | invoke foo(param1, param2)
 ```
 
+> [!NOTE]
+> 表形式の引数を受け取ることができるラムダ式を宣言する方法の詳細については、「 [let ステートメント](./letstatement.md)」を参照してください。
+ 
 ## <a name="syntax"></a>構文
 
 `T | invoke`*関数* `(`[*param1* `,`*param2*]`)`
@@ -36,10 +39,6 @@ T | invoke foo(param1, param2)
 ## <a name="returns"></a>戻り値
 
 評価された式の結果を返します。
-
-**ノート**
-
-表形式引数を受け取ることができるラムダ式を宣言する方法の詳細については、「 [let ステートメント](./letstatement.md)」を参照してください。
 
 ## <a name="example"></a>例
 

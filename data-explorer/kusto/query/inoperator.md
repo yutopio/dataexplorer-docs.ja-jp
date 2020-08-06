@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2019
-ms.openlocfilehash: ab2132908dad26f5f21cf945a1af4af1b8a049cd
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a6551ee2d4ac01d6d896cc8daff466f3c4a7852e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347393"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803966"
 ---
 # <a name="in-and-in-operators"></a>in および !in 演算子
 
@@ -23,9 +23,15 @@ ms.locfileid: "87347393"
 Table1 | where col in ('value1', 'value2')
 ```
 
+> [!NOTE]
+> * 演算子に ' ~ ' を追加すると、値の検索で大文字と小文字が区別さ `x in~ (expression)` `x !in~ (expression)` れません: または。
+> * テーブル式では、結果セットの最初の列が選択されます。
+> * 式リストでは、最大値を生成でき `1,000,000` ます。
+> * 入れ子になった配列は、1つの値リストにフラット化されます。 たとえば、`x in (dynamic([1,[2,3]]))` を `x in (1,2,3)` にします。
+ 
 ## <a name="syntax"></a>構文
 
-*大文字と小文字を区別する構文:*
+### <a name="case-sensitive-syntax"></a>大文字と小文字を区別する構文
 
 *T* `|` `where` *col* `in` `(` *スカラー式の*T col リスト`)`   
 *T* `|` `where` *列* `in` `(` *表形式式*`)`   
@@ -33,7 +39,7 @@ Table1 | where col in ('value1', 'value2')
 *T* `|` `where` *col* `!in` `(` *スカラー式の*T col リスト`)`  
 *T* `|` `where` *列* `!in` `(` *表形式式*`)`   
 
-*大文字と小文字を区別しない構文:*
+### <a name="case-insensitive-syntax"></a>大文字と小文字を区別しない構文
 
 *T* `|` `where` *col* `in~` `(` *スカラー式の*T col リスト`)`   
 *T* `|` `where` *列* `in~` `(` *表形式式*`)`   
@@ -52,16 +58,9 @@ Table1 | where col in ('value1', 'value2')
 
 述語がである*T*内の行 `true` 。
 
-**ノート**
+## <a name="examples"></a>例  
 
-* 式リストでは、最大値を生成でき `1,000,000` ます。
-* 入れ子になった配列は、1つの値リストにフラット化されます。 たとえば、`x in (dynamic([1,[2,3]]))` を `x in (1,2,3)` にします。
-* テーブル式では、結果セットの最初の列が選択されます。
-* 演算子に ' ~ ' を追加すると、値の検索で大文字と小文字が区別さ `x in~ (expression)` `x !in~ (expression)` れません: または。
-
-**例:**  
-
-**' In ' 演算子の単純な使用法:**  
+### <a name="use-in-operator"></a>' In ' 演算子を使用する
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -74,8 +73,7 @@ StormEvents
 |---|
 |4775|  
 
-
-**' In ~ ' 演算子の単純な使用法:**  
+### <a name="use-in-operator"></a>' In ~ ' 演算子を使用します  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -88,7 +86,7 @@ StormEvents
 |---|
 |4775|  
 
-**'! In ' 演算子の単純な使用法は次のとおりです。**  
+### <a name="use-in-operator"></a>'! In ' 演算子を使用します
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -102,7 +100,7 @@ StormEvents
 |54291|  
 
 
-**動的配列の使用:**
+### <a name="use-dynamic-array"></a>動的配列を使用する
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -116,8 +114,7 @@ StormEvents
 |---|
 |3218|
 
-
-**サブクエリの例:**  
+### <a name="subquery"></a>サブクエリ
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -149,7 +146,7 @@ StormEvents
 |---|
 |14242|  
 
-**Top とその他の例:**  
+### <a name="top-with-other-example"></a>Top とその他の例
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -169,7 +166,7 @@ Lightning_By_State
 | グルジア   | 106                  |
 | その他     | 415                  |
 
-**関数によって返される静的リストを使用する場合:**  
+### <a name="use-a-static-list-returned-by-a-function"></a>関数によって返される静的リストを使用する
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -188,6 +185,6 @@ StormEvents | where State in (InterestingStates()) | count
 .show function InterestingStates
 ```
 
-|名前|パラメーター|本文|Folder|DocString|
+|名前|パラメーター|Body|Folder|DocString|
 |---|---|---|---|---|
 |InterestingStates|()|{dynamic (["ワシントン", "フロリダ", "ジョージア", "ニューヨーク"])}

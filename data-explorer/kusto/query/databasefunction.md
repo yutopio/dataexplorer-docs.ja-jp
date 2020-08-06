@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 1bfe42e18cfe0bb424e933b266eb9861c7676cea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6511006373cd1f6245a0dcc04537f3994183d63e
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348583"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803762"
 ---
 # <a name="database-scope-function"></a>database () (スコープ関数)
 
@@ -28,6 +28,10 @@ database('Sample').StormEvents
 cluster('help').database('Sample').StormEvents
 ```
 
+> [!NOTE]
+> * 詳細については、「[データベース間およびクロスクラスタークエリ](cross-cluster-or-database-queries.md)」を参照してください。
+> * リモートクラスターおよびリモートデータベースにアクセスするには、「 [cluster ()](clusterfunction.md) scope 関数」を参照してください。
+
 ## <a name="syntax"></a>構文
 
 `database(`*stringConstant*`)`
@@ -36,14 +40,9 @@ cluster('help').database('Sample').StormEvents
 
 * *Stringconstant*: 参照されているデータベースの名前。 識別されるデータベースに `DatabaseName` は、またはを指定でき `PrettyName` ます。 引数は、クエリを実行する前に_定数_にする必要があります。つまり、サブクエリの評価から取得することはできません。
 
-**メモ**
-
-* リモートクラスターおよびリモートデータベースにアクセスするには、「 [cluster ()](clusterfunction.md) scope 関数」を参照してください。
-* クラスター間およびデータベース間のクエリの詳細について[は、こちら](cross-cluster-or-database-queries.md)を参照してください。
-
 ## <a name="examples"></a>例
 
-### <a name="use-database-to-access-table-of-other-database"></a>他のデータベースのテーブルにアクセスするには、database () を使用します。 
+### <a name="use-database-to-access-table-of-other-database"></a>データベース () を使用して、他のデータベースのテーブルにアクセスする
 
 ```kusto
 database('Samples').StormEvents | count
@@ -80,7 +79,8 @@ foo('help')
 };
 ```
 
-**注:** このような関数は、クラスター間クエリではなくローカルでのみ使用できます。
+> [!NOTE]
+> このような関数は、クラスター間クエリではなくローカルでのみ使用できます。
 
 ::: zone-end
 

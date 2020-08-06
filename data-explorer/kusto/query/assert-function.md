@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: a477a8fd8e05bd6420f06c28f71f72431a343a31
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 050974af47b0f5cd0e041694ee5f680b8c321614
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349467"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803320"
 ---
 # <a name="assert"></a>assert()
 
@@ -28,15 +28,13 @@ ms.locfileid: "87349467"
 * *condition*: 評価する条件式。 条件がの場合 `false` 、指定されたメッセージはエラーを報告するために使用されます。 条件がの場合は `true` 、 `true` 評価結果としてを返します。 クエリ分析フェーズでは、条件を定数に評価する必要があります。
 * *message*: アサーションがに評価される場合に使用される `false` メッセージ。 *メッセージ*は文字列リテラルである必要があります。
 
+> [!NOTE]
+> `condition`クエリ分析フェーズ中に定数に評価される必要があります。 言い換えると、定数を参照する他の式から構築することができ、行コンテキストにバインドすることはできません。
 
 ## <a name="returns"></a>戻り値
 
 * `true`-条件がの場合`true`
 * 条件がに評価された場合にセマンティックエラーを発生させ `false` ます。
-
-**メモ**
-
-* `condition`クエリ分析フェーズ中に定数に評価される必要があります。 言い換えると、定数を参照する他の式から構築することができ、行コンテキストにバインドすることはできません。
 
 ## <a name="examples"></a>例
 

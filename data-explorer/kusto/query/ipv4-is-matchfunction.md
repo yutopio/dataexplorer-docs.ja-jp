@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 90d65f80ed8b5defe1fd2fe1e19ca4ff385cc408
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 1abe99a4739d68e6acb76b800af293e77e62b2f0
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347342"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803915"
 ---
 # <a name="ipv4_is_match"></a>ipv4_is_match()
 
@@ -38,7 +38,8 @@ ipv4_is_match('192.168.1.1', '192.168.1.255', 24) == true
 ## <a name="ip-prefix-notation"></a>IP プレフィックスの表記
 
 IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用して定義でき `/` ます。 スラッシュ () の左側の IP アドレスは、 `/` 基本 ip アドレスです。 スラッシュ () の右側にある数字 (1 ~ 32) `/` は、ネットマスク内の連続した1ビットの数です。 
-**例:** 192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
+
+たとえば、192.168.2.0/24 は、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask を持ちます。
 
 ## <a name="returns"></a>戻り値
 
@@ -48,7 +49,7 @@ IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用し
 
 ## <a name="examples"></a>例
 
-### <a name="ipv4-comparison-equality---ip-prefix-notation-specified-inside-the-ipv4-strings"></a>Ipv4 文字列内で指定された IPv4 比較等値 IP プレフィックス表記。
+### <a name="ipv4-comparison-equality---ip-prefix-notation-specified-inside-the-ipv4-strings"></a>Ipv4 比較等値-IPv4 文字列内で指定された IP プレフィックス表記
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

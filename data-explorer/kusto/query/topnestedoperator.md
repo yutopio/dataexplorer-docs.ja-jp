@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 68b55ec5496f1eb68f979c56412f10191b9f5a68
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 85a59adc355c3d8855c34bcf97d29d3bd6eea4a1
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87340804"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803133"
 ---
 # <a name="top-nested-operator"></a>top-nested 演算子
 
@@ -74,7 +74,7 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 
 * 1つの列に集計計算の結果が格納されます (指定されている場合は、列名が*Aggregation* *ationname*になります)。
 
-**コメント**
+## <a name="notes"></a>Notes
 
 値として指定されていない入力列は出力されません *`Expr`* 。
 特定のレベルのすべての値を取得するには、次のような集計カウントを追加します。
@@ -97,7 +97,7 @@ StormEvents
   top-nested 1 of EndLocation by sum(BeginLat)
 ```
 
-|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
+|State|aggregated_State|ソース|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |カンザス|87771.2355000001|法執行機関|18744.823|FT SCOTT|264.858|
 |カンザス|87771.2355000001|パブリック|22855.6206|BUCKLIN|488.2457|
@@ -118,7 +118,7 @@ StormEvents
 
 ```
 
-|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
+|State|aggregated_State|ソース|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |カンザス|87771.2355000001|法執行機関|18744.823|FT SCOTT|264.858|
 |カンザス|87771.2355000001|パブリック|22855.6206|BUCKLIN|488.2457|
@@ -159,7 +159,7 @@ StormEvents
 | project-away tmp
 ```
 
-|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|EventType|
+|State|aggregated_State|ソース|aggregated_Source|EndLocation|aggregated_EndLocation|EventType|
 |---|---|---|---|---|---|---|
 |カンザス|87771.2355000001|訓練を受けた観測員|21279.7083|SHARON SPGS|388.7404|雷雨風|
 |カンザス|87771.2355000001|訓練を受けた観測員|21279.7083|SHARON SPGS|388.7404|ひょう|
@@ -184,7 +184,7 @@ StormEvents
 | mv-expand EndLocations, endLocationSums, indicies
 ```
 
-|State|source|EndLocations|endLocationSums 合計|連想|
+|State|ソース|EndLocations|endLocationSums 合計|連想|
 |---|---|---|---|---|
 |テキサス州|訓練を受けた観測員|CLDE|421.44|0|
 |テキサス州|訓練を受けた観測員|AMARILLO|316.8892|1|

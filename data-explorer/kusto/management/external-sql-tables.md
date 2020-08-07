@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 235c68a8a04fd76dd3a9e25abac63db09e00919a
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: ea32c7631681c12aa1262c4dbdb8debdcc22a3c7
+ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863338"
+ms.lasthandoff: 08/06/2020
+ms.locfileid: "87871920"
 ---
 # <a name="create-and-alter-external-sql-tables"></a>外部 SQL テーブルを作成および変更する
 
@@ -21,7 +21,7 @@ ms.locfileid: "83863338"
 
 ## <a name="syntax"></a>構文
 
-( `.create`  |  `.alter` ) `external` `table` *TableName* ([columnName: columnType],...)  
+( `.create`  |  `.alter`  |  `.create-or-alter` ) `external` `table` *TableName* ([columnName: columnType],...)  
 `kind` `=` `sql`  
 `table``=` *Sqltablename*  
 `(`*SqlServerConnectionString*`)`  
@@ -49,7 +49,7 @@ ms.locfileid: "83863338"
 | `primarykey`        | `string`        | がの場合 `createifnotexists` `true` 、このコマンドによって作成された場合、結果の列名が SQL テーブルの主キーとして使用されます。                  |
 
 > [!NOTE]
-> * テーブルが存在する場合、 `.create` コマンドは失敗し、エラーが表示されます。 `.alter`既存のテーブルを変更するには、を使用します。 
+> * テーブルが存在する場合、 `.create` コマンドは失敗し、エラーが表示されます。 `.create-or-alter`既存の `.alter` テーブルを変更するには、またはを使用します。 
 > * 外部 SQL テーブルのスキーマまたは形式の変更はサポートされていません。 
 
 に対する[データベースユーザー権限](../management/access-control/role-based-authorization.md) `.create` と、の[table admin 権限](../management/access-control/role-based-authorization.md)が必要です `.alter` 。 
@@ -75,9 +75,9 @@ with
 
 **出力**
 
-| TableName   | TableType | フォルダー         | DocString | プロパティ                            |
+| TableName   | TableType | Folder         | DocString | Properties                            |
 |-------------|-----------|----------------|-----------|---------------------------------------|
-| ExternalSql | Sql       | ExternalTables | ドキュメント      | {<br>  "TargetEntityKind": "sqltable" ",<br>  "TargetEntityName": "MySqlTable",<br>  "TargetEntityConnectionString": "Server = tcp: database. windows. net, 1433;Authentication = Active Directory Integrated、Initial Catalog = mydatabase; "、<br>  "FireTriggers": true、<br>  "CreateIfNotExists": true、<br>  "PrimaryKey": "x"<br>} |
+| ExternalSql | Sql       | ExternalTables | Docs      | {<br>  "TargetEntityKind": "sqltable" ",<br>  "TargetEntityName": "MySqlTable",<br>  "TargetEntityConnectionString": "Server = tcp: database. windows. net, 1433;Authentication = Active Directory Integrated、Initial Catalog = mydatabase; "、<br>  "FireTriggers": true、<br>  "CreateIfNotExists": true、<br>  "PrimaryKey": "x"<br>} |
 
 ## <a name="querying-an-external-table-of-type-sql"></a>SQL 型の外部テーブルのクエリ 
 
@@ -99,4 +99,4 @@ Kusto は、SQL データベースに対して ' SELECT * from TABLE ' クエリ
 ## <a name="next-steps"></a>次のステップ
 
 * [外部テーブル全般制御コマンド](externaltables.md)
-* [Azure Storage または Azure Data Lake で外部テーブルを作成および変更する](external-tables-azurestorage-azuredatalake.md)
+* [Azure Storage または Azure Data Lake の外部テーブルを作成および変更する](external-tables-azurestorage-azuredatalake.md)

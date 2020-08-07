@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1b857ee464b0fff973293cd03afadecc8c893af2
-ms.sourcegitcommit: 537a7eaf8c8e06a5bde57503fedd1c3706dd2b45
+ms.openlocfilehash: 2616605d29f90a283f5a5d8fef367bf77df65a15
+ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86422986"
+ms.lasthandoff: 08/06/2020
+ms.locfileid: "87871937"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -23,7 +23,7 @@ ms.locfileid: "86422986"
 
 **構文**
 
-( `.create`  |  `.alter` ) `external` `table` *[TableName](#table-name)* `(` *[スキーマ](#schema)*`)`  
+( `.create`  |  `.alter`  |  `.create-or-alter` ) `external` `table` *[TableName](#table-name)* `(` *[スキーマ](#schema)*`)`  
 `kind` `=` (`blob` | `adl`)  
 [ `partition` `by` `(` *[パーティション](#partitions)* `)` [ `pathformat` `=` `(` *[pathformat](#path-format)* `)` ]]  
 `dataformat``=` *[形式](#format)*  
@@ -33,7 +33,7 @@ ms.locfileid: "86422986"
 コマンドが実行されるデータベース内の新しい外部テーブルを作成または変更します。
 
 > [!NOTE]
-> * テーブルが存在する場合、 `.create` コマンドは失敗し、エラーが表示されます。 `.alter`既存のテーブルを変更するには、を使用します。 
+> * テーブルが存在する場合、 `.create` コマンドは失敗し、エラーが表示されます。 `.create-or-alter`既存の `.alter` テーブルを変更するには、またはを使用します。
 > * 外部 blob テーブルのスキーマ、形式、またはパーティション定義の変更はサポートされていません。 
 > * 操作には、の[データベースユーザー権限](../management/access-control/role-based-authorization.md) `.create` と、の[table admin 権限](../management/access-control/role-based-authorization.md)が必要です `.alter` 。 
 
@@ -133,7 +133,7 @@ Blob コンテナーまたは Azure Data Lake Store ファイルシステム (�
 <a name="properties"></a>
 *省略可能なプロパティ*
 
-| プロパティ         | 種類     | 説明       |
+| プロパティ         | Type     | 説明       |
 |------------------|----------|-------------------------------------------------------------------------------------|
 | `folder`         | `string` | テーブルのフォルダー                                                                     |
 | `docString`      | `string` | テーブルをドキュメント化する文字列                                                       |
@@ -216,7 +216,7 @@ with (fileExtension = ".txt")
 
 **サンプル出力**
 
-|TableName|TableType|Folder|DocString|プロパティ|ConnectionStrings|メジャー グループ|PathFormat|
+|TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
 |ExternalTable|BLOB|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
 
@@ -274,7 +274,7 @@ dataformat=parquet
 
 **出力**
 
-| 出力パラメーター | 種類   | 説明                       |
+| 出力パラメーター | Type   | 説明                       |
 |------------------|--------|-----------------------------------|
 | URI              | string | 外部ストレージデータファイルの URI |
 

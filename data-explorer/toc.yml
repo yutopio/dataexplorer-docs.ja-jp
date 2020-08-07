@@ -1414,7 +1414,7 @@
               items:
                 - name: Update ポリシー
                   href: ./kusto/management/updatepolicy.md
-                - name: 更新ポリシー コマンド
+                - name: ポリシー更新コマンド
                   href: ./kusto/management/update-policy.md
         - name: セキュリティ ロール
           href: ./kusto/management/security-roles.md

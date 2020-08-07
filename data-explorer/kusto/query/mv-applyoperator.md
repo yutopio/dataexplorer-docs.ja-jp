@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1f9cc982c213a9c2143b169dcf8a12103d617257
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 656d1d5d9120baebced624fee476d261214eff57
+ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346713"
+ms.lasthandoff: 08/06/2020
+ms.locfileid: "87871852"
 ---
 # <a name="mv-apply-operator"></a>mv-apply 演算子
 
@@ -35,7 +35,7 @@ T | mv-apply Metric to typeof(real) on
 1. 結果のサブ行に0個以上の列を追加します。 これらの列には、展開されていないソース列の値が含まれ、必要に応じて繰り返されます。
 1. 結果の和集合を返します。
 
-`mv-expand`演算子は、次の入力を取得します。
+`mv-apply`演算子は、次の入力を取得します。
 
 1. 展開する動的配列として評価される1つ以上の式。
    各拡張サブ形式のレコード数は、各動的配列の最大長です。 複数の式が指定され、対応する配列の長さが異なる場合は、Null 値が追加されます。
@@ -94,7 +94,7 @@ T | mv-apply Metric to typeof(real) on
 
 * *サブクエリ*: 配列で展開された各サブテーブルに適用される、暗黙的な表形式ソースを持つ表形式クエリ式。
 
-**メモ**
+**注**
 
 * 演算子とは異なり [`mv-expand`](./mvexpandoperator.md) 、 `mv-apply` 演算子は配列の拡張だけをサポートします。 プロパティバッグの拡張はサポートされていません。
 

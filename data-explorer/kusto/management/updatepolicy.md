@@ -7,37 +7,40 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 02/19/2020
-ms.openlocfilehash: 072c908109fecb695a8961c546deb756caf830ab
-ms.sourcegitcommit: 98eabf249b3f2cc7423dade0f386417fb8e36ce7
+ms.date: 08/04/2020
+ms.openlocfilehash: 7eb5adc76c963065940365973aadc5281ff5f553
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82868705"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87803414"
 ---
-# <a name="update-policy"></a>Update ポリシー
+# <a name="update-policy-overview"></a>更新ポリシーの概要
 
-更新ポリシーは、**ソーステーブル**に新しいデータが挿入されるたびに、kusto に自動的にデータを追加するように指示する**ターゲットテーブル**に対して設定されます。 更新ポリシーの**クエリ**は、ソーステーブルに挿入されたデータに対して実行されます。 これにより、たとえば、別のテーブルのフィルター処理されたビューとして1つのテーブルを作成することができます。これは、場合によっては、異なるスキーマや保持ポリシーなどを使用します。
+[更新ポリシー](update-policy.md)は、新しいデータがソーステーブルに挿入されるたびに、対象テーブルに自動的にデータを追加するように kusto に指示します。 更新ポリシーのクエリは、ソーステーブルに挿入されたデータに対して実行されます。 たとえば、ポリシーを使用すると、1つのテーブルを別のテーブルのフィルター処理されたビューとして作成できます。 新しいテーブルには、異なるスキーマや保持ポリシーなどを設定できます。 
 
-既定では、更新ポリシーの実行に失敗しても、ソーステーブルへのデータの取り込みには影響しません。 更新ポリシーが**トランザクション**として定義されている場合、更新ポリシーの実行に失敗すると、ソーステーブルへのデータの取り込みも強制的に失敗します。 (更新ポリシーでの不適切なクエリの定義など、一部のユーザーエラーによって **、データが**ソーステーブルに取り込まれたされない場合があるため、この操作を実行するときは注意が必要です。)トランザクション更新ポリシーの "境界" 内のデータ取り込まれたは、1つのトランザクションでクエリで使用できるようになります。
+更新ポリシーには、通常のインジェストと同じ制限とベストプラクティスが適用されます。 ポリシーはクラスターのサイズによってスケールアウトされ、ingestions が大規模な組み込みで実行される場合はより効率的に動作します。
 
-更新ポリシーのクエリは特殊なモードで実行されます。このモードでは、ソーステーブルに新しく取り込まれたデータのみが "表示" されます。 このクエリの一部として、ソーステーブルの取り込まれたデータに対してクエリを実行することはできません。 これにより、2次 ingestions の結果がすぐに得られます。
+:::image type="content" source="images/updatepolicy/update-policy-overview.png" alt-text="Azure データエクスプローラーの更新ポリシーの概要":::
 
-更新ポリシーは変換先テーブルで定義されているので、データを1つのソーステーブルに取り込みと、そのデータに対して複数のクエリが実行される可能性があります。 更新ポリシーの実行順序は定義されていません。
+> [!NOTE]
+> 更新ポリシーが定義されているソーステーブルとテーブルは、同じデータベース内に存在する必要があります。
+> 更新ポリシー関数スキーマとターゲットテーブルスキーマは、列名、型、および順序と一致している必要があります。
 
-たとえば、ソーステーブルが、フリーテキスト列として書式設定された興味深いデータを含む高レートのトレーステーブルであるとします。 また、更新ポリシーが定義されているターゲットテーブルでは、特定のトレース行のみを受け入れ、適切に構造化されたスキーマを使用して、Kusto の[parse 演算子](../query/parseoperator.md)を使用して元のフリーテキストデータを変換するとします。
+## <a name="update-policys-query"></a>ポリシーのクエリの更新
 
-更新ポリシーは、通常のインジェストと同様に動作し、同じ制限事項とベストプラクティスが適用されます。 たとえば、クラスターのサイズを使用してスケールアウトし、ingestions が大きな形で実行される場合はより効率的に動作します。
+更新ポリシークエリは、特別なモードで実行されます。このモードでは、新しく取り込まれたレコードのみが対象となり、このクエリの一部としてソーステーブルの取り込まれたデータに対してクエリを実行することはできません。 ただし、トランザクション更新ポリシーの "境界" 内のデータ取り込まれたは、1つのトランザクションでクエリで使用できるようになります。 更新ポリシーは変換先テーブルで定義されているので、データを1つのソーステーブルに取り込みと、そのデータに対して複数のクエリが実行される可能性があります。 複数の更新ポリシーの実行順序は定義されていません。 
 
-## <a name="commands-that-trigger-the-update-policy"></a>更新ポリシーをトリガーするコマンド
+### <a name="query-limitations"></a>クエリの制限事項 
 
-更新ポリシーは、次のコマンドのいずれかを使用して、データが取り込まれたされた場合、またはテーブルに移動された場合 (エクステントが作成される場合) に有効になります。
+* クエリでは、格納されている関数を呼び出すことができますが、複数データベースにまたがるクエリやクロスクラスタークエリを含めることはできません。 
+* 更新ポリシーの一部として実行されるクエリには、 [RestrictedViewAccess ポリシー](restrictedviewaccesspolicy.md)が有効になっているか[行レベルセキュリティポリシー](rowlevelsecuritypolicy.md)が有効になっているテーブルに対する読み取りアクセス権がありません。
+* `Source` `Query` ポリシーの一部またはパートによって参照される関数内のテーブルを参照する場合 `Query` :
+   * テーブルの修飾名は使用しないでください。 代わりに `TableName` を使用してください。 
+   * またはを使用しないで `database("DatabaseName").TableName` `cluster("ClusterName").database("DatabaseName").TableName` ください。
 
-* [。インジェスト (プル)](../management/data-ingestion/ingest-from-storage.md)
-* [。インジェスト (インライン)](../management/data-ingestion/ingest-inline.md)
-* [. set |. append |. set-or-append |. set-or-replace](../management/data-ingestion/ingest-from-query.md)
-* [。エクステントを移動します。](../management/extents-commands.md#move-extents)
-* [。エクステントの置換](../management/extents-commands.md#replace-extents)
+> [!WARNING]
+> 更新ポリシーで正しくないクエリを定義すると、データがソーステーブルに取り込まれたされるのを防ぐことができます。
 
 ## <a name="the-update-policy-object"></a>更新ポリシーオブジェクト
 
@@ -47,79 +50,63 @@ ms.locfileid: "82868705"
 |プロパティ |Type |説明  |
 |---------|---------|----------------|
 |IsEnabled                     |`bool`  |更新ポリシーが有効 (true) か無効 (false) かを示します。                                                                                                                               |
-|source                        |`string`|更新ポリシーを起動するテーブルの名前                                                                                                                                 |
+|ソース                        |`string`|更新ポリシーを起動するテーブルの名前                                                                                                                                 |
 |クエリ                         |`string`|更新プログラムのデータを生成するために使用される Kusto CSL クエリ                                                                                                                           |
-|IsTransactional               |`bool`  |更新ポリシーがトランザクションであるかどうかを示します (既定値は false)。 トランザクション更新ポリシーの実行に失敗すると、ソーステーブルも新しいデータで更新されません。   |
-|PropagateIngestionProperties  |`bool`  |ソーステーブルへの取り込み中に指定されたインジェストプロパティ (エクステントタグと作成時刻) が、派生テーブル内のものにも適用されるかどうかを示します。                 |
+|IsTransactional               |`bool`  |更新ポリシーがトランザクションであるかどうかを示します (既定値は false)。 トランザクション更新ポリシーを実行できませんでした。ソーステーブルが新しいデータで更新されていません   |
+|PropagateIngestionProperties  |`bool`  |ソーステーブルへの取り込み中に指定されたインジェストプロパティ (エクステントタグと作成時刻) も、派生テーブル内のものにも適用される必要があるかどうかを示します。                 |
 
-## <a name="notes"></a>Notes
+> [!NOTE]
+> 連鎖更新が許可されています (→→→ `TableA` `TableB` .. `TableC` .)。
+>
+> ただし、更新ポリシーが複数のテーブルに対して循環して定義されている場合、更新のチェーンは切り取られます。 この問題は、実行時に検出されます。 データは、影響を受けるテーブルのチェーン内の各テーブルに1回だけ取り込まれたされます。
 
-* クエリのスコープは、新しく取り込まれたレコードのみを対象とするように自動的に設定されます。
-* クエリでは、格納されている関数を呼び出すことができます。
-* 連鎖更新が許可さ`TableA`れ`TableB`て`TableC`います (→→→...)
-* 更新ポリシーが`.set-or-replace`コマンドの一部として呼び出されると、既定の動作として、派生テーブル内のデータも、ソーステーブルの場合と同じように置換されます。
+## <a name="update-policy-commands"></a>ポリシーの更新コマンド
 
-## <a name="limitations"></a>制限事項
+更新ポリシーを制御するコマンドは次のとおりです。
 
-* 更新ポリシーが定義されているソーステーブルとテーブルは、**同じデータベース内に存在する必要があり**ます。
-* このクエリには、複数のデータベースにまたがるクエリやクロスクラスタークエリを含めることはでき**ません**。
-* 更新ポリシーが複数のテーブルに循環的に定義されている場合は、実行時に検出され、更新プログラムのチェーンは切り取られます (つまり、影響を受けるテーブルのチェーン内の各テーブルに対してデータが1回だけ取り込まれたされます)。
-* `Source`ポリシーの`Query`一部 (または後者が参照する関数) でテーブルを参照するときは、テーブルの修飾名を使用し**ない**ようにしてください (つまり`TableName` 、とで`cluster("ClusterName").database("DatabaseName").TableName`は**なく** `database("DatabaseName").TableName`を使用します)。
-* 更新ポリシーの一部として実行されるクエリには、 [RestrictedViewAccess ポリシー](restrictedviewaccesspolicy.md)が有効になっているテーブルに対する読み取りアクセス権があり**ません**。
-* 更新ポリシーのクエリでは、[行レベルセキュリティポリシー](./rowlevelsecuritypolicy.md)が有効になっているテーブルを参照することはできません。
-* `PropagateIngestionProperties`インジェスト操作でのみ有効になります。 更新ポリシーが`.move extents`または`.replace extents`コマンドの一部としてトリガーされた場合、このオプションによる影響は**ありません**。
+* [。テーブル*TableName*ポリシーの更新を表示](update-policy.md#show-update-policy)すると、テーブルの現在の更新ポリシーが表示されます。
+* [. alter Table *TableName* policy update](update-policy.md#alter-update-policy)は、テーブルの現在の更新ポリシーを設定します。
+* [。 alter-merge Table *TableName* policy update](update-policy.md#alter-merge-table-tablename-policy-update)は、テーブルの現在の更新ポリシーに追加します。
+* [。テーブル*TableName*ポリシーの更新を削除](update-policy.md#delete-table-tablename-policy-update)すると、テーブルの現在の更新ポリシーに追加されます。
 
-## <a name="retention-policy-on-the-source-table"></a>ソーステーブルのアイテム保持ポリシー
+## <a name="update-policy-is-initiated-following-ingestion"></a>更新ポリシーはインジェスト後に開始されます
 
-そのため、ソーステーブルに生データを保持しない場合は、更新ポリシーをトランザクションとして設定すると同時に、ソーステーブルの[保有ポリシー](retentionpolicy.md)で論理的な削除期間を0に設定できます。
+更新ポリシーは、次のいずれかのコマンドを使用して、定義されたソーステーブルにデータが取り込まれたまたは移動したときに有効になります。
 
-これは次のようになります。
-* ソースデータがソーステーブルからクエリ可能ではありません。
-* 取り込み操作の一部として、持続性のあるストレージにソースデータが永続化されていません。
-* 操作のパフォーマンスが向上しました。
-* ソーステーブルの[エクステント](../management/extents-overview.md)に対して実行されるバックグラウンドのクリーンアップ操作について、インジェストを使用したリソースの削減。
+* [。インジェスト (プル)](../management/data-ingestion/ingest-from-storage.md)
+* [。インジェスト (インライン)](../management/data-ingestion/ingest-inline.md)
+* [. set |. append |. set-or-append |. set-or-replace](../management/data-ingestion/ingest-from-query.md)
+  * 更新ポリシーがコマンドの一部として呼び出されると `.set-or-replace` 、既定の動作では、派生テーブル内のデータはソーステーブルと同じ方法で置き換えられます。
+* [.move extents](../management/extents-commands.md#move-extents)
+* [.replace extents](../management/extents-commands.md#replace-extents)
+  * `PropagateIngestionProperties`コマンドはインジェスト操作でのみ有効です。 更新ポリシーがまたはコマンドの一部としてトリガーされた場合 `.move extents` `.replace extents` 、このオプションによる影響はありません。
 
-## <a name="failures"></a>エラー
+## <a name="regular-ingestion-using-update-policy"></a>更新ポリシーを使用した通常のインジェスト
 
-場合によっては、ソーステーブルへのデータの取り込みは成功しますが、ターゲットテーブルへの取り込み中に更新ポリシーが失敗します。
+更新ポリシーは、次の条件が満たされた場合に通常のインジェストと同様に動作します。
 
-ポリシーの更新中に発生したエラーは、次のように、[[インジェストエラーの表示] コマンド](../management/ingestionfailures.md)を使用して取得できます。
- 
-```kusto
-.show ingestion failures 
-| where FailedOn > ago(1hr) and OriginatesFromUpdatePolicy == true
-```
+* ソーステーブルは、自由形式の列として書式設定された興味深いデータを含む高料金のトレーステーブルです。 
+* 更新ポリシーが定義されているターゲットテーブルは、特定のトレース行のみを受け入れます。
+* テーブルには、適切に構造化されたスキーマがあります。これは、 [parse 演算子](../query/parseoperator.md)によって作成された元のフリーテキストデータの変換です。
 
-エラーは次のように処理されます。
+## <a name="zero-retention-on-source-table"></a>ソーステーブルのリテンション期間なし
 
-* **非トランザクションポリシー**: Kusto では、このエラーは無視されます。 再試行は、データ所有者の責任です。  
-* **トランザクションポリシー**: 更新をトリガーした元の取り込み操作も失敗します。 ソーステーブルとデータベースは、新しいデータでは変更されません。
-  * インジェスト方法がの場合 ( `pull` kusto のデータ管理サービスがインジェストプロセスに関係している場合)、次のロジックに従って、kusto のデータ管理サービスによって調整されたインジェスト操作全体に対して、自動的な再試行が行われます。
-    * 再試行は、(既定値 = 2 `DataImporterMaximumRetryPeriod`日) `DataImporterMaximumRetryAttempts`から (既定値 = 10) までの間に到達するまで実行されます。
-    * 上記の設定は、データ管理サービスの構成で KustoOps によって変更できます。
-    * バックオフ期間は2分から始まり、指数関数的に増加します (2 > 4-> 8 > 16...~
-  * それ以外の場合は、データ所有者の責任です。
+場合によっては、データがターゲットテーブルへのステップ実行のストーンとしてのみソーステーブルに取り込まれたされ、生データをソーステーブルに保持する必要がないことがあります。 ソーステーブルの[保有ポリシー](retentionpolicy.md)で論理的な削除期間を0に設定し、更新ポリシーをトランザクションとして設定します。 この状況では、次のようになります。 
 
+* ソースデータは、ソーステーブルからはクエリできません。 
+* 取り込み操作の一部として、ソースデータが永続的なストレージに保存されることはありません。 
+* 運用上のパフォーマンスが向上します。 
+* バックグラウンドのクリーンアップ操作のためのインジェスト後のリソースが削減されます。 これらの操作は、ソーステーブルの[エクステント](../management/extents-overview.md)に対して行われます。
 
+## <a name="performance-impact"></a>パフォーマンスへの影響
 
-## <a name="control-commands"></a>制御コマンド
+更新ポリシーは、Kusto クラスターのパフォーマンスに影響を与える可能性があります。 更新ポリシーは、ソーステーブルへのインジェストに影響します。 複数のデータエクステントのインジェストには、対象テーブルの数が乗算されます。 その `Query` ため、更新ポリシーの一部が正常に機能するように最適化されていることが重要です。 インジェスト操作に対する更新ポリシーのその他のパフォーマンスへの影響をテストすることができます。 その部分で使用するポリシーまたは関数を作成または変更する前に、特定のおよび既存のエクステントでポリシーを呼び出し `Query` ます。
 
-* を使用[します。](../management/update-policy.md#show-update-policy)テーブルのテーブルポリシーの更新を表示して、テーブルの現在の更新ポリシーを表示します。
-* テーブルの現在の更新ポリシーを設定するには、 [alter TABLE table policy update](../management/update-policy.md#alter-update-policy)を使用します。
-* テーブルの現在の更新ポリシーに追加するには、 [alter-merge TABLE table policy update を使用します。](../management/update-policy.md#alter-merge-table-table-policy-update)
-* を使用[します。](../management/update-policy.md#delete-table-table-policy-update)テーブルのテーブルポリシーの更新を削除して、テーブルの現在の更新ポリシーに追加します。
+### <a name="evaluate-resource-usage"></a>リソースの使用状況の評価
 
-## <a name="testing-an-update-policys-performance-impact"></a>更新ポリシーのパフォーマンスへの影響のテスト
-
-更新ポリシーを定義すると、Kusto クラスターのパフォーマンスに影響を与えることがあります。これは、ソーステーブルへの取り込みに影響するためです。 更新ポリシーの一部は、 `Query`正常に動作するように最適化することを強くお勧めします。
-更新ポリシーの追加のパフォーマンスへの影響をテストするには、事前に特定のエクステントと既存のエクステントを呼び出して、ポリシーやその`Query`パーツで使用される関数を作成または変更する前に、既存の特定のエクステントに対して更新ポリシーを呼び出します。
-
-次の例では以下の条件を前提としています。
-
-* ソーステーブル名 (更新ポリシー `Source`のプロパティ) は`MySourceTable`です。
-* 更新`Query`ポリシーのプロパティは、という名前`MyFunction()`の関数を呼び出します。
-
-を使用[してクエリを表示](../management/queries.md)すると、次のクエリのリソース使用率 (CPU、メモリなど) を評価したり、複数回実行したりすることができます。
+次のシナリオでは、[クエリを表示し](../management/queries.md)、リソースの使用状況 (CPU、メモリなど) を評価します。
+* ソーステーブル名 ( `Source` 更新ポリシーのプロパティ) は `MySourceTable` です。
+* `Query`更新ポリシーのプロパティは、という名前の関数を呼び出し `MyFunction()` ます。
 
 ```kusto
 .show table MySourceTable extents;
@@ -128,3 +115,30 @@ let extentId = $command_results | where MaxCreatedOn > ago(1hr) and MinCreatedOn
 let MySourceTable = MySourceTable | where extent_id() == toscalar(extentId);
 MyFunction()
 ```
+
+## <a name="failures"></a>エラー
+
+既定では、更新ポリシーの実行に失敗しても、ソーステーブルへのデータの取り込みには影響しません。 ただし、更新ポリシーが次のように定義されている場合、 `IsTransactional` ポリシーの実行に失敗すると、ソーステーブルへのデータのインジェストが強制的に失敗します。 場合によっては、ソーステーブルへのデータの取り込みは成功しますが、ターゲットテーブルへの取り込み中に更新ポリシーが失敗します。
+
+ポリシーの更新中に発生したエラーは、[[インジェストエラーの表示] コマンド](../management/ingestionfailures.md)を使用して取得できます。
+ 
+```kusto
+.show ingestion failures 
+| where FailedOn > ago(1hr) and OriginatesFromUpdatePolicy == true
+```
+
+### <a name="treatment-of-failures"></a>エラーの処理
+
+#### <a name="non-transactional-policy"></a>非トランザクションポリシー 
+
+このエラーは、Kusto によって無視されます。 再試行は、データインジェストプロセスの所有者の責任です。  
+
+#### <a name="transactional-policy"></a>トランザクションポリシー
+
+更新をトリガーした元の取り込み操作も失敗します。 ソーステーブルとデータベースは、新しいデータでは変更されません。
+インジェスト方法 `pull` (kusto のデータ管理サービスがインジェストプロセスに含まれる) の場合、次のロジックに従って、Kusto のデータ管理サービスによって調整されたインジェスト操作全体に対して自動的に再試行が行われます。
+* 再試行は、 `DataImporterMaximumRetryPeriod` (既定値 = 2 日) から `DataImporterMaximumRetryAttempts` (既定値 = 10) までの間に実行されます。
+* 上記の設定はいずれも、データ管理サービスの構成で変更できます。
+* バックオフ期間は2分から開始され、指数関数的に増加します (2 > 4-> 8 > 16...~
+
+それ以外の場合は、データ所有者の責任です。

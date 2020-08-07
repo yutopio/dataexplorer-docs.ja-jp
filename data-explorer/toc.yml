@@ -44,12 +44,18 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: Security
+    - name: セキュリティ
       items:
         - name: セキュリティの概要
           href: security.md
         - name: セキュリティ ベースライン
           href: security-baseline.md
+    - name: ビジネス継続性
+      items:
+        - name: 概要
+          href: business-continuity-overview.md
+        - name: ソリューションを作成する
+          href: business-continuity-create-solution.md
     - name: ツールと統合の概要
       href: tools-integrations-overview.md
 - name: 操作方法ガイド
@@ -1291,7 +1297,7 @@
             - name: 外部テーブル
               items:
                 - name: 外部テーブルの一般的なコントロール コマンド
-                  href: ./kusto/management/externaltables.md
+                  href: ./kusto/management/external-table-commands.md
                 - name: 外部 SQL テーブルを作成および変更する
                   href: ./kusto/management/external-sql-tables.md
                 - name: Azure Storage または Azure Data Lake の外部テーブルを作成および変更する

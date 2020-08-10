@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの Let
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 02/13/2020
-ms.openlocfilehash: 2994a65e8726edaba22c6905290b4b69660e0586
-ms.sourcegitcommit: 284152eba9ee52e06d710cc13200a80e9cbd0a8b
+ms.date: 08/09/2020
+ms.openlocfilehash: 879b858904ac9f024f70dfef6096141a9ff81bd7
+ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86291544"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88028478"
 ---
 # <a name="let-statement"></a>let ステートメント
 
@@ -129,16 +129,72 @@ Events
 | take n
 ```
 
+### <a name="use-let-statement-with-arguments-for-scalar-calculation"></a>スカラー計算の引数と共に let ステートメントを使用する
+
+この例では、スカラー計算の引数と共に let ステートメントを使用します。 このクエリでは、 `MultiplyByN` 2 つの数値を乗算する関数を定義します。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+let MultiplyByN = (val:long, n:long) { val * n };
+range x from 1 to 5 step 1 
+| extend result = MultiplyByN(x, 5)
+```
+
+|x|結果|
+|---|---|
+|1|5|
+|2|10|
+|3|15|
+|4|20|
+|5|25|
+
+次の例では、入力から先頭/末尾の 1 ( `1` ) を削除します。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+let TrimOnes = (s:string) { trim("1", s) };
+range x from 10 to 15 step 1 
+| extend result = TrimOnes(tostring(x))
+```
+
+|x|結果|
+|---|---|
+|10|0|
+|11||
+|12|2|
+|13|3|
+|14|4|
+|15|5|
+
+
 ### <a name="use-multiple-let-statements"></a>複数の let ステートメントを使用する
 
 この例では、1つのステートメント ( `foo2` ) が別の () を使用する2つの let ステートメント `foo1` を定義します。
 
+<!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
 let foo1 = (_start:long, _end:long, _step:long) { range x from _start to _end step _step};
 let foo2 = (_step:long) { foo1(1, 100, _step)};
 foo2(2) | count
 // Result: 50
 ```
+
+### <a name="use-the-view-keyword-in-a-let-statement"></a>`view`Let ステートメントでキーワードを使用する
+
+この例では、let ステートメントをキーワードと共に使用する方法を示し `view` ます。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+let Range10 = view () { range MyColumn from 1 to 10 step 1 };
+let Range20 = view () { range MyColumn from 1 to 20 step 1 };
+search MyColumn == 5
+```
+
+|$table|MyColumn|
+|---|---|
+|Range10|5|
+|Range20|5|
+
 
 ### <a name="use-materialize-function"></a>具体化関数を使用する
 

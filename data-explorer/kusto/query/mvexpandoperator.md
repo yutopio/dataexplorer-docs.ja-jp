@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: 8358bf9a8eb0dab38b8f5847521e069f21fe4a2c
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6ca5b5a4e6af8ece7d6f7a6543782665062b5d80
+ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346696"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "88072414"
 ---
 # <a name="mv-expand-operator"></a>mv-expand 演算子
 
@@ -88,17 +88,24 @@ datatable (a:int, b:dynamic, c:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"}), d
 
 2つの列を展開するデカルト積を取得する場合は、もう一方を展開します。
 
-<!-- csl: https://help.kusto.windows.net:443/Samples -->
+<!-- csl: https://kuskusdfv3.kusto.windows.net/Kuskus -->
 ```kusto
-datatable (a:int, b:dynamic, c:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"}), dynamic([5])]
-| mv-expand b 
+datatable (a:int, b:dynamic, c:dynamic)
+  [
+  1,
+  dynamic({"prop1":"a", "prop2":"b"}),
+  dynamic([5, 6])
+  ]
+| mv-expand b
 | mv-expand c
 ```
 
 |a|b|c|
 |---|---|---|
 |1|{"prop1": "a"}|5|
+|1|{"prop1": "a"}|6|
 |1|{"prop2": "b"}|5|
+|1|{"prop2": "b"}|6|
 
 ### <a name="convert-output"></a>出力の変換
 

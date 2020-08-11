@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: bd3e7a77a4de46b6dcebb2f58c98009a9edddb43
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f56bd1c9f87833f7c1a9d29580a71557fedb894c
+ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87338611"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "88072397"
 ---
 # <a name="using-hll-and-tdigest"></a>hll() と tdigest() の使用
 
@@ -27,7 +27,8 @@ ms.locfileid: "87338611"
 
 > [!NOTE]
 > 場合によっては、または集計関数によって生成される動的オブジェクト `hll` `tdigest` が大きく、エンコードポリシーの既定の MaxValueSize プロパティを超えることがあります。 その場合、オブジェクトは null として取り込まれたされます。
-たとえば、精度レベル4の関数の出力を永続化する場合、 `hll` オブジェクトのサイズが `hll` 既定の MaxValueSize (1 mb) を超えています。
+> たとえば、精度レベル4の関数の出力を永続化する場合、 `hll` オブジェクトのサイズが `hll` 既定の MaxValueSize (1 mb) を超えています。
+> この問題を回避するには、次の例に示すように、列のエンコードポリシーを変更します。
 
 ```kusto
 range x from 1 to 1000000 step 1

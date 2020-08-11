@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 1fa12a52994e19f8710294e440de98ee47922c86
-ms.sourcegitcommit: aacea5c4c397479e8254c1fe6ed0b2f333307b14
+ms.openlocfilehash: b035af95e60272daeb97365f50cb3168531a34db
+ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470062"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "88072431"
 ---
 # <a name="scalar-function-types"></a>スカラー関数の種類
 
@@ -44,7 +44,7 @@ ms.locfileid: "86470062"
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[ago()](agofunction.md)|現在の UTC 時刻から指定された期間を減算します。|
-|[datetime_add ()](datetime-addfunction.md)|指定された datetime に加算された、指定した datepart から指定された量を乗算した新しい datetime を計算します。|
+|[datetime_add()](datetime-addfunction.md)|指定された datetime に加算された、指定した datepart から指定された量を乗算した新しい datetime を計算します。|
 |[datetime_part()](datetime-partfunction.md)|要求された日付部分を整数値として抽出します。|
 |[datetime_diff()](datetime-difffunction.md)|指定されている場合、オフセットでシフトした日付を含む年の最後の日付を返します。|
 |[dayofmonth()](dayofmonthfunction.md)|指定された月の日を表す整数値を返します。|
@@ -133,18 +133,18 @@ ms.locfileid: "86470062"
 |[exp2()](exp2-function.md)|X の底2の指数関数。2は、power x: 2 ^ x に発生します。|
 |[gamma()](gammafunction.md)|ガンマ関数を計算します。|
 |[isfinite()](isfinitefunction.md)|入力が有限値である (無限または NaN ではない) かどうかを返します。|
-|[isinf ()](isinffunction.md)|入力が無限 (正または負) の値であるかどうかを返します。|
+|[isinf()](isinffunction.md)|入力が無限 (正または負) の値であるかどうかを返します。|
 |[isnan()](isnanfunction.md)|入力が非数 (NaN) 値かどうかを返します。|
-|[log ()](log-function.md)|自然対数関数を返します。|
+|[log()](log-function.md)|自然対数関数を返します。|
 |[log10()](log10-function.md)|常用対数関数を返します。|
 |[log2()](log2-function.md)|底2の対数関数を返します。|
 |[loggamma()](loggammafunction.md)|ガンマ関数の絶対値のログを計算します。|
-|[not ()](notfunction.md)|Bool 引数の値を反転させます。|
+|[not()](notfunction.md)|Bool 引数の値を反転させます。|
 |[pi()](pifunction.md)|Pi (π) の定数値を返します。|
 |[pow()](powfunction.md)|を累乗した結果を返します。|
 |[radians()](radiansfunction.md)|数式ラジアン = (PI/180) * 角度 (°) を使用して、角度の角度を度数で値に変換します。|
-|[rand ()](randfunction.md)|乱数を返します。|
-|[範囲 ()](rangefunction.md)|等間隔に並んだ一連の値を保持する動的配列を生成します。|
+|[rand()](randfunction.md)|乱数を返します。|
+|[range()](rangefunction.md)|等間隔に並んだ一連の値を保持する動的配列を生成します。|
 |[round()](roundfunction.md)|丸められたソースを指定した有効桁数に戻します。|
 |[sign()](signfunction.md)|数値式の符号。|
 |[sin()](sinfunction.md)|サイン関数を返します。|
@@ -235,7 +235,7 @@ ms.locfileid: "86470062"
 |[base64_decode_tostring()](base64_decode_tostringfunction.md)|Base64 文字列を UTF-8 文字列にデコードします。|
 |[base64_decode_toarray()](base64_decode_toarrayfunction.md)|Base64 文字列を長整数値の配列にデコードします。|
 |[countof ()](cotfunction.md)|文字列内の部分文字列の出現回数をカウントします。 文字列の一致が重複する可能性があります。regex は一致しません。|
-|[extract ()](extractfunction.md)|テキスト文字列から 正規表現 との一致を取得します。|
+|[extract()](extractfunction.md)|テキスト文字列から 正規表現 との一致を取得します。|
 |[extract_all()](extractallfunction.md)|テキスト文字列から正規表現のすべての一致を取得します。|
 |[extractjson()](extractjsonfunction.md)|パス式を使用している JSON テキストから、指定された要素を取得します。|
 |[indexof()](indexoffunction.md)|関数は、入力文字列内で指定した文字列が最初に見つかった位置の0から始まるインデックスを報告します。|
@@ -254,7 +254,7 @@ ms.locfileid: "86470062"
 |[parse_urlquery()](parseurlqueryfunction.md)|Url クエリ文字列を解析し、動的オブジェクトにクエリパラメーターが含まれていることを返します。|
 |[parse_version()](parse-versionfunction.md)|バージョンの入力文字列形式を、比較可能な10進数に変換します。|
 |[replace()](replacefunction.md)|正規表現のすべての一致を別の文字列に置き換えます。|
-|[reverse ()](reversefunction.md)|関数は、入力文字列を逆にします。|
+|[reverse()](reversefunction.md)|関数は、入力文字列を逆にします。|
 |[split()](splitfunction.md)|指定された区切り記号に従って指定された文字列を分割し、含まれている部分文字列を含む文字列配列を返します。|
 |[strcat()](strcatfunction.md)|1 ~ 64 の引数を連結します。|
 |[strcat_delim()](strcat-delimfunction.md)|最初の引数として指定された区切り記号を使用して、2 ~ 64 の引数を連結します。|
@@ -267,8 +267,8 @@ ms.locfileid: "86470062"
 |[trim()](trimfunction.md)|指定した正規表現の先頭と末尾の一致をすべて削除します。|
 |[trim_end()](trimendfunction.md)|指定した正規表現の末尾の一致を削除します。|
 |[trim_start()](trimstartfunction.md)|指定された正規表現の先頭の一致を削除します。|
-|[url_decode ()](urldecodefunction.md)|関数は、エンコードされた URL を通常の URL 表現に変換します。|
-|[url_encode ()](urlencodefunction.md)|関数は、入力 URL の文字をインターネット経由で送信できる形式に変換します。|
+|[url_decode()](urldecodefunction.md)|関数は、エンコードされた URL を通常の URL 表現に変換します。|
+|[url_encode()](urlencodefunction.md)|関数は、入力 URL の文字をインターネット経由で送信できる形式に変換します。|
 
 ## <a name="ipv4ipv6-functions"></a>IPv4/IPv6 機能
 
@@ -282,6 +282,8 @@ ms.locfileid: "86470062"
 |[ipv6_is_match()](ipv6-is-matchfunction.md)|2つの IPv4 または IPv6 文字列を照合します。|
 |[parse_ipv6()](parse-ipv6function.md)|IPv6 または IPv4 文字列を正規の IPv6 文字列形式に変換します。|
 |[parse_ipv6_mask()](parse-ipv6-maskfunction.md)|IPv6 または IPv4 の文字列とネットマスクを正規の IPv6 文字列形式に変換します。|
+|[format_ipv4 ()](format-ipv4-function.md)|ネットマスクを使用して入力を解析し、IPv4 アドレスを表す文字列を返します。|
+|[format_ipv4_mask ()](format-ipv4-mask-function.md)|ネットマスクを使用して入力を解析し、CIDR 表記として IPv4 アドレスを表す文字列を返します。|
 
 ## <a name="type-functions"></a>Type 関数
 

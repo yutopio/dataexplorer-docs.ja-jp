@@ -8,20 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 7eb5adc76c963065940365973aadc5281ff5f553
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 9b2d35c796cfd1f41dc2fd8e9385a4c446000b86
+ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803414"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "88072448"
 ---
 # <a name="update-policy-overview"></a>更新ポリシーの概要
 
-[更新ポリシー](update-policy.md)は、新しいデータがソーステーブルに挿入されるたびに、対象テーブルに自動的にデータを追加するように kusto に指示します。 更新ポリシーのクエリは、ソーステーブルに挿入されたデータに対して実行されます。 たとえば、ポリシーを使用すると、1つのテーブルを別のテーブルのフィルター処理されたビューとして作成できます。 新しいテーブルには、異なるスキーマや保持ポリシーなどを設定できます。 
-
-更新ポリシーには、通常のインジェストと同じ制限とベストプラクティスが適用されます。 ポリシーはクラスターのサイズによってスケールアウトされ、ingestions が大規模な組み込みで実行される場合はより効率的に動作します。
+[更新ポリシー](update-policy.md)では、ソーステーブルに挿入されたデータに対して実行される変換クエリに基づいて、ソーステーブルに新しいデータが挿入されるたびに、kusto がターゲットテーブルにデータを自動的に追加するように指示します。
 
 :::image type="content" source="images/updatepolicy/update-policy-overview.png" alt-text="Azure データエクスプローラーの更新ポリシーの概要":::
+
+たとえば、ポリシーを使用すると、1つのテーブルを別のテーブルのフィルター処理されたビューとして作成できます。 新しいテーブルには、異なるスキーマや保持ポリシーなどを設定できます。 
+
+更新ポリシーには、通常のインジェストと同じ制限とベストプラクティスが適用されます。 ポリシーはクラスターのサイズによってスケールアウトされ、ingestions が大規模な組み込みで実行される場合はより効率的に動作します。
 
 > [!NOTE]
 > 更新ポリシーが定義されているソーステーブルとテーブルは、同じデータベース内に存在する必要があります。
@@ -50,7 +52,7 @@ ms.locfileid: "87803414"
 |プロパティ |Type |説明  |
 |---------|---------|----------------|
 |IsEnabled                     |`bool`  |更新ポリシーが有効 (true) か無効 (false) かを示します。                                                                                                                               |
-|ソース                        |`string`|更新ポリシーを起動するテーブルの名前                                                                                                                                 |
+|source                        |`string`|更新ポリシーを起動するテーブルの名前                                                                                                                                 |
 |クエリ                         |`string`|更新プログラムのデータを生成するために使用される Kusto CSL クエリ                                                                                                                           |
 |IsTransactional               |`bool`  |更新ポリシーがトランザクションであるかどうかを示します (既定値は false)。 トランザクション更新ポリシーを実行できませんでした。ソーステーブルが新しいデータで更新されていません   |
 |PropagateIngestionProperties  |`bool`  |ソーステーブルへの取り込み中に指定されたインジェストプロパティ (エクステントタグと作成時刻) も、派生テーブル内のものにも適用される必要があるかどうかを示します。                 |

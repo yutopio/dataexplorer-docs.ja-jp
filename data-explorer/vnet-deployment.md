@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/31/2019
-ms.openlocfilehash: 7025567c9495f3eeefe547dcd88b19962e1be934
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 10c2cf41ae1ab149b6eeffe35f94052069309152
+ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351643"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88028512"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
@@ -87,7 +87,6 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 | Azure Data Lake への依存関係  | ADX サブネット  | AzureDataLake:443  | TCP  |
 | EventHub インジェストとサービス監視  | ADX サブネット  | EventHub:443,5671  | TCP  |
 | メトリックの発行  | ADX サブネット  | AzureMonitor:443 | TCP  |
-| Azure Monitor 構成のダウンロード  | ADX サブネット  | [Azure Monitor 構成エンドポイント アドレス](#azure-monitor-configuration-endpoint-addresses):443 | TCP  |
 | Active Directory (該当する場合) | ADX サブネット | AzureActiveDirectory:443 | TCP |
 | 証明機関 | ADX サブネット | Internet:80 | TCP |
 | 内部通信  | ADX サブネット  | ADX サブネット: すべてのポート  | All  |
@@ -188,51 +187,7 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 | 西ヨーロッパ | 23.97.212.5 |
 | インド西部 | 23.99.5.162 |
 | 米国西部 | 23.99.5.162 |
-| 米国西部 2 | 23.99.5.162, 104.210.32.14 |    
-
-#### <a name="azure-monitor-configuration-endpoint-addresses"></a>Azure Monitor 構成エンドポイント アドレス
-
-| リージョン | アドレス |
-| --- | --- |
-| オーストラリア中部 | 52.148.86.165 |
-| オーストラリア中部 2 | 52.148.86.165 |
-| オーストラリア東部 | 52.148.86.165 |
-| オーストラリア南東部 | 52.148.86.165 |
-| ブラジル南部 | 13.68.89.19 |
-| カナダ中部 | 13.90.43.231 |
-| カナダ東部 | 13.90.43.231 |
-| インド中部 | 13.71.25.187 |
-| 米国中部 | 52.173.95.68 |
-| 米国中部 EUAP | 13.90.43.231 |
-| 東アジア | 13.75.117.221 |
-| 米国東部 | 13.90.43.231 |
-| 米国東部 2 | 13.68.89.19 |    
-| 米国東部 2 EUAP | 13.68.89.19 |
-| フランス中部 | 52.174.4.112 |
-| フランス南部 | 52.174.4.112 |
-| 東日本 | 13.75.117.221 |
-| 西日本 | 13.75.117.221 |
-| 韓国中部 | 13.75.117.221 |
-| 韓国南部 | 13.75.117.221 |
-| 米国中北部 | 52.162.240.236 |
-| 北ヨーロッパ | 52.169.237.246 |
-| 南アフリカ北部 | 13.71.25.187 |
-| 南アフリカ西部 | 13.71.25.187 |
-| 米国中南部 | 13.84.173.99 |
-| インド南部 | 13.71.25.187 |
-| 東南アジア | 52.148.86.165 |
-| 英国南部 | 52.174.4.112 |
-| 英国西部 | 52.169.237.246 |
-| USDoD 中部 | 13.72.37.111 |
-| USDoD 東部 | 13.72.37.111 |
-| USGov アリゾナ | 13.72.37.111 |
-| USGov テキサス | 13.72.37.111 |
-| USGov バージニア州 | 13.72.37.111 |
-| 米国中西部 | 52.161.31.69 |
-| 西ヨーロッパ | 52.174.4.112 |
-| インド西部 | 13.71.25.187 |
-| 米国西部 | 40.78.70.148 |
-| 米国西部 2 | 52.151.20.103 |
+| 米国西部 2 | 23.99.5.162, 104.210.32.14 |
 
 ## <a name="disable-access-to-azure-data-explorer-from-the-public-ip"></a>パブリック IP から Azure Data Explorer へのアクセスを無効にする
 

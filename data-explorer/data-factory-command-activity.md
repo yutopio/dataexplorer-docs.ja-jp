@@ -8,12 +8,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 09/15/2019
-ms.openlocfilehash: d59e77af1cebe9edb1c026a6dc557facec958917
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b2078ee88b6721f414d280e657d1463925f5a31f
+ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492959"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "87804020"
 ---
 # <a name="use-azure-data-factory-command-activity-to-run-azure-data-explorer-control-commands"></a>Azure Data Factory コマンド アクティビティを使用して Azure Data Explorer 制御コマンドを実行する
 
@@ -43,7 +43,7 @@ ms.locfileid: "81492959"
 
 1. これで、キャンバスには作成したルックアップ アクティビティが含まれます。 キャンバスの下にあるタブを使用して、関連するパラメーターを変更します。 **[全般]** で、アクティビティの名前を変更します。 
 
-    ![ルックアップ アクティビティを編集する](media/data-factory-command-activity/edit-lookup-activity.PNG)
+    ![ルックアップ アクティビティを編集する](media/data-factory-command-activity/edit-lookup-activity.png)
 
     > [!TIP]
     > 空のキャンバス領域をクリックして、パイプラインのプロパティを表示します。 パイプラインの名前を変更するには、 **[全般]** タブを使用します。 パイプラインには *pipeline-4-docs* という名前が付けられています。
@@ -113,7 +113,7 @@ ms.locfileid: "81492959"
 
         ![ForEach アクティビティ](media/data-factory-command-activity/for-each-activity.png)
 
-1.    キャンバスで [ForEach] アクティビティを選択します。 以下の **[設定]** タブで次を行います。
+1. キャンバスで [ForEach] アクティビティを選択します。 以下の **[設定]** タブで次を行います。
     * **[シーケンシャル]** チェックボックスをオンにしてルックアップ結果のシーケンシャル処理を行うか、オフのままにして並列処理を作成する。
     * **バッチ カウント** を設定する
     * **[項目]** で、出力値 *@activity('Lookup1').output.value* への参照を指定する
@@ -127,7 +127,7 @@ ms.locfileid: "81492959"
 
     ![Azure Data Explorer のコマンド アクティビティ](media/data-factory-command-activity/adx-command-activity.png)
 
-1.    **[接続]** タブで、以前作成したリンクされたサービスを選択します。
+1. **[接続]** タブで、以前作成したリンクされたサービスを選択します。
 
     ![Azure Data Explorer の [コマンド アクティビティの接続] タブ](media/data-factory-command-activity/adx-command-activity-connection-tab.png)
 
@@ -154,7 +154,7 @@ ms.locfileid: "81492959"
     > * 制限時間：20分 (既定値)、1時間 (最大)。
     > * 必要に応じて、[AdminThenQuery](kusto/management/index.md#combining-queries-and-control-commands) を使用して結果にクエリを追加し、結果のサイズ/時間を減らすことができます。
 
-1.    パイプラインの準備ができました。 パイプライン名をクリックすると、メインのパイプライン ビューに戻ることができます。
+1. パイプラインの準備ができました。 パイプライン名をクリックすると、メインのパイプライン ビューに戻ることができます。
 
     ![Azure Data Explorer のコマンド パイプライン](media/data-factory-command-activity/adx-command-pipeline.png)
 

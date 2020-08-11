@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 07/22/2019
-ms.openlocfilehash: ed0c570449a0c21e9eace1273228539db7c208da
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: cdd44f6d90e5549153cb1a1a0673a2e054839f1f
+ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81491677"
+ms.lasthandoff: 08/06/2020
+ms.locfileid: "87871963"
 ---
 # <a name="quickstart-create-an-azure-data-explorer-cluster-and-database"></a>クイック スタート:Azure Data Explorer クラスターとデータベースを作成する
 
@@ -106,13 +106,16 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
 1. クラスターを停止するには、 **[概要]** タブの上部にある **[停止]** を選択します。
 
-    クラスターを停止すると、データをクエリに使用できず、新しいデータを取り込むことはできません。
+    :::image type="content" source="media/create-cluster-database-portal/stop-button.png" alt-text="停止ボタン":::
 
-1. クラスターを再起動するには、 **[概要]** タブの上部にある **[開始]** を選択します。
+    > [!NOTE]
+    > クラスターを停止すると、データをクエリに使用できず、新しいデータを取り込むことはできません。
+
+1. クラスターを再起動するには、**[概要]** タブの上部にある **[開始]** を選択します。
 
     クラスターが再起動された場合、(初回のプロビジョニング同様) 利用できるようになるまでに約 10 分かかります。 データをホット キャッシュに読み込むにはさらに時間がかかります。  
 
-## <a name="clean-up-resources"></a>リソースをクリーンアップする
+## <a name="clean-up-resources"></a>リソースのクリーンアップ
 
 他のクイック スタートやチュートリアルを行う場合は、作成したリソースをそのままにします。 それ以外の場合は、コストの発生を回避するためにリソース グループをクリーンアップします。
 

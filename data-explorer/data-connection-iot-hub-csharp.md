@@ -1,18 +1,18 @@
 ---
 title: C# を使用して Azure Data Explorer 用に IoT Hub データ接続を作成する
 description: この記事では、C# を使用して Azure Data Explorer 用に IoT Hub データ接続を作成する方法について学習します。
-author: lucygoldbergmicrosoft
-ms.author: lugoldbe
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: 1b2c74155ba1cb26cb6dd9ca40f9f8c0deda2646
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: a77549d729b8ccba91333922e5add8a9296527c4
+ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493067"
+ms.lasthandoff: 07/28/2020
+ms.locfileid: "87350113"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-c-preview"></a>C# を使用して Azure Data Explorer 用に IoT Hub データ接続を作成する (プレビュー)
 

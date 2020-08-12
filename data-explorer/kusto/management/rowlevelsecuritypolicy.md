@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/25/2020
-ms.openlocfilehash: 9952a7a7d95f03ee431b699a1833aa23b21d341b
-ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
+ms.openlocfilehash: a82c4b48358a90460f917f181b73b718f6c5e455
+ms.sourcegitcommit: c7b16409995087a7ad7a92817516455455ccd2c5
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/23/2020
-ms.locfileid: "87106350"
+ms.lasthandoff: 08/12/2020
+ms.locfileid: "88148117"
 ---
 # <a name="row-level-security-preview"></a>行レベルセキュリティ (プレビュー)
 
@@ -125,7 +125,7 @@ union DataForGroup1, DataForGroup2, DataForGroup3
 
 ### <a name="produce-an-error-upon-unauthorized-access"></a>未承認のアクセス時にエラーを生成する
 
-許可されていないテーブルユーザーが空のテーブルを返す代わりにエラーを受信するようにするには、関数を使用し `[assert()](../query/assert-function.md)` ます。 次の例は、RLS 関数でこのエラーを生成する方法を示しています。
+許可されていないテーブルユーザーが空のテーブルを返す代わりにエラーを受信するようにするには、関数を使用し [`assert()`](../query/assert-function.md) ます。 次の例は、RLS 関数でこのエラーを生成する方法を示しています。
 
 ```
 .create-or-alter function RLSForCustomersTables() {

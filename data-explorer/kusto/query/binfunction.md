@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 434d32a3b6597d71ea22c182a468d64d7971e6cb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: bb6c7c51e295f9af9d6e43a5de5936dfea13f5b6
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348974"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201667"
 ---
 # <a name="bin"></a>bin()
 
@@ -33,7 +33,7 @@ Null 値、ビンサイズが null の場合、またはビンサイズが負の
 ## <a name="arguments"></a>引数
 
 * *値*: 数値、日付、または timespan。 
-* *roundTo*: "bin サイズ"。 *value*を分割する数値、日付、または期間です。 
+* *roundTo*: "bin サイズ"。 *値*を除算する数値または timespan。 
 
 ## <a name="returns"></a>戻り値
 

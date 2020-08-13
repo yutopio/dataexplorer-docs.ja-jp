@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 2616605d29f90a283f5a5d8fef367bf77df65a15
-ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
+ms.openlocfilehash: 866436d74e3e37319ec06b477503c11e3d7d6be7
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87871937"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201320"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -35,7 +35,7 @@ ms.locfileid: "87871937"
 > [!NOTE]
 > * テーブルが存在する場合、 `.create` コマンドは失敗し、エラーが表示されます。 `.create-or-alter`既存の `.alter` テーブルを変更するには、またはを使用します。
 > * 外部 blob テーブルのスキーマ、形式、またはパーティション定義の変更はサポートされていません。 
-> * 操作には、の[データベースユーザー権限](../management/access-control/role-based-authorization.md) `.create` と、の[table admin 権限](../management/access-control/role-based-authorization.md)が必要です `.alter` 。 
+> * 操作には、の [データベースユーザー権限](../management/access-control/role-based-authorization.md) `.create` と、の [table admin 権限](../management/access-control/role-based-authorization.md) が必要です `.alter` 。 
 
 **パラメーター**
 
@@ -55,24 +55,24 @@ ms.locfileid: "87871937"
 *ColumnName*はエンティティの[名前付け](../query/schema-entities/entity-names.md)規則に準拠し、 *ColumnType*は[サポートされているデータ型](../query/scalar-data-types/index.md)の1つです。
 
 > [!TIP]
-> 外部データスキーマが不明な場合は、[推定 \_ ストレージ \_ スキーマ](../query/inferstorageschemaplugin.md)プラグインを使用します。これは、外部ファイルの内容に基づいてスキーマを推論するのに役立ちます。
+> 外部データスキーマが不明な場合は、 [推定 \_ ストレージ \_ スキーマ](../query/inferstorageschemaplugin.md) プラグインを使用します。これは、外部ファイルの内容に基づいてスキーマを推論するのに役立ちます。
 
 <a name="partitions"></a>
 *パーティション*
 
-外部テーブルをパーティション分割する列のコンマ区切りの一覧です。 パーティション列は、データファイル自体に存在することも、ファイルパスの一部を使用することもできます ([仮想列](#virtual-columns)の詳細についてはこちらを参照してください)。
+外部テーブルをパーティション分割する列のコンマ区切りの一覧です。 パーティション列は、データファイル自体に存在することも、ファイルパスの一部を使用することもできます ( [仮想列](#virtual-columns)の詳細についてはこちらを参照してください)。
 
 パーティションの一覧は、次のいずれかの形式を使用して指定されたパーティション列の任意の組み合わせです。
 
 * [仮想列](#virtual-columns)を表すパーティション。
 
-  *PartitionName* `:`(`datetime` | `string`)
+  *PartitionName* `:` (`datetime` | `string`)
 
 * 文字列の列の値に基づいてパーティション分割します。
 
   *PartitionName* `:``string` `=` *ColumnName*
 
-* 文字列型の列値の[ハッシュ](../query/hashfunction.md)(剰余) に基づいてパーティション*分割します*。
+* 文字列型の列値の [ハッシュ](../query/hashfunction.md)(剰余) に基づいてパーティション *分割します*。
 
   *PartitionName* `:``long` `=` `hash``(` *ColumnName* `,` *数値*`)`
 
@@ -87,9 +87,9 @@ ms.locfileid: "87871937"
 
 外部データ URI ファイルパス形式。パーティションに加えて指定できます。 パスの形式は、パーティション要素とテキスト区切りのシーケンスです。
 
-&nbsp;&nbsp;[*Stringseparator*]*Partition* [*stringseparator*] [*partition* [*stringseparator*]...]  
+&nbsp;&nbsp;[*Stringseparator*] *Partition* [*stringseparator*] [*partition* [*stringseparator*]...]  
 
-ここで、 *partition*は in 句で宣言されたパーティションを指し `partition` `by` 、 *stringseparator*は引用符で囲まれた任意のテキストです。 連続するパーティション要素は、 *Stringseparator*を使用して別に設定する必要があります。
+ここで、 *partition* は in 句で宣言されたパーティションを指し `partition` `by` 、 *stringseparator* は引用符で囲まれた任意のテキストです。 連続するパーティション要素は、 *Stringseparator*を使用して別に設定する必要があります。
 
 元のファイルパスプレフィックスは、文字列としてレンダリングされ、対応するテキスト区切り記号で区切られたパーティション要素を使用して作成できます。 Datetime パーティション値の表示に使用する形式を指定するには、次のマクロを使用できます。
 
@@ -97,7 +97,7 @@ ms.locfileid: "87871937"
 
 *DateTimeFormat*は .net 形式の仕様に準拠しており、拡張機能を使用すると、書式指定子を中かっこで囲むことができます。 たとえば、次の2つの形式は同等です。
 
-&nbsp;&nbsp;`'year='yyyy'/month='MM`そして`year={yyyy}/month={MM}`
+&nbsp;&nbsp;`'year='yyyy'/month='MM` そして `year={yyyy}/month={MM}`
 
 既定では、datetime 値は次の形式で表示されます。
 
@@ -116,7 +116,7 @@ ms.locfileid: "87871937"
 <a name="format"></a>
 *形式*
 
-データ形式。[取り込み形式](../../ingestion-supported-formats.md)のいずれかです。
+データ形式。 [取り込み形式](../../ingestion-supported-formats.md)のいずれかです。
 
 > [!NOTE]
 > [エクスポートシナリオ](data-export/export-data-to-an-external-table.md)での外部テーブルの使用は `CSV` 、、 `TSV` 、 `JSON` およびの各形式に制限され `Parquet` ます。
@@ -125,10 +125,10 @@ ms.locfileid: "87871937"
 *StorageConnectionString*
 
 Blob コンテナーまたは Azure Data Lake Store ファイルシステム (仮想ディレクトリまたはフォルダー) を Azure Blob Storage するための1つ以上のパス (資格情報を含む)。
-詳細については、「[ストレージ接続文字列](../api/connection-strings/storage.md)」を参照してください。
+詳細については、「 [ストレージ接続文字列](../api/connection-strings/storage.md) 」を参照してください。
 
 > [!TIP]
-> 大量のデータを外部テーブルに[エクスポート](data-export/export-data-to-an-external-table.md)するときにストレージの調整を回避するには、ストレージアカウントを1つ以上指定します。 エクスポートすると、提供されたすべてのアカウント間の書き込みが分散されます。 
+> 大量のデータを外部テーブルに [エクスポート](data-export/export-data-to-an-external-table.md) するときにストレージの調整を回避するには、ストレージアカウントを1つ以上指定します。 エクスポートすると、提供されたすべてのアカウント間の書き込みが分散されます。 
 
 <a name="properties"></a>
 *省略可能なプロパティ*
@@ -137,12 +137,12 @@ Blob コンテナーまたは Azure Data Lake Store ファイルシステム (�
 |------------------|----------|-------------------------------------------------------------------------------------|
 | `folder`         | `string` | テーブルのフォルダー                                                                     |
 | `docString`      | `string` | テーブルをドキュメント化する文字列                                                       |
-| `compressed`     | `bool`   | 設定すると、ファイルがファイルとして圧縮されるかどうかを示します `.gz` ([エクスポートシナリオ](data-export/export-data-to-an-external-table.md)でのみ使用)。 |
-| `includeHeaders` | `string` | CSV または TSV ファイルの場合は、ファイルにヘッダーが含まれているかどうかを示します。                     |
+| `compressed`     | `bool`   | 設定すると、ファイルがファイルとして圧縮されるかどうかを示します `.gz` ( [エクスポートシナリオ](data-export/export-data-to-an-external-table.md) でのみ使用)。 |
+| `includeHeaders` | `string` | 区切られたテキスト形式 (CSV、TSV、...) の場合は、ファイルにヘッダーが含まれているかどうかを示します。 指定できる値は `All` 、(すべてのファイルにヘッダーが含まれている)、 `FirstFile` (フォルダー内の最初のファイルにヘッダーが含まれている)、 `None` (ヘッダーを含むファイルはありません) のいずれかです。 |
 | `namePrefix`     | `string` | 設定した場合、ファイルのプレフィックスを示します。 書き込み操作では、すべてのファイルがこのプレフィックスを使用して書き込まれます。 読み取り操作では、このプレフィックスを持つファイルだけが読み取られます。 |
 | `fileExtension`  | `string` | 設定すると、ファイルの拡張子を示します。 書き込み時には、ファイル名の末尾がこのサフィックスになります。 読み取り時には、このファイル拡張子を持つファイルのみが読み取られます。           |
 | `encoding`       | `string` | テキストのエンコード方法を示します。 `UTF8NoBOM` (既定値) または `UTF8BOM` 。             |
-| `sampleUris`     | `bool`   | 設定すると、外部テーブルの定義によって想定されているように、コマンドの結果に外部データファイルの URI の例がいくつか表示されます。 |
+| `sampleUris`     | `bool`   | 設定した場合、コマンドの結果には、外部テーブルの定義で想定される外部データファイルの URI の例がいくつか示されます (サンプルは2番目の結果テーブルに返されます)。 このオプションは、 *[パーティション](#partitions)* と *[pathformat](#path-format)* パラメーターが正しく定義されているかどうかを検証するのに役立ちます。 |
 | `validateNotEmpty` | `bool`   | 設定すると、接続文字列にコンテンツが含まれているかどうかが検証されます。 指定された URI の場所が存在しない場合、またはアクセスするための十分なアクセス許可がない場合、コマンドは失敗します。 |
 
 > [!TIP]
@@ -216,7 +216,7 @@ with (fileExtension = ".txt")
 
 **サンプル出力**
 
-|TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
+|TableName|TableType|Folder|DocString|プロパティ|ConnectionStrings|メジャー グループ|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
 |ExternalTable|BLOB|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
 
@@ -264,13 +264,13 @@ dataformat=parquet
 指定された外部テーブルに対してクエリを実行するときに処理されるすべてのファイルの一覧を返します。
 
 > [!NOTE]
-> 操作には、[データベースユーザーのアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
+> 操作には、 [データベースユーザーのアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
 **構文 :** 
 
 `.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults*]
 
-ここで、 *MaxResults*は省略可能なパラメーターであり、結果の数を制限するように設定できます。
+ここで、 *MaxResults* は省略可能なパラメーターであり、結果の数を制限するように設定できます。
 
 **出力**
 
@@ -297,7 +297,7 @@ dataformat=parquet
 
 `.create``external` `table` *Externaltablename* `json` `mapping` *MappingName* *MappingInJsonFormat*
 
-新しいマッピングを作成します。 詳細については、「[データのマッピング](./mappings.md#json-mapping)」を参照してください。
+新しいマッピングを作成します。 詳細については、「 [データのマッピング](./mappings.md#json-mapping)」を参照してください。
 
 **例** 
  

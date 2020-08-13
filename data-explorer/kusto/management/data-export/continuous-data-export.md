@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/03/2020
-ms.openlocfilehash: ef8c0505c7bc26139d7a881ac0cc716395d3d497
-ms.sourcegitcommit: c7b16409995087a7ad7a92817516455455ccd2c5
+ms.openlocfilehash: fab1f41fc4b72b497900276d33beb1b89820c02c
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88148151"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201623"
 ---
 # <a name="continuous-data-export-overview"></a>継続的なデータエクスポートの概要
 
@@ -94,4 +94,5 @@ ms.locfileid: "88148151"
 * 連続エクスポートは `impersonate` 、の [接続文字列](../../api/connection-strings/storage.md)に含まれる外部テーブルではサポートされていません。
 * 連続エクスポートは、データベース間およびクラスター間の呼び出しをサポートしていません。
 * 連続エクスポートは、Azure データエクスプローラーから継続的にデータをストリーミングするように設計されていません。 連続エクスポートは分散モードで実行され、すべてのノードが同時にエクスポートされます。 各実行によってクエリされるデータの範囲が小さい場合、連続エクスポートの出力は多数の小さな成果物になります。 成果物の数は、クラスター内のノードの数によって異なります。
-* 連続エクスポートによって使用されるアーティファクトが Event Grid 通知をトリガーするように設計されている場合は、Event Grid のドキュメントの「 [既知の問題」セクション](../data-ingestion/eventgrid.md#known-issues)を参照してください。
+* 連続エクスポートによって使用されるアーティファクトが Event Grid 通知をトリガーするように設計されている場合は、Event Grid のドキュメントの「 [既知の問題」セクション](../../../ingest-data-event-grid-overview.md#known-event-grid-issues)を参照してください。
+ 

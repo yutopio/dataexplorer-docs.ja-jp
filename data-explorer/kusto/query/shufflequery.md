@@ -8,24 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e011ffa61b70c79d51941518de0624030d847c4e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d3625be5a3a97b456a2d6d84802b11602f959f3e
+ms.sourcegitcommit: bb7c2ba9f9dcae08710be2345ee6e63004629ea1
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351099"
+ms.lasthandoff: 08/14/2020
+ms.locfileid: "88218981"
 ---
 # <a name="shuffle-query"></a>クエリのシャッフル
 
 シャッフルクエリは、シャッフル戦略をサポートする一連の演算子に対するセマンティック保持変換です。 実際のデータによっては、このクエリのパフォーマンスが大幅に向上する可能性があります。
 
-Kusto でシャッフルをサポートする演算子は、[結合](joinoperator.md)、[集計](summarizeoperator.md)、および[シリーズ](make-seriesoperator.md)です。
+Kusto でシャッフルをサポートする演算子は、 [結合](joinoperator.md)、 [集計](summarizeoperator.md)、および [シリーズ](make-seriesoperator.md)です。
 
 クエリパラメーターまたはを使用してシャッフルクエリ方法を設定し `hint.strategy = shuffle` `hint.shufflekey = <key>` ます。
-
-テーブルで[データのパーティション分割ポリシー](../management/partitioningpolicy.md)を定義します。 
-
-`shufflekey`クラスターノード間を移動するために必要なデータの量が少なくなるため、パフォーマンスを向上させるためにテーブルのハッシュパーティションキーとして設定します。
 
 ## <a name="syntax"></a>構文
 
@@ -52,7 +48,7 @@ T
 
 **ヒントの相違点。方法 = シャッフルとヒント. shufflekey = キー**
 
-`hint.strategy=shuffle`は、シャッフルされた演算子がすべてのキーでシャッフルされることを意味します。
+`hint.strategy=shuffle` は、シャッフルされた演算子がすべてのキーでシャッフルされることを意味します。
 たとえば、次のクエリでは次のようになります。
 
 ```kusto

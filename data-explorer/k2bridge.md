@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/12/2020
-ms.openlocfilehash: 8a4a4e68333255c322708993b1c9429a89ae7a00
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: bf479a7248033d2aa70a8e09b039814361c78031
+ms.sourcegitcommit: bcd0c96b1581e43e33aa35f4d68af6dcb4979d39
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373765"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88039235"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-kibana-with-the-k2bridge-open-source-connector"></a>K2Bridge オープンソース コネクタを使用して Kibana で Azure Data Explorer のデータを視覚化する
 
@@ -102,7 +102,7 @@ Kibana で Azure Data Explorer のデータを視覚化するには、事前に�
 
         「[構成](https://github.com/microsoft/K2Bridge/blob/master/docs/configuration.md)」では、構成オプションの完全なセットを見つけることができます。
 
-    1. 前のコマンドの出力では、Kibana をデプロイする次の Helm コマンドが提案されます。 必要に応じて、次のコマンドを実行します。
+    1. <a name="install-kibana-service"></a> 前のコマンドの出力では、Kibana をデプロイする次の Helm コマンドが提案されます。 必要に応じて、次のコマンドを実行します。
 
         ```bash
         helm install kibana elastic/kibana -n k2bridge --set image=docker.elastic.co/kibana/kibana-oss --set imageTag=6.8.5 --set elasticsearchHosts=http://k2bridge:8080
@@ -118,7 +118,7 @@ Kibana で Azure Data Explorer のデータを視覚化するには、事前に�
 
     1. Kibana をユーザーに公開します。 そのためには複数の方法があります。 使用する方法は、ユース ケースによって大きく異なります。
 
-        たとえば、サービスをロード バランサー サービスとして公開できます。 これを行うには、 **--set service. type = LoadBalancer** パラメーターを[以前の K2Bridge Helm **インストール** コマンド](#install-k2bridge-chart)に追加します。
+        たとえば、サービスをロード バランサー サービスとして公開できます。 これを行うには、 **--set service. type = LoadBalancer** パラメーターを[以前の Kibana Helm **インストール** コマンド](#install-kibana-service)に追加します。
 
         その後、次のコマンドを実行します。
 
@@ -133,7 +133,7 @@ Kibana で Azure Data Explorer のデータを視覚化するには、事前に�
         kibana-kibana   LoadBalancer   xx.xx.xx.xx    <pending>     5601:30128/TCP   4m24s
         ```
 
-        生成され表示された EXTERNAL-IP 値を使用できます。 これを使用して Kibana にアクセスするには、ブラウザーを開き、\<EXTERNAL-IP\>:5601 に移動します。
+        生成され表示された EXTERNAL-IP 値を使用できます。 これを使用して Kibana にアクセスするには、ブラウザーを開き、\<EXTERNAL-IP\>:5601 に移動します
 
 1. データにアクセスするためのインデックス パターンを構成します。
 

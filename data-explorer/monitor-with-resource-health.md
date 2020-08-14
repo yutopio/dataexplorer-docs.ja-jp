@@ -7,12 +7,12 @@ ms.reviewer: prvavill
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/31/2020
-ms.openlocfilehash: 9b8b1b40e972d7719ef2cf495ed12cb4ed3478fd
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 297779b6431c15436e175a3269b2291340c51b79
+ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492415"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "88028529"
 ---
 # <a name="monitor-azure-data-explorer-using-resource-health-preview"></a>Resource Health を使用して Azure Data Explorer を監視する (プレビュー)
 
@@ -47,6 +47,9 @@ Resource Health では、次のようなさまざまな正常性の状態を調�
 **使用不可**の正常性状態は、クエリやインジェストを実行できなくなるような問題が Azure Data Explorer リソースに発生していることを示します。 たとえば、Azure Data Explorer リソースのノードが予期せず再起動されたようなケースが該当します。 Azure Data Explorer リソースが長期間この状態のままである場合は、[サポート]()に問い合わせてください。
 
 ![使用不可](media/monitor-with-resource-health/unavailable.png)
+
+> [!TIP]
+> [システム情報コマンド](kusto/management/systeminfo.md)を使用して、問題の原因を見つけることができます。
 
 ### <a name="unknown"></a>Unknown
 

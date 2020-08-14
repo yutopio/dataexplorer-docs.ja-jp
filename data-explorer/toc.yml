@@ -44,7 +44,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: Security
+    - name: セキュリティ
       items:
         - name: セキュリティの概要
           href: security.md
@@ -1460,7 +1460,21 @@
             - name: 外部テーブルへ
               href: ./kusto/management/data-export/export-data-to-an-external-table.md
             - name: 継続的データ エクスポート
-              href: ./kusto/management/data-export/continuous-data-export.md
+              items:
+                - name: 概要
+                  href: ./kusto/management/data-export/continuous-data-export.md
+                - name: 連続エクスポートの作成または変更
+                  href: ./kusto/management/data-export/create-alter-continuous.md
+                - name: 連続エクスポートの無効化または有効化
+                  href: ./kusto/management/data-export/disable-enable-continuous.md
+                - name: 連続エクスポートの削除
+                  href: ./kusto/management/data-export/drop-continuous-export.md
+                - name: 連続エクスポートの表示
+                  href: ./kusto/management/data-export/show-continuous-export.md
+                - name: 連続エクスポートの成果物の表示
+                  href: ./kusto/management/data-export/show-continuous-artifacts.md
+                - name: 連続エクスポートの失敗の表示
+                  href: ./kusto/management/data-export/show-continuous-failures.md
         - name: データベース カーソル
           href: ./kusto/management/databasecursor.md
         - name: クエリ結果のキャッシュ

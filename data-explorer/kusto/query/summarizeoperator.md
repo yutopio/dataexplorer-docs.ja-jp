@@ -8,22 +8,23 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: a200d0619b25fe7410a82a941a3b1bf6e35d60ac
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 19f86e4973a2822de6f25e38edb07ccd8fbda9d1
+ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87342616"
+ms.lasthandoff: 08/16/2020
+ms.locfileid: "88260118"
 ---
 # <a name="summarize-operator"></a>summarize 演算子
 
 入力テーブルの内容を集計したテーブルを生成します。
 
 ```kusto
-T | summarize count(), avg(price) by fruit, supplier
+Sales | summarize NumTransactions=count(), Total=sum(UnitPrice * NumUnits) by Fruit, StartOfMonth=startofmonth(SellDateTime)
 ```
 
-各仕入先の各果物の数と平均価格を示すテーブル。 果物と supplier の個別の組み合わせごとに、出力に行があります。 出力列には、count、average price、果物、および supplier が表示されます。 他のすべての入力列は無視されます。
+販売トランザクションの数と、果物と販売月ごとの合計金額を含むテーブルを返します。
+出力列には、トランザクションの数、トランザクションの価値、果物、およびトランザクションが記録された月の開始日の日時が表示されます。
 
 ```kusto
 T | summarize count() by price_range=bin(price, 10.0)
@@ -33,16 +34,17 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 ## <a name="syntax"></a>構文
 
-*T* `| summarize` [[*列* `=` ]*集計*[ `,` ...]] [ `by` [*列* `=` ] *groupexpression* [ `,` ...]]
+*T* `| summarize` [[*列* `=` ] *集計* [ `,` ...]] [ `by` [*列* `=` ] *groupexpression* [ `,` ...]]
 
 ## <a name="arguments"></a>引数
 
 * *Column:* 結果列の省略可能な名前。 既定値は式から派生した名前です。
-* *集計:* 列名を引数として持つ、やなどの[集計関数](summarizeoperator.md#list-of-aggregation-functions)の呼び出し `count()` `avg()` 。 [集計関数のリスト](summarizeoperator.md#list-of-aggregation-functions)を参照してください。
-* *GroupExpression:* 列に対する式です。個別の値のセットを示します。 通常は、限られた値のセットが既に指定されている列名か、引数として数値列または時間列が指定されている `bin()` になります。 
+* *集計:* 列名を引数として持つ、やなどの [集計関数](summarizeoperator.md#list-of-aggregation-functions) の呼び出し `count()` `avg()` 。 [集計関数のリスト](summarizeoperator.md#list-of-aggregation-functions)を参照してください。
+* *Groupexpression:* 入力データを参照できるスカラー式。
+  出力には、すべてのグループ式の個別の値と同じ数のレコードが含まれます。
 
 > [!NOTE]
-> 入力テーブルが空の場合、出力は*Groupexpression*が使用されているかどうかによって異なります。
+> 入力テーブルが空の場合、出力は *Groupexpression* が使用されているかどうかによって異なります。
 >
 > * *Groupexpression*が指定されていない場合、出力は単一の (空の) 行になります。
 > * *Groupexpression*を指定した場合、出力には行が含まれません。
@@ -67,13 +69,13 @@ T | summarize count() by price_range=bin(price, 10.0)
 |[anyif()](anyif-aggfunction.md)|グループに対して空でないランダムな値 (述語を含む) を返します。|
 |[arg_max()](arg-max-aggfunction.md)|引数が最大化されている場合に1つ以上の式を返します|
 |[arg_min()](arg-min-aggfunction.md)|引数が最小化されている場合に1つ以上の式を返します|
-|[avg ()](avg-aggfunction.md)|グループ全体の平均値を返します|
+|[avg()](avg-aggfunction.md)|グループ全体の平均値を返します|
 |[avgif()](avgif-aggfunction.md)|グループ全体の平均値を返します (述語を含む)|
 |[binary_all_and](binary-all-and-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `AND`|
 |[binary_all_or](binary-all-or-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `OR`|
 |[binary_all_xor](binary-all-xor-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `XOR`|
 |[buildschema()](buildschema-aggfunction.md)|入力のすべての値を制御する最小限のスキーマを返します。 `dynamic`|
-|[count ()](count-aggfunction.md)|グループの数を返します|
+|[count()](count-aggfunction.md)|グループの数を返します|
 |[countif()](countif-aggfunction.md)|グループの述語を使用してカウントを返します。|
 |[dcount()](dcount-aggfunction.md)|グループ要素の概数を返します。|
 |[dcountif()](dcountif-aggfunction.md)|グループ要素の概数を返します (述語を含む)|
@@ -92,9 +94,9 @@ T | summarize count() by price_range=bin(price, 10.0)
 |[percentiles_array ()](percentiles-aggfunction.md)|グループのパーセンタイル近似を返します。|
 |[percentilesw()](percentiles-aggfunction.md)|グループの加重パーセンタイルの概数を返します|
 |[percentilesw_array ()](percentiles-aggfunction.md)|グループの加重パーセンタイル近似を返します。|
-|[stdev ()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
+|[stdev()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
 |[stdevif()](stdevif-aggfunction.md)|グループ全体の標準偏差を返します (述語を含む)|
-|[sum ()](sum-aggfunction.md)|グループので要素の合計を返します。|
+|[sum()](sum-aggfunction.md)|グループので要素の合計を返します。|
 |[sumif()](sumif-aggfunction.md)|グループので要素の合計を返します (述語を含む)|
 |[variance()](variance-aggfunction.md)|グループ間の分散を返します。|
 |[varianceif()](varianceif-aggfunction.md)|グループ間の分散を返します (述語を含む)|

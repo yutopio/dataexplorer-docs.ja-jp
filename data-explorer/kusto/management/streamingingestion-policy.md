@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 6f7efe2916bc5c5344bf4a6c4fa4a60bfaa167b7
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: f51a68fc90237c4213c0135ade4724446800dea9
+ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967351"
+ms.lasthandoff: 08/16/2020
+ms.locfileid: "88259893"
 ---
 # <a name="streaming-ingestion-policy-command"></a>ストリーミングインジェストポリシーコマンド
 
 ストリーミングインジェストポリシーをテーブルに設定して、このテーブルへのストリーミングインジェストを許可することができます。 また、データベースレベルでポリシーを設定して、現在のテーブルと将来のテーブルの両方に同じ設定を適用することもできます。
 
-詳細については、「[ストリーミングインジェスト](../../ingest-data-streaming.md)」を参照してください。 ストリーミングインジェストポリシーの詳細については、[ストリーミングインジェストポリシー](streamingingestionpolicy.md)に関するページを参照してください。
+詳細については、「 [ストリーミングインジェスト](../../ingest-data-streaming.md)」を参照してください。 ストリーミングインジェストポリシーの詳細については、 [ストリーミングインジェストポリシー](streamingingestionpolicy.md)に関するページを参照してください。
 
 ## <a name="display-the-policy"></a>ポリシーを表示する
 
@@ -67,9 +67,9 @@ ms.locfileid: "85967351"
 >
 > * ポリシーの他のプロパティを変更したり、エンティティでポリシーが定義されていない場合は、プロパティを既定値に設定したりしなくても、ストリーミングインジェストの有効/無効の状態を変更できます。
 >
-> * エンティティのストリーミングインジェストポリシー全体を置き換えることができます。 [ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object)には、すべての必須プロパティが含まれている必要があります。
+> * エンティティのストリーミングインジェストポリシー全体を置き換えることができます。 [ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object) には、すべての必須プロパティが含まれている必要があります。
 >
-> * エンティティのストリーミングインジェストポリシーの指定したプロパティのみを置き換えることができます。 [ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object)には、必須プロパティの一部またはすべてを含めることができます。
+> * エンティティのストリーミングインジェストポリシーの指定したプロパティのみを置き換えることができます。 [ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object) には、必須プロパティの一部またはすべてを含めることができます。
 
 **戻り値**
 
@@ -84,7 +84,7 @@ ms.locfileid: "85967351"
 
 .alter database DB1 policy streamingingestion '{"IsEnabled": true, "HintAllocatedRate": 2.1}'
 
-.alter table T1 streamingingestion '{"IsEnabled": true}'
+.alter table T1 policy streamingingestion '{"IsEnabled": true}'
 
 .alter-merge database DB1 policy streamingingestion '{"IsEnabled": false}'
 
@@ -101,7 +101,7 @@ ms.locfileid: "85967351"
 
 **戻り値**
 
-このコマンドは、テーブルまたはデータベースの streamingingestion ポリシーオブジェクトを削除し、対応する[show policy streamingingestion](#display-the-policy)コマンドの出力を返します。
+このコマンドは、テーブルまたはデータベースの streamingingestion ポリシーオブジェクトを削除し、対応する [show policy streamingingestion](#display-the-policy) コマンドの出力を返します。
 
 **使用例**
 
@@ -115,7 +115,7 @@ ms.locfileid: "85967351"
 
 ストリーミングインジェストポリシーオブジェクトは、管理コマンドの入力と出力で、次のプロパティを含む JSON 形式の文字列です。
 
-|プロパティ|Type|説明|必須/オプション
+|プロパティ|Type|説明|必須/省略可能
 |---|---|---|---
 |IsEnabled|`bool`|エンティティのストリーミングインジェストが有効になっている| 必須
 |HintAllocatedRate|`double`|データはの推定速度 (Gb/時間)|オプション

@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: b85ec79c962ab4e63c0831f415ee7c3f2074c970
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 89fc499e0e74bcd521c8c2fbc7c2038536c097da
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350096"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201566"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-python-preview"></a>Python を使用して Azure Data Explorer 用に IoT Hub データ接続を作成する (プレビュー)
 
@@ -22,20 +22,16 @@ ms.locfileid: "87350096"
 > * [Python](data-connection-iot-hub-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-iot-hub-resource-manager.md)
 
-この記事では、Python を使用して Azure Data Explorer 用に IoT Hub データ接続を作成します。 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer では、Event Hubs、IoT Hub、および BLOB コンテナーに書き込まれた BLOB からの取り込み (データの読み込み) が提供されます。
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+この記事では、Python を使用して Azure Data Explorer 用に IoT Hub データ接続を作成します。 
 
 ## <a name="prerequisites"></a>前提条件
 
 * アクティブなサブスクリプションが含まれる Azure アカウント。 [無料でアカウントを作成できます](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)。
-
 * [Python 3.4 以上](https://www.python.org/downloads/)。
-
 * [クラスターとデータベース](create-cluster-database-python.md)。
-
 * [テーブルと列のマッピング](net-standard-ingest-data.md#create-a-table-on-your-test-cluster)。
-
 * [データベースとテーブルのポリシー](database-table-policies-python.md) (省略可能)。
-
 * [共有アクセス ポリシーが構成されている IoT ハブ](ingest-data-iot-hub.md#create-an-iot-hub)。
 
 [!INCLUDE [data-explorer-data-connection-install-package-python](includes/data-explorer-data-connection-install-package-python.md)]

@@ -7,12 +7,12 @@ ms.reviewer: ankhanol
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/05/2020
-ms.openlocfilehash: 23f25ca0d32cf241f25a9ac09081dd6c77e072f2
-ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
+ms.openlocfilehash: 39bddff724d30e19f240a25fe3a277fd2151d81e
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87877092"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201342"
 ---
 # <a name="business-continuity-and-disaster-recovery-overview"></a>事業継続とディザスター リカバリーの概要
 
@@ -121,7 +121,7 @@ Azure Data Explorer では、Azure リージョン全体の停止に対する自
 
 ### <a name="on-demand-data-recovery-configuration"></a>オンデマンド データ復旧構成
 
-このソリューションでは、最低限の回復性 (最も高い RPO と RTO) が提供され、コストが最も低く、労力が最も高くなります。 この構成では、データ復旧クラスターはありません。 GRS (geo 冗長ストレージ) が構成されているストレージ アカウントへのキュレートされたデータの連続エクスポートを構成します (生データと中間データも必要な場合を除く)。 ディザスター リカバリー シナリオがある場合は、データ復旧クラスターがスピンアップされます。 その時点で、DDL、構成、ポリシー、プロセスが適用されます。 データはインジェスト プロパティ [kustoCreationTime](kusto/management/data-ingestion/eventgrid.md) を使用してストレージから取り込まれ、既定でシステム時刻に設定されているインジェスト時間がオーバーライドされます。 
+このソリューションでは、最低限の回復性 (最も高い RPO と RTO) が提供され、コストが最も低く、労力が最も高くなります。 この構成では、データ復旧クラスターはありません。 GRS (geo 冗長ストレージ) が構成されているストレージ アカウントへのキュレートされたデータの連続エクスポートを構成します (生データと中間データも必要な場合を除く)。 ディザスター リカバリー シナリオがある場合は、データ復旧クラスターがスピンアップされます。 その時点で、DDL、構成、ポリシー、プロセスが適用されます。 データはインジェスト プロパティ [kustoCreationTime](ingest-data-event-grid-overview.md) を使用してストレージから取り込まれ、既定でシステム時刻に設定されているインジェスト時間がオーバーライドされます。 
 
 :::image type="content" source="media/business-continuity-overview/on-demand-data-recovery-cluster.png" alt-text="オンデマンド データ復旧クラスター構成":::
 

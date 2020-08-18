@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
-ms.openlocfilehash: e6b329380d507e93161415f51515656628564500
-ms.sourcegitcommit: bf2c9da0c23ebcaec19b229d2079032d54a2cc82
+ms.openlocfilehash: d46455fcce2880c4f347d04125a9f6355cb4cffa
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "86140539"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201543"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Azure Data Explorer のデータ インジェスト概要 
 
@@ -115,9 +115,9 @@ Kusto クエリ言語 (KQL) のコマンドを使用してデータをエンジ�
 | [**LogStash**](ingest-data-logstash.md) | | | | |
 | [**Azure Data Factory**](kusto/tools/azure-data-factory.md) | [サポートされるデータ形式](/azure/data-factory/copy-activity-overview#supported-data-stores-and-formats) | 無制限 *(ADF あたりの制限) | バッチ処理または ADF トリガーごと | 通常はサポートされていない形式、大規模なファイルをサポートしています。また、オンプレミスからクラウドに 90 を超えるソースをコピーできます。 | インジェストの時間 |
 |[ **Azure Data Flow**](kusto/tools/flow.md) | | | | フローの一部としてのインジェスト コマンド| 高パフォーマンスの応答時間が必要 |
-| [**IoT Hub**](kusto/management/data-ingestion/iothub.md) | [サポートされるデータ形式](kusto/management/data-ingestion/iothub.md#data-format)  | 該当なし | バッチ処理、ストリーミング | IoT メッセージ、IoT イベント、IoT プロパティ | |
-| [**イベント ハブ**](kusto/management/data-ingestion/eventhub.md) | [サポートされるデータ形式](kusto/management/data-ingestion/eventhub.md#data-format) | 該当なし | バッチ処理、ストリーミング | メッセージ、イベント | |
-| [**Event Grid**](kusto/management/data-ingestion/eventgrid.md) | [サポートされるデータ形式](kusto/management/data-ingestion/eventgrid.md#data-format) | 非圧縮で 1 GB | バッチ処理 | Azure ストレージからの継続的なインジェスト、Azure ストレージ内の外部データ | 100 KB が最適なファイル サイズ。BLOB の名前変更と BLOB の作成に使用される |
+| [**IoT Hub**](ingest-data-iot-hub-overview.md) | [サポートされるデータ形式](ingest-data-iot-hub-overview.md#data-format)  | 該当なし | バッチ処理、ストリーミング | IoT メッセージ、IoT イベント、IoT プロパティ | |
+| [**イベント ハブ**](ingest-data-event-hub-overview.md) | [サポートされるデータ形式](ingest-data-event-hub-overview.md#data-format) | 該当なし | バッチ処理、ストリーミング | メッセージ、イベント | |
+| [**Event Grid**](ingest-data-event-grid-overview.md) | [サポートされるデータ形式](ingest-data-event-grid-overview.md#data-format) | 非圧縮で 1 GB | バッチ処理 | Azure ストレージからの継続的なインジェスト、Azure ストレージ内の外部データ | 100 KB が最適なファイル サイズ。BLOB の名前変更と BLOB の作成に使用される |
 | [**Net Std**](net-standard-ingest-data.md) | すべての形式がサポートされる | 非圧縮で 1 GB (注を参照) | バッチ処理、ストリーミング、直接 | 組織のニーズに合わせて独自のコードを作成する |
 | [**Python**](python-ingest-data.md) | すべての形式がサポートされる | 非圧縮で 1 GB (注を参照) | バッチ処理、ストリーミング、直接 | 組織のニーズに合わせて独自のコードを作成する |
 | [**Node.js**](node-ingest-data.md) | すべての形式がサポートされる | 非圧縮で 1 GB (注を参照) | バッチ処理、ストリーミング、直接 | 組織のニーズに合わせて独自のコードを作成する |

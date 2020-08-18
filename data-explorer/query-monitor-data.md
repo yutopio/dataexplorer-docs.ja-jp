@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/28/2020
-ms.openlocfilehash: d4f9fe945281eb61c1d1e685d0c2689585951926
-ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
+ms.openlocfilehash: 9efbceafa20b1807b5c3cfd89a288bc9b704a086
+ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86870109"
+ms.lasthandoff: 08/16/2020
+ms.locfileid: "88260090"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Azure Data Explorer を使用して Azure Monitor でデータのクエリを実行する (プレビュー)
 
@@ -107,8 +107,6 @@ Azure Data Explorer プロキシ クラスターでは、Application Insights �
 
   [ ![Azure Data Explorer の Web UI から表形式関数のクエリを実行する](media/adx-proxy/function-query-adx-proxy.png)](media/adx-proxy/function-query-adx-proxy.png#lightbox)
 
-> [!NOTE]
-> Azure Monitor は表形式の関数のみをサポートします。 表形式関数ではパラメーターはサポートされていません。
 
 ## <a name="additional-syntax-examples"></a>その他の構文例
 

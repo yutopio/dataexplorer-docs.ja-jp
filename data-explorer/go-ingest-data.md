@@ -1,18 +1,18 @@
 ---
 title: Azure Data Explorer Go SDK を使用してデータを取り込む
 description: この記事では、Go SDK を使用して Azure Data Explorer にデータを取り込む (読み込む) 方法について学習します。
-author: abhirockzz
-ms.author: abhishgu
-ms.reviewer: orspodek
+author: orspod
+ms.author: orspodek
+ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/10/2020
-ms.openlocfilehash: 38063f3e00ebd22da17d48abba1dd9b3510273ec
-ms.sourcegitcommit: bcd0c96b1581e43e33aa35f4d68af6dcb4979d39
+ms.openlocfilehash: 010ee029c4f16248b0f9249d7331da436439cdc0
+ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88039718"
+ms.lasthandoff: 08/11/2020
+ms.locfileid: "88072363"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-go-sdk"></a>Azure Data Explorer Go SDK 使用してデータを取り込む 
 

@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/28/2019
-ms.openlocfilehash: b5196e126ffa36e3d767bfaacb79ce819ff9fa29
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9b832fb9bc70744c428498220f1acc28053ad0d9
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350181"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201263"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用して Azure Data Explorer 用に Event Grid データ接続を作成する
 
@@ -22,8 +22,8 @@ ms.locfileid: "87350181"
 > * [Python](data-connection-event-grid-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)
 
-
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer では、BLOB コンテナーに書き込まれた Event Hubs、IoT Hub、BLOB からのインジェスト (データの読み込み) を提供します。 この記事では、Azure Resource Manager テンプレートを使用して Azure Data Explorer 用に Event Grid データ接続を作成します。
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+この記事では、Azure Resource Manager テンプレートを使用して Azure Data Explorer 用に Event Grid データ接続を作成します。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -31,7 +31,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 * [クラスターとデータベース](create-cluster-database-portal.md)を作成します
 * [テーブルと列のマッピング](ingest-data-event-grid.md#create-a-target-table-in-azure-data-explorer)を作成します
 * [イベント ハブ](/azure/event-hubs/event-hubs-create)を作成します
-* [Event Grid サブスクリプションでストレージ アカウント](../data-explorer/kusto/management/data-ingestion/eventgrid.md#create-an-event-grid-subscription-in-your-storage-account)を作成します
+* [Event Grid サブスクリプションでストレージ アカウント](ingest-data-event-grid.md)を作成します
 
 ## <a name="azure-resource-manager-template-for-adding-an-event-grid-data-connection"></a>Event Grid データ接続を追加するための Azure Resource Manager テンプレート
 

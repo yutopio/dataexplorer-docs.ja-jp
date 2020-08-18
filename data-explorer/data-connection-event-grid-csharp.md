@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: a93b29d6557afa435cacbbeeb43b685c0dfbf3af
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 597eb522da9e3cb383cb3c0aad5ccc7c78de6ce3
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350215"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201393"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-c"></a>C# を使用して Azure Data Explorer 用に Event Grid データ接続を作成する
 
@@ -23,7 +23,8 @@ ms.locfileid: "87350215"
 > * [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)
 
 
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer では、BLOB コンテナーに書き込まれた Event Hubs、IoT Hub、BLOB からのインジェスト (データの読み込み) を提供します。 この記事では、C# を使用して Azure Data Explorer 用に Event Grid データ接続を作成します。
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+ この記事では、C# を使用して Azure Data Explorer 用に Event Grid データ接続を作成します。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -32,7 +33,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 * [クラスターとデータベース](create-cluster-database-csharp.md)を作成します
 * [テーブルと列のマッピング](net-standard-ingest-data.md#create-a-table-on-your-test-cluster)を作成します
 * [データベースとテーブルのポリシー](database-table-policies-csharp.md) (オプション) を設定します
-* [Event Grid サブスクリプションでストレージ アカウント](../data-explorer/kusto/management/data-ingestion/eventgrid.md#create-an-event-grid-subscription-in-your-storage-account)を作成します
+* [Event Grid サブスクリプションでストレージ アカウント](ingest-data-event-grid.md)を作成します
 
 [!INCLUDE [data-explorer-data-connection-install-nuget-csharp](includes/data-explorer-data-connection-install-nuget-csharp.md)]
 

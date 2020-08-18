@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: 8d09782d29377d702b80fa9e049fa578a92ccd47
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d71dabaa3ed597b641d0e16c2ff152779fda2d53
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350164"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201375"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-c"></a>C# を使用して Azure Data Explorer 用にイベント ハブ データ接続を作成する
 
@@ -22,7 +22,8 @@ ms.locfileid: "87350164"
 > * [Python](data-connection-event-hub-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-event-hub-resource-manager.md)
 
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer では、BLOB コンテナーに書き込まれた Event Hubs、IoT Hub、BLOB からのインジェスト (データの読み込み) を提供します。 この記事では、C# を使用して Azure Data Explorer 用にイベント ハブ データ接続を作成します。
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+この記事では、C# を使用して Azure Data Explorer 用にイベント ハブ データ接続を作成します。
 
 ## <a name="prerequisites"></a>前提条件
 

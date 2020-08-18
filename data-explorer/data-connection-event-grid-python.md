@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: f86b9ed21a0d818214d2193dbfa902b3a98809ba
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5bf7d894acc5111a43f8078874f0465f9616a166
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350198"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201478"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-python"></a>Python を使用して Azure Data Explorer 用に Event Grid データ接続を作成する
 
@@ -22,21 +22,17 @@ ms.locfileid: "87350198"
 > * [Python](data-connection-event-grid-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)
 
-この記事では、Python を使用して Azure Data Explorer 用に Event Grid データ接続を作成します。 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer では、Event Hubs、IoT Hub、および BLOB コンテナーに書き込まれた BLOB からの取り込み (データの読み込み) が提供されます。
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+この記事では、Python を使用して Azure Data Explorer 用に Event Grid データ接続を作成します。
 
 ## <a name="prerequisites"></a>前提条件
 
 * アクティブなサブスクリプションが含まれる Azure アカウント。 [無料で作成できます](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)。
-
 * [Python 3.4 以上](https://www.python.org/downloads/)。
-
 * [クラスターとデータベース](create-cluster-database-python.md)。
-
 * [テーブルと列のマッピング](net-standard-ingest-data.md#create-a-table-on-your-test-cluster)。
-
 * [データベースとテーブルのポリシー](database-table-policies-csharp.md) (省略可能)。
-
-* [Event Grid サブスクリプションのあるストレージ アカウント](../data-explorer/kusto/management/data-ingestion/eventgrid.md#create-an-event-grid-subscription-in-your-storage-account)。
+* [Event Grid サブスクリプションのあるストレージ アカウント](ingest-data-event-grid.md)。
 
 [!INCLUDE [data-explorer-data-connection-install-package-python](includes/data-explorer-data-connection-install-package-python.md)]
 

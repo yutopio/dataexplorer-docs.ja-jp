@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: b035af95e60272daeb97365f50cb3168531a34db
-ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
+ms.openlocfilehash: 652b08afc15d1405d6b7f17523088ed0ec5bef61
+ms.sourcegitcommit: 31ebf208d6bfd901f825d048ea69c9bb3d8b87af
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "88072431"
+ms.lasthandoff: 08/17/2020
+ms.locfileid: "88501622"
 ---
 # <a name="scalar-function-types"></a>スカラー関数の種類
 
@@ -36,7 +36,7 @@ ms.locfileid: "88072431"
 |[tobool()](toboolfunction.md)|入力をブール値 (符号付き8ビット) 表現に変換します。|
 |[todatetime()](todatetimefunction.md)|入力を datetime スカラーに変換します。|
 |[todouble ()/再生 ()](todoublefunction.md)|入力を real 型の値に変換します。 (todouble () と、は、シノニムです)。|
-|[tostring()](tostringfunction.md)|入力を文字列形式に変換します。|
+|[tostring ()](tostringfunction.md)|入力を文字列形式に変換します。|
 |[totimespan()](totimespanfunction.md)|入力を timespan スカラーに変換します。|
 
 ## <a name="datetimetimespan-functions"></a>DateTime/timespan 関数
@@ -44,9 +44,9 @@ ms.locfileid: "88072431"
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[ago()](agofunction.md)|現在の UTC 時刻から指定された期間を減算します。|
-|[datetime_add()](datetime-addfunction.md)|指定された datetime に加算された、指定した datepart から指定された量を乗算した新しい datetime を計算します。|
-|[datetime_part()](datetime-partfunction.md)|要求された日付部分を整数値として抽出します。|
-|[datetime_diff()](datetime-difffunction.md)|指定されている場合、オフセットでシフトした日付を含む年の最後の日付を返します。|
+|[datetime_add ()](datetime-addfunction.md)|指定された datetime に加算された、指定した datepart から指定された量を乗算した新しい datetime を計算します。|
+|[datetime_part ()](datetime-partfunction.md)|要求された日付部分を整数値として抽出します。|
+|[datetime_diff ()](datetime-difffunction.md)|指定されている場合、オフセットでシフトした日付を含む年の最後の日付を返します。|
 |[dayofmonth()](dayofmonthfunction.md)|指定された月の日を表す整数値を返します。|
 |[dayofweek()](dayofweekfunction.md)|前の日曜日からの日数を timespan として返します。|
 |[dayofyear()](dayofyearfunction.md)|指定された年の日番号を表す整数を返します。|
@@ -80,11 +80,11 @@ ms.locfileid: "88072431"
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
-|[array_concat()](arrayconcatfunction.md)|複数の動的配列を連結して1つの配列にします。|
+|[array_concat ()](arrayconcatfunction.md)|複数の動的配列を連結して1つの配列にします。|
 |[array_iif()](arrayifffunction.md)|配列に要素ごとの iif 関数を適用します。|
 |[array_index_of()](arrayindexoffunction.md)|指定した項目を配列内で検索し、その位置を返します。|
-|[array_length()](arraylengthfunction.md)|動的配列内の要素の数を計算します。|
-|[array_slice()](arrayslicefunction.md)|動的配列のスライスを抽出します。|
+|[array_length ()](arraylengthfunction.md)|動的配列内の要素の数を計算します。|
+|[array_slice ()](arrayslicefunction.md)|動的配列のスライスを抽出します。|
 |[array_split()](arraysplitfunction.md)|入力配列から分割された配列の配列を構築します。|
 |[bag_keys()](bagkeysfunction.md)|動的プロパティバッグオブジェクト内のすべてのルートキーを列挙します。|
 |[pack()](packfunction.md)|名前と値のリストから動的オブジェクト (プロパティバッグ) を作成します。|
@@ -102,7 +102,7 @@ ms.locfileid: "88072431"
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
-|[next()](nextfunction.md)|シリアル化された行セットの場合、はオフセットに従って、後の行から指定された列の値を返します。|
+|[次へ ()](nextfunction.md)|シリアル化された行セットの場合、はオフセットに従って、後の行から指定された列の値を返します。|
 |[prev()](prevfunction.md)|シリアル化された行セットの場合、はオフセットに従って前の行から指定された列の値を返します。|
 |[row_cumsum()](rowcumsumfunction.md)|列の累積合計を計算します。|
 |[row_number()](rownumberfunction.md)|指定されたインデックスから始まる連続した数値、または既定で1から始まる、シリアル化された行セット内の行の番号を返します。|
@@ -117,40 +117,40 @@ ms.locfileid: "88072431"
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
-|[abs()](abs-function.md)|入力の絶対値を計算します。|
-|[acos()](acosfunction.md)|コサインが指定された数値 (cos () の逆演算) である角度を返します。|
-|[asin()](asinfunction.md)|サインが指定された数値 (sin () の逆演算) である角度を返します。|
-|[atan()](atanfunction.md)|タンジェントが指定された数 (tan () の逆演算) である角度を返します。|
+|[abs ()](abs-function.md)|入力の絶対値を計算します。|
+|[acos ()](acosfunction.md)|コサインが指定された数値 (cos () の逆演算) である角度を返します。|
+|[アークサイン ()](asinfunction.md)|サインが指定された数値 (sin () の逆演算) である角度を返します。|
+|[atan ()](atanfunction.md)|タンジェントが指定された数 (tan () の逆演算) である角度を返します。|
 |[atan2()](atan2function.md)|正の x 軸と、原点から点 (y, x) までの射線との角度をラジアン単位で計算します。|
 |[beta_cdf()](beta-cdffunction.md)|標準の累積ベータ分布関数を返します。|
 |[beta_inv()](beta-invfunction.md)|ベータ累積確率のベータ密度関数の逆の値を返します。|
 |[beta_pdf()](beta-pdffunction.md)|確率密度のベータ関数を返します。|
-|[cos()](cosfunction.md)|コサイン関数を返します。|
-|[cot()](cotfunction.md)|指定した角度の三角関数コタンジェントをラジアン単位で計算します。|
-|[degrees()](degreesfunction.md)|ラジアン単位の角度の値を度数で値に変換します。数式の角度 = (180/PI) * ラジアンで表します。|
-|[exp()](exp-function.md)|X の底 e の指数関数。 e は、power x: e ^ x に発生します。|
+|[cos ()](cosfunction.md)|コサイン関数を返します。|
+|[cot ()](cotfunction.md)|指定した角度の三角関数コタンジェントをラジアン単位で計算します。|
+|[度 ()](degreesfunction.md)|ラジアン単位の角度の値を度数で値に変換します。数式の角度 = (180/PI) * ラジアンで表します。|
+|[exp ()](exp-function.md)|X の底 e の指数関数。 e は、power x: e ^ x に発生します。|
 |[exp10()](exp10-function.md)|X の底10の指数関数。これは、power x:10 ^ x に10を累乗したものです。|
 |[exp2()](exp2-function.md)|X の底2の指数関数。2は、power x: 2 ^ x に発生します。|
 |[gamma()](gammafunction.md)|ガンマ関数を計算します。|
 |[isfinite()](isfinitefunction.md)|入力が有限値である (無限または NaN ではない) かどうかを返します。|
 |[isinf()](isinffunction.md)|入力が無限 (正または負) の値であるかどうかを返します。|
 |[isnan()](isnanfunction.md)|入力が非数 (NaN) 値かどうかを返します。|
-|[log()](log-function.md)|自然対数関数を返します。|
-|[log10()](log10-function.md)|常用対数関数を返します。|
+|[log ()](log-function.md)|自然対数関数を返します。|
+|[log10 ()](log10-function.md)|常用対数関数を返します。|
 |[log2()](log2-function.md)|底2の対数関数を返します。|
 |[loggamma()](loggammafunction.md)|ガンマ関数の絶対値のログを計算します。|
 |[not()](notfunction.md)|Bool 引数の値を反転させます。|
-|[pi()](pifunction.md)|Pi (π) の定数値を返します。|
+|[pi ()](pifunction.md)|Pi (π) の定数値を返します。|
 |[pow()](powfunction.md)|を累乗した結果を返します。|
-|[radians()](radiansfunction.md)|数式ラジアン = (PI/180) * 角度 (°) を使用して、角度の角度を度数で値に変換します。|
-|[rand()](randfunction.md)|乱数を返します。|
+|[ラジアン ()](radiansfunction.md)|数式ラジアン = (PI/180) * 角度 (°) を使用して、角度の角度を度数で値に変換します。|
+|[rand ()](randfunction.md)|乱数を返します。|
 |[range()](rangefunction.md)|等間隔に並んだ一連の値を保持する動的配列を生成します。|
-|[round()](roundfunction.md)|丸められたソースを指定した有効桁数に戻します。|
-|[sign()](signfunction.md)|数値式の符号。|
-|[sin()](sinfunction.md)|サイン関数を返します。|
-|[sqrt()](sqrtfunction.md)|平方根関数を返します。|
-|[tan()](tanfunction.md)|タンジェント関数を返します。|
-|[welch_test()](welch-testfunction.md)|は、の p-[検定関数](https://en.wikipedia.org/wiki/Welch%27s_t-test)の値を計算します。|
+|[round ()](roundfunction.md)|丸められたソースを指定した有効桁数に戻します。|
+|[sign ()](signfunction.md)|数値式の符号。|
+|[sin ()](sinfunction.md)|サイン関数を返します。|
+|[sqrt ()](sqrtfunction.md)|平方根関数を返します。|
+|[tan ()](tanfunction.md)|タンジェント関数を返します。|
+|[welch_test()](welch-testfunction.md)|は、の p- [検定関数](https://en.wikipedia.org/wiki/Welch%27s_t-test)の値を計算します。|
 
 ## <a name="metadata-functions"></a>メタデータ関数
 
@@ -174,8 +174,8 @@ ms.locfileid: "88072431"
 |-------------------------|--------------------------------------------------------|
 |[bin()](binfunction.md)|値を切り捨てて、指定された bin サイズの倍数である整数にします。|
 |[bin_at()](binatfunction.md)|ビンの開始点を制御して、値を固定サイズの "ビン" に切り捨てます。 (「Bin 関数」も参照してください)。|
-|[ceiling()](ceilingfunction.md)|指定した数値式以上の最小の整数を計算します。|
-|[floor()](floorfunction.md)|値を切り捨てて、指定された bin サイズの倍数である整数にします。|
+|[シーリング ()](ceilingfunction.md)|指定した数値式以上の最小の整数を計算します。|
+|[floor ()](floorfunction.md)|値を切り捨てて、指定された bin サイズの倍数である整数にします。|
 
 ## <a name="conditional-functions"></a>条件関数
 
@@ -213,11 +213,13 @@ ms.locfileid: "88072431"
 |[series_fill_const()](series-fill-constfunction.md)|系列の欠損値を指定された定数値に置き換えます。|
 |[series_fill_forward()](series-fill-forwardfunction.md)|系列内の欠損値の前方フィル補間を実行します。|
 |[series_fill_linear()](series-fill-linearfunction.md)|系列内の欠損値の線形補間を実行します。|
+|[series_fft ()](series-fft-function.md)|系列に高速フーリエ変換 (FFT) を適用します。|
 |[series_fir()](series-firfunction.md)|系列に有限インパルス応答フィルターを適用します。|
 |[series_fit_2lines()](series-fit-2linesfunction.md)|系列に2つのセグメントの線形回帰を適用し、複数の列を返します。|
 |[series_fit_2lines_dynamic()](series-fit-2lines-dynamicfunction.md)|系列に2つのセグメントの線形回帰を適用し、動的オブジェクトを返します。|
 |[series_fit_line()](series-fit-linefunction.md)|系列に線形回帰を適用し、複数の列を返します。|
 |[series_fit_line_dynamic()](series-fit-line-dynamicfunction.md)|系列に線形回帰を適用し、動的オブジェクトを返します。|
+|[series_ifft ()](series-ifft-function.md)|系列に対して反転高速フーリエ変換 (IFFT) を適用します。|
 |[series_iir()](series-iirfunction.md)|無限インパルス応答フィルターを系列に適用します。|
 |[series_outliers()](series-outliersfunction.md)|系列内の異常点をスコア付けします。|
 |[series_pearson_correlation()](series-pearson-correlationfunction.md)|2つの系列のピアソンの相関係数を計算します。|
@@ -238,11 +240,11 @@ ms.locfileid: "88072431"
 |[extract()](extractfunction.md)|テキスト文字列から 正規表現 との一致を取得します。|
 |[extract_all()](extractallfunction.md)|テキスト文字列から正規表現のすべての一致を取得します。|
 |[extractjson()](extractjsonfunction.md)|パス式を使用している JSON テキストから、指定された要素を取得します。|
-|[indexof()](indexoffunction.md)|関数は、入力文字列内で指定した文字列が最初に見つかった位置の0から始まるインデックスを報告します。|
+|[indexof ()](indexoffunction.md)|関数は、入力文字列内で指定した文字列が最初に見つかった位置の0から始まるインデックスを報告します。|
 |[isempty()](isemptyfunction.md)|引数が空の文字列であるか、または null である場合に true を返します。|
 |[isnotempty()](isnotemptyfunction.md)|引数が空の文字列または null でない場合に true を返します。|
 |[isnotnull()](isnotnullfunction.md)|引数が null でない場合は true を返します。|
-|[isnull()](isnullfunction.md)|唯一の引数を評価し、引数が null 値に評価されるかどうかを示すブール値を返します。|
+|[isnull ()](isnullfunction.md)|唯一の引数を評価し、引数が null 値に評価されるかどうかを示すブール値を返します。|
 |[parse_command_line()](parse-command-line.md)|Unicode コマンドライン文字列を解析し、コマンドライン引数の配列を返します。|
 |[parse_csv()](parsecsvfunction.md)|コンマ区切り値を表す特定の文字列を分割し、これらの値を含む文字列配列を返します。|
 |[parse_ipv4()](parse-ipv4function.md)|入力を long (符号付き64ビット) 数値表現に変換します。|
@@ -253,18 +255,18 @@ ms.locfileid: "88072431"
 |[parse_url()](parseurlfunction.md)|絶対 URL 文字列を解析し、URL のすべての部分を含む動的オブジェクトを返します。|
 |[parse_urlquery()](parseurlqueryfunction.md)|Url クエリ文字列を解析し、動的オブジェクトにクエリパラメーターが含まれていることを返します。|
 |[parse_version()](parse-versionfunction.md)|バージョンの入力文字列形式を、比較可能な10進数に変換します。|
-|[replace()](replacefunction.md)|正規表現のすべての一致を別の文字列に置き換えます。|
-|[reverse()](reversefunction.md)|関数は、入力文字列を逆にします。|
+|[replace ()](replacefunction.md)|正規表現のすべての一致を別の文字列に置き換えます。|
+|[reverse ()](reversefunction.md)|関数は、入力文字列を逆にします。|
 |[split()](splitfunction.md)|指定された区切り記号に従って指定された文字列を分割し、含まれている部分文字列を含む文字列配列を返します。|
 |[strcat()](strcatfunction.md)|1 ~ 64 の引数を連結します。|
 |[strcat_delim()](strcat-delimfunction.md)|最初の引数として指定された区切り記号を使用して、2 ~ 64 の引数を連結します。|
 |[strcmp()](strcmpfunction.md)|2 つの文字列を比較します。|
 |[strlen()](strlenfunction.md)|入力文字列の長さを文字数で返します。|
 |[strrep()](strrepfunction.md)|指定された文字列を繰り返す回数 (既定値-1)。|
-|[substring()](substringfunction.md)|あるインデックスから文字列の末尾までの位置から、ソース文字列から部分文字列を抽出します。|
+|[substring ()](substringfunction.md)|あるインデックスから文字列の末尾までの位置から、ソース文字列から部分文字列を抽出します。|
 |[toupper()](toupperfunction.md)|文字列を大文字に変換します。|
 |[translate()](translatefunction.md)|指定された文字列の文字セット (' searchList ') を別の文字セット (' replacementList ') に置換します。|
-|[trim()](trimfunction.md)|指定した正規表現の先頭と末尾の一致をすべて削除します。|
+|[trim ()](trimfunction.md)|指定した正規表現の先頭と末尾の一致をすべて削除します。|
 |[trim_end()](trimendfunction.md)|指定した正規表現の末尾の一致を削除します。|
 |[trim_start()](trimstartfunction.md)|指定された正規表現の先頭の一致を削除します。|
 |[url_decode()](urldecodefunction.md)|関数は、エンコードされた URL を通常の URL 表現に変換します。|
@@ -282,8 +284,8 @@ ms.locfileid: "88072431"
 |[ipv6_is_match()](ipv6-is-matchfunction.md)|2つの IPv4 または IPv6 文字列を照合します。|
 |[parse_ipv6()](parse-ipv6function.md)|IPv6 または IPv4 文字列を正規の IPv6 文字列形式に変換します。|
 |[parse_ipv6_mask()](parse-ipv6-maskfunction.md)|IPv6 または IPv4 の文字列とネットマスクを正規の IPv6 文字列形式に変換します。|
-|[format_ipv4 ()](format-ipv4-function.md)|ネットマスクを使用して入力を解析し、IPv4 アドレスを表す文字列を返します。|
-|[format_ipv4_mask ()](format-ipv4-mask-function.md)|ネットマスクを使用して入力を解析し、CIDR 表記として IPv4 アドレスを表す文字列を返します。|
+|[format_ipv4()](format-ipv4-function.md)|ネットマスクを使用して入力を解析し、IPv4 アドレスを表す文字列を返します。|
+|[format_ipv4_mask()](format-ipv4-mask-function.md)|ネットマスクを使用して入力を解析し、CIDR 表記として IPv4 アドレスを表す文字列を返します。|
 
 ## <a name="type-functions"></a>Type 関数
 

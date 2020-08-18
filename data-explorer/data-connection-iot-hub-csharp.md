@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/07/2019
-ms.openlocfilehash: a77549d729b8ccba91333922e5add8a9296527c4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: fa6d65b8a3db0d00849f4def77da5d09c0e9b694
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350113"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201307"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-c-preview"></a>C# を使用して Azure Data Explorer 用に IoT Hub データ接続を作成する (プレビュー)
 
@@ -22,7 +22,8 @@ ms.locfileid: "87350113"
 > * [Python](data-connection-iot-hub-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-iot-hub-resource-manager.md)
 
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer では、BLOB コンテナーに書き込まれた Event Hubs、IoT Hub、BLOB からのインジェスト (データの読み込み) を提供します。 この記事では、C# を使用して Azure Data Explorer 用に IoT Hub データ接続を作成します。
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+この記事では、C# を使用して Azure Data Explorer 用に IoT Hub データ接続を作成します。
 
 ## <a name="prerequisites"></a>前提条件
 

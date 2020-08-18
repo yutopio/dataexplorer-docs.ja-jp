@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: 166f109f96695380c979dd4060e324187c5b5efc
-ms.sourcegitcommit: 4ae1508bbaa8fe9642dcfc8618d77f009bc8ec9f
+ms.openlocfilehash: 9522ee72e639c967f7b735c9c52d67c236498522
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/15/2020
-ms.locfileid: "86405472"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201707"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Azure Data Explorer のツールと統合の概要
 
@@ -38,13 +38,13 @@ Azure Data Explorer には、データ インジェスト、クエリ、視覚�
 ### <a name="ingestion-integrations"></a>インジェストの統合
 
 * イベント ハブ
-    * [イベント ハブからの取り込み](kusto/management/data-ingestion/eventhub.md)
+    * [イベント ハブからの取り込み](ingest-data-event-hub-overview.md)
     * [Azure portal](ingest-data-event-hub.md)、[C#](data-connection-event-hub-csharp.md)、[Python](data-connection-event-hub-python.md) または [Azure Resource Manager テンプレート](data-connection-event-hub-resource-manager.md)を使用したイベント ハブからの取り込み
 * Event Grid
-    * [Event Grid からの取り込み](kusto/management/data-ingestion/eventgrid.md)
+    * [Event Grid からの取り込み](ingest-data-event-grid-overview.md)
     * [Azure portal](ingest-data-event-grid.md)、[C#](data-connection-event-grid-csharp.md)、[Python](data-connection-event-grid-python.md) または [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)を使用した Event Grid からの取り込み
 * IoT Hub
-    * [IoT Hub からの取り込み](kusto/management/data-ingestion/iothub.md)
+    * [IoT Hub からの取り込み](ingest-data-iot-hub-overview.md)
     * [Azure portal](ingest-data-iot-hub.md)、[C#](data-connection-iot-hub-csharp.md)、[Python](data-connection-iot-hub-python.md) または [Azure Resource Manager テンプレート](data-connection-iot-hub-resource-manager.md)を使用した IoT Hub からの取り込み
 * [Logstash](ingest-data-logstash.md)
 * Azure Data Factory

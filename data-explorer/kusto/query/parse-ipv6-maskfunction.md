@@ -1,5 +1,5 @@
 ---
-title: parse_ipv4_mask ()-Azure データエクスプローラー |Microsoft Docs
+title: parse_ipv6_mask ()-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーの parse_ipv6_mask () 関数について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: a6c17f0505927c38d26c37a5e9872747541d129a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: b917d592a00bb2bacd940b4dc943186e10d1bf8c
+ms.sourcegitcommit: 5e903c61e779f7bf62f745f13a6038ce2a32e934
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346441"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88512548"
 ---
 # <a name="parse_ipv6_mask"></a>parse_ipv6_mask()
  

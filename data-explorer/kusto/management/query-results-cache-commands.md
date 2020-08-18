@@ -1,5 +1,5 @@
 ---
-title: クエリ結果のキャッシュ-Azure データエクスプローラー
+title: クエリ結果のキャッシュコマンド-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーのクエリ結果キャッシュについて説明します。
 services: data-explorer
 author: orspod
@@ -8,16 +8,16 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: fa2bf2f6d24162c5bdb1c851ef7d74e4eb39489f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 519560f0b6bb98651dc4a8b6749935ec9843eb9c
+ms.sourcegitcommit: 5e903c61e779f7bf62f745f13a6038ce2a32e934
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349909"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88512576"
 ---
-# <a name="query-results-cache"></a>クエリ結果のキャッシュ
+# <a name="query-results-cache-commands"></a>クエリ結果のキャッシュコマンド
 
-クエリ結果キャッシュは、クエリ結果を格納するための専用キャッシュです。 詳細については、「[クエリ結果のキャッシュ](../query/query-results-cache.md)」を参照してください。
+クエリ結果キャッシュは、クエリ結果を格納するための専用キャッシュです。 詳細については、「 [クエリ結果のキャッシュ](../query/query-results-cache.md)」を参照してください。
 
 **クエリ結果のキャッシュコマンド**
 

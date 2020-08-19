@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/25/2020
-ms.openlocfilehash: a82c4b48358a90460f917f181b73b718f6c5e455
-ms.sourcegitcommit: c7b16409995087a7ad7a92817516455455ccd2c5
+ms.openlocfilehash: f3d42835733ffe9303806687891c69df4dcc2178
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/12/2020
-ms.locfileid: "88148117"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610459"
 ---
 # <a name="row-level-security-preview"></a>行レベルセキュリティ (プレビュー)
 
@@ -29,10 +29,7 @@ RLS を使用すると、テーブルの特定の部分にのみ、他のアプ�
 * 一部の列のデータを匿名化
 * 上記のすべて
 
-詳細については、「[行レベルセキュリティポリシーを管理するための制御コマンド](../management/row-level-security-policy.md)」を参照してください。
-
-> [!NOTE]
-> 運用データベースで構成する RLS ポリシーも、フォロワーデータベースで有効になります。 運用データベースとフォロワーデータベースで異なる RLS ポリシーを構成することはできません。
+詳細については、「 [行レベルセキュリティポリシーを管理するための制御コマンド](../management/row-level-security-policy.md)」を参照してください。
 
 > [!TIP]
 > これらの関数は、多くの場合、row_level_security クエリに役立ちます。
@@ -107,7 +104,7 @@ union DataForGroup1, DataForGroup2, DataForGroup3
 
 次に例を示します。
 
-```
+```kusto
 .create-or-alter function RLSForCustomersTables(TableName: string) {
     table(TableName)
     | ...
@@ -117,7 +114,7 @@ union DataForGroup1, DataForGroup2, DataForGroup3
 次に、次のようにして、複数のテーブルで RLS を構成します。
 
 
-```
+```kusto
 .alter table Customers1 policy row_level_security enable "RLSForCustomersTables('Customers1')"
 .alter table Customers2 policy row_level_security enable "RLSForCustomersTables('Customers2')"
 .alter table Customers3 policy row_level_security enable "RLSForCustomersTables('Customers3')"
@@ -127,7 +124,7 @@ union DataForGroup1, DataForGroup2, DataForGroup3
 
 許可されていないテーブルユーザーが空のテーブルを返す代わりにエラーを受信するようにするには、関数を使用し [`assert()`](../query/assert-function.md) ます。 次の例は、RLS 関数でこのエラーを生成する方法を示しています。
 
-```
+```kusto
 .create-or-alter function RLSForCustomersTables() {
     MyTable
     | where assert(current_principal_is_member_of('aadgroup=mygroup@mycompany.com') == true, "You don't have access")
@@ -135,6 +132,21 @@ union DataForGroup1, DataForGroup2, DataForGroup3
 ```
 
 この方法を他の例と組み合わせることができます。 たとえば、異なる AAD グループのユーザーに異なる結果を表示し、他のすべてのユーザーに対してエラーを生成することができます。
+
+### <a name="control-permissions-on-follower-databases"></a>フォロワーデータベースに対する権限の制御
+
+運用データベースで構成する RLS ポリシーも、フォロワーデータベースで有効になります。 運用データベースとフォロワーデータベースで異なる RLS ポリシーを構成することはできません。 ただし、 [`current_cluster_endpoint()`](../query/current-cluster-endpoint-function.md) rls クエリで関数を使用すると、同じ効果を得ることができます。これは、複数の rls クエリをフォロワーテーブルで行う場合と同じです。
+
+次に例を示します。
+
+```kusto
+.create-or-alter function RLSForCustomersTables() {
+    let IsProductionCluster = current_cluster_endpoint() == "mycluster.eastus.kusto.windows.net";
+    let DataForProductionCluster = TempTable | where IsProductionCluster;
+    let DataForFollowerClusters = TempTable | where not(IsProductionCluster) | extend CreditCardNumber = "****";
+    union DataForProductionCluster, DataForFollowerClusters
+}
+```
 
 ## <a name="more-use-cases"></a>その他のユースケース
 

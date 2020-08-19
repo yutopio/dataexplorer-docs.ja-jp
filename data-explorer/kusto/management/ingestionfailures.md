@@ -8,19 +8,19 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/20/2019
-ms.openlocfilehash: 7684ea11b03113051580e3e19aef0d9ac3f13585
-ms.sourcegitcommit: 283cce0e7635a2d8ca77543f297a3345a5201395
+ms.openlocfilehash: a7a2dcaea2ef982edc8286b83a042d2f21460986
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/27/2020
-ms.locfileid: "84011484"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610442"
 ---
-# <a name="ingestion-failures"></a>インジェストエラー
+# <a name="ingestion-failures"></a>インジェスト エラー
 
 ## <a name="show-ingestion-failures"></a>。インジェストエラーを表示します
 
 
-このコマンドは、[データインジェスト制御コマンド](../../ingest-data-overview.md#kusto-query-language-ingest-control-commands)の実行時に発生したインジェストエラーを含む結果セットを返します。
+このコマンドは、 [データインジェスト制御コマンド](../../ingest-data-overview.md#kusto-query-language-ingest-control-commands) の実行時に発生したインジェストエラーを含む結果セットを返します。
 
 
 > [!NOTE]
@@ -30,7 +30,7 @@ ms.locfileid: "84011484"
 
 **構文**
 
-|||
+|構文オプション|説明|
 |---|---| 
 |`.show` `ingestion` `failures`                                       |記録されたインジェストエラーをすべて返します  
 |`.show` `ingestion` `failures` <code>&#124;</code> `where` ...       |フィルター処理されたインジェストエラーのセットを返します
@@ -40,7 +40,7 @@ ms.locfileid: "84011484"
  
 |出力パラメーター           |Type     |説明                                                                              |
 |---------------------------|---------|-----------------------------------------------------------------------------------------|
-|OperationId                |String   |を介して追加の操作の詳細を表示するために使用できる操作識別子 <br> [. 操作の表示](operations.md)コマンド </br> 
+|OperationId                |String   |を介して追加の操作の詳細を表示するために使用できる操作識別子 <br> [. 操作の表示](operations.md) コマンド </br> 
 |データベース                   |String   |障害が発生したデータベース
 |テーブル                      |String   |エラーが発生したテーブル
 |失敗した場合                   |DateTime |エラーが登録された日付/時刻 (UTC) 

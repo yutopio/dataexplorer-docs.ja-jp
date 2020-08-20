@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/08/2020
-ms.openlocfilehash: 1e04b3c2796f8d8814e21763d9a62189b4dc06cb
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 36c724a001bb4438757316a456fbf85b55691c09
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493887"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201599"
 ---
 # <a name="ingest-data-from-iot-hub-into-azure-data-explorer"></a>IoT Hub から Azure Data Explorer にデータを取り込む 
 
@@ -22,12 +22,14 @@ ms.locfileid: "81493887"
 > * [Python](data-connection-iot-hub-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-iot-hub-resource-manager.md)
 
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer では、IoT Hub からの取り込み (データの読み込み) が可能で、ビッグ データのストリーミング プラットフォーム、IoT の取り込みサービスがあります。
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+
+この記事では、ビッグ データのストリーミング プラットフォームとなる IoT インジェスト サービスである IoT Hub から Azure Data Explorer にデータを取り込む方法について説明します。
 
 ## <a name="prerequisites"></a>前提条件
 
 * Azure サブスクリプションをお持ちでない場合は、開始する前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
-* [testdb](create-cluster-database-portal.md) というデータベース名の*テスト クラスターとデータベース*を作成します。
+* *testdb* というデータベース名の[テスト クラスターとデータベース](create-cluster-database-portal.md)を作成します。
 * デバイスをシミュレートする[サンプル アプリ](https://github.com/Azure-Samples/azure-iot-samples-csharp)とドキュメントです。
 * サンプル アプリを実行するための [Visual Studio 2019](https://visualstudio.microsoft.com/vs/)。
 
@@ -43,7 +45,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 次に、IoT Hub からデータを送信するテーブルを Azure Data Explorer に作成します。 「[**前提条件**](#prerequisites)」でプロビジョニングしたクラスターとデータベースにテーブルを作成します。
 
-1. Azure portal でクラスターに移動し、 **[クエリ]** を選択します。
+1. Azure portal でクラスターに移動し、**[クエリ]** を選択します。
 
     ![ポータルでの ADX クエリ](media/ingest-data-iot-hub/adx-initiate-query.png)
 
@@ -67,11 +69,11 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 1. ツールバーの **[通知]** を選択して、IoT Hub のデプロイが成功したことを確認します。
 
-1. 作成したクラスターで、 **[データベース]** を選択し、**testdb** を作成したデータベースを選択します。
+1. 作成したクラスターで、**[データベース]** を選択し、**testdb** を作成したデータベースを選択します。
     
     ![テスト データベースの選択](media/ingest-data-iot-hub/select-database.png)
 
-1. **[データ インジェスト]** 、 **[データ接続の追加]** の順に選択します。 その後、フォームに次の情報を入力します。 完了したら、 **[作成]** を選択します。
+1. **[データ インジェスト]** 、 **[データ接続の追加]** の順に選択します。 その後、フォームに次の情報を入力します。 完了したら、**[作成]** を選択します。
 
     ![IoT Hub 接続](media/ingest-data-iot-hub/iot-hub-connection.png)
 
@@ -83,7 +85,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
     | IoT Hub | IoT Hub 名 |
     | 共有アクセス ポリシー | 共有アクセス ポリシーの名前。 読み取りアクセス許可が必要 |
     | コンシューマー グループ |  IoT Hub の組み込みのエンドポイントに定義されているコンシューマー グループ |
-    | イベント システム プロパティ | [IoT Hub イベントのシステム プロパティ](/azure/iot-hub/iot-hub-devguide-messages-construct#system-properties-of-d2c-iot-hub-messages)。 システム プロパティを追加する場合は、テーブル スキーマと[マッピング](kusto/management/create-table-command.md)を[作成](kusto/management/alter-table-command.md)または[更新](kusto/management/mappings.md)して、選択したプロパティを含めます。 | | | 
+    | イベント システム プロパティ | [IoT Hub イベントのシステム プロパティ](/azure/iot-hub/iot-hub-devguide-messages-construct#system-properties-of-d2c-iot-hub-messages)。 システム プロパティを追加する場合は、テーブル スキーマと[マッピング](kusto/management/mappings.md)を[作成](kusto/management/create-table-command.md)または[更新](kusto/management/alter-table-command.md)して、選択したプロパティを含めます。 | | | 
 
     > [!NOTE]
     > [手動フェールオーバー](/azure/iot-hub/iot-hub-ha-dr#manual-failover)が発生した場合は、データ接続を再作成する必要があります。
@@ -96,8 +98,8 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
      **設定** | **推奨値** | **フィールドの説明**
     |---|---|---|
     | テーブル | *TestTable* | **testdb** に作成したテーブル。 |
-    | データ形式 | *JSON* | サポートされている形式は、Avro、CSV、JSON、MULTILINE JSON、PSV、SOHSV、SCSV、TSV、TSVE、TXT です。 |
-    | 列マッピング | *TestMapping* | [testdb](kusto/management/mappings.md) に作成した**マッピング**。これにより、受信 JSON データを **testdb** の列名とデータ型にマッピングします。 JSON、MULTILINE JSON、AVRO では必須。その他の形式では省略可能。|
+    | データ形式 | *JSON* | サポートされている形式は、Avro、CSV、JSON、MULTILINE JSON、ORC、PARQUET、PSV、SCSV、SOHSV、TSV、TXT、TSVE、APACHEAVRO、および W3CLOG です。|
+    | 列マッピング | *TestMapping* | **testdb** に作成した[マッピング](kusto/management/mappings.md)。これにより、受信 JSON データを **testdb** の列名とデータ型にマッピングします。 JSON、MULTILINE JSON、AVRO では必須。その他の形式では省略可能。|
     | | |
 
     > [!NOTE]
@@ -110,7 +112,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 シミュレートされたデバイス アプリケーションは、IoT Hub 上のデバイスに固有のエンドポイントに接続し、シミュレートされた温度と湿度のテレメトリを送信します。
 
-1. [https://github.com/Azure-Samples/azure-iot-samples-csharp/archive/master.zip](https://github.com/Azure-Samples/azure-iot-samples-csharp/archive/master.zip ) からサンプル C# プロジェクトをダウンロードし、ZIP アーカイブを抽出します。
+1. [https://github.com/Azure-Samples/azure-iot-samples-csharp/archive/master.zip](https://github.com/Azure-Samples/azure-iot-samples-csharp/archive/master.zip) からサンプル C# プロジェクトをダウンロードし、ZIP アーカイブを抽出します。
 
 1. ローカル ターミナル ウィンドウで、サンプルの C# プロジェクトのルート フォルダーに移動します。 **iot-hub\Quickstarts\simulated-device** フォルダーに移動します。
 
@@ -165,17 +167,17 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 ## <a name="clean-up-resources"></a>リソースをクリーンアップする
 
-お使いの IoT Hub を今後再利用する予定がない場合は、コストが発生しないように **test-hub-rg** をクリーンアップします。
+現在の IoT Hub を今後使用する予定がない場合は、リソース グループをクリーンアップします。
 
 1. Azure Portal の左端で **[リソース グループ]** を選択し、作成したリソース グループを選択します。  
 
     左側のメニューが折りたたまれている場合は、 ![展開ボタン](media/ingest-data-event-hub/expand.png) をクリックして展開します。
 
-   ![削除するリソース グループの選択](media/ingest-data-event-hub/delete-resources-select.png)
+   ![削除するリソース グループの選択](media/ingest-data-iot-hub/delete-resources-select.png)
 
 1. **test-resource-group** で **[リソース グループの削除]** を選択します。
 
-1. 新しいウィンドウで、削除するリソース グループの名前 (*test-hub-rg*) を入力し、 **[削除]** を選択します。
+2. 新しいのウィンドウで、削除するリソース グループの名前を入力し、 **[削除]** を選択します。
 
 ## <a name="next-steps"></a>次のステップ
 

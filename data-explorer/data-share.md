@@ -1,20 +1,20 @@
 ---
-title: Azure Data Share を使用して Azure Data Explorer とデータを共有する (プレビュー)
+title: Azure Data Share を使用して Azure Data Explorer とデータを共有する
 description: Azure Data Explorer と Azure Data Share でデータを共有する方法について説明します。
 author: orspod
 ms.author: orspodek
 ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 04/23/2020
-ms.openlocfilehash: 325adfafcb474804d6fc03d85bc5ae2e82011fd3
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.date: 08/14/2020
+ms.openlocfilehash: 29d3c10dc08d0506f43af7127cbf705a8b1881c1
+ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350045"
+ms.lasthandoff: 08/16/2020
+ms.locfileid: "88259920"
 ---
-# <a name="use-azure-data-share-to-share-data-with-azure-data-explorer-preview"></a>Azure Data Share を使用して Azure Data Explorer とデータを共有する (プレビュー)
+# <a name="use-azure-data-share-to-share-data-with-azure-data-explorer"></a>Azure Data Share を使用して Azure Data Explorer とデータを共有する
 
 ファイル共有、FTP、電子メール、API など、従来からデータを共有するたくさんの方法があります。 これらの方法では、チームや組織間でデータを移動するデータ パイプラインを両者が作成して維持する必要があります。 Azure Data Explorer を使用すると、会社や社外のパートナーのユーザーとデータを簡単かつ安全に共有できます。 共有はほぼリアルタイムで行われ、データ パイプラインの構築や管理は必要はありません。 スキーマやデータを含む、プロバイダー側でのすべてのデータベースの変更がコンシューマー側ですぐに使用できるようになります。
 

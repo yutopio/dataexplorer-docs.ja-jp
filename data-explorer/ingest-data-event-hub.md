@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
-ms.date: 01/08/2020
-ms.openlocfilehash: ca617629578e9f3830e4fa1edf1a5781b0317a81
-ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
+ms.date: 08/13/2020
+ms.openlocfilehash: 0738df4b86fe7d602ad41e921d88501c58d8e500
+ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87515857"
+ms.lasthandoff: 08/13/2020
+ms.locfileid: "88201641"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>イベント ハブから Azure Data Explorer にデータを取り込む
 
@@ -22,7 +22,9 @@ ms.locfileid: "87515857"
 > * [Python](data-connection-event-hub-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-event-hub-resource-manager.md)
 
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure データ エクスプローラーには、Event Hubs からの取り込み (データの読み込み)、ビッグ データのストリーミング プラットフォーム、イベント取り込みサービスの機能があります。 [Event Hubs](/azure/event-hubs/event-hubs-about) は、1 秒あたり数百万件のイベントをほぼリアルタイムで処理できます。 この記事では、イベント ハブを作成し、Azure データ エクスプローラーからそれに接続し、システム経由でデータ フローを確認します。
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+
+Azure データ エクスプローラーには、Event Hubs からの取り込み (データの読み込み)、ビッグ データのストリーミング プラットフォーム、イベント取り込みサービスの機能があります。 [Event Hubs](/azure/event-hubs/event-hubs-about) は、1 秒あたり数百万件のイベントをほぼリアルタイムで処理できます。 この記事では、イベント ハブを作成し、Azure データ エクスプローラーからそれに接続し、システム経由でデータ フローを確認します。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -129,7 +131,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
      **設定** | **推奨値** | **フィールドの説明**
     |---|---|---|
     | テーブル | *TestTable* | **TestDatabase** に作成したテーブル。 |
-    | データ形式 | *JSON* | サポートされている形式は、Avro、CSV、JSON、MULTILINE JSON、PSV、SOHSV、SCSV、TSV、TSVE、TXT、ORC、および PARQUET です。 |
+    | データ形式 | *JSON* | サポートされている形式は、Avro、CSV、JSON、MULTILINE JSON、ORC、PARQUET、PSV、SCSV、SOHSV、TSV、TXT、TSVE、APACHEAVRO、および W3CLOG です。 |
     | 列マッピング | *TestMapping* | **TestDatabase** に作成した[マッピング](kusto/management/mappings.md)。これにより、受信 JSON データを **TestTable** の列名とデータ型にマッピングします。 JSON または MULTILINE JSON では必須。その他の形式では省略可能。|
     | | |
 

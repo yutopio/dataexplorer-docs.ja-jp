@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0c8e9b3397026c572d27c250fc4e817bd5f7f265
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 8ad104b7802bde2355b46bc31e74e63a6708d4f4
+ms.sourcegitcommit: d2edf654f71f8686d1f03d8ec16200f84e671b12
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803677"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88659265"
 ---
 # <a name="string-operators"></a>文字列演算子
 
@@ -21,7 +21,7 @@ Kusto には、文字列データ型を検索するためのさまざまなク�
 
 ## <a name="understanding-string-terms"></a>文字列用語について
 
-Kusto は、型の列を含むすべての列にインデックスを付け `string` ます。 実際のデータに応じて、このような列に対して複数のインデックスが作成されます。 これらのインデックスは直接公開されませんが `string` `has` 、、、、などの名前の一部として使用される演算子を使用したクエリで使用され `has` `!has` `hasprefix` `!hasprefix` ます。 これらの演算子のセマンティクスは、列のエンコード方法によって決まります。 これらの演算子は、"プレーンな" 部分文字列の検索ではなく、*用語*と一致します。
+Kusto は、型の列を含むすべての列にインデックスを付け `string` ます。 実際のデータに応じて、このような列に対して複数のインデックスが作成されます。 これらのインデックスは直接公開されませんが `string` `has` 、、、、などの名前の一部として使用される演算子を使用したクエリで使用され `has` `!has` `hasprefix` `!hasprefix` ます。 これらの演算子のセマンティクスは、列のエンコード方法によって決まります。 これらの演算子は、"プレーンな" 部分文字列の検索ではなく、 *用語*と一致します。
 
 ### <a name="what-is-a-term"></a>用語とは何ですか。 
 
@@ -79,19 +79,19 @@ Kusto は、 *4 文字*以上のすべての用語で構成される用語イン
 `has_any`       |と同じ `has` ですが、どの要素でも機能します。                    |いいえ            |`"North America" has_any("south", "north")`
 
 > [!TIP]
-> `has`文字列の一致ではなく、4つ以上の文字のインデックス付き*用語*に対して検索を含むすべての演算子。 文字列を ASCII 英数字のシーケンスに分割することによって、用語が作成されます。 「[文字列用語につい](#understanding-string-terms)て」を参照してください。
+> `has`文字列の一致ではなく、4つ以上の文字のインデックス付き*用語*に対して検索を含むすべての演算子。 文字列を ASCII 英数字のシーケンスに分割することによって、用語が作成されます。 「 [文字列用語につい](#understanding-string-terms)て」を参照してください。
 
 ## <a name="performance-tips"></a>パフォーマンスに関するヒント
 
 パフォーマンスを向上させるために、同じタスクを実行する2つの演算子がある場合は、大文字と小文字を区別してを使用します。
 次に例を示します。
 
-* で `=~` はなく、を使用します。`==`
-* で `in~` はなく、を使用します。`in`
-* で `contains` はなく、を使用します。`contains_cs`
+* で `=~` はなく、を使用します。 `==`
+* で `in~` はなく、を使用します。 `in`
+* で `contains` はなく、を使用します。 `contains_cs`
 
 より高速な結果を得るために、英数字以外の文字でバインドされている記号や英数字の単語、またはフィールドの先頭または末尾があるかどうかをテストする場合は、またはを使用し `has` `in` ます。 
-`has`は `contains` 、、、またはより高速に動作 `startswith` `endswith` します。
+`has` は `contains` 、、、またはより高速に動作 `startswith` `endswith` します。
 
 たとえば、次のクエリの最初の方が高速に実行されます。
 

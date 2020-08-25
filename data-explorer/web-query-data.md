@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 06/15/2020
-ms.openlocfilehash: c1202e4578f9d1d3d4520984e6dc3b6de0ef33b0
-ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
+ms.openlocfilehash: 061c3ea6c2a493cbda8ac428837720efe42f2082
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86870160"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793961"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>クイック スタート:Azure Data Explorer の Web UI でデータのクエリを実行する
 

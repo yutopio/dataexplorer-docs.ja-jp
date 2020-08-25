@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 69ba6a8ce3cd29d7459215184f7488b015d16558
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 2ab8a9b8a687b695859c52e75ab4e9f88aac408b
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349807"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793698"
 ---
 # <a name="activity_metrics-plugin"></a>activity_metrics プラグイン
 
@@ -47,47 +47,47 @@ T | evaluate activity_metrics(id, datetime_column, startofday(ago(30d)), startof
 |---|---|---|---|---|--|--|--|--|--|--|
 |型: as of *TimelineColumn*|long|long|double|double|..|..|..|
 
-**メモ**
+**ノート**
 
 ***保有率の定義***
 
-`Retention Rate`一定期間にわたって、次のように計算されます。
+`Retention Rate` 一定期間にわたって、次のように計算されます。
 
-    # of customers returned during the period
-    / (divided by)
-    # customers at the beginning of the period
+> *期間中に返された顧客の数*  
+> /(除算)  
+> *期間の開始時の顧客数*  
 
 `# of customers returned during the period`は次のように定義されます。
 
-    # of customers at end of period
-    - (minus)
-    # of new customers acquired during the period
+> *期間が終了した顧客の数*  
+> \- 除く  
+> *期間中に取得された新規顧客の数*  
 
-`Retention Rate`0.0 から1.0 に変更できます。  
+`Retention Rate` 0.0 から1.0 に変更できます。  
 スコアが高いほど、より多くのユーザーを返すことになります。
 
 
 ***チャーン率の定義***
 
-`Churn Rate`一定期間にわたって、次のように計算されます。
+`Churn Rate` 一定期間にわたって、次のように計算されます。
     
-    # of customers lost in the period
-    / (divided by)
-    # of customers at the beginning of the period
+> *期間内に失われた顧客の数*  
+> /(除算)  
+> *期間の開始時の顧客の数*  
 
 `# of customer lost in the period`は次のように定義されます。
 
-    # of customers at the beginning of the period
-    - (minus)
-    # of customers at the end of the period
+> *期間の開始時の顧客の数*  
+> \- 除く  
+> *期間が終了した顧客の数*  
 
-`Churn Rate`0.0 から1.0 の範囲で、スコアが高いほど、より多くのユーザーがサービスに戻らないことを意味します。
+`Churn Rate` 0.0 から1.0 の範囲で、スコアが高いほど、より多くのユーザーがサービスに戻らないことを意味します。
 
 ***チャーンと保持率の比較***
 
 およびの定義から派生した場合 `Churn Rate` `Retention Rate` 、常に次のようになります。
 
-    [Retention rate] = 100.0% - [Churn Rate]
+> [ `Retention Rate` ] = 100.0%-[ `Churn Rate` ]
 
 
 ## <a name="examples"></a>例

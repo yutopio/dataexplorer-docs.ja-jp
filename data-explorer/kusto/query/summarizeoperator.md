@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: 19f86e4973a2822de6f25e38edb07ccd8fbda9d1
-ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
+ms.openlocfilehash: 00d205a710b7b3bf41dc181e79e5e6d0baa95fc6
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/16/2020
-ms.locfileid: "88260118"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793922"
 ---
 # <a name="summarize-operator"></a>summarize 演算子
 
@@ -63,19 +63,19 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 ## <a name="list-of-aggregation-functions"></a>集計関数の一覧
 
-|機能|説明|
+|関数|説明|
 |--------|-----------|
 |[any ()](any-aggfunction.md)|グループの空でないランダムな値を返します|
 |[anyif()](anyif-aggfunction.md)|グループに対して空でないランダムな値 (述語を含む) を返します。|
 |[arg_max()](arg-max-aggfunction.md)|引数が最大化されている場合に1つ以上の式を返します|
 |[arg_min()](arg-min-aggfunction.md)|引数が最小化されている場合に1つ以上の式を返します|
-|[avg()](avg-aggfunction.md)|グループ全体の平均値を返します|
+|[avg ()](avg-aggfunction.md)|グループ全体の平均値を返します|
 |[avgif()](avgif-aggfunction.md)|グループ全体の平均値を返します (述語を含む)|
 |[binary_all_and](binary-all-and-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `AND`|
 |[binary_all_or](binary-all-or-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `OR`|
 |[binary_all_xor](binary-all-xor-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `XOR`|
 |[buildschema()](buildschema-aggfunction.md)|入力のすべての値を制御する最小限のスキーマを返します。 `dynamic`|
-|[count()](count-aggfunction.md)|グループの数を返します|
+|[count ()](count-aggfunction.md)|グループの数を返します|
 |[countif()](countif-aggfunction.md)|グループの述語を使用してカウントを返します。|
 |[dcount()](dcount-aggfunction.md)|グループ要素の概数を返します。|
 |[dcountif()](dcountif-aggfunction.md)|グループ要素の概数を返します (述語を含む)|
@@ -94,11 +94,11 @@ T | summarize count() by price_range=bin(price, 10.0)
 |[percentiles_array ()](percentiles-aggfunction.md)|グループのパーセンタイル近似を返します。|
 |[percentilesw()](percentiles-aggfunction.md)|グループの加重パーセンタイルの概数を返します|
 |[percentilesw_array ()](percentiles-aggfunction.md)|グループの加重パーセンタイル近似を返します。|
-|[stdev()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
+|[stdev ()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
 |[stdevif()](stdevif-aggfunction.md)|グループ全体の標準偏差を返します (述語を含む)|
-|[sum()](sum-aggfunction.md)|グループので要素の合計を返します。|
-|[sumif()](sumif-aggfunction.md)|グループので要素の合計を返します (述語を含む)|
-|[variance()](variance-aggfunction.md)|グループ間の分散を返します。|
+|[sum ()](sum-aggfunction.md)|グループ内の要素の合計を返します。|
+|[sumif()](sumif-aggfunction.md)|グループ内の要素の合計を返します (述語を含む)|
+|[分散 ()](variance-aggfunction.md)|グループ間の分散を返します。|
 |[varianceif()](varianceif-aggfunction.md)|グループ間の分散を返します (述語を含む)|
 
 ## <a name="aggregates-default-values"></a>既定値の集計
@@ -148,7 +148,9 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 
 大陸ごとに1行を作成し、アクティビティが発生した都市の数を示します。 "大陸" にはいくつかの値があるため、' by ' 句にはグループ化関数は必要ありません。
 
-    Activities | summarize cities=dcount(city) by continent
+```kusto
+Activities | summarize cities=dcount(city) by continent
+```
 
 |`cities`|`continent`
 |---:|---

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: a4aae88f6ad435469719f8444bae9123975ee618
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 03d183bd042bb75d8bb44f530575bd3b91cb2102
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346220"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793807"
 ---
 # <a name="pattern-statement"></a>pattern ステートメント
 
@@ -65,7 +65,7 @@ app("ApplicationX").StartEvents
 | count
 ```
 
-一致する各パターンに対して指定される式は、テーブル名か[let ステートメント](letstatement.md)への参照のいずれかです。
+一致する各パターンに対して指定される式は、テーブル名か [let ステートメント](letstatement.md)への参照のいずれかです。
 
 ## <a name="syntax"></a>構文
 
@@ -79,7 +79,7 @@ app("ApplicationX").StartEvents
 * *Pathtype*: パス引数の型 (現時点でのみ `string` 許可されています)
 * *ArgValue1*、 *ArgValue2*、...-pattern 引数の値 (現在 `string` はリテラルのみを使用できます)
 * *Pathvalue* -パターンパスの値 (現在 `string` はリテラルのみを使用できます)
-* *式*:*式*-テーブル式 (など `Logs | where Timestamp > ago(1h)` )、または関数を参照するラムダ式。
+* *式*: *式* -テーブル式 (など `Logs | where Timestamp > ago(1h)` )、または関数を参照するラムダ式。
 
 ## <a name="pattern-invocation"></a>パターン呼び出し
 
@@ -88,11 +88,11 @@ app("ApplicationX").StartEvents
 * *パターン名* `(`*ArgValue1* [ `,` *ArgValue2* ...] `).`*Pathvalue*
 * *パターン名* `(`*ArgValue1* [ `,` *ArgValue2* ...] `).["`*Pathvalue*`"]`
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>メモ
 
 **シナリオ**
 
-Pattern ステートメントは、ユーザークエリを受け取り、これらのクエリを Kusto に送信する中間層アプリケーション向けに設計されています。 このようなアプリケーションでは、多くの場合、これらのユーザークエリの前に論理スキーマモデルを使用します。 このモデルは[let ステートメント](letstatement.md)のセットであり、場合によっては[restrict ステートメント](restrictstatement.md)がサフィックスとして使用されます。
+Pattern ステートメントは、ユーザークエリを受け取り、これらのクエリを Kusto に送信する中間層アプリケーション向けに設計されています。 このようなアプリケーションでは、多くの場合、これらのユーザークエリの前に論理スキーマモデルを使用します。 このモデルは [let ステートメント](letstatement.md)のセットであり、場合によっては [restrict ステートメント](restrictstatement.md)がサフィックスとして使用されます。
 
 アプリケーションによっては、ユーザーに提供される構文が必要になる場合があります。 この構文は、アプリケーションによって作成される論理スキーマで定義されているエンティティを参照するために使用されます。 ただし、エンティティが事前に認識されていない場合や、潜在的なエンティティの数が大きすぎて論理スキーマで事前に定義されていない場合があります。
 
@@ -157,7 +157,7 @@ union (App('a1').Text), (App('a2').Text)
 
 **セマンティックエラー**:
 
-     SEM0036: One or more pattern references weren't declared. Detected pattern references: ["App('a1').['Text']","App('a2').['Text']"].
+> SEM0036: 1 つ以上のパターン参照が宣言されていません。 検出されたパターン参照: ["App (' a1 '). ['テキスト '] "、" App (' a2 ')。[' Text '] "]。
 
 ```kusto
 declare pattern App;
@@ -173,7 +173,7 @@ union (App('a2').Metrics), (App('a3').Metrics)
 
 **セマンティックエラーが返されました**:
 
-    SEM0036: One or more pattern references weren't declared. Detected pattern references: ["App('a2').['Metrics']","App('a3').['Metrics']"].
+> SEM0036: 1 つ以上のパターン参照が宣言されていません。 検出されたパターン参照: ["App (' a2 '). ['メトリック '] "、" App (' a3 ')。[' メトリック '] "]。
 
 ::: zone-end
 

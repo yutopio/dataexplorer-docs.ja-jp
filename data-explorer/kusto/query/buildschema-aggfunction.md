@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 2520849508c9cef829d7c8c07f22d3f8c64cfcea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3fb6ae643bb4350cea1ffef4493625bc9c7d191d
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348940"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793570"
 ---
 # <a name="buildschema-aggregation-function"></a>buildschema () (集計関数)
 
@@ -34,7 +34,11 @@ ms.locfileid: "87348940"
 グループ全体のの最大値 *`Expr`* 。
 
 > [!TIP] 
-> に `buildschema(json_column)` よって構文エラーが発生する場合: * `json_column` 動的オブジェクトではなく文字列ですか?* 次に、を使用し `buildschema(parsejson(json_column))` ます。
+> `buildschema(json_column)`で構文エラーが発生する場合は、次のようになります。
+>
+> > *`json_column`動的オブジェクトではなく文字列ですか?*
+>
+> 次に、を使用し `buildschema(parsejson(json_column))` ます。
 
 ## <a name="example"></a>例
 
@@ -49,12 +53,14 @@ ms.locfileid: "87348940"
 
 結果のスキーマは次のようになります。
 
-    { 
-      "x":["int", "string"], 
-      "y":["double", {"w": "string"}], 
-      "z":{"`indexer`": ["int", "string"]}, 
-      "t":{"`indexer`": "string"} 
-    }
+```kusto
+{ 
+    "x":["int", "string"],
+    "y":["double", {"w": "string"}],
+    "z":{"`indexer`": ["int", "string"]},
+    "t":{"`indexer`": "string"}
+}
+```
 
 スキーマの内容は以下のとおりです。
 
@@ -70,19 +76,22 @@ ms.locfileid: "87348940"
 
 返されるスキーマの構文は次のとおりです。
 
-    Container ::= '{' Named-type* '}';
-    Named-type ::= (name | '"`indexer`"') ':' Type;
-    Type ::= Primitive-type | Union-type | Container;
-    Union-type ::= '[' Type* ']';
-    Primitive-type ::= "int" | "string" | ...;
+```output
+Container ::= '{' Named-type* '}';
+Named-type ::= (name | '"`indexer`"') ':' Type;
+Type ::= Primitive-type | Union-type | Container;
+Union-type ::= '[' Type* ']';
+Primitive-type ::= "int" | "string" | ...;
+```
 
 値は、Kusto 動的な値としてエンコードされた TypeScript 型の注釈のサブセットに相当します。 TypeScript のスキーマ例を以下に示します。
 
-    var someobject: 
-    { 
-      x?: (number | string), 
-      y?: (number | { w?: string}), 
-      z?: { [n:number] : (int | string)},
-      t?: { [n:number]: string } 
-    }
-    
+```typescript
+var someobject: 
+{
+    x?: (number | string),
+    y?: (number | { w?: string}),
+    z?: { [n:number] : (int | string)},
+    t?: { [n:number]: string }
+}
+```

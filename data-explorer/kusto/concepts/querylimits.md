@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーのク�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: a9818f2efb6b48621c59619e89b3f2c9a4315e42
-ms.sourcegitcommit: 5137a4291d70327b7bb874bbca74a4a386e57d32
+ms.openlocfilehash: 5bb05de1ad5a3a055201f42541927619777cafcd
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88566417"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793726"
 ---
 # <a name="query-limits"></a>クエリの制限
 
@@ -30,7 +30,7 @@ Kusto は、大規模なデータセットをホストし、関連するすべ�
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>結果セットのサイズの制限 (結果の切り捨て)
 
-**結果の切り捨て** は、クエリによって返される結果セットに対して既定で設定される制限です。 Kusto は、クライアントに返されるレコードの数を **50万**に、それらのレコードの総メモリを **64 MB**に制限します。 これらの制限を超えた場合、クエリは "部分的なクエリエラー" で失敗します。 メモリ全体を超えると、次のメッセージで例外が生成されます。
+**結果の切り捨て** は、クエリによって返される結果セットに対して既定で設定される制限です。 Kusto によって、クライアントに返されるレコードの数が **50万**に制限され、それらのレコードのデータサイズ全体が **64 MB**に制限されます。 これらの制限を超えた場合、クエリは "部分的なクエリエラー" で失敗します。 全体のデータサイズを超えると、次のメッセージで例外が生成されます。
 
 ```
 The Kusto DataEngine has failed to execute a query: 'Query result set has exceeded the internal data size limit 67108864 (E_QUERY_RESULT_SET_TOO_LARGE).'
@@ -47,7 +47,7 @@ The Kusto DataEngine has failed to execute a query: 'Query result set has exceed
 * 興味深いデータのみを返すようにクエリを変更して、結果セットのサイズを小さくします。 この方法は、最初に失敗したクエリが "ワイド" である場合に便利です。 たとえば、クエリでは必要のないデータ列が射影されません。
 * 集計などのクエリ処理をクエリ自体に移動することによって、結果セットのサイズを小さくします。 この方法は、クエリの出力が別の処理システムに送られ、さらに集計が行われるシナリオで役立ちます。
 * 大量のデータセットをサービスからエクスポートする場合は、クエリから [データエクスポート](../management/data-export/index.md) を使用するように切り替えます。
-* このクエリの制限を抑制するようにサービスに指示します。
+* `set`次に示すステートメントまたは[クライアント要求プロパティ](../api/netfx/request-properties.md)のフラグを使用して、このクエリ制限を抑制するようにサービスに指示します。
 
 クエリによって生成される結果セットのサイズを減らす方法は次のとおりです。
 
@@ -71,22 +71,12 @@ MyTable | take 1000000
 ```kusto
 set truncationmaxsize=1048576;
 set truncationmaxrecords=1105;
-MyTable | where User=="Ploni"
+MyTable | where User=="UserId1"
 ```
 
 結果の切り捨て制限を削除することは、Kusto からに一括データを移動することを意味します。
 
 結果の切り捨て制限は、エクスポートのためにコマンドを使用するか、後で集計するために削除でき `.export` ます。 後の集計を選択した場合は、Kusto を使用して集計することを検討してください。
-
-これらの提案されたソリューションのいずれにも対応できないビジネスシナリオがある場合は、Kusto チームに知らせてください。  
-
-Kusto クライアントライブラリは、現在この制限が存在するものと想定しています。 制限は範囲を増やさずに増やすことができますが、最終的には、現在構成できないクライアントの制限に達します。
-
-1つの一括ですべてのデータを取得したくないお客様は、次の回避策を試すことができます。
-* 一部の Sdk をストリーミングモードに切り替えます (KustoConnectionStringBuilder の Streaming = true プロパティ)
-* .NET v2 API に切り替える
-
-この問題が発生した場合に Kusto チームに知らせ、ストリーミングクライアントの優先度を上げることができます。
 
 Kusto は、呼び出し元にストリーミングすることで、"無限に大きい" 結果を処理できるクライアントライブラリを多数提供します。 これらのライブラリのいずれかを使用して、ストリーミングモードに構成します。 たとえば、.NET Framework クライアント (ExecuteQueryV2Async) を使用して、接続文字列の streaming プロパティを *true*に設定するか、常に結果をストリーミングする *()* 呼び出しを使用します。
 
@@ -146,9 +136,7 @@ MyTable | ...
 ```
 Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the limit of ...GB (see https://aka.ms/kustoquerylimits)')
 
-Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the maximum count of 2G items (see http://aka.ms/kustoquerylimits)')
-
-Runaway query (E_RUNAWAY_QUERY). (message: 'Single string size shouldn't exceed the limit of 2GB (see http://aka.ms/kustoquerylimits)')
+Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the maximum count of ..GB items (see http://aka.ms/kustoquerylimits)')
 ```
 
 現在、文字列セットの最大サイズを大きくするスイッチはありません。

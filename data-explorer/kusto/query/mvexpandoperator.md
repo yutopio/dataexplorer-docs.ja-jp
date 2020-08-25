@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: 6ca5b5a4e6af8ece7d6f7a6543782665062b5d80
-ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
+ms.openlocfilehash: a9f5517baf0963b4857759fc18158cfa0eee0bb1
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "88072414"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793885"
 ---
 # <a name="mv-expand-operator"></a>mv-expand 演算子
 
 複数値の配列またはプロパティバッグを展開します。
 
-`mv-expand`は、[動的](./scalar-data-types/dynamic.md)に型指定された配列またはプロパティバッグ列に適用されます。これにより、コレクション内の各値が個別の行を取得します。 展開された行内のその他の列はすべて複製されます。 
+`mv-expand` は、 [動的](./scalar-data-types/dynamic.md)に型指定された配列またはプロパティバッグ列に適用されます。これにより、コレクション内の各値が個別の行を取得します。 展開された行内のその他の列はすべて複製されます。 
 
 ## <a name="syntax"></a>構文
 
@@ -32,7 +32,7 @@ ms.locfileid: "88072414"
 * *ColumnName:* 結果では、指定された列内の配列が複数の行に展開されます。 
 * *ArrayExpression:* 配列を生成する式。 この形式を使用した場合は、新しい列が追加され、既存の列は保持されます。
 * *Name:* 新しい列の名前。
-* *Typename:* 配列の要素の基になる型を示します。これは、演算子によって生成される列の型になります。 配列内の準拠していない値は変換されません。 代わりに、これらの値は値になり `null` ます。
+* *Typename:* 配列の要素の基になる型を示します。これは、演算子によって生成される列の型になり `mv-apply` ます。 型を適用する操作はキャストのみであり、解析や型変換は含まれません。 宣言された型に準拠していない配列要素は、値になり `null` ます。
 * *RowLimit:* 元の各行から生成される行の最大数。 既定値は2147483647です。 
 
   > [!Note]
@@ -146,7 +146,7 @@ range x from 1 to 4 step 1
  
 ## <a name="see-also"></a>関連項目
 
-* その他の例については、「一定期間における[ライブアクティビティの数](./samples.md#chart-concurrent-sessions-over-time)」を参照してください。
-* [mv-apply](./mv-applyoperator.md)演算子。
+* その他の例については、「一定期間における [ライブアクティビティの数](./samples.md#chart-concurrent-sessions-over-time) 」を参照してください。
+* [mv-apply](./mv-applyoperator.md) 演算子。
 * [make_list () を集計](makelist-aggfunction.md)します。これは、mv の逆の機能です。
 * プロパティバッグキーを使用して動的 JSON オブジェクトを列に拡張するための[bag_unpack ()](bag-unpackplugin.md)プラグイン。

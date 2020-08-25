@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: fa17d27506c4930fa9b9f7fb0a24f5ff31e1c974
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9ff0df578f174bc6964e39e799b91068f89a28e4
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345166"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793942"
 ---
 # <a name="series_decompose"></a>series_decompose()
 
@@ -27,7 +27,7 @@ ms.locfileid: "87345166"
 
 ## <a name="arguments"></a>引数
 
-* *Series*: 数値の配列である動的配列のセル。通常は、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の結果の出力です。
+* *Series*: 数値の配列である動的配列のセル。通常は、 [系列](make-seriesoperator.md) または [make_list](makelist-aggfunction.md) 演算子の結果の出力です。
 * *季節*性: 季節分析を制御する整数 (次のいずれかを含む)
     * -1: [series_periods_detect](series-periods-detectfunction.md) (既定) を使用して季節性を自動検出します。
     * period: ビン数の予想される期間を指定する正の整数。たとえば、系列が 1-h ビンの場合、週単位の期間は168ビンです。
@@ -37,7 +37,7 @@ ms.locfileid: "87345166"
     * "linefit": 線形回帰を使用して傾向コンポーネントを抽出します。
     * "none": 傾向がありません。このコンポーネントの抽出をスキップします。    
 * *Test_points*: 0 (既定値) または正の整数。学習 (回帰) プロセスから除外する系列の末尾の点の数を指定します。 このパラメーターは、予測のために設定する必要があります。
-* *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値は、既定のスコアしきい値は `0.6` です。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
+* *Seasonality_threshold*: *季節* 性が自動検出に設定されている場合の季節性スコアのしきい値は、既定のスコアしきい値は `0.6` です。 詳細については、「 [series_periods_detect](series-periods-detectfunction.md)」を参照してください。
 
 **Return**
 
@@ -51,7 +51,7 @@ ms.locfileid: "87345166"
 * `residual`: 残余コンポーネントの系列 (x ベースライン)。
   
 
-**メモ**
+**ノート**
 
 * コンポーネントの実行順序:
     1. 季節シリーズを抽出する
@@ -64,13 +64,13 @@ ms.locfileid: "87345166"
 
 **シリーズ分解の詳細**
 
-このメソッドは、通常、周期的な傾向または傾向の動作をマニフェストに必要とするメトリックの時系列に適用されます。 メソッドを使用して、将来のメトリック値を予測したり、異常な値を検出したりできます。 この回帰プロセスの暗黙的な前提は、季節と傾向の動作とは別に、タイムシリーズがストキャスティクスされ、ランダムに分散されることです。 残余部分を無視して、季節と傾向のコンポーネントから将来のメトリック値を予測します。 残留部分のみで外れ値の検出に基づいて異常な値を検出します。 詳細については、「[時系列分解](https://www.otexts.org/fpp/6)」の章を参照してください。
+このメソッドは、通常、周期的な傾向または傾向の動作をマニフェストに必要とするメトリックの時系列に適用されます。 メソッドを使用して、将来のメトリック値を予測したり、異常な値を検出したりできます。 この回帰プロセスの暗黙的な前提は、季節と傾向の動作とは別に、タイムシリーズがストキャスティクスされ、ランダムに分散されることです。 残余部分を無視して、季節と傾向のコンポーネントから将来のメトリック値を予測します。 残留部分のみで外れ値の検出に基づいて異常な値を検出します。 詳細については、「 [時系列分解](https://otexts.com/fpp2/decomposition.html)」の章を参照してください。
 
 ## <a name="examples"></a>例
 
 **週単位の季節性**
 
-次の例では、週単位の季節性があり、傾向がないシリーズを生成します。その後、外れ値をいくつか追加します。 `series_decompose`季節性を検出して自動的に検出し、季節コンポーネントとほぼ同じ基準を生成します。 追加した外れ値は、残余コンポーネントで明確に表示できます。
+次の例では、週単位の季節性があり、傾向がないシリーズを生成します。その後、外れ値をいくつか追加します。 `series_decompose` 季節性を検出して自動的に検出し、季節コンポーネントとほぼ同じ基準を生成します。 追加した外れ値は、残余コンポーネントで明確に表示できます。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

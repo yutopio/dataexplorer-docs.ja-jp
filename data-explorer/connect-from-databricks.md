@@ -7,12 +7,12 @@ ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/21/2020
-ms.openlocfilehash: 74f80ef6dd05380e73215d1edb27f5117060bc58
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 08ac06b5f0a1a65afec6a71106943f3b58c1b9f5
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350351"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610306"
 ---
 # <a name="connect-to-azure-data-explorer-from-azure-databricks"></a>Azure Databricks から Azure Data Explorer に接続する
 
@@ -44,11 +44,12 @@ Azure Databricks クラスターに [spark-kusto-connector](https://mvnrepositor
     ```kusto
     .set database <DB Name> users ('aadapp=<AAD App ID>;<AAD Tenant ID>') 'AAD App to connect Spark to ADX
     ```
-    |   |   |
+
+    | パラメーター | 説明 |
     | - | - |
-    | ```DB Name``` | データベース名 |
-    | ```AAD App ID``` | Azure AD アプリ ID |
-    | ```AAD Tenant ID``` | Azure AD テナント ID |
+    | `DB Name` | データベース名 |
+    | `AAD App ID` | Azure AD アプリ ID |
+    | `AAD Tenant ID` | Azure AD テナント ID |
 
 ### <a name="find-your-azure-ad-tenant-id"></a>Azure AD テナント ID を見つける
 

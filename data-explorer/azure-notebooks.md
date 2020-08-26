@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/01/2020
-ms.openlocfilehash: d9564eec41fd78b3506994da2917f1d8765ee266
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 2f82c1f381bf377226579ca9fa3b086c1396f2d4
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373987"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610391"
 ---
 # <a name="use-azure-notebooks-to-analyze-data-in-azure-data-explorer"></a>Azure Notebooks を使用して Azure Data Explorer のデータを分析する
 
@@ -28,7 +28,7 @@ ms.locfileid: "83373987"
 
 1. ヘッダーから **[マイ プロジェクト]** タブを選択します。 
 
-    [![](media/azurenotebooks/an-myprojects.png "My projects")](media/azurenotebooks/an-myprojects.png#lightbox)
+    :::image type="content" source="media/azurenotebooks/an-myprojects.png" alt-text="プロジェクト ページ、[マイ プロジェクト] タブ、Microsoft Azure Notebooks、Azure Data Explorer" lightbox="media/azurenotebooks/an-myprojects.png#lightbox":::
 
 1. **[+ 新しいプロジェクト]** を選択します。
     
@@ -90,7 +90,7 @@ ms.locfileid: "83373987"
 
 1. ノートブックに戻り、認証の結果を確認します。 
 
-[![](media/azurenotebooks/an-python-commands.png "Python commands")](media/azurenotebooks/an-python-commands.png#lightbox)
+:::image type="content" source="media/azurenotebooks/an-python-commands.png" alt-text="認証の結果の出力、ノートブックのウィンドウ、Microsoft Azure Notebooks、Azure Data Explorer" lightbox="media/azurenotebooks/an-python-commands.png#lightbox":::
 
 ## <a name="execute-a-kusto-query"></a>Kusto クエリを実行する
 
@@ -103,7 +103,7 @@ ms.locfileid: "83373987"
         print(", ".join(row))
     ```    
 
-[![](media/azurenotebooks/an-commands.png "Python commands")](media/azurenotebooks/an-commands.png#lightbox)
+:::image type="content" source="media/azurenotebooks/an-commands.png" alt-text="[実行] ボタン、ノートブックのウィンドウ、Microsoft Azure Notebooks、Azure Data Explorer" lightbox="media/azurenotebooks/an-commands.png#lightbox":::
 
 ## <a name="next-steps"></a>次のステップ
 

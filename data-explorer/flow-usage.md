@@ -7,12 +7,12 @@ ms.reviewer: dorcohen
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/15/2020
-ms.openlocfilehash: 0ecf0124051b6c003e056263afb6a3c5aa9ddb81
-ms.sourcegitcommit: 98eabf249b3f2cc7423dade0f386417fb8e36ce7
+ms.openlocfilehash: 56851a159f6d8d2cee5f3991dab290070fb8c482
+ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82868711"
+ms.lasthandoff: 08/19/2020
+ms.locfileid: "88610493"
 ---
 # <a name="usage-examples-for-azure-data-explorer-connector-to-power-automate-preview"></a>Power Automate に接続する Azure Data Explorer コネクタの使用例 (プレビュー)
 
@@ -66,12 +66,12 @@ Kusto クエリの結果は、次のフロー アクションの入力または�
 1. 動的コンテンツのウィンドウで、次のアクションの条件として使用するパラメーターを選択します。
 1. "*リレーションシップ*" と "*値*" の種類を選択して、特定のパラメーターに特定の条件を設定します。
 
-    [![](./media/flow-usage/flow-condition.png "Screenshot of flow conditions")](./media/flow-usage/flow-condition.png#lightbox)
+    :::image type="content" source="./media/flow-usage/flow-condition.png" alt-text="次のフロー アクションを決定するために Kusto クエリの結果に基づいたフローの条件を使用、Azure Data Explorer" lightbox="./media/flow-usage/flow-condition.png#lightbox":::
 
     この条件は、クエリ結果テーブルの各行に適用されます。
 1. 条件が true および false の場合のアクションを追加します。
 
-    [![](./media/flow-usage/flow-conditionactions.png "Screenshot of flow condition actions")](./media/flow-usage/flow-conditionactions.png#lightbox)
+    :::image type="content" source="./media/flow-usage/flow-conditionactions.png" alt-text="条件が true または false の場合のアクションの追加、Kusto クエリの結果に基づいたフローの条件、Azure Data Explorer" lightbox="./media/flow-usage/flow-conditionactions.png#lightbox":::
 
 Kusto クエリの結果値を、次のアクションの入力として使用できます。 動的コンテンツのウィンドウで、結果値を選択します。
 次の例では、 **[Slack - メッセージの投稿]** アクションと **[Visual Studio - 新しい作業項目を作成します]** アクションが追加しました。これには Kusto クエリのデータが含まれています。
@@ -116,9 +116,9 @@ Kusto クエリの結果値を、次のアクションの入力として使用�
 
 結果:
 
-[![](./media/flow-usage/flow-resultsmultipleattachments.png "Screenshot of results of multiple attachments, visualized as a pie chart and bar chart")](./media/flow-usage/flow-resultsmultipleattachments.png#lightbox)
+:::image type="content" source="./media/flow-usage/flow-resultsmultipleattachments.png" alt-text="メールの複数の添付ファイルの結果、円グラフと横棒グラフで表示、Azure Data Explorer" lightbox="./media/flow-usage/flow-resultsmultipleattachments.png#lightbox":::
 
-[![](./media/flow-usage/flow-resultsmultipleattachments2.png "Screenshot of results of multiple attachments, visualized as a time chart")](./media/flow-usage/flow-resultsmultipleattachments2.png#lightbox)
+:::image type="content" source="./media/flow-usage/flow-resultsmultipleattachments2.png" alt-text="メールの複数の添付ファイルの結果、時間グラフとして表示、Azure Data Explorer" lightbox="./media/flow-usage/flow-resultsmultipleattachments2.png#lightbox":::
 
 ## <a name="next-steps"></a>次のステップ
 

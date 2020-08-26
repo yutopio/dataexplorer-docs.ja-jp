@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 06/03/2019
-ms.openlocfilehash: 15756e0971069e6ff619b5362d2fddeb045fe6dd
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3bd0826f200a6c92b480c0495709e019381863a9
+ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350283"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88793766"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-c"></a>C# を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -99,8 +99,8 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
     await kustoManagementClient.Databases.CreateOrUpdateAsync(resourceGroupName, clusterName, databaseName, database);
     ```
 
-        [!NOTE]
-        If you are using C# version 2.0.0 or below, use Database instead of ReadWriteDatabase.
+    > [!NOTE]
+    > C# バージョン 2.0.0 以前を使用している場合は、ReadWriteDatabase ではなく Database を使用します。
 
    |**設定** | **推奨値** | **フィールドの説明**|
    |---|---|---|

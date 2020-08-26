@@ -9,22 +9,22 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 03/18/2020
-ms.openlocfilehash: a5655ac982ab65d06cdee7c93a166dce51377eed
-ms.sourcegitcommit: e66c5f4b833b4f6269bb7bfa5695519fcb11d9fa
+ms.openlocfilehash: c5a0bd91df6e12d90436e3b27a2b55021668117a
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/19/2020
-ms.locfileid: "83630037"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874343"
 ---
 # <a name="kusto-ingest-client-library"></a>Kusto インジェストクライアントライブラリ 
 
-`Kusto.Ingest`ライブラリは、Kusto サービスにデータを送信するための .NET 4.6.2 ライブラリです。
+`Kusto.Ingest` ライブラリは、Kusto サービスにデータを送信するための .NET 4.6.2 ライブラリです。
 次のライブラリと Sdk の依存関係があります。
 
 * Azure AD 認証用の ADAL
 * Azure storage クライアント
 
-インジェストメソッドは、 [IKustoIngestClient](kusto-ingest-client-reference.md#interface-ikustoingestclient)インターフェイスによって定義されます。  これらのメソッドは、同期モードと非同期モードの両方で、Stream、IDataReader、ローカルファイル、Azure blob からのデータインジェストを処理します。
+インジェストメソッドは、 [IKustoIngestClient](kusto-ingest-client-reference.md#interface-ikustoingestclient) インターフェイスによって定義されます。  これらのメソッドは、同期モードと非同期モードの両方で、Stream、IDataReader、ローカルファイル、Azure blob からのデータインジェストを処理します。
 
 ## <a name="ingest-client-flavors"></a>クライアントのフレーバーの取り込み
 
@@ -71,11 +71,11 @@ IKustoDirectIngestClient で定義されているダイレクトインジェス�
 
 ## <a name="ingestion-best-practices"></a>インジェストのベストプラクティス
 
-[インジェストのベストプラクティス](kusto-ingest-best-practices.md)では、インジェストと、インジェストのスループットについて説明します。
+[インジェストのベストプラクティス](kusto-ingest-best-practices.md) では、インジェストと、インジェストのスループットについて説明します。
 
 * **スレッドセーフ-** Kusto インジェストクライアントの実装はスレッドセーフであり、再利用が想定されています。 `KustoQueuedIngestClient`または複数のインジェスト操作に対してクラスのインスタンスを作成する必要はありません。 の1つのインスタンス `KustoQueuedIngestClient` が、ターゲット Kusto クラスターごとのプロセスごとに必要です。 複数のインスタンスを実行すると、カウンターの生産性が向上し、データ管理クラスターで DoS が発生する可能性があります。
 
-* **サポートされているデータ形式-** ネイティブインジェストを使用する場合は、データを1つ以上の Azure storage blob にアップロードします (まだ存在しない場合)。 現在サポートされている blob 形式については、[サポートされるデータ形式](../../../ingestion-supported-formats.md)に関するドキュメントをご覧ください。
+* **サポートされているデータ形式-** ネイティブインジェストを使用する場合は、データを1つ以上の Azure storage blob にアップロードします (まだ存在しない場合)。 現在サポートされている blob 形式については、 [サポートされるデータ形式](../../../ingestion-supported-formats.md)に関するドキュメントをご覧ください。
 
 * **スキーママッピング-** 
 [スキーママッピング](../../management/mappings.md)は、ソースデータフィールドを変換先テーブルの列に確定的にバインドするのに役立ちます。
@@ -88,12 +88,13 @@ Kusto サービスの不要な負荷を最小限に抑えるために、kusto �
 
 ## <a name="next-steps"></a>次のステップ
 
-* [Kusto. インジェストクライアントリファレンス](kusto-ingest-client-reference.md)には、kusto インジェストクライアントインターフェイスおよび実装の完全なリファレンスが含まれています。 インジェストクライアントを作成する方法、インジェスト要求を補強する方法、インジェストの進行状況を管理する方法などについて説明します。
+* [Kusto. インジェストクライアントリファレンス](kusto-ingest-client-reference.md) には、kusto インジェストクライアントインターフェイスおよび実装の完全なリファレンスが含まれています。 インジェストクライアントを作成する方法、インジェスト要求を補強する方法、インジェストの進行状況を管理する方法などについて説明します。
 
-* [Kusto. 取り込み操作の状態](kusto-ingest-client-status.md)について、インジェストステータスを追跡するための KustoQueuedIngestClient 機能について説明します。
+* [Kusto. 取り込み操作の状態](kusto-ingest-client-status.md) について、インジェストステータスを追跡するための KustoQueuedIngestClient 機能について説明します。
 
-* [Kusto. インジェストエラー](kusto-ingest-client-errors.md)は、クライアントのエラーと例外を取り込む kusto を説明します。
+* [Kusto. インジェストエラー](kusto-ingest-client-errors.md) は、クライアントのエラーと例外を取り込む kusto を説明します。
 
-* [Kusto. インジェストの例](kusto-ingest-client-examples.md)では、kusto にデータを取り込みするさまざまな手法を示すコードスニペットを示しています。
+* [Kusto. インジェストの例](kusto-ingest-client-examples.md) では、kusto にデータを取り込みするさまざまな手法を示すコードスニペットを示しています。
 
 * [Kusto. インジェストライブラリを使用しないデータインジェスト](kusto-ingest-client-rest.md)では、キューに登録された kusto インジェストを実装し、KUSTO REST api を使用してライブラリに依存しないようにする方法について説明します。 `Kusto.Ingest`
+

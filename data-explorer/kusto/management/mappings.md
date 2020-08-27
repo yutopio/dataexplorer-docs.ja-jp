@@ -8,14 +8,14 @@ ms.reviewer: ohbitton
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/19/2020
-ms.openlocfilehash: c4a64db6d1103aa2a004b816969ab73c7ba19943
-ms.sourcegitcommit: ee90472a4f9d751d4049744d30e5082029c1b8fa
+ms.openlocfilehash: cd498d43d98250bad0a7ce00c4a8fec7b4f3ad4f
+ms.sourcegitcommit: d08b3344d7e9a6201cf01afc8455c7aea90335aa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83722067"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88964729"
 ---
-# <a name="data-mappings"></a>データのマッピング
+# <a name="data-mappings"></a>データ マッピング
 
 取り込み中にデータマッピングを使用して、受信データを Kusto テーブル内の列にマップします。
 
@@ -30,7 +30,7 @@ Kusto では、さまざまな種類のマッピング `row-oriented` (CSV、JSO
 |`Properties`|Optional次の各セクションで説明するように、各マッピングに固有のプロパティを含むプロパティバッグ。
 
 
-すべてのマッピングは[事前に作成](create-ingestion-mapping-command.md)でき、パラメーターを使用してインジェストコマンドから参照できます `ingestionMappingReference` 。
+すべてのマッピングは [事前に作成](create-ingestion-mapping-command.md) でき、パラメーターを使用してインジェストコマンドから参照できます `ingestionMappingReference` 。
 
 ## <a name="csv-mapping"></a>CSV マッピング
 
@@ -46,7 +46,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 |`constantValue`|OptionalCSV 内の一部の値ではなく、列に使用される定数値|
 
 > [!NOTE]
-> `Ordinal`と `ConstantValue` は相互に排他的です。
+> `Ordinal` と `ConstantValue` は相互に排他的です。
 
 ### <a name="example-of-the-csv-mapping"></a>CSV マッピングの例
 
@@ -67,7 +67,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 > [!NOTE]
 > 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
-* 上記のマッピングが[事前に作成](create-ingestion-mapping-command.md)されている場合、コントロールコマンドで参照でき `.ingest` ます。
+* 上記のマッピングが [事前に作成](create-ingestion-mapping-command.md) されている場合、コントロールコマンドで参照でき `.ingest` ます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -117,7 +117,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 |プロパティ|説明|
 |----|--|
 |`path`|がで始まる場合 `$` : json ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。|
-|`transform`|Optional[マッピング変換](#mapping-transformations)を使用してコンテンツに適用する必要がある変換。|
+|`transform`|Optional [マッピング変換](#mapping-transformations)を使用してコンテンツに適用する必要がある変換。|
 
 ### <a name="example-of-json-mapping"></a>JSON マッピングの例
 
@@ -174,12 +174,12 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 |----|--|
 |`Field`|Avro レコードのフィールドの名前。|
 |`Path`|を使用する代わりに `field` 、必要に応じて Avro レコードフィールドの内部部分を取得することもできます。 値は、レコードのルートからの JSON パスを表します。 詳細については、以下のメモを参照してください。 |
-|`transform`|Optional[サポートされている変換](#mapping-transformations)を使用してコンテンツに適用する必要がある変換。|
+|`transform`|Optional [サポートされている変換](#mapping-transformations)を使用してコンテンツに適用する必要がある変換。|
 
-**メモ**
+**ノート**
 >[!NOTE]
-> * `field`とを `path` 一緒に使用することはできません。使用できるのは1つだけです。 
-> * `path`ルートのみを指すことはできません `$` 。パスのレベルが少なくとも1つ必要です。
+> * `field` とを `path` 一緒に使用することはできません。使用できるのは1つだけです。 
+> * `path` ルートのみを指すことはできません `$` 。パスのレベルが少なくとも1つ必要です。
 
 以下の2つの選択肢は同じです。
 
@@ -246,7 +246,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 |プロパティ|説明|
 |----|--|
 |`path`|がで始まる場合 `$` : Parquet ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。|
-|`transform`|Optionalコンテンツに適用する必要がある[変換のマッピング](#mapping-transformations)。
+|`transform`|Optionalコンテンツに適用する必要がある [変換のマッピング](#mapping-transformations) 。
 
 
 ### <a name="example-of-the-parquet-mapping"></a>Parquet マッピングの例
@@ -268,7 +268,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 > [!NOTE]
 > 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
-* 上記のマッピングが[事前に作成](create-ingestion-mapping-command.md)されている場合、コントロールコマンドで参照でき `.ingest` ます。
+* 上記のマッピングが [事前に作成](create-ingestion-mapping-command.md) されている場合、コントロールコマンドで参照でき `.ingest` ます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -303,7 +303,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 |プロパティ|説明|
 |----|--|
 |`path`|がで始まる場合 `$` : Orc ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。|
-|`transform`|Optionalコンテンツに適用する必要がある[変換のマッピング](#mapping-transformations)。
+|`transform`|Optionalコンテンツに適用する必要がある [変換のマッピング](#mapping-transformations) 。
 
 ### <a name="example-of-orc-mapping"></a>Orc mapping の例
 
@@ -339,12 +339,11 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 
 ## <a name="mapping-transformations"></a>マッピング変換
 
-一部のデータ形式マッピング (Parquet、JSON、Avro) では、簡単で便利な取り込み時間の変換がサポートされています。 取り込み時により複雑な処理を必要とするシナリオでは、[更新ポリシー](update-policy.md)を使用します。これにより、kql 式を使用して簡易処理を定義できます。
+一部のデータ形式マッピング (Parquet、JSON、Avro) では、簡単で便利な取り込み時間の変換がサポートされています。 取り込み時により複雑な処理を必要とするシナリオでは、 [更新ポリシー](update-policy.md)を使用します。これにより、kql 式を使用して簡易処理を定義できます。
 
 |パスに依存する変換|説明|条件|
 |--|--|--|
 |`PropertyBagArrayToDictionary`|プロパティの JSON 配列 ({events: [{"n1": "v1"}、{"n2": "v2"}]}) をディクショナリに変換し、有効な JSON ドキュメント (たとえば、{"n1": "v1", "n2": "v2"}) にシリアル化します。|`path`は、が使用されている場合にのみ適用できます。|
-|`GetPathElement(index)`|指定されたインデックスに従って、指定されたパスから要素を抽出します (たとえば、Path: $. a. b. c、GetPathElement (0) = = "c"、GetPathElement (-1) = = "b"、型文字列など)。|`path`は、が使用されている場合にのみ適用できます。|
 |`SourceLocation`|データを提供したストレージアーティファクトの名前です。たとえば、「string」と入力します (たとえば、blob の "BaseUri" フィールド)。|
 |`SourceLineNumber`|そのストレージアーティファクトを基準としたオフセット。 long (' 1 ' から始まり、新しいレコードごとに増分) を入力します。|
 |`DateTimeFromUnixSeconds`|Unix 時間 (1970-01-01 以降の秒) を表す数値を UTC の datetime 文字列に変換します|

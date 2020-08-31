@@ -8,16 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 866436d74e3e37319ec06b477503c11e3d7d6be7
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 1db42577a0d4d10da732b54b0a5032ab2be11b69
+ms.sourcegitcommit: 91e7d49a1046575bbc63a4f25724656ebfc070db
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201320"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89151163"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
 次のコマンドでは、Azure Blob Storage、Azure Data Lake Store Gen1、または Azure Data Lake Store Gen2 にある外部テーブルを作成する方法について説明します。 
+
+外部 Azure Storage テーブル機能の概要については、「 [Azure データエクスプローラーを使用した Azure Data Lake でのデータのクエリ](../../data-lake-query-data.md)」を参照してください。
 
 ## <a name="create-or-alter-external-table"></a>。外部テーブルを作成または変更します。
 
@@ -81,6 +83,7 @@ ms.locfileid: "88201320"
   *PartitionName* `:``datetime` `=` ( `startofyear` \| `startofmonth` \| `startofweek` \| `startofday` ) `(` *ColumnName*`)`  
   *PartitionName* `:``datetime` `=` `bin``(` *ColumnName* `,` *TimeSpan*`)`
 
+パーティション分割定義の正確性を確認するには、外部テーブルを作成するときにプロパティを使用し `sampleUris` ます。
 
 <a name="path-format"></a>
 *PathFormat*
@@ -113,6 +116,8 @@ ms.locfileid: "88201320"
 
 *Pathformat*を外部テーブル定義から省略した場合、すべてのパーティションが定義されている順序とまったく同じ順序で区切られていると見なされ `/` ます。 パーティションは、既定の文字列表現を使用してレンダリングされます。
 
+パス形式の定義の正確性を確認するには、外部テーブルを作成するときにプロパティを使用し `sampleUris` ます。
+
 <a name="format"></a>
 *形式*
 
@@ -133,7 +138,7 @@ Blob コンテナーまたは Azure Data Lake Store ファイルシステム (�
 <a name="properties"></a>
 *省略可能なプロパティ*
 
-| プロパティ         | Type     | 説明       |
+| プロパティ         | 種類     | 説明       |
 |------------------|----------|-------------------------------------------------------------------------------------|
 | `folder`         | `string` | テーブルのフォルダー                                                                     |
 | `docString`      | `string` | テーブルをドキュメント化する文字列                                                       |
@@ -238,9 +243,6 @@ dataformat=parquet
 )
 ```
 
-> [!NOTE]
-> 現在、仮想列は、、、、、、 `CSV` `TSV` `TSVE` `SCsv` `SOHsv` `PSV` 、 `RAW` および `TXT` の各データ形式ではサポートされていません。
-
 <a name="file-filtering"></a>
 **ファイルフィルタリングロジック**
 
@@ -257,7 +259,7 @@ dataformat=parquet
 すべての条件が満たされると、ファイルはクエリエンジンによってフェッチおよび処理されます。
 
 > [!NOTE]
-> 初期 URI パターンは、クエリ述語値を使用して作成されます。 これは、文字列値の限定されたセット、およびクローズされた時間範囲に最適です。 
+> 初期 URI パターンは、クエリ述語値を使用して作成されます。 これは、文字列値の限定されたセット、およびクローズされた時間範囲に最適です。
 
 ## <a name="show-external-table-artifacts"></a>。外部テーブルの成果物を表示する
 
@@ -274,7 +276,7 @@ dataformat=parquet
 
 **出力**
 
-| 出力パラメーター | Type   | 説明                       |
+| 出力パラメーター | 種類   | 説明                       |
 |------------------|--------|-----------------------------------|
 | URI              | string | 外部ストレージデータファイルの URI |
 

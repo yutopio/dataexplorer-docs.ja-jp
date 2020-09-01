@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: lugoldbe
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/03/2020
-ms.openlocfilehash: 97e7b7430410ce73f3577fdf37a2635169ea191b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5cac11623079b6d36e426552877a2820735e3666
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350028"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873153"
 ---
 # <a name="add-database-principals-for-azure-data-explorer-by-using-c"></a>C# を使用して Azure Data Explorer 用のデータベース プリンシパルを追加する
 

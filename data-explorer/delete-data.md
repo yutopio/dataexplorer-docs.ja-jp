@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: avneraa
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/12/2020
-ms.openlocfilehash: efbea2f9b8502f2521f2376f4aaf57902fa4e302
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: fb9cdfbef5b4d2aa7c7b98fdc58d2ec7fdccbd0c
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493295"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874241"
 ---
 # <a name="delete-data-from-azure-data-explorer"></a>Azure データ エクスプローラーからデータを削除する
 

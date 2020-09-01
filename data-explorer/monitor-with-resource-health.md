@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: prvavill
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/31/2020
-ms.openlocfilehash: 297779b6431c15436e175a3269b2291340c51b79
-ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
+ms.openlocfilehash: 5de30b4e6eb2ac9d01314482b693f6643075ca4a
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028529"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88872745"
 ---
 # <a name="monitor-azure-data-explorer-using-resource-health-preview"></a>Resource Health を使用して Azure Data Explorer を監視する (プレビュー)
 

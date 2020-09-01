@@ -6,14 +6,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: tzgitlin
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/15/2019
-ms.openlocfilehash: b2078ee88b6721f414d280e657d1463925f5a31f
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: af351530b8622785f76c6165aede056073aff67f
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87804020"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873391"
 ---
 # <a name="use-azure-data-factory-command-activity-to-run-azure-data-explorer-control-commands"></a>Azure Data Factory コマンド アクティビティを使用して Azure Data Explorer 制御コマンドを実行する
 

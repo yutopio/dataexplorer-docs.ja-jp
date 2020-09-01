@@ -6,14 +6,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: tzgitlin
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 09/08/2019
-ms.openlocfilehash: e1c51132ddb36a206a97236b6ceb4553a62e6d2c
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: d0e7cb8badcd5ae3ad3939728f35de435b848735
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373913"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873271"
 ---
 # <a name="copy-in-bulk-from-a-database-to-azure-data-explorer-by-using-the-azure-data-factory-template"></a>Azure Data Factory テンプレートを使用してデータベースから Azure Data Explorer に一括コピーする 
 

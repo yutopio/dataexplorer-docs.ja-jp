@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: tzgitlin
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/28/2020
-ms.openlocfilehash: a56f5ea3ad17e8ef7c428d927861af9eaa0e9935
-ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
+ms.openlocfilehash: 1825ef642e5427df58800c8d6a71f75ff484bcf5
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87264754"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88872643"
 ---
 # <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>LightIngest を使用して Azure Data Explorer にデータを取り込む
  

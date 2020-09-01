@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: guregini
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/12/2020
-ms.openlocfilehash: bf479a7248033d2aa70a8e09b039814361c78031
-ms.sourcegitcommit: bcd0c96b1581e43e33aa35f4d68af6dcb4979d39
+ms.openlocfilehash: 0d6695ddf6923dcbf44ac3466a2388edc7618551
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88039235"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88874972"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-kibana-with-the-k2bridge-open-source-connector"></a>K2Bridge オープンソース コネクタを使用して Kibana で Azure Data Explorer のデータを視覚化する
 

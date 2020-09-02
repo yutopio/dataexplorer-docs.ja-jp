@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/30/2019
-ms.openlocfilehash: 156257613195cb53730273ac3a654908feac9601
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: ee5b898b5e4bbb72ad1cd32fcfb40ba0d144c02d
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492727"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88873000"
 ---
 # <a name="connect-to-azure-data-explorer-with-odbc"></a>ODBC を使って Azure Data Explorer に接続する
 
@@ -48,7 +48,7 @@ ODBC Driver for SQL Server を使用して ODBC データ ソースを構成す�
 
     ![ドライバーを選択する](media/connect-odbc/select-driver.png)
 
-1. 接続の名前と説明、および接続先のクラスターを入力してから、 **[次へ]** を選択します。 クラスターの URL は、 *\<クラスター名\>.\<リージョン\>.kusto.windows.net* という形式にする必要があります。
+1. 接続の名前と説明、および接続先のクラスターを入力してから、 **[次へ]** を選択します。 クラスターの URL は、 *\<ClusterName\>.\<Region\>.kusto.windows.net* という形式にする必要があります。
 
     ![サーバーを選択する](media/connect-odbc/select-server.png)
 

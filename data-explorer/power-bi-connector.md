@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/10/2019
-ms.openlocfilehash: d162adec8ea0c5244fef601bf409d12432f4ce00
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 591f8add363f0d1b09d8314c21a209fdc4cbedac
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494383"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875176"
 ---
 # <a name="visualize-data-using-the-azure-data-explorer-connector-for-power-bi"></a>Power BI 用 Azure Data Explorer コネクタを使用してデータを視覚化する
 
@@ -44,7 +44,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
     **設定** | **Value** | **フィールドの説明**
     |---|---|---|
-    | クラスター | *https://help.kusto.windows.net* | ヘルプ クラスターの URL。 その他のクラスターでは、URL が *https://\<クラスター名\>.\<リージョン\>.kusto.windows.net* 形式になります。 |
+    | クラスター | *https://help.kusto.windows.net* | ヘルプ クラスターの URL。 その他のクラスターの場合、URL は *https://\<ClusterName\>.\<Region\>.kusto.windows.net* の形式になります。 |
     | データベース | 空白 | 接続先のクラスターでホストされるデータベース。 これは後の手順で選択します。 |
     | テーブル名 | 空白 | データベース内のいずれかのテーブル、または <code>StormEvents \| take 1000</code> のようなクエリ。 これは後の手順で選択します。 |
     | [詳細オプション] | 空白 | クエリのオプション (結果セットのサイズなど)。 |

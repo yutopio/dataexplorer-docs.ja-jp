@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 07/10/2019
-ms.openlocfilehash: ba53be55f2aab6d63db6e983ba2730e303674769
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 5a8e95b6ba21455f2673a019dca7b0959697a80c
+ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494323"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88875040"
 ---
 # <a name="visualize-data-from-azure-data-explorer-using-a-sql-query-in-power-bi"></a>Power BI で SQL クエリを使用して Azure Data Explorer のデータを視覚化する
 
@@ -50,7 +50,7 @@ Azure Data Explorer ではネイティブの照会言語を使用するのが一
 
     **設定** | **Value** | **フィールドの説明**
     |---|---|---|
-    | サーバー | *help.kusto.windows.net* | ヘルプ クラスターのURL (*https://* なし)。 その他のクラスターでは、URL が *\<クラスター名\>.\<リージョン\>.kusto.windows.net* 形式になります。 |
+    | サーバー | *help.kusto.windows.net* | ヘルプ クラスターのURL (*https://* なし)。 その他のクラスターの場合、URL は *\<ClusterName\>.\<Region\>.kusto.windows.net* の形式になります。 |
     | データベース | *サンプル* | 接続先のクラスターでホストされるサンプル データベース。 |
     | データ接続モード | *[インポート]* | Power BI がデータをインポートするか、直接データ ソースに接続するかを決定します。 このコネクタでは、どちらかのオプションを使用できます。 |
     | コマンド タイムアウト | 空白 | タイムアウト エラーがスローされるまでのクエリの実行時間。 |

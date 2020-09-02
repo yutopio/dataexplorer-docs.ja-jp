@@ -5,14 +5,14 @@ author: orspod
 ms.author: orspodek
 ms.reviewer: basaba
 ms.service: data-explorer
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 10c2cf41ae1ab149b6eeffe35f94052069309152
-ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
+ms.openlocfilehash: 93860688f798c3b9ac2552052f22cc1ca1ca565e
+ms.sourcegitcommit: 91e7d49a1046575bbc63a4f25724656ebfc070db
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028512"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89151197"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
@@ -63,6 +63,14 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 
 > [!NOTE]
 > [Storage](/azure/storage/common/storage-introduction) と [Event Hub] で EventGrid セットアップを使用する場合、サブスクリプションで使用されているストレージ アカウントは、信頼できる Azure プラットフォーム サービスを[ファイアウォール構成](/azure/storage/common/storage-network-security)で許可しながら、Azure Data Explorer のサブネットへのサービス エンドポイントを使用してロックすることができます。しかし、イベント ハブでは、信頼できる [Azure プラットフォーム サービス](/azure/event-hubs/event-hubs-service-endpoints)がサポートされないため、サービス エンドポイントを有効にできません。
+
+## <a name="private-endpoints"></a>プライベート エンドポイント
+
+[プライベート エンドポイント](/azure/private-link/private-endpoint-overview)を使用すると、Azure リソース (Storage/Event Hub/Data Lake Gen 2 など) にプライベートにアクセスし、Virtual Network からのプライベート IP を使用して、リソースを効果的に VNet に取り込むことができます。
+VNet から、データ接続によって使用されるリソース (Event Hub や Storage など) および外部テーブル (Storage、Data Lake Gen 2、SQL Database など) への[プライベート エンドポイント](/azure/private-link/private-endpoint-overview)を作成して、基になるリソースにプライベートにアクセスします。
+
+ [!NOTE]
+ > プライベート エンドポイントを設定するには、[DNS の構成](/azure/private-link/private-endpoint-dns)が必要です。[Azure プライベート DNS ゾーン](/azure/dns/private-dns-privatednszone)の設定のみがサポートされています。 カスタムの DNS サーバーはサポートされていません。 
 
 ## <a name="dependencies-for-vnet-deployment"></a>VNet デプロイの依存関係
 
@@ -221,7 +229,7 @@ wdcp.microsoft.com:443
 login.microsoftonline.com:443
 azureprofilerfrontdoor.cloudapp.net:443
 *.core.windows.net:443
-*.servicebus.windows.net:443
+*.servicebus.windows.net:443,5671
 shoebox2.metrics.nsatc.net:443
 prod-dsts.dsts.core.windows.net:443
 ocsp.msocsp.com:80
@@ -235,6 +243,9 @@ www.microsoft.com:80
 adl.windows.com:80
 crl3.digicert.com:80
 ```
+
+> [!NOTE]
+> [Azure Firewall](/azure/firewall/overview) を使用している場合は、ポート 443 の *AzureMonitor* (サービス タグ) を許可する "ネットワーク ルール" を追加する必要があります。
 
 また、非対称ルートの問題を防ぐために、次ホップが*インターネット*である[管理アドレス](#azure-data-explorer-management-ip-addresses)および[正常性監視アドレス](#health-monitoring-addresses)を使用するサブネット上の[ルート テーブル](/azure/virtual-network/virtual-networks-udr-overview)を定義する必要があります。
 

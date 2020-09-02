@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: c75924ed450b2995f2d35d206951adf05aecec0e
-ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
+ms.openlocfilehash: 7f17302475221bb259e6717987f7d31e96d7c118
+ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86946123"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89366029"
 ---
 # <a name="make_list-aggregation-function"></a>make_list () (集計関数)
 
@@ -21,14 +21,14 @@ ms.locfileid: "86946123"
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
 `summarize``make_list(` *Expr* [ `,` *MaxSize*]`)`
 
 ## <a name="arguments"></a>引数
 
 * *Expr*: 集計計算に使用される式です。
-* *MaxSize*は、返される要素の最大数に対する整数制限 (省略可能) です (既定値は*1048576*)。 MaxSize 値は1048576を超えることはできません。
+* *MaxSize* は、返される要素の最大数に対する整数制限 (省略可能) です (既定値は *1048576*)。 MaxSize 値は1048576を超えることはできません。
 
 > [!NOTE]
 > この関数の従来型および旧形式のバリアントでは、 `makelist()` *MaxSize* = 128 の既定の制限が設定されています。
@@ -40,7 +40,7 @@ ms.locfileid: "86946123"
 演算子への入力が並べ替えられている場合、結果として `summarize` 得られる配列内の要素の順序によって、入力の値が追跡されます。
 
 > [!TIP]
-> [`mv-apply`](./mv-applyoperator.md)キーによって順序付けられたリストを作成するには、演算子を使用します。 [こちら](./mv-applyoperator.md#using-the-mv-apply-operator-to-sort-the-output-of-makelist-aggregate-by-some-key)の例を参照してください。
+> [`mv-apply`](./mv-applyoperator.md)キーによって順序付けられたリストを作成するには、演算子を使用します。 [こちら](./mv-applyoperator.md#using-the-mv-apply-operator-to-sort-the-output-of-make_list-aggregate-by-some-key)の例を参照してください。
 
 ## <a name="examples"></a>例
 
@@ -97,7 +97,7 @@ shapes
 
 ### <a name="packing-a-dynamic-object"></a>動的オブジェクトのパッキング
 
-次のクエリに示すように、列に動的オブジェクトを[パック](./packfunction.md)してから、リストを作成することができます。
+次のクエリに示すように、列に動的オブジェクトを [パック](./packfunction.md) してから、リストを作成することができます。
 
 ```kusto
 let shapes = datatable (name: string, sideCount: int)
@@ -124,4 +124,4 @@ shapes
 
 ## <a name="see-also"></a>関連項目
 
-[`make_list_if`](./makelistif-aggfunction.md)演算子はに似 `make_list` ていますが、述語も受け入れる点が異なります。
+[`make_list_if`](./makelistif-aggfunction.md) 演算子はに似 `make_list` ていますが、述語も受け入れる点が異なります。

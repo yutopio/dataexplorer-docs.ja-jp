@@ -1,6 +1,6 @@
 ---
-title: Azure データ エクスプローラー R SDK - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの Azure データ エクスプローラー R SDK について説明します。
+title: Azure データエクスプローラー R SDK-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、azure データエクスプローラーの Azure データエクスプローラー R SDK について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/29/2019
-ms.openlocfilehash: f818e025829fbde3be81b626b923670b1eaa653b
-ms.sourcegitcommit: 29018b3db4ea7d015b1afa65d49ecf918cdff3d6
+ms.openlocfilehash: f7a5eacb796ea5a1ba4b4768148ae44e0443a541
+ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "82030023"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89428347"
 ---
-# <a name="azure-data-explorer-r-sdk"></a>Azure データ エクスプローラー R SDK
+# <a name="azure-data-explorer-r-sdk"></a>Azure データエクスプローラー R SDK
 
-Azure データ エクスプローラー (Kusto) R ライブラリは、[`cloudyr`プロジェクト](https://github.com/cloudyr)の一部であるオープン ソース プロジェクトであり、R を使用して Azure データ エクスプローラー クラスターを照会できます。
+Azure データエクスプローラー R ライブラリは、 [ `cloudyr` プロジェクト](https://github.com/cloudyr)の一部であるオープンソースプロジェクトであり、r を使用して azure データエクスプローラークラスターに対してクエリを実行できます。
 
 [GitHub リポジトリ](https://github.com/cloudyr/AzureKusto)には、インストール手順と使用例が含まれています。

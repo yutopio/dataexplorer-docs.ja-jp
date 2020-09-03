@@ -9,22 +9,22 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 01/02/2019
-ms.openlocfilehash: 5511155eaa131c85a49a2082322ad95fcd022418
-ms.sourcegitcommit: f6cf88be736aa1e23ca046304a02dee204546b6e
+ms.openlocfilehash: 6766a817a1568eeb3cbcf2eb5bc0440cdd10eec6
+ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "82862014"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89428431"
 ---
 # <a name="ms-tds-with-azure-active-directory"></a>Azure Active Directory を使用した MS-CHAP
 
-## <a name="aad-user-authentication"></a>AAD ユーザー認証
+## <a name="azure-ad-user-authentication"></a>ユーザー認証の Azure AD
 
-AAD ユーザー認証をサポートする SQL クライアントは、Kusto と共に使用できます。
+Azure AD ユーザー認証をサポートする SQL クライアントは、Azure データエクスプローラーで使用できます。
 
 ### <a name="net-sql-client-user"></a>.NET SQL クライアント (ユーザー)
 
-たとえば、統合 AAD の場合は次のようになります。
+たとえば、統合 Azure AD の場合は次のようになります。
 ```csharp
     var csb = new SqlConnectionStringBuilder()
     {
@@ -80,13 +80,13 @@ public class Sample {
 }
 ```
 
-## <a name="aad-application-authentication"></a>AAD アプリケーション認証
+## <a name="azure-ad-application-authentication"></a>アプリケーション認証の Azure AD
 
-Kusto にプロビジョニングされた AAD アプリケーションでは、AAD をサポートする SQL クライアントライブラリを使用して Kusto に接続できます。 AAD アプリケーションの詳細については[、「Aad アプリケーションの作成](../../management/access-control/how-to-provision-aad-app.md)」を参照してください。
+Kusto にプロビジョニングされた Azure AD アプリケーションは、Kusto に接続するための Azure AD をサポートする SQL クライアントライブラリを使用できます。 Azure AD アプリケーションの詳細については、「 [Azure AD アプリケーションの作成](../../management/access-control/how-to-provision-aad-app.md)」を参照してください。
 
 ### <a name="net-sql-client-application"></a>.NET SQL クライアント (アプリケーション)
 
-*Applicationclientid*と*applicationclientid*を使用して aad アプリケーションをプロビジョニングし、クラスター *ClusterDnsName*上のデータベース*DatabaseName*にアクセスする権限を付与した場合、次のサンプルでは、この Aad アプリケーションからのクエリに .net SQL クライアントを使用する方法を示します。
+*Applicationclientid*と*applicationclientid*を使用して Azure AD アプリケーションをプロビジョニングし、クラスター *ClusterDnsName*上のデータベース*DatabaseName*にアクセスするためのアクセス許可が付与されていることを前提として、次のサンプルでは、この Azure AD アプリケーションからのクエリに .net SQL クライアントを使用する方法を示します。
 
 ```csharp
 using Microsoft.IdentityModel.Clients.ActiveDirectory;

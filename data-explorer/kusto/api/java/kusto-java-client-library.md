@@ -8,14 +8,14 @@ ms.reviewer: vladikbr
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/28/2020
-ms.openlocfilehash: ffab19c9ef06b440f525c02c38fb06681de2e764
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 256f302b877301efa78ba16c0d721ce125e5fb45
+ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350487"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89428330"
 ---
 # <a name="azure-data-explorer-java-sdk"></a>Azure データエクスプローラー Java SDK
 
-*Kusto java クライアント*ライブラリには、java を使用して Azure データエクスプローラークラスターに対してクエリを実行する機能が用意されています。
+Azure データエクスプローラー Java クライアントライブラリには、Java を使用して Azure データエクスプローラークラスターに対してクエリを実行する機能が用意されています。
 Azure データエクスプローラー Java SDK は、 [azure](https://github.com/Azure/azure-kusto-java)で使用できます。

@@ -1,6 +1,6 @@
 ---
-title: クスト .NET SDK について - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで Kusto .NET SDK について説明します。
+title: Kusto .NET SDK について-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの Kusto .NET SDK について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,25 +8,25 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/10/2020
-ms.openlocfilehash: 3a1de8d18fbc552dcc5b5a2c9f8565aec278f3b7
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 7cd271a287006dfc3c56c5b9fd7a5e4530494746
+ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81502773"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89428313"
 ---
-# <a name="about-kusto-net-sdk"></a>クスト .NET SDK について
+# <a name="about-azure-data-explorer-net-sdk"></a>Azure データエクスプローラー .NET SDK について
 
-KUsto .NET SDK は、.NET アプリケーションが Kusto サービスと通信するために使用できるライブラリのセットです。
+Azure データエクスプローラー .NET SDK は、.NET アプリケーションが Azure データエクスプローラーサービスとの通信に使用できる一連のライブラリです。
 
-Kusto .NET SDK は[、NuGet ギャラリー](https://www.nuget.org/)から入手できます。
-各パッケージには 、.NET Framework 4.6.2 および .NET Core 2.0 ライブラリが用意されています。
+Azure データエクスプローラー .NET SDK は、 [NuGet ギャラリー](https://www.nuget.org/)から入手できます。
+各パッケージには、.NET Framework 4.6.2 と .NET Core 2.0 ライブラリが用意されています。
 
 |Package                                                                                             |説明        |
 |----------------------------------------------------------------------------------------------------|-------------------|
-|[データ](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Data/)            |クライアント ライブラリ     |
-|[マイクロソフト.Azure.クスト.インジェスト](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest/)        |インジェスティションライブラリ  |
-|[クスト](https://www.nuget.org/packages/Microsoft.Azure.Management.Kusto/)|管理ライブラリ |
-|[言語](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Language/)    |言語サービス   |
-|[ツール](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/)          |コマンドライン ツール |
+|[Microsoft. Azure. Kusto. データ](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Data/)            |クライアントライブラリ     |
+|[Microsoft. Azure. Kusto. インジェスト](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest/)        |インジェストライブラリ  |
+|[Microsoft.Azure.Management.Kusto](https://www.nuget.org/packages/Microsoft.Azure.Management.Kusto/)|管理ライブラリ |
+|[Microsoft. Azure. Kusto.](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Language/)    |言語サービス   |
+|[Microsoft. Azure. Kusto. ツール](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/)          |コマンド ライン ツール |
 

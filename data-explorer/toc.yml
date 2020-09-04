@@ -44,7 +44,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: セキュリティ
+    - name: Security
       items:
         - name: セキュリティの概要
           href: security.md
@@ -180,6 +180,8 @@
               href: azure-data-explorer-dashboards.md
             - name: ダッシュボード パラメーターの使用
               href: dashboard-parameters.md
+            - name: ダッシュボードのビジュアルをカスタマイズする
+              href: dashboard-customize-visuals.md
         - name: Power BI
           items:
             - name: ベスト プラクティス

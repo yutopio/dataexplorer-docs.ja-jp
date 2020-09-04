@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: cbafde1b87807c449923b8b010c57e3394c4a74f
-ms.sourcegitcommit: d08b3344d7e9a6201cf01afc8455c7aea90335aa
+ms.openlocfilehash: 0b85d0c4bd0604f46375e314cb1fe029647b8d32
+ms.sourcegitcommit: 9b96a0c1ba0d07fec81f29bdf8f71b9549e79b3a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88964746"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89472242"
 ---
 # <a name="data-partitioning-policy"></a>データのパーティション分割ポリシー
 
@@ -51,7 +51,7 @@ ms.locfileid: "88964746"
 * `Function` 使用するハッシュ剰余関数の名前を指定します。
   * サポートされている値: `XxHash64` 。
 * `MaxPartitionCount` 期間ごとに作成するパーティションの最大数 (ハッシュ剰余関数の剰余引数) です。
-  * サポートされている値は、の範囲内 `(1,1024]` です。
+  * サポートされている値は、の範囲内 `(1,2048]` です。
     * 値は次のようになる必要があります。
       * クラスター内のノード数の5倍を超えています。
       * 列のカーディナリティより小さい。
@@ -181,7 +181,7 @@ ms.locfileid: "88964746"
   * このプロパティは省略可能です。 既定値は `0` で、既定のターゲットは500万レコードです。
     * パーティション分割操作が操作ごとに非常に大量のメモリまたは CPU を消費している場合は、5分よりも小さい値を設定できます。 詳細については、「 [Monitoring](#monitoring)」を参照してください。
 
-## <a name="notes"></a>メモ
+## <a name="notes"></a>ノート
 
 ### <a name="the-data-partitioning-process"></a>データパーティション分割プロセス
 
@@ -230,6 +230,6 @@ ms.locfileid: "88964746"
 
 どちらの場合も、データを "修正" するか、インジェストの前または後にデータ内の不要なレコードをフィルターで除外して、クラスターでのデータのパーティション分割のオーバーヘッドを軽減する必要があります。 たとえば、 [更新ポリシー](updatepolicy.md)を使用します。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 [パーティション分割ポリシー制御コマンド](../management/partitioning-policy.md)を使用して、テーブルのデータのパーティション分割ポリシーを管理します。

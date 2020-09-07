@@ -220,6 +220,8 @@
               href: vnet-deployment.md
             - name: VNet のクラスターの作成、接続、操作のトラブルシューティング
               href: vnet-deploy-troubleshoot.md
+            - name: VNet クラスターのプライベート エンドポイントを作成する - ポータル
+              href: vnet-create-private-endpoint.md
         - name: 暗号化
           items:
             - name: クラスター ディスクの暗号化 - ポータル

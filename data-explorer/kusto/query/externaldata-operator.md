@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: f86c952fdbfadd0b6ff4177ce7aa194019639b20
-ms.sourcegitcommit: d54e4ebb611da2b30158720e14103e81a7daa5af
+ms.openlocfilehash: 8bb30180a7506b594e5747e3591f0d1aff80f8c3
+ms.sourcegitcommit: f689547c0f77b1b8bfa50a19a4518cbbc6d408e5
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/01/2020
-ms.locfileid: "89286426"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89557362"
 ---
 # <a name="externaldata-operator"></a>externaldata 演算子
 
 演算子は、 `externaldata` クエリ自体でスキーマが定義されているテーブルを返します。このテーブルのデータは、Azure Blob Storage 内の blob や Azure Data Lake Storage 内のファイルなど、外部ストレージの成果物から読み込まれます。
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
 `externaldata``(` *ColumnName* `:` *ColumnType* [ `,` ...]`)`   
 `[`*StorageConnectionString* [ `,` ...]`]`   
@@ -36,7 +36,7 @@ ms.locfileid: "89286426"
 
 現在サポートされているプロパティは次のとおりです。
 
-| プロパティ         | Type     | Description       |
+| プロパティ         | 種類     | 説明       |
 |------------------|----------|-------------------|
 | `format`         | `string` | データ形式。 指定しない場合、ファイル拡張子 (既定値は) からデータ形式を検出しようとし `CSV` ます。 [インジェストデータ形式](../../ingestion-supported-formats.md)のいずれかがサポートされています。 |
 | `ignoreFirstRecord` | `bool` | True に設定すると、すべてのファイルの最初のレコードが無視されることを示します。 このプロパティは、ヘッダーを使用して CSV ファイルにクエリを実行する場合に便利です。 |
@@ -44,7 +44,8 @@ ms.locfileid: "89286426"
 
 
 > [!NOTE]
-> この演算子は、パイプラインの入力を受け入れません。
+> * この演算子は、パイプラインの入力を受け入れません。
+> * 標準 [クエリの制限](../concepts/querylimits.md) は、外部データクエリにも適用されます。
 
 ## <a name="returns"></a>戻り値
 

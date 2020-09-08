@@ -92,7 +92,7 @@
           href: lightingest.md
         - name: イベント ハブ
           items:
-            - name: イベント ハブへの接続
+            - name: イベント ハブへの接続を作成する
               href: ingest-data-event-hub-overview.md
             - name: Azure portal
               href: ingest-data-event-hub.md
@@ -104,7 +104,7 @@
               href: data-connection-event-hub-resource-manager.md
         - name: Event Grid
           items:
-            - name: Event Grid への接続
+            - name: Event Grid への接続を作成する
               href: ingest-data-event-grid-overview.md
             - name: Azure portal
               href: ingest-data-event-grid.md
@@ -116,7 +116,7 @@
               href: data-connection-event-grid-resource-manager.md
         - name: IoT Hub
           items:
-            - name: IoT Hub への接続
+            - name: IoT Hub への接続を作成する
               href: ingest-data-iot-hub-overview.md
             - name: Azure portal
               href: ingest-data-iot-hub.md
@@ -297,7 +297,8 @@
       items:
         - name: 診断ログを使用してインジェストを監視する
           href: using-diagnostic-logs.md
-        - name: メトリックを使用してクラスターの正常性を監視する
+        - name: メトリックを使用して Azure Data Explorer を監視する
+          displayName: 'health, performance'
           href: using-metrics.md
         - name: リソースの正常性を使用してクラスターの正常性を監視する
           href: monitor-with-resource-health.md

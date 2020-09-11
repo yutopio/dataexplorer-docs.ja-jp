@@ -8,12 +8,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/09/2020
-ms.openlocfilehash: fd33ea4d4607c9c3af0ded26ec7f58de761f24ea
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4921a48ff879879084ec1941ab69c6e9d29b9773
+ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873850"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89366165"
 ---
 # <a name="use-parameters-in-azure-data-explorer-dashboards"></a>Azure Data Explorer ダッシュボードでパラメーターを使用する
 
@@ -47,12 +47,12 @@ ms.locfileid: "88873850"
 |フィールド  |説明 |
 |---------|---------|
 |**Parameter display name (パラメーター表示名)**    |   ダッシュボードまたは編集カードに表示されるパラメーターの名前。      |
-|**パラメーターの種類**    |次のいずれか:<ul><li>**Single selection (単一選択)** :パラメーターの入力としてフィルターで値を 1 つのみ選択できます。</li><li>**Multiple selection (複数選択)** :パラメーターの入力としてフィルターで値を 1 つまたは複数選択できます。</li><li>**[時間範囲]** : 時間に基づいてクエリとダッシュボードをフィルター処理するための追加パラメーターを作成できます。 既定では、すべてのダッシュボードに時間範囲のピッカーがあります。</li></ul>    |
+|**パラメーターの種類**    |次のいずれかのパラメーター:<ul><li>**Single selection (単一選択)** :パラメーターの入力としてフィルターで値を 1 つのみ選択できます。</li><li>**Multiple selection (複数選択)** :パラメーターの入力としてフィルターで値を 1 つまたは複数選択できます。</li><li>**[時間範囲]** : 時間に基づいてクエリとダッシュボードをフィルター処理するための追加パラメーターを作成できます。 既定では、すべてのダッシュボードに時間範囲のピッカーがあります。</li><li>**Free text (自由記載)** : フィルターには値が設定されていません。 ユーザーは、テキスト フィールドに値を入力するか、値をコピーして貼り付けることができます。 フィルターでは、使用された最新の値が保持されます。</li></ul>    |
 |**[変数名]**     |   クエリで使用されるパラメーターの名前。      |
 |**データの種類**    |    パラメーター値のデータ型。     |
 |**Pin as dashboard filter (ダッシュボード フィルターとしてピン留め)**   |   パラメーターベースのフィルターをダッシュボードにピン留めするか、ダッシュボードからピン留めを外します。       |
 |**ソース**     |    パラメーター値のソース。 <ul><li>**Fixed values (固定値)** :手動で導入される静的なフィルター値。 </li><li>**Query**: KQL クエリを使用して動的に導入される値。  </li></ul>    |
-|**Add a “Select all” value (「すべて選択」の値を追加)**    |   単一選択と複数選択のパラメーターの種類にのみ適用されます。 すべてのパラメーター値のデータを取得するために使用します。 この値は、その機能を提供するためにクエリに組み込む必要があります。 そのようなクエリを作成するための詳細な例については、「[複数選択のクエリベースのパラメーターを使用する](#use-the-multiple-selection-query-based-parameter)」を参照してください。     |
+|**Add a “Select all” value (「すべて選択」の値を追加)**    |   単一選択と複数選択のパラメーターの種類にのみ適用されます。 すべてのパラメーター値のデータを取得するために使用します。 この値は、その機能を提供するためにクエリに組み込む必要があります。 そのようなクエリ作成に関するその他の例については、「[複数選択のクエリベースのパラメーターを使用する](#use-the-multiple-selection-query-based-parameter)」を参照してください。     |
 
 ## <a name="manage-parameters-in-parameter-card"></a>パラメーター カードでパラメーターを管理する
 
@@ -220,7 +220,7 @@ EventsAll
 
 #### <a name="use-a-parameter-in-the-query"></a>クエリでパラメーターを使用する
 
-1. 以下は、`_ event` 変数を使用した、新しい Event パラメーターを用いるサンプル クエリです。
+1. 新しい Event パラメーターを使用した次のサンプルクエリでは、`_ event` 変数が使用されます。
 
     ``` kusto
     EventsAll
@@ -232,7 +232,7 @@ EventsAll
 
 1. さまざまな値を選択して、ビジュアルを更新します。
 
-### <a name="use-the-multiple-selection-query-based-parameter"></a>複数選択のクエリベース パラメーターを使用する
+### <a name="use-the-multiple-selection-query-based-parameter"></a>複数選択のクエリベースのパラメーターを使用する
 
 クエリベースのパラメーター値は、ユーザー指定のクエリを実行することで、ダッシュボードの読み込み時に取得されます。 次の例では、複数選択のクエリベースのパラメーターを作成する方法を示します。
 
@@ -264,3 +264,43 @@ EventsAll
     新しいパラメーターは、ダッシュボードの上部にあるパラメーターの一覧に表示されます。 
 
 1. 1 つまたは複数の異なる値を選択して、ビジュアルを更新します。
+
+### <a name="use-the-free-text-parameter"></a>自由記載パラメーターを使用する
+
+自由記載パラメーターには値は含まれていません。 独自の値を取り込むことができます。
+
+#### <a name="create-the-parameter"></a>パラメーターを作成する
+
+1. **[パラメーター]** を選択して **[パラメーター]** ペインを開き、 **[新しいパラメーター]** を選択します。
+1. 詳細を次のように入力します。
+    * **パラメーター表示名**:[会社]
+    * **パラメーターの種類**:自由記載
+    * **変数名**: _company
+    * **データ型**:String
+    * **Pin as dashboard filter (ダッシュボード フィルターとしてピン留め)** : オン
+    * **既定値**:既定値なし
+
+#### <a name="use-parameters-in-the-query"></a>クエリでパラメーターを使用する
+
+1. `_company` 変数名を使用して、新しい *Company* パラメーターを用いてサンプル クエリを実行します。
+
+    ```kusto
+    EventsAll
+    | where CreatedAt > ago(7d)
+    | where Type == "WatchEvent"
+    | where Repo.name has _company
+    | summarize WatchEvents=count() by RepoName = tolower(tostring(Repo.name))
+    | top 5 by WatchEvents
+    ```
+
+新しいパラメーターが、ダッシュボードの上部にあるパラメーター一覧に表示されます。
+
+## <a name="use-filter-search-for-single-and-multiple-selection-filters"></a>単一および複数選択フィルターにフィルター検索を使用する
+
+単一および複数選択フィルターに、必要な値を入力します。 フィルター検索では、検索用語と一致する最近取得したすべての値が表示されます。
+
+## <a name="next-steps"></a>次の手順
+
+* [ダッシュボードのビジュアルをカスタマイズする](dashboard-customize-visuals.md)
+* [Azure Data Explorer でデータのクエリを実行する](web-query-data.md) 
+

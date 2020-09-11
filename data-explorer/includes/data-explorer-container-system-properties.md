@@ -4,22 +4,16 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 02/27/2020
 ms.author: orspodek
-ms.openlocfilehash: a2297301a0b9c0540c73c0f50483cccfc3181a0f
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 40334f81e39317839c05ce09a2e4923be4e0747c
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493407"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502664"
 ---
-### <a name="event-system-properties-mapping"></a>イベント システム プロパティのマッピング
+### <a name="schema-mapping-examples"></a>スキーマ マッピングの例
 
-> [!Note]
-> * システム プロパティは、単一レコードのイベントに対してサポートされています。
-> * `csv` マッピングの場合、レコードの先頭にプロパティが追加されます。 `json` マッピングの場合、ドロップダウン リストに表示される名前に従ってプロパティが追加されます。
-
-テーブルの **[データ ソース]** セクションで **[イベント システムのプロパティ]** を選択した場合は、テーブルのスキーマとマッピングに次のプロパティを含める必要があります。
-
-**テーブル スキーマの例**
+**テーブル スキーマ マッピングの例**
 
 データに 3 つの列 (`Timespan`、`Metric`、および `Value`) が含まれており、含めるプロパティが `x-opt-enqueued-time` および `x-opt-offset` の場合は、次のコマンドを使用してテーブル スキーマを作成または変更します。
 
@@ -44,7 +38,7 @@ ms.locfileid: "81493407"
  
 **JSON マッピングの例**
 
-データは、システム プロパティ名が **[データ接続]** ブレードの **[イベント システムのプロパティ]** 一覧に表示されるときに、システム プロパティを使用して追加されます。 次の各コマンドを実行します。
+データは、システム プロパティのマッピングを使用して追加されます。 これらのコマンドを実行します。
 
 ```kusto
     .create table TestTable ingestion json mapping "JsonMapping1"

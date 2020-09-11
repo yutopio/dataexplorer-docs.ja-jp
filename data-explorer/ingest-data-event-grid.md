@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 25c82c8890342e00279d137eb749f3acc7df986f
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: c96203ccfa0c4dc70fff83454dac217cccfc0a6c
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874989"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502774"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Event Grid の通知をサブスクライブすることで Azure Data Explorer に BLOB を取り込む
 
@@ -26,6 +26,8 @@ ms.locfileid: "88874989"
 
 この記事では、Event Grid データ接続を使用して、ストレージ アカウントから Azure Data Explorer に BLOB を取り込む方法を説明します。 [Azure Event Grid](/azure/event-grid/overview) サブスクリプションを設定する Event Grid データ接続を作成します。 Event Grid サブスクリプションは、Azure Event Hub 経由でストレージアカウントから Azure Data Explorer にイベントをルーティングします。 その後、システム全体のデータ フローの例が表示されます。
 
+Event Grid から Azure Data Explorer への取り込みに関する一般的な情報については、[Event Grid への接続](ingest-data-event-grid-overview.md)に関する記事を参照してください。
+
 ## <a name="prerequisites"></a>前提条件
 
 * Azure サブスクリプション。 [無料の Azure アカウント](https://azure.microsoft.com/free/)を作成します。
@@ -38,7 +40,7 @@ Azure Data Explorer で、Event Hubs のデータの送信先となるテーブ�
 
 1. Azure portal のクラスターで、 **[クエリ]** を選択します。
 
-    :::image type="content" source="media/ingest-data-event-grid/query-explorer-link.png" alt-text="クエリ エクスプローラーへのリンク":::    
+    :::image type="content" source="media/ingest-data-event-grid/query-explorer-link.png" alt-text="クエリ エクスプローラーへのリンク"::: 
 
 1. 次のコマンドをウィンドウにコピーし、 **[実行]** を選択して、取り込んだデータを受け取るテーブル (TestTable) を作成します。
 
@@ -159,11 +161,7 @@ Azure Storage リソースを操作するいくつかの基本的な Azure CLI �
 
 ### <a name="ingestion-properties"></a>インジェストのプロパティ
 
-BLOB メタデータを使用して、BLOB インジェストの[インジェストのプロパティ](ingestion-properties.md)を指定できます。
-
-次のプロパティを設定できます。
-
-[!INCLUDE [ingestion-properties-event-grid](includes/ingestion-properties-event-grid.md)]
+BLOB メタデータを使用して、BLOB インジェストの[インジェストのプロパティ](ingest-data-event-grid-overview.md#set-ingestion-properties)を指定できます。 
 
 > [!NOTE]
 > Azure Data Explorer では、BLOB 投稿の取り込みは削除されません。

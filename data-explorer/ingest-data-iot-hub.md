@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/08/2020
-ms.openlocfilehash: 578141c63daeecd285d397b356260a4f22720621
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4433126f67187d1bb2a190821dc6a59d96be3f5b
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874938"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502791"
 ---
 # <a name="ingest-data-from-iot-hub-into-azure-data-explorer"></a>IoT Hub から Azure Data Explorer にデータを取り込む 
 
@@ -25,6 +25,8 @@ ms.locfileid: "88874938"
 [!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
 
 この記事では、ビッグ データのストリーミング プラットフォームとなる IoT インジェスト サービスである IoT Hub から Azure Data Explorer にデータを取り込む方法について説明します。
+
+IoT Hub から Azure Data Explorer への取り込みに関する一般的な情報については、[IoT Hub への接続](ingest-data-iot-hub-overview.md)に関する記事を参照してください。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -106,7 +108,13 @@ ms.locfileid: "88874938"
     > * 動的ルーティングを使用するには、 **[My data includes routing info]\(データにルーティング情報が含まれている\)** を選択します。この場合、[サンプル アプリ](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)のコメントに示されているように、データに必要なルーティング情報が含まれています。 静的プロパティと動的プロパティの両方が設定されている場合、静的プロパティは動的プロパティによってオーバーライドされます。 
     > * データ接続の作成後にエンキューされたイベントのみが取り込まれたます。
 
-[!INCLUDE [data-explorer-container-system-properties](includes/data-explorer-container-system-properties.md)]
+### <a name="event-system-properties-mapping"></a>イベント システム プロパティのマッピング
+
+> [!Note]
+> * システム プロパティは、単一レコードのイベントに対してサポートされています。
+> * `csv` マッピングの場合、レコードの先頭にプロパティが追加されます。 `json` マッピングの場合、ドロップダウン リストに表示される名前に従ってプロパティが追加されます。
+
+テーブルの **[データ ソース]** セクションで **[イベント システムのプロパティ]** を選択した場合は、テーブル スキーマとマッピングに[システム プロパティ](ingest-data-iot-hub-overview.md#system-properties)を含める必要があります。
 
 ## <a name="generate-sample-data-for-testing"></a>テスト用のサンプル データを生成する
 
@@ -177,7 +185,7 @@ ms.locfileid: "88874938"
 
 1. **test-resource-group** で **[リソース グループの削除]** を選択します。
 
-2. 新しいのウィンドウで、削除するリソース グループの名前を入力し、 **[削除]** を選択します。
+1. 新しいのウィンドウで、削除するリソース グループの名前を入力し、 **[削除]** を選択します。
 
 ## <a name="next-steps"></a>次のステップ
 

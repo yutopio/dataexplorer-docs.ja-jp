@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: c591c4f774f3af99004d398898b288256861bb75
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: 89ee29e70c71c29afb65ee81fc4ce8e498faee33
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373712"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502638"
 ---
 # <a name="data-formats-supported-by-azure-data-explorer-for-ingestion"></a>インジェスト用に Azure Data Explorer でサポートされているデータ形式
 
@@ -49,7 +49,7 @@ BLOB またはファイルの名前に拡張子を追加して、圧縮を示し
 
 次に例を示します。
 * `MyData.csv.zip` は、BLOB、または CSV として書式設定されたファイルが ZIP (アーカイブまたは単一ファイル) で圧縮されていることを示します
-* `MyData.csv.gz` は、BLOB、または CSV として書式設定されたファイルが GZip で圧縮されていることを示します
+* `MyData.json.gz` は、JSON として書式設定された BLOB またはファイルが GZip で圧縮されていることを示します。
 
 形式拡張子がなく圧縮のみが含まれている BLOB またはファイルの名前 (例: `MyData.zip`) もサポートされています。 この場合、ファイル形式は推測されないため、インジェスト プロパティとして指定する必要があります。
 

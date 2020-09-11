@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 93860688f798c3b9ac2552052f22cc1ca1ca565e
-ms.sourcegitcommit: 91e7d49a1046575bbc63a4f25724656ebfc070db
+ms.openlocfilehash: 9fa58d36815ede98a4f0239f1ce68a6542f24c4b
+ms.sourcegitcommit: cb55064b7cdd57c792ad259b09069525bf799fa0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/30/2020
-ms.locfileid: "89151197"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89410810"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
@@ -69,7 +69,7 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 [プライベート エンドポイント](/azure/private-link/private-endpoint-overview)を使用すると、Azure リソース (Storage/Event Hub/Data Lake Gen 2 など) にプライベートにアクセスし、Virtual Network からのプライベート IP を使用して、リソースを効果的に VNet に取り込むことができます。
 VNet から、データ接続によって使用されるリソース (Event Hub や Storage など) および外部テーブル (Storage、Data Lake Gen 2、SQL Database など) への[プライベート エンドポイント](/azure/private-link/private-endpoint-overview)を作成して、基になるリソースにプライベートにアクセスします。
 
- [!NOTE]
+ > [!NOTE]
  > プライベート エンドポイントを設定するには、[DNS の構成](/azure/private-link/private-endpoint-dns)が必要です。[Azure プライベート DNS ゾーン](/azure/dns/private-dns-privatednszone)の設定のみがサポートされています。 カスタムの DNS サーバーはサポートされていません。 
 
 ## <a name="dependencies-for-vnet-deployment"></a>VNet デプロイの依存関係
@@ -163,14 +163,14 @@ VNet から、データ接続によって使用されるリソース (Event Hub 
 | カナダ中部 | 168.61.212.201 |
 | カナダ東部 | 168.61.212.201 |
 | インド中部 | 23.99.5.162 |
-| 米国中部 | 168.61.212.201 |
-| 米国中部 EUAP | 168.61.212.201 |
+| 米国中部 | 168.61.212.201、23.101.115.123 |
+| 米国中部 EUAP | 168.61.212.201、23.101.115.123 |
 | 中国東部 2 | 40.73.96.39 |
 | 中国北部 2 | 40.73.33.105 |
 | 東アジア | 168.63.212.33 |
-| 米国東部 | 137.116.81.189 |
-| 米国東部 2 | 137.116.81.189 |
-| 米国東部 2 EUAP | 137.116.81.189 |
+| 米国東部 | 137.116.81.189、52.249.253.174 |
+| 米国東部 2 | 137.116.81.189、104.46.110.170 |
+| 米国東部 2 EUAP | 137.116.81.189、104.46.110.170 |
 | フランス中部 | 23.97.212.5 |
 | フランス南部 | 23.97.212.5 |
 | 東日本 | 138.91.19.129 |
@@ -178,10 +178,10 @@ VNet から、データ接続によって使用されるリソース (Event Hub 
 | 韓国中部 | 138.91.19.129 |
 | 韓国南部 | 138.91.19.129 |
 | 米国中北部 | 23.96.212.108 |
-| 北ヨーロッパ | 191.235.212.69 
+| 北ヨーロッパ | 191.235.212.69、40.127.194.147 |
 | 南アフリカ北部 | 104.211.224.189 |
 | 南アフリカ西部 | 104.211.224.189 |
-| 米国中南部 | 23.98.145.105 |
+| 米国中南部 | 23.98.145.105、104.215.116.88 |
 | インド南部 | 23.99.5.162 |
 | 東南アジア | 168.63.173.234 |
 | 英国南部 | 23.97.212.5 |
@@ -192,10 +192,10 @@ VNet から、データ接続によって使用されるリソース (Event Hub 
 | USGov テキサス | 52.238.116.34 |
 | USGov バージニア州 | 23.97.0.26 |
 | 米国中西部 | 168.61.212.201 |
-| 西ヨーロッパ | 23.97.212.5 |
+| 西ヨーロッパ | 23.97.212.5、213.199.136.176 |
 | インド西部 | 23.99.5.162 |
-| 米国西部 | 23.99.5.162 |
-| 米国西部 2 | 23.99.5.162, 104.210.32.14 |
+| 米国西部 | 23.99.5.162、13.88.13.50 |
+| 米国西部 2 | 23.99.5.162、104.210.32.14、52.183.35.124 |
 
 ## <a name="disable-access-to-azure-data-explorer-from-the-public-ip"></a>パブリック IP から Azure Data Explorer へのアクセスを無効にする
 
@@ -245,7 +245,10 @@ crl3.digicert.com:80
 ```
 
 > [!NOTE]
-> [Azure Firewall](/azure/firewall/overview) を使用している場合は、ポート 443 の *AzureMonitor* (サービス タグ) を許可する "ネットワーク ルール" を追加する必要があります。
+> [Azure Firewall](/azure/firewall/overview) を使用している場合は、次のプロパティを使用して**ネットワーク ルール**を追加します。
+> | **プロトコル**   | **変換元の型** | **ソース** | **サービス タグ**  | **宛先ポート** |
+> | ---   | --- | --- | ---  | --- |
+> | TCP | IP アドレス | * | AzureMonitor | 443 |
 
 また、非対称ルートの問題を防ぐために、次ホップが*インターネット*である[管理アドレス](#azure-data-explorer-management-ip-addresses)および[正常性監視アドレス](#health-monitoring-addresses)を使用するサブネット上の[ルート テーブル](/azure/virtual-network/virtual-networks-udr-overview)を定義する必要があります。
 

@@ -4,18 +4,18 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 30/03/2020
 ms.author: orspodek
-ms.openlocfilehash: 0d4b0a5f6c466ac629a3ea35045f2c7146aafcbc
-ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.openlocfilehash: 3e916c26b95a77be5c35748c6a50e05fe0ef916d
+ms.sourcegitcommit: 811cf98edefd919b412d80201400919eedcab5cd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86058867"
+ms.lasthandoff: 09/01/2020
+ms.locfileid: "89274682"
 ---
-## <a name="quick-queries-and-tools"></a>クイック クエリとツール
+## <a name="explore-quick-queries-and-tools"></a>クイック クエリとツールを探索する
 
-右側のメニューで、 **[クイック クエリ]** または **[ツール]** を選択します。 
+インジェストの進行状況の下にあるタイルで、 **[クイック クエリ]** または **[ツール]** を探索します。 
  * **[Quick queries]\(クイック クエリ\)** には、クエリの例がある Web UI へのリンクが含まれています。
- * **[ツール]** には、Web UI での **Drop コマンド**へのリンクが含まれており、これを使用すると、関連する `.drop` コマンドを実行して問題をトラブルシューティングできます。
+ * **[ツール]** には、Web UI の **[元に戻す]** または **[Delete new data]\(新しいデータの削除\)** へのリンクが含まれています。これを使用すると、関連する `.drop` コマンドを実行して問題をトラブルシューティングできます。
 
      > [!NOTE]
      > `.drop` コマンドを使用すると、データが失われる可能性があります。 慎重に使用してください。

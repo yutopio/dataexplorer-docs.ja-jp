@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/26/2020
-ms.openlocfilehash: 0b5633dc7ed54f9b4a763400ae8de84ba32f09e6
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 47ca1ebdd4136b3add6b4476757f34a24b08eeea
+ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872592"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89366116"
 ---
 # <a name="visualize-data-with-azure-data-explorer-dashboards"></a>Azure Data Explorer ダッシュボードを使用してデータを視覚化する
 
@@ -100,7 +100,63 @@ Azure Data Explorer のダッシュボードには、次の 3 つの主な利点
 
     :::image type="content" source="media/adx-dashboards/save-dashboard.png" alt-text="ダッシュボードを保存する":::
 
+## <a name="share-dashboards"></a>ダッシュボードの共有
+
+[共有] メニューを使用して、ダッシュボードへの[アクセス許可を付与](#grant-permissions)し、[ユーザーのアクセス許可レベルを変更](#change-a-user-permission-level)し、[ダッシュボード リンクを共有](#share-the-dashboard-link)します。
+
+> [!IMPORTANT]
+> ダッシュボードにアクセスするには、ダッシュボードの閲覧者には次のものが必要です。
+> * アクセスのためのダッシュボード リンク
+> * ダッシュボードのアクセス許可
+> * Azure Data Explorer クラスター内の基になるデータベースへのアクセス  
+
+1. ダッシュボードの上部バーにある **[共有]** メニュー項目を選択します。
+1. ドロップダウンから **[アクセス許可の管理]** を選択します。 
+
+    :::image type="content" source="media/adx-dashboards/share-dashboard.png" alt-text="ダッシュボードの [共有] ドロップダウン":::
+
+### <a name="grant-permissions"></a>[アクセス許可の付与]
+
+**[Dashboard permissions]\(ダッシュボードのアクセス許可\)** ペインでユーザーにアクセス許可を付与するには、次のようにします。
+1. **[新しいメンバーの追加]** ボックスに、ユーザーの名前またはメール アドレスを入力します。
+1. **[アクセス許可]** レベルとして **[表示可能]** または **[編集可能]** を選択し、 **[追加]** をクリックします。
+
+:::image type="content" source="media/adx-dashboards/dashboard-permissions.png" alt-text="ダッシュボードのアクセス許可を管理する":::
+
+### <a name="change-a-user-permission-level"></a>ユーザーのアクセス許可レベルを変更する
+
+**[Dashboard permissions]\(ダッシュボードのアクセス許可\)** ペインでユーザーのアクセス許可レベルを変更するには、次のようにします。
+1. 検索ボックスを使用するか、ユーザー一覧をスクロールしてユーザーを見つけます。
+1. 必要に応じて、 **[アクセス許可]** レベルを変更します。
+
+### <a name="share-the-dashboard-link"></a>ダッシュボード リンクを共有する
+
+ダッシュボード リンクを共有するには、次のようにします。
+* **[共有]** ドロップダウンを選択し、 **[リンクのコピー]** を選択します。または
+* **[Dashboard permissions]\(ダッシュボードのアクセス許可\)** ウィンドウで、 **[リンクのコピー]** を選択します。 
+
+## <a name="enable-auto-refresh"></a>自動更新を有効にする 
+
+1. ダッシュボード メニューの **[編集]** を選択して、編集モードに切り替えます。
+1. **[自動更新]** を選択します。 
+ 
+    :::image type="content" source="media/adx-dashboards/auto-refresh.png" alt-text="[自動更新] を選択する":::
+
+1. 自動更新が **[有効]** になるようにオプションを切り替えます。 
+1. **[Minimum time interval]\(最小時間間隔\)** と **[Default refresh rate]\(既定の更新頻度\)** の値を選択します。 
+
+    :::image type="content" source="media/adx-dashboards/auto-refresh-toggle.png" alt-text="自動更新を有効にする":::
+
+1. **[適用]** を選択し、ダッシュボードを**保存**します。
+
+> [!NOTE]
+> * 最も短い最小時間間隔を選択すると、クラスターでの不要な負荷が軽減されます。 
+> * ダッシュボードの閲覧者: 
+>    * 個人用に使用する場合に限り、最小時間間隔を変更できます。 
+>    * 設定編集者によって指定された**最小間隔**より小さい値は選択できません。
+
 ## <a name="next-steps"></a>次の手順
 
 * [Azure Data Explorer ダッシュボードでパラメーターを使用する](dashboard-parameters.md)
+* [ダッシュボードのビジュアルをカスタマイズする](dashboard-customize-visuals.md)
 * [Azure Data Explorer でデータのクエリを実行する](web-query-data.md)

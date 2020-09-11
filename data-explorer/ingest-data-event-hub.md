@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: b9a55915ebef61bef534e42ca0aef6a7c19868ac
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 84f4348f1d172238bd71de55e989ed8520f78b93
+ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874955"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89502757"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>イベント ハブから Azure Data Explorer にデータを取り込む
 
@@ -25,6 +25,8 @@ ms.locfileid: "88874955"
 [!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
 
 Azure データ エクスプローラーには、Event Hubs からの取り込み (データの読み込み)、ビッグ データのストリーミング プラットフォーム、イベント取り込みサービスの機能があります。 [Event Hubs](/azure/event-hubs/event-hubs-about) は、1 秒あたり数百万件のイベントをほぼリアルタイムで処理できます。 この記事では、イベント ハブを作成し、Azure データ エクスプローラーからそれに接続し、システム経由でデータ フローを確認します。
+
+イベント ハブから Azure Data Explorer への取り込みに関する一般的な情報については、[イベント ハブへの接続](ingest-data-event-hub-overview.md)に関する記事を参照してください。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -43,11 +45,11 @@ Azure データ エクスプローラーには、Event Hubs からの取り込�
 
 1. イベント ハブを作成するには、次のボタンを使用してデプロイを開始します。 この記事の残りの手順を実行できるよう、右クリックして **[新しいウィンドウで開く]** を選択してください。
 
-    [![Azure へのデプロイ](media/ingest-data-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
+    [![[Azure にデプロイ] ボタン](media/ingest-data-event-hub/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
 
     **[Deploy to Azure]\(Azure へのデプロイ\)** ボタンをクリックして Azure portal に移動し、デプロイ フォームに入力します。
 
-    ![Deploy to Azure (Azure へのデプロイ)](media/ingest-data-event-hub/deploy-to-azure.png)
+    ![イベント ハブの作成フォーム](media/ingest-data-event-hub/deploy-to-azure.png)
 
 1. イベント ハブを作成するサブスクリプションを選択し、*test-hub-rg* というリソース グループを作成します。
 
@@ -73,7 +75,7 @@ Azure データ エクスプローラーには、Event Hubs からの取り込�
 
 1. プロビジョニング プロセスを監視するには、ツール バーの **[通知]** を選択します。 デプロイが完了するまでには数分かかることがありますが、すぐに次の手順に進むこともできます。
 
-    ![通知](media/ingest-data-event-hub/notifications.png)
+    ![[通知] アイコン](media/ingest-data-event-hub/notifications.png)
 
 ## <a name="create-a-target-table-in-azure-data-explorer"></a>Azure データ エクスプローラーでターゲット テーブルを作成する
 
@@ -141,7 +143,15 @@ Azure データ エクスプローラーには、Event Hubs からの取り込�
     > * [サンプル アプリ](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)に示されているように、動的プロパティを使用して圧縮の種類を設定することもできます。
     > * Avro、ORC、および PARQUET 形式とイベント システム プロパティは、GZip 圧縮ペイロードではサポートされていません。
 
-[!INCLUDE [data-explorer-container-system-properties](includes/data-explorer-container-system-properties.md)]
+
+### <a name="event-system-properties-mapping"></a>イベント システム プロパティのマッピング
+
+> [!Note]
+> * システム プロパティは、単一レコードのイベントに対してサポートされています。
+> * `csv` マッピングの場合、レコードの先頭にプロパティが追加されます。 `json` マッピングの場合、ドロップダウン リストに表示される名前に従ってプロパティが追加されます。
+
+テーブルの **[データ ソース]** セクションで **[イベント システムのプロパティ]** を選択した場合は、テーブル スキーマとマッピングに[システム プロパティ](ingest-data-event-hub-overview.md#system-properties)を含める必要があります。
+
 
 ## <a name="copy-the-connection-string"></a>接続文字列のコピー
 

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: d77c02ee3da7c33fc77416fa712a9108411c2276
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: fa18a89e44a09a877cedb41c6d6e77384c965801
+ms.sourcegitcommit: 811cf98edefd919b412d80201400919eedcab5cd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874802"
+ms.lasthandoff: 09/01/2020
+ms.locfileid: "89274603"
 ---
 # <a name="what-is-one-click-ingestion"></a>ワンクリックでのインジェストとは
 
@@ -36,7 +36,7 @@ ms.locfileid: "88874802"
 * [Azure Data Explorer クラスターとデータベース](create-cluster-database-portal.md)を作成します。
 * [Azure Data Explorer の Web UI にサインイン](https://dataexplorer.azure.com/)して、[クラスターへの接続を追加](web-query-data.md#add-clusters)します。
 
-## <a name="ingest-new-data"></a>新しいデータを取り込む
+## <a name="access-the-one-click-wizard"></a>ワンクリック ウィザードにアクセスする
 
 ワンクリックでのインジェスト ウィザードを使用すると、ワンクリックでのデータ取り込み手順を画面の指示に従って行うことができます。
 
@@ -48,7 +48,9 @@ ms.locfileid: "88874802"
 
     :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Web UI 上でのワンクリックでのインジェストの選択":::
 
-<!-- TODO either change the local file tutorial to blob storage or create another one to show users how to do this-->
+* Azure portal からウィザードにアクセスするには、左側のメニューから **[クエリ]** を選択し、**データベース**または**テーブル**を右クリックして、 **[Ingest new data (preview)]\(新しいデータの取り込み (プレビュー)\)** を選択します。
+
+    :::image type="content" source="media/ingest-data-one-click/access-from-portal.png" alt-text="Azure portal からワンクリックでのインジェスト ウィザードにアクセスする":::
 
 ## <a name="one-click-ingestion-wizard"></a>ワンクリックでのインジェスト ウィザード
 
@@ -112,7 +114,7 @@ ms.locfileid: "88874802"
  
 ### <a name="initial-data-exploration"></a>初期データ探索
    
-インジェストが完了すると、ウィザードには、データの初期探索で **[クイック コマンド](one-click-ingestion-existing-table.md#quick-queries-and-tools)** を使用するためのオプションが表示されます。
+インジェストが完了すると、ウィザードには、データの初期探索で **[クイック コマンド](one-click-ingestion-existing-table.md#explore-quick-queries-and-tools)** を使用するためのオプションが表示されます。
 
 ## <a name="next-steps"></a>次のステップ
 

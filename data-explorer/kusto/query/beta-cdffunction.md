@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a98fe59755e47be8f4f4e53595d25bb260004236
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 8a3711594ec5d1cbcaf36c7286f1484a708c29a0
+ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349229"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90067523"
 ---
 # <a name="beta_cdf"></a>beta_cdf()
 
@@ -41,13 +41,15 @@ beta_cdf(0.2, 10.0, 50.0)
 
 * [累積ベータ分布関数](https://en.wikipedia.org/wiki/Beta_distribution#Cumulative_distribution_function)です。
 
-**メモ**
+**ノート**
 
 引数に数値以外の値を指定した場合、beta_cdf () は null 値を返します。
 
 X < 0 または x > 1 の場合、beta_cdf () は NaN 値を返します。
 
-Α≤0または beta ≤0の場合、beta_cdf () は NaN 値を返します。
+Α≤0または alpha > 1万の場合、beta_cdf () は NaN 値を返します。
+
+Beta ≤0または beta > 1万の場合、beta_cdf () は NaN 値を返します。
 
 ## <a name="examples"></a>例
 

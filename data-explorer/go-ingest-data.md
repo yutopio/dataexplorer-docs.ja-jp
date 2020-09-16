@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/10/2020
-ms.openlocfilehash: b733e70c78d9792e53dfe9cf133efe759e8ea91e
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 82302fc2071eca8bf2fb1e4c89b96de50b1a8806
+ms.sourcegitcommit: f689547c0f77b1b8bfa50a19a4518cbbc6d408e5
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873986"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89557345"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-go-sdk"></a>Azure Data Explorer Go SDK 使用してデータを取り込む 
 
@@ -32,6 +32,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) のインストール。
 * この [Go SDK の最小要件](kusto/api/golang/kusto-golang-client-library.md#minimum-requirements)に従って、[Go](https://golang.org/) をインストールします。 
 * [Azure Data Explorer クラスターとデータベース](create-cluster-database-portal.md)を作成します。
+* [アプリの登録を作成し、データベースに対するアクセス許可を付与](provision-azure-ad-app.md)します。 後で使用するために、クライアント ID とクライアント シークレットを保存します。
 
 ## <a name="install-the-go-sdk"></a>Go SDK をインストールする
 

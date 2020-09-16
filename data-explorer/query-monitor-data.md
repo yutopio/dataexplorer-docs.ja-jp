@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/28/2020
-ms.openlocfilehash: 39865b049512252e08dac9c182a6b1e20a388abe
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 078737ff7e5cd74d15792cc2f0f058cb3ea12a19
+ms.sourcegitcommit: e0cf581d433bbbb2eda5a4209a8eabcdae80c21b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875006"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90059483"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Azure Data Explorer を使用して Azure Monitor でデータのクエリを実行する (プレビュー)
 
@@ -59,6 +59,9 @@ Azure Data Explorer プロキシのフロー:
 
 Kusto クエリをサポートするクライアント ツールを使用してクエリを実行できます。例:Kusto Explorer、ADX Web UI、Jupyter Kqlmagic、Flow、PowerQuery、PowerShell、Jarvis、Lens、REST API。
 
+> [!NOTE]
+> ADX プロキシ機能は、データ取得のみに使用されます。 詳細については、「[関数のサポート](#function-supportability)」を参照してください。
+
 > [!TIP]
 > * データベース名は、プロキシ クラスターで指定したリソースと同じ名前にする必要があります。 名前は大文字と小文字が区別されます。
 > * クロス クラスター クエリでは、Application Insights アプリと Log Analytics ワークスペースの名前付けが正しいことを確認してください。
@@ -75,13 +78,13 @@ Perf | take 10 // Demonstrate query through the proxy on the LA workspace
 
 ![LA ワークスペースにクエリを実行する](media/adx-proxy/query-la.png)
 
-### <a name="cross-query-of-your-la-or-ai-adx-proxy-cluster-and-the-adx-native-cluster"></a>LA または AI ADX プロキシ クラスターと ADX ネイティブ クラスターのクロス クエリ 
+### <a name="cross-query-of-your-la-or-ai-adx-proxy-cluster-and-the-adx-native-cluster"></a>LA または AI ADX プロキシ クラスターと ADX ネイティブ クラスターのクロス クエリ
 
 プロキシからクロス クラスター クエリを実行する場合は、左側のウィンドウで ADX ネイティブ クラスターが選択されていることを確認してください。 次の例は、ADX クラスター テーブルの LA ワークスペースとの (`union` を使用した) 組み合わせを示しています。
 
 ```kusto
 union StormEvents, cluster('https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>').database('<workspace-name>').Perf
-| take 10 
+| take 10
 ```
 
 ```kusto
@@ -103,7 +106,8 @@ Azure Data Explorer プロキシ クラスターでは、Application Insights �
 * `.show function {FunctionName}`
 * `.show database {DatabaseName} schema as json`
 
-次の図は、Azure Data Explorer の Web UI から表形式関数にクエリを実行する例を示しています。 関数を使用するには、[クエリ] ウィンドウで名前を実行します。
+次の図は、Azure Data Explorer の Web UI から表形式関数にクエリを実行する例を示しています。
+関数を使用するには、[クエリ] ウィンドウで名前を実行します。
 
   [ ![Azure Data Explorer の Web UI から表形式関数のクエリを実行する](media/adx-proxy/function-query-adx-proxy.png)](media/adx-proxy/function-query-adx-proxy.png#lightbox)
 

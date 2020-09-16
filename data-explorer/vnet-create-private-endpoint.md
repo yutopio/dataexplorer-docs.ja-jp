@@ -7,12 +7,12 @@ ms.reviewer: elbirnbo
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/09/2020
-ms.openlocfilehash: 55de6b9560b2b47496c122e6454e1a128dc26428
-ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
+ms.openlocfilehash: 7c2dfe62852b05239215f0c88c711cea4093808e
+ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89428926"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90067574"
 ---
 # <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network"></a>仮想ネットワーク内の Azure Data Explorer クラスターにプライベート エンドポイントを作成する
 
@@ -23,7 +23,9 @@ Private Link をプライベート エンドポイントと共に使用して、
 ## <a name="prerequisites"></a>前提条件
 
 * [仮想ネットワーク内に Azure Data Explorer クラスター](https://docs.microsoft.com/azure/data-explorer/vnet-create-cluster-portal)を作成します。
-* ネットワーク セキュリティ グループ (NSG) のような[ネットワーク ポリシー](https://docs.microsoft.com/azure/private-link/disable-private-endpoint-network-policy)を無効にします。 これらのグループは、プライベート エンドポイントではサポートされていません。
+* ネットワーク ポリシーを無効にします。
+  * Azure Data Explorer クラスターの仮想ネットワークで、[Private Link サービスのポリシー](https://docs.microsoft.com/azure/private-link/disable-private-link-service-network-policy)を無効にします。
+  * プライベート エンドポイントの仮想ネットワーク (Azure Data Explorer クラスターの仮想ネットワークと同じ場合があります) で、[プライベート エンドポイントのポリシー](https://docs.microsoft.com/azure/private-link/disable-private-endpoint-network-policy)を無効にします。
 
 ## <a name="create-private-link-service"></a>Private Link サービスの作成
 

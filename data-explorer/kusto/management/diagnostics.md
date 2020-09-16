@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6c9bfed37ea54e541e55106a505471f04fe94e99
-ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
+ms.openlocfilehash: 60d25403b230be9ef625a6d52d1fdb159f9fc4e3
+ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88610561"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90680662"
 ---
 # <a name="diagnostic-information"></a>診断情報
 
@@ -34,7 +34,7 @@ ms.locfileid: "88610561"
 
 **結果** 
 
-|出力列 |Type |説明
+|出力列 |種類 |[説明]
 |---|---|---|
 |NodeId|String|ノードを識別します。 クラスターが Azure にデプロイされている場合、ノード ID はノードの Azure RoleId になります。
 |Address|String |ノード間通信のためにクラスターによって使用される内部エンドポイント
@@ -54,10 +54,10 @@ ms.locfileid: "88610561"
 
 NodeID|Address|名前|StartTime|IsAdmin|MachineTotalMemory|MachineAvailableMemory|ProcessorCount|環境の説明
 ---|---|---|---|---|---|---|---|---
-Kusto. Azure. Svc_IN_1|net.tcp://100.112.150.30: 23107/|Kusto. Azure. Svc_IN_4/RD000D3AB1E9BD/WaWorkerHost/3820|2016-01-15 02:00: 22.6522152|正|274877435904|247797796864|16|{"UpdateDomain": 0、"FaultDomain": 0}
-Kusto. Azure. Svc_IN_3|net.tcp://100.112.154.34: 23107/|Kusto. Azure. Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52: 52.1434683|False|274877435904|258740346880|16|{"UpdateDomain": 1, "FaultDomain": 1}
-Kusto. Azure. Svc_IN_2|net.tcp://100.112.128.40: 23107/|Kusto. Azure. Svc_IN_2/rd000d3ab1e052015 年4月3日の waworkerhost376|2016-01-15 07:17: 18.0699790|False|274877435904|244232339456|16|{"UpdateDomain": 2, "FaultDomain": 2}
-Kusto. Azure. Svc_IN_0|net.tcp://100.112.138.15: 23107/|Kusto. Azure. Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46: 36.9865016|False|274877435904|238414581760|16|{"UpdateDomain": 3、"FaultDomain": 3}
+Kusto. Azure. Svc_IN_1|net.tcp://100.112.150.30: 23107/|Kusto. Azure. Svc_IN_4/RD000D3AB1E9BD/WaWorkerHost/3820|2016-01-15 02:00: 22.6522152|○|274877435904|247797796864|16|{"UpdateDomain": 0、"FaultDomain": 0}
+Kusto. Azure. Svc_IN_3|net.tcp://100.112.154.34: 23107/|Kusto. Azure. Svc_IN_3/RD000D3AB1E062/WaWorkerHost/2760|2016-01-15 05:52: 52.1434683|×|274877435904|258740346880|16|{"UpdateDomain": 1, "FaultDomain": 1}
+Kusto. Azure. Svc_IN_2|net.tcp://100.112.128.40: 23107/|Kusto. Azure. Svc_IN_2/rd000d3ab1e052015 年4月3日の waworkerhost376|2016-01-15 07:17: 18.0699790|×|274877435904|244232339456|16|{"UpdateDomain": 2, "FaultDomain": 2}
+Kusto. Azure. Svc_IN_0|net.tcp://100.112.138.15: 23107/|Kusto. Azure. Svc_IN_0/RD000D3AB0D6C6/WaWorkerHost/3208|2016-01-15 09:46: 36.9865016|×|274877435904|238414581760|16|{"UpdateDomain": 3、"FaultDomain": 3}
 
 
 ## <a name="show-diagnostics"></a>。診断を表示します
@@ -70,7 +70,7 @@ Kusto クラスターの正常性状態に関する情報を返します。
  
 **戻り値**
 
-|出力パラメーター |Type |説明|
+|出力パラメーター |種類 |[説明]|
 |-----------------|-----|-----------| 
 |IsHealthy|ブール型|クラスターが正常であるかどうか
 |IsScaleOutRequired|ブール型|コンピューティングノードを追加してクラスターのサイズを増やす必要がある場合
@@ -83,8 +83,8 @@ Kusto クラスターの正常性状態に関する情報を返します。
 |予約済み|Int64|
 |予約済み|Int64|
 |InstancesTargetBasedOnDataCapacity|Int64|ClusterDataCapacityFactor を80未満にするために必要なインスタンスの数。 この値は、すべてのマシンのサイズが同じ場合にのみ有効です
-|TotalOriginalDataSize|Int64|最初に取り込まれたされたデータの合計サイズ
-|TotalExtentSize|Int64|圧縮およびインデックス作成後の、格納されたデータの合計サイズ
+|TotalOriginalDataSize|Int64|最初の取り込まれたデータの合計サイズ (バイト単位)
+|TotalExtentSize|Int64|圧縮後にバイト単位でインデックスを作成した後の、格納されたデータの合計サイズ
 |IngestionsLoadFactor|Double|使用されたクラスターインジェスト容量の割合。 最大容量は、コマンドを使用して表示できます。 `.show capacity`
 |IngestionsInProgress|Int64|現在実行されているインジェスト操作の数
 |IngestionsSuccessRate|Double|過去10分間に正常に完了したインジェスト操作の割合
@@ -103,7 +103,7 @@ Kusto クラスターの正常性状態に関する情報を返します。
 |失敗した Mergeoperation|Int64|前の1時間に失敗したマージ操作の数
 |MaxExtentsInSingleTable|Int64|テーブル内のエクステントの最大数 (TableWithMaxExtents)
 |TableWithMaxExtents|String|エクステントの最大数を含むテーブル (MaxExtentsInSingleTable)
-|WarmExtentSize|Double|ホットキャッシュ内のエクステントの合計サイズ
+|WarmExtentSize|Double|ホットキャッシュ内のエクステントの合計サイズ (バイト単位)
 |NumberOfDatabases|Int32|クラスター内のデータベースの数
 
 ## <a name="show-capacity"></a>。容量を表示します。
@@ -116,7 +116,7 @@ Kusto クラスターの正常性状態に関する情報を返します。
  
 **結果**
 
-|出力パラメーター |Type |説明 
+|出力パラメーター |種類 |説明 
 |---|---|---
 |リソース |String |リソースの名前 
 |合計 |Int64 |使用可能なリソースの総量 (種類 ' Resource ')。 たとえば、同時実行 ingestions の数
@@ -141,7 +141,7 @@ Kusto クラスターの正常性状態に関する情報を返します。
 
 **結果**
  
-|出力パラメーター |Type |説明
+|出力パラメーター |種類 |説明
 |---|---|---
 |id |String |操作 id
 |操作 |String |管理者コマンドのエイリアス
@@ -150,11 +150,11 @@ Kusto クラスターの正常性状態に関する情報を返します。
 |LastUpdatedOn |DateTime |操作が最後に更新された日付/時刻 (UTC)。 操作は、操作内のステップでも、完了ステップでもかまいません。
 |Duration |DateTime |LastUpdateOn と StartedOn の間の期間
 |State |String |値が "処理中"、"完了"、または "失敗" のコマンド状態
-|状態 |String |失敗した操作のエラーを含む追加のヘルプ文字列
+|Status |String |失敗した操作のエラーを含む追加のヘルプ文字列
  
 **例**
  
-|id |操作 |ノード ID |開始日 |最終更新日 |Duration |State |状態 
+|id |操作 |ノード ID |開始日 |最終更新日 |Duration |State |Status 
 |--|--|--|--|--|--|--|--
 |3827def6-0773-4f2a-859e-c02cf395deaf |SchemaShow | |2015-01-06 08:47: 01.0000000 |2015-01-06 08:47: 01.0000000 |0001-01-01 00:00: 00.0000000 |完了 | 
 |84 1fafa4076a47 cba93008-4836da9c75 |DataIngestPull |Kusto. Azure. Svc_IN_1 |2015-01-06 08:47: 02.0000000 |2015-01-06 08:48: 19.0000000 |0001-01-01 00:01: 17.0000000 |完了 | 

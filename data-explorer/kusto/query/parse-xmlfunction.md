@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5e294a60545a081861597e772c39d2e7e99824e8
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 41e3f58ba857e23d31062484f11f30e80fb37317
+ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346373"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90680736"
 ---
 # <a name="parse_xml"></a>parse_xml()
 
@@ -31,8 +31,6 @@ ms.locfileid: "87346373"
 
 *Xml*の値によって決定される[動的](./scalar-data-types/dynamic.md)型のオブジェクト。 xml 形式が無効な場合は null。
 
-XML から JSON への変換は、 [xml2json](https://github.com/Cheedoong/xml2json)ライブラリを使用して行います。
-
 変換は次のように行われます。
 
 XML                                |JSON                                            |アクセス
@@ -47,7 +45,7 @@ XML                                |JSON                                        
 
 **ノート**
 
-* の最大入力 `string` 長 `parse_xml` は 128 KB です。 長い文字列を解釈すると、null オブジェクトになります。 
+* の最大入力 `string` 長 `parse_xml` は 1 mb (1048576 バイト) です。 長い文字列を解釈すると、null オブジェクトになります。
 * 要素ノード、属性、およびテキストノードのみが変換されます。 他のすべての操作はスキップされます
  
 ## <a name="example"></a>例

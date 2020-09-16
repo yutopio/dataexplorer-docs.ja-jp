@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: ad2a4180be714e5220121dfeaff5b34f801c4745
-ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
+ms.openlocfilehash: 809088f35567f85444755d89ab30e02fad46abaf
+ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90533985"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90680679"
 ---
 # <a name="callout-policy"></a>Callout ポリシー
 
@@ -26,6 +26,7 @@ Azure データエクスプローラークラスターは、さまざまなシ�
 * `cosmosdb` - [CosmosDB プラグイン](../query/cosmosdb-plugin.md)を制御します。
 * `webapi` -他の外部 Web 呼び出しを制御します。
 * `sandbox_artifacts`-サンドボックスプラグイン ([python](../query/pythonplugin.md)  |  [R](../query/rplugin.md)) を制御します。
+* `external_data` - [外部テーブル](../query/schema-entities/externaltables.md) または [externaldata](../query/externaldata-operator.md) 演算子を使用して外部データへのアクセスを制御します。
 
 コールアウトポリシーは、次の要素で構成されます。
 

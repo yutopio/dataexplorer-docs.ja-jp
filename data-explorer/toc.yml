@@ -212,6 +212,8 @@
           href: k2bridge.md
     - name: セキュリティで保護
       items:
+        - name: 分離コンピューティング
+          href: isolated-compute.md
         - name: ネットワークの分離 (VNet)
           items:
             - name: VNet にクラスターを作成する - ポータル
@@ -297,7 +299,7 @@
               href: dealing-with-duplicates.md
     - name: モニター
       items:
-        - name: 診断ログを使用してインジェストを監視する
+        - name: 診断ログを使用してインジェスト、コマンド、クエリを監視する
           href: using-diagnostic-logs.md
         - name: メトリックを使用して Azure Data Explorer を監視する
           displayName: 'health, performance'

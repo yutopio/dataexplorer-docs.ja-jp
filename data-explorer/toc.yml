@@ -72,6 +72,8 @@
           href: create-cluster-database-python.md
         - name: Azure Resource Manager テンプレート
           href: create-cluster-database-resource-manager.md
+    - name: テーブルを作成する
+      href: one-click-table.md
     - name: データの取り込み
       items:
         - name: ワンクリックでのインジェスト
@@ -316,10 +318,12 @@
       items:
         - name: Power Automate
           items:
-            - name: Power Automate フロー コネクタ
+            - name: Power Automate コネクタ
               href: flow.md
+              displayName: 'Microsoft Flow, flow, flow connector'
             - name: Power Automate コネクタの使用例
               href: flow-usage.md
+              displayName: 'Microsoft Flow, flow, flow connector'
         - name: Logic Apps
           href: kusto/tools/logicapps.md
         - name: Apache Spark コネクタ

@@ -7,20 +7,21 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: f5cff6a5ef8490a90126a8cd90297067bdd709ad
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: 38d353caf1e0352688ee91edfe7f1d2cef94d18a
+ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90075219"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90998944"
 ---
-# <a name="quantize_fl"></a>quantize_fl ()
+# <a name="quantize_fl"></a>quantize_fl()
 
 
 関数 `quantize_fl()` ビンのメトリック列。 メトリック列をカテゴリラベルに quantizes し、K の意味アルゴリズムに基づいています。
 
 > [!NOTE]
-> `quantize_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。 この関数にはインライン Python が含まれており、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。
+> * `quantize_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。
+> * この関数にはインライン Python が含まれており、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。
 
 ## <a name="syntax"></a>構文
 

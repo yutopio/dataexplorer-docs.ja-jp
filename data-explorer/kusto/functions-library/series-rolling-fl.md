@@ -7,20 +7,21 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 38c3933eb7e09709594892d0d73082c1171a6355
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: 218ef000869e4cea0f237137a0481a9b4d72d65e
+ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90075200"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90998995"
 ---
-# <a name="series_rolling_fl"></a>series_rolling_fl ()
+# <a name="series_rolling_fl"></a>series_rolling_fl()
 
 
 関数は、 `series_rolling_fl()` 系列にローリング集計を適用します。 複数の系列 (動的な数値配列) を含むテーブルを受け取り、各系列に対してローリング集計関数が適用されます。
 
 > [!NOTE]
-> `series_rolling_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。  この関数はインライン Python を使用するため、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。
+> * `series_rolling_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。
+> * この関数にはインライン Python が含まれており、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。
 
 ## <a name="syntax"></a>構文
 

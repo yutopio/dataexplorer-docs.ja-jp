@@ -7,19 +7,20 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/09/2020
-ms.openlocfilehash: 068dd159da048d28849f61ea04d935979f13eac5
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: 9cc70418b39ece5c33d6059c7fc90c47f3039ece
+ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90075224"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90998978"
 ---
-# <a name="predict_onnx_fl"></a>predict_onnx_fl ()
+# <a name="predict_onnx_fl"></a>predict_onnx_fl()
 
 関数は、トレーニング済みの `predict_onnx_fl()` 既存の機械学習モデルを使用して予測します。 このモデルは [ONNX](https://onnx.ai/) 形式に変換され、文字列にシリアル化され、標準の Azure データエクスプローラーテーブルに保存されています。
 
 > [!NOTE]
-> `predict_onnx_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。 この関数にはインライン Python が含まれており、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。
+> * `predict_onnx_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。
+> * この関数にはインライン Python が含まれており、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。
 
 ## <a name="syntax"></a>構文
 

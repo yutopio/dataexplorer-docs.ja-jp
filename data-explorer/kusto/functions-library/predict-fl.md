@@ -7,19 +7,20 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/09/2020
-ms.openlocfilehash: 31f35f02951c057de4776ec83c8cd42fdbcbc9f5
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: 29db6fd462311ab30b5c477d27b04606ecfd2915
+ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90075212"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90998961"
 ---
-# <a name="predict_fl"></a>predict_fl ()
+# <a name="predict_fl"></a>predict_fl()
 
 関数は、トレーニング済みの `predict_fl()` 既存の機械学習モデルを使用して予測します。 このモデルは [scikit-learn](https://scikit-learn.org/stable/)を使用して構築され、文字列にシリアル化され、標準の Azure データエクスプローラーテーブルに保存されました。
 
 > [!NOTE]
-> `predict_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。 この関数にはインライン Python が含まれており、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。
+> * `predict_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。
+> * この関数にはインライン Python が含まれており、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。
 
 ## <a name="syntax"></a>構文
 

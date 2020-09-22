@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: 9522ee72e639c967f7b735c9c52d67c236498522
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: e341b70dfc2a7c0d3038d6d60d9c8ae2b40b6218
+ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201707"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90740254"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Azure Data Explorer のツールと統合の概要
 
@@ -93,7 +93,7 @@ Azure Data Explorer クエリを実行するために使用できるツールが
 ## <a name="orchestration"></a>オーケストレーション
 
 * Power Automate
-    * [Power Automate フロー コネクタ](flow.md)
+    * [Power Automate コネクタ](flow.md)
     * [Power Automate コネクタの使用例](flow-usage.md)
 * [Microsoft ロジック アプリ](kusto/tools/logicapps.md) 
 * [Azure Data Factory](data-factory-integration.md)

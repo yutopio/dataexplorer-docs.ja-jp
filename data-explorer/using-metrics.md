@@ -6,14 +6,14 @@ ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 01/19/2020
+ms.date: 09/19/2020
 ms.custom: contperfq1
-ms.openlocfilehash: f1a7a0d9be744e4014732689e76220adab3bcd93
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: d12e1d2382c3d7fe9a980b2b777a02205d28e5de
+ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502732"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90832554"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>メトリックを使用した Azure Data Explorer のパフォーマンス、正常性、および使用状況の監視
 
@@ -81,7 +81,7 @@ Azure Data Explorer 用の Azure Monitor のメトリックのアルファベッ
 
 |**メトリック** | **単位** | **集計** | **メトリックの説明** | **Dimensions** |
 |---|---|---|---|---|
-連続エクスポートによるエクスポートされたレコード数    | Count | SUM | すべての連続エクスポート ジョブでエクスポートされたレコードの数。 | なし |
+連続エクスポートによるエクスポートされたレコード数    | Count | SUM | すべての連続エクスポート ジョブでエクスポートされたレコードの数。 | ContinuousExportName |
 連続エクスポートの最大遅延 |    Count   | Max   | クラスター内の連続エクスポート ジョブによって報告された遅延 (分単位)。 | なし |
 保留中の連続エクスポートの数 | Count | Max   | 保留中の連続エクスポート ジョブの数。 これらのジョブは実行する準備ができていますが、キューで待機中になっています。これは、容量不足が原因である可能性があります。 
 連続エクスポートの結果    | Count |   Count   | 各連続エクスポート実行の失敗および成功の結果。 | ContinuousExportName |
@@ -96,7 +96,7 @@ Azure Data Explorer 用の Azure Monitor のメトリックのアルファベッ
 | Batch blob count (バッチ BLOB 数) | Count | Avg、Max、Min | 完了したインジェスト バッチ内のデータ ソースの数。 | データベース |
 | Batch duration (バッチ期間) | Seconds | Avg、Max、Min | インジェスト フロー内のバッチ処理フェーズの期間  | データベース |
 | バッチ サイズ | バイト | Avg、Max、Min | インジェスト用に集計されたバッチで、予想される非圧縮のデータ サイズ | データベース |
-| Batches processed (処理されたバッチ) | Count | Avg、Max、Min | インジェスト用に完了したバッチの数。 `BatchCompletionReason`:バッチがバッチ処理時間、データ サイズ、または[バッチ処理ポリシー](/azure/data-explorer/kusto/management/batchingpolicy)によって設定されたファイル数の上限に達したかどうか。 | データベース、BatchCompletionReason |
+| Batches processed (処理されたバッチ) | Count | Avg、Max、Min | インジェスト用に完了したバッチの数。 `Batching Type`: バッチがバッチ処理時間、データ サイズ、または[バッチ処理ポリシー](/azure/data-explorer/kusto/management/batchingpolicy)によって設定されたファイル数の上限に達したかどうか。 | データベース、バッチ処理の種類 |
 | 検出の待機時間 | Seconds | Avg、Max、Min | データのエンキューから、データ接続によって検出されるまでの時間。 この時間は、**Kusto の合計インジェスト期間**または **KustoEventAge (インジェスト待機時間)** には含まれません。 | データベース、テーブル、データ接続の種類、データ接続名 |
 | (Event/IoT Hubs の) 処理されたイベント | Count | Max、Min、Sum | イベント ハブから読み取られ、クラスターによって処理されたイベントの数。 イベントは、クラスター エンジンによって拒否されたイベントと受け入れられたイベントに分類されます。 | EventStatus |
 | インジェストの待ち時間 | Seconds | Avg、Max、Min | クラスターでデータが受信された時点からクエリー用に準備できるまでの、取り込まれたデータの待ち時間。 インジェストの待ち時間の長さは、インジェストのシナリオに応じて異なります。 | なし |

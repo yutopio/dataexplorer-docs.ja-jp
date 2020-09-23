@@ -7,18 +7,18 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 9fa58d36815ede98a4f0239f1ce68a6542f24c4b
-ms.sourcegitcommit: cb55064b7cdd57c792ad259b09069525bf799fa0
+ms.openlocfilehash: 74d72ced89b1953b2f7e327656517f1febe4166f
+ms.sourcegitcommit: 803a572ab6f04494f65dbc60a4c5df7fcebe1600
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89410810"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90714025"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
 この記事では、Azure Data Explorer クラスターをカスタム Azure Virtual Network にデプロイするときに存在するリソースについて説明します。 この情報は、Virtual Network (VNet) のサブネットにクラスターをデプロイする際に役立ちます。 Azure Virtual Network の詳細については、「[Azure Virtual Network とは](/azure/virtual-network/virtual-networks-overview)」をご覧ください。
 
-   ![VNet の図](media/vnet-deployment/vnet-diagram.png)
+:::image type="content" source="media/vnet-deployment/vnet-diagram.png" alt-text="仮想ネットワーク アーキテクチャの概略図"::: 
 
 Azure Data Explorer では、Virtual Network (VNet) のサブネットへのクラスターのデプロイがサポートされています。 この機能により、次のことが可能になります。
 
@@ -62,7 +62,7 @@ IP アドレスの合計数は次のようになります。
 Azure Data Explorer クラスターをサブネットにデプロイすると、Azure Data Explorer サブネットの基になるリソースを制限しながら、[Event Hub](/azure/event-hubs/event-hubs-about) または [Event Grid](/azure/event-grid/overview) を使用してデータ接続を設定できます。
 
 > [!NOTE]
-> [Storage](/azure/storage/common/storage-introduction) と [Event Hub] で EventGrid セットアップを使用する場合、サブスクリプションで使用されているストレージ アカウントは、信頼できる Azure プラットフォーム サービスを[ファイアウォール構成](/azure/storage/common/storage-network-security)で許可しながら、Azure Data Explorer のサブネットへのサービス エンドポイントを使用してロックすることができます。しかし、イベント ハブでは、信頼できる [Azure プラットフォーム サービス](/azure/event-hubs/event-hubs-service-endpoints)がサポートされないため、サービス エンドポイントを有効にできません。
+> [Storage](/azure/storage/common/storage-introduction) と [[イベント ハブ]](/azure/event-hubs/event-hubs-about) で EventGrid セットアップを使用する場合、サブスクリプションで使用されているストレージ アカウントは、信頼できる Azure プラットフォーム サービスを[ファイアウォール構成](/azure/storage/common/storage-network-security)で許可しながら、Azure Data Explorer のサブネットへのサービス エンドポイントを使用してロックすることができます。しかし、イベント ハブでは、信頼できる [Azure プラットフォーム サービス](/azure/event-hubs/event-hubs-service-endpoints)がサポートされないため、サービス エンドポイントを有効にできません。
 
 ## <a name="private-endpoints"></a>プライベート エンドポイント
 
@@ -201,7 +201,7 @@ VNet から、データ接続によって使用されるリソース (Event Hub 
 
 パブリック IP アドレスを使用した Azure Data Explorer へのアクセスを完全に無効にする場合は、NSG で別の受信規則を作成します。 この規則にはより低い[優先順位](/azure/virtual-network/security-overview#security-rules) (より大きい数値) が必要です。 
 
-| **用途**   | **ソース** | **ソース サービス タグ** | **ソース ポート範囲**  | **宛先** | **宛先ポート範囲** | **プロトコル ** | **操作** | **優先順位 ** |
+| **用途**   | **ソース** | **ソース サービス タグ** | **ソース ポート範囲**  | **宛先** | **宛先ポート範囲** | **プロトコル** | **操作** | **優先順位** |
 | ---   | --- | --- | ---  | --- | --- | --- | --- | --- |
 | インターネットからのアクセスを無効にする | サービス タグ | インターネット | *  | VirtualNetwork | * | Any | 拒否 | 上記の規則よりも大きい数値 |
 
@@ -245,10 +245,8 @@ crl3.digicert.com:80
 ```
 
 > [!NOTE]
-> [Azure Firewall](/azure/firewall/overview) を使用している場合は、次のプロパティを使用して**ネットワーク ルール**を追加します。
-> | **プロトコル**   | **変換元の型** | **ソース** | **サービス タグ**  | **宛先ポート** |
-> | ---   | --- | --- | ---  | --- |
-> | TCP | IP アドレス | * | AzureMonitor | 443 |
+> [Azure Firewall](/azure/firewall/overview) を使用している場合は、次のプロパティを使用して**ネットワーク ルール**を追加します。 <br>
+> **Protocol**:TCP <br> **[Source Type]\(ソースの種類\)** : IP アドレス <br> **送信元**: * <br> **サービス タグ**:AzureMonitor <br> **宛先ポート**:443
 
 また、非対称ルートの問題を防ぐために、次ホップが*インターネット*である[管理アドレス](#azure-data-explorer-management-ip-addresses)および[正常性監視アドレス](#health-monitoring-addresses)を使用するサブネット上の[ルート テーブル](/azure/virtual-network/virtual-networks-udr-overview)を定義する必要があります。
 

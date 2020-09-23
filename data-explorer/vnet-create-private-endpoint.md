@@ -7,14 +7,14 @@ ms.reviewer: elbirnbo
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/09/2020
-ms.openlocfilehash: 7c2dfe62852b05239215f0c88c711cea4093808e
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: aeb807db9b69c6c5b806a7f4b152330ea2dabc72
+ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90067574"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90680752"
 ---
-# <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network"></a>仮想ネットワーク内の Azure Data Explorer クラスターにプライベート エンドポイントを作成する
+# <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network-preview"></a>仮想ネットワーク内の Azure Data Explorer クラスターにプライベート エンドポイントを作成する (プレビュー)
 
 Private Link をプライベート エンドポイントと共に使用して、仮想ネットワーク (VNet) 内の Azure Data Explorer クラスターに安全にアクセスします。 
 

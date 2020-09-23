@@ -7,34 +7,34 @@ ms.reviewer: dorcohen
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/15/2020
-ms.openlocfilehash: a9f2be17e02103a64fa31a10bc6195076addb1fc
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 03422de8987e125b5565b0625434ef660426b40a
+ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874530"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90740271"
 ---
 # <a name="usage-examples-for-azure-data-explorer-connector-to-power-automate-preview"></a>Power Automate に接続する Azure Data Explorer コネクタの使用例 (プレビュー)
 
-Azure Data Explorer Flow コネクタを使用すると、Azure Data Explorer で、[Microsoft Power Automate](https://flow.microsoft.com/) の Flow 機能を使用できます。 Kusto のクエリとコマンドを、スケジュール設定されたタスクまたはトリガーされたタスクの一環として、自動的に実行することができます。 この記事では、一般的な Flow コネクタの使用例をいくつか紹介します。
+Azure Data Explorer Power Automate (以前は Microsoft Flow) コネクタを使用すると、Azure Data Explorer で、[Microsoft Power Automate](https://flow.microsoft.com/) の Flow 機能を使用できます。 Kusto のクエリとコマンドを、スケジュール設定されたタスクまたはトリガーされたタスクの一環として、自動的に実行することができます。 この記事では、一般的な Power Automate コネクタの使用例をいくつか紹介します。
 
-詳細については、[Azure Data Explorer Flow コネクタ (プレビュー)](flow.md) に関する説明をご覧ください。
+詳細については、[Azure Data Explorer Power Automate コネクタ (プレビュー)](flow.md) に関するページをご覧ください。
 
-## <a name="flow-connector-and-your-sql-database"></a>Flow コネクタと SQL データベース
+## <a name="power-automate-connector-and-your-sql-database"></a>Power Automate コネクタと SQL データベース
 
-Flow コネクタを使用して、データに対してクエリを実行し、SQL データベースで集計します。
+Power Automate コネクタを使用して、データに対してクエリを実行し、SQL データベースで集計します。
 
 > [!Note]
-> 少量の出力データには、Flow コネクタのみを使用してください。 SQL の挿入操作は、行ごとに個別に行われます。 
+> Power Automate コネクタは、少量の出力データにのみ使用してください。 SQL の挿入操作は、行ごとに個別に行われます。 
 
-![Flow コネクタを使用したデータ クエリのスクリーンショット](./media/flow-usage/flow-sqlexample.png)
+![Power Automate コネクタを使用したデータ クエリのスクリーンショット](./media/flow-usage/flow-sqlexample.png)
 
 > [!IMPORTANT]
 > **[クラスター名]** フィールドに、クラスターの URL を入力します。
 
 ## <a name="push-data-to-a-microsoft-power-bi-dataset"></a>Microsoft Power BI データセットにデータをプッシュする
 
-Flow コネクタと Power BI コネクタを使用して、Kusto クエリから Power BI ストリーミング データセットにデータをプッシュすることができます。
+Power Automate コネクタと Power BI コネクタを使用して、Kusto クエリから Power BI ストリーミング データセットにデータをプッシュすることができます。
 
 1. 新しい **[クエリの実行と結果の一覧表示]** アクションを作成します。
 1. **[新しいステップ]** を選択します。
@@ -54,7 +54,7 @@ Power BI アクションが、Kusto クエリ結果テーブルの各行に自�
 
 ## <a name="conditional-queries"></a>条件付きクエリ
 
-Kusto クエリの結果は、次のフロー アクションの入力または条件として使用できます。
+Kusto クエリの結果は、次の Power Automate アクションの入力または条件として使用できます。
 
 次の例では、Kusto に対して、過去 1 日間に発生したインシデントのクエリを実行します。 解決されたインシデントごとに、Slack メッセージが投稿され、プッシュ通知が作成されます。
 引き続きアクティブになっているインシデントごとに、Kusto に対して、同様のインシデントに関する詳細情報のクエリを実行します。 この情報はメールとして送信され、関連するタスクが Azure DevOps Server で開きます。

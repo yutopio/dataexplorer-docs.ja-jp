@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 84f4348f1d172238bd71de55e989ed8520f78b93
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: 69438457dfcbfc4e29805d5d193c227538910e45
+ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502757"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90832660"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>イベント ハブから Azure Data Explorer にデータを取り込む
 
@@ -109,40 +109,45 @@ Azure データ エクスプローラーには、Event Hubs からの取り込�
 
     ![テスト データベースの選択](media/ingest-data-event-hub/select-test-database.png)
 
-1. **[データ インジェスト]** 、 **[データ接続の追加]** の順に選択します。 その後、フォームに次の情報を入力します。 終わったら **[作成]** を選択します。
+1. **[データ インジェスト]** 、 **[データ接続の追加]** の順に選択します。 
 
-    ![イベント ハブの接続](media/ingest-data-event-hub/event-hub-connection.png)
+    :::image type="content" source="media/ingest-data-event-hub/event-hub-connection.png" alt-text="イベント ハブでデータ インジェストを選択し、データ接続を追加する - Azure Data Explorer":::
 
-    **データ ソース:**
+### <a name="create-a-data-connection"></a>データ接続を作成する
+
+1. フォームに次の情報を入力します。
+
+    :::image type="content" source="media/ingest-data-event-hub/data-connection-pane.png" alt-text="イベント ハブのデータ接続ペイン - Azure Data Explorer":::
 
     **設定** | **推奨値** | **フィールドの説明**
     |---|---|---|
     | データ接続名 | *test-hub-connection* | Azure データ エクスプローラーで作成する接続の名前。|
-    | イベント ハブの名前空間 | 一意の名前空間名 | 以前に選択した、名前空間を識別する名前。 |
+    | サブスクリプション |      | イベントハブ リソースが配置されているサブスクリプション ID。  |
+    | Event Hub 名前空間 | 一意の名前空間名 | 以前に選択した、名前空間を識別する名前。 |
     | イベント ハブ | *test-hub* | 作成したイベント ハブ。 |
     | コンシューマー グループ | *test-group* | 作成したイベント ハブに定義されているコンシューマー グループ。 |
     | イベント システム プロパティ | 関連するプロパティを選択する | [イベント ハブのシステム プロパティ](/azure/service-bus-messaging/service-bus-amqp-protocol-guide#message-annotations)。 1 つのイベント メッセージに複数のレコードがある場合、システム プロパティは最初のものに追加されます。 システム プロパティを追加する場合は、テーブル スキーマと[マッピング](kusto/management/mappings.md)を[作成](kusto/management/create-table-command.md)または[更新](kusto/management/alter-table-command.md)して、選択したプロパティを含めます。 |
     | 圧縮 | *なし* | イベント ハブ メッセージ ペイロードの圧縮の種類。 サポートされている圧縮の種類: *なし、GZip*。|
-    | | |
+    
+#### <a name="target-table"></a>ターゲット テーブル
 
-    **ターゲット テーブル:**
+挿入したデータをルーティングするには、"*静的*" と "*動的*" という 2 つのオプションがあります。 この記事では、静的ルーティングを使用し、テーブル名、データ形式、およびマッピングを既定値として指定します。 イベントハブ メッセージにデータ ルーティング情報が含まれている場合、このルーティング情報によって既定の設定が上書きされます。
 
-    挿入したデータをルーティングするには、"*静的*" と "*動的*" という 2 つのオプションがあります。 
-    この記事では、静的ルーティングを使用し、テーブル名、データ形式、およびマッピングを指定します。 そのため、 **[My data includes routing info]\(データにルーティング情報が含まれている\)** はオフのままにしておきます。
+1. 次のルーティング設定を入力します。
+  
+   :::image type="content" source="media/ingest-data-event-hub/default-routing-settings.png" alt-text="イベント ハブにデータを取り込むための既定のルーティング設定 - Azure Data Explorer":::
+        
+   |**設定** | **推奨値** | **フィールドの説明**
+   |---|---|---|
+   | テーブル名 | *TestTable* | **TestDatabase** に作成したテーブル。 |
+   | データ形式 | *JSON* | サポートされている形式は、Avro、CSV、JSON、MULTILINE JSON、ORC、PARQUET、PSV、SCSV、SOHSV、TSV、TXT、TSVE、APACHEAVRO、および W3CLOG です。 |
+   | マッピング | *TestMapping* | **TestDatabase** に作成した[マッピング](kusto/management/mappings.md)。これにより、受信データを **TestTable** の列名とデータ型にマッピングします。 JSON、MULTILINE JSON、AVRO では必須。その他の形式では省略可能。|
+    
+   > [!NOTE]
+   > * **既定のルーティング設定**をすべて指定する必要はありません。 部分的な設定も受け入れられます。
+   > * データ接続の作成後にエンキューされたイベントのみが取り込まれたます。
 
-     **設定** | **推奨値** | **フィールドの説明**
-    |---|---|---|
-    | テーブル | *TestTable* | **TestDatabase** に作成したテーブル。 |
-    | データ形式 | *JSON* | サポートされている形式は、Avro、CSV、JSON、MULTILINE JSON、ORC、PARQUET、PSV、SCSV、SOHSV、TSV、TXT、TSVE、APACHEAVRO、および W3CLOG です。 |
-    | 列マッピング | *TestMapping* | **TestDatabase** に作成した[マッピング](kusto/management/mappings.md)。これにより、受信 JSON データを **TestTable** の列名とデータ型にマッピングします。 JSON または MULTILINE JSON では必須。その他の形式では省略可能。|
-    | | |
-
-    > [!NOTE]
-    > * 動的ルーティングを使用するには、 **[My data includes routing info]\(データにルーティング情報が含まれている\)** を選択します。この場合、[サンプル アプリ](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)のコメントに示されているように、データに必要なルーティング情報が含まれています。 静的プロパティと動的プロパティの両方が設定されている場合、静的プロパティは動的プロパティによってオーバーライドされます。 
-    > * データ接続の作成後にエンキューされたイベントのみが取り込まれたます。
-    > * [サンプル アプリ](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)に示されているように、動的プロパティを使用して圧縮の種類を設定することもできます。
-    > * Avro、ORC、および PARQUET 形式とイベント システム プロパティは、GZip 圧縮ペイロードではサポートされていません。
-
+1. **［作成］** を選択します 
 
 ### <a name="event-system-properties-mapping"></a>イベント システム プロパティのマッピング
 

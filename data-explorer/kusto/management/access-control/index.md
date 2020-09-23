@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 11/25/2019
-ms.openlocfilehash: 7031ecf15ea3f7a472fbfbe1791d166e2e35b065
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: 7b97d62e007b5294bf776fb5d5adcbac435056ef
+ms.sourcegitcommit: 3fc8e9b6a313a863916031d4beba84123edcf123
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763895"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90847855"
 ---
 # <a name="kusto-access-control-overview"></a>Kusto Access Control の概要
 
@@ -61,7 +61,7 @@ Kusto クライアント ライブラリを使用し、Azure AD を使用して 
 ### <a name="microsoft-accounts-msas"></a>Microsoft アカウント (MSA)
 
 Microsoft アカウント (MSA) は、Microsoft が管理する、組織以外のすべてのユーザー アカウント (たとえば、`hotmail.com`、`live.com`、`outlook.com`) を示す用語です。
-Kusto では、ユニバーサル プリンシパル名 (UPN) によって識別される MSA のユーザー認証がサポートされています (セキュリティ グループの概念はありません)。
+Kusto では、ユーザー プリンシパル名 (UPN) によって識別される MSA のユーザー認証がサポートされています (セキュリティ グループの概念はありません)。
 
 Azure Data Explorer リソースで MSA プリンシパルが構成されている場合、Azure Data Explorer は、提供された UPN を解決**しません**。
 

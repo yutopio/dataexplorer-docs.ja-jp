@@ -8,12 +8,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/09/2020
-ms.openlocfilehash: 4921a48ff879879084ec1941ab69c6e9d29b9773
-ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
+ms.openlocfilehash: 4e11ccd1c775fa2cae2e25f7cf1bd8b802a11567
+ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89366165"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90534002"
 ---
 # <a name="use-parameters-in-azure-data-explorer-dashboards"></a>Azure Data Explorer ダッシュボードでパラメーターを使用する
 
@@ -297,10 +297,9 @@ EventsAll
 
 ## <a name="use-filter-search-for-single-and-multiple-selection-filters"></a>単一および複数選択フィルターにフィルター検索を使用する
 
-単一および複数選択フィルターに、必要な値を入力します。 フィルター検索では、検索用語と一致する最近取得したすべての値が表示されます。
+単一および複数選択フィルターに、必要な値を入力します。 フィルター検索では、検索用語と一致する最近取得した値のみが表示されます。
 
 ## <a name="next-steps"></a>次の手順
 
 * [ダッシュボードのビジュアルをカスタマイズする](dashboard-customize-visuals.md)
 * [Azure Data Explorer でデータのクエリを実行する](web-query-data.md) 
-

@@ -7,16 +7,16 @@ ms.reviewer: dorcohen
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/25/2020
-ms.openlocfilehash: 58b384b502683b69020c1f211345bfcec8c095b5
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 7c40d6b1f62014e8ede6ed3328dd3a3974d41a88
+ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874275"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90740305"
 ---
 # <a name="azure-data-explorer-connector-to-power-automate-preview"></a>Power Automate に接続する Azure Data Explorer コネクタ (プレビュー)
 
-Azure Data Explorer Flow コネクタを使用すると、Azure Data Explorer で、[Microsoft Power Automate](https://flow.microsoft.com/) の Flow 機能を使用できます。 Kusto のクエリとコマンドを、スケジュール設定されたタスクまたはトリガーされたタスクの一環として、自動的に実行することができます。
+Azure Data Explorer Power Automate (以前は Microsoft Flow) コネクタを使用すると、Azure Data Explorer で、[Microsoft Power Automate](https://flow.microsoft.com/) の Flow 機能を使用できます。 Kusto のクエリとコマンドを、スケジュール設定されたタスクまたはトリガーされたタスクの一環として、自動的に実行することができます。
 
 次のようにすることができます。
 
@@ -25,7 +25,7 @@ Azure Data Explorer Flow コネクタを使用すると、Azure Data Explorer �
 * クラスターでの制御コマンドのスケジュールを設定する。
 * Azure Data Explorer と他のデータベースの間でデータをエクスポートおよびインポートする。 
 
-詳細については、[Azure Data Explorer Flow コネクタ の使用例](flow-usage.md) に関するページをご覧ください。
+詳細については、[Azure Data Explorer Power Automate コネクタの使用例](flow-usage.md)に関するページをご覧ください。
 
 ##  <a name="sign-in"></a>サインイン 
 
@@ -66,7 +66,7 @@ Azure Data Explorer Flow コネクタを使用すると、Azure Data Explorer �
 
 ## <a name="find-the-azure-kusto-connector"></a>Azure Kusto コネクタを検索する
 
-Flow コネクタを使用するには、最初にトリガーを追加する必要があります。 トリガーは、一定の期間に基づいて定義することも、直前のフロー アクションへの応答として定義することも可能です。
+Power Automate コネクタを使用するには、最初にトリガーを追加する必要があります。 トリガーは、一定の期間に基づいて定義することも、直前のフロー アクションへの応答として定義することも可能です。
 
 1. [新しいフローを作成](https://flow.microsoft.com/manage/flows/new)するか、Power Automate ホーム ページで **[マイ フロー]**  >  **[+ 新規]** の順に選択します。
 
@@ -98,15 +98,15 @@ Azure Data Explorer コネクタを開くと、フローに追加可能な 3 つ
 1. クラスターの URL を指定します。 たとえば、「 `https://clusterName.eastus.kusto.windows.net` 」のように入力します。
 1. データベースの名前を入力します。
 1. 制御コマンドを指定します。
-   - フローで使用されるアプリとコネクタから、動的コンテンツを選択する。
-   - 値へのアクセス、値の変換や比較のための式を追加する。
+   * フローで使用されるアプリとコネクタから、動的コンテンツを選択する。
+   * 値へのアクセス、値の変換や比較のための式を追加する。
 1. このアクションの結果をテーブルまたはグラフとしてメールで送信するには、テーブル/グラフの種類を指定します。 これは以下のマシンで行えます。
-   - HTML テーブル。
-   - 円グラフ。
-   - 時間グラフ。
-   - 横棒グラフ。
+   * HTML テーブル。
+   * 円グラフ。
+   * 時間グラフ。
+   * 横棒グラフ。
 
-![[制御コマンドを実行して結果を視覚化する] のスクリーンショット](./media/flow/flow-runcontrolcommand.png)
+![[繰り返し] ペインの [制御コマンドを実行して結果を視覚化する] のスクリーンショット](./media/flow/flow-runcontrolcommand.png)
 
 > [!IMPORTANT]
 > **[クラスター名]** フィールドに、クラスターの URL を入力します。

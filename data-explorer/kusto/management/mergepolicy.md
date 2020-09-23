@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 830db0da43da241ffb77ff05f15c0a5f62eb1725
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 87980046e6f0ebbbdd17a9037aa1206779d2a61e
+ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967572"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91057038"
 ---
 # <a name="merge-policy"></a>Merge ポリシー
 
-マージポリシーでは、Kusto クラスターの[エクステント (データシャード)](../management/extents-overview.md)をマージするかどうか、およびその方法を定義します。
+マージポリシーでは、Kusto クラスターの [エクステント (データシャード)](../management/extents-overview.md) をマージするかどうか、およびその方法を定義します。
 
 マージ操作には `Merge` 、インデックスを再構築すると、データを `Rebuild` 完全に reingests するという2種類があります。
 
@@ -26,9 +26,9 @@ ms.locfileid: "85967572"
 既定では、リビルド操作が優先されます。 再構築の条件に適合しないエクステントがある場合は、それらをマージしようとします。  
 
 > [!NOTE]
-> * *異なる*タグを使用してエクステントにタグを付けると `drop-by` 、マージポリシーが設定されている場合でも、そのエクステントはマージされません。 詳細については、「[エクステントのタグ付け](../management/extents-overview.md#extent-tagging)」を参照してください。
+> * *異なる*タグを使用してエクステントにタグを付けると `drop-by` 、マージポリシーが設定されている場合でも、そのエクステントはマージされません。 詳細については、「 [エクステントのタグ付け](../management/extents-overview.md#extent-tagging)」を参照してください。
 > * タグの共用体が1M 文字の長さを超えるエクステントはマージされません。
-> * データベースまたはテーブルの[シャーディングポリシー](./shardingpolicy.md)は、エクステントのマージ方法にも影響を与えます。
+> * データベースまたはテーブルの [シャーディングポリシー](./shardingpolicy.md) は、エクステントのマージ方法にも影響を与えます。
 
 ## <a name="merge-policy-properties"></a>マージポリシーのプロパティ
 
@@ -60,10 +60,11 @@ ms.locfileid: "85967572"
     * 操作を有効にするかどうかを定義し `Merge` ます。この場合、操作より優先されることは `Rebuild` ありません。
 * **Maxrangeinhours**:
     * 既定値は8です。
+        * 具体化されたビューでは、具体化されたビューの有効な[保持ポリシー](retentionpolicy.md)で復旧が無効になっていない[限り、既定](materialized-views/materialized-view-overview.md)値は14日です。
     * 2つの異なるエクステントの作成時に許容される最大許容差 (時間単位)。ただし、マージできるようになります。
     * タイムスタンプは、エクステントの作成であり、エクステントに含まれる実際のデータには関係ありません。
     * マージ操作と再構築操作の両方に適用されます。
-    * この値は、有効な[保持ポリシー](./retentionpolicy.md)の*ソフト deleteperiod*または[キャッシュポリシー](./cachepolicy.md)の*dataホットスパン*の値に従って設定する必要があります。 *Softdeleteperiod*と*dataホットスパン*の価値を低くします。 *Maxrangeinhours*値を2-3% の範囲で設定します。 [例](#maxrangeinhours-examples)を参照してください。
+    * この値は、有効な [保持ポリシー](./retentionpolicy.md)の *ソフト deleteperiod*または [キャッシュポリシー](./cachepolicy.md)の *dataホットスパン* の値に従って設定する必要があります。 *Softdeleteperiod*と*dataホットスパン*の価値を低くします。 *Maxrangeinhours*値を2-3% の範囲で設定します。 [例](#maxrangeinhours-examples)を参照してください。
 
 ## <a name="maxrangeinhours-examples"></a>MaxRangeInHours の例
 
@@ -82,4 +83,4 @@ ms.locfileid: "85967572"
 
 データベースを作成すると、上記の既定のマージポリシー値が設定されます。 ポリシーは、テーブルレベルで明示的にオーバーライドされない限り、データベースに作成されたすべてのテーブルによって既定で継承されます。
 
-詳細については、「[データベースまたはテーブルのマージポリシーを管理できるよう](../management/merge-policy.md)にするための制御コマンド」を参照してください。
+詳細については、「 [データベースまたはテーブルのマージポリシーを管理できるよう](../management/merge-policy.md)にするための制御コマンド」を参照してください。

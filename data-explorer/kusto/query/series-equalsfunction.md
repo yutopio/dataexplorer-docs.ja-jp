@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 6b03c012337e365c0eeb297e9c8154ede973bf0d
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 55da6ece7e99537b4107c3ae03c428c8e234d1bf
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345047"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103611"
 ---
 # <a name="series_equals"></a>series_equals()
 
@@ -43,7 +43,7 @@ print s1 = dynamic([1,2,4]), s2 = dynamic([4,2,1])
 |---|---|---|
 |[1, 2, 4]|[4, 2, 1]|[false、true、false]|
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 系列統計の比較全体については、以下を参照してください。
 * [series_stats()](series-statsfunction.md)

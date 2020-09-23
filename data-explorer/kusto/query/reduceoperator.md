@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 42eb17b6aca5fc722597bcbf656f18c6d92ba545
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d844f693b1509a823702b12bd28b85a9f19a07bd
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345863"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102895"
 ---
 # <a name="reduce-operator"></a>reduce 演算子
 
@@ -23,7 +23,7 @@ ms.locfileid: "87345863"
 T | reduce by LogMessage with threshold=0.1
 ```
 
-このようなグループごとに、グループについて最もよく説明する**パターン**(たとえば、 `*` ワイルドカードを表すためにアスタリスク () 文字を使用する)、グループ内の値の**数、** グループの**代表者**(グループ内の元の値の1つ) が出力されます。
+このようなグループごとに、グループについて最もよく説明する **パターン** (たとえば、 `*` ワイルドカードを表すためにアスタリスク () 文字を使用する)、グループ内の値の **数、** グループの **代表者** (グループ内の元の値の1つ) が出力されます。
 
 ## <a name="syntax"></a>構文
 
@@ -38,14 +38,14 @@ T | reduce by LogMessage with threshold=0.1
 
 ## <a name="returns"></a>戻り値
 
-この演算子は、3つの列 ( `Pattern` 、 `Count` 、および `Representative` ) と、グループと同じ数の行を含むテーブルを返します。 `Pattern`は、グループのパターン値で、 `*` ワイルドカードとして使用されています (任意の挿入文字列を表します)。は、 `Count` 演算子への入力の行数をカウントし `Representative` ます。これは、このグループに含まれる入力の1つの値です。
+この演算子は、3つの列 ( `Pattern` 、 `Count` 、および `Representative` ) と、グループと同じ数の行を含むテーブルを返します。 `Pattern` は、グループのパターン値で、 `*` ワイルドカードとして使用されています (任意の挿入文字列を表します)。は、 `Count` 演算子への入力の行数をカウントし `Representative` ます。これは、このグループに含まれる入力の1つの値です。
 
 を指定した場合は、 `[kind=source]` 既存の `Pattern` テーブル構造に列が追加されます。
 構文では、このフレーバーのスキーマが将来の変更の対象になっている可能性があることに注意してください。
 
 たとえば、 `reduce by city` の結果には次のものが含まれます。 
 
-|[パターン]     |Count |Representative|
+|パターン     |Count |Representative|
 |------------|------|--------------|
 | San *      | 5182 |San Bernard   |
 | Saint *    | 2846 |サン Lucy    |
@@ -62,7 +62,7 @@ range x from 1 to 1000 step 1
 | reduce by MyText  with threshold=0.001 , characters = "X" 
 ```
 
-|[パターン]         |Count|Representative   |
+|パターン         |Count|Representative   |
 |----------------|-----|-----------------|
 |各ラーニング *|1000 |MachineLearningX4|
 
@@ -82,10 +82,10 @@ Trace | take 10000
 | reduce by Text with characters="-_"
 ```
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 [autocluster](./autoclusterplugin.md)
 
-**ノート**
+**メモ**
 
-演算子の実装 `reduce` は、主に、Risto Vaarandi によって[イベントログからマイニングパターンを作成するためのデータクラスターアルゴリズム](https://ristov.github.io/publications/slct-ipom03-web.pdf)です。
+演算子の実装 `reduce` は、主に、Risto Vaarandi によって [イベントログからマイニングパターンを作成するためのデータクラスターアルゴリズム](https://ristov.github.io/publications/slct-ipom03-web.pdf)です。

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 71a37d7a1bd700b5f929c009197a382315099e08
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: e9fa24aeec2cc70b41e1fcd4f9d1185ef80b714b
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347240"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103231"
 ---
 # <a name="isinf"></a>isinf()
 
@@ -31,7 +31,7 @@ ms.locfileid: "87347240"
 
 X が正または負の無限の場合は、0以外の値 (true)。それ以外の場合は 0 (false) です。
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 * 値が null かどうかを確認する方法については、「 [isnull ()](isnullfunction.md)」を参照してください。
 * 値が有限かどうかを確認する方法については、「 [isfinite ()](isfinitefunction.md)」を参照してください。

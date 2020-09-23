@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f53c74fd2ac56219351c4d194c93e9fa4b627cf4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d1f70675a1f455c6cd0c392483eb574867088394
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347257"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103286"
 ---
 # <a name="isfinite"></a>isfinite()
 
@@ -31,7 +31,7 @@ ms.locfileid: "87347257"
 
 X が有限の場合は0以外の値 (true)。それ以外の場合は 0 (false) です。
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 * 値が null かどうかを確認する方法については、「 [isnull ()](isnullfunction.md)」を参照してください。
 * 値が無制限かどうかを確認する方法については、「 [isinf ()](isinffunction.md)」を参照してください。

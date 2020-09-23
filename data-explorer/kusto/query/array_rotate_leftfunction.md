@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 1408afbe378377e63758ffb7c67ff7939f6d2529
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a7f434f2425815f154ffda701832fa5e3ee70f05
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349671"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102807"
 ---
 # <a name="array_rotate_left"></a>array_rotate_left()
 
-`array_rotate_left()`配列内の値を左に回転します。
+`array_rotate_left()` 配列内の値を左に回転します。
 
 ## <a name="syntax"></a>構文
 
@@ -30,9 +30,9 @@ ms.locfileid: "87349671"
 
 ## <a name="returns"></a>戻り値
 
-元の配列と同じ量の要素を格納している動的配列。各要素は*rotate_count*に従って回転されています。
+元の配列と同じ量の要素を格納している動的配列。各要素は *rotate_count*に従って回転されています。
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 * 配列を右に回転させる方法については、「 [array_rotate_right ()](array_rotate_rightfunction.md)」を参照してください。
 * 配列を左にシフトする方法については、「 [array_shift_left ()](array_shift_leftfunction.md)」を参照してください。

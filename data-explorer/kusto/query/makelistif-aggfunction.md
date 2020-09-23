@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: dda177c39959f860ad7e019371133f16e1de91e2
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9090e752f018c4abcce759c37a8ecb3571e2fbd6
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346934"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102907"
 ---
 # <a name="make_list_if-aggregation-function"></a>make_list_if () (集計関数)
 
@@ -28,8 +28,8 @@ ms.locfileid: "87346934"
 ## <a name="arguments"></a>引数
 
 * *Expr*: 集計計算に使用される式です。
-* *述語*: `true` 結果に*Expr*を追加するために、に評価する必要がある述語。
-* *MaxSize*は、返される要素の最大数に対する整数制限 (省略可能) です (既定値は*1048576*)。 MaxSize 値は1048576を超えることはできません。
+* *述語*: `true` 結果に *Expr* を追加するために、に評価する必要がある述語。
+* *MaxSize* は、返される要素の最大数に対する整数制限 (省略可能) です (既定値は *1048576*)。 MaxSize 値は1048576を超えることはできません。
 
 ## <a name="returns"></a>戻り値
 
@@ -55,6 +55,6 @@ T
 |----|
 |["ジョージ", "Ringo"]|
 
-**参照**
+## <a name="see-also"></a>関連項目
 
-[`make_list`](./makelist-aggfunction.md)述語式を使用せずに同じを実行する関数。
+[`make_list`](./makelist-aggfunction.md) 述語式を使用せずに同じを実行する関数。

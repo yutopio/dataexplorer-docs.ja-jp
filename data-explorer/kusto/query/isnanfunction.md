@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5597f21d5e426329e2793978a6b207efc3868d13
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f73effae8d91524f46548d57288a23d79cffd0a5
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347223"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103268"
 ---
 # <a name="isnan"></a>isnan()
 
@@ -31,7 +31,7 @@ ms.locfileid: "87347223"
 
 X が NaN の場合は0以外の値 (true)。それ以外の場合は 0 (false) です。
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 * 値が null かどうかを確認する方法については、「 [isnull ()](isnullfunction.md)」を参照してください。
 * 値が有限かどうかを確認する方法については、「 [isfinite ()](isfinitefunction.md)」を参照してください。

@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 866f7865abe2debeab22bfbf13bc7641d9bc5078
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a38eda3fb595256527c277b12a16f359ef9eb910
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349620"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102712"
 ---
 # <a name="array_shift_right"></a>array_shift_right()
 
-`array_shift_right()`配列内の値を右にシフトします。
+`array_shift_right()` 配列内の値を右にシフトします。
 
 ## <a name="syntax"></a>構文
 
@@ -27,13 +27,13 @@ ms.locfileid: "87349620"
 
 * *`arr`*: 分割する入力配列は動的配列である必要があります。
 * *`shift_count`*: 配列要素が右にシフトされる位置の数を指定する整数。 値が負の場合、要素は左にシフトされます。
-* *`fill_value`*: 移動および削除された要素の代わりに要素を挿入するために使用されるスカラー値。 既定値: null 値または空の文字列 ( *arr*の種類によって異なります)。
+* *`fill_value`*: 移動および削除された要素の代わりに要素を挿入するために使用されるスカラー値。 既定値: null 値または空の文字列 ( *arr* の種類によって異なります)。
 
 ## <a name="returns"></a>戻り値
 
 元の配列と同じ量の要素を格納している動的配列。 各要素は、に従ってシフトされてい *`shift_count`* ます。 削除された要素の代わりに追加される新しい要素の値は、になり *`fill_value`* ます。
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 * 配列を左に移動する方法については、「 [array_shift_left ()](array_shift_leftfunction.md)」を参照してください。
 * 配列を右に回転する方法については、「 [array_rotate_right ()](array_rotate_rightfunction.md)」を参照してください。

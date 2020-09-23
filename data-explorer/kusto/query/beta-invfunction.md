@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b69fed2b3d7028fdc29d8098e8358c0088fcd8bb
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: deb91e6131d5662017ebdf714a79d0ee391c8ba1
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349212"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103305"
 ---
 # <a name="beta_inv"></a>beta_inv()
 
@@ -39,7 +39,7 @@ beta_inv(0.1, 10.0, 50.0)
 
 ## <a name="returns"></a>戻り値
 
-* ベータ累積確率密度関数の逆関数[beta_cdf ()](./beta-cdffunction.md)
+* ベータ累積確率密度関数の逆関数 [beta_cdf ()](./beta-cdffunction.md)
 
 **メモ**
 
@@ -70,7 +70,7 @@ datatable(p:double, alpha:double, beta:double, comment:string)
 |1.5|10|20|p > 1、null を生成します||
 |0.1|-1|20|アルファは 0 <、NaN を生成します|NaN|
 
-**参照**
+## <a name="see-also"></a>関連項目
 
-* 累積ベータ配布関数の計算については、「[ベータ cdf ()](./beta-cdffunction.md)」を参照してください。
+* 累積ベータ配布関数の計算については、「 [ベータ cdf ()](./beta-cdffunction.md)」を参照してください。
 * 計算確率のベータ密度関数については、「 [beta-pdf ()](./beta-pdffunction.md)」を参照してください。

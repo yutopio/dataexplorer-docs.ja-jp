@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/05/2020
-ms.openlocfilehash: afe5011717fd77d654eaf6c2b70e9ffbdea87128
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 19dc7db9e344a516b5c92917dccbf8362b1ca858
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967631"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91102888"
 ---
-# <a name="create-merge-table"></a>. create-merge テーブル
+# <a name="create-merge-table"></a>.create-merge table
 
 新しいテーブルを作成するか、既存のテーブルを拡張します。 
 
@@ -23,7 +23,7 @@ ms.locfileid: "85967631"
 
 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
-**構文**
+## <a name="syntax"></a>構文
 
 `.create-merge``table` *TableName* ([columnName: columnType],...) [ `with` `(` [ `docstring` `=` *ドキュメント*] [ `,` `folder` `=` *FolderName*] `)` ]
 
@@ -35,7 +35,7 @@ ms.locfileid: "85967631"
 * に含まれていない T 内の列は、 <columns specification> t から削除されません。
 * の列が <columns specification> T に存在するが、データ型が異なる場合、コマンドは失敗します。
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 * [.create-merge tables](create-merge-tables-command.md)
-* [.create テーブル](create-table-command.md)
+* [。テーブルを作成します。](create-table-command.md)

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: 314244c58eca6082b9042b263e6b3e6faeb69840
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: b62e5032d6f2ccedc2883b6cbccaf7be69e1cebf
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351201"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103514"
 ---
 # <a name="set_has_element"></a>set_has_element()
 
@@ -44,6 +44,6 @@ print arr=dynamic(["this", "is", "an", "example"])
 |---|
 |1|
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 [`array_index_of(arr, value)`](arrayindexoffunction.md)配列内の値が存在する位置を検索するには、を使用します。 どちらの関数も、同等のパフォーマンスを備えています。

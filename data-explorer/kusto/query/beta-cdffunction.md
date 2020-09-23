@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8a3711594ec5d1cbcaf36c7286f1484a708c29a0
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: b500f5f0e727fde315bea8d77ab60f600f127271
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90067523"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103403"
 ---
 # <a name="beta_cdf"></a>beta_cdf()
 
@@ -41,7 +41,7 @@ beta_cdf(0.2, 10.0, 50.0)
 
 * [累積ベータ分布関数](https://en.wikipedia.org/wiki/Beta_distribution#Cumulative_distribution_function)です。
 
-**ノート**
+**メモ**
 
 引数に数値以外の値を指定した場合、beta_cdf () は null 値を返します。
 
@@ -73,7 +73,7 @@ datatable(x:double, alpha:double, beta:double, comment:string)
 |0.1|-1|20|アルファは 0 <、NaN を生成します|NaN|
 
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 
 * ベータ累積確率密度関数の逆の計算については、「 [beta-inv ()](./beta-invfunction.md)」を参照してください。

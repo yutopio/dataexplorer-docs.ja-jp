@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: a366120428d14c713b18aee6652460817c75433a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 4b3cd0996b4c60362c7377c06621b140c29203a9
+ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349569"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91103039"
 ---
 # <a name="array_index_of"></a>array_index_of()
 
@@ -45,6 +45,6 @@ print arr=dynamic(["this", "is", "an", "example"])
 |---|
 |3|
 
-**参照**
+## <a name="see-also"></a>関連項目
 
 配列に値が存在するかどうかを確認するだけで、その位置に関心がない場合は、 [set_has_element ( `arr` 、 `value` )](sethaselementfunction.md)を使用できます。 この関数を使用すると、クエリの読みやすさが向上します。 両方の関数のパフォーマンスは同じです。

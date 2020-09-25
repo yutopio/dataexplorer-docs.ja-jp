@@ -44,7 +44,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: セキュリティ
+    - name: Security
       items:
         - name: セキュリティの概要
           href: security.md
@@ -588,6 +588,8 @@
               href: ./kusto/query/externaltablefunction.md
             - name: materialize()
               href: ./kusto/query/materializefunction.md
+            - name: materialize_view()
+              href: ./kusto/query/materialized-view-function.md
             - name: table()
               href: ./kusto/query/tablefunction.md
             - name: toscalar()
@@ -1335,6 +1337,20 @@
                   href: ./kusto/management/external-tables-azurestorage-azuredatalake.md
                 - name: 外部 SQL テーブルを作成および変更する
                   href: ./kusto/management/external-sql-tables.md
+            - name: 具体化されたビュー
+              items:
+                - name: 具体化されたビューの概要
+                  href: ./kusto/management/materialized-views/materialized-view-overview.md
+                - name: .create materialized-view
+                  href: ./kusto/management/materialized-views/materialized-view-create.md
+                - name: .alter materialized-view
+                  href: ./kusto/management/materialized-views/materialized-view-alter.md
+                - name: .show materialized-view commands
+                  href: ./kusto/management/materialized-views/materialized-view-show-commands.md
+                - name: .drop materialized-view
+                  href: ./kusto/management/materialized-views/materialized-view-drop.md
+                - name: .disable | .enable materialized-view
+                  href: ./kusto/management/materialized-views/materialized-view-enable-disable.md
             - name: '[列]'
               items:
                 - name: 列の管理

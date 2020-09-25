@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8433773111f65e0271692bc3d1ba68cf0bc7c544
-ms.sourcegitcommit: 44a4f7ea5c5d75301d7a09b7dc1254a1e5f08eaa
+ms.openlocfilehash: 7e587ab08c009516788e3a44b0b8e4a321741d94
+ms.sourcegitcommit: 8853e50a798ee7c78b69bf9822bbf1ced3abe73c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/24/2020
-ms.locfileid: "91210513"
+ms.lasthandoff: 09/25/2020
+ms.locfileid: "91227026"
 ---
 # <a name="series_fill_const"></a>series_fill_const()
 
@@ -33,7 +33,7 @@ ms.locfileid: "91210513"
 * *missing_value_placeholder*: 省略可能な、置換対象の欠損値のプレースホルダーを指定するパラメーターです。 既定値は `double` (*null*) です。
 
 **ノート**
-* [Series 演算子を](make-seriesoperator.md)使用して系列を作成した場合は、欠損値が既定値0で埋められます。または、 `default = ` 系列ステートメントで*DefaultValue*を指定することによって、定数値を指定することもできます。
+* [シリーズを](make-seriesoperator.md)使用して系列を作成する場合は、既定値の0を使用して欠損値を入力します。 また、 `default = ` make series ステートメントで *DefaultValue* を指定することによって、定数値を指定することもできます。
 
 ```kusto
 make-series num=count() default=-1 on TimeStamp from ago(1d) to ago(1h) step 1h by Os, Browser

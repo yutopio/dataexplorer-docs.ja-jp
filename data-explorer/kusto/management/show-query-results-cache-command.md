@@ -8,24 +8,24 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: 7b7a96a01a4ec2b6c84609b2f9c518637d174390
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: e037b6ed01a2eba7c7370d75a4efea0f7cbc1756
+ms.sourcegitcommit: 92b8057a36bd7daa16226f1526b29253bceb3602
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349892"
+ms.lasthandoff: 09/28/2020
+ms.locfileid: "91402720"
 ---
 # <a name="show-database-cache-query_results"></a>。データベースキャッシュ query_results を表示します
 
-コンテキストデータベースに対して行われた[クエリ結果キャッシュ](../query/query-results-cache.md)に関連する統計を示すテーブルを返します。
+コンテキストデータベースに対して行われた [クエリ結果キャッシュ](../query/query-results-cache.md) に関連する統計を示すテーブルを返します。
 
 **構文**
 
-`.show database query results cache`
+`.show database cache query_results`
 
 **出力**
  
-|出力パラメーター |Type |説明 
+|出力パラメーター |型 |説明 
 |---|---|---
 |NodeId|`string`|クラスターノードの識別子。
 |ヒット数  |`long`|キャッシュヒットの数。

@@ -8,21 +8,20 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 1be8f66300b2d605c4004661c68e64f741437dc1
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: bb1fab3f211de4b33ca0dd2cee6a8cfa0cc796a9
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91057204"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452682"
 ---
-# <a name="disable--enable-materialized-view"></a>. disable |. 具体化ビューを有効にします。
+# <a name="disable--enable-materialized-view"></a>.disable | .enable materialized-view
 
 具体化されたビューは、次のいずれかの方法で無効にすることができます。
 
 * **システムで自動的に無効にする:**  具体化されたビューは、永続的なエラーで具体化に失敗した場合に自動的に無効になります。 このプロセスは、次の場合に発生する可能性があります。 
     * ビュー定義と矛盾するスキーマ変更。  
-    * 具体化されたビュークエリが意味的に無効になるソーステーブルに対する変更。 <br>
-    詳細については、「具体化した [ビューの作成](materialized-view-create.md)」を参照してください。
+    * 具体化されたビュークエリが意味的に無効になるソーステーブルに対する変更。 
 * **具体化されたビューを明示的に無効にします。**  具体化されたビューがクラスターの正常性に悪影響を与える場合 (CPU の消費量が多すぎるなど)、次の [コマンド](#syntax) を使用してビューを無効にします。
 
 > [!NOTE]
@@ -35,9 +34,9 @@ ms.locfileid: "91057204"
 
 `.enable` | `disable``materialized-view` *MaterializedViewName*
 
-## <a name="properties"></a>Properties
+## <a name="properties"></a>プロパティ
 
-|プロパティ|種類|説明
+|プロパティ|Type|説明
 |----------------|-------|---|
 |MaterializedViewName|String|具体化されたビューの名前。|
 

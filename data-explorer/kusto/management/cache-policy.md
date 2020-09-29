@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 319a71e5db7019ed28001f44a1d4a4bcb21984e9
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 9b080badd2dc1015319e9b6d44c4c477061f92f9
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967249"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452716"
 ---
 # <a name="cache-policy-command"></a>キャッシュ ポリシー コマンド
 
@@ -21,15 +21,16 @@ ms.locfileid: "85967249"
 
 ## <a name="displaying-the-cache-policy"></a>キャッシュポリシーを表示しています
 
-ポリシーはデータまたはテーブルに対して設定でき、次のいずれかのコマンドを使用して表示されます。
+このポリシーは、データベース、テーブル、または具体化された [ビュー](materialized-views/materialized-view-overview.md)に対して設定できます。このポリシーは、次のいずれかのコマンドを使用して表示できます。
 
 * `.show``database` *DatabaseName* DatabaseName `policy``caching`
-* `.show``table` *DatabaseName* `.` *TableName* TableName `policy``caching`
+* `.show``table` *TableName* TableName `policy``caching`
+* `.show``materialized-view` *MaterializedViewName* MaterializedViewName `policy``caching`
 
 ## <a name="altering-the-cache-policy"></a>キャッシュポリシーの変更
 
 ```kusto
-.alter <entity_type> <database_or_table_name> policy caching hot = <timespan>
+.alter <entity_type> <database_or_table_or_materialized-view_name> policy caching hot = <timespan>
 ```
 
 複数のテーブルのキャッシュポリシーを変更する (同じデータベースコンテキスト内):
@@ -51,11 +52,11 @@ ms.locfileid: "85967249"
 }
 ```
 
-* `entity_type`: テーブル、データベース、またはクラスター
-* `database_or_table`: エンティティがテーブルまたはデータベースの場合は、次のようにコマンドでその名前を指定する必要があります。 
+* `entity_type` : テーブル、データベース、またはクラスター
+* `database_or_table_or_materialized-view`: エンティティがテーブルまたはデータベースの場合は、次のようにコマンドでその名前を指定する必要があります。 
   - `database_name` 
   - `database_name.table_name` 
-  - `table_name`(特定のデータベースのコンテキストで実行されている場合)
+  - `table_name` (特定のデータベースのコンテキストで実行されている場合)
 
 ## <a name="deleting-the-cache-policy"></a>キャッシュポリシーを削除しています
 
@@ -75,6 +76,7 @@ ms.locfileid: "85967249"
 
 ```kusto
 .alter table MyTable policy caching hot = 3d
+.alter materialized-view MyMaterializedView policy caching hot = 3d
 ```
 
 (データベースコンテキストでの) 複数のテーブルのポリシーを、3日間に設定します。
@@ -87,6 +89,12 @@ ms.locfileid: "85967249"
 
 ```kusto
 .delete table MyTable policy caching
+```
+
+具体化されるビューに設定されるポリシーを削除します。
+
+```kusto
+.delete materialized-view MyMaterializedView policy caching
 ```
 
 データベースで設定されるポリシーを削除します。

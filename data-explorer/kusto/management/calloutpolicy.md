@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 809088f35567f85444755d89ab30e02fad46abaf
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.openlocfilehash: 6e3bb943347e4ea794733451fcf65674e5e23ca7
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680679"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452665"
 ---
 # <a name="callout-policy"></a>Callout ポリシー
 
@@ -24,13 +24,12 @@ Azure データエクスプローラークラスターは、さまざまなシ�
 * `kusto` -Azure データエクスプローラークロスクラスタークエリを制御します。
 * `sql` - [SQL プラグイン](../query/sqlrequestplugin.md)を制御します。
 * `cosmosdb` - [CosmosDB プラグイン](../query/cosmosdb-plugin.md)を制御します。
-* `webapi` -他の外部 Web 呼び出しを制御します。
 * `sandbox_artifacts`-サンドボックスプラグイン ([python](../query/pythonplugin.md)  |  [R](../query/rplugin.md)) を制御します。
 * `external_data` - [外部テーブル](../query/schema-entities/externaltables.md) または [externaldata](../query/externaldata-operator.md) 演算子を使用して外部データへのアクセスを制御します。
 
 コールアウトポリシーは、次の要素で構成されます。
 
-* **CalloutType** -コールアウトの種類を定義します。 `kusto` 、、またはにすることができます。 `sql``webapi`
+* **CalloutType** -コールアウトの種類を定義し `kusto` ます。またはを指定でき `sql` ます。
 * **CalloutUriRegex** -コールアウトのドメインで許可されている Regex を指定します。
 * **Cancall** -コールアウトに外部呼び出しが許可されているかどうかを示します。
 
@@ -63,13 +62,13 @@ Azure データエクスプローラークラスターは、さまざまなシ�
 **コールアウトポリシーの変更**
 
 ```kusto
-.alter cluster policy callout @'[{"CalloutType": "webapi","CalloutUriRegex": "en\\.wikipedia\\.org","CanCall": true}]'
+.alter cluster policy callout @'[{"CalloutType": "sql","CalloutUriRegex": "sqlname.database.azure.com","CanCall": true}]'
 ```
 
 **許可された一連のコールアウトを追加する**
 
 ```kusto
-.alter-merge cluster policy callout @'[{"CalloutType": "webapi","CalloutUriRegex": "en\\.wikipedia\\.org","CanCall": true}, {"CalloutType": "webapi","CalloutUriRegex": "bing\\.com","CanCall": true}]'
+.alter-merge cluster policy callout @'[{"CalloutType": "sql","CalloutUriRegex": "sqlname.database.azure.com","CanCall": true}]'
 ```
 
 **変更できないコールアウトポリシーをすべて削除します。**

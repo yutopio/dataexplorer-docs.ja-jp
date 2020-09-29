@@ -8,18 +8,18 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: ac9fb575f46bb60e313da4fa2b3c023ac826daec
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: eaa4e759f0987940a86c509788f5e8a58b2f9e75
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91057269"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452733"
 ---
-# <a name="alter-materialized-view"></a>. 変更を具体化したビュー
+# <a name="alter-materialized-view"></a>.alter materialized-view
 
 [具体化](materialized-view-overview.md)されたビューを変更すると、そのビューの既存のデータを保持したまま、具体化されたビューのクエリを変更することができます。
 
-具体化されたビューを変更するには、 [データベース管理者](../access-control/role-based-authorization.md) のアクセス許可、または具体化されたビューの管理者が必要です。 詳細については、「 [セキュリティロールの管理](../security-roles.md)」を参照してください。
+[データベース管理者](../access-control/role-based-authorization.md)のアクセス許可、または具体化されたビューの管理者が必要です。
 
 > [!WARNING]
 > 具体化されたビューを変更する場合は、余分な注意が必要です。 不適切な使用により、データが失われる可能性があります。
@@ -35,13 +35,13 @@ ms.locfileid: "91057269"
 
 ## <a name="arguments"></a>引数
 
-|引数|種類|説明
+|引数|Type|説明
 |----------------|-------|---|
 |ViewName|String|具体化したビューの名前。|
 |Targettablename|String|ビューが定義されているソーステーブルの名前。|
 |クエリ|String|具体化されたビュークエリ。|
 
-## <a name="properties"></a>Properties
+## <a name="properties"></a>プロパティ
 
 `dimensionTables`は、具体化されたビューの alter コマンドで唯一サポートされているプロパティです。 クエリがディメンションテーブルを参照する場合は、このプロパティを使用する必要があります。 詳細については、「. 具体化された [ビューを作成する](materialized-view-create.md) 」を参照してください。
 

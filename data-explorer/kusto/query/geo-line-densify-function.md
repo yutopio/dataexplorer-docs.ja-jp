@@ -8,16 +8,16 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/01/2020
-ms.openlocfilehash: c5a66255f719d3bd0da962a8eb9d3cae23a8c254
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f86ec0349b4e84215e9b2fdff33b2d705967bcac
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347835"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452818"
 ---
 # <a name="geo_line_densify"></a>geo_line_densify()
 
-中間点を追加することにより、平面線のエッジを geodesics に変換します。
+中間点を追加して、平面線または複数行のエッジを geodesics に変換します。
 
 ## <a name="syntax"></a>構文
 
@@ -25,7 +25,7 @@ ms.locfileid: "87347835"
 
 ## <a name="arguments"></a>引数
 
-* *lineString*: [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)の行と[動的](./scalar-data-types/dynamic.md)データ型。
+* *lineString*: [GeoJSON 形式](https://tools.ietf.org/html/rfc7946) および [動的](./scalar-data-types/dynamic.md) データ型の行または複数行。
 * *tolerance*: 元の平面エッジと変換された測地エッジチェーンの間の最大距離をメートル単位で定義する、省略可能な数値です。 サポートされている値の範囲は [0.1, 1万] です。 指定しない場合は、既定値 `10` が使用されます。
 
 ## <a name="returns"></a>戻り値
@@ -33,24 +33,26 @@ ms.locfileid: "87347835"
 [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)の Densified 行と[動的](./scalar-data-types/dynamic.md)データ型。 行または許容範囲が無効である場合は、クエリによって null の結果が生成されます。
 
 > [!NOTE]
-> * 地理空間座標は、 [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home)座標参照システムによって表されるものとして解釈されます。
+> * 地理空間座標は、 [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home) 座標参照システムによって表されるものとして解釈されます。
 
 **LineString の定義**
 
 動的 ({"type": "LineString", "座標": [[lng_1, lat_1], [lng_2, lat_2],..., [lng_N, lat_N]]})
 
+動的 ({"type": "MultiLineString", "コーディネート": [[line_1, line_2,..., line_N]]})
+
 * LineString 座標配列には、少なくとも2つのエントリが含まれている必要があります。
 * 座標 [経度、緯度] は有効である必要があります。 経度は [-180, + 180] の範囲の実数である必要があり、緯度は [-90, + 90] の範囲の実数である必要があります。
 * エッジの長さは180度未満でなければなりません。 2つの頂点の間の最短のエッジが選択されます。
 
-**制約**
+**Constraints**
 
 * Densified 行のポイントの最大数は、10485760に制限されています。
 * [動的](./scalar-data-types/dynamic.md)な形式の行の格納にはサイズの制限があります。
 
 **目的**
 
-* [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)では、2つの点の間のエッジを、直線デカルト直線として定義します。
+* [GeoJSON 形式](https://tools.ietf.org/html/rfc7946) では、2つの点の間のエッジを、直線デカルト直線として定義します。
 * 測地または平面エッジを使用するかどうかの決定は、データセットによって異なり、特に長いエッジに関連しています。
 
 ## <a name="examples"></a>例

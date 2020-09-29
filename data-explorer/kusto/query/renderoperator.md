@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 03/29/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: cf10a18a699e1e93521b4927008858cbebd2baf8
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5485088ba8dd4e348733c9d8e14e2dc54dd2c858
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345846"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452835"
 ---
 # <a name="render-operator"></a>render 演算子
 
@@ -32,11 +32,11 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 
 ## <a name="syntax"></a>構文
 
-*T* `|` `render` *視覚化*[ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ]
+*T* `|` `render` *視覚化* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ]
 
-この場合、
+各値の説明:
 
-* *視覚化*は、使用する視覚エフェクトの種類を示します。 サポートされる値は
+* *視覚化* は、使用する視覚エフェクトの種類を示します。 サポートされる値は
 
 ::: zone pivot="azuredataexplorer"
 
@@ -55,7 +55,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 | `stackedareachart` | 積み上げ面グラフ。 最初の列は x 軸で、数値列である必要があります。 その他の数値列は y 軸です。 |
 | `table`            | 既定-結果はテーブルとして表示されます。|
 | `timechart`        | 線グラフ。 最初の列は x 軸で、日時を指定する必要があります。 その他の (数値) 列は y 軸です。 数値列を "グループ化" してグラフ内に異なる線を作成するために使用される文字列型の列が1つあります (さらに文字列の列は無視されます)。 |
-| `timepivot`        | イベントのタイムラインでの対話型ナビゲーション (タイム軸でのピボット)|
+| `timepivot`        | イベントのタイムラインでの対話型ナビゲーション (時間軸でのピボット)|
 
 ::: zone-end
 
@@ -110,7 +110,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 ::: zone-end
 
 いくつかの視覚化は、プロパティを指定することによってさらに詳細にすることができ `kind` ます。
-これらのボタンの役割は、次のとおりです。
+次のとおりです。
 
 |*視覚化*|`kind`             |説明                        |
 |---------------|-------------------|-----------------------------------|
@@ -126,8 +126,8 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 |               |`unstacked`        |`default` と同じ。                 |
 |               |`stacked`          |"Columns" は他方の一番上にあります。|
 |               |`stacked100`       |"Columns" をスタックし、それぞれを他と同じ高さに伸縮します。|
+|`scatterchart` |`map`              |期待される列は、[経度、緯度] または GeoJSON ポイントです。 系列列は省略可能です。|
 |`piechart`     |`map`              |期待される列は、[経度,、緯度] または GeoJSON ポイント、カラー軸、および数値です。 Kusto エクスプローラーデスクトップでサポートされています。|
-|`scatterchart` |`map`              |期待される列は、[経度、緯度] または GeoJSON ポイントです。 系列列は省略可能です。 Kusto エクスプローラーデスクトップでサポートされています。|
 
 ::: zone pivot="azuredataexplorer"
 
@@ -135,7 +135,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 
 |`ysplit`  |説明                                                       |
 |----------|------------------------------------------------------------------|
-|`none`    |すべての系列データに対して1つの y 軸が表示されます。 (既定)       |
+|`none`    |すべての系列データに対して1つの y 軸が表示されます。 (既定値)。       |
 |`axes`    |1つのグラフが、複数の y 軸 (系列ごとに1つ) と共に表示されます。|
 |`panels`  |値ごとに1つのグラフが表示され `ycolumn` ます (上限まで)。|
 

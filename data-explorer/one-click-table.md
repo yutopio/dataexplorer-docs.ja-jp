@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/06/2020
-ms.openlocfilehash: 8732edf3b2cb9600fcce1ed03097d893c6615528
-ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
+ms.openlocfilehash: 3302e7cb94a2184be64664f3c3d8698b8bea7643
+ms.sourcegitcommit: 92b8057a36bd7daa16226f1526b29253bceb3602
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90740907"
+ms.lasthandoff: 09/28/2020
+ms.locfileid: "91402746"
 ---
 # <a name="create-a-table-in-azure-data-explorer-preview"></a>Azure Data Explorer でテーブルを作成する (プレビュー)
 
@@ -41,19 +41,19 @@ ms.locfileid: "90740907"
 1. **[ソースの種類]** で、テーブル マッピングの作成に使用するデータ ソースを選択します。 次のオプションから選択します。 **[BLOB から]** 、 **[ファイルから]** 、または **[コンテナーから]** 。
    
     
-    * **BLOB** を使用している場合:
+    * **コンテナー**を使用している場合:
         * BLOB のストレージ URL を入力し、必要に応じてサンプル サイズを入力します。 
         * **[ファイルのフィルター]** を使用してファイルをフィルター処理します。 
         * 次の手順でスキーマの定義に使用するファイルを選択します。
 
-        :::image type="content" source="media/one-click-table/blob.png" alt-text="BLOB を使用してテーブルを作成し、スキーマ マッピングを作成する":::
+        :::image type="content" source="media/one-click-table/storage.png" alt-text="BLOB を使用してテーブルを作成し、スキーマ マッピングを作成する":::
     
     * **ローカル ファイル**を使用している場合:
         * **[参照]** を選択してファイルを見つけるか、ファイルをフィールドにドラッグします。
 
         :::image type="content" source="./media/one-click-table/data-from-file.png" alt-text="ローカル ファイルのデータに基づいてテーブルを作成する":::
 
-    * **コンテナー**を使用している場合:
+    * **BLOB** を使用している場合:
         * **[ストレージへのリンク]** フィールドにコンテナーの [SAS URL](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) を追加し、必要に応じてサンプル サイズを入力します。 
 
 1. **[スキーマの編集]** を選択し、 **[スキーマ]** タブに進みます。

@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 77c86708a20349f5864bd10fa298719dce0fbab9
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: f19104111d8db615c82eff2e399fb4857f27c841
+ms.sourcegitcommit: 463ee13337ed6d6b4f21eaf93cf58885d04bccaa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452801"
+ms.lasthandoff: 09/30/2020
+ms.locfileid: "91572161"
 ---
 # <a name="materialized-views-preview"></a>具体化ビュー (プレビュー)
 
@@ -47,6 +47,8 @@ ms.locfileid: "91452801"
 * [Any () (集計関数)](../../query/any-aggfunction.md)を使用して、テーブル内の重複したレコードを除外します。
 * 生データに対して定期的な統計を計算することにより、データの解決を軽減します。 期間によって、さまざまな [集計関数](materialized-view-create.md#supported-aggregation-functions) を使用します。
     * たとえば、を使用して、1 `T | summarize dcount(User) by bin(Timestamp, 1d)` 日に個別のユーザーの最新のスナップショットを保持します。
+
+すべてのユースケースの例については、「 [具体化ビューの作成コマンド](materialized-view-create.md#examples)」を参照してください。
 
 ## <a name="how-materialized-views-work"></a>具体化ビューのしくみ
 

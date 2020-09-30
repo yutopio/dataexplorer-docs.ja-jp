@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 354908df7ab0e65c8d4110dbff3a45a876b748a0
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: f67b2d61cfed297886447a97dd178dfb578a2c68
+ms.sourcegitcommit: 463ee13337ed6d6b4f21eaf93cf58885d04bccaa
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452750"
+ms.lasthandoff: 09/30/2020
+ms.locfileid: "91572145"
 ---
 # <a name="create-materialized-view"></a>.create materialized-view
 
@@ -82,10 +82,10 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
 |プロパティ|Type|説明 |
 |----------------|-------|---|
-|バック|[bool]|現在、 *SourceTable* () にあるすべてのレコードに基づいてビューを作成するか `true` 、"後から" () を作成するかを指定し `false` ます。 既定値は `false` です。| 
+|バック|bool|現在、 *SourceTable* () にあるすべてのレコードに基づいてビューを作成するか `true` 、"後から" () を作成するかを指定し `false` ます。 既定値は `false` です。| 
 |effectiveDateTime|DATETIME| と共に指定した場合、作成されるのは、 `backfill=true` datetime の後の取り込まれたレコードだけです。 バックフィルも true に設定する必要があります。 Datetime リテラルが必要です。次に例を示します。 `effectiveDateTime=datetime(2019-05-01)`|
 |dimensionTables|Array|ビュー内のディメンションテーブルのコンマ区切りの一覧です。 [クエリ引数](#query-argument)を参照してください
-|autoUpdateSchema|[bool]|ソーステーブルの変更時にビューを自動更新するかどうかを指定します。 既定値は `false` です。 このオプションは、型のビュー `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (列の引数がの場合のみ `*` ) に対してのみ有効です。 このオプションが true に設定されている場合、ソーステーブルへの変更は具体化されたビューに自動的に反映されます。
+|autoUpdateSchema|bool|ソーステーブルの変更時にビューを自動更新するかどうかを指定します。 既定値は `false` です。 このオプションは、型のビュー `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (列の引数がの場合のみ `*` ) に対してのみ有効です。 このオプションが true に設定されている場合、ソーステーブルへの変更は具体化されたビューに自動的に反映されます。
 |folder|string|具体化されたビューのフォルダー。|
 |docString|string|具体化されたビューを文書化する文字列|
 
@@ -99,7 +99,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
 ## <a name="examples"></a>例
 
-1. 現在から取り込まれたレコードのみを具体化する空のビューを作成します。 
+1. 現在から取り込まれたレコードのみを具体化する空の arg_max ビューを作成します。
 
     <!-- csl -->
     ```
@@ -109,7 +109,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
     }
     ```
     
-1. 次を使用して、バックフィルオプションを含む具体化されるビューを作成し `async` ます。
+1. 次を使用して、バックフィルオプションを使用して日次集計の具体化されるビューを作成し `async` ます。
 
     <!-- csl -->
     ```
@@ -132,7 +132,17 @@ Create 操作には、 [データベース管理者](../access-control/role-base
         | summarize count(), dcount(User), max(Duration) by Customer, Day
     } 
     ```
-    
+1. EventId 列に基づいて、ソーステーブルを重複除去する具体化されたビュー。
+
+    <!-- csl -->
+    ```
+    .create materialized-view DedupedT on table T
+    {
+        T
+        | summarize any(*) by EventId
+    }
+    ```
+
 1. が最後のものである限り、定義には、ステートメントの前に追加の演算子を含めることができ `summarize` `summarize` ます。
 
     <!-- csl -->
@@ -146,7 +156,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
         | summarize count(), dcount(User), max(Duration) by Customer, Api, Month
     }
     ```
-    
+
 1. ディメンションテーブルと結合する具体化されたビュー:
 
     <!-- csl -->

@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 652b08afc15d1405d6b7f17523088ed0ec5bef61
-ms.sourcegitcommit: 31ebf208d6bfd901f825d048ea69c9bb3d8b87af
+ms.openlocfilehash: eb974793875fd5f797fe1a1b801598abdc60e354
+ms.sourcegitcommit: 454b9bf6449449fc3382ff5794894502f920795a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/17/2020
-ms.locfileid: "88501622"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91517618"
 ---
 # <a name="scalar-function-types"></a>スカラー関数の種類
 
@@ -49,7 +49,7 @@ ms.locfileid: "88501622"
 |[datetime_diff ()](datetime-difffunction.md)|指定されている場合、オフセットでシフトした日付を含む年の最後の日付を返します。|
 |[dayofmonth()](dayofmonthfunction.md)|指定された月の日を表す整数値を返します。|
 |[dayofweek()](dayofweekfunction.md)|前の日曜日からの日数を timespan として返します。|
-|[dayofyear()](dayofyearfunction.md)|指定された年の日番号を表す整数を返します。|
+|[dayofyear ()](dayofyearfunction.md)|指定された年の日番号を表す整数を返します。|
 |[endofday()](endofdayfunction.md)|指定されている場合、オフセットでシフトされた日付を含む日の終わりを返します。|
 |[endofmonth()](endofmonthfunction.md)|指定されている場合、オフセットでシフトした日付を含む月の終わりを返します。|
 |[endofweek()](endofweekfunction.md)|指定されている場合、オフセットでシフトされた日付を含む週の終わりを返します。|
@@ -105,7 +105,7 @@ ms.locfileid: "88501622"
 |[次へ ()](nextfunction.md)|シリアル化された行セットの場合、はオフセットに従って、後の行から指定された列の値を返します。|
 |[prev()](prevfunction.md)|シリアル化された行セットの場合、はオフセットに従って前の行から指定された列の値を返します。|
 |[row_cumsum()](rowcumsumfunction.md)|列の累積合計を計算します。|
-|[row_number()](rownumberfunction.md)|指定されたインデックスから始まる連続した数値、または既定で1から始まる、シリアル化された行セット内の行の番号を返します。|
+|[row_number ()](rownumberfunction.md)|指定されたインデックスから始まる連続した数値、または既定で1から始まる、シリアル化された行セット内の行の番号を返します。|
 
 ## <a name="flow-control-functions"></a>フロー制御関数
 
@@ -139,12 +139,12 @@ ms.locfileid: "88501622"
 |[log10 ()](log10-function.md)|常用対数関数を返します。|
 |[log2()](log2-function.md)|底2の対数関数を返します。|
 |[loggamma()](loggammafunction.md)|ガンマ関数の絶対値のログを計算します。|
-|[not()](notfunction.md)|Bool 引数の値を反転させます。|
+|[not ()](notfunction.md)|Bool 引数の値を反転させます。|
 |[pi ()](pifunction.md)|Pi (π) の定数値を返します。|
 |[pow()](powfunction.md)|を累乗した結果を返します。|
 |[ラジアン ()](radiansfunction.md)|数式ラジアン = (PI/180) * 角度 (°) を使用して、角度の角度を度数で値に変換します。|
 |[rand ()](randfunction.md)|乱数を返します。|
-|[range()](rangefunction.md)|等間隔に並んだ一連の値を保持する動的配列を生成します。|
+|[範囲 ()](rangefunction.md)|等間隔に並んだ一連の値を保持する動的配列を生成します。|
 |[round ()](roundfunction.md)|丸められたソースを指定した有効桁数に戻します。|
 |[sign ()](signfunction.md)|数値式の符号。|
 |[sin ()](sinfunction.md)|サイン関数を返します。|
@@ -182,7 +182,7 @@ ms.locfileid: "88501622"
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[case()](casefunction.md)|述語の一覧を評価し、述語が満たされている最初の結果式を返します。|
-|[coalesce()](coalescefunction.md)|式のリストを評価し、null 以外の最初の式 (文字列の場合は空でない) を返します。|
+|[合体 ()](coalescefunction.md)|式のリストを評価し、null 以外の最初の式 (文字列の場合は空でない) を返します。|
 |[iif ()/iff ()](iiffunction.md)|1番目の引数 (述語) を評価し、述語が true (second) または false (3 番目) のどちらに評価されたかに応じて、2番目または3番目の引数の値を返します。|
 |[max_of()](max-offunction.md)|複数の評価された数値式の最大値を返します。|
 |[min_of()](min-offunction.md)|複数の評価された数値式の最小値を返します。|
@@ -213,13 +213,13 @@ ms.locfileid: "88501622"
 |[series_fill_const()](series-fill-constfunction.md)|系列の欠損値を指定された定数値に置き換えます。|
 |[series_fill_forward()](series-fill-forwardfunction.md)|系列内の欠損値の前方フィル補間を実行します。|
 |[series_fill_linear()](series-fill-linearfunction.md)|系列内の欠損値の線形補間を実行します。|
-|[series_fft ()](series-fft-function.md)|系列に高速フーリエ変換 (FFT) を適用します。|
+|[series_fft()](series-fft-function.md)|系列に高速フーリエ変換 (FFT) を適用します。|
 |[series_fir()](series-firfunction.md)|系列に有限インパルス応答フィルターを適用します。|
 |[series_fit_2lines()](series-fit-2linesfunction.md)|系列に2つのセグメントの線形回帰を適用し、複数の列を返します。|
 |[series_fit_2lines_dynamic()](series-fit-2lines-dynamicfunction.md)|系列に2つのセグメントの線形回帰を適用し、動的オブジェクトを返します。|
 |[series_fit_line()](series-fit-linefunction.md)|系列に線形回帰を適用し、複数の列を返します。|
 |[series_fit_line_dynamic()](series-fit-line-dynamicfunction.md)|系列に線形回帰を適用し、動的オブジェクトを返します。|
-|[series_ifft ()](series-ifft-function.md)|系列に対して反転高速フーリエ変換 (IFFT) を適用します。|
+|[series_ifft()](series-ifft-function.md)|系列に対して反転高速フーリエ変換 (IFFT) を適用します。|
 |[series_iir()](series-iirfunction.md)|無限インパルス応答フィルターを系列に適用します。|
 |[series_outliers()](series-outliersfunction.md)|系列内の異常点をスコア付けします。|
 |[series_pearson_correlation()](series-pearson-correlationfunction.md)|2つの系列のピアソンの相関係数を計算します。|
@@ -236,8 +236,8 @@ ms.locfileid: "88501622"
 |[base64_encode_tostring()](base64_encode_tostringfunction.md)|文字列を base64 文字列としてエンコードします。|
 |[base64_decode_tostring()](base64_decode_tostringfunction.md)|Base64 文字列を UTF-8 文字列にデコードします。|
 |[base64_decode_toarray()](base64_decode_toarrayfunction.md)|Base64 文字列を長整数値の配列にデコードします。|
-|[countof ()](cotfunction.md)|文字列内の部分文字列の出現回数をカウントします。 文字列の一致が重複する可能性があります。regex は一致しません。|
-|[extract()](extractfunction.md)|テキスト文字列から 正規表現 との一致を取得します。|
+|[countof ()](countoffunction.md)|文字列内の部分文字列の出現回数をカウントします。 文字列の一致が重複する可能性があります。regex は一致しません。|
+|[extract ()](extractfunction.md)|テキスト文字列から 正規表現 との一致を取得します。|
 |[extract_all()](extractallfunction.md)|テキスト文字列から正規表現のすべての一致を取得します。|
 |[extractjson()](extractjsonfunction.md)|パス式を使用している JSON テキストから、指定された要素を取得します。|
 |[indexof ()](indexoffunction.md)|関数は、入力文字列内で指定した文字列が最初に見つかった位置の0から始まるインデックスを報告します。|
@@ -265,7 +265,7 @@ ms.locfileid: "88501622"
 |[strrep()](strrepfunction.md)|指定された文字列を繰り返す回数 (既定値-1)。|
 |[substring ()](substringfunction.md)|あるインデックスから文字列の末尾までの位置から、ソース文字列から部分文字列を抽出します。|
 |[toupper()](toupperfunction.md)|文字列を大文字に変換します。|
-|[translate()](translatefunction.md)|指定された文字列の文字セット (' searchList ') を別の文字セット (' replacementList ') に置換します。|
+|[translate ()](translatefunction.md)|指定された文字列の文字セット (' searchList ') を別の文字セット (' replacementList ') に置換します。|
 |[trim ()](trimfunction.md)|指定した正規表現の先頭と末尾の一致をすべて削除します。|
 |[trim_end()](trimendfunction.md)|指定した正規表現の末尾の一致を削除します。|
 |[trim_start()](trimstartfunction.md)|指定された正規表現の先頭の一致を削除します。|

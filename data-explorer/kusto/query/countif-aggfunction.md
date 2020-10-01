@@ -8,20 +8,16 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/02/2020
-ms.openlocfilehash: 669978d8828f54926a8535f199ef7a9bc2ba7451
-ms.sourcegitcommit: d9fbcd6c9787f90de62e8e832c92d43b8090cbfc
+ms.openlocfilehash: 9e81b4947f3a3a0b1102256cb7fd2f635ce4611b
+ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87515772"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91614979"
 ---
 # <a name="countif-aggregation-function"></a>countif () (集計関数)
 
-*Predicate* が `true` と評価された行の数を返します。
-
-* [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
-
-「- [Count ()](count-aggfunction.md)関数」を参照してください。この関数は、述語式のない行をカウントします。
+*Predicate* が `true` と評価された行の数を返します。 集計のコンテキストでのみ使用でき[ます。](summarizeoperator.md)
 
 ## <a name="syntax"></a>構文
 
@@ -29,7 +25,7 @@ ms.locfileid: "87515772"
 
 ## <a name="arguments"></a>引数
 
-*述語*: 集計計算に使用される式。 *述語*は、戻り値の型が bool (true/false に評価されます) の任意のスカラー式にすることができます。
+*述語*: 集計計算に使用される式。 *述語* は、戻り値の型が bool (true/false に評価されます) の任意のスカラー式にすることができます。
 
 ## <a name="returns"></a>戻り値
 
@@ -53,3 +49,6 @@ T
 |----|
 |2|
 
+## <a name="see-also"></a>関連項目
+
+[count ()](count-aggfunction.md) 関数。述語式のない行をカウントします。

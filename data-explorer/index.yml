@@ -9,12 +9,12 @@ metadata:
   author: orspod
   ms.author: orspodek
   ms.date: 03/19/2020
-  ms.openlocfilehash: e9e434423919643e75dd7c90c60ae3c90072283f
-  ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+  ms.openlocfilehash: 19fee896eb9e3d6dd857b8c85bd7962b820ff3b3
+  ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
   ms.translationtype: HT
   ms.contentlocale: ja-JP
-  ms.lasthandoff: 07/01/2020
-  ms.locfileid: "85763920"
+  ms.lasthandoff: 09/29/2020
+  ms.locfileid: "91452699"
 landingContent:
 - title: Azure Data Explorer について
   linkLists:
@@ -22,6 +22,10 @@ landingContent:
     links:
     - text: Azure Data Explorerとは
       url: data-explorer-overview.md
+  - linkListType: whats-new
+    links:
+    - text: Azure Data Explorer の新機能を確認するには、2020 年 10 月 14 日のオンライン イベントにご参加ください
+      url: https://azuredataexplorer.events.idloom.com/azure-data-explorer-online-event
   - linkListType: video
     links:
     - text: Azure Data Explorerとは (19:47)

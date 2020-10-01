@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/28/2020
-ms.openlocfilehash: 078737ff7e5cd74d15792cc2f0f058cb3ea12a19
-ms.sourcegitcommit: e0cf581d433bbbb2eda5a4209a8eabcdae80c21b
+ms.openlocfilehash: b8de71ffcda28a7baa0f8452e501c7485e861122
+ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90059483"
+ms.lasthandoff: 09/22/2020
+ms.locfileid: "90999012"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Azure Data Explorer を使用して Azure Monitor でデータのクエリを実行する (プレビュー)
 
@@ -95,6 +95,20 @@ union <ADX table>, cluster(CL1).database(<workspace-name>).<table name>
    [ ![Azure Data Explorer プロキシからのクロス クエリ](media/adx-proxy/cross-query-adx-proxy.png)](media/adx-proxy/cross-query-adx-proxy.png#lightbox)
 
 union の代わりに [`join` 演算子](kusto/query/joinoperator.md)を使用するには、それを (プロキシに対してではなく) Azure Data Explorer ネイティブ クラスターに対して実行するための [`hint`](kusto/query/joinoperator.md#join-hints) が必要になる場合があります。 
+
+### <a name="join-data-from-an-adx-cluster-in-one-tenant-with-an-azure-monitor-resource-in-another"></a>一方のテナントの ADX クラスターのデータを他方の Azure Monitor リソースと結合する
+
+クロステナント クエリは ADX プロキシでサポートされていません。 両方のリソースにまたがるクエリを実行するためには、1 つのテナントにサインインします。
+
+Azure Data Explorer リソースがテナント 'A' にあり、LA ワークスペースがテナント 'B' にある場合は、次の 2 つの方法のいずれかを使用します。
+
+1. Azure Data Explorer を使用すると、異なるテナントにプリンシパルのロールを追加できます。 Azure Data Explorer クラスターにテナント 'B' のユーザー ID を許可されているユーザーとして追加します。 Azure Data Explorer クラスター上の *'ExternalTrustedTenant'* プロパティにテナント 'B' が含まれていることを検証します。 テナント 'B' でクロスクエリを完全に実行します。 
+
+2. [Lighthouse](https://docs.microsoft.com/azure/lighthouse/) を使用して、Azure Monitor リソースをテナント 'A' に射影します。
+
+### <a name="connect-to-azure-data-explorer-clusters-from-different-tenants"></a>さまざまなテナントから Azure Data Explorer クラスターに接続する
+
+Kusto Explorer では、ユーザー アカウントが最初に属しているテナントに自動的にサインインされます。 同じユーザー アカウントを使用して他のテナントのリソースにアクセスするには、接続文字列に `tenantId` を明示的に指定する必要があります: `Data Source=https://ade.applicationinsights.io/subscriptions/SubscriptionId/resourcegroups/ResourceGroupName;Initial Catalog=NetDefaultDB;AAD Federated Security=True;Authority ID=\*\*TenantId**`
 
 ## <a name="function-supportability"></a>関数のサポート
 

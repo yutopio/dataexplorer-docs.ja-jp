@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/19/2020
 ms.custom: contperfq1
-ms.openlocfilehash: d12e1d2382c3d7fe9a980b2b777a02205d28e5de
-ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
+ms.openlocfilehash: e2adf84e869638d6019b149af7623e12a64930d8
+ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/21/2020
-ms.locfileid: "90832554"
+ms.lasthandoff: 09/23/2020
+ms.locfileid: "91056970"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>メトリックを使用した Azure Data Explorer のパフォーマンス、正常性、および使用状況の監視
 
@@ -59,6 +59,7 @@ Azure Data Explorer のメトリックを使用すると、リソースの全体
 * [インジェストのメトリック](#ingestion-metrics) 
 * [ストリーミング インジェスト メトリック](#streaming-ingest-metrics)
 * [クエリのメトリック](#query-metrics) 
+* [具体化されたビューのメトリック](#materialized-view-metrics)
 
 Azure Data Explorer 用の Azure Monitor のメトリックのアルファベット順一覧については、[サポートされる Azure Data Explorer クラスターのメトリック](/azure/azure-monitor/platform/metrics-supported#microsoftkustoclusters)に関する記事を参照してください。
 
@@ -124,6 +125,17 @@ Azure Data Explorer 用の Azure Monitor のメトリックのアルファベッ
 | クエリ実行時間 | ミリ秒 | Avg、Min、Max、Sum | クエリ結果を受け取るまでの合計時間 (ネットワーク待ち時間は含まれません)。 | QueryStatus |
 | 同時クエリの合計数 | Count | Avg、Max、Min、Sum | クラスターで並列実行されるクエリの数。 このメトリックは、クラスターの負荷を見積もるのに適した方法です。 | なし |
 | スロットルされたクエリの合計数 | Count | Avg、Max、Min、Sum | クラスター内のスロットルされた (拒否された) クエリの数。 許可される同時 (並列) クエリの最大数は、同時クエリ ポリシーで定義されます。 | なし |
+
+## <a name="materialized-view-metrics"></a>具体化されたビューのメトリック
+
+|**メトリック** | **単位** | **集計** | **メトリックの説明** | **Dimensions** |
+|---|---|---|---|---|
+|MaterializedViewHealth                    | 1、0    | Avg     |  ビューが正常と見なされる場合、値は 1 です。それ以外の場合は 0 です。 | Database、MaterializedViewName |
+|MaterializedViewAgeMinutes                | 分 | Avg     | ビューの `age` は、現在の時刻から、ビューによって処理された最後のインジェスト時間を引いた値で定義されます。 メトリック値は分単位の時間です (値が小さいほど、ビューの "正常性は高い" です)。 | Database、MaterializedViewName |
+|MaterializedViewResult                    | 1       | Avg     | メトリックには、最後の具体化サイクルの結果を示す `Result` ディメンションが含まれます (以下の設定可能な値を参照)。 メトリック値は常に 1 です。 | Database、MaterializedViewName、Result |
+|MaterializedViewRecordsInDelta            | レコード数 | Avg | ソース テーブルの処理されていない部分に現在あるレコードの数。 詳細については、「[具体化されたビューのしくみ](./kusto/management/materialized-views/materialized-view-overview.md#how-materialized-views-work)」を参照してください| Database、MaterializedViewName |
+|MaterializedViewExtentsRebuild            | エクステント数 | Avg | 具体化サイクルで再構築されたエクステントの数。 | Database、MaterializedViewName|
+|MaterializedViewDataLoss                  | 1       | Max    | 未処理のソース データがリテンション期間に近づいたときに、メトリックが発生します。 | Database、MaterializedViewName、Kind |
 
 ## <a name="next-steps"></a>次のステップ
 

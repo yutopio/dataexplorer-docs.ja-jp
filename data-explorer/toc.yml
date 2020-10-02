@@ -44,7 +44,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: Security
+    - name: セキュリティ
       items:
         - name: セキュリティの概要
           href: security.md
@@ -588,7 +588,7 @@
               href: ./kusto/query/externaltablefunction.md
             - name: materialize()
               href: ./kusto/query/materializefunction.md
-            - name: materialize_view()
+            - name: materialized_view()
               href: ./kusto/query/materialized-view-function.md
             - name: table()
               href: ./kusto/query/tablefunction.md
@@ -1020,6 +1020,10 @@
               href: ./kusto/query/welch-testfunction.md
             - name: zip()
               href: ./kusto/query/zipfunction.md
+            - name: zlib_compress_to_base64_string()
+              href: ./kusto/query/zlib-base64-compress.md
+            - name: zlib_decompress_from_base64_string()
+              href: ./kusto/query/zlib-base64-decompress.md
         - name: 集計関数
           items:
             - name: any()
@@ -1543,11 +1547,13 @@
           items:
             - name: Identities
               href: ./kusto/management/access-control/principals-and-identity-providers.md
-            - name: AAD
+            - name: Azure Active Directory
+              displayName: 'AAD, Azure AD'
               href: ./kusto/management/access-control/aad.md
             - name: プリンシパル ロール
               href: ./kusto/management/access-control/role-based-authorization.md
-            - name: AAD 認証の方法
+            - name: Azure Active Directory 認証の方法
+              displayName: 'AAD, Azure AD'
               href: ./kusto/management/access-control/how-to-authenticate-with-aad.md
         - name: 詳細なデータ管理
           items:
@@ -1640,7 +1646,8 @@
               href: ./kusto/api/tds/clients.md
             - name: リンク サーバー
               href: ./kusto/api/tds/linkedserver.md
-            - name: AAD
+            - name: Azure Active Directory
+              displayName: 'AAD, Azure AD'
               href: ./kusto/api/tds/aad.md
             - name: 既知の問題
               href: ./kusto/api/tds/sqlknownissues.md

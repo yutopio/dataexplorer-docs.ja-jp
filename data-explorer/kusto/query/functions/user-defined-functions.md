@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: f1d77e91ba625b3f38c4b1fde31a841377bb88a5
-ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
+ms.openlocfilehash: 769ebc16da0780f1d1832dcbf49bad516c47abd3
+ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88610520"
+ms.lasthandoff: 10/05/2020
+ms.locfileid: "91712019"
 ---
 # <a name="user-defined-functions"></a>ユーザー定義関数
 
@@ -63,7 +63,7 @@ ArgName:ArgType [= ArgDefaultValue]
 
 次に例を示します。
 
-|構文                        |入力引数リストの説明                                 |
+|Syntax                        |入力引数リストの説明                                 |
 |------------------------------|-----------------------------------------------------------------|
 |`()`                          |引数なし|
 |`(s:string)`                  |`s`型の値を取得する単一のスカラー引数が呼び出されました`string`|
@@ -279,10 +279,10 @@ union T*
 
 ## <a name="restrictions"></a>制限
 
-次の制限事項が適用されます。
+次の制約が適用されます。
 
 * ユーザー定義関数は、関数が呼び出される行コンテキストに依存する [toscalar ()](../toscalarfunction.md) 呼び出し情報に渡すことはできません。
-* テーブル式を返すユーザー定義関数は、行コンテキストによって異なる引数を使用して呼び出すことができます。
+* テーブル式を返すユーザー定義関数は、行コンテキストによって異なる引数を使用して呼び出すことはできません。
 * リモートクラスターでは、少なくとも1つの表形式入力を取得する関数を呼び出すことはできません。
 * リモートクラスターでは、スカラー関数を呼び出すことはできません。
 

@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 883aa2e22c02584de34c705b89a979b86e10475e
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 25498fa86803914c7445373e96167ca000cd4737
+ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91102802"
+ms.lasthandoff: 10/05/2020
+ms.locfileid: "91712070"
 ---
 # <a name="array_shift_left"></a>array_shift_left()
 
-`array_shift_left()` 配列内の値を左にシフトします。
+配列内の値を `dynamic` 左にシフトします。
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 `array_shift_left(`*`arr`*, *`shift_count`* `[,` *`fill_value`* ]`)`
 
@@ -33,7 +33,7 @@ ms.locfileid: "91102802"
 
 元の配列と同じ数の要素を格納している動的配列。 各要素は *shift_count*に従ってシフトされています。 削除された要素の代わりに追加される新しい要素の値は *fill_value*になります。
 
-## <a name="see-also"></a>関連項目
+## <a name="see-also"></a>こちらもご覧ください
 
 * 配列を右に移動する方法については、「 [array_shift_right ()](array_shift_rightfunction.md)」を参照してください。
 * 配列を右に回転する方法については、「 [array_rotate_right ()](array_rotate_rightfunction.md)」を参照してください。

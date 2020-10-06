@@ -7,19 +7,25 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 7be785a7a3a0abe0c1f6483e016484ee0124f29b
-ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
+ms.openlocfilehash: eff9a5cd8ed2d9ed7e518be9aade9ecf2aded7bf
+ms.sourcegitcommit: d0f8d71261f8f01e7676abc77283f87fc450c7b1
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/21/2020
-ms.locfileid: "90832605"
+ms.lasthandoff: 10/06/2020
+ms.locfileid: "91765478"
 ---
 # <a name="series_fit_poly_fl"></a>series_fit_poly_fl()
 
-関数は、 `series_fit_poly_fl()` 系列に多項式回帰を適用します。 複数の系列 (動的な数値配列) を含むテーブルを取得し、各系列に対して、 [多項式回帰](https://en.wikipedia.org/wiki/Polynomial_regression)を使用して最も適した上位の多項式を生成します。 この関数は、系列の範囲に対する多項式係数と補間多項式の両方を返します。
+関数は、 `series_fit_poly_fl()` 系列に多項式回帰を適用します。 この関数は、複数の系列 (動的な数値配列) を含むテーブルを取得し、 [多項式回帰](https://en.wikipedia.org/wiki/Polynomial_regression)を使用して各系列に最適な順序の多項式を生成します。 この関数は、系列の範囲に対する多項式係数と補間多項式の両方を返します。
 
 > [!NOTE]
-> `series_fit_poly_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。 この関数にはインライン Python が含まれており、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。 系列 [演算子](../query/make-seriesoperator.md)によって作成された等間隔の系列の線形回帰の場合は、ネイティブ関数 [series_fit_line ()](../query/series-fit-linefunction.md)を使用します。
+> ネイティブ関数 [series_fit_poly ()](../query/series-fit-poly-function.md)を使用します。 次の関数は、参照のみを対象としています。
+
+
+> [!NOTE]
+> * `series_fit_poly_fl()` は [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。
+> * この関数にはインライン Python が含まれており、クラスターで [python () プラグインを有効にする](../query/pythonplugin.md#enable-the-plugin) 必要があります。 詳細については、「 [使用方法](#usage)」を参照してください。
+> * 系列 [演算子](../query/make-seriesoperator.md)によって作成された等間隔の系列の線形回帰の場合は、ネイティブ関数 [series_fit_line ()](../query/series-fit-linefunction.md)を使用します。
 
 ## <a name="syntax"></a>構文
 
@@ -31,7 +37,7 @@ ms.locfileid: "90832605"
 * *y_fit_series*: 最適な系列を格納する列の名前。
 * *fit_coeff*: 最適な多項式係数を格納する列の名前。
 * *次数*: 必要な多項式の順序。 たとえば、線形回帰の場合は1、2次回帰の場合は2になります。
-* *x_series*: [独立変数](https://en.wikipedia.org/wiki/Dependent_and_independent_variables)、つまり x または時間軸を含む列の名前。 このパラメーターは省略可能であり、均等の [時系列](https://en.wikipedia.org/wiki/Unevenly_spaced_time_series)に対してのみ必要です。 既定値は空の文字列です。 x は、均等に並んだ系列の回帰に対して冗長です。
+* *x_series*: [独立変数](https://en.wikipedia.org/wiki/Dependent_and_independent_variables)、つまり x または時間軸を含む列の名前。 このパラメーターは省略可能であり、均等の [時系列](https://en.wikipedia.org/wiki/Unevenly_spaced_time_series)に対してのみ必要です。 既定値は空の文字列です。 x は均等に並んだ系列の回帰に対して冗長です。
 * *x_istime*: このブール型パラメーターは省略可能です。 このパラメーターは、 *x_series* が指定されていて、それが datetime のベクターである場合にのみ必要です。
 
 ## <a name="usage"></a>使用法
@@ -81,7 +87,7 @@ let series_fit_poly_fl=(tbl:(*), y_series:string, y_fit_series:string, fit_coeff
      | evaluate python(typeof(*), code, kwargs)
 };
 //
-// Fit 5th order polynomial to a regular (evenly spaced) time series, created with make-series
+// Fit fifth order polynomial to a regular (evenly spaced) time series, created with make-series
 //
 let max_t = datetime(2016-09-03);
 demo_make_series1
@@ -143,7 +149,7 @@ series_fit_poly_fl(tbl:(*), y_series:string, y_fit_series:string, fit_coeff:stri
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
 //
-// Fit 5th order polynomial to a regular (evenly spaced) time series, created with make-series
+// Fit fifth order polynomial to a regular (evenly spaced) time series, created with make-series
 //
 let max_t = datetime(2016-09-03);
 demo_make_series1
@@ -155,7 +161,7 @@ demo_make_series1
 
 ---
 
-:::image type="content" source="images/series-fit-poly-fl/usage-example.png" alt-text="標準の時系列に5番目の注文多項式が表示されるグラフ" border="false":::
+:::image type="content" source="images/series-fit-poly-fl/usage-example.png" alt-text="標準タイムシリーズに5番目の注文多項式が表示されるグラフ" border="false":::
 
 ## <a name="additional-examples"></a>追加の例
 
@@ -165,9 +171,6 @@ demo_make_series1
     
     <!-- csl: https://help.kusto.windows.net:443/Samples -->
     ```kusto
-    //
-    //  Test irregular (unevenly spaced) time series
-    //
     let max_t = datetime(2016-09-03);
     demo_make_series1
     | where TimeStamp between ((max_t-2d)..max_t)
@@ -180,20 +183,16 @@ demo_make_series1
     | render timechart with(ycolumns=num, fnum)
     ```
     
-    :::image type="content" source="images/series-fit-poly-fl/irregular-time-series.png" alt-text="8番目の注文多項式が不規則な時系列に適合することを示すグラフ" border="false":::
+    :::image type="content" source="images/series-fit-poly-fl/irregular-time-series.png" alt-text="標準タイムシリーズに5番目の注文多項式が表示されるグラフ" border="false":::
 
-1. x & y 軸でノイズを持つ5番目の注文多項式
+1. X & y 軸でのノイズを含む5番目の注文多項式
 
     <!-- csl: https://help.kusto.windows.net:443/Samples -->
     ```kusto
-    //
-    // 5th order polynomial with noise on x & y axes
-    //
     range x from 1 to 200 step 1
     | project x = rand()*5 - 2.3
     | extend y = pow(x, 5)-8*pow(x, 3)+10*x+6
     | extend y = y + (rand() - 0.5)*0.5*y
-    | order by x asc 
     | summarize x=make_list(x), y=make_list(y)
     | extend y_fit = dynamic(null), coeff=dynamic(null)
     | invoke series_fit_poly_fl('y', 'y_fit', 'coeff', 5, 'x')
@@ -201,6 +200,6 @@ demo_make_series1
     | render linechart
     ```
         
-    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise.png" alt-text="X & y 軸でのノイズによる5番目の注文多項式のフィットグラフ":::
+    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise.png" alt-text="標準タイムシリーズに5番目の注文多項式が表示されるグラフ":::
        
-    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise-table.png" alt-text="ノイズによる5番目の注文多項式の適合性の係数" border="false":::
+    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise-table.png" alt-text="標準タイムシリーズに5番目の注文多項式が表示されるグラフ" border="false":::

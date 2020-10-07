@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 07/10/2019
-ms.openlocfilehash: 591f8add363f0d1b09d8314c21a209fdc4cbedac
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: d6c3e49aa2141e2428251f806b29b47a9c65c164
+ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875176"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91615055"
 ---
 # <a name="visualize-data-using-the-azure-data-explorer-connector-for-power-bi"></a>Power BI 用 Azure Data Explorer コネクタを使用してデータを視覚化する
 
@@ -42,26 +42,35 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
     ![クラスター、データベース、テーブルのオプション](media/power-bi-connector/cluster-database-table.png)
 
-    **設定** | **Value** | **フィールドの説明**
-    |---|---|---|
+    | 設定 | 値 | フィールドの説明
+    |---|---|---
     | クラスター | *https://help.kusto.windows.net* | ヘルプ クラスターの URL。 その他のクラスターの場合、URL は *https://\<ClusterName\>.\<Region\>.kusto.windows.net* の形式になります。 |
     | データベース | 空白 | 接続先のクラスターでホストされるデータベース。 これは後の手順で選択します。 |
     | テーブル名 | 空白 | データベース内のいずれかのテーブル、または <code>StormEvents \| take 1000</code> のようなクエリ。 これは後の手順で選択します。 |
-    | [詳細オプション] | 空白 | クエリのオプション (結果セットのサイズなど)。 |
+    | [詳細オプション] | 空白 | クエリのオプション (結果セットのサイズなど)。
     | データ接続モード | *DirectQuery* | Power BI がデータをインポートするか、直接データ ソースに接続するかを決定します。 このコネクタでは、どちらかのオプションを使用できます。 |
-    | | | |
-    
+
     > [!NOTE]
     > **Import** モードでは、データは Power BI に移行されます。 **DirectQuery** モードでは、Azure Data Explorer クラスターからデータのクエリが直接実行されます。
     >
     > 次の場合は **Import** モードを使用します。
+    >
     > * データ セットが小さい。
-    > * ほぼリアルタイムのデータが必要ない。 
-    > * データは既に集計済みか、[Kusto で集計](kusto/query/summarizeoperator.md#list-of-aggregation-functions)を実行している。    
+    > * ほぼリアルタイムのデータが必要ない。
+    > * データは既に集計済みか、[Kusto で集計](kusto/query/summarizeoperator.md#list-of-aggregation-functions)を実行している。
     >
     > 次の場合は **DirectQuery** モードを使用します。
-    > * データ セットが非常に大きい。 
-    > * ほぼリアルタイムのデータが必要。   
+    > * データ セットが非常に大きい。
+    > * ほぼリアルタイムのデータが必要。
+
+    ### <a name="advanced-options"></a>[詳細オプション]
+
+    | 設定 | 値の例 | フィールドの説明
+    |---|---|---
+    | クエリ結果のレコード数を制限する| `300000` | 結果で返されるレコードの最大数 |
+    | クエリ結果のデータ サイズを制限する | `4194304` | 結果で返される最大データ サイズ (バイト単位) |
+    | 結果セットの切り詰めを無効にする | `true` | notruncation 要求オプションを使用して、結果の切り詰めを有効化または無効化します |
+    | 追加の SET ステートメント | `set query_datascope=hotcache` | クエリの実行中のクエリ オプションを設定します。 クエリ オプションは、クエリの実行方法とクエリが結果を返す方法を制御します。 |
 
 1. ヘルプ クラスターへの接続がまだない場合は、サインインしてください。 組織アカウントでサインインし、 **[接続]** を選択します。
 

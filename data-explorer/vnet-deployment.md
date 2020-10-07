@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 74d72ced89b1953b2f7e327656517f1febe4166f
-ms.sourcegitcommit: 803a572ab6f04494f65dbc60a4c5df7fcebe1600
+ms.openlocfilehash: 5a7f680dc2ab76a9f952efa52d60b59c7b1d1c93
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90714025"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452852"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
@@ -37,7 +37,7 @@ Azure Data Explorer では、Virtual Network (VNet) のサブネットへのク�
 
 * `[clustername].[geo-region].kusto.windows.net` (エンジン) `ingest-[clustername].[geo-region].kusto.windows.net` (データ管理) は、各サービスのパブリック IP にマップされます。 
 
-* `private-[clustername].[geo-region].kusto.windows.net` (エンジン) `private-ingest-[clustername].[geo-region].kusto.windows.net` (データ管理) は、各サービスのプライベート IP にマップされます。
+* `private-[clustername].[geo-region].kusto.windows.net` (エンジン) `ingest-private-[clustername].[geo-region].kusto.windows.net`\\`private-ingest-[clustername].[geo-region].kusto.windows.net` (データ管理) は、各サービスのプライベート IP にマップされます。
 
 ## <a name="plan-subnet-size-in-your-vnet"></a>VNet でサブネットのサイズを計画する
 

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
-ms.openlocfilehash: d46455fcce2880c4f347d04125a9f6355cb4cffa
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: e6630067cb02f3bf4685e274d2d5d2a6d00a97c5
+ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201543"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91615038"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Azure Data Explorer のデータ インジェスト概要 
 
@@ -36,7 +36,7 @@ Azure Data Explorer は、外部ソースからデータをプルし、保留中
 
 ## <a name="batching-vs-streaming-ingestion"></a>バッチ処理とストリーミング インジェスト
 
-* バッチ処理インジェストでは、データのバッチ処理が行われ、高インジェスト スループットのために最適化されます。 この方法は、推奨される、最もパフォーマンスの高い種類のインジェストです。 データはインジェスト プロパティに従ってバッチ処理されます。 データの小さなバッチはその後マージされ、高速なクエリ結果用に最適化されます。 [インジェスト バッチ](kusto/management/batchingpolicy.md) ポリシーは、データベースまたはテーブルに対して設定できます。 既定では、バッチ処理の最大値は、5 分、1000 項目、または合計サイズ 500 MB です。
+* バッチ処理インジェストでは、データのバッチ処理が行われ、高インジェスト スループットのために最適化されます。 この方法は、推奨される、最もパフォーマンスの高い種類のインジェストです。 データはインジェスト プロパティに従ってバッチ処理されます。 データの小さなバッチはその後マージされ、高速なクエリ結果用に最適化されます。 [インジェスト バッチ](kusto/management/batchingpolicy.md) ポリシーは、データベースまたはテーブルに対して設定できます。 既定では、バッチ処理の最大値は、5 分、1000 項目、または合計サイズ1 GB です。
 
 * [ストリーミング インジェスト](ingest-data-streaming.md) は、ストリーミング ソースからの継続的なデータ インジェストです。 ストリーミング インジェストを使用すると、テーブルごとに少量のデータ セットに対してほぼリアルタイムの待機時間を実現できます。 データは最初に行ストアに取り込まれ、次に列ストアのエクステントに移動されます。 ストリーミング インジェストは、Azure Data Explorer クライアント ライブラリまたはサポートされているいずれかのデータ パイプラインを使用して行うことができます。 
 

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 03/19/2020
-ms.openlocfilehash: 89ee29e70c71c29afb65ee81fc4ce8e498faee33
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: 4f7e61755b12c84fc49373a12edc0b507aee9bf4
+ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502638"
+ms.lasthandoff: 10/05/2020
+ms.locfileid: "91712053"
 ---
 # <a name="data-formats-supported-by-azure-data-explorer-for-ingestion"></a>インジェスト用に Azure Data Explorer でサポートされているデータ形式
 
@@ -20,8 +20,8 @@ ms.locfileid: "89502638"
 
 |Format   |拡張機能   |説明|
 |---------|------------|-----------|
-|Avro     |`.avro`     |[Avro コンテナー ファイル](https://avro.apache.org/docs/current/)。 次のコードがサポートされています: `null`、`deflate` (`snappy` は現在サポートされていません)。|
-|ApacheAvro|`.avro`    |[論理型](https://avro.apache.org/docs/current/spec.html#Logical+Types)や `snappy` 圧縮コーデックをサポートする [Avro](https://avro.apache.org/docs/current/) 形式の試験的なネイティブ実装。|
+|ApacheAvro|`.avro`    |[論理型](https://avro.apache.org/docs/current/spec.html#Logical+Types)や `snappy` 圧縮コーデックをサポートする [Avro](https://avro.apache.org/docs/current/) 形式。|
+|Avro     |`.avro`     |[Avro コンテナー ファイル](https://avro.apache.org/docs/current/)のレガシ実装。 サポートされているコード: `null`、`deflate` (`snappy` の場合は、`apacheavro` ファイル形式を使用してください)。|
 |CSV      |`.csv`      |コンマ区切り値 (`,`) を含むテキスト ファイル。 [RFC 4180: _コンマ区切り値 (CSV) ファイルの共通形式と MIME の種類_](https://www.ietf.org/rfc/rfc4180.txt)に関するページを参照してください。|
 |JSON     |`.json`     |`\n` または `\r\n` で区切られた JSON オブジェクトを含むテキスト ファイル。 「[JSON Lines (JSONL)](http://jsonlines.org/)」を参照してください。|
 |MultiJSON|`.multijson`|プロパティ バッグの JSON 配列 (それぞれレコードを表す)、または空白、`\n` または`\r\n` で区切られた任意の数のプロパティ バッグを含むテキスト ファイル。 各プロパティ バッグは、複数の行にまたがることができます データが非プロパティ バッグの場合を除き、この形式は `JSON` よりも優先されます。|

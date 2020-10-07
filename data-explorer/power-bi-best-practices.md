@@ -7,18 +7,18 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: f277ff9caaaf29b39b7e1fac4175ce2fa862c269
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 404d8f2d6b7eacc61571575613fd8017baadb54d
+ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872983"
+ms.lasthandoff: 10/01/2020
+ms.locfileid: "91614851"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Power BI を使用して Azure Data Explorer データのクエリと視覚化を行う場合のベスト プラクティス
 
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 [Power BI](https://docs.microsoft.com/power-bi/) はビジネス分析ソリューションであり、データを視覚化して、組織全体で結果を共有することができます。 Azure Data Explorer には、Power BI のデータに接続するオプションが 3 つ用意されています。 [組み込みのコネクタ](power-bi-connector.md)を使用するか、[Azure Data Explorer のクエリを Power BI にインポートする](power-bi-imported-query.md)か、[SQL クエリ](power-bi-sql-query.md)を使用します。 この記事では、Power BI を使用した Azure Data Explorer データのクエリと視覚化に関するヒントを提供します。 
+Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 [Power BI](https://docs.microsoft.com/power-bi/) はビジネス分析ソリューションであり、データを視覚化して、組織全体で結果を共有することができます。 Azure Data Explorer には、Power BI のデータに接続するオプションが 3 つ用意されています。 [組み込みのコネクタ](power-bi-connector.md)を使用するか、[Azure Data Explorer のクエリを Power BI にインポートする](power-bi-imported-query.md)か、[SQL クエリ](power-bi-sql-query.md)を使用します。 この記事では、Power BI を使用した Azure Data Explorer データのクエリと視覚化に関するヒントを紹介します。 
 
-## <a name="best-practices-for-using-power-bi"></a>Power BI の使用に関するベスト プラクティス 
+## <a name="best-practices-for-using-power-bi"></a>Power BI の使用に関するベスト プラクティス
 
 テラバイト単位の新しい生データを使用する場合は、Power BI のダッシュボードとレポートを迅速に処理し、最新の状態に保つために、次のガイドラインに従ってください。
 
@@ -30,15 +30,16 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 * **並列性** - Azure Data Explorer は、直線的にスケーラブルなデータ プラットフォームです。そのため、次のようにエンドツーエンド フローの並列性を高めることで、ダッシュボード レンダリングのパフォーマンスを向上させることができます。
 
-   * [Power BI で DirectQuery 内のコンカレント接続](https://docs.microsoft.com/power-bi/desktop-directquery-about#maximum-number-of-connections-option-for-directquery)の数を増やします。
+  * [Power BI で DirectQuery 内のコンカレント接続](https://docs.microsoft.com/power-bi/desktop-directquery-about#maximum-number-of-connections-option-for-directquery)の数を増やします。
 
-   * [弱い整合性を使用して並列性を向上](kusto/concepts/queryconsistency.md)させます。 これは、データの鮮度に影響する可能性があります。
+  * [弱い整合性を使用して並列性を向上](kusto/concepts/queryconsistency.md)させます。 これは、データの鮮度に影響する可能性があります。
 
 * **効率的なスライサー** - [同期スライサー](https://docs.microsoft.com/power-bi/visuals/power-bi-visualization-slicers#sync-and-use-slicers-on-other-pages)を使用すると、準備が整う前にレポートにデータが読み込まれなくなります。 データ セットを構築し、すべてのビジュアルを配置し、すべてのスライサーをマークした後、同期スライサーを選択して必要なデータのみを読み込むことができます。
 
 * **フィルターを使用する** - できるだけ多くの Power BI フィルターを使用し、Azure Data Explorer の検索を関連するデータ シャードに集中させます。
 
 * **効率的なビジュアル** - データに対して最もパフォーマンスの高いビジュアルを選択します。
+
 
 ## <a name="tips-for-using-the-azure-data-explorer-connector-for-power-bi-to-query-data"></a>Power BI 用 Azure Data Explorer コネクタを使用してデータのクエリを実行するためのヒント
 
@@ -62,15 +63,39 @@ Power BI には、`ago()` などの "*相対*" 日付/時刻演算子が含ま�
 
 次の同等のクエリを使用します。
 
-```powerquery-m
+```m
 let
-    Source = Kusto.Contents("help", "Samples", "StormEvents", []),
+    Source = AzureDataExplorer.Contents("help", "Samples", "StormEvents", []),
     #"Filtered Rows" = Table.SelectRows(Source, each [StartTime] > (DateTime.FixedLocalNow()-#duration(5,0,0,0)))
 in
     #"Filtered Rows"
 ```
 
-### <a name="reaching-kusto-query-limits"></a>Kusto クエリの制限に達する 
+### <a name="configuring-azure-data-explorer-connector-options-in-m-query"></a>M クエリでの Azure Data Explorer コネクタ オプションの構成
+
+M クエリ言語で、PBI の詳細エディターから Azure Data Explorer コネクタのオプションを構成できます。 これらのオプションを使用して、Azure Data Explorer クラスターに送信される、生成されたクエリを制御できます。
+
+```m
+let
+    Source = AzureDataExplorer.Contents("help", "Samples", "StormEvents", [<options>])
+in
+    Source
+```
+
+M クエリで、次のすべてのオプションを使用できます。
+
+| オプション | サンプル | 説明
+|---|---|---
+| MaxRows | `[MaxRows=300000]` | set `truncationmaxrecords` ステートメントをクエリに追加します。 クエリが呼び出し元に返すことのできるレコードの既定の最大数をオーバーライドします (切り詰め)。
+| MaxSize | `[MaxSize=4194304]` | set `truncationmaxsize` ステートメントをクエリに追加します。 クエリが呼び出し元に返すことのできる既定の最大データ サイズをオーバーライドします (切り詰め)。
+| NoTruncate | `[NoTruncate=true]` | set `notruncation` ステートメントをクエリに追加します。 呼び出し元に返されるクエリ結果の切り詰めの抑制を有効にします。
+| AdditionalSetStatements | `[AdditionalSetStatements="set query_datascope=hotcache"]` | 指定した set ステートメントをクエリに追加します。 これらのステートメントは、クエリの実行中にクエリ オプションを設定するために使用されます。 クエリ オプションは、クエリの実行方法とクエリが結果を返す方法を制御します。
+| CaseInsensitive | `[CaseInsensitive=true]` | 大文字と小文字を区別しないクエリをコネクタが生成するようにします。クエリでは、値を比較するときに、`==` 演算子ではなく、`=~` 演算子が使用されます。
+
+    > [!NOTE]
+    > You can combine multiple options together to reach the desired behavior: `[NoTruncate=true, CaseInsensitive=true]`
+
+### <a name="reaching-kusto-query-limits"></a>Kusto クエリの制限に達する
 
 Kusto クエリからは、既定で最大 500,000 行または 64 MB が返されます。詳細については[クエリの制限](kusto/concepts/querylimits.md)に関する記事を参照してください。 これらの既定値をオーバーライドするには、**Azure Data Explorer (Kusto)** 接続ウィンドウで **[詳細オプション]** を使用します。
 
@@ -78,9 +103,21 @@ Kusto クエリからは、既定で最大 500,000 行または 64 MB が返さ�
 
 これらのオプションでは、クエリと共に [SET ステートメント](kusto/query/setstatement.md)が発行され、既定のクエリ制限が変更されます。
 
-  * **[クエリ結果のレコード数を制限する]** で `set truncationmaxrecords` が生成されます。
-  * **[クエリ結果のデータ サイズを制限する (バイト単位)]** で `set truncationmaxsize` が生成されます。
-  * **[結果セットの切り詰めを無効にする]** で `set notruncation` が生成されます。
+* **[クエリ結果のレコード数を制限する]** で `set truncationmaxrecords` が生成されます。
+* **[クエリ結果のデータ サイズを制限する (バイト単位)]** で `set truncationmaxsize` が生成されます。
+* **[結果セットの切り詰めを無効にする]** で `set notruncation` が生成されます。
+
+### <a name="case-sensitivity"></a>大文字小文字の区別
+
+既定では、コネクタによって生成されるクエリでは、文字列値を比較するときに、大文字と小文字を区別する `==` 演算子が使用されます。 データで大文字と小文字が区別されない場合、これは望ましい動作ではありません。 生成されるクエリを変更するには、`CaseInsensitive` コネクタ オプションを使用します。
+
+```m
+let
+    Source = AzureDataExplorer.Contents("help", "Samples", "StormEvents", [CaseInsensitive=true]),
+    #"Filtered Rows" = Table.SelectRows(Source, each [State] == "aLaBama")
+in
+    #"Filtered Rows"
+```
 
 ### <a name="using-query-parameters"></a>クエリ パラメーターの使用
 
@@ -90,32 +127,32 @@ Kusto クエリからは、既定で最大 500,000 行または 64 MB が返さ�
 
 クエリ パラメーターを使用して、クエリの情報をフィルター処理し、クエリのパフォーマンスを最適化します。
  
-**[クエリの編集]** ウィンドウの **[ホーム]**  >  **[詳細エディター]**
+**[クエリの編集]** ウィンドウの **[ホーム]** > **[詳細エディター]**
 
 1. クエリの次のセクションを探します。
 
-    ```powerquery-m
-    Source = Kusto.Contents("<Cluster>", "<Database>", "<Query>", [])
+    ```m
+    Source = AzureDataExplorer.Contents("<Cluster>", "<Database>", "<Query>", [])
     ```
-   
+
    次に例を示します。
 
-    ```powerquery-m
-    Source = Kusto.Contents("Help", "Samples", "StormEvents | where State == 'ALABAMA' | take 100", [])
+    ```m
+    Source = AzureDataExplorer.Contents("Help", "Samples", "StormEvents | where State == 'ALABAMA' | take 100", [])
     ```
 
 1. クエリの関連部分を実際のパラメーターに置き換えます。 クエリを複数の部分に分割し、パラメーターと共にアンパサンド (&) を使用して再度連結します。
 
    たとえば、前述のクエリでは、`State == 'ALABAMA'` の部分を使用し、`State == '` と `'` のように分割します。それらの間に `State` パラメーターを配置します。
-   
+
     ```kusto
     "StormEvents | where State == '" & State & "' | take 100"
     ```
 
-1. クエリに引用符が含まれている場合は、それらを適切にエンコードします。 たとえば、次のクエリがあります。 
+1. クエリに引用符が含まれている場合は、それらを適切にエンコードします。 たとえば、次のクエリがあります。
 
    ```kusto
-   "StormEvents | where State == "ALABAMA" | take 100" 
+   "StormEvents | where State == "ALABAMA" | take 100"
    ```
 
    これは、次のように 2 つの引用符を使用して**詳細エディター**に表示されます。
@@ -147,7 +184,3 @@ Power BI でクエリを実行すると、次のエラーが発生します。 _
 ## <a name="next-steps"></a>次のステップ
 
 [Power BI 用 Azure Data Explorer コネクタを使用してデータを視覚化する](power-bi-connector.md)
-
-
-
-

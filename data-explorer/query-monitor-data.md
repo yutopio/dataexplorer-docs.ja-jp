@@ -8,20 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/28/2020
-ms.openlocfilehash: b8de71ffcda28a7baa0f8452e501c7485e861122
-ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
+ms.openlocfilehash: 334d2bc27709c78c53bd57c92c8c3b3364bbe3bb
+ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90999012"
+ms.lasthandoff: 09/29/2020
+ms.locfileid: "91452912"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>Azure Data Explorer を使用して Azure Monitor でデータのクエリを実行する (プレビュー)
 
 Azure Data Explorer プロキシ クラスター (ADX プロキシ) は、[Azure Monitor](/azure/azure-monitor/) サービスで Azure Data Explorer、[Application Insights (AI)](/azure/azure-monitor/app/app-insights-overview)、および [Log Analytics (LA)](/azure/azure-monitor/platform/data-platform-logs) の間のクロス積クエリを実行できるようにするエンティティです。 Azure Monitor Log Analytics ワークスペースまたは Application Insights アプリをプロキシ クラスターとしてマップできます。 その後、Azure Data Explorer ツールを使用してプロキシ クラスターにクエリを実行し、それをクロス クラスター クエリで参照できます。 この記事では、プロキシ クラスターに接続し、プロキシ クラスターを Azure Data Explorer の Web UI に追加した後、Azure Data Explorer から AI アプリまたは LA ワークスペースに対してクエリを実行する方法を示します。
 
-Azure Data Explorer プロキシのフロー: 
+Azure Data Explorer プロキシのフロー:
 
-![ADX プロキシのフロー](media/adx-proxy/adx-proxy-flow.png)
+![ADX プロキシのフロー](media/adx-proxy/adx-proxy-workflow.png)
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -102,13 +102,13 @@ union の代わりに [`join` 演算子](kusto/query/joinoperator.md)を使用�
 
 Azure Data Explorer リソースがテナント 'A' にあり、LA ワークスペースがテナント 'B' にある場合は、次の 2 つの方法のいずれかを使用します。
 
-1. Azure Data Explorer を使用すると、異なるテナントにプリンシパルのロールを追加できます。 Azure Data Explorer クラスターにテナント 'B' のユーザー ID を許可されているユーザーとして追加します。 Azure Data Explorer クラスター上の *'ExternalTrustedTenant'* プロパティにテナント 'B' が含まれていることを検証します。 テナント 'B' でクロスクエリを完全に実行します。 
+1. Azure Data Explorer を使用すると、異なるテナントにプリンシパルのロールを追加できます。 Azure Data Explorer クラスターにテナント 'B' のユーザー ID を許可されているユーザーとして追加します。 Azure Data Explorer クラスター上の *['TrustedExternalTenant'](https://docs.microsoft.com/powershell/module/az.kusto/update-azkustocluster)* プロパティにテナント 'B' が含まれていることを検証します。 テナント 'B' でクロスクエリを完全に実行します。
 
 2. [Lighthouse](https://docs.microsoft.com/azure/lighthouse/) を使用して、Azure Monitor リソースをテナント 'A' に射影します。
 
 ### <a name="connect-to-azure-data-explorer-clusters-from-different-tenants"></a>さまざまなテナントから Azure Data Explorer クラスターに接続する
 
-Kusto Explorer では、ユーザー アカウントが最初に属しているテナントに自動的にサインインされます。 同じユーザー アカウントを使用して他のテナントのリソースにアクセスするには、接続文字列に `tenantId` を明示的に指定する必要があります: `Data Source=https://ade.applicationinsights.io/subscriptions/SubscriptionId/resourcegroups/ResourceGroupName;Initial Catalog=NetDefaultDB;AAD Federated Security=True;Authority ID=\*\*TenantId**`
+Kusto Explorer では、ユーザー アカウントが最初に属しているテナントに自動的にサインインされます。 同じユーザー アカウントを使用して他のテナントのリソースにアクセスするには、接続文字列に `tenantId` を明示的に指定する必要があります: `Data Source=https://ade.applicationinsights.io/subscriptions/SubscriptionId/resourcegroups/ResourceGroupName;Initial Catalog=NetDefaultDB;AAD Federated Security=True;Authority ID=`**TenantId**
 
 ## <a name="function-supportability"></a>関数のサポート
 

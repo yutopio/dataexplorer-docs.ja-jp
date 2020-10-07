@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1db42577a0d4d10da732b54b0a5032ab2be11b69
-ms.sourcegitcommit: 91e7d49a1046575bbc63a4f25724656ebfc070db
+ms.openlocfilehash: c10e6502c4e18a5c30d971c4814c2270a0b27ff1
+ms.sourcegitcommit: 830837607f344f1ce1f146f946a41e45bfebcb22
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/30/2020
-ms.locfileid: "89151163"
+ms.lasthandoff: 10/07/2020
+ms.locfileid: "91806684"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -138,7 +138,7 @@ Blob コンテナーまたは Azure Data Lake Store ファイルシステム (�
 <a name="properties"></a>
 *省略可能なプロパティ*
 
-| プロパティ         | 種類     | 説明       |
+| プロパティ         | Type     | 説明       |
 |------------------|----------|-------------------------------------------------------------------------------------|
 | `folder`         | `string` | テーブルのフォルダー                                                                     |
 | `docString`      | `string` | テーブルをドキュメント化する文字列                                                       |
@@ -221,7 +221,7 @@ with (fileExtension = ".txt")
 
 **サンプル出力**
 
-|TableName|TableType|Folder|DocString|プロパティ|ConnectionStrings|メジャー グループ|PathFormat|
+|TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
 |ExternalTable|BLOB|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
 
@@ -276,9 +276,11 @@ dataformat=parquet
 
 **出力**
 
-| 出力パラメーター | 種類   | 説明                       |
+| 出力パラメーター | Type   | 説明                       |
 |------------------|--------|-----------------------------------|
 | URI              | string | 外部ストレージデータファイルの URI |
+| サイズ             | long   | ファイルの長さ (バイト単位)              |
+| Partition        | 動的 | パーティション分割された外部テーブルのファイルパーティションを記述する動的オブジェクト |
 
 > [!TIP]
 > 外部テーブルによって参照されるすべてのファイルに対する反復処理は、ファイルの数によっては非常にコストがかかることがあります。 `limit`URI の例をいくつか確認するだけの場合は、パラメーターを使用してください。
@@ -291,9 +293,19 @@ dataformat=parquet
 
 **出力:**
 
-| Uri                                                                     |
-|-------------------------------------------------------------------------|
-| `https://storageaccount.blob.core.windows.net/container1/folder/file.csv` |
+| Uri                                                                     | サイズ | Partition |
+|-------------------------------------------------------------------------| ---- | --------- |
+| `https://storageaccount.blob.core.windows.net/container1/folder/file.csv` | 10743 | `{}`   |
+
+
+パーティションテーブルの場合、 `Partition` 列には抽出されたパーティションの値が含まれます。
+
+**出力:**
+
+| Uri                                                                     | サイズ | Partition |
+|-------------------------------------------------------------------------| ---- | --------- |
+| `https://storageaccount.blob.core.windows.net/container1/customer=john.doe/dt=20200101/file.csv` | 10743 | `{"Customer": "john.doe", "Date": "2020-01-01T00:00:00.0000000Z"}` |
+
 
 ## <a name="create-external-table-mapping"></a>。外部テーブルマッピングを作成します。
 

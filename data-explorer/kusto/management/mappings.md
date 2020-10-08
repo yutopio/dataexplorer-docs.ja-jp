@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: ohbitton
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/19/2020
-ms.openlocfilehash: cd498d43d98250bad0a7ce00c4a8fec7b4f3ad4f
-ms.sourcegitcommit: d08b3344d7e9a6201cf01afc8455c7aea90335aa
+ms.openlocfilehash: 9695bd1a1330b4dc7cd44131d566c538c0264de4
+ms.sourcegitcommit: eff06eb34f78630fd78470d918ebc04ff5dc863e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88964729"
+ms.lasthandoff: 10/08/2020
+ms.locfileid: "91847198"
 ---
 # <a name="data-mappings"></a>データ マッピング
 
@@ -46,7 +46,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 |`constantValue`|OptionalCSV 内の一部の値ではなく、列に使用される定数値|
 
 > [!NOTE]
-> `Ordinal` と `ConstantValue` は相互に排他的です。
+> `Ordinal` と `ConstantValue` は同時に指定できません。
 
 ### <a name="example-of-the-csv-mapping"></a>CSV マッピングの例
 
@@ -67,19 +67,6 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 > [!NOTE]
 > 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
-* 上記のマッピングが [事前に作成](create-ingestion-mapping-command.md) されている場合、コントロールコマンドで参照でき `.ingest` ます。
-
-```kusto
-.ingest into Table123 (@"source1", @"source2")
-    with 
-    (
-        format="csv", 
-        ingestionMappingReference = "Mapping1"
-    )
-```
-
-* 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
-
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
@@ -93,7 +80,20 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
     )
 ```
 
-**注:** 次のマッピング形式は、 `Properties` プロパティバッグなしでは非推奨とされます。
+> [!NOTE]
+> 上記のマッピングが [事前に作成](create-ingestion-mapping-command.md) されている場合、コントロールコマンドで参照でき `.ingest` ます。
+
+```kusto
+.ingest into Table123 (@"source1", @"source2")
+    with 
+    (
+        format="csv", 
+        ingestionMappingReference = "Mapping1"
+    )
+```
+
+> [!NOTE]
+> 次のマッピング形式は、 `Properties` プロパティバッグなしでは非推奨とされます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -116,7 +116,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 
 |プロパティ|説明|
 |----|--|
-|`path`|がで始まる場合 `$` : json ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。|
+|`path`|がで始まる場合 `$` : json ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。 空白を含む JSON パスは、[プロパティ名] としてエスケープする必要があり \' \' ます。|
 |`transform`|Optional [マッピング変換](#mapping-transformations)を使用してコンテンツに適用する必要がある変換。|
 
 ### <a name="example-of-json-mapping"></a>JSON マッピングの例
@@ -141,6 +141,23 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 > 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
 ```kusto
+.ingest into Table123 (@"source1", @"source2") 
+  with 
+  (
+      format = "json", 
+      ingestionMapping = 
+      "["
+        "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
+        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}",
+        "{\"column\":\"custom_column\",  \"Properties\":{\"Path\":\"$.[\'property name with space\']\"}}"
+      "]"
+  )
+```
+
+> [!NOTE]
+> 上記のマッピングが [事前に作成](create-ingestion-mapping-command.md) されている場合、コントロールコマンドで参照でき `.ingest` ます。
+
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -149,7 +166,8 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
     )
 ```
 
-**注:** 次のマッピング形式は、 `Properties` プロパティバッグなしでは非推奨とされます。
+> [!NOTE]
+> 次のマッピング形式は、 `Properties` プロパティバッグなしでは非推奨とされます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -173,10 +191,10 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 |プロパティ|説明|
 |----|--|
 |`Field`|Avro レコードのフィールドの名前。|
-|`Path`|を使用する代わりに `field` 、必要に応じて Avro レコードフィールドの内部部分を取得することもできます。 値は、レコードのルートからの JSON パスを表します。 詳細については、以下のメモを参照してください。 |
+|`Path`|を使用する代わりに `field` 、必要に応じて Avro レコードフィールドの内部部分を取得することもできます。 値は、レコードのルートからの JSON パスを表します。 詳細については、以下のメモを参照してください。 空白を含む JSON パスは、[プロパティ名] としてエスケープする必要があり \' \' ます。|
 |`transform`|Optional [サポートされている変換](#mapping-transformations)を使用してコンテンツに適用する必要がある変換。|
 
-**ノート**
+**メモ**
 >[!NOTE]
 > * `field` とを `path` 一緒に使用することはできません。使用できるのは1つだけです。 
 > * `path` ルートのみを指すことはできません `$` 。パスのレベルが少なくとも1つ必要です。
@@ -214,6 +232,22 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 > 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
 ```kusto
+.ingest into Table123 (@"source1", @"source2") 
+  with 
+  (
+      format = "avro", 
+      ingestionMapping = 
+      "["
+        "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
+        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}"
+      "]"
+  )
+```
+
+> [!NOTE]
+> 上記のマッピングが [事前に作成](create-ingestion-mapping-command.md) されている場合、コントロールコマンドで参照でき `.ingest` ます。
+
+```kusto
 .ingest into Table123 (@"source1", @"source2")
     with 
     (
@@ -222,7 +256,8 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
     )
 ```
 
-**注:** 次のマッピング形式は、 `Properties` プロパティバッグなしでは非推奨とされます。
+> [!NOTE]
+> 次のマッピング形式は、 `Properties` プロパティバッグなしでは非推奨とされます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2") 
@@ -245,7 +280,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 
 |プロパティ|説明|
 |----|--|
-|`path`|がで始まる場合 `$` : Parquet ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。|
+|`path`|がで始まる場合 `$` : Parquet ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。 空白を含む JSON パスは、[プロパティ名] としてエスケープする必要があり \' \' ます。 |
 |`transform`|Optionalコンテンツに適用する必要がある [変換のマッピング](#mapping-transformations) 。
 
 
@@ -268,7 +303,22 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 > [!NOTE]
 > 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
 
-* 上記のマッピングが [事前に作成](create-ingestion-mapping-command.md) されている場合、コントロールコマンドで参照でき `.ingest` ます。
+```kusto
+.ingest into Table123 (@"source1", @"source2") 
+  with 
+  (
+      format = "parquet", 
+      ingestionMapping = 
+      "["
+        "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
+        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}",
+        "{\"column\":\"custom_column\",  \"Properties\":{\"Path\":\"$.[\'property name with space\']\"}}"
+      "]"
+  )
+```
+
+> [!NOTE]
+> 上記のマッピングが [事前に作成](create-ingestion-mapping-command.md) されている場合、コントロールコマンドで参照でき `.ingest` ます。
 
 ```kusto
 .ingest into Table123 (@"source1", @"source2")
@@ -279,21 +329,6 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
     )
 ```
 
-* 上記のマッピングを制御コマンドの一部として指定すると、 `.ingest` JSON 文字列としてシリアル化されます。
-
-```kusto
-.ingest into Table123 (@"source1", @"source2") 
-  with 
-  (
-      format = "parquet", 
-      ingestionMapping = 
-      "["
-        "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
-        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}"
-      "]"
-  )
-```
-
 ## <a name="orc-mapping"></a>Orc のマッピング
 
 ソースファイルが Orc 形式の場合、ファイルの内容は Kusto テーブルにマップされます。 マップされているすべての列に有効なデータ型が指定されていない限り、テーブルは Kusto データベースに存在する必要があります。 Orc マッピングでマップされている列は、すべての既存でない列にデータ型が指定されていない限り、Kusto テーブルに存在する必要があります。
@@ -302,7 +337,7 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
 
 |プロパティ|説明|
 |----|--|
-|`path`|がで始まる場合 `$` : Orc ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。|
+|`path`|がで始まる場合 `$` : Orc ドキュメント内の列のコンテンツになるフィールドへの json パス (ドキュメント全体がであることを示す json パス `$` )。 値が次の値で始まらない場合 `$` : 定数値が使用されます。 空白を含む JSON パスは、[プロパティ名] としてエスケープする必要があり \' \' ます。|
 |`transform`|Optionalコンテンツに適用する必要がある [変換のマッピング](#mapping-transformations) 。
 
 ### <a name="example-of-orc-mapping"></a>Orc mapping の例
@@ -332,9 +367,22 @@ CSV マッピングは、CSV、TSV、PSV、SCSV、SOHsv のすべての区切り
       ingestionMapping = 
       "["
         "{\"column\":\"rownumber\",\"Properties\":{\"Path\":\"$.rownumber\"}},"
-        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}"
+        "{\"column\":\"rowguid\",  \"Properties\":{\"Path\":\"$.rowguid\"}}",
+        "{\"column\":\"custom_column\",  \"Properties\":{\"Path\":\"$.[\'property name with space\']\"}}"
       "]"
   )
+```
+
+> [!NOTE]
+> 上記のマッピングが [事前に作成](create-ingestion-mapping-command.md) されている場合、コントロールコマンドで参照でき `.ingest` ます。
+
+```kusto
+.ingest into Table123 (@"source1", @"source2")
+    with 
+    (
+        format="orc", 
+        ingestionMappingReference = "Mapping1"
+    )
 ```
 
 ## <a name="mapping-transformations"></a>マッピング変換

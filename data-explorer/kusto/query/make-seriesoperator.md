@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 6ed841a6f47eb9a0a1e73182a3b9acd1c0209bd9
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.openlocfilehash: 56742b04386bfda9e2cdbaa40a85d2220f2373d5
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680764"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942354"
 ---
 # <a name="make-series-operator"></a>make-series 演算子
 
@@ -39,7 +39,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 * *Groupexpression:* 個別の値のセットを提供する列に対する式。 通常は、限られた値のセットが既に指定されている列名です。 
 * *MakeSeriesParameters*: 0 個以上 (スペースで区切られた) パラメーターを*Name* `=` 、動作を制御する名前*値*の形式で指定します。 サポートされているパラメーターは次のとおりです。 
   
-  |名前           |値                                        |[説明]                                                                                        |
+  |名前           |値                                        |説明                                                                                        |
   |---------------|-------------------------------------|------------------------------------------------------------------------------|
   |`kind`          |`nonempty`                               |系列演算子の入力が空の場合に、既定の結果を生成します|                                
 
@@ -73,12 +73,12 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 ## <a name="list-of-aggregation-functions"></a>集計関数の一覧
 
-|機能|[説明]|
+|機能|説明|
 |--------|-----------|
 |[any ()](any-aggfunction.md)|グループの空でないランダムな値を返します|
-|[avg()](avg-aggfunction.md)|グループ全体の平均値を返します|
+|[avg ()](avg-aggfunction.md)|グループ全体の平均値を返します|
 |[avgif()](avgif-aggfunction.md)|グループの述語を使用して平均を返します|
-|[count()](count-aggfunction.md)|グループの数を返します|
+|[count ()](count-aggfunction.md)|グループの数を返します|
 |[countif()](countif-aggfunction.md)|グループの述語を使用してカウントを返します。|
 |[dcount()](dcount-aggfunction.md)|グループ要素の概数を返します。|
 |[dcountif()](dcountif-aggfunction.md)|グループの述語を使用して、おおよその個別のカウントを返します。|
@@ -86,14 +86,14 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 |[maxif()](maxif-aggfunction.md)|グループの述語を使用して最大値を返します。|
 |[min()](min-aggfunction.md)|グループ全体の最小値を返します|
 |[minif()](minif-aggfunction.md)|グループの述語を使用して最小値を返します。|
-|[stdev()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
-|[sum()](sum-aggfunction.md)|グループ内の要素の合計を返します。|
+|[stdev ()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
+|[sum ()](sum-aggfunction.md)|グループ内の要素の合計を返します。|
 |[sumif()](sumif-aggfunction.md)|グループの述語を使用して、要素の合計を返します。|
-|[variance()](variance-aggfunction.md)|グループ間の分散を返します。|
+|[分散 ()](variance-aggfunction.md)|グループ間の分散を返します。|
 
 ## <a name="list-of-series-analysis-functions"></a>系列分析関数の一覧
 
-|機能|[説明]|
+|機能|説明|
 |--------|-----------|
 |[series_fir()](series-firfunction.md)|[有限インパルス応答](https://en.wikipedia.org/wiki/Finite_impulse_response)フィルターを適用します|
 |[series_iir()](series-iirfunction.md)|[無限インパルス応答](https://en.wikipedia.org/wiki/Infinite_impulse_response)フィルターを適用します|
@@ -109,7 +109,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
   
 ## <a name="list-of-series-interpolation-functions"></a>系列補間関数の一覧
 
-|機能|[説明]|
+|機能|説明|
 |--------|-----------|
 |[series_fill_backward()](series-fill-backwardfunction.md)|系列内の欠損値の後方塗りつぶし補間を実行します|
 |[series_fill_const()](series-fill-constfunction.md)|系列の欠損値を指定された定数値に置き換えます|
@@ -127,7 +127,7 @@ T | make-series PriceAvg=avg(Price) default=0
 on Purchase from datetime(2016-09-10) to datetime(2016-09-13) step 1d by Supplier, Fruit
 ```
 
-:::image type="content" source="images/make-seriesoperator/makeseries.png" alt-text="Makeseries":::  
+:::image type="content" source="images/make-seriesoperator/makeseries.png" alt-text="3つのテーブル。1つ目は生データを一覧表示し、2番目のデータ型は個別の仕入先と日付の組み合わせのみで、3番目のは系列の結果を示します。":::  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples --> 
 ```kusto

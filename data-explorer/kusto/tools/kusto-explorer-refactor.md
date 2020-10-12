@@ -1,6 +1,6 @@
 ---
-title: Kusto エクスプローラー コード リファクタリング - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの Kusto エクスプローラー コード リファクタリングについて説明します。
+title: Kusto Explorer コードのリファクタリング-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでの Kusto Explorer コードリファクタリングについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/05/2019
-ms.openlocfilehash: 0a89cf9c648fc4811d56c22012cdb25d5505eb4c
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 959cf8d25b20d459b48a0c8f1968541b50917a9d
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81523989"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942235"
 ---
-# <a name="kusto-explorer-code-refactoring"></a>Kusto エクスプローラ のコード リファクタリング
+# <a name="kusto-explorer-code-refactoring"></a>Kusto Explorer コードのリファクタリング
 
-他の IDE と同様に、Kusto.Explorer では KQL クエリの編集とリファクタリングにいくつかの機能を提供しています。
+他の Ide と同様に、Kusto. エクスプローラーには、KQL クエリの編集とリファクタリングの機能がいくつか用意されています。
 
-## <a name="rename-variable-or-column-name"></a>変数名または列名の名前変更
+## <a name="rename-variable-or-column-name"></a>変数名または列名の変更
 
-クエリ`Ctrl`+`R``Ctrl`+`R`エディター ウィンドウで をクリックすると、現在選択されているシンボルの名前を変更できます。
+をクリックすると `Ctrl` + `R` 、 `Ctrl` + `R` クエリエディターウィンドウで現在選択されているシンボルの名前を変更できます。
 
-以下のスナップショットを参照して、エクスペリエンスを示します。
+エクスペリエンスを示す次のスナップショットを参照してください。
 
-![alt text](./Images/KustoTools-KustoExplorer/ke-refactor-rename.gif "リファクタリング名の変更")
+![クエリエディターウィンドウで名前が変更されている変数を表示するアニメーション GIF。3回の出現は、同時に新しい名前に置き換えられます。](./Images/KustoTools-KustoExplorer/ke-refactor-rename.gif "リファクター-名前の変更")
 
-## <a name="extract-scalars-as-let-expressions"></a>スカラーを式として`let`抽出する
+## <a name="extract-scalars-as-let-expressions"></a>スカラーを式として抽出する `let`
 
-を`Alt`+クリック`Ctrl``let`+すると、現在選択されているリテラルを式として昇格`M`できます。 
+をクリックすると、現在選択されているリテラルを式として昇格させることができ `let` `Alt` + `Ctrl` + `M` ます。 
 
-![alt text](./Images/KustoTools-KustoExplorer/ke-extract-as-let-literal.gif "抽出 -let-literal として")
+![アニメーション GIF。クエリエディターのポインターは、リテラル式で開始されます。次に、そのリテラル値を新しい変数に設定する let ステートメントが表示されます。](./Images/KustoTools-KustoExplorer/ke-extract-as-let-literal.gif "let としての文字列の抽出")
 
-## <a name="extract-tabular-statements-as-let-expressions"></a>表形式のステートメント`let`を式として抽出する
+## <a name="extract-tabular-statements-as-let-expressions"></a>表形式のステートメントを式として抽出する `let`
 
-表形式の式をステートメントとして`let`昇格するには、そのテキストを選択して`Alt`+`Ctrl`+`M`をクリックします。 
+また、表形式の式をステートメントとして昇格させる `let` には、そのテキストを選択し、をクリックし `Alt` + `Ctrl` + `M` ます。 
 
-![alt text](./Images/KustoTools-KustoExplorer/ke-extract-as-let-tabular.gif "表形式として抽出")
+![アニメーション GIF。クエリエディターで表形式の式が選択されます。その後、テーブル式を新しい変数に設定する let ステートメントが表示されます。](./Images/KustoTools-KustoExplorer/ke-extract-as-let-tabular.gif "let による抽出-表形式")

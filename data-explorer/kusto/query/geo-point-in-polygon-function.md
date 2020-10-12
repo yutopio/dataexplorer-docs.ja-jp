@@ -8,12 +8,12 @@ ms.reviewer: mbrichko
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/10/2020
-ms.openlocfilehash: 49b3e8b92d022ac5d1d8191bef8f00436b9f7211
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d8bbebc4043ed2b3a64e90e12f629a1ab9521e6d
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347801"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91941793"
 ---
 # <a name="geo_point_in_polygon"></a>geo_point_in_polygon()
 
@@ -27,16 +27,16 @@ ms.locfileid: "87347801"
 
 * *経度*: 地理空間座標、経度値 (度単位)。 有効な値は、実数と範囲 [-180, + 180] です。
 * *緯度*: 地理空間座標、緯度の値 (度)。 有効な値は、実数と範囲 [-90, + 90] です。
-* *polygon*: [GeoJSON 形式](https://tools.ietf.org/html/rfc7946)および[動的](./scalar-data-types/dynamic.md)データ型の多角形または multipolygon。
+* *polygon*: [GeoJSON 形式](https://tools.ietf.org/html/rfc7946) および [動的](./scalar-data-types/dynamic.md) データ型の多角形または multipolygon。
 
 ## <a name="returns"></a>戻り値
 
 地理空間座標が多角形内にあるかどうかを示します。 座標または多角形が無効な場合は、クエリによって null の結果が生成されます。 
 
 > [!NOTE]
-> * 地理空間座標は、 [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home)座標参照システムによって表されるものとして解釈されます。
-> * 地球の測定に使用される[測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum)は球です。 多角形のエッジは、球体の[geodesics](https://en.wikipedia.org/wiki/Geodesic)です。
-> * 入力ポリゴンのエッジが直交直線の場合は、 [geo_polygon_densify ()](geo-polygon-densify-function.md)を使用して平面エッジを geodesics に変換することを検討してください。
+> * 地理空間座標は、 [WGS-84](https://earth-info.nga.mil/GandG/update/index.php?action=home) 座標参照システムによって表されるものとして解釈されます。
+> * 地球の測定に使用される [測地 datum](https://en.wikipedia.org/wiki/Geodetic_datum) は球です。 多角形のエッジは、球体の [geodesics](https://en.wikipedia.org/wiki/Geodesic) です。
+> * 入力ポリゴンのエッジが直交直線の場合は、 [geo_polygon_densify ()](geo-polygon-densify-function.md) を使用して平面エッジを geodesics に変換することを検討してください。
 
 **Polygon の定義と制約**
 
@@ -61,7 +61,7 @@ ms.locfileid: "87347801"
 
 中央公園なしのマンハッタン島。
 
-:::image type="content" source="images/geo-point-in-polygon-function/polygon-manhattan-with-hole.png" alt-text="マンハッタンと穴を持つ":::
+:::image type="content" source="images/geo-point-in-polygon-function/polygon-manhattan-with-hole.png" alt-text="マンハッタン領域のマップのスクリーンショット。ランドマーク、博物館、空港のマーカーが含まれています。中央の公園を除き、島は淡色表示されます。":::
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -80,7 +80,7 @@ datatable(longitude:real, latitude:real, description:string)
 
 Multipolygon 内の座標を検索します。
 
-:::image type="content" source="images/geo-point-in-polygon-function/multipolygon-manhattan.png" alt-text="マンハッタンと穴を持つ":::
+:::image type="content" source="images/geo-point-in-polygon-function/multipolygon-manhattan.png" alt-text="マンハッタン領域のマップのスクリーンショット。ランドマーク、博物館、空港のマーカーが含まれています。中央の公園を除き、島は淡色表示されます。":::
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -103,7 +103,7 @@ coordinates
 
 カリフォルニアの嵐イベント。 イベントはカリフォルニア州ポリゴンによってフィルター処理され、イベントの種類とハッシュによって集計されます。
 
-:::image type="content" source="images/geo-point-in-polygon-function/california-storm-events.png" alt-text="カリフォルニアの嵐イベント":::
+:::image type="content" source="images/geo-point-in-polygon-function/california-storm-events.png" alt-text="マンハッタン領域のマップのスクリーンショット。ランドマーク、博物館、空港のマーカーが含まれています。中央の公園を除き、島は淡色表示されます。":::
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -116,7 +116,7 @@ StormEvents
 | render piechart with (kind=map) // map rendering available in Kusto Explorer desktop
 ```
 
-次の例は、 [partition](./partitionoperator.md)演算子を使用して、多角形に対して座標を分類する方法を示しています。
+次の例は、 [partition](./partitionoperator.md) 演算子を使用して、多角形に対して座標を分類する方法を示しています。
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

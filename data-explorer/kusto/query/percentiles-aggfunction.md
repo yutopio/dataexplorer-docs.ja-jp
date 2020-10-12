@@ -8,20 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 13cc0edad5e0e4673c34e7e5b1b517f097fa4e9a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0322dd6a8ba900fa4d55bea6b3568a5c42f61b52
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346186"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942371"
 ---
 # <a name="percentile-percentiles-aggregation-function"></a>百分位 ()、パーセンタイル () (集計関数)
 
-によって定義された、指定された人口の[最も近い順位の百分位](#nearest-rank-percentile)の推定値を返し `*Expr*` ます。
+によって定義された、指定された人口の [最も近い順位の百分位](#nearest-rank-percentile) の推定値を返し `*Expr*` ます。
 精度は、パーセンタイル リージョンの人口密度によって異なります。 この関数は[、集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-* `percentiles()`はに似ていますが、複数のパーセンタイル値を計算します `percentile()` 。これは、各百分位数を個別に計算するよりも高速です。
-* `percentilesw()`はに似てい `percentilew()` ますが、複数の重み付け百分位値を計算します。各百分位数を個別に計算するよりも高速です。
+* `percentiles()` はに似ていますが、複数のパーセンタイル値を計算します `percentile()` 。これは、各百分位数を個別に計算するよりも高速です。
+* `percentilesw()` はに似てい `percentilew()` ますが、複数の重み付け百分位値を計算します。各百分位数を個別に計算するよりも高速です。
 * `percentilew()``percentilesw()`重み付けパーセンタイルを計算できます。 重み付けパーセンタイルは、指定されたパーセンタイルを入力で繰り返しているかのように処理することで、特定のを "重み付け" の方法で計算し `weight` ます。
 
 ## <a name="syntax"></a>構文
@@ -68,7 +68,7 @@ CallDetailRecords
 | summarize percentiles(Duration, 5, 50, 95) by continent
 ```
 
-:::image type="content" source="images/percentiles-aggfunction/percentiles.png" alt-text="パーセンタイル":::
+:::image type="content" source="images/percentiles-aggfunction/percentiles.png" alt-text="結果を一覧表示します。大陸の列と、5番目、fiftieth、および 90 ~ 5 番目のパーセンタイルの duration 値の列が含まれています。":::
 
 ヨーロッパでは、呼び出しの5% は 11.55 s より短い、呼び出しの50% は3分、18.46 秒、呼び出しの95% は 40 minutes 48 秒未満であることが結果に示されています。
 
@@ -89,7 +89,7 @@ CallDetailRecords
 
 帯域幅と記憶域を削減するには、次のバケットに事前 `{ 10, 20, 30, 40, 50, 100 }` 集計します。 各バケット内のイベント数をカウントして、次のテーブルを生成します。
 
-:::image type="content" source="images/percentiles-aggfunction/percentilesw-table.png" alt-text="Percentilesw テーブル":::
+:::image type="content" source="images/percentiles-aggfunction/percentilesw-table.png" alt-text="結果を一覧表示します。大陸の列と、5番目、fiftieth、および 90 ~ 5 番目のパーセンタイルの duration 値の列が含まれています。":::
 
 次の表が表示されます。
  * 10ミリ秒バケットの8個のイベント (サブセットに対応 `{ 1, 1, 2, 2, 2, 5, 7, 7 }` )
@@ -113,12 +113,12 @@ datatable (ReqCount:long, LatencyBucket:long)
 
 上記のクエリの結果は次のようになります。
 
-:::image type="content" source="images/percentiles-aggfunction/percentilesw-result.png" alt-text="Percentilesw の結果" border="false":::
+:::image type="content" source="images/percentiles-aggfunction/percentilesw-result.png" alt-text="結果を一覧表示します。大陸の列と、5番目、fiftieth、および 90 ~ 5 番目のパーセンタイルの duration 値の列が含まれています。" border="false":::
 
 
 上記のクエリは、データが `percentiles(LatencyBucket, 50, 75, 99.9)` 次の形式に拡張されている場合に、関数に対応します。
 
-:::image type="content" source="images/percentiles-aggfunction/percentilesw-rawtable.png" alt-text="Percentilesw raw テーブル":::
+:::image type="content" source="images/percentiles-aggfunction/percentilesw-rawtable.png" alt-text="結果を一覧表示します。大陸の列と、5番目、fiftieth、および 90 ~ 5 番目のパーセンタイルの duration 値の列が含まれています。":::
 
 ## <a name="getting-multiple-percentiles-in-an-array"></a>配列内の複数のパーセンタイルを取得する
 
@@ -129,7 +129,7 @@ CallDetailRecords
 | summarize percentiles_array(Duration, 5, 25, 50, 75, 95), avg(Duration)
 ```
 
-:::image type="content" source="images/percentiles-aggfunction/percentiles-array-result.png" alt-text="パーセンタイル配列の結果":::
+:::image type="content" source="images/percentiles-aggfunction/percentiles-array-result.png" alt-text="結果を一覧表示します。大陸の列と、5番目、fiftieth、および 90 ~ 5 番目のパーセンタイルの duration 値の列が含まれています。":::
 
 同様に、重み付けパーセンタイルは、を使用して動的配列として返すことができ `percentilesw_array` ます。
 
@@ -147,13 +147,13 @@ CallDetailRecords
 
 ## <a name="nearest-rank-percentile"></a>最も近い順位の百分位数
 
-昇順で並べ替えられた値のリストの*p*番目の百分位 (0 < *P* <= 100) は、リストの最小値になります。 データの*p* % は、 *p*パーセンタイル値以下です ([パーセンタイルの Wikipedia の記事を](https://en.wikipedia.org/wiki/Percentile#The_Nearest_Rank_method)ご覧ください)。
+昇順で並べ替えられた値のリストの*p*番目の百分位 (0 < *P* <= 100) は、リストの最小値になります。 データの *p* % は、 *p*パーセンタイル値以下です ([パーセンタイルの Wikipedia の記事を](https://en.wikipedia.org/wiki/Percentile#The_Nearest_Rank_method)ご覧ください)。
 
-母集団の最小メンバーになるように*0*番目のパーセンタイルを定義します。
+母集団の最小メンバーになるように *0*番目のパーセンタイルを定義します。
 
 >[!NOTE]
 > 計算のおおよその性質を考えると、実際に返される値は母集団のメンバーではない可能性があります。
-> 最も近い順位の定義は、 *P*= 50 が[中央値の interpolative 定義](https://en.wikipedia.org/wiki/Median)に準拠していないことを意味します。 特定のアプリケーションでこの不一致の有意性を評価する場合は、母集団のサイズと[推定エラー](#estimation-error-in-percentiles)を考慮する必要があります。
+> 最も近い順位の定義は、 *P*= 50 が [中央値の interpolative 定義](https://en.wikipedia.org/wiki/Median)に準拠していないことを意味します。 特定のアプリケーションでこの不一致の有意性を評価する場合は、母集団のサイズと [推定エラー](#estimation-error-in-percentiles) を考慮する必要があります。
 
 ## <a name="estimation-error-in-percentiles"></a>パーセンタイル単位の推定エラー
 

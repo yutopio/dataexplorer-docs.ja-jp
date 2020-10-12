@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 41e3f58ba857e23d31062484f11f30e80fb37317
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.openlocfilehash: 3f003c5e9c6733391d61a2130528c9babc4aae67
+ms.sourcegitcommit: d157e661de293aa4c2b5ad334a554eda0295bd2c
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680736"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "91886300"
 ---
 # <a name="parse_xml"></a>parse_xml()
 
@@ -43,7 +43,7 @@ XML                                |JSON                                        
 `<e> <a>text</a> <a>text</a> </e>` | {"e": {"a": ["text", "text"]}}             | o. a [0] o. a [1]
 `<e> text <a>text</a> </e>`        | {"e": {"#text": "text", "a": "text"}}      | 1 ' o. e ["#text"] o. e.
 
-**ノート**
+**メモ**
 
 * の最大入力 `string` 長 `parse_xml` は 1 mb (1048576 バイト) です。 長い文字列を解釈すると、null オブジェクトになります。
 * 要素ノード、属性、およびテキストノードのみが変換されます。 他のすべての操作はスキップされます
@@ -81,7 +81,7 @@ XML                                |JSON                                        
 }
 ```
 
-とは、オブジェクト内のスロットの値を取得し、 `duration` 2 つのスロット (それぞれと) を取得し `duration.value` `duration.min` `118.0` `110.0` ます。
+とは、オブジェクト内のスロットの値を取得し、 `duration` 2 つのスロット (それぞれと) を取得し `duration.value` `duration.min` `118.0` `100.0` ます。
 
 ```kusto
 T

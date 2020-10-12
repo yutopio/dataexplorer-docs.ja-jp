@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1408bfa0af8c07166bde94c2738b53cd0065ec97
-ms.sourcegitcommit: 7dd20592bf0e08f8b05bd32dc9de8461d89cff14
+ms.openlocfilehash: bc28fcb860dc067d55dd2e5ce9de3f3a17b402f2
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85902166"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942320"
 ---
 # <a name="samples"></a>サンプル
 
@@ -36,7 +36,7 @@ StormEvents
 * 、、およびを使用して、 `where` `summarize` 表示する `top` データの量を制限します。
 * 結果を並べ替えて x 軸の順序を定義します。
 
-:::image type="content" source="images/samples/060.png" alt-text="060":::
+:::image type="content" source="images/samples/060.png" alt-text="縦棒グラフのスクリーンショット。Y 軸の範囲は 0 ~ 50 です。10個の色分けされた列は、10個の場所のそれぞれの値を表します。":::
 
 ## <a name="get-sessions-from-start-and-stop-events"></a>開始および停止イベントからのセッションの取得
 
@@ -44,12 +44,12 @@ StormEvents
 
 |名前|City|SessionId|Timestamp|
 |---|---|---|---|
-|開始|London|2817330|2015-12-09T10:12:02.32|
+|[開始]|London|2817330|2015-12-09T10:12:02.32|
 |Game|London|2817330|2015-12-09T10:12:52.45|
-|開始|Manchester|4267667|2015-12-09T10:14:02.23|
-|Stop|London|2817330|2015-12-09T10:23:43.18|
+|[開始]|Manchester|4267667|2015-12-09T10:14:02.23|
+|停止|London|2817330|2015-12-09T10:23:43.18|
 |Cancel|Manchester|4267667|2015-12-09T10:27:26.29|
-|Stop|Manchester|4267667|2015-12-09T10:28:31.72|
+|停止|Manchester|4267667|2015-12-09T10:28:31.72|
 
 すべてのイベントには SessionId があります。 問題は、開始イベントと停止イベントを同じ ID に一致させることです。
 
@@ -103,9 +103,9 @@ Events
 1. 各セッションのグループを取得するには、[開始時刻と IP] でグループ化します。 
 1. `bin`StartTime パラメーターに関数を指定します。 そうでない場合、Kusto は、開始時刻と間違った停止時間を照合する1時間のビンを自動的に使用します。
 
-`arg_min`各グループの実行時間が最も小さい行を選択し、 `*` パラメーターは他のすべての列を通過します。 引数プレフィックス "min_" を各列名に指定します。 
+`arg_min` 各グループの実行時間が最も小さい行を選択し、 `*` パラメーターは他のすべての列を通過します。 引数プレフィックス "min_" を各列名に指定します。 
 
-:::image type="content" source="images/samples/040.png" alt-text="040"::: 
+:::image type="content" source="images/samples/040.png" alt-text="縦棒グラフのスクリーンショット。Y 軸の範囲は 0 ~ 50 です。10個の色分けされた列は、10個の場所のそれぞれの値を表します。"::: 
 
 コードを追加して、簡単にサイズ設定されたビンで期間をカウントします。この例では、横棒グラフの設定により、をで除算して、 `1s` 時間帯を数値に変換します。 
 
@@ -118,7 +118,7 @@ Events
     | sort by duration asc | render barchart 
 ```
 
-:::image type="content" source="images/samples/050.png" alt-text="050":::
+:::image type="content" source="images/samples/050.png" alt-text="縦棒グラフのスクリーンショット。Y 軸の範囲は 0 ~ 50 です。10個の色分けされた列は、10個の場所のそれぞれの値を表します。":::
 
 ### <a name="real-example"></a>実例
 
@@ -209,7 +209,7 @@ on UnitOfWorkId
 X | extend samples = range(bin(StartTime, 1m), StopTime, 1m)
 ```
 
-`range`指定した間隔で値の配列を生成します。
+`range` 指定した間隔で値の配列を生成します。
 
 |SessionId | StartTime | StopTime  | サンプル|
 |---|---|---|---|
@@ -304,7 +304,7 @@ T
 
 機械学習アルゴリズムを活用し、テレメトリデータから興味深い洞察を得るために、多くの興味深いユースケースがあります。 多くの場合、これらのアルゴリズムでは、入力として非常に構造化されたデータセットが必要です。 通常、未加工のログデータは、必要な構造とサイズに一致しません。 
 
-まず、特定の Bing 推論サービスのエラー率に異常がないか調べてください。 Logs テーブルには65B レコードがあります。 次の単純なクエリは、250,000 エラーをフィルター処理し、異常検出関数[series_decompose_anomalies](series-decompose-anomaliesfunction.md)を使用するエラー数の時系列データを作成します。 異常は Kusto サービスによって検出され、タイムシリーズグラフの赤い点として強調表示されます。
+まず、特定の Bing 推論サービスのエラー率に異常がないか調べてください。 Logs テーブルには65B レコードがあります。 次の単純なクエリは、250,000 エラーをフィルター処理し、異常検出関数 [series_decompose_anomalies](series-decompose-anomaliesfunction.md)を使用するエラー数の時系列データを作成します。 異常は Kusto サービスによって検出され、タイムシリーズグラフの赤い点として強調表示されます。
 
 ```kusto
 Logs
@@ -329,7 +329,7 @@ Logs
 | project count_, Message 
 ```
 
-|count_|Message
+|count_|メッセージ
 |---|---
 |7125|メソッド ' RunCycleFromInterimData ' の ExecuteAlgorithmMethod に失敗しました...
 |7125|InferenceHostService は、tem failed..Sys呼び出します。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません...
@@ -352,7 +352,7 @@ Logs
 | project Count, Pattern
 ```
 
-|Count|パターン
+|Count|Pattern
 |---|---
 |7125|メソッド ' RunCycleFromInterimData ' の ExecuteAlgorithmMethod に失敗しました...
 |  7125|InferenceHostService は、tem failed..Sys呼び出します。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません...
@@ -378,7 +378,7 @@ Logs
 | evaluate autocluster()
 ```
 
-|Count |パーセント (%)|コンポーネント|クラスター|Message
+|Count |パーセント (%)|コンポーネント|クラスター|メッセージ
 |---|---|---|---|---
 |7125|26.64|InferenceHostService|DB4|メソッドの ExecuteAlgorithmMethod....
 |7125|26.64|不明なコンポーネント|DB4|InferenceHostService の呼び出しに失敗しました....
@@ -389,7 +389,7 @@ Logs
 
 一般的なユースケースとして、値の静的なマッピングがあります。これは、結果の体裁を向上させるのに役立ちます。
 たとえば、次のテーブルについて考えてみます。 
-`DeviceModel`デバイスのモデルを指定します。デバイス名を参照するのに非常に便利な形式ではありません。  
+`DeviceModel` デバイスのモデルを指定します。デバイス名を参照するのに非常に便利な形式ではありません。  
 
 
 |DeviceModel |Count 
@@ -567,7 +567,7 @@ datatable(id:string, timestamp:datetime, bla:string)           // #1
      * 前のレベルの列 (ここでのみ `id` )
      * このレベルで指定された列 (ここでは `timestamp` )
 1. この行では、前の `bla` レベルで返された各レコードの列の値が追加されます。 テーブルに関心のある他の列がある場合は、そのような列ごとにこの行を繰り返すことができます。
-1. 最後の行では、プロジェクト外の[演算子](projectawayoperator.md)を使用して、によって導入された "extra" 列を削除し `top-nested` ます。
+1. 最後の行では、プロジェクト外の [演算子](projectawayoperator.md) を使用して、によって導入された "extra" 列を削除し `top-nested` ます。
 
 ## <a name="extend-a-table-with-some-percent-of-total-calculation"></a>計算される合計の割合を使用してテーブルを拡張する
 
@@ -576,16 +576,16 @@ datatable(id:string, timestamp:datetime, bla:string)           // #1
 |SomeSeries|Int|
 |----------|-------|
 |Foo       |    100|
-|横棒       |    200|
+|棒       |    200|
 
 このテーブルを次のように表示する場合:
 
 |SomeSeries|Int|Pct |
 |----------|-------|----|
 |Foo       |    100|33.3|
-|横棒       |    200|66.6|
+|棒       |    200|66.6|
 
-次に、列の合計 (合計) を計算 `SomeInt` してから、この列の各値を合計で除算する必要があります。 任意の結果につい[ては、as 演算子](asoperator.md)を使用します。
+次に、列の合計 (合計) を計算 `SomeInt` してから、この列の各値を合計で除算する必要があります。 任意の結果につい [ては、as 演算子](asoperator.md)を使用します。
 
 ```kusto
 // The following table literal represents a long calculation
@@ -675,7 +675,7 @@ Fruits
 2. _Bin レコードあたりの範囲の終わりを決定します。 _(開始、終了)_ 範囲外である場合を除きます。ただし、この場合は調整されます。 
 3. 各レコードについて、現在のレコードの日から始まる7日間の配列を作成します (タイムスタンプ)。 
 4. mv-配列を展開し、各レコードを7つのレコードに複製します。 
-5. 日ごとに集計関数を実行します。 #4 のため、これは_過去_7 日間をまとめたものです。 
+5. 日ごとに集計関数を実行します。 #4 のため、これは _過去_ 7 日間をまとめたものです。 
 6. 最初の7日間のデータは完全ではありません。 最初の7日間は、7d の期間がありません。 最初の7日間は、最終結果から除外されます。 この例では、2018-10-01 の集計にのみ参加します。
 
 ## <a name="find-preceding-event"></a>前のイベントを検索
@@ -702,30 +702,30 @@ let B = datatable(Timestamp:datetime, ID:string, EventB:string)
 A; B
 ```
 
-|Timestamp|id|EventB|
+|Timestamp|ID|EventB|
 |---|---|---|
 |2019-01-01 00:00: 00.0000000|x|Ax1|
 |2019-01-01 00:00: 00.0000000|z|Az1|
 |2019-01-01 00:00: 01.0000000|x|Ax2|
-|2019-01-01 00:00: 02.0000000|Y|Ay1|
-|2019-01-01 00:00: 05.0000000|Y|Ay2|
+|2019-01-01 00:00: 02.0000000|○|Ay1|
+|2019-01-01 00:00: 05.0000000|○|Ay2|
 
 </br>
 
-|Timestamp|id|EventA|
+|Timestamp|ID|EventA|
 |---|---|---|
 |2019-01-01 00:00: 03.0000000|x|B|
 |2019-01-01 00:00: 04.0000000|x|B|
-|2019-01-01 00:00: 04.0000000|Y|B|
+|2019-01-01 00:00: 04.0000000|○|B|
 |2019-01-01 00:02: 00.0000000|z|B|
 
 予想される出力: 
 
-|id|Timestamp|EventB|A_Timestamp|EventA|
+|ID|Timestamp|EventB|A_Timestamp|EventA|
 |---|---|---|---|---|
 |x|2019-01-01 00:00: 03.0000000|B|2019-01-01 00:00: 01.0000000|Ax2|
 |x|2019-01-01 00:00: 04.0000000|B|2019-01-01 00:00: 01.0000000|Ax2|
-|Y|2019-01-01 00:00: 04.0000000|B|2019-01-01 00:00: 02.0000000|Ay1|
+|○|2019-01-01 00:00: 04.0000000|B|2019-01-01 00:00: 02.0000000|Ay1|
 |z|2019-01-01 00:02: 00.0000000|B|2019-01-01 00:00: 00.0000000|Az1|
 
 この問題には、2つの異なる方法が提案されています。 お客様にとって最適なものを見つけるには、特定のデータセットで両方をテストする必要があります。
@@ -784,5 +784,5 @@ B_events
 |---|---|---|---|---|
 |x|2019-01-01 00:00: 03.0000000|2019-01-01 00:00: 01.0000000|B|Ax2|
 |x|2019-01-01 00:00: 04.0000000|2019-01-01 00:00: 01.0000000|B|Ax2|
-|Y|2019-01-01 00:00: 04.0000000|2019-01-01 00:00: 02.0000000|B|Ay1|
+|○|2019-01-01 00:00: 04.0000000|2019-01-01 00:00: 02.0000000|B|Ay1|
 |z|2019-01-01 00:02: 00.0000000||B||

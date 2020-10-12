@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/05/2018
-ms.openlocfilehash: f926daa248a74b7b61ea4867d3a54f857444823e
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 2642ffc6b87afab785dc5f7ba962e1f659232cc2
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226025"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942269"
 ---
 # <a name="querymanagement-http-response"></a>クエリ/管理の HTTP 応答
 
@@ -26,7 +26,7 @@ Http 応答ステータス行は、HTTP 標準の応答コードに従います�
 
 |コード|コード        |説明                                    |
 |----|---------------|-----------------------------------------------|
-|100 |Continue       |クライアントは引き続き要求を送信できます。       |
+|100 |続行       |クライアントは引き続き要求を送信できます。       |
 |200 |[OK]             |要求の処理が正常に開始されました。       |
 |400 |BadRequest     |要求の形式が正しくありません (完全に)。|
 |401 |権限がありません   |最初にクライアントを認証する必要があります。            |
@@ -68,25 +68,25 @@ Http 応答ステータス行は、HTTP 標準の応答コードに従います�
 
 テーブルのシーケンスの JSON エンコードは、次の名前と値のペアを持つ単一の JSON プロパティバッグです。
 
-|名前  |[値]                              |
+|名前  |値                              |
 |------|-----------------------------------|
 |テーブル|テーブルプロパティバッグの配列。|
 
 テーブルプロパティバッグには、次の名前と値のペアがあります。
 
-|名前     |[値]                               |
+|名前     |値                               |
 |---------|------------------------------------|
 |TableName|テーブルを識別する文字列。 |
 |[列]  |列プロパティバッグの配列。|
-|行     |行配列の配列。          |
+|[行]     |行配列の配列。          |
 
 列プロパティバッグには、次の名前と値のペアがあります。
 
-|名前      |[値]                                                          |
+|名前      |値                                                          |
 |----------|---------------------------------------------------------------|
 |ColumnName|列を識別する文字列。                           |
 |DataType  |列の .NET の概数型を提供する文字列。|
-|[列の型]|列の[スカラーデータ型](../../query/scalar-data-types/index.md)を提供する文字列。|
+|[列の型]|列の [スカラーデータ型](../../query/scalar-data-types/index.md) を提供する文字列。|
 
 行配列は、それぞれの列配列と同じ順序になります。
 また、行配列には、関連する列の行の値と一致する要素が1つあります。
@@ -107,26 +107,26 @@ Http 応答ステータス行は、HTTP 標準の応答コードに従います�
 }
 ```
 
-別の例: 
+別の例を示します。 
 
-:::image type="content" source="../images/rest-json-representation.png" alt-text="rest-json 表現":::
+:::image type="content" source="../images/rest-json-representation.png" alt-text="テーブルオブジェクトの配列を含む JSON ファイルのツリービューを示すスクリーンショット。":::
 
 ## <a name="the-meaning-of-tables-in-the-response"></a>応答内のテーブルの意味
 
 ほとんどの場合、コントロールコマンドは、コントロールコマンドによって生成された情報を含む1つのテーブルを使用して結果を返します。 たとえば、コマンドは、 `.show databases` クラスター内のすべてのアクセス可能なデータベースの詳細を含む1つのテーブルを返します。
 
 通常、クエリは複数のテーブルを返します。
-各テーブル[式ステートメント](../../query/tabularexpressionstatements.md)では、ステートメントによって生成される結果を表す1つ以上のテーブルが順に生成されます。
+各テーブル [式ステートメント](../../query/tabularexpressionstatements.md)では、ステートメントによって生成される結果を表す1つ以上のテーブルが順に生成されます。
 
 > [!NOTE]
 > [バッチ](../../query/batches.md)と[フォーク演算子](../../query/forkoperator.md)によって、このようなテーブルが複数存在する場合があります。
 
 多くの場合、次の3つのテーブルが生成されます。
-* @ExtendedPropertiesクライアントの視覚化の手順などの追加の値を提供するテーブル。 これらの値は、たとえば、 [render 操作](../../query/renderoperator.md)の情報を反映するために生成されます) と[データベースカーソル](../../management/databasecursor.md)です。
+* @ExtendedPropertiesクライアントの視覚化の手順などの追加の値を提供するテーブル。 これらの値は、たとえば、 [render 操作](../../query/renderoperator.md)の情報を反映するために生成されます) と [データベースカーソル](../../management/databasecursor.md)です。
   
   このテーブルには `string` 、JSON に似た値を保持する型の列が1つあります。
 
-  |[値]|
+  |値|
   |-----|
   |{"Visualization": "piechart",...}|
   |{"Cursor": "637239957206013576"}|
@@ -135,9 +135,9 @@ Http 応答ステータス行は、HTTP 標準の応答コードに従います�
 
   このテーブルの構造は次のとおりです。
 
-  |Timestamp                  |重大度|重大度|StatusCode|StatusDescription            |カウント|RequestId|ActivityId|SubActivityId|ClientActivityId|
+  |Timestamp                  |重大度|重大度|StatusCode|StatusDescription            |Count|RequestId|ActivityId|SubActivityId|ClientActivityId|
   |---------------------------|--------|------------|----------|-----------------------------|-----|---------|----------|-------------|----------------|
-  |2020-05-02 06:09: 12.7052077|4       |Info        | 0        | クエリが正常に完了しました|1    |...      |...       |...          |...             |
+  |2020-05-02 06:09: 12.7052077|4       |［情報］        | 0        | クエリが正常に完了しました|1    |...      |...       |...          |...             |
 
   重大度値が2以下の場合は、エラーを示します。
 

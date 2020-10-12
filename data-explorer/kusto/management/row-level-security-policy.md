@@ -1,23 +1,23 @@
 ---
-title: RowLevelSecurity policy (プレビュー)-Azure データエクスプローラー |Microsoft Docs
-description: この記事では、Azure データエクスプローラーの RowLevelSecurity policy (プレビュー) について説明します。
+title: RowLevelSecurity ポリシー-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの RowLevelSecurity ポリシーについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/25/2020
-ms.openlocfilehash: 2df8178bbc75b9338699c00cdd8a16e7ab3b057f
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.date: 10/11/2020
+ms.openlocfilehash: f73cf5718a80528415c9aed201917c1bd52bb660
+ms.sourcegitcommit: 86636f80a12f47ea434f128fa04fe9fc09629730
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967521"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91942635"
 ---
-# <a name="row_level_security-policy-command-preview"></a>row_level_security ポリシーコマンド (プレビュー)
+# <a name="row_level_security-policy-command"></a>row_level_security ポリシー コマンド
 
-この記事では、データベーステーブルの[row_level_security ポリシー](rowlevelsecuritypolicy.md)を構成するために使用されるコマンドについて説明します。
+この記事では、データベーステーブルの [row_level_security ポリシー](rowlevelsecuritypolicy.md) を構成するために使用されるコマンドについて説明します。
 
 ## <a name="displaying-the-policy"></a>ポリシーを表示しています
 
@@ -78,7 +78,7 @@ ms.locfileid: "85967521"
 ```
 
 **パフォーマンス**に関する注意: `UserCanSeeFullNumbers` が最初に評価され、またはのいずれかが `AllData` 評価されますが、両方ではなく、期待される `PartialData` 結果になります。
-RLS のパフォーマンスへの影響の詳細については、[こちら](rowlevelsecuritypolicy.md#performance-impact-on-queries)を参照してください。
+RLS のパフォーマンスへの影響の詳細については、 [こちら](rowlevelsecuritypolicy.md#performance-impact-on-queries)を参照してください。
 
 ## <a name="deleting-the-policy"></a>ポリシーを削除しています
 

@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 03/18/2020
-ms.openlocfilehash: c5a0bd91df6e12d90436e3b27a2b55021668117a
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: a79c815202e65fa32f62a76c700d808d0fda86ea
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874343"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91941997"
 ---
 # <a name="kusto-ingest-client-library"></a>Kusto インジェストクライアントライブラリ 
 
@@ -45,7 +45,7 @@ ms.locfileid: "88874343"
 
 次の図は、キューに格納されたインジェストクライアントと Kusto のやり取りの概要を示しています。
 
-:::image type="content" source="../images/about-kusto-ingest/queued-ingest.png" alt-text="キューに登録済み-取り込み":::
+:::image type="content" source="../images/about-kusto-ingest/queued-ingest.png" alt-text="クエリのインジェストモードで kusto サービスにクエリを送信する方法を示す図。":::
  
 ### <a name="direct-ingestion"></a>直接インジェスト
 
@@ -53,7 +53,7 @@ IKustoDirectIngestClient で定義されているダイレクトインジェス�
 
 次の図は、Kusto との直接インジェストクライアントの対話の概要を示しています。
 
-:::image type="content" source="../images/about-kusto-ingest/direct-ingest.png" alt-text="直接取り込み":::
+:::image type="content" source="../images/about-kusto-ingest/direct-ingest.png" alt-text="クエリのインジェストモードで kusto サービスにクエリを送信する方法を示す図。":::
 
 > [!NOTE]
 > 実稼働グレードのインジェストソリューションでは、Direct モードは推奨されません。

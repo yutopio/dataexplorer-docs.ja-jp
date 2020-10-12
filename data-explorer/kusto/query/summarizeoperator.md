@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: 00d205a710b7b3bf41dc181e79e5e6d0baa95fc6
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.openlocfilehash: 9514f7c94568e73a704e6ba6f4bcc5bf61590d2f
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793922"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954775"
 ---
 # <a name="summarize-operator"></a>summarize 演算子
 
@@ -63,7 +63,7 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 ## <a name="list-of-aggregation-functions"></a>集計関数の一覧
 
-|関数|説明|
+|機能|説明|
 |--------|-----------|
 |[any ()](any-aggfunction.md)|グループの空でないランダムな値を返します|
 |[anyif()](anyif-aggfunction.md)|グループに対して空でないランダムな値 (述語を含む) を返します。|
@@ -117,7 +117,7 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 :::image type="content" source="images/summarizeoperator/summarize-price-by-supplier.png" alt-text="果物とサプライヤー別の価格の集計":::
 
-## <a name="example"></a>例
+## <a name="example-unique-combination"></a>例: 一意の組み合わせ
 
 `ActivityType`テーブルに含まれるとの一意の組み合わせを確認し `CompletionStatus` ます。 集計関数はありません。グループ化キーだけです。 出力には、これらの結果の列のみが表示されます。
 
@@ -132,7 +132,7 @@ Activities | summarize by ActivityType, completionStatus
 |`dancing`|`abandoned`
 |`singing`|`completed`
 
-## <a name="example"></a>例
+## <a name="example-minimum-and-maximum-timestamp"></a>例: タイムスタンプの最小値と最大値
 
 アクティビティテーブル内のすべてのレコードの最小タイムスタンプと最大タイムスタンプを検索します。 group by 句はないため、以下のように出力には行が 1 つしかありません。
 
@@ -144,7 +144,7 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 |---|---
 |`1975-06-09 09:21:45` | `2015-12-24 23:45:00`
 
-## <a name="example"></a>例
+## <a name="example-distinct-count"></a>例: Distinct count
 
 大陸ごとに1行を作成し、アクティビティが発生した都市の数を示します。 "大陸" にはいくつかの値があるため、' by ' 句にはグループ化関数は必要ありません。
 
@@ -159,7 +159,7 @@ Activities | summarize cities=dcount(city) by continent
 |`2673`|`North America`|
 
 
-## <a name="example"></a>例
+## <a name="example-histogram"></a>例: ヒストグラム
 
 次の例では、各アクティビティの種類のヒストグラムを計算します。 に `Duration` は多くの値があるため、を使用して、 `bin` その値を10分間隔でグループ化します。
 

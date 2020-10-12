@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/19/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: f56bd1c9f87833f7c1a9d29580a71557fedb894c
-ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
+ms.openlocfilehash: 30d4f6bd315b5a32c67570ab16b9abc3160f0177
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "88072397"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954486"
 ---
 # <a name="using-hll-and-tdigest"></a>hll() と tdigest() の使用
 
@@ -52,7 +52,7 @@ MyTable
 | project isempty(hll_x)
 ```
 
-| Column1 |
+| 列 1 |
 |---------|
 | 1       |
 
@@ -76,13 +76,13 @@ MyTable
 | project isempty(hll_x)
 ```
 
-|Column1|
+|列 1|
 |---|
 |1|
 |0|
 
 
-## <a name="example"></a>例
+## <a name="example-count-with-binned-timestamp"></a>例: ビン分割されるタイムスタンプを持つカウント
 
 `PageViewsHllTDigest` `hll` 1 時間ごとに表示されるページの値を含むテーブルがあります。 これらの値ビンをにする必要が `12h` あります。 `hll`集計関数を使用して値をマージ `hll_merge()` し、タイムスタンプビンをに結合し `12h` ます。 関数を使用し `dcount_hll` て、最終的な値を返し `dcount` ます。
 
@@ -128,7 +128,7 @@ PageViewsHllTDigest
 |2016-05-02 12:00: 00.0000000|181315|
 |2016-05-03 00:00: 00.0000000|146817|
  
-## <a name="example"></a>例
+## <a name="example-temporary-table"></a>例: 一時テーブル
 
 Kusto の制限に達しているデータセットは、データセットに対して定期的なクエリを実行する必要がありますが、通常のクエリを実行して大規模なデータセットを計算する必要があり [`percentile()`](percentiles-aggfunction.md) [`dcount()`](dcount-aggfunction.md) ます。
 
@@ -179,7 +179,7 @@ PageViewsHllTDigest
 
 このクエリは、より小さなテーブルで実行されるため、パフォーマンスが向上します。 この例では、最初のクエリは ~ 215M レコードに対して実行され、2番目のクエリは32レコードのみで実行されます。
 
-## <a name="example"></a>例
+## <a name="example-intermediate-results"></a>例: 中間結果
 
 保持クエリ。
 各 Wikipedia ページが表示された日時を集計するテーブルがあるとします (サンプルサイズは10万)。各 date1 を検索する場合は、date1 で表示されるページに対して、date1 と date2 の両方でレビューされたページの割合 (date1 < date2) を確認します。

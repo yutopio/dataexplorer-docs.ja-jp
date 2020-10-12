@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ed207a9db0b6440bae8f8fb4ae1c250d274565d7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 79eb1314fad1c3d3bdbbda242b3bd6a86c19e158
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87338220"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954469"
 ---
 # <a name="where-operator"></a>where 演算子
 
@@ -38,7 +38,7 @@ T | where fruit=="apple"
 
 *Predicate* が `true` である *T* 内の行。
 
-**メモ**Null 値: すべてのフィルター処理関数は、null 値と比較した場合に false を返します。 特殊な null 対応関数を使用すると、null 値を処理するクエリを記述できます。
+**メモ** Null 値: すべてのフィルター処理関数は、null 値と比較した場合に false を返します。 特殊な null 対応関数を使用すると、null 値を処理するクエリを記述できます。
 
 [isnull ()](./isnullfunction.md)、 [isnotnull ()](./isnotnullfunction.md)、 [isempty ()](./isemptyfunction.md)、 [isnotempty ()](./isnotemptyfunction.md)。 
 
@@ -52,9 +52,9 @@ T | where fruit=="apple"
 
 * **最もシンプルな語句を先頭に配置する**: `and` で連結された複数の句がある場合は、関係する列が 1 つしかない句を先頭に配置します。 そのため、 `Timestamp > ago(1d) and OpId == EventId` の方が、逆の順序にするよりも適切です。
 
-詳細については、[使用可能な文字列演算子](./datatypes-string-operators.md)の概要と、[使用可能な数値演算子](./numoperators.md)の概要を参照してください。
+詳細については、 [使用可能な文字列演算子](./datatypes-string-operators.md) の概要と、 [使用可能な数値演算子](./numoperators.md)の概要を参照してください。
 
-## <a name="example"></a>例
+## <a name="example-simple-comparisons-first"></a>例: 最初の単純な比較
 
 ```kusto
 Traces
@@ -67,7 +67,7 @@ Traces
 
 インデックスを使用してスキャンを強制的に実行できないため、2つの列の比較が最後に行われることに注意してください。
 
-## <a name="example"></a>例
+## <a name="example-columns-contain-string"></a>例: 列に文字列が含まれている
 
 ```kusto
 Traces | where * has "Kusto"

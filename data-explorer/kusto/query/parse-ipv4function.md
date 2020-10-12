@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 1f4213af91cfee667fdfc87b2d352fe42df3f915
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 48bfab2549da572efba117c21d783b35ac0202af
+ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346458"
+ms.lasthandoff: 10/12/2020
+ms.locfileid: "91954724"
 ---
 # <a name="parse_ipv4"></a>parse_ipv4()
 
@@ -37,9 +37,7 @@ parse_ipv4('192.1.168.1') < parse_ipv4('192.1.168.2') == true
 IP アドレスは `IP-prefix notation` 、スラッシュ () 文字を使用して定義でき `/` ます。
 スラッシュ () の左側の IP アドレスは、 `/` 基本 ip アドレスです。 スラッシュ (/) の右側にある数字 (1 ~ 32) は、ネットマスク内の連続した1ビットの数です。
 
-## <a name="example"></a>例
-
-192.168.2.0/24 には、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask があります。
+たとえば、192.168.2.0/24 は、24個の連続するビットまたは255.255.255.0 をドット形式の10進形式で含む、関連付けられた net/subnetmask を持ちます。
 
 ## <a name="returns"></a>戻り値
 

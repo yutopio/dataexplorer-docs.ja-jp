@@ -7,12 +7,12 @@ ms.topic: conceptual
 ms.date: 03/25/2020
 ms.author: mbaldwin
 ms.custom: security-benchmark
-ms.openlocfilehash: e67621e92af12c45ac7e66bd6055f90245f705d2
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: d56681eaee708fa66c2fc0ceedb08b003e259955
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81494175"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91941963"
 ---
 # <a name="azure-security-baseline-for-data-explorer"></a>データ エクスプローラー用の Azure セキュリティ ベースライン
 
@@ -657,9 +657,9 @@ Azure Resource Graph を使用してクエリを作成する方法:  https://doc
 
 **ガイダンス**: Azure Policy を使用すると、次の組み込みのポリシー定義によって、顧客のサブスクリプション内に作成できるリソースの種類に制限を設けることができます。
 
-    - 許可されないリソースの種類
+- 許可されないリソースの種類
 
-    - 許可されるリソースの種類
+- 許可されるリソースの種類
 
 ポリシーによって生成されたイベントを監視するには、 
 
@@ -707,9 +707,9 @@ Azure Monitor を使用してアクティビティ ログ アラートを作成�
 
 **ガイダンス**: Azure Policy を使用すると、次の組み込みのポリシー定義によって、顧客のサブスクリプション内に作成できるリソースの種類に制限を設けることができます。
 
-    - 許可されないリソースの種類
+- 許可されないリソースの種類
 
-    - 許可されるリソースの種類
+- 許可されるリソースの種類
 
 チュートリアル:コンプライアンスを強制するポリシーの作成と管理: https://docs.microsoft.com/azure/governance/policy/tutorials/create-and-manage
 
@@ -1022,21 +1022,12 @@ Azure Resource Manager テンプレートを使用してカスタマー マネ�
 ### <a name="101-create-incident-response-guide"></a>10.1:インシデント対応ガイドを作成する
 
 **ガイダンス**: 組織のインシデント対応ガイドを作成します。 要員のすべてのロールを定義するインシデント対応計画が記述されていることと、検出からインシデント後のレビューまでのインシデント対応/管理のフェーズがあることを確認します。
-    
 
-    Guidance on building your own security incident response process: https://msrc-blog.microsoft.com/2019/07/01/inside-the-msrc-building-your-own-security-incident-response-process/
+独自のセキュリティ インシデント対応プロセスを構築するためのガイダンス: https://msrc-blog.microsoft.com/2019/07/01/inside-the-msrc-building-your-own-security-incident-response-process/
 
-    
+Microsoft Security Response Center のインシデントの構造: https://msrc-blog.microsoft.com/2019/06/27/inside-the-msrc-anatomy-of-a-ssirp-incident/
 
-    Microsoft Security Response Center's Anatomy of an Incident: https://msrc-blog.microsoft.com/2019/06/27/inside-the-msrc-anatomy-of-a-ssirp-incident/
-
-    
-
-    Customer may also leverage NIST's Computer Security Incident Handling Guide to aid in the creation of their own incident response plan: https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final
-
-    
-
-
+お客様は、独自のインシデント対応計画の作成に役立つ NIST の「コンピューター セキュリティ インシデント対応ガイド」を利用することもできます: https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final
 
 **Azure Security Center の監視**: 適用外
 
@@ -1045,19 +1036,12 @@ Azure Resource Manager テンプレートを使用してカスタマー マネ�
 ### <a name="102-create-incident-scoring-and-prioritization-procedure"></a>10.2:インシデントのスコアリングと優先順位付けの手順を作成する
 
 **ガイダンス**: Security Center によって各アラートに重大度が割り当てられるため、最初に調査する必要があるアラートの優先順位付けに役立ちます。 重要度は、アラートの発行に使用された Security Center の信頼度と、アラートの原因となったアクティビティの背後に悪意のある意図があったかどうかの信頼レベルに基づいて決まります。 
-    
 
-    Additionally, clearly mark subscriptions (for ex. production, non-prod) using tags and create a naming system to clearly identify and categorize Azure resources, especially those processing sensitive data.  It is your responsibility to prioritize the remediation of alerts based on the criticality of the Azure resources and environment where the incident occurred.
+また、サブスクリプション ( 運用、非運用など) をタグを使用して明確にマークし、Azure リソース (特に、機密データを処理するもの) を明確に識別して分類するための命名システムを作成します。  インシデントが発生した Azure リソースと環境の重要度に基づいて、アラートの修復に優先順位を付けることは、お客様の責任です。
 
-    
+Azure Security Center のセキュリティ アラート: https://docs.microsoft.com/azure/security-center/security-center-alerts-overview
 
-    Security alerts in Azure Security Center: https://docs.microsoft.com/azure/security-center/security-center-alerts-overview
-
-    
-
-    Use tags to organize your Azure resources: https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags
-
-
+タグを使用した Azure リソースの整理: https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags
 
 **Azure Security Center の監視**: はい
 
@@ -1066,11 +1050,8 @@ Azure Resource Manager テンプレートを使用してカスタマー マネ�
 ### <a name="103-test-security-response-procedures"></a>10.3:セキュリティ対応手順のテスト
 
 **ガイダンス**: ご利用のシステムのインシデント対応機能を定期的にテストする演習を実施することで、ご利用の Azure リソースの保護を支援できます。 弱点やギャップを特定し、必要に応じて計画を見直します。
-    
 
-    Refer to NIST's publication: Guide to Test, Training, and Exercise Programs for IT Plans and Capabilities: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-84.pdf
-
-
+NIST の出版物を参照してください。IT の計画と機能に関するテスト、トレーニング、演習プログラムのガイド: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-84.pdf
 
 **Azure Security Center の監視**: 適用外
 
@@ -1090,15 +1071,10 @@ Azure Security Center のセキュリティ連絡先を設定する方法: https
 ### <a name="105-incorporate-security-alerts-into-your-incident-response-system"></a>10.5:インシデント対応システムにセキュリティ アラートを組み込む
 
 **ガイダンス**: 連続エクスポート機能を使用して Azure Security Center のアラートと推奨事項をエクスポートすると、Azure リソースへのリスクを特定できます。 連続エクスポートを使用すると、アラートと推奨事項を手動で、または継続した連続的な方法でエクスポートできます。 Azure Security Center データ コネクタを使用してアラートを Azure Sentinel にストリーミングできます。
-    
 
-    How to configure continuous export: https://docs.microsoft.com/azure/security-center/continuous-export
+連続エクスポートを構成する方法: https://docs.microsoft.com/azure/security-center/continuous-export
 
-    
-
-    How to stream alerts into Azure Sentinel: https://docs.microsoft.com/azure/sentinel/connect-azure-security-center
-
-
+Azure Sentinel にアラートをストリーミングする方法: https://docs.microsoft.com/azure/sentinel/connect-azure-security-center
 
 **Azure Security Center の監視**: 現在は使用できません
 
@@ -1107,11 +1083,8 @@ Azure Security Center のセキュリティ連絡先を設定する方法: https
 ### <a name="106-automate-the-response-to-security-alerts"></a>10.6:セキュリティ アラートへの対応を自動化する
 
 **ガイダンス**: Azure Security Center のワークフロー自動化機能を使用すると、セキュリティのアラートと推奨事項に対して "Logic Apps" で自動的に応答をトリガーし、Azure リソースを保護できます。
-    
 
-    How to configure Workflow Automation and Logic Apps: https://docs.microsoft.com/azure/security-center/workflow-automation
-
-
+ワークフローの自動化と Logic Apps を構成する方法: https://docs.microsoft.com/azure/security-center/workflow-automation
 
 **Azure Security Center の監視**: 現在は使用できません
 

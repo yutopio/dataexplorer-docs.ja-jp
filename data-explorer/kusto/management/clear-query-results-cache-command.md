@@ -1,6 +1,6 @@
 ---
 title: クエリ結果のキャッシュのクリア-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーでキャッシュされたデータベーススキーマをクリアするための管理コマンドについて説明します。
+description: Azure データエクスプローラーでキャッシュされたクエリの結果をクリアする方法について説明します。 使用するコマンドについて説明し、例を示します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,16 +8,16 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: 27806155d105a109c7419d04d945fbc854c44286
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 72678453211ada2a6366b771153eeb11a717d7a3
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349926"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92002952"
 ---
 # <a name="clear-query-results-cache"></a>クエリ結果キャッシュのクリア
 
-コンテキストデータベースに対して行われたすべてのキャッシュされた[クエリ結果](../query/query-results-cache.md)をクリアします。
+コンテキストデータベースに対して行われたすべてのキャッシュされた [クエリ結果](../query/query-results-cache.md) をクリアします。
 
 **構文**
 

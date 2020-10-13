@@ -8,12 +8,12 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: 4bfc7b591683940e10d2737ec776421f65d1427a
-ms.sourcegitcommit: 93510ef1e5570ce4da2cbf76eb77946c93a7dec8
+ms.openlocfilehash: d0942a949454bf12840626ff25d3703a23aed2cc
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85372470"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92002945"
 ---
 # <a name="query-results-cache"></a>クエリ結果のキャッシュ
 
@@ -40,24 +40,23 @@ GithubEvent
 
 * 2つのクエリは、(UTF-8 文字列として) 同じ表現を持ちます。
 * 2つのクエリが同じデータベースに対して行われます。
-* 2つのクエリは、同じ[クライアント要求のプロパティ](../api/netfx/request-properties.md)を共有します。 キャッシュの目的では、次のプロパティは無視されます。
+* 2つのクエリは、同じ [クライアント要求のプロパティ](../api/netfx/request-properties.md)を共有します。 キャッシュの目的では、次のプロパティは無視されます。
    * [ClientRequestId](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)
-   * [アプリケーション](../api/netfx/request-properties.md#the-application-x-ms-app-named-property)。
+   * [Application](../api/netfx/request-properties.md#the-application-x-ms-app-named-property)
    * [User](../api/netfx/request-properties.md#the-user-x-ms-user-named-property)
 
 ### <a name="incompatible-queries"></a>互換性のないクエリ
 
 次の条件のいずれかに該当する場合、クエリ結果はキャッシュされません。
  
-* このクエリは、 [RestrictedViewAccess](../management/restrictedviewaccesspolicy.md)ポリシーが有効になっているテーブルを参照します。
-* このクエリは、 [Rowlevelsecurity](../management/rowlevelsecuritypolicy.md)ポリシーが有効になっているテーブルを参照します。
+* このクエリは、 [RestrictedViewAccess](../management/restrictedviewaccesspolicy.md) ポリシーが有効になっているテーブルを参照します。
+* このクエリは、 [Rowlevelsecurity](../management/rowlevelsecuritypolicy.md) ポリシーが有効になっているテーブルを参照します。
 * クエリでは、次の関数のいずれかを使用します。
     * [current_principal](current-principalfunction.md)
     * [current_principal_details](current-principal-detailsfunction.md)
     * [current_principal_is_member_of](current-principal-ismemberoffunction.md)
-* クエリは[クラスター間クエリ](cross-cluster-or-database-queries.md)です。
-* このクエリは、[外部テーブル](schema-entities/externaltables.md)または[外部データ](externaldata-operator.md)にアクセスします。
-* このクエリでは、 [evaluate plugin](evaluateoperator.md)演算子を使用します。
+* このクエリは、 [外部テーブル](schema-entities/externaltables.md) または [外部データ](externaldata-operator.md)にアクセスします。
+* このクエリでは、 [evaluate plugin](evaluateoperator.md) 演算子を使用します。
 
 ## <a name="no-valid-cache-entry"></a>有効なキャッシュエントリがありません
 
@@ -69,16 +68,16 @@ GithubEvent
 ## <a name="results-from-the-cache"></a>キャッシュの結果
 
 クエリ結果がキャッシュから提供されているかどうかは、サービスによってどのように示されますか。
-Kusto は、クエリに応答するときに、列と列を含む追加の[Extendedproperties](../api/rest/response.md)応答テーブルを送信し `Key` `Value` ます。
+Kusto は、クエリに応答するときに、列と列を含む追加の [Extendedproperties](../api/rest/response.md) 応答テーブルを送信し `Key` `Value` ます。
 キャッシュされたクエリ結果には、そのテーブルに追加の行が追加されます。
-* 行の列には `Key` 、という文字列が含まれます。`ServerCache`
+* 行の列には `Key` 、という文字列が含まれます。 `ServerCache`
 * 行の `Value` 列には、次の2つのフィールドを持つプロパティバッグが含まれます。
-   * `OriginalClientRequestId`-元の要求の[Clientrequestid](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)を指定します。
-   * `OriginalStartedOn`-元の要求の実行開始時刻を指定します。
+   * `OriginalClientRequestId` -元の要求の [Clientrequestid](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)を指定します。
+   * `OriginalStartedOn` -元の要求の実行開始時刻を指定します。
 
-## <a name="distribution"></a>配布
+## <a name="distribution"></a>Distribution
 
-キャッシュはクラスターノードによって共有されていません。 すべてのノードは、専用のキャッシュを独自のプライベートストレージに保持します。 2つの同一のクエリが異なるノードに配置されると、クエリが実行され、両方のノードにキャッシュされます。 このプロセスは、[弱い整合性](../concepts/queryconsistency.md)が使用されている場合に発生する可能性があります。
+キャッシュはクラスターノードによって共有されていません。 すべてのノードは、専用のキャッシュを独自のプライベートストレージに保持します。 2つの同一のクエリが異なるノードに配置されると、クエリが実行され、両方のノードにキャッシュされます。 このプロセスは、 [弱い整合性](../concepts/queryconsistency.md) が使用されている場合に発生する可能性があります。
 
 ## <a name="management"></a>管理
 

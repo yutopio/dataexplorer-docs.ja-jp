@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 6dd52dbe9b69000b109f613957d1405190194b13
-ms.sourcegitcommit: 6db94135b9902ad0ea84f9cef00ded8ec0a90fc3
+ms.openlocfilehash: 9a697cfd37590f0368d5a8f0bacf91d02e1c8725
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86870092"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92003162"
 ---
 # <a name="troubleshooting"></a>トラブルシューティング
 
@@ -22,11 +22,11 @@ ms.locfileid: "86870092"
 
 ### <a name="kustoexplorer-shows-error-dialog-during-or-after-start-up"></a>Kusto. エクスプローラーの起動時または起動後にエラーダイアログが表示される
 
-**症状:**
+#### <a name="symptom"></a>症状
 
 起動時に、Kusto. エクスプローラーにエラーが表示されます。 `InvalidOperationException`
 
-**考えられる解決策**
+#### <a name="possible-solution"></a>考えられる解決策
 
 このエラーは、オペレーティングシステムが破損した、または重要なモジュールの一部が不足していることを示唆する場合があります。
 不足または破損しているシステムファイルを確認するには、次の手順に従います。   
@@ -34,11 +34,11 @@ ms.locfileid: "86870092"
 
 ## <a name="kustoexplorer-always-downloads-even-when-there-are-no-updates"></a>Kusto. エクスプローラーは、更新プログラムがない場合でも、常にダウンロードされます。
 
-**症状:**
+#### <a name="symptom"></a>症状
 
 Kusto. エクスプローラーを開くたびに、新しいバージョンをインストールするように求められます。 Kusto. エクスプローラーは、インストール済みのバージョンを更新せずに、パッケージ全体をダウンロードします。
 
-**考えられる解決策**
+#### <a name="possible-solution"></a>考えられる解決策
 
 この現象は、ローカルの ClickOnce ストアが破損した場合に発生する可能性があります。 管理者特権でのコマンドプロンプトで次のコマンドを実行して、ローカルの ClickOnce ストアを消去できます。
 
@@ -54,7 +54,7 @@ rd /q /s %userprofile%\appdata\local\apps\2.0
 
 ### <a name="clickonce-error-cannot-start-application"></a>ClickOnce エラー: アプリケーションを開始できません
 
-**現象**  
+#### <a name="symptoms"></a>現象
 
 プログラムを起動できず、次のいずれかのエラーが表示されます。 
 * `External component has thrown an exception`
@@ -82,7 +82,7 @@ Following errors were detected during this operation.
             at System.Deployment.Application.ApplicationActivator.ActivateDeploymentWorker(Object state)
 ```
 
-**提案されたソリューションの手順**
+#### <a name="proposed-solution-steps"></a>提案されたソリューションの手順
 
 1. () を使用して Kusto をアンインストールします `Programs and Features` `appwiz.cpl` 。
 
@@ -124,8 +124,10 @@ Following errors were detected during this operation.
         copy %LOCALAPPDATA%\Kusto.Explorer.bak\User*.xml %LOCALAPPDATA%\Kusto.Explorer
         ```
 
+#### <a name="enabling-clickonce-verbose-logging"></a>ClickOnce の詳細ログを有効にする
+
 1. アプリケーションがまだ起動しない場合は、次のようになります。
-    1. 次の下で LogVerbosityLevel string 値1を作成して、詳細な ClickOnce ログ記録を有効にします。
+    1. 次の下で LogVerbosityLevel string 値1を作成して、[詳細な ClickOnce ログ記録を有効に](https://docs.microsoft.com/visualstudio/deployment/how-to-specify-verbose-log-files-for-clickonce-deployments)します。
 
         ```kusto
         HKEY_CURRENT_USER\Software\Classes\Software\Microsoft\Windows\CurrentVersion\Deployment
@@ -136,12 +138,12 @@ Following errors were detected during this operation.
 
 ### <a name="clickonce-error-your-administrator-has-blocked-this-application-because-it-potentially-poses-a-security-risk-to-your-computer"></a>ClickOnce エラー: コンピューターにセキュリティ上のリスクが生じる可能性があるため、管理者がこのアプリケーションをブロックしました
 
-**症状:**  
+#### <a name="symptom"></a>症状 
 次のいずれかのエラーが発生しても、アプリケーションのインストールに失敗します。
 * `Your administrator has blocked this application because it potentially poses a security risk to your computer`.
 * `Your security settings do not allow this application to be installed on your computer.`
 
-**ソリューション**
+#### <a name="solution"></a>解決策
 
 この現象は、別のアプリケーションが ClickOnce 信頼プロンプトの既定の動作をオーバーライドしていることが原因である可能性があります。 
 1. 既定の構成設定を表示します。
@@ -161,11 +163,11 @@ Kusto エクスプローラーアプリケーションによって保存され�
 
 必要に応じて、Kusto を完全にリセットできます。 次の手順では、コンピューターから削除されて最初からインストールする必要があるため、Kusto をプログレッシブにリセットする方法について説明します。
 
-1. Windows で、[**プログラムの変更と削除**] ( **[プログラムと機能**] とも呼ばれます) を開きます。
+1. Windows で、[ **プログラムの変更と削除** ] ( **[プログラムと機能**] とも呼ばれます) を開きます。
 1. で始まるすべての項目を選択し `Kusto.Explorer` ます。
 1. **[アンインストール]** を選択します。
 
-   この手順でアプリケーションをアンインストールできない場合 (ClickOnce アプリケーションに関する既知の問題)、[この記事の手順を](https://stackoverflow.com/questions/10896223/how-do-i-completely-uninstall-a-clickonce-application-from-my-computer)参照してください。
+   この手順でアプリケーションをアンインストールできない場合 (ClickOnce アプリケーションに関する既知の問題)、 [この記事の手順を](https://stackoverflow.com/questions/10896223/how-do-i-completely-uninstall-a-clickonce-application-from-my-computer)参照してください。
 
 1. フォルダーを削除し `%LOCALAPPDATA%\Kusto.Explorer` ます。これにより、すべての接続と履歴が削除されます。
 
@@ -174,10 +176,10 @@ Kusto エクスプローラーアプリケーションによって保存され�
 また、特定のバージョンの Kusto エクスプローラーに戻すこともできます。
 
 1. `appwiz.cpl` を実行します。
-1. [ **Kusto エクスプローラー** ] を選択し、[**アンインストールと変更**] を選択します。
-1. [**アプリケーションを以前の状態に復元する**] を選択します。
+1. [ **Kusto エクスプローラー** ] を選択し、[ **アンインストールと変更**] を選択します。
+1. [ **アプリケーションを以前の状態に復元する**] を選択します。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 * [Kusto エクスプローラーのユーザーインターフェイス](kusto-explorer.md#overview-of-the-user-interface)について説明します。
 * [コマンドラインからの Kusto の実行](kusto-explorer-using.md#kustoexplorer-command-line-arguments)について説明します。

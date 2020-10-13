@@ -1,6 +1,6 @@
 ---
 title: Kusto update ポリシー管理-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーの更新ポリシーについて説明します。
+description: Azure データエクスプローラーでのポリシーの更新コマンドについて説明します。 「テーブル更新ポリシーを表示、設定、変更、および削除する方法」を参照してください。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,14 +8,14 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 111110ac69e726c8367af4a2741a79061df7531a
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: c9ef5b2a205665c692c383654f3d050c4658c0f1
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803864"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92002989"
 ---
-# <a name="update-policy-commands"></a>ポリシーの更新コマンド
+# <a name="update-policy-commands"></a>ポリシー更新コマンド
 
 [更新ポリシー](updatepolicy.md)は、クエリを自動的に実行し、データが別のテーブルに取り込まれたされたときに結果を取り込みするテーブルレベルのポリシーオブジェクトです。
 
@@ -57,24 +57,24 @@ ms.locfileid: "87803864"
 * `.alter``table` *TableName* `policy` TableName `update`*Arrayofupdatepolicyobjects*
 * `.alter``table` *DatabaseName* `.` *TableName* `policy` `update` *arrayofupdatepolicyobjects*
 
-*Arrayofupdatepolicyobjects*は、0個以上の更新ポリシーオブジェクトが定義されている JSON 配列です。
+*Arrayofupdatepolicyobjects* は、0個以上の更新ポリシーオブジェクトが定義されている JSON 配列です。
 
 > [!NOTE]
 > * 更新ポリシーオブジェクトのプロパティに格納されている関数を使用し `Query` ます。
    ポリシーオブジェクト全体ではなく、関数定義のみを変更する必要があります。
 > * `IsEnabled`がに設定されている場合は `true` 、更新ポリシーが設定されているときに次の検証が実行されます。
->    * `Source`-対象データベースにテーブルが存在することを確認します。
+>    * `Source` -対象データベースにテーブルが存在することを確認します。
 >    * `Query` 
 >        * スキーマで定義されているスキーマが対象テーブルのいずれかと一致することを確認します。
 >        * クエリが更新ポリシーのテーブルを参照していることを確認し `source` ます。 
         ソースを参照しない更新ポリシークエリの定義は、のプロパティ (次の例を参照) でを設定することによって可能に `AllowUnreferencedSourceTable=true` なりますが、パフォーマンスの*with*問題により推奨されません。 ソーステーブルにインジェストを取り込むたびに、別のテーブル内のすべてのレコードが更新ポリシーの実行と見なされます。
  >       * ポリシーによって、ターゲットデータベースの更新ポリシーのチェーンに循環が作成されないことを確認します。
  > * がに設定されている場合 `IsTransactional` `true` 、は、 `TableAdmin` (ソーステーブル) に対してもアクセス許可が検証されることを確認し `Source` ます。
- > * 更新ポリシーまたは機能をテストして、ソーステーブルへのインジェストごとに実行するように適用します。 詳細については、「[更新ポリシーのパフォーマンスへの影響のテスト](updatepolicy.md#performance-impact)」を参照してください。
+ > * 更新ポリシーまたは機能をテストして、ソーステーブルへのインジェストごとに実行するように適用します。 詳細については、「 [更新ポリシーのパフォーマンスへの影響のテスト](updatepolicy.md#performance-impact)」を参照してください。
 
 ### <a name="returns"></a>戻り値
 
-このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトを設定し、対応する[テーブル更新ポリシーの表示](#show-update-policy)コマンドの出力を返します。
+このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトを設定し、対応する [テーブル更新ポリシーの表示](#show-update-policy) コマンドの出力を返します。
 
 ### <a name="example"></a>例
 
@@ -115,7 +115,7 @@ MyUpdateFunction()
 
 ```
 
-## <a name="alter-merge-table-tablename-policy-update"></a>. alter-merge table *TableName*ポリシーの更新
+## <a name="alter-merge-table-tablename-policy-update"></a>. alter-merge table *TableName* ポリシーの更新
 
 このコマンドは、指定されたテーブルの更新ポリシーを変更します。
 
@@ -124,7 +124,7 @@ MyUpdateFunction()
 * `.alter-merge``table` *TableName* `policy` TableName `update`*Arrayofupdatepolicyobjects*
 * `.alter-merge``table` *DatabaseName* `.` *TableName* `policy` `update` *arrayofupdatepolicyobjects*
 
-*Arrayofupdatepolicyobjects*は、0個以上の更新ポリシーオブジェクトが定義されている JSON 配列です。
+*Arrayofupdatepolicyobjects* は、0個以上の更新ポリシーオブジェクトが定義されている JSON 配列です。
 
 > [!NOTE]
 > * 更新ポリシーオブジェクトの query プロパティの一括実装には、格納されている関数を使用します。 
@@ -133,7 +133,7 @@ MyUpdateFunction()
 
 **戻り値**
 
-このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトに追加し、対応するの出力を返し[ます。テーブル*TableName*更新ポリシーの表示](#show-update-policy)コマンドです。
+このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトに追加し、対応するの出力を返し [ます。テーブル *TableName* 更新ポリシーの表示](#show-update-policy) コマンドです。
 
 **例**
 
@@ -142,7 +142,7 @@ MyUpdateFunction()
 @'[{"IsEnabled": true, "Source": "MyTableY", "Query": "MyUpdateFunction()", "IsTransactional": false}]'  
 ``` 
 
-## <a name="delete-table-tablename-policy-update"></a>。テーブル*TableName*ポリシーの更新を削除します。
+## <a name="delete-table-tablename-policy-update"></a>。テーブル *TableName* ポリシーの更新を削除します。
 
 指定されたテーブルの更新ポリシーを削除します。
 
@@ -153,7 +153,7 @@ MyUpdateFunction()
 
 **戻り値**
 
-このコマンドは、テーブルの更新ポリシーオブジェクトを削除し、対応するの出力を返し[ます。テーブル*TableName*更新ポリシー](#show-update-policy)コマンド。
+このコマンドは、テーブルの更新ポリシーオブジェクトを削除し、対応するの出力を返し [ます。テーブル *TableName* 更新ポリシー](#show-update-policy) コマンド。
 
 **例**
 

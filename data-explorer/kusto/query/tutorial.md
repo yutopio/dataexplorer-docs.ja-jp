@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 03/23/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 2060d2996338cf1eee33b5905e9929c46040afa9
-ms.sourcegitcommit: b286703209f1b657ac3d81b01686940f58e5e145
+ms.openlocfilehash: 64736d944c71d84c4950dea0341089732b258f27
+ms.sourcegitcommit: a10e7c6ba96bdb94d95ef23f5d1506eb8fda0041
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86188593"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92058684"
 ---
 # <a name="tutorial"></a>チュートリアル
 
 ::: zone pivot="azuredataexplorer"
 
-Kusto クエリ言語について学習する最善の方法は、いくつかの単純なクエリを見て、[いくつかのサンプルデータを含むデータベース](https://help.kusto.windows.net/Samples)を使用して言語の "感覚" を取得することです。 この記事に示されているクエリは、そのデータベースで実行する必要があります。 `StormEvents`このサンプルデータベースの表では、米国で発生したストームに関する情報を提供しています。
+Kusto クエリ言語について学習する最善の方法は、いくつかの単純なクエリを見て、 [いくつかのサンプルデータを含むデータベース](https://help.kusto.windows.net/Samples)を使用して言語の "感覚" を取得することです。 この記事に示されているクエリは、そのデータベースで実行する必要があります。 `StormEvents`このサンプルデータベースの表では、米国で発生したストームに関する情報を提供しています。
 
 <!--
   TODO: Provide link to reference data we used originally in StormEvents
@@ -44,7 +44,7 @@ Kusto クエリ言語について学習する最善の方法は、いくつか�
 StormEvents | count
 ```
 
-結果は次のようになります。
+結果は次のとおりです。
 
 |Count|
 |-----|
@@ -54,7 +54,7 @@ StormEvents | count
 
 ## <a name="project-select-a-subset-of-columns"></a>プロジェクト: 列のサブセットを選択します
 
-必要な列だけを取得するには、 [project](./projectoperator.md)を使用します。 [Project](./projectoperator.md)と[take](./takeoperator.md)演算子の両方を使用する次の例を参照してください。
+必要な列だけを取得するには、 [project](./projectoperator.md) を使用します。 [Project](./projectoperator.md)と[take](./takeoperator.md)演算子の両方を使用する次の例を参照してください。
 
 ## <a name="where-filtering-by-a-boolean-expression"></a>where: ブール式によるフィルター処理
 
@@ -68,7 +68,7 @@ StormEvents
 | project StartTime, EndTime , State , EventType , EpisodeNarrative
 ```
 
-|StartTime|EndTime|状態|EventType|EpisodeNarrative|
+|StartTime|EndTime|State|EventType|EpisodeNarrative|
 |---|---|---|---|---|
 |2007-02-19 00:00: 00.0000000|2007-02-19 08:00: 00.0000000|カリフォルニア|洪水|南のサンホアキンバレーで正面システムを移動すると、午前19時の午前1時に、雨の雨を西洋のに簡単に移行できます。 軽微なフラッディングは、Taft 付近の州幹線道路166で報告されています。|
 
@@ -83,7 +83,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|EventType|状態|EventNarrative|
+|StartTime|EndTime|EventType|State|EventNarrative|
 |---|---|---|---|---|
 |2007-09-18 20:00: 00.0000000|2007-09-19 18:00: 00.0000000|重い雨|フロリダ|Coastal Volusia 郡の一部にわたって24時間のうち9インチの雨がいます。|
 |2007-09-20 21:57: 00.0000000|2007-09-20 22:05: 00.0000000|Tornado|フロリダ|Eustis 町で触れた tornado は、西 Crooked Lake の北端にあります。 Tornado は、北北西を Eustis 移動したときに EF1 の強さをすばやく極めるします。 このトラックは、長さが2マイル未満で、最大幅が300ヤードになっています。  Tornado は7本の自宅を破壊しています。 20個の自宅が、大きなダメージを受け、81の自宅が軽微な損害を報告しました。 重大な負傷や、プロパティの破損は $620万に設定されていました。|
@@ -91,8 +91,8 @@ StormEvents
 |2007-12-20 07:50: 00.0000000|2007-12-20 07:53: 00.0000000|雷雨風|MISSISSIPPI|多数の大規模なツリーが、いくつかダウンしています。 東 Adams 郡で破損が発生しました。|
 |2007-12-30 16:00: 00.0000000|2007-12-30 16:05: 00.0000000|雷雨風|グルジア|郡のディスパッチでは、複数のツリーが、州道路206付近の Quincey Batten ループに沿って表示されました。 ツリーの削除コストが推定されました。|
 
-ただし、テーブルの[行は特定](./takeoperator.md)の順序で表示されないので、並べ替えてみましょう。
-* [limit](./takeoperator.md)は[take](./takeoperator.md)のエイリアスであるため、同じ効果が得られます。
+ただし、テーブルの [行は特定](./takeoperator.md) の順序で表示されないので、並べ替えてみましょう。
+* [limit](./takeoperator.md) は [take](./takeoperator.md) のエイリアスであるため、同じ効果が得られます。
 
 ## <a name="sort-and-top"></a>sort と top
 
@@ -108,7 +108,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|EventType|状態|EventNarrative|
+|StartTime|EndTime|EventType|State|EventNarrative|
 |---|---|---|---|---|
 |2007-12-31 22:30: 00.0000000|2007-12-31 23:59: 00.0000000|冬の嵐|ミシガン|この大きな雪のイベントは、新年の朝に続きます。|
 |2007-12-31 22:30: 00.0000000|2007-12-31 23:59: 00.0000000|冬の嵐|ミシガン|この大きな雪のイベントは、新年の朝に続きます。|
@@ -123,7 +123,7 @@ StormEvents
 StormEvents
 | sort by StartTime desc
 | take 5
-| project  StartTime, EndLat, EventType, EventNarrative
+| project  StartTime, EndTime, EventType, EventNarrative
 ```
 
 ## <a name="extend-compute-derived-columns"></a>拡張: 計算派生列
@@ -138,7 +138,7 @@ StormEvents
 | project StartTime, EndTime, Duration, EventType, State
 ```
 
-|StartTime|EndTime|期間|EventType|状態|
+|StartTime|EndTime|Duration|EventType|State|
 |---|---|---|---|---|
 |2007-09-18 20:00: 00.0000000|2007-09-19 18:00: 00.0000000|22:00:00|重い雨|フロリダ|
 |2007-09-20 21:57: 00.0000000|2007-09-20 22:05: 00.0000000|00:08:00|Tornado|フロリダ|
@@ -156,11 +156,11 @@ print x=1
 | extend x = x + 1
 ```
 
-|x|Y|
+|x|y|
 |---|---|
 |3|1|
 
-[スカラー式](./scalar-data-types/index.md)には、通常の演算子 ( `+` 、、、、) をすべて含めることができ `-` `*` `/` `%` ます。また、さまざまな便利な関数があります。
+[スカラー式](./scalar-data-types/index.md) には、通常の演算子 ( `+` 、、、、) をすべて含めることができ `-` `*` `/` `%` ます。また、さまざまな便利な関数があります。
 
 ## <a name="summarize-aggregate-groups-of-rows"></a>まとめ: 行の集計グループ
 
@@ -175,7 +175,7 @@ StormEvents
 句内の同じ値を持つ行[をグループ](./summarizeoperator.md)化 `by` し、集計関数 (など) を使用して `count` 各グループを1行にまとめます。 そのため、この場合は、状態ごとに1行、その状態の行の数を示す列があります。
 
 [集計関数](./summarizeoperator.md#list-of-aggregation-functions)がいくつかあります。1つの集計演算子で使用して、複数の計算列を生成することができます。 たとえば、各州のストームの数を取得し、状態ごとの嵐の種類を合計することもできます。  
-次に、 [top](./topoperator.md)を使用して、最もストームに影響する状態を取得できます。
+次に、 [top](./topoperator.md) を使用して、最もストームに影響する状態を取得できます。
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -184,7 +184,7 @@ StormEvents
 | top 5 by StormCount desc
 ```
 
-|状態|StormCount|TypeOfStorms|
+|State|StormCount|TypeOfStorms|
 |---|---|---|
 |テキサス州|4701|27|
 |カンザス|3166|21|
@@ -222,7 +222,7 @@ StormEvents
 |2007-02-19 00:00: 00.0000000|52|
 |2007-02-20 00:00: 00.0000000|60|
 
-[Bin ()](./binfunction.md)は、多くの言語の[floor ()](./floorfunction.md)関数と同じです。 これにより、すべての値が、指定した剰余の倍数になるように単純化されるので、[集計](./summarizeoperator.md)によって行をグループに割り当てることができます。
+[Bin ()](./binfunction.md)は、多くの言語の[floor ()](./floorfunction.md)関数と同じです。 これにより、すべての値が、指定した剰余の倍数になるように単純化されるので、 [集計](./summarizeoperator.md) によって行をグループに割り当てることができます。
 
 ## <a name="render-display-a-chart-or-table"></a>Render: グラフまたはテーブルを表示します。
 
@@ -256,7 +256,7 @@ StormEvents
 | render timechart
 ```
 
-:::image type="content" source="images/tutorial/time-series-start-bin.png" alt-text="時間別の折れ線グラフイベントビン分割":::
+:::image type="content" source="images/tutorial/time-series-start-bin.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 ## <a name="multiple-series"></a>複数の系列
 
@@ -270,11 +270,11 @@ StormEvents
 | summarize count() by bin(StartTime, 10h), Source
 ```
 
-:::image type="content" source="images/tutorial/table-count-source.png" alt-text="ソース別のテーブル数":::
+:::image type="content" source="images/tutorial/table-count-source.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 上記のにレンダリング語句を追加するだけ `| render timechart` です。
 
-:::image type="content" source="images/tutorial/line-count-source.png" alt-text="ソース別の折れ線グラフ数":::
+:::image type="content" source="images/tutorial/line-count-source.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 では `render timechart` 最初の列が x 軸として使用され、他の列は個別の行として表示されることに注意してください。
 
@@ -293,11 +293,11 @@ StormEvents
 | render timechart
 ```
 
-:::image type="content" source="images/tutorial/time-count-hour.png" alt-text="時間別の時間グラフの数":::
+:::image type="content" source="images/tutorial/time-count-hour.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 現在、では、 `render` 期間に適切にラベル付けされませんが、代わりにを使用でき `| render columnchart` ます。
 
-:::image type="content" source="images/tutorial/column-count-hour.png" alt-text="1時間ごとの縦棒グラフ":::
+:::image type="content" source="images/tutorial/column-count-hour.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 ## <a name="compare-multiple-daily-series"></a>複数の日次系列の比較
 
@@ -312,7 +312,7 @@ StormEvents
 | render timechart
 ```
 
-:::image type="content" source="images/tutorial/time-hour-state.png" alt-text="時間と状態別の時間グラフ":::
+:::image type="content" source="images/tutorial/time-hour-state.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 X 軸を継続時間ではなく時間番号にするには、を除算し `1h` ます。
 
@@ -325,7 +325,7 @@ StormEvents
 | render columnchart
 ```
 
-:::image type="content" source="images/tutorial/column-hour-state.png" alt-text="時間と州別の縦棒グラフ":::
+:::image type="content" source="images/tutorial/column-hour-state.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 ## <a name="join"></a>Join
 
@@ -344,7 +344,7 @@ StormEvents
 | distinct State
 ```
 
-:::image type="content" source="images/tutorial/join-events-la.png" alt-text="イベントの結合 (稲妻と大量)":::
+:::image type="content" source="images/tutorial/join-events-la.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 ## <a name="user-session-example-of-join"></a>ユーザーセッションの結合の例
 
@@ -370,7 +370,7 @@ Events
 | take 10
 ```
 
-:::image type="content" source="images/tutorial/user-session-extend.png" alt-text="ユーザーセッションの拡張":::
+:::image type="content" source="images/tutorial/user-session-extend.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 結合を実行する前に必要な列のみを選択する場合は、 `project` を使用することをお勧めします。
 その場合、同じ句で、タイムスタンプ列の名前を変更します。
@@ -391,11 +391,11 @@ StormEvents
 | render timechart
 ```
 
-:::image type="content" source="images/tutorial/event-count-duration.png" alt-text="期間別のイベント数線上":::
+:::image type="content" source="images/tutorial/event-count-duration.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 またはを使用し `| render columnchart` ます。
 
-:::image type="content" source="images/tutorial/column-event-count-duration.png" alt-text="期間別の縦棒グラフイベント数線上":::
+:::image type="content" source="images/tutorial/column-event-count-duration.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 ## <a name="percentiles"></a>パーセンタイル
 
@@ -409,7 +409,7 @@ StormEvents
 
 この場合、句を指定しなかったので、 `by` 結果は単一行になります。
 
-:::image type="content" source="images/tutorial/summarize-percentiles-duration.png" alt-text="期間別のパーセンタイルの概要テーブル":::
+:::image type="content" source="images/tutorial/summarize-percentiles-duration.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 この結果から次のことがわかります。
 
@@ -431,11 +431,11 @@ StormEvents
 | summarize percentiles(duration, 5, 20, 50, 80, 95) by State
 ```
 
-:::image type="content" source="images/tutorial/summarize-percentiles-state.png" alt-text="状態別のパーセンタイル期間の概要表":::
+:::image type="content" source="images/tutorial/summarize-percentiles-state.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
 
 ## <a name="let-assign-a-result-to-a-variable"></a>let: 結果を変数に代入する
 
-上記の "結合" の例でクエリ式の各部分を分離するには、 [let](./letstatement.md)を使用します。 結果は変わりません。
+上記の "結合" の例でクエリ式の各部分を分離するには、 [let](./letstatement.md) を使用します。 結果は変わりません。
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -455,7 +455,7 @@ LightningStorms
 
 ## <a name="combining-data-from-several-databases-in-a-query"></a>クエリ内の複数のデータベースからのデータの結合
 
-詳細については、「[複数データベースにまたがるクエリ](./cross-cluster-or-database-queries.md)」を参照してください。
+詳細については、「 [複数データベースにまたがるクエリ](./cross-cluster-or-database-queries.md) 」を参照してください。
 
 スタイルのクエリを記述すると、次のようになります。
 
@@ -469,7 +469,7 @@ Logs という名前のテーブルは、既定のデータベースに存在し
 database("db").Table
 ```
 
-そのため、*診断*と*テレメトリ*という名前のデータベースがあり、そのデータの一部を関連付ける必要がある場合は、(既定のデータベースとして*診断*が想定されている) を記述することもできます。
+そのため、 *診断* と *テレメトリ* という名前のデータベースがあり、そのデータの一部を関連付ける必要がある場合は、(既定のデータベースとして *診断* が想定されている) を記述することもできます。
 
 ```kusto
 Logs | join database("Telemetry").Metrics on Request MachineId | ...

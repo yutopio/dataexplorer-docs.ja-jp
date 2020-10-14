@@ -7,16 +7,19 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 09/24/2018
-ms.openlocfilehash: aae60156ec6035f354378e4f56f993efa33e0a7c
-ms.sourcegitcommit: fb54d71660391a63b0c107a9703adea09bfc7cb9
+ms.openlocfilehash: 323e8ba2d7f49a2d44ac4000d207316d75e9bd6e
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86946157"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942082"
 ---
 # <a name="what-is-azure-data-explorer"></a>Azure Data Explorerとは
 
 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 最新のソフトウェアによって生成される多数のデータ ストリームを処理できるので、データを収集、保存、分析できます。 Azure データ エクスプローラーは、Web サイト、アプリケーション、IoT デバイスなどのデータ ソースの大量の多様なデータの分析に最適です。 このデータは、診断、監視、報告、機械学習、付加的分析の各種機能に利用されます。 Azure Data Explorer を利用することでこのデータの取り込みがシンプルになり、データに対する複雑なクエリやアドホック クエリを数秒で実行できます。
+
+Azure Data Explorer の詳細については、ニュース、アナウンス、顧客事例をご覧ください。 
+[2020 年 10 月 14 日のオンライン イベントに登録する](https://aka.ms/adxevent)
 
 ## <a name="what-makes-azure-data-explorer-unique"></a>Azure データ エクスプローラーを唯一無二の存在にしている要素は何ですか?
 
@@ -58,7 +61,7 @@ Azure データ エクスプローラーでは、大量の構造化データ、�
 
 Azure Data Explorer の機能は、[Azure Monitor ログ](/azure/log-analytics/)、[Application Insights](/azure/application-insights/)、[Time Series Insights](/azure/time-series-insights/)、[Windows Defender Advanced Threat Protection](/windows/security/threat-protection/windows-defender-atp/windows-defender-advanced-threat-protection/) など、その高性能なクエリ言語を基盤に構築された他のサービスにより拡張されます。
 
-## <a name="feedback"></a>フィードバック
+## <a name="how-to-provide-feedback"></a>フィードバックの提供方法
 
 Azure Data Explorer とそのクエリ言語に関するフィードバックをお待ちしております。次の方法をご利用ください。
 

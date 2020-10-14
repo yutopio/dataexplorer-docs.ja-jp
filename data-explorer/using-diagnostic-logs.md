@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/16/2020
-ms.openlocfilehash: 61e0a4f13aba871a92bdcf36a8af9ed78bb09624
-ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
+ms.openlocfilehash: 5446337177d0e261bd86fbd18119c34b861b89e4
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/21/2020
-ms.locfileid: "90832571"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942388"
 ---
 # <a name="monitor-azure-data-explorer-ingestion-commands-and-queries-using-diagnostic-logs"></a>診断ログを使用して Azure Data Explorer のインジェスト、コマンド、およびクエリを監視する
 
@@ -70,8 +70,8 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
 新しい設定は数分で設定されます。 ログは、構成したアーカイブ ターゲット (ストレージ アカウント、イベント ハブ、Log Analytics) に表示されます。 
 
-    > [!NOTE]
-    > If you send logs to Log Analytics, the `SucceededIngestion`, `FailedIngestion`, `Command`, and `Query` logs will be stored in Log Analytics tables named: `SucceededIngestion`, `FailedIngestion`, `ADXCommand`, `ADXQuery`, respectively.
+> [!NOTE]
+> If you send logs to Log Analytics, the `SucceededIngestion`, `FailedIngestion`, `Command`, and `Query` logs will be stored in Log Analytics tables named: `SucceededIngestion`, `FailedIngestion`, `ADXCommand`, `ADXQuery`, respectively.
 
 ## <a name="diagnostic-logs-schema"></a>診断ログのスキーマ
 

@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 5b72bb604ef7de1b5ca01b5720566b977c2e1ab2
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 46ccf006c6f2cf167953c64bcaa2f3de0fbaf4b6
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872048"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942218"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-an-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -104,11 +104,11 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
 1. クラスターとデータベースを作成するには、次のボタンを使用してデプロイを開始します。 この記事の残りの手順を実行できるよう、右クリックして **[新しいウィンドウで開く]** を選択してください。
 
-    [![Azure へのデプロイ](media/create-cluster-database-resource-manager/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-kusto-cluster-database%2Fazuredeploy.json)
+    [![雲が描かれ、[Deploy to Azure]\(Azure へのデプロイ\) というラベルの付いた青いボタン。](media/create-cluster-database-resource-manager/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-kusto-cluster-database%2Fazuredeploy.json)
 
     **[Deploy to Azure]\(Azure へのデプロイ\)** ボタンをクリックして Azure portal に移動し、デプロイ フォームに入力します。
 
-    ![Deploy to Azure (Azure へのデプロイ)](media/create-cluster-database-resource-manager/deploy-2-azure.png)
+    :::image type="content" source="media/create-cluster-database-resource-manager/deploy-2-azure.png" alt-text="Azure portal におけるテンプレートのスクリーンショット。編集で使用されるすべてのボタン、ボックス、チェック ボックスが強調表示されています。" border="false":::
 
     フォームを使用して、[Azure portal でテンプレートの編集とデプロイを実行](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal#edit-and-deploy-the-template)できます。
 

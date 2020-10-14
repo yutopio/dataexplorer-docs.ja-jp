@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/01/2020
-ms.openlocfilehash: d41c9e2719ef5139d89986ff5333c03e6e34d26c
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4cb0e319cafbd1c59680c7bccc35e2d865d29d40
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872473"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942201"
 ---
 # <a name="use-azure-notebooks-to-analyze-data-in-azure-data-explorer"></a>Azure Notebooks を使用して Azure Data Explorer のデータを分析する
 
@@ -48,13 +48,13 @@ ms.locfileid: "88872473"
 1. 新しいプロジェクトで、ノートブックを作成します。 ノートブックでは、[サポートされている言語](https://github.com/Azure/azure-kusto-python#minimum-requirements)を使用する必要があります。
 ノートブックを作成するには、 **[+ 新規]** を選択し、 **[ノートブック]** を選択します。
 
-    ![新しいノートブックを作成する](media/azurenotebooks/an-create-new-notebook-menu.png) 
+    :::image type="content" source="media/azurenotebooks/an-create-new-notebook-menu.png" alt-text="プロジェクト ページ、[マイ プロジェクト] タブ、Microsoft Azure Notebooks、Azure Data Explorer" border="false":::
 
 1. **[新しいノートブックの作成]** ダイアログ ボックスでノートブックの名前を入力します。
 
 1. **[Python 3.6]** を選択し、 **[New]\(新規\)** を選択します。
     
-    ![新しいノートブックを作成する](media/azurenotebooks/an-create-new-notebook.png) 
+    :::image type="content" source="media/azurenotebooks/an-create-new-notebook.png" alt-text="プロジェクト ページ、[マイ プロジェクト] タブ、Microsoft Azure Notebooks、Azure Data Explorer" border="false"::: 
     
 1. プロジェクトで、新しいノートブックを選択します。
 
@@ -90,7 +90,7 @@ ms.locfileid: "88872473"
 
 1. ノートブックに戻り、認証の結果を確認します。 
 
-:::image type="content" source="media/azurenotebooks/an-python-commands.png" alt-text="認証の結果の出力、ノートブックのウィンドウ、Microsoft Azure Notebooks、Azure Data Explorer" lightbox="media/azurenotebooks/an-python-commands.png#lightbox":::
+:::image type="content" source="media/azurenotebooks/an-python-commands.png" alt-text="プロジェクト ページ、[マイ プロジェクト] タブ、Microsoft Azure Notebooks、Azure Data Explorer" lightbox="media/azurenotebooks/an-python-commands.png#lightbox":::
 
 ## <a name="execute-a-kusto-query"></a>Kusto クエリを実行する
 
@@ -103,7 +103,7 @@ ms.locfileid: "88872473"
         print(", ".join(row))
     ```    
 
-:::image type="content" source="media/azurenotebooks/an-commands.png" alt-text="[実行] ボタン、ノートブックのウィンドウ、Microsoft Azure Notebooks、Azure Data Explorer" lightbox="media/azurenotebooks/an-commands.png#lightbox":::
+:::image type="content" source="media/azurenotebooks/an-commands.png" alt-text="プロジェクト ページ、[マイ プロジェクト] タブ、Microsoft Azure Notebooks、Azure Data Explorer" lightbox="media/azurenotebooks/an-commands.png#lightbox":::
 
 ## <a name="next-steps"></a>次のステップ
 

@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/24/2018
-ms.openlocfilehash: 25bdd9c36c63d521cd662ab5c69f3dfec974b1e6
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 0ff2b0892231f52390f103fe299f219a7a3f3860
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874768"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942048"
 ---
 # <a name="manage-azure-data-explorer-database-permissions"></a>Azure データ エクスプローラーのデータベース アクセス許可を管理する
 
@@ -54,11 +54,11 @@ Azure データ エクスプローラーには、次のロールがあります�
 
 1. プリンシパルを探して選択し、 **[選択]** を選択します。
 
-    ![Azure portal でアクセス許可を管理する](media/manage-database-permissions/new-principals.png)
+    :::image type="content" source="media/manage-database-permissions/new-principals.png" alt-text="Azure portal の [新しいプリンシパル] ページのスクリーンショット。プリンシパル名と画像が選択され、強調表示されています。[選択] ボタンも強調表示されています。" border="false":::
 
 1. **[保存]** を選択します。
 
-    ![Azure portal でアクセス許可を管理する](media/manage-database-permissions/save-permission.png)
+    :::image type="content" source="media/manage-database-permissions/save-permission.png" alt-text="Azure portal の [新しいプリンシパル] ページのスクリーンショット。プリンシパル名と画像が選択され、強調表示されています。[選択] ボタンも強調表示されています。" border="false":::
 
 ## <a name="manage-permissions-with-management-commands"></a>管理コマンドを使用してアクセス許可を管理する
 

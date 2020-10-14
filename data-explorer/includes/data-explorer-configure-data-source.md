@@ -4,12 +4,12 @@ ms.service: data-explorer
 ms.topic: include
 ms.date: 11/03/2019
 ms.author: orspodek
-ms.openlocfilehash: 3cd9d017429b629acad39f5b902e842886c3c818
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: b6c50e466df1028f11021e75fe572ea1ecb32225
+ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81492375"
+ms.lasthandoff: 10/11/2020
+ms.locfileid: "91942646"
 ---
 ## <a name="configure-the-data-source"></a>データ ソースの構成
 
@@ -93,17 +93,17 @@ Azure Data Explorer をダッシュボード ツールのデータ ソースと�
 
 1. 作成したサービス プリンシパルを検索します。 プリンシパルを選択し、 **[選択]** を選択します。
 
-    ![Azure portal でアクセス許可を管理する](media/data-explorer-configure-data-source/new-principals.png)
+    :::image type="content" source="media/data-explorer-configure-data-source/new-principals.png" alt-text="Azure portal の [新しいプリンシパル] ペインのスクリーンショット。[選択] ボタンと、判読できないサービス プリンシパル プロパティを持つ 2 つのフィールドが強調表示されています。" border="false":::
 
 1. **[保存]** を選択します。
 
-    ![Azure portal でアクセス許可を管理する](media/data-explorer-configure-data-source/save-permission.png)
+    :::image type="content" source="media/data-explorer-configure-data-source/save-permission.png" alt-text="Azure portal の [新しいプリンシパル] ペインのスクリーンショット。[選択] ボタンと、判読できないサービス プリンシパル プロパティを持つ 2 つのフィールドが強調表示されています。" border="false":::
 
 #### <a name="management-command---query"></a>管理コマンド - [クエリ]
 
 1. Azure portal で、Azure Data Explorer クラスターに移動し、 **[クエリ]** を選択します。
 
-    ![クエリ](media/data-explorer-configure-data-source/query.png)
+    :::image type="content" source="media/data-explorer-configure-data-source/query.png" alt-text="Azure portal の [新しいプリンシパル] ペインのスクリーンショット。[選択] ボタンと、判読できないサービス プリンシパル プロパティを持つ 2 つのフィールドが強調表示されています。" border="false":::
 
 1. クエリ ウィンドウで次のコマンドを実行します。 Azure portal または CLI で取得したアプリケーション ID とテナント ID を使用します。
 

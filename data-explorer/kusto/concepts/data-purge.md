@@ -8,18 +8,18 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/12/2020
-ms.openlocfilehash: 86712a2e85f2785666b0b6245962aca39cd82729
-ms.sourcegitcommit: 4507466bdcc7dd07e6e2a68c0707b6226adc25af
+ms.openlocfilehash: 053581b5109d0eeacd7b69fd0eda2b53f43ac701
+ms.sourcegitcommit: 468b4ad125657c5131e4c3c839f702ebb6e455a0
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/23/2020
-ms.locfileid: "87106496"
+ms.lasthandoff: 10/16/2020
+ms.locfileid: "92134746"
 ---
 # <a name="data-purge"></a>データの消去
 
 [!INCLUDE [gdpr-intro-sentence](../../includes/gdpr-intro-sentence.md)]
 
-Azure データエクスプローラーは、データプラットフォームとして、Kusto および関連コマンドを使用して個々のレコードを削除する機能をサポートしてい `.purge` ます。 また、[テーブル全体を消去](#purging-an-entire-table)することもできます。  
+Azure データエクスプローラーは、データプラットフォームとして、Kusto および関連コマンドを使用して個々のレコードを削除する機能をサポートしてい `.purge` ます。 また、 [テーブル全体を消去](#purging-an-entire-table)することもできます。  
 
 > [!WARNING]
 > コマンドによるデータの削除 `.purge` は、個人データの保護に使用するように設計されており、他のシナリオでは使用しないでください。 頻繁に削除要求をサポートしたり、大量のデータを削除したりするようには設計されていないため、サービスのパフォーマンスに大きな影響を与える可能性があります。
@@ -29,7 +29,7 @@ Azure データエクスプローラーは、データプラットフォーム�
 Azure データエクスプローラーに個人データを格納する前に、データスキーマを慎重に設計し、関連するポリシーを調査してください。
 
 1. ベストケースのシナリオでは、このデータの保有期間は十分に短く、データは自動的に削除されます。
-1. 保有期間の使用が不可能な場合は、プライバシー規則の対象となるすべてのデータを、少数の Azure データエクスプローラーテーブルで分離します。 最適です。1つのテーブルだけを使用し、他のすべてのテーブルからリンクします。 この分離により、機密データを保持している少数のテーブルに対してデータ[消去処理](#purge-process)を実行し、他のすべてのテーブルを回避できます。
+1. 保有期間の使用が不可能な場合は、プライバシー規則の対象となるすべてのデータを、少数の Azure データエクスプローラーテーブルで分離します。 最適です。1つのテーブルだけを使用し、他のすべてのテーブルからリンクします。 この分離により、機密データを保持している少数のテーブルに対してデータ [消去処理](#purge-process) を実行し、他のすべてのテーブルを回避できます。
 1. 呼び出し元は、コマンドの実行を 1 `.purge` 日あたりのテーブルごとに1-2 コマンドにバッチ処理するように設定する必要があります。 一意のユーザー id 述語を使用して複数のコマンドを実行しないでください。 代わりに、削除が必要なすべてのユーザー id が含まれる述語を含む単一のコマンドを送信します。
 
 ## <a name="purge-process"></a>プロセスの消去
@@ -55,7 +55,7 @@ Azure データエクスプローラーからデータを選択的に消去す�
 
 * `.purge`データ管理エンドポイントに対してコマンドが実行され `https://ingest-[YourClusterName].[region].kusto.windows.net` ます。
    このコマンドを実行するには、関連するデータベースに対する[データベース管理者](../management/access-control/role-based-authorization.md)権限が必要です。 
-* 消去プロセスのパフォーマンスに影響があり、[消去のガイドライン](#purge-guidelines)に従っていることを保証するために、呼び出し元はデータスキーマを変更することを想定しています。これにより、最小限のテーブルに関連するデータが含まれるようになり、テーブルごとのバッチコマンドを実行して、消去プロセスの大きな COGS の影響を軽減できます。
+* 消去プロセスのパフォーマンスに影響があり、  [消去のガイドライン](#purge-guidelines) に従っていることを保証するために、呼び出し元はデータスキーマを変更することを想定しています。これにより、最小限のテーブルに関連するデータが含まれるようになり、テーブルごとのバッチコマンドを実行して、消去プロセスの大きな COGS の影響を軽減できます。
 * Purge `predicate` コマンドのパラメーターは、消去するレコードを指定するために使用されます[。](#purge-table-tablename-records-command)
 `Predicate` のサイズは 63 KB に制限されています。 を構築する場合 `predicate` :
     * たとえば、 [' in ' 演算子](../query/inoperator.md)を使用し `where [ColumnName] in ('Id1', 'Id2', .. , 'Id1000')` ます。 
@@ -68,16 +68,16 @@ Azure データエクスプローラーからデータを選択的に消去す�
 特定の時点で、クラスターで実行できる消去要求は1つだけです。 他のすべての要求は、状態のキューに登録され `Scheduled` ます。 消去要求キューのサイズを監視し、データに適用される要件に合わせて十分な制限を維持します。
 
 消去の実行時間を短縮するには:
-* 消去の[ガイドライン](#purge-guidelines)に従って、削除されたデータの量を減らします。
-* コールドデータの消去にかかる時間が長くなるため、[キャッシュポリシー](../management/cachepolicy.md)を調整します。
+* 消去の [ガイドライン](#purge-guidelines) に従って、削除されたデータの量を減らします。
+* コールドデータの消去にかかる時間が長くなるため、 [キャッシュポリシー](../management/cachepolicy.md) を調整します。
 * クラスターをスケールアウトする
 
-* 「[エクステントを消去](../management/capacitypolicy.md#extents-purge-rebuild-capacity)する」で詳しく説明するように、クラスターの消去容量は慎重に検討してください。 このパラメーターを変更するには、[サポートチケット](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview)を開く必要があります
+* 「 [エクステントを消去](../management/capacitypolicy.md#extents-purge-rebuild-capacity)する」で詳しく説明するように、クラスターの消去容量は慎重に検討してください。 このパラメーターを変更するには、[サポートチケット](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview)を開く必要があります
 
 ## <a name="trigger-the-purge-process"></a>消去プロセスをトリガーします
 
 > [!NOTE]
-> データ管理エンドポイントで[purge Table *TableName* records](#purge-table-tablename-records-command)コマンドを実行すると、消去実行が呼び出され https://ingest- ます [YourClusterName]. [Region]。 kusto. windows. net.
+> データ管理エンドポイントで [purge Table *TableName* records](#purge-table-tablename-records-command) コマンドを実行すると、消去実行が呼び出され https://ingest- ます [YourClusterName]. [Region]。 kusto. windows. net.
 
 ### <a name="purge-table-tablename-records-command"></a>テーブル TableName レコードの消去コマンド
 
@@ -94,11 +94,11 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
   .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
    ```
 
-  > [!NOTE]
-  > このコマンドは、 [Kusto クライアントライブラリ](../api/netfx/about-kusto-data.md)NuGet パッケージの一部として利用可能な CslCommandGenerator API を使用して生成します。
+* ユーザーによる呼び出し:独立した手順として明確な確認を必要とする 2 段階のプロセス。 コマンドの最初の呼び出しでは、検証トークンが返されます。これは実際の消去を実行するために提供される必要があります。 このシーケンスにより、誤ったデータが誤って削除されるリスクが軽減されます。
 
-* ユーザーによる呼び出し:独立した手順として明確な確認を必要とする 2 段階のプロセス。 コマンドの最初の呼び出しでは、検証トークンが返されます。これは実際の消去を実行するために提供される必要があります。 このシーケンスにより、誤ったデータが誤って削除されるリスクが軽減されます。 大きなテーブルでこのオプションを使用すると、完了に時間がかかり、大量のコールド キャッシュ データが使用される可能性があります。
-    <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
+ > [!NOTE]
+ > 2段階呼び出しの最初の手順では、データセット全体に対してクエリを実行し、削除するレコードを特定する必要があります。
+ > このクエリは、特に大量のコールドキャッシュデータを使用して、大きなテーブルでタイムアウトまたは失敗する場合があります。 エラーが発生した場合は、述語を自分で検証し、正しいことを確認した後で、オプションを指定してシングルステップの消去を使用してください `noregrets` 。
 
   **構文**
 
@@ -159,7 +159,7 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 
 | `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール済み | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
+| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
 
 #### <a name="example-single-step-purge"></a>例: 単一ステップの消去
 
@@ -176,7 +176,7 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 
 | `OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール済み | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
+| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 00.1406211 |2019-01-20 11:41: 05.4391686 | |スケジュール | | | |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...|
 
 ### <a name="cancel-purge-operation-command"></a>消去操作の取り消しコマンド
 
@@ -199,7 +199,7 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 
 **出力**
 
-このコマンドの出力は、"削除操作の*表示" コマンド*の出力と同じであり、取り消された消去操作の更新状態が示されます。 試行が成功した場合、操作の状態はに更新され `Abandoned` ます。 それ以外の場合、操作の状態は変更されません。 
+このコマンドの出力は、"削除操作の *表示" コマンド*の出力と同じであり、取り消された消去操作の更新状態が示されます。 試行が成功した場合、操作の状態はに更新され `Abandoned` ます。 それ以外の場合、操作の状態は変更されません。 
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -208,13 +208,13 @@ Purge コマンドは、さまざまな使用シナリオに対して2つの方�
 ## <a name="track-purge-operation-status"></a>削除操作の状態の追跡 
 
 > [!NOTE]
-> 消去操作は、データ管理エンドポイントに対して実行される [削除の[表示](#show-purges-command)] コマンドを使用して追跡でき https://ingest- ます [YourClusterName]. [region]。 kusto. windows. net.
+> 消去操作は、データ管理エンドポイントに対して実行される [削除の [表示](#show-purges-command) ] コマンドを使用して追跡でき https://ingest- ます [YourClusterName]. [region]。 kusto. windows. net.
 
 Status = ' Completed ' は、消去操作の最初のフェーズが正常に完了したことを示します。つまり、レコードは論理的に削除され、クエリに使用できなくなります。 お客様は、2番目のフェーズ (ハード削除) の完了を追跡して確認することは期待されていません。 このフェーズは、Azure データエクスプローラーによって内部的に監視されます。
 
 ### <a name="show-purges-command"></a>削除コマンドの表示
 
-`Show purges`コマンドは、要求された期間内に操作 ID を指定することによって、消去操作の状態を示します。 
+`Show purges` コマンドは、要求された期間内に操作 ID を指定することによって、消去操作の状態を示します。 
 
 ```kusto
 .show purges <OperationId>
@@ -231,7 +231,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 |`DatabaseName`    |     結果をフィルター処理するデータベース名。    |省略可能
 
 > [!NOTE]
-> 状態は、クライアントが[データベース管理者](../management/access-control/role-based-authorization.md)権限を持っているデータベースに対してのみ提供されます。
+> 状態は、クライアントが [データベース管理者](../management/access-control/role-based-authorization.md) 権限を持っているデータベースに対してのみ提供されます。
 
 **使用例**
 
@@ -247,33 +247,33 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 33.6782130 |2019-01-20 11:42: 34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |完了 |消去が正常に完了しました (削除を保留中の記憶域アイテム) |2019-01-20 11:41: 34.6486506 |00:00: 04.4687310 |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...
+|c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41: 05.4391686 |00:00: 33.6782130 |2019-01-20 11:42: 34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |Completed |消去が正常に完了しました (削除を保留中の記憶域アイテム) |2019-01-20 11:41: 34.6486506 |00:00: 04.4687310 |0 |KE.RunCommand; 1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD アプリ id =...
 
-* `OperationId`-purge の実行時に返される DM 操作 ID。 
+* `OperationId` -purge の実行時に返される DM 操作 ID。 
 * `DatabaseName`* *-データベース名 (大文字と小文字が区別されます)。 
-* `TableName`-テーブル名 (大文字と小文字が区別されます)。 
-* `ScheduledTime`-DM サービスに対して purge コマンドを実行した時刻。 
-* `Duration`-実行 DM キューの待機時間を含む、消去操作の合計時間。 
-* `EngineOperationId`-エンジンで実行されている実際の消去の操作 ID。 
-* `State`-purge state、次のいずれかの値を指定できます。 
-    * `Scheduled`-消去操作の実行がスケジュールされています。 ジョブがスケジュールされたままの場合は、削除操作のバックログが存在する可能性があります。 このバックログを消去するには、「[消去のパフォーマンス](#purge-performance)」を参照してください。 一時的なエラーが発生したときに消去操作が失敗した場合は、DM によって再試行され、スケジュールが再設定されます (したがって、スケジュールから処理済みからスケジュール済みに戻る操作の切り替えが発生する可能性があります)。
-    * `InProgress`-エンジンで消去操作が進行中です。 
-    * `Completed`-消去が正常に完了しました。
-    * `BadInput`-無効な入力の消去に失敗し、再試行されません。 このエラーは、述語の構文エラー、purge コマンドの無効な述語、制限を超えたクエリ (たとえば、演算子内の 1 `externaldata` MB 以上のエンティティ、合計拡張クエリサイズが 64 MB を超えるなど)、および blob に対して404または403エラーが発生したことが原因で発生する可能性があり `externaldata` ます。
-    * `Failed`-purge に失敗し、再試行されません。 このエラーは、他の消去操作のバックログ、または再試行の制限を超えるエラーが発生したため、操作がキューで長時間待機している (14 日を超える) 場合に発生する可能性があります。 後者の場合、内部監視アラートが生成され、Azure データエクスプローラーチームによって調査されます。 
-* `StateDetails`-状態の説明。
-* `EngineStartTime`-コマンドがエンジンに発行された時刻。 この時間と ScheduledTime の間に大きな違いがある場合は、通常、消去操作の大きなバックログがあり、クラスターがそのペースに追いついていません。 
-* `EngineDuration`-エンジンで実際に実行された実行時間。 Purge が数回再試行された場合は、すべての実行期間の合計になります。 
-* `Retries`-一時的なエラーが原因で、DM サービスによって操作が再試行された回数。
-* `ClientRequestId`-DM 消去要求のクライアントアクティビティ ID。 
-* `Principal`-purge コマンドの発行者の id。
+* `TableName` -テーブル名 (大文字と小文字が区別されます)。 
+* `ScheduledTime` -DM サービスに対して purge コマンドを実行した時刻。 
+* `Duration` -実行 DM キューの待機時間を含む、消去操作の合計時間。 
+* `EngineOperationId` -エンジンで実行されている実際の消去の操作 ID。 
+* `State` -purge state、次のいずれかの値を指定できます。 
+    * `Scheduled` -消去操作の実行がスケジュールされています。 ジョブがスケジュールされたままの場合は、削除操作のバックログが存在する可能性があります。 このバックログを消去するには、「 [消去のパフォーマンス](#purge-performance) 」を参照してください。 一時的なエラーが発生したときに消去操作が失敗した場合は、DM によって再試行され、スケジュールが再設定されます (したがって、スケジュールから処理済みからスケジュール済みに戻る操作の切り替えが発生する可能性があります)。
+    * `InProgress` -エンジンで消去操作が進行中です。 
+    * `Completed` -消去が正常に完了しました。
+    * `BadInput` -無効な入力の消去に失敗し、再試行されません。 このエラーは、述語の構文エラー、purge コマンドの無効な述語、制限を超えたクエリ (たとえば、演算子内の 1 `externaldata` MB 以上のエンティティ、合計拡張クエリサイズが 64 MB を超えるなど)、および blob に対して404または403エラーが発生したことが原因で発生する可能性があり `externaldata` ます。
+    * `Failed` -purge に失敗し、再試行されません。 このエラーは、他の消去操作のバックログ、または再試行の制限を超えるエラーが発生したため、操作がキューで長時間待機している (14 日を超える) 場合に発生する可能性があります。 後者の場合、内部監視アラートが生成され、Azure データエクスプローラーチームによって調査されます。 
+* `StateDetails` -状態の説明。
+* `EngineStartTime` -コマンドがエンジンに発行された時刻。 この時間と ScheduledTime の間に大きな違いがある場合は、通常、消去操作の大きなバックログがあり、クラスターがそのペースに追いついていません。 
+* `EngineDuration` -エンジンで実際に実行された実行時間。 Purge が数回再試行された場合は、すべての実行期間の合計になります。 
+* `Retries` -一時的なエラーが原因で、DM サービスによって操作が再試行された回数。
+* `ClientRequestId` -DM 消去要求のクライアントアクティビティ ID。 
+* `Principal` -purge コマンドの発行者の id。
 
 ## <a name="purging-an-entire-table"></a>テーブル全体の削除
 
-テーブルを削除するには、テーブルを削除し、削除済みとしてマークします。これにより、[パージプロセス](#purge-process)で記述されたハード削除処理が実行されます。 削除せずにテーブルを削除しても、そのテーブルのすべてのストレージアーティファクトは削除されません。 これらのアーティファクトは、テーブルに最初に設定されたハードリテンション期間ポリシーに従って削除されます。 コマンドは短時間で `purge table allrecords` 効率的であり、シナリオに該当する場合は、レコードの消去プロセスに適しています。 
+テーブルを削除するには、テーブルを削除し、削除済みとしてマークします。これにより、 [パージプロセス](#purge-process) で記述されたハード削除処理が実行されます。 削除せずにテーブルを削除しても、そのテーブルのすべてのストレージアーティファクトは削除されません。 これらのアーティファクトは、テーブルに最初に設定されたハードリテンション期間ポリシーに従って削除されます。 コマンドは短時間で `purge table allrecords` 効率的であり、シナリオに該当する場合は、レコードの消去プロセスに適しています。 
 
 > [!NOTE]
-> このコマンドは、データ管理エンドポイント [YourClusterName] で、[テーブルの削除*TableName* allrecords](#purge-table-tablename-allrecords-command)コマンドを実行することによって呼び出され https://ingest- ます。 [region]。 kusto. windows. net.
+> このコマンドは、データ管理エンドポイント [YourClusterName] で、 [テーブルの削除 *TableName* allrecords](#purge-table-tablename-allrecords-command) コマンドを実行することによって呼び出され https://ingest- ます。 [region]。 kusto. windows. net.
 
 ### <a name="purge-table-tablename-allrecords-command"></a>Purge table *TableName* allrecords コマンド
 
@@ -342,7 +342,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 
     **出力**
 
-    |  TableName|DatabaseName|フォルダー|DocString
+    |  TableName|DatabaseName|Folder|DocString
     |---|---|---|---
     |  OtherTable|MyDatabase|---|---
 
@@ -362,7 +362,7 @@ Status = ' Completed ' は、消去操作の最初のフェーズが正常に完
 
 **出力**
 
-|TableName|DatabaseName|フォルダー|DocString
+|TableName|DatabaseName|Folder|DocString
 |---|---|---|---
 |OtherTable|MyDatabase|---|---
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: c3f7212b062adaae1bd56399753270653204ad22
-ms.sourcegitcommit: 53a727fceaa89e6022bc593a4aae70f1e0232f49
+ms.openlocfilehash: d1e1af6e7fef39295dde61034f63701a466abb51
+ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/10/2020
-ms.locfileid: "89652100"
+ms.lasthandoff: 10/15/2020
+ms.locfileid: "92098389"
 ---
 # <a name="data-partitioning-policy"></a>データのパーティション分割ポリシー
 
@@ -140,6 +140,8 @@ ms.locfileid: "89652100"
   * ポリシーが有効になる UTC datetime。
   * このプロパティは省略可能です。 指定されていない場合は、ポリシーが適用された後、データ取り込まれたに対してポリシーが有効になります。
   * 保有期間によって削除される可能性のある同種でない (パーティション分割されていない) エクステントは、パーティション分割プロセスによって無視されます。これは、作成時間がテーブルの有効な論理的な削除期間の90% に先行するためです。
+  * **注:** 過去に datetime 値を設定することができます。また、この結果には、既に取り込まれたデータがパーティション分割されています。
+    ただし、これを行うと、パーティション分割プロセスのリソース使用率が大幅に増加する可能性があります。また、それに応じて、その利点を検討する必要があります。
 
 ### <a name="example"></a>例
 

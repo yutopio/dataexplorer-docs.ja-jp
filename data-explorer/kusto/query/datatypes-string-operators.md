@@ -7,13 +7,13 @@ ms.author: orspodek
 ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 02/13/2020
-ms.openlocfilehash: 8ad104b7802bde2355b46bc31e74e63a6708d4f4
-ms.sourcegitcommit: d2edf654f71f8686d1f03d8ec16200f84e671b12
+ms.date: 10/19/2020
+ms.openlocfilehash: c2a841bc78c8f17ac3a929b2541b08d5db682da1
+ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88659265"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92175517"
 ---
 # <a name="string-operators"></a>文字列演算子
 
@@ -69,8 +69,8 @@ Kusto は、 *4 文字*以上のすべての用語で構成される用語イン
 `!startswith_cs`|RHS は LHS の冒頭のサブシーケンスではありません                          |はい           |`"Fabrikam" !startswith_cs "fab"`
 `endswith`      |RHS は LHS の末尾のサブシーケンスです                               |いいえ            |`"Fabrikam" endswith "Kam"`
 `!endswith`     |RHS は LHS の末尾のサブシーケンスではありません                           |いいえ            |`"Fabrikam" !endswith "brik"`
-`endswith_cs`   |RHS は LHS の末尾のサブシーケンスです                               |はい           |`"Fabrikam" endswith "Kam"`
-`!endswith_cs`  |RHS は LHS の末尾のサブシーケンスではありません                           |はい           |`"Fabrikam" !endswith "brik"`
+`endswith_cs`   |RHS は LHS の末尾のサブシーケンスです                               |はい           |`"Fabrikam" endswith_cs "kam"`
+`!endswith_cs`  |RHS は LHS の末尾のサブシーケンスではありません                           |はい           |`"Fabrikam" !endswith_cs "brik"`
 `matches regex` |LHS には RHS に対する一致が含まれています                                      |はい           |`"Fabrikam" matches regex "b.*k"`
 `in`            |要素のいずれかに等しい                                     |はい           |`"abc" in ("123", "345", "abc")`
 `!in`           |要素のいずれとも等しくない                                 |はい           |`"bca" !in ("123", "345", "abc")`

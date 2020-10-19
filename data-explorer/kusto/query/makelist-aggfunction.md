@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: 7f17302475221bb259e6717987f7d31e96d7c118
-ms.sourcegitcommit: a4779e31a52d058b07b472870ecd2b8b8ae16e95
+ms.openlocfilehash: ecfcaa39195caec06184b966403bd6655a00b714
+ms.sourcegitcommit: 62476f682b7812cd9cff7e6958ace5636ee46755
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89366029"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92169542"
 ---
 # <a name="make_list-aggregation-function"></a>make_list () (集計関数)
 
@@ -21,7 +21,7 @@ ms.locfileid: "89366029"
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 `summarize``make_list(` *Expr* [ `,` *MaxSize*]`)`
 
@@ -40,7 +40,7 @@ ms.locfileid: "89366029"
 演算子への入力が並べ替えられている場合、結果として `summarize` 得られる配列内の要素の順序によって、入力の値が追跡されます。
 
 > [!TIP]
-> [`mv-apply`](./mv-applyoperator.md)キーによって順序付けられたリストを作成するには、演算子を使用します。 [こちら](./mv-applyoperator.md#using-the-mv-apply-operator-to-sort-the-output-of-make_list-aggregate-by-some-key)の例を参照してください。
+> 任意の [`array_sort_asc()`](./arraysortascfunction.md) [`array_sort_desc()`](./arraysortdescfunction.md) キーで順序付きリストを作成するには、関数または関数を使用します。
 
 ## <a name="examples"></a>例
 
@@ -122,6 +122,6 @@ shapes
 |false|[{"name": "三角形"、"sideCount": 3}、{"name": "五角形"、"sideCount": 5}、{"name": "heptagon"、"sideCount": 7}、{"name": "nonagon"、"sideCount": 9}]|
 |true|[{"name": "square"、"sideCount": 4}、{"name": "rectangle"、"sideCount": 4}、{"name": "六角形"、"sideCount": 6}、{"name": "octogon"、"sideCount": 8}、{"name": "decagon"、"sideCount":10}]|
 
-## <a name="see-also"></a>関連項目
+## <a name="see-also"></a>こちらもご覧ください
 
 [`make_list_if`](./makelistif-aggfunction.md) 演算子はに似 `make_list` ていますが、述語も受け入れる点が異なります。

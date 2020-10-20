@@ -7,19 +7,16 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 09/24/2018
-ms.openlocfilehash: 323e8ba2d7f49a2d44ac4000d207316d75e9bd6e
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 764dea2e3fe82bf795db81a4e8d3f89e256d3517
+ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942082"
+ms.lasthandoff: 10/15/2020
+ms.locfileid: "92098457"
 ---
 # <a name="what-is-azure-data-explorer"></a>Azure Data Explorerとは
 
 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 最新のソフトウェアによって生成される多数のデータ ストリームを処理できるので、データを収集、保存、分析できます。 Azure データ エクスプローラーは、Web サイト、アプリケーション、IoT デバイスなどのデータ ソースの大量の多様なデータの分析に最適です。 このデータは、診断、監視、報告、機械学習、付加的分析の各種機能に利用されます。 Azure Data Explorer を利用することでこのデータの取り込みがシンプルになり、データに対する複雑なクエリやアドホック クエリを数秒で実行できます。
-
-Azure Data Explorer の詳細については、ニュース、アナウンス、顧客事例をご覧ください。 
-[2020 年 10 月 14 日のオンライン イベントに登録する](https://aka.ms/adxevent)
 
 ## <a name="what-makes-azure-data-explorer-unique"></a>Azure データ エクスプローラーを唯一無二の存在にしている要素は何ですか?
 

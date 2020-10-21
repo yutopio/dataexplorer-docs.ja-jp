@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの iff
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7eeab87f3c3ef42d1e00bf0d6b8853fe3a2f3125
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5cc6a41c8b74e4fd08eebbe968b7384dce39039e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347495"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252287"
 ---
 # <a name="iff"></a>iff()
 
@@ -28,8 +28,8 @@ ms.locfileid: "87347495"
 ## <a name="arguments"></a>引数
 
 * *述語*: 値に評価される式 `boolean` 。
-* *Iftrue*:*述語*がと評価された場合に、評価され、その値が関数から返される `true` 式。
-* *ifFalse*:*述語*がと評価された場合に、評価され、その値が関数から返される `false` 式。
+* *Iftrue*: *述語* がと評価された場合に、評価され、その値が関数から返される `true` 式。
+* *ifFalse*: *述語* がと評価された場合に、評価され、その値が関数から返される `false` 式。
 
 ## <a name="returns"></a>戻り値
 

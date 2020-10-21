@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの var
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bf1009d2d269bf21ea5ae14a9c828724d8bf8c70
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 71c80afa5a2cfe79fb17aeb610f62c3076dd5f84
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87338475"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245585"
 ---
 # <a name="varianceif-aggregation-function"></a>varianceif () (集計関数)
 
@@ -28,7 +28,7 @@ ms.locfileid: "87338475"
 ## <a name="arguments"></a>引数
 
 * *Expr*: 集計計算に使用される式です。 
-* *述語*: true の場合、*式*の計算値が分散に追加されます。
+* *述語*: true の場合、 *式* の計算値が分散に追加されます。
 
 ## <a name="returns"></a>戻り値
 

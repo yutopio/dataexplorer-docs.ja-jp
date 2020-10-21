@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーのフ�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b234a95b4a541099f3fc050501ca6b0fd9f67ccf
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: dfa4d2218c3f54a9c85644fb0ee1edf4b7c012dd
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348005"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247415"
 ---
 # <a name="fork-operator"></a>fork 演算子
 
@@ -25,8 +25,8 @@ ms.locfileid: "87348005"
 
 ## <a name="arguments"></a>引数
 
-* *サブ*クエリはクエリ演算子の下流のパイプラインです
-* *name*は、サブクエリの結果テーブルの一時名です
+* *サブ* クエリはクエリ演算子の下流のパイプラインです
+* *name* は、サブクエリの結果テーブルの一時名です
 
 ## <a name="returns"></a>戻り値
 
@@ -38,14 +38,14 @@ ms.locfileid: "87348005"
 
 **ノート**
 
-* [`materialize`](materializefunction.md)関数 [`join`](joinoperator.md) は、分岐脚でまたはを使用するための代替として使用でき [`union`](unionoperator.md) ます。
+* [`materialize`](materializefunction.md) 関数 [`join`](joinoperator.md) は、分岐脚でまたはを使用するための代替として使用でき [`union`](unionoperator.md) ます。
 入力ストリームは具体化によってキャッシュされた後、結合/共用脚で使用できます。
 
 * 引数または using 演算子によって指定された名前は `name` [`as`](asoperator.md) 、ツールの [結果] タブに名前を付けるためにとして使用され [`Kusto.Explorer`](../tools/kusto-explorer.md) ます。
 
 * 1つのサブクエリでを使用することは避けて `fork` ください。
 
-* 演算子に対してテーブル式ステートメントの[バッチ](batches.md)を使用することをお勧め [`materialize`](materializefunction.md) `fork` します。
+* 演算子に対してテーブル式ステートメントの [バッチ](batches.md) を使用することをお勧め [`materialize`](materializefunction.md) `fork` します。
 
 ## <a name="examples"></a>使用例
 

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの hll
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: 4681f92155181f85cad5c46ed70a79cb173d437f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a6aa19e3a88e7338494d6f6fad0e23a5ab4a03e4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347546"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252305"
 ---
 # <a name="hll_merge-aggregation-function"></a>hll_merge () (集計関数)
 
@@ -21,7 +21,7 @@ ms.locfileid: "87347546"
 
 * 集計のコンテキスト内でのみ使用できます[。](summarizeoperator.md)
 
-詳細については、[基になるアルゴリズム (*H*Yper*l*og*l*og) と推定精度](dcount-aggfunction.md#estimation-accuracy)に関する説明を参照してください。
+詳細については、 [基になるアルゴリズム (*H*Yper*l*og*l*og) と推定精度](dcount-aggfunction.md#estimation-accuracy)に関する説明を参照してください。
 
 ## <a name="syntax"></a>構文
 

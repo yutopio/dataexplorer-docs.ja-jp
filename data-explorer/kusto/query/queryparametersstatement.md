@@ -4,31 +4,31 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 54c09908096f9df4ac8b568cd5e897c6e4ecc8c2
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d9c5e3b41eef933477981945b22b3aceef958dd8
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345965"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251658"
 ---
 # <a name="query-parameters-declaration-statement"></a>クエリパラメーター宣言ステートメント
 
 ::: zone pivot="azuredataexplorer"
 
-Kusto に送信されるクエリには、一連の名前または値のペアが含まれる場合があります。 これらのペアは、クエリテキスト自体と共に*クエリパラメーター*と呼ばれます。 クエリでは、*クエリパラメーターの宣言ステートメント*で、名前と型を指定することで、1つ以上の値を参照できます。
+Kusto に送信されるクエリには、一連の名前または値のペアが含まれる場合があります。 これらのペアは、クエリテキスト自体と共に *クエリパラメーター*と呼ばれます。 クエリでは、 *クエリパラメーターの宣言ステートメント*で、名前と型を指定することで、1つ以上の値を参照できます。
 
 クエリパラメーターには、主に次の2つの用途があります。
 
 * インジェクション攻撃に対する保護メカニズムとして。
 * クエリをパラメーター化する方法。
 
-特に、ユーザーが入力した入力をクエリで組み合わせて Kusto に送信するクライアントアプリケーションは、このメカニズムを使用して、Kusto と同等の[SQL インジェクション](https://en.wikipedia.org/wiki/SQL_injection)攻撃から保護する必要があります。
+特に、ユーザーが入力した入力をクエリで組み合わせて Kusto に送信するクライアントアプリケーションは、このメカニズムを使用して、Kusto と同等の [SQL インジェクション](https://en.wikipedia.org/wiki/SQL_injection) 攻撃から保護する必要があります。
 
 ## <a name="declaring-query-parameters"></a>クエリパラメーターの宣言
 
@@ -79,7 +79,7 @@ T | where Likelihood > percentage
 
 ### <a name="kusto-net-sdk"></a>Kusto .NET SDK
 
-Kusto .NET クライアントライブラリを使用するときにクエリパラメーターの名前と値を指定するために、オブジェクトの新しいインスタンスを作成し、、、の各メソッドを使用して `ClientRequestProperties` `HasParameter` `SetParameter` `ClearParameter` クエリパラメーターを操作します。 このクラスは、に対して厳密に型指定された複数のオーバーロードを提供 `SetParameter` します。内部的には、クエリ言語の適切なリテラルを生成し、前述のように REST API を通じてとして送信し `string` ます。 クエリテキスト自体は、[クエリパラメーターを宣言](#declaring-query-parameters)する必要があります。
+Kusto .NET クライアントライブラリを使用するときにクエリパラメーターの名前と値を指定するために、オブジェクトの新しいインスタンスを作成し、、、の各メソッドを使用して `ClientRequestProperties` `HasParameter` `SetParameter` `ClearParameter` クエリパラメーターを操作します。 このクラスは、に対して厳密に型指定された複数のオーバーロードを提供 `SetParameter` します。内部的には、クエリ言語の適切なリテラルを生成し、前述のように REST API を通じてとして送信し `string` ます。 クエリテキスト自体は、 [クエリパラメーターを宣言](#declaring-query-parameters)する必要があります。
 
 ### <a name="kustoexplorer"></a>Kusto.Explorer
 

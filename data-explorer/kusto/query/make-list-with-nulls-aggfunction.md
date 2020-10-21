@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの mak
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/09/2020
-ms.openlocfilehash: c53faca94e273bf816abcfa34ed400708a7433a3
-ms.sourcegitcommit: 62476f682b7812cd9cff7e6958ace5636ee46755
+ms.openlocfilehash: 18d10aa15e25979c0945ec26efb8bfe9a66dfde4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92169559"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252211"
 ---
 # <a name="make_list_with_nulls-aggregation-function"></a>make_list_with_nulls () (集計関数)
 
@@ -21,7 +21,7 @@ ms.locfileid: "92169559"
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
 `summarize``make_list_with_nulls(` *Expr*`)`
 

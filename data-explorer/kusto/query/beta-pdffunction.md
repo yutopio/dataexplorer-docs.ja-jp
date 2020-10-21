@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの bet
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1b94f661973d1ec89fe7f60edc9063b8c0f36d3c
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6ef26e3a24d7bc6f1d4cd50f74ca83d0a1d21dab
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349195"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245482"
 ---
 # <a name="beta_pdf"></a>beta_pdf()
 
@@ -39,7 +39,7 @@ beta_pdf(0.2, 10.0, 50.0)
 
 * [確率のベータ密度関数](https://en.wikipedia.org/wiki/Beta_distribution#Probability_density_function)。
 
-**メモ**
+**ノート**
 
 引数に数値以外の値を指定した場合、beta_pdf () は null 値を返します。
 
@@ -71,4 +71,4 @@ datatable(x:double, alpha:double, beta:double, comment:string)
 **参照**
 
 * ベータ累積確率密度関数の逆の計算については、「 [beta-inv ()](./beta-invfunction.md)」を参照してください。
-* 標準の累積ベータ配布関数については、「[ベータ cdf ()](./beta-cdffunction.md)」を参照してください。
+* 標準の累積ベータ配布関数については、「 [ベータ cdf ()](./beta-cdffunction.md)」を参照してください。

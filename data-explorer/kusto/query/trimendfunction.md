@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの tri
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: cab78680a3b996234724bc052d75959928520289
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6a764752f126408ceb48f1c4a1af5c74014b6eab
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87339852"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251988"
 ---
 # <a name="trim_end"></a>trim_end()
 

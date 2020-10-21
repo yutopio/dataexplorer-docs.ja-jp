@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの dat
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: c786f0edc94a9b92ca0f4484d0d71166ee699883
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: a901c7dd3c8d2011411b18faf2be33cc9434ea3f
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803983"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252421"
 ---
 # <a name="datetime_part"></a>datetime_part()
 
@@ -51,7 +51,7 @@ datetime_part("Day",datetime(2015-12-14))
 抽出された部分を表す整数。
 
 > [!NOTE]
-> `week_of_year`週番号を表す整数を返します。 週番号は、1年の最初の週から計算されます。これは、最初の木曜日を含んでいます。
+> `week_of_year` 週番号を表す整数を返します。 週番号は、1年の最初の週から計算されます。これは、最初の木曜日を含んでいます。
 
 ## <a name="examples"></a>例
 
@@ -73,10 +73,10 @@ nanosecond = datetime_part("nanosecond", dt)
 
 ```
 
-|year|quarter|month|weekOfYear|day|dayOfYear|hour|minute|second|ミリ秒|マイクロ秒|ナノ秒|
+|年|quarter|month|weekOfYear|day|dayOfYear|hour|minute|second|ミリ秒|マイクロ秒|ナノ秒|
 |---|---|---|---|---|---|---|---|---|---|---|---|
 |2017|4|10|44|30|303|1|2|3|765|765432|765432100|
 
 > [!NOTE]
-> `weekofyear`は、一部の古いバリアントです `week_of_year` 。 `weekofyear`が ISO 8601 に準拠していませんでした。1年の最初の週は、年の最初の水曜日を含む週として定義されています。
-> `week_of_year`は ISO 8601 に準拠しています。年の最初の週は、その年の最初の木曜日の週として定義されます。 [詳細情報](https://en.wikipedia.org/wiki/ISO_8601#Week_dates)。
+> `weekofyear` は、一部の古いバリアントです `week_of_year` 。 `weekofyear` が ISO 8601 に準拠していませんでした。1年の最初の週は、年の最初の水曜日を含む週として定義されています。
+> `week_of_year` は ISO 8601 に準拠しています。年の最初の週は、その年の最初の木曜日の週として定義されます。 [詳細情報](https://en.wikipedia.org/wiki/ISO_8601#Week_dates)。

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの per
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 814124dc0ae9fa5f26a198fafc1bf1d7fd2b83e4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7111f34fcd42e025b22960aa013310d7e4b672fd
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346203"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252173"
 ---
 # <a name="percentile_tdigest"></a>percentile_tdigest()
 
@@ -29,8 +29,8 @@ ms.locfileid: "87346203"
 
 ## <a name="arguments"></a>引数
 
-* *Expr*: [`tdigest`](tdigest-aggfunction.md) または[tdigest_merge ()](tdigest-merge-aggfunction.md)によって生成された式。
-* *百分*位は、百分位を指定する2つの定数です。
+* *Expr*: [`tdigest`](tdigest-aggfunction.md) または [tdigest_merge ()](tdigest-merge-aggfunction.md)によって生成された式。
+* *百分* 位は、百分位を指定する2つの定数です。
 * *Typelo al*: 省略可能な型リテラル (たとえば、 `typeof(long)` )。 指定した場合、結果セットはこの型になります。 
 * *Dynamic array*: 整数または浮動小数点数の動的配列内のパーセンタイルのリスト。
 

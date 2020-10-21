@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの has
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 16b570d996148f1dad9e285b3c2da24d136b20c4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d840ba106079a85435ee88f8b73cfc6daa7e4c5b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347580"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252326"
 ---
 # <a name="hash"></a>hash()
 
@@ -21,12 +21,12 @@ ms.locfileid: "87347580"
 
 ## <a name="syntax"></a>構文
 
-`hash(`*ソース*[ `,` *mod*]`)`
+`hash(`*ソース* [ `,` *mod*]`)`
 
 ## <a name="arguments"></a>引数
 
 * *source*: ハッシュされる値。
-* *mod*: ハッシュの結果に適用されるオプションのモジュール値。出力値が `0` と*mod* -1 の間になります。
+* *mod*: ハッシュの結果に適用されるオプションのモジュール値。出力値が `0` と *mod* -1 の間になります。
 
 ## <a name="returns"></a>戻り値
 
@@ -35,7 +35,7 @@ ms.locfileid: "87347580"
 > [!WARNING]
 > ハッシュの計算に使用されるアルゴリズムは、「」です。
 > このアルゴリズムは将来変更される可能性があります。唯一の保証は、1つのクエリ内で、このメソッドのすべての呼び出しで同じアルゴリズムを使用することです。
-> その結果、の結果をテーブルに格納しないようにすることをお勧めし `hash()` ます。 ハッシュ値を保持する必要がある場合は、代わりに[hash_sha256 ()](./sha256hashfunction.md)または[hash_md5 ()](./md5hashfunction.md)を使用します。 これらの関数は、よりも計算が複雑になることに注意 `hash()` してください)。
+> その結果、の結果をテーブルに格納しないようにすることをお勧めし `hash()` ます。 ハッシュ値を保持する必要がある場合は、代わりに [hash_sha256 ()](./sha256hashfunction.md) または [hash_md5 ()](./md5hashfunction.md) を使用します。 これらの関数は、よりも計算が複雑になることに注意 `hash()` してください)。
 
 ## <a name="examples"></a>例
 

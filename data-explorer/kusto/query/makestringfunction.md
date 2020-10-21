@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの mak
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 36d31e88a89f23006dac73b92777b13db4933d06
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: c8f3497e10c15bfd6df0337758d8dc3002419fa1
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346883"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252237"
 ---
 # <a name="make_string"></a>make_string()
 
@@ -21,11 +21,11 @@ Unicode 文字によって生成された文字列を返します。
     
 ## <a name="syntax"></a>構文
 
-`make_string (`*Arg1*[, *ArgN*]...`)`
+`make_string (`*Arg1*[, *ArgN*]... `)`
 
 ## <a name="arguments"></a>引数
 
-* *Arg1* ...*ArgN*: 整数 (int または long) の式、または整数の配列を保持する動的な値。
+* *Arg1* ... *ArgN*: 整数 (int または long) の式、または整数の配列を保持する動的な値。
 
 * この関数は、最大64の引数を受け取ります。
 

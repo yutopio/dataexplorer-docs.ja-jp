@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 42012111c7f862672a1335e0e9165eb62179dfe7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 572a80cc6e11a94f1597478f8395fe477f0cb64c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87344928"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247219"
 ---
 # <a name="series_fill_backward"></a>series_fill_backward()
 
@@ -31,7 +31,7 @@ ms.locfileid: "87344928"
 * *x*: 数値の配列である動的配列スカラー式。
 * *missing_value_placeholder*: この省略可能なパラメーターは、欠損値のプレースホルダーを指定します。 既定値は `double` (*null*) です。
 
-**メモ**
+**ノート**
 
 * [Make シリーズ](make-seriesoperator.md)の後に補間関数を適用するには、 *null*を既定値として指定します。 
 
@@ -40,7 +40,7 @@ make-series num=count() default=long(null) on TimeStamp from ago(1d) to ago(1h) 
 ```
 
 * *Missing_value_placeholder*は、実際の要素型に変換される任意の型にすることができます。 `double`(*Null*)、 `long` (*null*)、 `int` (*null*) の両方が同じ意味を持ちます。
-* *Missing_value_placeholder*が `double` (*null*) の場合 (または省略されたが同じ意味を持つ場合)、結果に*null*値が含まれる可能性があります。 これらの*null*値を埋めるには、他の補間関数を使用します。 現時点では、 [series_outliers ()](series-outliersfunction.md)のみが入力配列で*null*値をサポートしています。
+* *Missing_value_placeholder*が `double` (*null*) の場合 (または省略されたが同じ意味を持つ場合)、結果に*null*値が含まれる可能性があります。 これらの *null* 値を埋めるには、他の補間関数を使用します。 現時点では、 [series_outliers ()](series-outliersfunction.md) のみが入力配列で *null* 値をサポートしています。
 * 関数は、元の型の配列要素を保持します。
 
 ## <a name="example"></a>例
@@ -62,4 +62,4 @@ data
 |[111、null、36、41、null、null、16、61、33、null、null]|[111、36、36、41、16、16、16、61、33、null、null]|
 
   
-上記の配列の補間を完了するには、 [series_fill_forward](series-fill-forwardfunction.md)または[series-fill-const](series-fill-constfunction.md)を使用します。
+上記の配列の補間を完了するには、 [series_fill_forward](series-fill-forwardfunction.md) または [series-fill-const](series-fill-constfunction.md) を使用します。

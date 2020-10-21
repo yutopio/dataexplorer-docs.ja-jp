@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの exp
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/25/2019
-ms.openlocfilehash: 260fbc24bb5cb653cf6df9e976c2c78682eb9ab6
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 1a95b517c5b0bf29c09028bfd0a59124e7805a74
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348192"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252348"
 ---
 # <a name="exp10"></a>exp10()
 

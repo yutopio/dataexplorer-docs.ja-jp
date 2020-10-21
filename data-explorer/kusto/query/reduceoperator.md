@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d844f693b1509a823702b12bd28b85a9f19a07bd
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 6ef5e42dc9c41426cd66dbf4d857ec0d2c32e2ae
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91102895"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252117"
 ---
 # <a name="reduce-operator"></a>reduce 演算子
 
@@ -45,7 +45,7 @@ T | reduce by LogMessage with threshold=0.1
 
 たとえば、 `reduce by city` の結果には次のものが含まれます。 
 
-|パターン     |Count |Representative|
+|Pattern     |Count |Representative|
 |------------|------|--------------|
 | San *      | 5182 |San Bernard   |
 | Saint *    | 2846 |サン Lucy    |
@@ -62,7 +62,7 @@ range x from 1 to 1000 step 1
 | reduce by MyText  with threshold=0.001 , characters = "X" 
 ```
 
-|パターン         |Count|Representative   |
+|Pattern         |Count|Representative   |
 |----------------|-----|-----------------|
 |各ラーニング *|1000 |MachineLearningX4|
 
@@ -86,6 +86,6 @@ Trace | take 10000
 
 [autocluster](./autoclusterplugin.md)
 
-**メモ**
+**ノート**
 
 演算子の実装 `reduce` は、主に、Risto Vaarandi によって [イベントログからマイニングパターンを作成するためのデータクラスターアルゴリズム](https://ristov.github.io/publications/slct-ipom03-web.pdf)です。

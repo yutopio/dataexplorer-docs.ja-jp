@@ -4,18 +4,18 @@ description: この記事では、Azure データエクスプローラーの dat
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 6511006373cd1f6245a0dcc04537f3994183d63e
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 24abca1d6ff930796a4f57b3f21de4552405112c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803762"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252453"
 ---
 # <a name="database-scope-function"></a>database () (スコープ関数)
 
@@ -29,7 +29,7 @@ cluster('help').database('Sample').StormEvents
 ```
 
 > [!NOTE]
-> * 詳細については、「[データベース間およびクロスクラスタークエリ](cross-cluster-or-database-queries.md)」を参照してください。
+> * 詳細については、「 [データベース間およびクロスクラスタークエリ](cross-cluster-or-database-queries.md)」を参照してください。
 > * リモートクラスターおよびリモートデータベースにアクセスするには、「 [cluster ()](clusterfunction.md) scope 関数」を参照してください。
 
 ## <a name="syntax"></a>構文
@@ -38,7 +38,7 @@ cluster('help').database('Sample').StormEvents
 
 ## <a name="arguments"></a>引数
 
-* *Stringconstant*: 参照されているデータベースの名前。 識別されるデータベースに `DatabaseName` は、またはを指定でき `PrettyName` ます。 引数は、クエリを実行する前に_定数_にする必要があります。つまり、サブクエリの評価から取得することはできません。
+* *Stringconstant*: 参照されているデータベースの名前。 識別されるデータベースに `DatabaseName` は、またはを指定でき `PrettyName` ます。 引数は、クエリを実行する前に _定数_ にする必要があります。つまり、サブクエリの評価から取得することはできません。
 
 ## <a name="examples"></a>例
 

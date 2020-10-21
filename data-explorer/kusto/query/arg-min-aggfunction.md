@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの arg
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/12/2019
-ms.openlocfilehash: 33e2657f2569957002d17d7061cfec863402027e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5c3e7912839dd3258c4a3f96530fbf438bf4ef4f
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349688"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245611"
 ---
 # <a name="arg_min-aggregation-function"></a>arg_min () (集計関数)
 
-は、 *Exprtominimize*を最小にし、 *ExprToReturn*の値を返す (または行全体を返す) グループ内の行を検索し `*` ます。
+は、 *Exprtominimize*を最小にし、 *ExprToReturn* の値を返す (または行全体を返す) グループ内の行を検索し `*` ます。
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
@@ -28,13 +28,13 @@ ms.locfileid: "87349688"
 ## <a name="arguments"></a>引数
 
 * *Exprtominimize*: 集計計算に使用される式。 
-* *ExprToReturn*: *exprtominimize*が最小の場合に値を返すために使用される式。 返される式は、入力テーブルのすべての列を返すためのワイルドカード (*) である場合があります。
+* *ExprToReturn*: *exprtominimize* が最小の場合に値を返すために使用される式。 返される式は、入力テーブルのすべての列を返すためのワイルドカード (*) である場合があります。
 * *Nameexprtominimize*: *exprto最小化*を表す結果列の省略可能な名前です。
 * *NameExprToReturn*: *ExprToReturn*を表す結果列の追加の省略可能な名前です。
 
 ## <a name="returns"></a>戻り値
 
-は、 *Exprtominimize*を最小にし、 *ExprToReturn*の値を返す (または行全体を返す) グループ内の行を検索し `*` ます。
+は、 *Exprtominimize*を最小にし、 *ExprToReturn* の値を返す (または行全体を返す) グループ内の行を検索し `*` ます。
 
 ## <a name="examples"></a>例
 

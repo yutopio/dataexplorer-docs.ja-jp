@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの act
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: cdee53ad7f46aacb71b8a8277e5b875e60438874
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: e7c968470c772e977a8bdcfc5db3e4910b117ead
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349824"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247095"
 ---
 # <a name="activity_engagement-plugin"></a>activity_engagement プラグイン
 
@@ -95,7 +95,7 @@ range _day from _start to _end  step 1d
 | render timechart 
 ```
 
-:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau.png" border="false" alt-text="活動エンゲージメント dau mau":::
+:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau.png" border="false" alt-text="活動エンゲージメント dau wau":::
 
 ### <a name="daumau-calculation-with-additional-dimensions"></a>追加ディメンションを使用した DAU/MAU の計算
 
@@ -118,4 +118,4 @@ range _day from _start to _end  step 1d
 | render timechart 
 ```
 
-:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau-mod3.png" border="false" alt-text="活動エンゲージメント dau mau mod 3":::
+:::image type="content" source="images/activity-engagement-plugin/activity-engagement-dau-mau-mod3.png" border="false" alt-text="活動エンゲージメント dau wau":::

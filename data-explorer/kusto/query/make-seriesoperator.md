@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
-ms.openlocfilehash: 56742b04386bfda9e2cdbaa40a85d2220f2373d5
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 1e39e71aa9406815338974b2da03d05315054b65
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942354"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247349"
 ---
 # <a name="make-series-operator"></a>make-series 演算子
 
@@ -53,7 +53,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 既定値による欠損ビンの塗りつぶしにより、結果として得られるピボットテーブルのビン数 (つまり、集計値) はすべての系列に対して同じになります。  
 
-**注:**
+**注**
 
 集計式とグループ化式の両方に任意の式を指定できますが、単純な列名を使用する方が効率的です。
 
@@ -75,10 +75,10 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 |機能|説明|
 |--------|-----------|
-|[any ()](any-aggfunction.md)|グループの空でないランダムな値を返します|
-|[avg ()](avg-aggfunction.md)|グループ全体の平均値を返します|
+|[any()](any-aggfunction.md)|グループの空でないランダムな値を返します|
+|[avg()](avg-aggfunction.md)|グループ全体の平均値を返します|
 |[avgif()](avgif-aggfunction.md)|グループの述語を使用して平均を返します|
-|[count ()](count-aggfunction.md)|グループの数を返します|
+|[count()](count-aggfunction.md)|グループの数を返します|
 |[countif()](countif-aggfunction.md)|グループの述語を使用してカウントを返します。|
 |[dcount()](dcount-aggfunction.md)|グループ要素の概数を返します。|
 |[dcountif()](dcountif-aggfunction.md)|グループの述語を使用して、おおよその個別のカウントを返します。|
@@ -86,10 +86,10 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 |[maxif()](maxif-aggfunction.md)|グループの述語を使用して最大値を返します。|
 |[min()](min-aggfunction.md)|グループ全体の最小値を返します|
 |[minif()](minif-aggfunction.md)|グループの述語を使用して最小値を返します。|
-|[stdev ()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
-|[sum ()](sum-aggfunction.md)|グループ内の要素の合計を返します。|
+|[stdev()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
+|[sum()](sum-aggfunction.md)|グループ内の要素の合計を返します。|
 |[sumif()](sumif-aggfunction.md)|グループの述語を使用して、要素の合計を返します。|
-|[分散 ()](variance-aggfunction.md)|グループ間の分散を返します。|
+|[variance()](variance-aggfunction.md)|グループ間の分散を返します。|
 
 ## <a name="list-of-series-analysis-functions"></a>系列分析関数の一覧
 

@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 18722a544ea3bbd0e19922d1d8988a3604b4d200
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6d2ed328930f01d3f9c52a675eab61805fd87593
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87342905"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247074"
 ---
 # <a name="stdev-aggregation-function"></a>stdev () (集計関数)
 
-グループ全体の*Expr*の標準偏差を計算します。グループを[サンプル](https://en.wikipedia.org/wiki/Sample_%28statistics%29)として検討します。 
+グループ全体の *Expr* の標準偏差を計算します。グループを [サンプル](https://en.wikipedia.org/wiki/Sample_%28statistics%29)として検討します。 
 
 * 使用された式:
 
@@ -35,7 +35,7 @@ ms.locfileid: "87342905"
 
 ## <a name="returns"></a>戻り値
 
-グループ全体の*Expr*の標準偏差値。
+グループ全体の *Expr* の標準偏差値。
  
 ## <a name="examples"></a>例
 

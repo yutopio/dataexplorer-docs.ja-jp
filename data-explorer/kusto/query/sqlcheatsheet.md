@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: cc00da54cad69c36041e36fd60524c7e4ef0ba35
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 216d8c0eeacf6733eb1f7d4b4880bbad1d408e02
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967147"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247093"
 ---
-# <a name="sql-to-kusto-cheat-sheet"></a>SQL から Kusto カンニングペーパー
+# <a name="sql-to-kusto-cheat-sheet"></a>SQL から Kusto のチート シート
 
-Kusto は、SQL 言語のサブセットをサポートしています。 サポートされていない機能の完全な一覧については、 [SQL の既知の問題](../api/tds/sqlknownissues.md)の一覧を参照してください。
+Kusto は、SQL 言語のサブセットをサポートしています。 サポートされていない機能の完全な一覧については、 [SQL の既知の問題](../api/tds/sqlknownissues.md) の一覧を参照してください。
 
 Kusto と対話する主な言語は KQL (Kusto クエリ言語) です。 移行と学習の操作性を向上させるために、Kusto を使用して SQL クエリを KQL に変換できます。 Kusto に SQL クエリを送信します。これにプレフィックスとして動詞 ' 説明 ' を付けます。
 
@@ -33,7 +33,7 @@ SELECT COUNT_BIG(*) as C FROM StormEvents
 |---|
 |StormEvents<br>| C の集計 = count ()<br>| プロジェクト C|
 
-## <a name="sql-to-kusto-cheat-sheet"></a>SQL から Kusto カンニングペーパー
+## <a name="sql-to-kusto-cheat-sheet"></a>SQL から Kusto のチート シート
 
 次の表は、SQL のサンプルクエリと、それらに対応する KQL を示しています。
 

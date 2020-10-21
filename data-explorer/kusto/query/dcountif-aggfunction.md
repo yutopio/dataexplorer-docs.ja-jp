@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの dco
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ac07b51135c202f611ba28931eebf79ef5e996f1
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: c14c4d9e0512d4bb054bb3df39acb4828be5a5bd
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348396"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247542"
 ---
 # <a name="dcountif-aggregation-function"></a>dcountif () (集計関数)
 
@@ -33,10 +33,10 @@ ms.locfileid: "87348396"
 * *Predicate*: 行をフィルター処理するために使用される式。
 * *Accuracy*を指定した場合は、速度と精度のバランスが制御されます。
     * `0` = 精度は最も低くなりますが、計算速度は最高になります。 1.6% エラー
-    * `1`= 既定値。精度と計算時間のバランスを取るために使用します。約0.8% のエラー。
-    * `2`= 正確で低速な計算。約0.4% のエラー。
-    * `3`= 追加の正確で低速な計算。約0.28% のエラー。
-    * `4`= 非常に正確で低速な計算。約0.2% のエラー。
+    * `1` = 既定値。精度と計算時間のバランスを取るために使用します。約0.8% のエラー。
+    * `2` = 正確で低速な計算。約0.4% のエラー。
+    * `3` = 追加の正確で低速な計算。約0.28% のエラー。
+    * `4` = 非常に正確で低速な計算。約0.2% のエラー。
     
 ## <a name="returns"></a>戻り値
 
@@ -50,4 +50,4 @@ PageViewLog | summarize countries=dcountif(country, country startswith "United")
 
 **ヒント: オフセットエラー**
 
-`dcountif()`すべての行が成功した場合、または行がパスしていない場合、 `Predicate` 式
+`dcountif()` すべての行が成功した場合、または行がパスしていない場合、 `Predicate` 式

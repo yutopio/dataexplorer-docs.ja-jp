@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの ext
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e52f90b911331bca6374318869d3f8ebf262d81f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 85c118e8cd68c52278a34080eda4936151600cd5
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348073"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247526"
 ---
 # <a name="extract_all"></a>extract_all()
 
-テキスト文字列から[正規表現](./re2.md)のすべての一致を取得します。
+テキスト文字列から [正規表現](./re2.md) のすべての一致を取得します。
 必要に応じて、一致するグループのサブセットを取得します。
 
 ```kusto
@@ -33,13 +33,13 @@ print extract_all(@"(\d+)", "a set of numbers: 123, 567 and 789") // results wit
 |引数        |説明                                  |必須またはオプション  |
 |----------------|---------------------------------------------|----------------------|
 |regex           | [正規表現](./re2.md)。 式には、少なくとも1つのキャプチャグループと16以下のキャプチャグループが必要です。                                                         |必須              |
-|captureGroups   |抽出するキャプチャグループを示す動的配列定数。 有効な値は、1から正規表現内のキャプチャグループの数までです。 名前付きキャプチャグループも使用できます ([例](#examples)を参照)。|省略可能         |
-|text            |`string`検索する。                         |必須              |
+|captureGroups   |抽出するキャプチャグループを示す動的配列定数。 有効な値は、1から正規表現内のキャプチャグループの数までです。 名前付きキャプチャグループも使用できます ( [例](#examples)を参照)。|省略可能         |
+|テキスト            |`string`検索する。                         |必須              |
 
 ## <a name="returns"></a>戻り値
 
 * *Regex*が*text*内で一致するものを検出すると、は、指定されたキャプチャグループの*captureGroups*、または*regex*内のすべてのキャプチャグループに対するすべての一致を含む動的配列を返します。
-* Number of *captureGroups*が1の場合: 返される配列には、一致する値の1つの次元があります。
+* Number of *captureGroups* が1の場合: 返される配列には、一致する値の1つの次元があります。
 * Number of *captureGroups*が1より大きい場合: 返される配列は、 *captureGroups*選択ごとの複数値の一致の2次元コレクション、または*captureGroups*が省略されている場合は*regex*に存在するすべてのキャプチャグループです。
 * 一致するものがない場合は `null` 。
 

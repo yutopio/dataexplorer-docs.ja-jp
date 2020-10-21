@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの str
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2d28eae6852faedf2c6071164d8f80f9c3567602
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 4256218669685ec12a939156021803105e5ddfc6
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350895"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248411"
 ---
 # <a name="strlen"></a>strlen()
 
@@ -31,7 +31,7 @@ ms.locfileid: "87350895"
 
 入力文字列の長さを文字数で返します。
 
-**メモ**
+**ノート**
 
 文字列内の各 Unicode 文字は、サロゲートを含むと同じです `1` 。
 (たとえば、UTF-8 エンコードでは、複数の値が必要であるという事実にかかわらず、中国語の文字は1回カウントされます)。

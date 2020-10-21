@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの sta
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 24763297585a7f043847e3037103a61650f65bd1
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: d5f53dfca4183c4dae623b41abf4c5bce6a3e828
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87343483"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241193"
 ---
 # <a name="startofweek"></a>startofweek()
 
@@ -32,7 +32,7 @@ ms.locfileid: "87343483"
 
 ## <a name="returns"></a>戻り値
 
-指定された場合、オフセットを使用して、指定された*日付*値の週の開始を表す datetime。
+指定された場合、オフセットを使用して、指定された *日付* 値の週の開始を表す datetime。
 
 ## <a name="example"></a>例
 

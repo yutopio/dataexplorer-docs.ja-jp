@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: d1bea6260ca86e6ca47be843a6acc4fb43a037b3
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: afaff2c00ca9136e113639deed886d039d21fda9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347172"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241527"
 ---
 # <a name="isnull"></a>isnull()
 
@@ -31,9 +31,9 @@ isnull(parse_json("")) == true
 
 値が null かどうかによって、True または false になります。
 
-**メモ**
+**ノート**
 
-* `string`値を null にすることはできません。 [Isempty](./isemptyfunction.md)を使用して、型の値が空であるかどうかを確認し `string` ます。
+* `string` 値を null にすることはできません。 [Isempty](./isemptyfunction.md)を使用して、型の値が空であるかどうかを確認し `string` ます。
 
 |x                |`isnull(x)`|
 |-----------------|-----------|

@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/10/2020
-ms.openlocfilehash: 69e09ec9528e99e250986657bf5d7cc0756b14f8
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5eb6bb2d11b35a7844a0366fc10797db621f6120
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351252"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241961"
 ---
 # <a name="series_stats"></a>series_stats()
 
-`series_stats()`複数の列に含まれる系列の統計を返します。  
+`series_stats()` 複数の列に含まれる系列の統計を返します。  
 
 関数は、 `series_stats()` 入力として動的な数値配列を含む列を受け取り、次の列を計算します。
 * `min`: 入力配列の最小値

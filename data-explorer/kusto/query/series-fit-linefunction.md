@@ -4,23 +4,23 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 0158753d3d2496e425247202d906633837aa023a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9731e3384fb0109c37ad6c0ca262a954ef5dd470
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351490"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248454"
 ---
 # <a name="series_fit_line"></a>series_fit_line()
 
 系列に線形回帰を適用し、複数の列を返します。  
 
-動的な数値配列を含む式を入力として受け取り、[線形回帰](https://en.wikipedia.org/wiki/Line_fitting)を実行して最適な行を見つけます。 この関数は、make-series 演算子の出力に適合させるために、時系列配列で使用する必要があります。 関数は、次の列を生成します。
-* `rsquare`: [r-2 乗](https://en.wikipedia.org/wiki/Coefficient_of_determination)は、適合品質の標準メジャーです。 値は [0-1] の範囲の数値です。 1-は最適な適合で、0はデータが順序付けられておらず、どの線にも適合しないことを意味します。 
+動的な数値配列を含む式を入力として受け取り、 [線形回帰](https://en.wikipedia.org/wiki/Line_fitting) を実行して最適な行を見つけます。 この関数は、make-series 演算子の出力に適合させるために、時系列配列で使用する必要があります。 関数は、次の列を生成します。
+* `rsquare`: [r-2 乗](https://en.wikipedia.org/wiki/Coefficient_of_determination) は、適合品質の標準メジャーです。 値は [0-1] の範囲の数値です。 1-は最適な適合で、0はデータが順序付けられておらず、どの線にも適合しないことを意味します。 
 * `slope`: 近似直線の傾き (y = ax + b の "a")。
 * `variance`: 入力データの分散。
 * `rvariance`: 入力データ値と近似された値との間の差異である残余の差異。
@@ -36,7 +36,7 @@ ms.locfileid: "87351490"
 * *x*: 数値の動的配列。
 
 > [!TIP]
-> この関数を使用する最も便利な方法は、[系列の作成](make-seriesoperator.md)演算子の結果に適用することです。
+> この関数を使用する最も便利な方法は、 [系列の作成](make-seriesoperator.md) 演算子の結果に適用することです。
 
 ## <a name="examples"></a>例
 

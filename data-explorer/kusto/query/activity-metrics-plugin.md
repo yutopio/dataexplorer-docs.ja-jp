@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの act
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2ab8a9b8a687b695859c52e75ab4e9f88aac408b
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.openlocfilehash: 041f5c3517eae5090fa2d68ea10acce7c9286bb5
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793698"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248324"
 ---
 # <a name="activity_metrics-plugin"></a>activity_metrics プラグイン
 
@@ -184,4 +184,4 @@ range _day from _start to _end  step 1d
 |2017-05-22 00:00: 00.0000000|1740|1017|
 |2017-05-29 00:00: 00.0000000|960|756|
 
-:::image type="content" source="images/activity-metrics-plugin/activity-metrics-dcount-and-dcount-newvalues.png" border="false" alt-text="アクティビティメトリックの dcount と dcount の新しい値":::
+:::image type="content" source="images/activity-metrics-plugin/activity-metrics-dcount-and-dcount-newvalues.png" border="false" alt-text="アクティビティメトリックの変化とリテンション期間":::

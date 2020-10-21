@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの ord
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 510e2de8a30a422955c0cbfcbdf3a0f50e46dbc5
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3f552143be8c02cece19030fc7b6f79d5a4bdf4a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346560"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241382"
 ---
 # <a name="order-operator"></a>order 演算子 
 
@@ -33,7 +33,7 @@ T | order by country asc, price desc
 ## <a name="arguments"></a>引数
 
 * *T*: 並べ替えの対象となるテーブル入力。
-* *列*: 並べ替えに使用する*T*の列。 値の型は、数値、日付、時刻、または文字列にする必要があります。
+* *列*: 並べ替えに使用する *T* の列。 値の型は、数値、日付、時刻、または文字列にする必要があります。
 * `asc` : 昇順で (小さい値から大きい値へ) 並べ替えます。 既定値は `desc`で、降順 (大きい値から小さい値へ) です。
-* `nulls first`(order の既定値 `asc` ) は、先頭に null 値を挿入し `nulls last` ます。(order の既定値 `desc` ) は、null 値を末尾に配置します。
+* `nulls first` (order の既定値 `asc` ) は、先頭に null 値を挿入し `nulls last` ます。(order の既定値 `desc` ) は、null 値を末尾に配置します。
 

@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/14/2020
-ms.openlocfilehash: 4eaa7e8cc6f3c0f321abb9744bfe1608521e7b0e
-ms.sourcegitcommit: 8e097319ea989661e1958efaa1586459d2b69292
+ms.openlocfilehash: c8fa3a000de67559c83745c598da40797e31f9b9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/15/2020
-ms.locfileid: "84784533"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248337"
 ---
 # <a name="execute-database-script"></a>.execute database script
 
@@ -29,13 +29,13 @@ ms.locfileid: "84784533"
 ### <a name="parameters"></a>パラメーター
 
 * *Control コマンド-script*: 1 つ以上のコントロールコマンドを含むテキスト。
-* *データベーススコープ*: スクリプトは、要求コンテキストの一部として指定された*データベーススコープ*に適用されます。
+* *データベーススコープ*: スクリプトは、要求コンテキストの一部として指定された *データベーススコープ* に適用されます。
 
 ### <a name="optional-properties"></a>省略可能なプロパティ
 
 | プロパティ            | Type            | 説明                          |
 |---------------------|-----------------|---------------------------------------------------------------------------------------------------|
-| `ContinueOnErrors`            | `bool`        | に設定する `false` と、スクリプトは最初のエラーで停止します。 に設定する `true` と、スクリプトの実行は続行されます。 既定値: `false`。 |
+| `ContinueOnErrors`            | `bool`        | に設定する `false` と、スクリプトは最初のエラーで停止します。 に設定する `true` と、スクリプトの実行は続行されます。 既定値:`false`。 |
 
 ## <a name="output"></a>出力
 
@@ -43,7 +43,7 @@ ms.locfileid: "84784533"
 
 |出力パラメーター |Type |説明
 |---|---|--- 
-|OperationId  |GUID |コマンドの識別子。
+|OperationId  |Guid |コマンドの識別子。
 |CommandType  |String |コマンドの種類。
 |CommandText  |String |特定のコマンドのテキスト。
 |結果|String|特定のコマンドの実行結果。
@@ -60,13 +60,13 @@ ms.locfileid: "84784533"
 
 ```kusto
 .execute database script <|
-
+//
 // Create tables
 .create-merge table T(a:string, b:string)
-
+//
 // Apply policies
 .alter-merge table T policy retention softdelete = 10d 
-
+//
 // Create functions
 .create-or-alter function
   with (skipvalidation = "true") 

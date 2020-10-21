@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの par
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2b082e516a1118638bc8e61b545471326dd400e5
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 8587995a6836a1f8a180eada19d450277709a6e7
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346237"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248596"
 ---
 # <a name="partition-operator"></a>partition 演算子
 
@@ -35,9 +35,9 @@ T | partition by Col1 { U | where Col2=toscalar(Col1) }
 
 * *T*: 演算子によって処理されるデータを含む表形式のソース。
 
-* *列*: 入力テーブルのパーティション分割方法を決定する値を持つ、 *T*内の列の名前。 以下の**メモ**を参照してください。
+* *列*: 入力テーブルのパーティション分割方法を決定する値を持つ、 *T* 内の列の名前。 以下の **メモ** を参照してください。
 
-* *ContextualSubquery*: テーブル式。 source は、 `partition` 1 つの*キー*値を対象とした、演算子のソースです。
+* *ContextualSubquery*: テーブル式。 source は、 `partition` 1 つの *キー* 値を対象とした、演算子のソースです。
 
 * *サブクエリ*: ソースのない表形式の式です。 *キー*値は、call を使用して取得でき `toscalar()` ます。
 
@@ -46,20 +46,20 @@ T | partition by Col1 { U | where Col2=toscalar(Col1) }
   |名前               |値         |説明|
   |-------------------|---------------|-----------|
   |`hint.materialized`|`true`,`false` |に設定する `true` と、演算子のソースが具体化されます `partition` (既定値: `false` )。|
-  |`hint.concurrency`|*Number*|システムに対して、演算子の同時実行サブクエリの数を並列で実行するかどうかを `partition` 指定します。 *既定値*: クラスターの単一ノードの CPU コアの量 (2 ~ 16)。|
-  |`hint.spread`|*Number*|同時実行のサブクエリによって使用されるノードの数をシステムにヒントし `partition` ます。 *既定値*は1です。|
+  |`hint.concurrency`|*数値*|システムに対して、演算子の同時実行サブクエリの数を並列で実行するかどうかを `partition` 指定します。 *既定値*: クラスターの単一ノードの CPU コアの量 (2 ~ 16)。|
+  |`hint.spread`|*数値*|同時実行のサブクエリによって使用されるノードの数をシステムにヒントし `partition` ます。 *既定値*は1です。|
 
 ## <a name="returns"></a>戻り値
 
 演算子は、サブクエリを入力データの各パーティションに適用した結果の和集合を返します。
 
-**メモ**
+**ノート**
 
 * 現在、パーティション演算子は、パーティションの数によって制限されています。
   最大64の個別のパーティションを作成できます。
   パーティション列 (*列*) に64個を超える個別の値が含まれている場合、演算子はエラーを生成します。
 
-* サブクエリは入力パーティションを暗黙的に参照します (サブクエリのパーティションに "name" はありません)。 サブクエリ内で入力パーティションを複数回参照するには、次のように[as 演算子](asoperator.md)を使用します (以下の**例: パーティション参照**)。
+* サブクエリは入力パーティションを暗黙的に参照します (サブクエリのパーティションに "name" はありません)。 サブクエリ内で入力パーティションを複数回参照するには、次のように [as 演算子](asoperator.md)を使用します (以下の **例: パーティション参照** )。
 
 **例: 上位の入れ子になったケース**
 
@@ -76,7 +76,7 @@ StormEvents
 ) 
 
 ```
-|EventType|State|events|怪我|
+|EventType|State|イベント|怪我|
 |---|---|---|---|
 |ひょう|ワイオミング州|108|0|
 |高風|ワイオミング州|81|5|
@@ -139,7 +139,7 @@ range p from 0 to N-1 step 1  //
 
 **例: パーティション参照**
 
-次の例では、 [as 演算子](asoperator.md)を使用して各データパーティションに "name" を指定し、サブクエリ内でその名前を再利用する方法を示しています。
+次の例では、 [as 演算子](asoperator.md) を使用して各データパーティションに "name" を指定し、サブクエリ内でその名前を再利用する方法を示しています。
 
 ```kusto
 T

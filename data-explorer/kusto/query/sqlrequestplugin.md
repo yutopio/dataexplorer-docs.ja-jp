@@ -4,18 +4,18 @@ description: この記事では、Azure データエクスプローラーの sql
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: e4752828b3e4b145026f7ee47a1ade3f8685262e
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 1a6349547d5cf1eb3af5a21f6e8c504573f15e52
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803473"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241766"
 ---
 # <a name="sql_request-plugin"></a>sql_request プラグイン
 
@@ -33,11 +33,11 @@ ms.locfileid: "87803473"
 
 * *Sqlquery*: `string` SQL エンドポイントに対して実行されるクエリを示すリテラル。 1つ以上の行セットを返す必要がありますが、Kusto クエリの残りの部分では最初の行セットのみを使用できます。
 
-* *Sqlparameters*: `dynamic` クエリと共にパラメーターとして渡すキーと値のペアを保持する型の定数値。 任意。
+* *Sqlparameters*: `dynamic` クエリと共にパラメーターとして渡すキーと値のペアを保持する型の定数値。 省略可能。
   
-* *Options*: `dynamic` キーと値のペアとしてより高度な設定を保持する型の定数値。 現時点では、 `token` 認証のために SQL エンドポイントに転送される呼び出し元提供の Azure AD アクセストークンを渡すためにのみ、設定できます。 任意。
+* *Options*: `dynamic` キーと値のペアとしてより高度な設定を保持する型の定数値。 現時点では、 `token` 認証のために SQL エンドポイントに転送される呼び出し元提供の Azure AD アクセストークンを渡すためにのみ、設定できます。 省略可能。
 
-## <a name="examples"></a>使用例
+## <a name="examples"></a>例
 
 次の例では、Azure SQL DB データベースに SQL クエリを送信します。 からすべてのレコードを取得 `[dbo].[Table]` し、Kusto 側の結果を処理します。 認証では、呼び出し元のユーザーの Azure AD トークンを再利用します。 
 
@@ -105,14 +105,14 @@ Sql_request プラグインは、SQL Server エンドポイントに対する3�
      
 > [!WARNING]
 > 機密情報や保護が必要な情報を含む接続文字列とクエリは、すべての Kusto トレースから除外するように難読化する必要があります。
-> 詳細については、「[難読化文字列リテラル](scalar-data-types/string.md#obfuscated-string-literals)」を参照してください。
+> 詳細については、「 [難読化文字列リテラル](scalar-data-types/string.md#obfuscated-string-literals)」を参照してください。
 
 ## <a name="encryption-and-server-validation"></a>暗号化とサーバー検証
 
 セキュリティ上の理由により、SQL Server ネットワークエンドポイントに接続するときは、次の接続プロパティが強制されます。
 
-* `Encrypt`は無条件に設定され `true` ます。
-* `TrustServerCertificate`は無条件に設定され `false` ます。
+* `Encrypt` は無条件に設定され `true` ます。
+* `TrustServerCertificate` は無条件に設定され `false` ます。
 
 そのため、SQL Server は、有効な SSL/TLS サーバー証明書を使用して構成する必要があります。
 
@@ -123,10 +123,10 @@ Sql_request プラグインは、SQL Server エンドポイントに対する3�
 
 `Server``=` `tcp:` *FQDN* [ `,` *ポート*]
 
-この場合、
+各値の説明:
 
-* *FQDN*は、エンドポイントの完全修飾ドメイン名です。
-* *Port*は、エンドポイントの TCP ポートです。 既定で `1433` は、が想定されます。
+* *FQDN* は、エンドポイントの完全修飾ドメイン名です。
+* *Port* は、エンドポイントの TCP ポートです。 既定で `1433` は、が想定されます。
 
 > [!NOTE]
 > ネットワークエンドポイントを指定するその他の形式はサポートされていません。

@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの dat
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 2e116661610e343c90276a43421d263bf74cd1b5
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 50ed62b60436fc13d679b5e729a84bcdcefa7275
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348532"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92247712"
 ---
 # <a name="datetime_diff"></a>datetime_diff()
 
-2つの[datetime](./scalar-data-types/datetime.md)値の calendarian の差を計算します。
+2つの [datetime](./scalar-data-types/datetime.md) 値の calendarian の差を計算します。
 
 ## <a name="syntax"></a>構文
 
@@ -26,15 +26,15 @@ ms.locfileid: "87348532"
 ## <a name="arguments"></a>引数
 
 * `period`: `string`. 
-* `datetime_1`: [datetime](./scalar-data-types/datetime.md)値。
-* `datetime_2`: [datetime](./scalar-data-types/datetime.md)値。
+* `datetime_1`: [datetime](./scalar-data-types/datetime.md) 値。
+* `datetime_2`: [datetime](./scalar-data-types/datetime.md) 値。
 
-有効*期間*の値: 
+有効 *期間*の値: 
 - Year
 - Quarter
 - Month
-- Week
-- 日
+- 週
+- 日間
 - Hour
 - 分
 - Second
@@ -63,7 +63,7 @@ microsecond = datetime_diff('microsecond',datetime(2017-10-30 23:00:00.1009001),
 nanosecond = datetime_diff('nanosecond',datetime(2017-10-30 23:00:00.0000000),datetime(2017-10-30 23:00:00.0000007))
 ```
 
-|year|quarter|month|week|day|hour|minute|second|ミリ秒|マイクロ秒|ナノ秒|
+|年|quarter|month|week|day|hour|minute|second|ミリ秒|マイクロ秒|ナノ秒|
 |---|---|---|---|---|---|---|---|---|---|---|
 |17|2|13|5|29|2|5|10|100|100|-700|
 

@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーのす�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 73c3a660dc7a34f1f9fef840b13f47c13b4d1b2f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: c4d718cfb46e3a404c943d579feaf4733499ab3e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349739"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248216"
 ---
 # <a name="any-aggregation-function"></a>any () (集計関数)
 
-は、[集計演算子](summarizeoperator.md)のグループごとに1つのレコードを任意に選択し、そのようなレコードに対して1つ以上の式の値を返します。
+は、 [集計演算子](summarizeoperator.md)のグループごとに1つのレコードを任意に選択し、そのようなレコードに対して1つ以上の式の値を返します。
 
 ## <a name="syntax"></a>構文
 
@@ -58,7 +58,7 @@ Continents | summarize any(Continent)
 Continents | summarize any(*)
 ```
 
-:::image type="content" source="images/aggfunction/any2.png" alt-text="任意2":::
+:::image type="content" source="images/aggfunction/any2.png" alt-text="任意1":::
 
 各ランダム大陸のすべての詳細を表示します。
 
@@ -66,4 +66,4 @@ Continents | summarize any(*)
 Continents | summarize any(*) by Continent
 ```
 
-:::image type="content" source="images/aggfunction/any3.png" alt-text="任意3":::
+:::image type="content" source="images/aggfunction/any3.png" alt-text="任意1":::

@@ -1,35 +1,35 @@
 ---
-title: 論理 (バイナリ) 演算子 - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの論理 (バイナリ) 演算子について説明します。
+title: 論理 (二項) 演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの論理 (二項) 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/14/2018
-ms.openlocfilehash: 53505067b93234aa89849e1c66fe2f77a58e0f26
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 6d1fcf7b9786951fedbdbf45d9e2c20a765452dd
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513092"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248512"
 ---
 # <a name="logical-binary-operators"></a>論理 (二項) 演算子
 
-次の論理演算子は、型の 2`bool`つの値の間でサポートされています。
+次の論理演算子は、型の2つの値の間でサポートされてい `bool` ます。
 
 > [!NOTE]
-> これらの論理演算子は、ブール演算子と呼ばれる場合があり、バイナリ演算子と呼ばれることもあります。 名前はすべて同義語です。
+> これらの論理演算子は、ブール演算子と呼ばれることもありますが、場合によっては二項演算子とも呼ばれます。 名前はすべてのシノニムです。
 
-|オペレーター名|構文|意味|
+|オペレーター名|構文|説明|
 |-------------|------|-------|
-|等価比較     |`==`  |両方`true`のオペランドが NULL 以外で、互いに等しい場合に生成されます。 それ以外の場合は `false`。|
-|非等値   |`!=`  |オペランド`true`の一方 (またはその両方) が NULL であるか、または互いに等しくない場合に生成されます。 それ以外の場合は `true`。|
-|論理的および  |`and` |両方`true`のオペランドが の`true`場合は、結果が得られます。|
-|論理または   |`or`  |一`true`方のオペランドが`true`が 、もう一方のオペランドに関係なく が場合に生成されます。|
+|等式     |`==`  |`true`両方のオペランドが null 以外で互いに等しい場合に、を生成します。 それ以外の場合は `false`。|
+|不等式   |`!=`  |`true`オペランドの一方 (または両方) が null であるか、または互いに等しくない場合に、を生成します。 それ以外の場合は `true`。|
+|論理 AND  |`and` |`true`両方のオペランドがの場合にを生成 `true` します。|
+|論理 OR   |`or`  |`true`オペランドの1つが `true` 、もう一方のオペランドに関係なく、の場合はを生成します。|
 
 > [!NOTE]
-> ブール値の`bool(null)`null 値の動作により、2 つのブール値は等しくも等しくない (つまり、`bool(null) == bool(null)`両方`bool(null) != bool(null)`とも値`false`を返す) ではありません。
+> ブール値の null 値の動作により `bool(null)` 、2つのブール値の null 値は等しくも等しくもありません (つまり、 `bool(null) == bool(null)` との両方が値を `bool(null) != bool(null)` 生成し `false` ます)。
 >
-> 一方、null`and`/`or``false`値は と`bool(null) or true``true``bool(null) and true`同等として扱います。 `false`
+> 一方、 `and` / `or` null 値をと等価として扱い `false` `bool(null) or true` ます。したがって `true` 、はで `bool(null) and true` あり、はです `false` 。

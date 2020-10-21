@@ -4,27 +4,27 @@ description: この記事では、Azure データエクスプローラーの dif
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0be0dc12f48723bc83376a36db04f764991f7f0d
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: f269bb12c4e4f73f7a7e6c4e9818d47dfc8002ef
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803099"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249478"
 ---
 # <a name="diff-patterns-plugin"></a>diff パターンプラグイン
 
 同じ構造体の2つのデータセットを比較し、2つのデータセットの違いを特徴付ける個別の属性 (ディメンション) のパターンを検出します。
- `Diffpatterns`は、エラーの分析を支援するために開発されています (たとえば、特定の期間内のエラーとエラーを比較することによって) が、同じ構造の2つのデータセット間で違いを検出する可能性があります。 
+ `Diffpatterns` は、エラーの分析を支援するために開発されています (たとえば、特定の期間内のエラーとエラーを比較することによって) が、同じ構造の2つのデータセット間で違いを検出する可能性があります。 
 
 ```kusto
 T | evaluate diffpatterns(splitColumn)
 ```
 > [!NOTE]
-> `diffpatterns`は、大きなパターン (セット間でデータの差分の部分をキャプチャする) を検索することを目的としており、行単位の違いを示すものではありません。
+> `diffpatterns` は、大きなパターン (セット間でデータの差分の部分をキャプチャする) を検索することを目的としており、行単位の違いを示すものではありません。
 
 ## <a name="syntax"></a>構文
 
@@ -81,7 +81,7 @@ T | evaluate diffpatterns(splitColumn)
 
 ## <a name="returns"></a>戻り値
 
-`Diffpatterns`2つのセット内のデータのさまざまな部分を取得するパターンの小さなセットを返します (つまり、1つ目のデータセット内の行の大部分をキャプチャし、2番目のセットの行の割合を低くします)。 各パターンは、結果内の行によって表されます。
+`Diffpatterns` 2つのセット内のデータのさまざまな部分を取得するパターンの小さなセットを返します (つまり、1つ目のデータセット内の行の大部分をキャプチャし、2番目のセットの行の割合を低くします)。 各パターンは、結果内の行によって表されます。
 
 の結果は、 `diffpatterns` 次の列を返します。
 
@@ -104,7 +104,7 @@ T | evaluate diffpatterns(splitColumn)
 * 注: 多くの場合、パターンは区別されません。 これらは重複している可能性があり、通常は元のすべての行に対応していません。 一部の行は、どのパターンにも当てはまらない場合があります。
 
 > [!TIP]
-> * 入力パイプで[where](./whereoperator.md)および[project](./projectoperator.md)を使用して、関心のあるものだけにデータを減らします。
+> * 入力パイプで [where](./whereoperator.md) および [project](./projectoperator.md) を使用して、関心のあるものだけにデータを減らします。
 > * 関心がある行が見つかったら、 `where` フィルターに特定の値を追加して、より詳しく調べることができます。
 
 ## <a name="example"></a>例
@@ -118,7 +118,7 @@ StormEvents
 | evaluate diffpatterns(Damage, "0", "1" )
 ```
 
-|セグメント ID|CountA|CountB|PercentA|PercentB|PercentDiffAB|State|EventType|ソース|DamageCrops|
+|セグメント ID|CountA|CountB|PercentA|PercentB|PercentDiffAB|State|EventType|source|DamageCrops|
 |---|---|---|---|---|---|---|---|---|---|
 |0|2278|93|49.8|7.1|42.7||ひょう||0|
 |1|779|512|17.03|39.08|22.05||雷雨風|||

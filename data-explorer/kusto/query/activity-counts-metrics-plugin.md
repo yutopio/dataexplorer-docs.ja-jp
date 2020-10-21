@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの act
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: df7b994350297d911a0f3be59c791b6538899d67
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f44af0b7c1623bfd8393ddeefee57f7f8ca27d2b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349790"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241730"
 ---
 # <a name="activity_counts_metrics-plugin"></a>activity_counts_metrics プラグイン
 
-は、時間枠を比較したり、過去の*すべて*の時間枠に集計したりするときに便利なアクティビティメトリックを計算します。 メトリックには、合計数の値、個別のカウント値、個別の新しい値の数、集計された個別のカウントがあります。 このプラグインを[activity_metrics プラグイン](activity-metrics-plugin.md)と比較します。このプラグインでは、すべての時間枠が前の時間枠と比較されます。
+は、時間枠を比較したり、過去の *すべて* の時間枠に集計したりするときに便利なアクティビティメトリックを計算します。 メトリックには、合計数の値、個別のカウント値、個別の新しい値の数、集計された個別のカウントがあります。 このプラグインを [activity_metrics プラグイン](activity-metrics-plugin.md)と比較します。このプラグインでは、すべての時間枠が前の時間枠と比較されます。
 
 ```kusto
 T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
@@ -45,14 +45,14 @@ T | evaluate activity_counts_metrics(id, datetime_column, startofday(ago(30d)), 
 
 |`TimelineColumn`|`dim1`|...|`dim_n`|`count`|`dcount`|`new_dcount`|`aggregated_dcount`
 |---|---|---|---|---|---|---|---|---|
-|型: 次の as*`TimelineColumn`*|..|..|..|long|long|long|long|long
+|型: 次の as *`TimelineColumn`*|..|..|..|long|long|long|long|long
 
 
 * *`TimelineColumn`*: 時間枠の開始時刻。
 * *`count`*: 時間枠と*dim*の合計レコード数
 * *`dcount`*: 時間枠と*dim*の個別の ID 値の数
-* *`new_dcount`*: 時間枠内の個別の ID 値と、以前のすべての時間*枠との*差異。 
-* *`aggregated_dcount`*: 最初の時間枠から現在までの*dim*の個別の ID 値の合計 (を含む)。
+* *`new_dcount`*: 時間枠内の個別の ID 値と、以前のすべての時間 *枠との* 差異。 
+* *`aggregated_dcount`*: 最初の時間枠から現在までの *dim* の個別の ID 値の合計 (を含む)。
 
 ## <a name="examples"></a>例
 

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f9dc6e49e9e3d04aadb5aecf8507b7132d8a366a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a942015908c9608a76d3c49c411de9d17d6e70f5
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346322"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248610"
 ---
 # <a name="parse-operator"></a>parse 演算子
 
@@ -62,7 +62,7 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
 
 * 解析パターンは、*文字列定数*だけでなく、 *ColumnName*で始めることができます。
 
-* 解析された*式*が型でない場合は `string` 、型に変換され `string` ます。
+* 解析された *式* が型でない場合は `string` 、型に変換され `string` ます。
 
 * Regex モードが使用されている場合、regex フラグを追加して、解析で使用される regex 全体を制御するオプションがあります。
 
@@ -75,11 +75,11 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
 
     Parse ステートメントでは、解析によって内部的に生成される regex は `.*?<regex1>(.*?)<regex2>(\-\d+)` です。
         
-    * `*`はに変換されました `.*?` 。
+    * `*` はに変換されました `.*?` 。
         
-    * `string`はに変換されました `.*?` 。
+    * `string` はに変換されました `.*?` 。
         
-    * `long`はに変換されました `\-\d+` 。
+    * `long` はに変換されました `\-\d+` 。
 
 ## <a name="examples"></a>例
 
@@ -164,7 +164,7 @@ Traces
 |PipelineScheduler、totalSlices = 27、sliceNumber = 16、lockTime = 02/17/2016 08:41:00、releaseTime = 02/17/2016 08:41:00|
 
 既定のモードは最長一致であるため、期待される結果が得られません。
-いくつかのレコードがあり、その場所が小文字で、場合によっ*ては大文字*として表示されることがありますが、一部の値に対して null が返されることがあります。
+いくつかのレコードがあり、その場所が小文字で、場合によっ *ては大文字*  として表示されることがありますが、一部の値に対して null が返されることがあります。
 
 必要な結果を得るには、最短一致のを使用してクエリを実行 `U` し、大文字と小文字を区別する regex フラグを無効にし `i` ます。
 
@@ -218,11 +218,11 @@ Traces
 
 **緩やかモード**
 
-この緩やかモードの例では、 *Totalslices*拡張列を型にする必要があり `long` ます。 ただし、解析された文字列では、値が " *Nonvalidlongvalue*" になっています。
+この緩やかモードの例では、 *Totalslices* 拡張列を型にする必要があり `long` ます。 ただし、解析された文字列では、値が " *Nonvalidlongvalue*" になっています。
 *Releasetime*拡張列では、値*nonvaliddatetime*を*datetime*として解析できません。
 この2つの拡張列では、値が null になりますが、 *sliceNumber*などの他の列は正しい値を取得します。
 
-以下の同じクエリに対して option *kind = simple*を使用すると、すべての拡張列に対して null が返されます。 このオプションは拡張列に対して厳密であり、緩やかモードと単純モードの違いがあります。
+以下の同じクエリに対して option *kind = simple* を使用すると、すべての拡張列に対して null が返されます。 このオプションは拡張列に対して厳密であり、緩やかモードと単純モードの違いがあります。
 
  > [!NOTE] 
  > 緩やかモードでは、拡張列を部分的に一致させることができます。

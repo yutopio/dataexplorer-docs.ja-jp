@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーの arr
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2019
-ms.openlocfilehash: 267e2b4d5769efee87dd90b9a3265310998fcbd9
-ms.sourcegitcommit: 2764e739b4ad51398f4f0d3a9742d7168c4f5fd7
+ms.openlocfilehash: c74dd0aacd4360e601ec58c6a767debadcbc2d05
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/05/2020
-ms.locfileid: "91712104"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249409"
 ---
 # <a name="array_rotate_right"></a>array_rotate_right()
 
 配列内の値 `dynamic` を右に回転します。
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
 `array_rotate_right(`*arr*、 *rotate_count*`)`
 
@@ -32,7 +32,7 @@ ms.locfileid: "91712104"
 
 元の配列と同じ量の要素を格納している動的配列。各要素は *rotate_count*に従って回転されています。
 
-## <a name="see-also"></a>こちらもご覧ください
+## <a name="see-also"></a>関連項目
 
 * 配列を左に回転させる方法については、「 [array_rotate_left ()](array_rotate_leftfunction.md)」を参照してください。
 * 配列を左にシフトする方法については、「 [array_shift_left ()](array_shift_leftfunction.md)」を参照してください。

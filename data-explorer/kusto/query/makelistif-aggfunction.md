@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの mak
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9090e752f018c4abcce759c37a8ecb3571e2fbd6
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 362fd1b64ba156115515efa3db3214b0f86c5ad7
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91102907"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92241381"
 ---
 # <a name="make_list_if-aggregation-function"></a>make_list_if () (集計関数)
 

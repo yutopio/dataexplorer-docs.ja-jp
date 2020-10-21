@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの par
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: eddf893d3c0d8096f57a3f624ddedf753fe35f91
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 1b0f1a0279dcb35e4e196b0f2170f4a64d58eca9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346356"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246110"
 ---
 # <a name="parse_csv"></a>parse_csv()
 
@@ -35,7 +35,7 @@ parse_csv("aaa,bbb,ccc") == ["aaa","bbb","ccc"]
 
 分割された値を格納している文字列配列。
 
-**メモ**
+**ノート**
 
 埋め込み行フィード、コンマ、および引用符は、二重引用符 (' "') を使用してエスケープできます。 この関数では、行ごとに複数のレコードがサポートされません (最初のレコードのみが取得されます)。
 

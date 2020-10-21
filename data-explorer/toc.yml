@@ -46,7 +46,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: Security
+    - name: セキュリティ
       items:
         - name: セキュリティの概要
           href: security.md
@@ -1753,12 +1753,16 @@
       items:
         - name: 関数の一覧
           href: kusto/functions-library/functions-library.md
+        - name: kmeans_fl()
+          href: kusto/functions-library/kmeans-fl.md
         - name: predict_fl()
           href: kusto/functions-library/predict-fl.md
         - name: predict_onnx_fl()
           href: kusto/functions-library/predict-onnx-fl.md
         - name: quantize_fl()
           href: kusto/functions-library/quantize-fl.md
+        - name: series_dot_product_fl()
+          href: kusto/functions-library/series-dot-product-fl.md
         - name: series_fit_poly_fl()
           href: kusto/functions-library/series-fit-poly-fl.md
         - name: series_moving_avg_fl()

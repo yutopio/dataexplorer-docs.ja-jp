@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 5eda79977ee641d7ca7835d3d394cb943b4ebac4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3305d78dd903160491ac3cdabd274ce8ace8ba2f
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347053"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246415"
 ---
 # <a name="lookup-operator"></a>lookup 演算子
 
@@ -23,7 +23,7 @@ ms.locfileid: "87347053"
 FactTable | lookup kind=leftouter (DimensionTable) on CommonColumn, $left.Col1 == $right.Col2
 ```
 
-ここでは、() の各ペア (、) を元のテーブルから、2番目のテーブルの各ペア (,) `FactTable` `$left` に対し `DimensionTable` `$right` て参照を実行することによって (が参照) を使用して () を `CommonColumn` `Col` `CommonColumn1` 拡張する `Col2` テーブルが生成されます。 ファクトテーブルとディメンションテーブルの違いについては、「[ファクトテーブルとディメンションテーブル](../concepts/fact-and-dimension-tables.md)」を参照してください。 
+ここでは、() の各ペア (、) を元のテーブルから、2番目のテーブルの各ペア (,) `FactTable` `$left` に対し `DimensionTable` `$right` て参照を実行することによって (が参照) を使用して () を `CommonColumn` `Col` `CommonColumn1` 拡張する `Col2` テーブルが生成されます。 ファクトテーブルとディメンションテーブルの違いについては、「 [ファクトテーブルとディメンションテーブル](../concepts/fact-and-dimension-tables.md)」を参照してください。 
 
 `lookup`演算子は[join 演算子](joinoperator.md)と同様の操作を実行しますが、次のような違いがあります。
 
@@ -43,7 +43,7 @@ FactTable | lookup kind=leftouter (DimensionTable) on CommonColumn, $left.Col1 =
 
 * [*右テーブル*]: ファクトテーブルの新しい列を "設定" するために使用されるテーブルまたは表形式の式です。 として表さ `$right` れます。
 
-* *属性*:*左テーブル*から行を*右テーブル*の行と照合する方法を記述する1つ以上のルールのコンマ区切りの一覧です。 複数のルールは、論理演算子を使用して評価され `and` ます。
+* *属性*: *左テーブル* から行を *右テーブル*の行と照合する方法を記述する1つ以上のルールのコンマ区切りの一覧です。 複数のルールは、論理演算子を使用して評価され `and` ます。
   ルールには次のいずれかを指定できます。
 
   |ルールの種類        |構文                                          |Predicate                                                      |
@@ -52,9 +52,9 @@ FactTable | lookup kind=leftouter (DimensionTable) on CommonColumn, $left.Col1 =
   |値による等値|`$left.`*左の列* `==``$right.`*右の列*|`where``$left.`*左の列* `==` `$right.`* 右列        |
 
   > [!Note] 
-  > "値による等値" の場合、列名はと表記で示される適用可能な所有者テーブルで修飾*する必要があり* `$left` `$right` ます。
+  > "値による等値" の場合、列名はと表記で示される適用可能な所有者テーブルで修飾 *する必要があり* `$left` `$right` ます。
 
-* `kind`:*右テーブル*で一致しない行を*左テーブル*に処理する方法に関する省略可能な命令です。 既定で `leftouter` は、が使用されます。これは、これらのすべての行が、演算子によって追加された*右テーブル*の列の欠損値に使用される null 値で出力に表示されることを意味します。 `inner`が使用されている場合、このような行は出力から除外されます。 (他の種類の結合は、p 演算子ではサポートされていません `looku` )。
+* `kind`:*右テーブル*で一致しない行を*左テーブル*に処理する方法に関する省略可能な命令です。 既定で `leftouter` は、が使用されます。これは、これらのすべての行が、演算子によって追加された *右テーブル* の列の欠損値に使用される null 値で出力に表示されることを意味します。 `inner`が使用されている場合、このような行は出力から除外されます。 (他の種類の結合は、p 演算子ではサポートされていません `looku` )。
   
 ## <a name="returns"></a>戻り値
 
@@ -65,7 +65,7 @@ FactTable | lookup kind=leftouter (DimensionTable) on CommonColumn, $left.Col1 =
 * 入力テーブル間でのすべての一致に対応する行。 片方のテーブルから選択された、もう一方のテーブルに含まれる 1 つの行とすべての `on` フィールドの値が同じである行です。 
 * 属性 (参照キー) は、出力テーブルに1回だけ表示されます。
 
- * `kind`不明`kind=leftouter`
+ * `kind` 不明 `kind=leftouter`
 
      内部の一致のほかに、左側と右側のどちらか一方または両方のすべての行に対応する行が含まれます (一致するものがない場合も)。 その場合、一致しない出力セルには null が含まれます。
 

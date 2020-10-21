@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/31/2019
-ms.openlocfilehash: 3b65dff40e644852555465fe6ce07ed94c4920ea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: aa75e3cb2f2aefbc50c148486cb687841408e1d4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351320"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245968"
 ---
 # <a name="series_pearson_correlation"></a>series_pearson_correlation()
 
 2つの数値系列入力のピアソン相関係数を計算します。
 
-参照:[ピアソン相関係数](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)。
+参照: [ピアソン相関係数](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient)。
 
 ## <a name="syntax"></a>構文
 

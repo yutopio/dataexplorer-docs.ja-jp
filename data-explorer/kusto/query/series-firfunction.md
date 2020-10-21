@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2019
-ms.openlocfilehash: ef72ce93dd0cc6d4ab95c46365bfb0351d9d565a
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 8085455616fc97337ca115c1ef5b0c0e2422e08e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87343976"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246186"
 ---
 # <a name="series_fir"></a>series_fir()
 
 系列に有限インパルス応答 (FIR) フィルターを適用します。  
 
-関数は、入力として動的な数値配列を含む式を受け取り、[有限インパルス応答](https://en.wikipedia.org/wiki/Finite_impulse_response)フィルターを適用します。 係数を指定することによって、 `filter` 移動平均、スムージング、変更検出、その他多くのユースケースを計算するために使用できます。 関数は、動的配列とフィルターの係数の静的動的配列を含む列を入力として受け取り、列にフィルターを適用します。 フィルター処理された出力を含む、動的配列の新しい列が出力されます。  
+関数は、入力として動的な数値配列を含む式を受け取り、 [有限インパルス応答](https://en.wikipedia.org/wiki/Finite_impulse_response) フィルターを適用します。 係数を指定することによって、 `filter` 移動平均、スムージング、変更検出、その他多くのユースケースを計算するために使用できます。 関数は、動的配列とフィルターの係数の静的動的配列を含む列を入力として受け取り、列にフィルターを適用します。 フィルター処理された出力を含む、動的配列の新しい列が出力されます。  
 
 ## <a name="syntax"></a>構文
 
@@ -27,11 +27,11 @@ ms.locfileid: "87343976"
 
 ## <a name="arguments"></a>引数
 
-* *x*: 数値の動的配列のセル。 通常、結果として得られるのは、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の出力です。
+* *x*: 数値の動的配列のセル。 通常、結果として得られるのは、 [系列](make-seriesoperator.md) または [make_list](makelist-aggfunction.md) 演算子の出力です。
 * *フィルター*: フィルターの係数を含む定数式です (数値の動的配列として格納されます)。
-* *ノーマライズ*: フィルターを正規化する必要があるかどうかを示す省略可能なブール値。 つまり、係数の合計で除算されます。 フィルターに負の値が含まれている場合は、*正規化*をとして指定する必要があり `false` ます。それ以外の場合、結果はになり `null` ます。 指定しない場合、*フィルター*に負の値があるかどうかによって、既定値の*ノーマライズ*が想定されます。 *フィルター*に負の値が少なくとも1つ含まれている場合、*ノーマライズ*はと見なされ `false` ます。  
-正規化は、係数の合計が1であることを確認するための便利な方法です。 その後、フィルターによってシリーズが増幅または減衰されることはありません。 たとえば、4つのビンの移動平均は、 *filter*= [1, 1, 1, 1] と*正規化*された = true で指定できますが、これは [0.25, 0.25.0.25, 0.25] を入力するよりも簡単です。
-* *center*: フィルターが現在のポイントの前後の時間枠で対称的に適用されるか、現在のポイントから後方にある時間枠で適用されるかを示す、省略可能なブール値。 既定では、center は false です。これは、データのストリーミングのシナリオに適しています。ここでは、現在と以前のポイントにのみフィルターを適用できます。 ただし、アドホック処理の場合は、をに設定して、時系列との同期を維持することができ `true` ます。 以下の例を参照してください。 このパラメーターは、フィルターの[グループ遅延](https://en.wikipedia.org/wiki/Group_delay_and_phase_delay)を制御します。
+* *ノーマライズ*: フィルターを正規化する必要があるかどうかを示す省略可能なブール値。 つまり、係数の合計で除算されます。 フィルターに負の値が含まれている場合は、 *正規化* をとして指定する必要があり `false` ます。それ以外の場合、結果はになり `null` ます。 指定しない場合、*フィルター*に負の値があるかどうかによって、既定値の*ノーマライズ*が想定されます。 *フィルター*に負の値が少なくとも1つ含まれている場合、*ノーマライズ*はと見なされ `false` ます。  
+正規化は、係数の合計が1であることを確認するための便利な方法です。 その後、フィルターによってシリーズが増幅または減衰されることはありません。 たとえば、4つのビンの移動平均は、 *filter*= [1, 1, 1, 1] と *正規化*された = true で指定できますが、これは [0.25, 0.25.0.25, 0.25] を入力するよりも簡単です。
+* *center*: フィルターが現在のポイントの前後の時間枠で対称的に適用されるか、現在のポイントから後方にある時間枠で適用されるかを示す、省略可能なブール値。 既定では、center は false です。これは、データのストリーミングのシナリオに適しています。ここでは、現在と以前のポイントにのみフィルターを適用できます。 ただし、アドホック処理の場合は、をに設定して、時系列との同期を維持することができ `true` ます。 以下の例を参照してください。 このパラメーターは、フィルターの [グループ遅延](https://en.wikipedia.org/wiki/Group_delay_and_phase_delay)を制御します。
 
 ## <a name="examples"></a>例
 
@@ -64,4 +64,4 @@ range t from bin(now(), 1h)-11h to bin(now(), 1h) step 1h
 | render timechart
 ```
 
-:::image type="content" source="images/series-firfunction/series-fir2.png" alt-text="シリーズ fir 2" border="false":::
+:::image type="content" source="images/series-firfunction/series-fir2.png" alt-text="シリーズ fir" border="false":::

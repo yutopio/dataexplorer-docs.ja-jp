@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 40bc5eafee803123ea1d73e763c32b5210f741ca
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a708a83e4bef1c1d9b774f0304e2dd8c7cba8cda
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346050"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92244784"
 ---
 # <a name="project-away-operator"></a>project-away 演算子
 

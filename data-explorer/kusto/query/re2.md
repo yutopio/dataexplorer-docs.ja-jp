@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの正�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/09/2019
-ms.openlocfilehash: 6bdf666b46adea8105b61fc2b907fc060530ba96
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 1923b46aa7ec7176d2a41181326d32a2214f00c4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967589"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92244824"
 ---
 # <a name="re2-syntax"></a>RE2 構文
 
@@ -21,11 +21,11 @@ RE2 正規表現の構文 Kusto (RE2) で使用される正規表現ライブラ
 正規表現を使用して文字列の一致、選択、抽出を実行する Kusto の関数がいくつかあります。
 
 - [countof()](countoffunction.md)
-- [extract()](extractfunction.md)
+- [extract ()](extractfunction.md)
 - [extract_all()](extractallfunction.md)
 - [matches regex](datatypes-string-operators.md)
 - [parse 演算子](parseoperator.md)
-- [replace ()](replacefunction.md)
+- [replace()](replacefunction.md)
 - [trim()](trimfunction.md)
 - [trimend ()](trimendfunction.md)
 - [trimstart ()](trimstartfunction.md)

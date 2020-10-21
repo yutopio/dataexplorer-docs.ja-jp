@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーの par
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: abe49795b7b997abf677fd0fafff10ae38787f44
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0f49ee6763d4afadf12e9e008bd7ea8e61c49acc
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346339"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246107"
 ---
 # <a name="parse_json"></a>parse_json()
 
 を `string` JSON 値として解釈し、値をとして返し `dynamic` ます。
 
-JSON 複合オブジェクトの複数の要素を抽出する必要がある場合、この関数は[extractjson () 関数](./extractjsonfunction.md)よりも優れています。
+JSON 複合オブジェクトの複数の要素を抽出する必要がある場合、この関数は [extractjson () 関数](./extractjsonfunction.md) よりも優れています。
 
 ## <a name="syntax"></a>構文
 
@@ -31,7 +31,7 @@ JSON 複合オブジェクトの複数の要素を抽出する必要がある場
 
 ## <a name="arguments"></a>引数
 
-* *json*: 型の式 `string` 。 これは、実際の値を表す、 [JSON 形式の値](https://json.org/)、または[dynamic](./scalar-data-types/dynamic.md)型の式を表し `dynamic` ます。
+* *json*: 型の式 `string` 。 これは、実際の値を表す、 [JSON 形式の値](https://json.org/)、または [dynamic](./scalar-data-types/dynamic.md)型の式を表し `dynamic` ます。
 
 ## <a name="returns"></a>戻り値
 
@@ -56,7 +56,7 @@ T
 | extend duration_value=d.duration.value, duration_min=d["duration"]["min"]
 ```
 
-**メモ**
+**ノート**
 
 "スロット" の1つが別の JSON 文字列であるプロパティバッグを記述する JSON 文字列を使用するのが一般的です。 
 

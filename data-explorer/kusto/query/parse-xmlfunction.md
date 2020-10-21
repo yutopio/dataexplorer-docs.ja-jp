@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの par
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3f003c5e9c6733391d61a2130528c9babc4aae67
-ms.sourcegitcommit: d157e661de293aa4c2b5ad334a554eda0295bd2c
+ms.openlocfilehash: 95741bb407baec3298bb84695ed98b4adcbbd5a6
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "91886300"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246160"
 ---
 # <a name="parse_xml"></a>parse_xml()
 
@@ -43,7 +43,7 @@ XML                                |JSON                                        
 `<e> <a>text</a> <a>text</a> </e>` | {"e": {"a": ["text", "text"]}}             | o. a [0] o. a [1]
 `<e> text <a>text</a> </e>`        | {"e": {"#text": "text", "a": "text"}}      | 1 ' o. e ["#text"] o. e.
 
-**メモ**
+**ノート**
 
 * の最大入力 `string` 長 `parse_xml` は 1 mb (1048576 バイト) です。 長い文字列を解釈すると、null オブジェクトになります。
 * 要素ノード、属性、およびテキストノードのみが変換されます。 他のすべての操作はスキップされます

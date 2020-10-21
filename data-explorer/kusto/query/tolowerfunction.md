@@ -1,19 +1,19 @@
 ---
-title: tolower() - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーで tolower() について説明します。
+title: tolower ()-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの tolower () について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 66f7561c9812a44e8561a612f19a85fcf8d97498
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2102b79893c09f70621cfc495c52ea92a849408c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81506071"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245781"
 ---
 # <a name="tolower"></a>tolower()
 

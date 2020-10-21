@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの arr
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/22/2020
-ms.openlocfilehash: 4b3cd0996b4c60362c7377c06621b140c29203a9
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: b06ae72c872575f7fc45741c4b023f82440815db
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103039"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246873"
 ---
 # <a name="array_index_of"></a>array_index_of()
 

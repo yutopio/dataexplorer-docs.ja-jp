@@ -1,28 +1,28 @@
 ---
-title: リミットオペレーター - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーの制限演算子について説明します。
+title: limit 演算子-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーの制限演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 32b31fbef64d9ea689f427ea3b8ebd6fb0287090
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: e30bc631af2d055d7cf8c2720a60637f4b76f8cb
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81513296"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246576"
 ---
 # <a name="limit-operator"></a>limit 演算子
 
-指定した行数までを返します。
+指定された行数まで返します。
 
 ```kusto
 T | limit 5
 ```
 
-**エイリアス**
+**Alias**
 
 [take 演算子](takeoperator.md)

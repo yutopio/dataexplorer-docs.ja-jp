@@ -4,27 +4,27 @@ description: この記事では、Azure データエクスプローラーの top
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: be05a3a546bb6f1db003be14e4a1417841b54671
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: d95c981f999d0842a266702ad5fc733281d45a7d
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87804068"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245793"
 ---
 # <a name="top-hitters-operator"></a>top-hitters 演算子
 
-最初の*N 個*の結果の近似値を返します (入力の非対称分布を想定)。
+最初の *N 個* の結果の近似値を返します (入力の非対称分布を想定)。
 
 ```kusto
 T | top-hitters 25 of Page by Views 
 ```
 
 > [!NOTE]
-> `top-hitters`は近似値のアルゴリズムであり、大規模なデータを使用して実行する場合に使用する必要があります。 Top-hitters の概数は、 [Count-Min スケッチ](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch)アルゴリズムに基づいています。  
+> `top-hitters` は近似値のアルゴリズムであり、大規模なデータを使用して実行する場合に使用する必要があります。 Top-hitters の概数は、 [Count-Min スケッチ](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch) アルゴリズムに基づいています。  
 
 ## <a name="syntax"></a>構文
 
@@ -32,7 +32,7 @@ T | top-hitters 25 of Page by Views
 
 ## <a name="arguments"></a>引数
 
-* *Numberofrows*: 返す*T*の行数。 任意の数値式を指定できます。
+* *Numberofrows*: 返す *T* の行数。 任意の数値式を指定できます。
 * *sort_key*: 行の並べ替えに使用する列の名前。
 * *式*: (省略可能) top-hitters の推定に使用される式。 
     * *式*: top-hitters は、近似値の最大値 (*式*) を持つ*numberofrows*行を返します。 式には、列、または数値に評価されるその他の式を指定できます。 

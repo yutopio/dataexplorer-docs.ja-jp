@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの ran
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 143257a586bb951caeb116882551e55f89c8636e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: bc0fff9d70c8260781332be61c701aaaca364555
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345880"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92244835"
 ---
 # <a name="rank_tdigest"></a>rank_tdigest()
 

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの bit
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/22/2020
-ms.openlocfilehash: b8ebef923d1cc67c118317680e1ec414900a469e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: fb14ffa5807a61ade913631c7d6da6b23edc26d9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348957"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245333"
 ---
 # <a name="bitset_count_ones"></a>bitset_count_ones()
 

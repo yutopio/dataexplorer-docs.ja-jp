@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの par
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 4b4371ee691cea65096cff683a348fcac31e7e48
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a7261f6996aecdf10446c990dac54afa4638147e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346407"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246301"
 ---
 # <a name="parse_user_agent"></a>parse_user_agent()
 
@@ -21,7 +21,7 @@ ms.locfileid: "87346407"
 
 ## <a name="syntax"></a>構文
 
-`parse_user_agent(`*ユーザーエージェント-文字列*、*検索対象*`)`
+`parse_user_agent(`*ユーザーエージェント-文字列*、 *検索対象*`)`
 
 ## <a name="arguments"></a>引数
 
@@ -43,7 +43,7 @@ Browser: Family、MajorVersion、MinorVersion、Patch
 > [!WARNING]
 > 関数の実装は、多数の定義済みパターンに対する入力文字列の正規表現チェックに基づいて構築されています。 そのため、予想される時間と CPU 消費量が高くなります。
 関数がクエリで使用されている場合は、複数のコンピューターで分散方式で実行されていることを確認してください。
-この関数を使用するクエリが頻繁に使用される場合は、[更新ポリシー](../management/updatepolicy.md)を使用して結果を事前に作成することをお勧めしますが、更新ポリシー内でこの関数を使用すると、インジェストの遅延が増加することを考慮する必要があります。
+この関数を使用するクエリが頻繁に使用される場合は、 [更新ポリシー](../management/updatepolicy.md)を使用して結果を事前に作成することをお勧めしますが、更新ポリシー内でこの関数を使用すると、インジェストの遅延が増加することを考慮する必要があります。
  
 ## <a name="example"></a>例
 

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの mak
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/23/2020
-ms.openlocfilehash: ecfcaa39195caec06184b966403bd6655a00b714
-ms.sourcegitcommit: 62476f682b7812cd9cff7e6958ace5636ee46755
+ms.openlocfilehash: f5a4c16f1f259de457ef963f2a400d6c9fd79727
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92169542"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246389"
 ---
 # <a name="make_list-aggregation-function"></a>make_list () (集計関数)
 
@@ -21,7 +21,7 @@ ms.locfileid: "92169542"
 
 * [集計の](summarizeoperator.md)コンテキストでのみ使用できます。
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
 `summarize``make_list(` *Expr* [ `,` *MaxSize*]`)`
 
@@ -122,6 +122,6 @@ shapes
 |false|[{"name": "三角形"、"sideCount": 3}、{"name": "五角形"、"sideCount": 5}、{"name": "heptagon"、"sideCount": 7}、{"name": "nonagon"、"sideCount": 9}]|
 |true|[{"name": "square"、"sideCount": 4}、{"name": "rectangle"、"sideCount": 4}、{"name": "六角形"、"sideCount": 6}、{"name": "octogon"、"sideCount": 8}、{"name": "decagon"、"sideCount":10}]|
 
-## <a name="see-also"></a>こちらもご覧ください
+## <a name="see-also"></a>関連項目
 
 [`make_list_if`](./makelistif-aggfunction.md) 演算子はに似 `make_list` ていますが、述語も受け入れる点が異なります。

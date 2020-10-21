@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: fb1f07c4b964615342adcf4d5ae51e7c99c05d13
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7997e6312f43316918c197c5ec10eec281495c63
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351286"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92245921"
 ---
 # <a name="series_seasonal"></a>series_seasonal()
 
@@ -33,13 +33,13 @@ ms.locfileid: "87351286"
 
 ## <a name="returns"></a>戻り値
 
-系列の計算された季節成分を含む*系列*入力と同じ長さの動的配列。 季節成分は、区間の位置に対応するすべての値の*中央*値として計算されます。
+系列の計算された季節成分を含む *系列* 入力と同じ長さの動的配列。 季節成分は、区間の位置に対応するすべての値の *中央* 値として計算されます。
 
 ## <a name="examples"></a>例
 
 ### <a name="auto-detect-the-period"></a>期間を自動検出する
 
-次の例では、系列のピリオドが自動的に検出されます。 最初のシリーズの期間は6ビン、2つ目は5ビンとして検出されます。3番目の系列のピリオドは短すぎて検出されないため、一連のゼロを返します。 この[期間を強制する方法](#force-a-period)については、次の例を参照してください。
+次の例では、系列のピリオドが自動的に検出されます。 最初のシリーズの期間は6ビン、2つ目は5ビンとして検出されます。3番目の系列のピリオドは短すぎて検出されないため、一連のゼロを返します。 この [期間を強制する方法](#force-a-period)については、次の例を参照してください。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -57,7 +57,7 @@ print s=dynamic([2,5,3,4,3,2,1,2,3,4,3,2,1,2,3,4,3,2,1,2,3,4,3,2,1])
 
 ### <a name="force-a-period"></a>期間を強制する
 
-この例では、系列のピリオドが短すぎて[series_periods_detect ()](series-periods-detectfunction.md)によって検出されないため、季節パターンを明示的に取得します。
+この例では、系列のピリオドが短すぎて [series_periods_detect ()](series-periods-detectfunction.md)によって検出されないため、季節パターンを明示的に取得します。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -71,7 +71,7 @@ print s=dynamic([1,3,5,1,3,5,2,4,6])
 |[1、3、5、1、3、5、2、4、6]|[1.0、3.0、5.0、1.0、3.0、5.0、1.0、3.0、5.0]|
 |[1、3、5、2、4、6、1、3、5、2、4、6]|[1.5、3.5、5.5、1.5、3.5、5.5、1.5、3.5、5.5、1.5、3.5、5.5]|
  
-## <a name="next-steps"></a>次の手順
+## <a name="next-steps"></a>次のステップ
 
 * [series_periods_detect()](series-periods-detectfunction.md)
 * [series_periods_validate()](series-periods-validatefunction.md)

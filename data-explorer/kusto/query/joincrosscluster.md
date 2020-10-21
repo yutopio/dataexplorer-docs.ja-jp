@@ -4,18 +4,18 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: dc22d44bd861a02d0db7fd0d8f7cc80ddcb5c8d4
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: a7c8f89886a8c12941dbc218ad69b35eebd7f1c7
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85128463"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92246584"
 ---
 # <a name="cross-cluster-join"></a>クラスター間の結合
 
@@ -33,7 +33,7 @@ cluster("SomeCluster").database("SomeDB").T | ... | join (cluster("SomeCluster2"
 
 上の例では、結合操作はクラスター間結合であり、現在のクラスターが "SomeCluster" または "SomeCluster2" ではないと仮定しています。
 
-次に例を示します。
+次の例では
 
 ```kusto
 cluster("SomeCluster").database("SomeDB").T | ... | join (cluster("SomeCluster").database("SomeDB2").T2 | ...) on Col1 
@@ -59,11 +59,11 @@ Kusto がクラスター間の結合を検出すると、結合操作自体を�
 T | ... | join hint.remote=<strategy> (cluster("SomeCluster").database("SomeDB").T2 | ...) on Col1
 ```
 
-に有効な値を次に示します。`strategy`
-* `left`-左オペランドのクラスターで join を実行します 
-* `right`-右オペランドのクラスターで join を実行します
-* `local`-現在のクラスターのクラスターで join を実行します
-* `auto`-(既定) Kusto で自動リモート処理を決定します。
+に有効な値を次に示します。 `strategy`
+* `left` -左オペランドのクラスターで join を実行します 
+* `right` -右オペランドのクラスターで join を実行します
+* `local` -現在のクラスターのクラスターで join を実行します
+* `auto` -(既定) Kusto で自動リモート処理を決定します。
 
 > [!Note]
 > ヒント戦略が結合操作に適用されない場合、join remoting ヒントは Kusto によって無視されます。

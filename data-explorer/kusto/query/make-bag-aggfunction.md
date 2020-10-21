@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの mak
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3258a847a526e0e3b6ac8f0186b0a1aaabc3ffe5
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 41eb9703f1718bb43b41927f9ec4d7cac52d67c4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103205"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249935"
 ---
 # <a name="make_bag-aggregation-function"></a>make_bag () (集計関数)
 
@@ -30,7 +30,7 @@ ms.locfileid: "91103205"
 * *Expr*: `dynamic` 集計計算に使用される型の式です。
 * *MaxSize* は、返される要素の最大数に対する整数の制限 (省略可能) です。 既定値は *1048576*です。 MaxSize 値は *1048576*を超えることはできません。
 
-**注:**
+**注**
 
 従来の関数と古いバージョンの関数では、 `make_dictionary()` *MaxSize* = 128 の既定の制限が設定されています。
 

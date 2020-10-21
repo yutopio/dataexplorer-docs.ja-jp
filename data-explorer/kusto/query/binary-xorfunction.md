@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの bin
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 6f988fa3d14dab3188bf96825615972995291655
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: aecf005556a9997e63ee3547f4e0b23da236cf5d
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349008"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243466"
 ---
 # <a name="binary_xor"></a>binary_xor()
 

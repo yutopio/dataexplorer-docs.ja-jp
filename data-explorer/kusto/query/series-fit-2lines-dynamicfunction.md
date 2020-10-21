@@ -4,24 +4,24 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 85a034751c6e29b2ca78f1df9de045c1ac07c7fa
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: c16e0918ce45df131490686ce20db4086fddf4c0
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87343908"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242114"
 ---
 # <a name="series_fit_2lines_dynamic"></a>series_fit_2lines_dynamic()
 
 系列に2つのセグメントの線形回帰を適用し、動的オブジェクトを返します。  
 
-動的な数値配列を含む式を入力として受け取り、 [2 つのセグメントの線形回帰](https://en.wikipedia.org/wiki/Segmented_regression)を適用して、系列の傾向の変化を特定し、定量化します。 関数は、系列インデックスに対して反復処理を行います。 各イテレーションでは、系列が2つの部分に分割され、 [series_fit_line ()](series-fit-linefunction.md)または[series_fit_line_dynamic ()](series-fit-line-dynamicfunction.md)を使用して個別の行に配置されます。 関数は、2つの部分のそれぞれに線を合わせ、R-2 乗値の合計を計算します。 最適な分割は、R-2 乗を最大化したものです。 関数は、次の内容を使用して動的な値でパラメーターを返します。
+動的な数値配列を含む式を入力として受け取り、 [2 つのセグメントの線形回帰](https://en.wikipedia.org/wiki/Segmented_regression) を適用して、系列の傾向の変化を特定し、定量化します。 関数は、系列インデックスに対して反復処理を行います。 各イテレーションでは、系列が2つの部分に分割され、 [series_fit_line ()](series-fit-linefunction.md) または [series_fit_line_dynamic ()](series-fit-line-dynamicfunction.md)を使用して個別の行に配置されます。 関数は、2つの部分のそれぞれに線を合わせ、R-2 乗値の合計を計算します。 最適な分割は、R-2 乗を最大化したものです。 関数は、次の内容を使用して動的な値でパラメーターを返します。
 
-* `rsquare`: [R-2 乗](https://en.wikipedia.org/wiki/Coefficient_of_determination)は、適合品質の標準メジャーです。 これは [0-1] の範囲の数値であり、1は最適な適合であり、0はデータが順序付けられておらず、どの行にも適合しないことを意味します。
+* `rsquare`: [R-2 乗](https://en.wikipedia.org/wiki/Coefficient_of_determination) は、適合品質の標準メジャーです。 これは [0-1] の範囲の数値であり、1は最適な適合であり、0はデータが順序付けられておらず、どの行にも適合しないことを意味します。
 * `split_idx`: 2 つのセグメントへのブレークポイントのインデックス (0 から始まる)。
 * `variance`: 入力データの分散。
 * `rvariance`: 入力データ値と近似されるデータ値の間の分散 (2 つの線分による)。
@@ -31,13 +31,13 @@ ms.locfileid: "87343908"
 * `right.interception`: 近似左側の行のインターセプト (b from y = ax + b)。
 * `right.variance`: 分割の右側の入力データの分散。
 * `right.rvariance`: 分割の右側の入力データの残差分散。
-* `left.rsquare`: 分割の左側の行の r-2 乗、[series_fit_line ()] を参照してください。(series-fit-linefunction.md) または[series_fit_line_dynamic ()](series-fit-line-dynamicfunction.md)。
+* `left.rsquare`: 分割の左側の行の r-2 乗、[series_fit_line ()] を参照してください。(series-fit-linefunction.md) または [series_fit_line_dynamic ()](series-fit-line-dynamicfunction.md)。
 * `left.slope`: 左の近似直線の傾き (y = ax + b の形式)。
 * `left.interception`: 近似左側の行のインターセプト (y = ax + b の形式)。
 * `left.variance`: 分割の左側の入力データの分散。
 * `left.rvariance`: 分割の左側の入力データの残差分散。
 
-この演算子は[series_fit_2lines](series-fit-2linesfunction.md)に似ています。 とは異なり `series-fit-2lines` 、動的なバッグを返します。
+この演算子は [series_fit_2lines](series-fit-2linesfunction.md)に似ています。 とは異なり `series-fit-2lines` 、動的なバッグを返します。
 
 ## <a name="syntax"></a>構文
 
@@ -48,7 +48,7 @@ ms.locfileid: "87343908"
 * *x*: 数値の動的配列。  
 
 > [!TIP]
-> この関数を使用する最も便利な方法は、[系列の作成](make-seriesoperator.md)演算子の結果に適用することです。
+> この関数を使用する最も便利な方法は、 [系列の作成](make-seriesoperator.md) 演算子の結果に適用することです。
 
 ## <a name="example"></a>例
 

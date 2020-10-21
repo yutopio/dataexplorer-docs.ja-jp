@@ -4,27 +4,27 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/20/2019
-ms.openlocfilehash: e1b863b83e08fae680e1a387ca2fdd2a93d111a8
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3cd0559393e9c5194b06bcf93449a68b7d55cc1c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351439"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250025"
 ---
 # <a name="series_iir"></a>series_iir()
 
 無限インパルス応答フィルターを系列に適用します。  
 
-関数は、入力としての動的な数値配列を含む式を受け取り、[無限インパルス応答](https://en.wikipedia.org/wiki/Infinite_impulse_response)フィルターを適用します。 フィルター係数を指定することで、関数を使用できます。
+関数は、入力としての動的な数値配列を含む式を受け取り、 [無限インパルス応答](https://en.wikipedia.org/wiki/Infinite_impulse_response) フィルターを適用します。 フィルター係数を指定することで、関数を使用できます。
 * 系列の累積合計を計算するには
 * スムージング操作を適用するには
-* さまざまな[高パス](https://en.wikipedia.org/wiki/High-pass_filter)、[バンドパス](https://en.wikipedia.org/wiki/Band-pass_filter)、および[低パス](https://en.wikipedia.org/wiki/Low-pass_filter)のフィルターを適用するには
+* さまざまな [高パス](https://en.wikipedia.org/wiki/High-pass_filter)、 [バンドパス](https://en.wikipedia.org/wiki/Band-pass_filter)、および [低パス](https://en.wikipedia.org/wiki/Low-pass_filter) のフィルターを適用するには
 
-関数は、動的配列を含む列と、フィルターの*a*および*b*係数の2つの静的動的配列を入力として受け取り、列にフィルターを適用します。 フィルター処理された出力を含む、動的配列の新しい列が出力されます。  
+関数は、動的配列を含む列と、フィルターの *a* および *b* 係数の2つの静的動的配列を入力として受け取り、列にフィルターを適用します。 フィルター処理された出力を含む、動的配列の新しい列が出力されます。  
 
 ## <a name="syntax"></a>構文
 
@@ -32,12 +32,12 @@ ms.locfileid: "87351439"
 
 ## <a name="arguments"></a>引数
 
-* *x*: 数値の配列である動的配列のセル。通常は、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の結果の出力です。
+* *x*: 数値の配列である動的配列のセル。通常は、 [系列](make-seriesoperator.md) または [make_list](makelist-aggfunction.md) 演算子の結果の出力です。
 * *b*: フィルターの分子係数を含む定数式 (数値の動的配列として格納されます)。
 * *a*: 定数式 ( *b*など)。 フィルターの分母係数を含みます。
 
 > [!IMPORTANT]
-> `a`0 による除算を避けるため、の最初の要素 (つまり、 `a[0]` ) は0にしないます。 次の[式](#the-filters-recursive-formula)を参照してください。
+> `a`0 による除算を避けるため、の最初の要素 (つまり、 `a[0]` ) は0にしないます。 次の [式](#the-filters-recursive-formula)を参照してください。
 
 ## <a name="the-filters-recursive-formula"></a>フィルターの再帰式
 
@@ -51,7 +51,7 @@ Y<sub>i</sub> = a<sub>0</sub><sup>-1</sup>(b<sub>0</sub>X<sub>i</sub>
 
 ## <a name="example"></a>例
 
-累積合計を計算します。 係数*a*= [1,-1] と*b*= [1] の iir フィルターを使用します。  
+累積合計を計算します。 係数 *a*= [1,-1] と *b*= [1] の iir フィルターを使用します。  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -60,7 +60,7 @@ print x=x, y = series_iir(x, dynamic([1]), dynamic([1,-1]))
 | mv-expand x, y
 ```
 
-| x | Y |
+| x | y |
 |:--|:--|
 |1.0|1.0|
 |2.0|3.0|

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 32100f6668c2fb20ae715b985b0bf3612e13e69b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0398efc3f97e9af1f994b16b91a9888fb4fcfa0b
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348158"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243331"
 ---
 # <a name="extend-operator"></a>extend 演算子
 
@@ -30,7 +30,7 @@ T | extend duration = endTime - startTime
 ## <a name="arguments"></a>引数
 
 * *T*: 入力表形式の結果セット。
-* *ColumnName:* Optional. 追加または更新する列の名前。 省略した場合、名前が生成されます。 *Expression*から複数の列が返される場合は、列名のリストをかっこで囲んで指定できます。 この場合、*式*の出力列には指定された名前が付けられ、残りの出力列は削除されます。 列名の一覧が指定されていない場合、生成された名前を持つすべての*式*の出力列が出力に追加されます。
+* *ColumnName:* Optional. 追加または更新する列の名前。 省略した場合、名前が生成されます。 *Expression*から複数の列が返される場合は、列名のリストをかっこで囲んで指定できます。 この場合、 *式*の出力列には指定された名前が付けられ、残りの出力列は削除されます。 列名の一覧が指定されていない場合、生成された名前を持つすべての *式*の出力列が出力に追加されます。
 * *式:* 入力の列に対する計算。
 
 ## <a name="returns"></a>戻り値
@@ -41,7 +41,7 @@ T | extend duration = endTime - startTime
 
 **ヒント**
 
-* 操作は、 `extend` インデックスを持た**ない**入力結果セットに新しい列を追加します。 ほとんどの場合、新しい列が、インデックスを持つ既存のテーブル列とまったく同じになるように設定されている場合、Kusto では既存のインデックスを自動的に使用できます。 ただし、複雑なシナリオでは、この伝達は行われません。 このような場合、列の名前を変更することが目的である場合は、代わりに[ `project-rename` 演算子](projectrenameoperator.md)を使用します。
+* 操作は、 `extend` インデックスを持た **ない** 入力結果セットに新しい列を追加します。 ほとんどの場合、新しい列が、インデックスを持つ既存のテーブル列とまったく同じになるように設定されている場合、Kusto では既存のインデックスを自動的に使用できます。 ただし、複雑なシナリオでは、この伝達は行われません。 このような場合、列の名前を変更することが目的である場合は、代わりに[ `project-rename` 演算子](projectrenameoperator.md)を使用します。
 
 ## <a name="example"></a>例
 

@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの mak
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 589be4fbbc285309e86647ce8d7392840aedea0e
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 09a199e907f8e09a845fa037129330a2b660187e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347002"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249839"
 ---
 # <a name="make_datetime"></a>make_datetime()
 
-指定された日付と時刻から[datetime](./scalar-data-types/datetime.md)スカラー値を作成します。
+指定された日付と時刻から [datetime](./scalar-data-types/datetime.md) スカラー値を作成します。
 
 ```kusto
 make_datetime(2017,10,01,12,10) == datetime(2017-10-01 12:10)
@@ -42,7 +42,7 @@ make_datetime(2017,10,01,12,10) == datetime(2017-10-01 12:10)
 
 ## <a name="returns"></a>戻り値
 
-作成が成功した場合、結果は[datetime](./scalar-data-types/datetime.md)値になります。それ以外の場合、結果は null になります。
+作成が成功した場合、結果は [datetime](./scalar-data-types/datetime.md) 値になります。それ以外の場合、結果は null になります。
  
 ## <a name="example"></a>例
 

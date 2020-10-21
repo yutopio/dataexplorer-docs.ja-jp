@@ -4,27 +4,27 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 89e93a3c4365e0f215a797ee0b01669e6bcbdcfa
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f056a14d7f1a88a7f4b77e01920ae2f00ae4bc45
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87343891"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242111"
 ---
 # <a name="series_fit_2lines"></a>series_fit_2lines()
 
 系列に2つのセグメントの線形回帰を適用し、複数の列を返します。  
 
-動的な数値配列を含む式を入力として受け取り、 [2 つのセグメントの線形回帰](https://en.wikipedia.org/wiki/Segmented_regression)を適用して、系列の傾向の変化を識別および定量化します。 関数は、系列インデックスに対して反復処理を行います。 各反復処理では、関数によって系列が2つの部分に分割され、各部分に対して ( [series_fit_line ()](series-fit-linefunction.md)を使用して) 個別の行が配置され、合計の r-2 乗が計算されます。 最適な分割は r-2 乗を最大化したものです。この関数は次のパラメーターを返します。
+動的な数値配列を含む式を入力として受け取り、 [2 つのセグメントの線形回帰](https://en.wikipedia.org/wiki/Segmented_regression) を適用して、系列の傾向の変化を識別および定量化します。 関数は、系列インデックスに対して反復処理を行います。 各反復処理では、関数によって系列が2つの部分に分割され、各部分に対して ( [series_fit_line ()](series-fit-linefunction.md)を使用して) 個別の行が配置され、合計の r-2 乗が計算されます。 最適な分割は r-2 乗を最大化したものです。この関数は次のパラメーターを返します。
 
 
 |パラメーター  |説明  |
 |---------|---------|
-|`rsquare`     | [R-2 乗](https://en.wikipedia.org/wiki/Coefficient_of_determination)は、適合品質の標準測定値です。 これは [0-1] の範囲の数値であり、1-は最適な適合で、0はデータが順序付けられておらず、どの行にも適合しないことを意味します。        |
+|`rsquare`     | [R-2 乗](https://en.wikipedia.org/wiki/Coefficient_of_determination) は、適合品質の標準測定値です。 これは [0-1] の範囲の数値であり、1-は最適な適合で、0はデータが順序付けられておらず、どの行にも適合しないことを意味します。        |
 |`split_idx`     |   2つのセグメントのブレークポイントのインデックス (0 から始まる)。      |
 |`variance`     | 入力データの分散。        |
 |`rvariance`     | 残余差異。これは、入力データ値が近似された値 (2 つの線分によって) の間の分散です。        |
@@ -60,7 +60,7 @@ ms.locfileid: "87343891"
 * *x*: 数値の動的配列。  
 
 > [!TIP]
-> この関数を使用する最も便利な方法は、これを[系列](make-seriesoperator.md)演算子の結果に適用することです。
+> この関数を使用する最も便利な方法は、これを [系列](make-seriesoperator.md) 演算子の結果に適用することです。
 
 ## <a name="examples"></a>例
 

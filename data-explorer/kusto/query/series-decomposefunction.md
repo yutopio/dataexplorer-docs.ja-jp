@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 9ff0df578f174bc6964e39e799b91068f89a28e4
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.openlocfilehash: 2e2c2811dfa4e5b895f0c5b14a9a45b64c2a9291
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793942"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242166"
 ---
 # <a name="series_decompose"></a>series_decompose()
 
@@ -104,7 +104,7 @@ ts
 | render timechart  
 ```
 
-:::image type="content" source="images/samples/series-decompose2.png" alt-text="系列の分解2":::
+:::image type="content" source="images/samples/series-decompose2.png" alt-text="系列の分解1":::
 
 次に、同じ例を再実行します。 ここでは、系列に傾向があるため、 `linefit` trend パラメーターでを指定します。 正の傾向が検出され、ベースラインが入力系列に非常に近いことがわかります。 残余はゼロに近く、外れ値のみが除去されます。グラフ内の系列のすべてのコンポーネントが表示されます。
 
@@ -121,4 +121,4 @@ ts
 | render timechart  
 ```
 
-:::image type="content" source="images/samples/series-decompose3.png" alt-text="系列の分解3":::
+:::image type="content" source="images/samples/series-decompose3.png" alt-text="系列の分解1":::

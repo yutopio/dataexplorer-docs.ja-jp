@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーの ind
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 85c39128eeb9b6ded38366ccd3bea228820c67a7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 472fdea209cc416893043f15b3796862ef91fa82
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347444"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243284"
 ---
 # <a name="indexof_regex"></a>indexof_regex()
 
 関数は、入力文字列内で指定した文字列が最初に出現する位置の0から始まるインデックスを報告します。 文字列の一致は重複しません。
 
-[`indexof()`](indexoffunction.md) を参照してください。
+[`indexof()`](indexoffunction.md)に関するページを参照してください。
 
 ## <a name="syntax"></a>構文
 
@@ -41,7 +41,7 @@ ms.locfileid: "87347444"
 *検索*の0から始まるインデックス位置。
 
 * 入力に文字列が見つからない場合は、-1 を返します。
-* 次の場合は*null*を返します。
+* 次の場合は *null* を返します。
      * start_index が0未満です。
      * 出現回数が0未満です。
      * 長さのパラメーターが-1 未満です。

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーのナ�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: e597a2467da21a2c9e83aba28a1e83b242f61c75
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5a27794647eed3e8b30533d73456a0b1fb8ccde6
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346679"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243194"
 ---
 # <a name="narrow-plugin"></a>narrow プラグイン
 
@@ -40,11 +40,11 @@ T | evaluate narrow()
 
 それ自体の結果は、 `.show diagnostics` 1 行と33列を含むテーブルになります。 プラグインを使用して `narrow` 、出力を次のように "回転" します。
 
-行  | 列                              | 値
+行  | 列                              | [値]
 -----|-------------------------------------|-----------------------------
 0    | IsHealthy                           | True
-0    | IsRebalanceRequired                 | False
-0    | IsScaleOutRequired                  | False
+0    | IsRebalanceRequired                 | 誤り
+0    | IsScaleOutRequired                  | 誤り
 0    | MachinesTotal                       | 2
 0    | オフラインのスケジュール                     | 0
 0    | NodeLastRestartedOn                 | 2017-03-14 10:59: 18.9263023
@@ -62,12 +62,12 @@ T | evaluate narrow()
 0    | BuildVersion                        | 1.0.6281.19882
 0    | BuildTime                           | 2017-03-13 11:02: 44.0000000
 0    | ClusterDataCapacityFactor           | 0.130552847673333
-0    | IsDataWarmingRequired               | False
+0    | IsDataWarmingRequired               | 誤り
 0    | RebalanceLastRunOn                  | 2017-03-21 09:14: 53.8523455
 0    | DataWarmingLastRunOn                | 2017-03-21 09:19: 54.1438800
 0    | MergesSuccessRate                   | 100
 0    | NotHealthyReason                    | 空白
-0    | IsAttentionRequired                 | False
+0    | IsAttentionRequired                 | 誤り
 0    | AttentionRequiredReason             | 空白
 0    | ProductVersion                      | KustoRelease_2017。03.13.2
 0    | FailedIngestOperations              | 0

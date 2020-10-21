@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの最�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 85a59adc355c3d8855c34bcf97d29d3bd6eea4a1
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: ce56040e2135a455e29a8ff0ce83d832cbf5c5f7
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803133"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243711"
 ---
 # <a name="top-nested-operator"></a>top-nested 演算子
 
@@ -32,13 +32,13 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 
 *T* `|` `top-nested` *TopNestedClause2* [ `,` *TopNestedClause2*...]
 
-ここで、 *Topnestedclause*の構文は次のとおりです。
+ここで、 *Topnestedclause* の構文は次のとおりです。
 
 [*N*] `of` [ *`ExprName`* `=` ] *`Expr`* [ `with` `others` `=` *`ConstExpr`* `by` *`AggName`* `=` *`Aggregation`* `asc`  |  `desc` ] [] []
 
 ## <a name="arguments"></a>引数
 
-各*Topnestedclause*の場合:
+各 *Topnestedclause*の場合:
 
 * *`N`*: `long` この階層レベルで返される上位の値の数を示す型のリテラル。
   省略した場合、すべての個別の値が返されます。
@@ -50,7 +50,7 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
 
 * *`ConstExpr`*: 指定した場合、階層レベルごとに1つのレコードが追加されます。この値には、"最上位にしない" すべてのレコードの集計値が含まれます。
 
-* *`AggName`*: 指定されている場合、この識別子は、*集計*の値の出力の列名を設定します。
+* *`AggName`*: 指定されている場合、この識別子は、 *集計*の値の出力の列名を設定します。
 
 * *`Aggregation`*: 同じ値を共有するすべてのレコードに適用する集計を示す数値式 *`Expr`* 。 この集計の値によって、結果として得られるレコードのどれが "top" であるかが決まります。
   
@@ -64,26 +64,26 @@ T | top-nested 3 of Location with others="Others" by sum(MachinesNumber), top-ne
    * [百分位 ()](percentiles-aggfunction.md)、および
    * [percentilew ()](percentiles-aggfunction.md)。 集計の代数的な組み合わせもサポートされています。
 
-* `asc`または `desc` (既定値) は、集計値の範囲の "下" または "上" から選択されているかどうかを制御するように表示される場合があります。
+* `asc` または `desc` (既定値) は、集計値の範囲の "下" または "上" から選択されているかどうかを制御するように表示される場合があります。
 
 ## <a name="returns"></a>戻り値
 
 この演算子は、各集計句に2つの列を持つテーブルを返します。
 
-* 1つの列に句の計算の個別の値が保持 *`Expr`* されます (指定した場合は、列名が*exprname*になります)。
+* 1つの列に句の計算の個別の値が保持 *`Expr`* されます (指定した場合は、列名が *exprname* になります)。
 
-* 1つの列に集計計算の結果が格納されます (指定されている場合は、列名が*Aggregation* *ationname*になります)。
+* 1つの列に集計計算の結果が格納されます (指定されている場合は、列名が *Aggregation* *ationname* になります)。
 
-## <a name="notes"></a>Notes
+## <a name="notes"></a>メモ
 
 値として指定されていない入力列は出力されません *`Expr`* 。
 特定のレベルのすべての値を取得するには、次のような集計カウントを追加します。
 
 * *N*の値を省略します
-* の値として列名を使用します。*`Expr`*
+* の値として列名を使用します。 *`Expr`*
 * を `Ignore=max(1)` 集計として使用し、列を無視 (またはプロジェクトから) し `Ignore` ます。
 
-レコードの数は、集計句の数 ((N1 + 1) \* (N2 + 1) \* ...) を使用して指数関数的に増加することがあります。*N*制限が指定されていない場合、レコードの増加はさらに高速になります。 このオペレーターが大量のリソースを消費する可能性があることを考慮してください。
+レコードの数は、集計句の数 ((N1 + 1) \* (N2 + 1) \* ...) を使用して指数関数的に増加することがあります。 *N* 制限が指定されていない場合、レコードの増加はさらに高速になります。 このオペレーターが大量のリソースを消費する可能性があることを考慮してください。
 
 集計の分布が非常に均一でない場合は、( *N*を使用して) 返される個別の値の数を制限し、ConstExpr オプションを使用して、 `with others=` *ConstExpr*その他のすべてのケースの "重み" を示す値を取得します。
 
@@ -97,7 +97,7 @@ StormEvents
   top-nested 1 of EndLocation by sum(BeginLat)
 ```
 
-|State|aggregated_State|ソース|aggregated_Source|EndLocation|aggregated_EndLocation|
+|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |カンザス|87771.2355000001|法執行機関|18744.823|FT SCOTT|264.858|
 |カンザス|87771.2355000001|パブリック|22855.6206|BUCKLIN|488.2457|
@@ -118,7 +118,7 @@ StormEvents
 
 ```
 
-|State|aggregated_State|ソース|aggregated_Source|EndLocation|aggregated_EndLocation|
+|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|
 |---|---|---|---|---|---|
 |カンザス|87771.2355000001|法執行機関|18744.823|FT SCOTT|264.858|
 |カンザス|87771.2355000001|パブリック|22855.6206|BUCKLIN|488.2457|
@@ -159,7 +159,7 @@ StormEvents
 | project-away tmp
 ```
 
-|State|aggregated_State|ソース|aggregated_Source|EndLocation|aggregated_EndLocation|EventType|
+|State|aggregated_State|source|aggregated_Source|EndLocation|aggregated_EndLocation|EventType|
 |---|---|---|---|---|---|---|
 |カンザス|87771.2355000001|訓練を受けた観測員|21279.7083|SHARON SPGS|388.7404|雷雨風|
 |カンザス|87771.2355000001|訓練を受けた観測員|21279.7083|SHARON SPGS|388.7404|ひょう|
@@ -184,7 +184,7 @@ StormEvents
 | mv-expand EndLocations, endLocationSums, indicies
 ```
 
-|State|ソース|EndLocations|endLocationSums 合計|連想|
+|State|source|EndLocations|endLocationSums 合計|連想|
 |---|---|---|---|---|
 |テキサス州|訓練を受けた観測員|CLDE|421.44|0|
 |テキサス州|訓練を受けた観測員|AMARILLO|316.8892|1|

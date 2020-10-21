@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4fb1ca893f80c045432715cd99e2dc4ea3d18c2a
-ms.sourcegitcommit: 62476f682b7812cd9cff7e6958ace5636ee46755
+ms.openlocfilehash: c15b3aaf14c9f859c3d93c48406ec642897e59d4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92169525"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243203"
 ---
 # <a name="mv-apply-operator"></a>mv-apply 演算子
 
@@ -57,7 +57,7 @@ T | mv-apply Metric to typeof(real) on
 
 演算子は、 `mv-apply` 演算子の汎化と考えることができます [`mv-expand`](./mvexpandoperator.md) (実際には、サブクエリにプロジェクションしか含まれていない場合は、前者の場合は後者を実装できます)。
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
 *T* `|` `mv-apply` [*itemindex*] *columnstoexpand* [*rowlimit*] `on` `(` *サブクエリ*`)`
 
@@ -162,6 +162,6 @@ _data
 |3|8|
 |4|10|
 
-## <a name="see-also"></a>こちらもご覧ください
+## <a name="see-also"></a>関連項目
 
 * [mv-展開](./mvexpandoperator.md) 演算子。

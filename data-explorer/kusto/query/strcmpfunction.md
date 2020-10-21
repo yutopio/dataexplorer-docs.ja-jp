@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 11951195d95d956f70d4bfce32d22a9f9c73dc3d
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5c1e4cb9a4ad77d0d48f52ca7e47fc6cea06cff4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350929"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243744"
 ---
 # <a name="strcmp"></a>strcmp()
 

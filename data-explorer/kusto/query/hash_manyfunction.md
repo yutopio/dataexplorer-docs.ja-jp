@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの has
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/06/2020
-ms.openlocfilehash: 3d0f389264d078d2b55ac06214bb3b820fcf7f13
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a323491a2d3c4e78684c8bcaff6de8c55573d61a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347597"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243301"
 ---
 # <a name="hash_many"></a>hash_many()
 

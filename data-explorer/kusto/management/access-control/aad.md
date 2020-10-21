@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: 85d01c9192c71b3274907e5f93e4155b4c98accf
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: a511f96df09fa9ce4089a0af77ebbe09269c9b44
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382218"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343438"
 ---
 # <a name="azure-active-directory-aad-authentication"></a>Azure Active Directory (AAD) 認証
 
@@ -35,7 +35,7 @@ AAD では、さまざまな認証シナリオがサポートされています�
 * 以前に Kusto に発行された既存の AAD トークンを使用したアプリケーション認証
 * 別のリソースに対して発行された AAD トークンを使用したユーザー認証またはアプリケーション認証。そのリソースと Kusto の間に信頼が存在します。
 
-ガイダンスと例については、 [Kusto 接続文字列](../../api/connection-strings/kusto.md)に関するリファレンスを参照してください。
+ガイダンスと例については、 [Kusto 接続文字列](../../api/connection-strings/kusto.md) に関するリファレンスを参照してください。
 
 ## <a name="user-authentication"></a>ユーザー認証
 
@@ -79,5 +79,5 @@ ADAL から Kusto クライアントライブラリに返されるトークン�
 
 次の記事では、AAD を使用して Kusto に対してプログラムで認証する方法について説明します。
 
-* [AAD アプリケーションをプロビジョニングする方法](./how-to-provision-aad-app.md)
+* [AAD アプリケーションをプロビジョニングする方法](../../../provision-azure-ad-app.md)
 * [AAD 認証を実行する方法](./how-to-authenticate-with-aad.md)

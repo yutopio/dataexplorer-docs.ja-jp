@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 02/19/2020
-ms.openlocfilehash: 10f59a167de12e4b688f6d9b5f15d3f0f15d8291
-ms.sourcegitcommit: f689547c0f77b1b8bfa50a19a4518cbbc6d408e5
+ms.openlocfilehash: 694b229c36a8bbbe6c15531b555dc8467198cd65
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/08/2020
-ms.locfileid: "89557396"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337603"
 ---
 # <a name="ingestion-without-kustoingest-library"></a>Kusto によるインジェストを使用した取り込み
 
@@ -22,7 +22,7 @@ Azure データエクスプローラーにデータを取り込みする場合�
 この記事では、Azure データエクスプローラーへの *キューインジェスト* を使用して、運用レベルのパイプラインを作成する方法について説明します。
 
 > [!NOTE]
-> 次のコードは C# で記述されており、Azure Storage SDK、ADAL 認証ライブラリ、およびパッケージの NewtonSoft.JSを利用して、サンプルコードを簡略化しています。 必要に応じて、対応するコードを適切な [Azure Storage REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api) 呼び出し、 [non-.NET ADAL パッケージ](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries)、および使用可能な任意の JSON 処理パッケージに置き換えることができます。
+> 次のコードは C# で記述されており、Azure Storage SDK、ADAL 認証ライブラリ、およびパッケージの NewtonSoft.JSを利用して、サンプルコードを簡略化しています。 必要に応じて、対応するコードを適切な [Azure Storage REST API](/rest/api/storageservices/blob-service-rest-api) 呼び出し、 [non-.NET ADAL パッケージ](/azure/active-directory/develop/active-directory-authentication-libraries)、および使用可能な任意の JSON 処理パッケージに置き換えることができます。
 
 この記事では、推奨されるインジェストモードについて説明します。 Kusto. インジェストライブラリの場合、対応するエンティティは [IKustoQueuedIngestClient](kusto-ingest-client-reference.md#interface-ikustoqueuedingestclient) インターフェイスです。 ここでは、クライアントコードが azure キューにインジェスト通知メッセージを投稿することによって、Azure データエクスプローラーサービスと対話します。 メッセージへの参照は、Kusto データ管理 (インジェスト) サービスから取得されます。 サービスとの対話は、Azure Active Directory (Azure AD) を使用して認証される必要があります。
 
@@ -104,7 +104,7 @@ public static void IngestSingleFile(string file, string db, string table, string
 ### <a name="obtain-authentication-evidence-from-azure-ad"></a>Azure AD から認証証拠を取得する
 
 ここでは、ADAL を使用して、Kusto データ管理サービスにアクセスし、その入力キューを要求する Azure AD トークンを取得します。
-ADAL は、必要に応じて [、Windows 以外のプラットフォーム](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries) で使用できます。
+ADAL は、必要に応じて [、Windows 以外のプラットフォーム](/azure/active-directory/develop/active-directory-authentication-libraries) で使用できます。
 
 ```csharp
 // Authenticates the interactive user and retrieves Azure AD Access token for specified resource
@@ -218,7 +218,7 @@ internal static string RetrieveKustoIdentityToken(string ingestClusterBaseUri, s
 
 ### <a name="upload-data-to-the-azure-blob-container"></a>Azure Blob コンテナーにデータをアップロードする
 
-この手順では、取り込み用に渡される Azure Blob にローカルファイルをアップロードします。 このコードでは、Azure Storage SDK を使用します。 依存関係が不可能な場合は、 [Azure Blob Service REST API](https://docs.microsoft.com/rest/api/storageservices/fileservices/blob-service-rest-api)で実現できます。
+この手順では、取り込み用に渡される Azure Blob にローカルファイルをアップロードします。 このコードでは、Azure Storage SDK を使用します。 依存関係が不可能な場合は、 [Azure Blob Service REST API](/rest/api/storageservices/fileservices/blob-service-rest-api)で実現できます。
 
 ```csharp
 // Uploads a single local file to an Azure Blob container, returns blob URI and original data size
@@ -283,7 +283,7 @@ internal static string PrepareIngestionMessage(string db, string table, string d
 最後に、作成したメッセージを、Azure データエクスプローラーから取得した選択したインジェストキューに送信します。
 
 > [!NOTE]
-> V12 未満の .net ストレージクライアントバージョン既定では、メッセージが base64 にエンコードされます。詳細については、 [Storage のドキュメント](https://docs.microsoft.com/dotnet/api/microsoft.azure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet-legacy#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage)を参照してください。V12 を超える .Net ストレージクライアントバージョンを使用している場合は、メッセージの内容を適切にエンコードする必要があります。
+> V12 未満の .net ストレージクライアントバージョン既定では、メッセージが base64 にエンコードされます。詳細については、 [Storage のドキュメント](/dotnet/api/microsoft.azure.storage.queue.cloudqueue.encodemessage?view=azure-dotnet-legacy#Microsoft_WindowsAzure_Storage_Queue_CloudQueue_EncodeMessage)を参照してください。V12 を超える .Net ストレージクライアントバージョンを使用している場合は、メッセージの内容を適切にエンコードする必要があります。
 
 ```csharp
 internal static void PostMessageToQueue(string queueUriWithSas, string message)
@@ -353,11 +353,11 @@ Kusto データ管理サービスが入力 Azure キューからの読み取り�
 
 データ管理が入力 Azure キューから読み取ることを想定しているメッセージは、次の形式の JSON ドキュメントです。
 
-|プロパティ | 説明 |
+|プロパティ | [説明] |
 |---------|-------------
 |OperationId |サービス側での操作を追跡するために使用できる操作識別子 (GUID) |
 |データベース |ターゲットデータベース名 |
-|Table |ターゲットテーブル名 |
+|テーブル |ターゲットテーブル名 |
 |失敗した場合 |失敗のタイムスタンプ |
 |IngestionSourceId |Azure データエクスプローラーが取り込みに失敗したデータチャンクを識別する GUID |
 |IngestionSourcePath |Azure データエクスプローラーが取り込みに失敗したデータチャンクへのパス (URI) |

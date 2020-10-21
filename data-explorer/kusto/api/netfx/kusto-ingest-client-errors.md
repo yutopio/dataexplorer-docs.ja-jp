@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 6b94dfc0fab1150b598fad9d55beec2f3a81ad73
-ms.sourcegitcommit: f34535b0ca63cff22e65c598701cec13856c1742
+ms.openlocfilehash: 61c183f11aa7658faba00c5dd3c4795f235e5467
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/29/2020
-ms.locfileid: "87402340"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337484"
 ---
 # <a name="kustoingest-errors-and-exceptions"></a>Kusto. 取り込みエラーと例外
 クライアント側でのインジェスト処理中にエラーが発生した場合は、C# の例外によって示されます。
@@ -24,7 +24,7 @@ ms.locfileid: "87402340"
 
 複数のソースから取り込みを試行しているときに、インジェスト処理中にエラーが発生することがあります。 いずれかのソースのインジェストが失敗した場合はログに記録され、クライアントは残りのソースの取り込みを続行します。 すべてのソースを取り込むと、メンバーを `IngestClientAggregateException` 含むがスローされ `IList<IngestClientException> IngestionErrors` ます。
 
-`IngestClientException`およびその派生クラスには、フィールドとフィールドが含まれて `IngestionSource` `Error` います。 2つのフィールドの組み合わせによって、インジェストに失敗したソースからインジェストの試行中に発生したエラーまでのマッピングが作成されます。 この情報を一覧で使用して、 `IngestionErrors` インジェストに失敗したソースとその理由を調べることができます。 この例外には、 `IngestClientAggregateException` `GlobalError` すべてのソースでエラーが発生したかどうかを示すブール型プロパティも含まれています。
+`IngestClientException` およびその派生クラスには、フィールドとフィールドが含まれて `IngestionSource` `Error` います。 2つのフィールドの組み合わせによって、インジェストに失敗したソースからインジェストの試行中に発生したエラーまでのマッピングが作成されます。 この情報を一覧で使用して、 `IngestionErrors` インジェストに失敗したソースとその理由を調べることができます。 この例外には、 `IngestClientAggregateException` `GlobalError` すべてのソースでエラーが発生したかどうかを示すブール型プロパティも含まれています。
 
 ### <a name="failures-ingesting-from-files-or-blobs"></a>ファイルまたは blob からのエラーの取り込み
 
@@ -38,7 +38,7 @@ DataReader から取り込みしている間、取り込むデータは既定の
 
 ## <a name="kustoqueuedingestclient-exceptions"></a>KustoQueuedIngestClient の例外
 
-`KustoQueuedIngestClient`Azure キューにメッセージをアップロードしてデータを取り込みします。 キューのプロセスの前または中にエラーが発生した場合は、 `IngestClientAggregateException` プロセスの終了時にがスローされます。 スローされる例外には、のコレクションが含まれます。このコレクションには `IngestClientException` 、各エラーのソースが含まれ、キューにポストされていません。 メッセージを投稿しようとしたときに発生したエラーもスローされます。
+`KustoQueuedIngestClient` Azure キューにメッセージをアップロードしてデータを取り込みします。 キューのプロセスの前または中にエラーが発生した場合は、 `IngestClientAggregateException` プロセスの終了時にがスローされます。 スローされる例外には、のコレクションが含まれます。このコレクションには `IngestClientException` 、各エラーのソースが含まれ、キューにポストされていません。 メッセージを投稿しようとしたときに発生したエラーもスローされます。
 
 ### <a name="posting-to-queue-failures-with-a-file-or-blob-as-a-source"></a>ソースとしてのファイルまたは blob を使用したキューエラーへの投稿
 
@@ -52,16 +52,16 @@ DataReader ソースを使用している間、キューにポストするデー
 `IngestFromDataReader`メソッドとメソッドでは、既定値がであるフラグによって、 `IngestFromDataReaderAsync` インジェストの `retainCsvOnFailure` `false` 失敗後にファイルを保持するかどうかが決定されます。 このフラグがに設定されている場合 `false` 、インジェストに失敗したデータは保存されず、問題が発生した原因を把握することが難しくなります。
 
 ### <a name="common-failures"></a>一般的なエラー
-|エラー                         |理由           |軽減策                                   |
+|エラー                         |理由           |対応策                                   |
 |------------------------------|-----------------|---------------------------------------------|
 |データベース <database name> 名が存在しません| データベースが存在しません|データベース名を確認し `kustoIngestionProperties` てください。 |
 |種類 ' Table ' のエンティティ ' テーブル名が存在しません。|このテーブルは存在しません。 CSV マッピングはありません。| CSV マッピングを追加する/必要なテーブルを作成する |
 |<blob path>理由により除外された Blob: JSON パターンは jsonMapping パラメーターで取り込まれたである必要があります| Json のマッピングが指定されていない場合の JSON インジェスト。|JSON マッピングを指定する |
 |Blob をダウンロードできませんでした: ' リモートサーバーがエラーを返しました: (404) が見つかりません。 '| BLOB が存在しません。|Blob が存在することを確認します。 存在する場合は、もう一度お試しください。 Kusto チームにお問い合わせください |
 |JSON 列マッピングが無効です: 2 つ以上のマッピング要素が同じ列をポイントしています。| 異なるパスを持つ2つの列を含む JSON マッピング|JSON マッピングの修正 |
-|EngineError-[UtilsException] `IngestionDownloader.Download` : 1 つ以上のファイルをダウンロードできませんでした (ActivityID の検索 KustoLogs: <GUID1> 、rootactivityid: <GUID2> )| 1つ以上のファイルをダウンロードできませんでした。 |[再試行] |
+|EngineError-[UtilsException] `IngestionDownloader.Download` : 1 つ以上のファイルをダウンロードできませんでした (ActivityID の検索 KustoLogs: <GUID1> 、rootactivityid: <GUID2> )| 1つ以上のファイルをダウンロードできませんでした。 |再試行 |
 |解析できませんでした: ID ' ' のストリームの <stream name> CSV 形式が正しくありません。 ValidationOptions ポリシーごとに失敗します |CSV ファイルの形式が正しくありません (たとえば、すべての行に同じ数の列がありません)。 検証ポリシーがに設定されている場合にのみ失敗し `ValidationOptions` ます。 ValidateCsvInputConstantColumns |CSV ファイルを確認します。 このメッセージは、CSV/TSV ファイルにのみ適用されます。 |
-|`IngestClientAggregateException`エラーメッセージ ' 有効な Shared Access Signature の必須パラメーターがありません |使用されている SAS はサービスであり、ストレージアカウントではありません。 |ストレージアカウントの SAS を使用する |
+|`IngestClientAggregateException` エラーメッセージ ' 有効な Shared Access Signature の必須パラメーターがありません |使用されている SAS はサービスであり、ストレージアカウントではありません。 |ストレージアカウントの SAS を使用する |
 
 ### <a name="ingestion-error-codes"></a>インジェストエラーコード
 
@@ -108,9 +108,9 @@ DataReader ソースを使用している間、キューにポストするデー
 
 データ管理クラスターからキューが返されなかった場合に発生します
 
-基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+基底クラス: [Exception](/dotnet/api/system.exception)
 
-|フィールド名 |Type     |意味
+|フィールド名 |Type     |説明
 |-----------|---------|------------------------------|
 |エラー      | String  | DM からキューを取得しようとしたときに発生したエラー
                             
@@ -122,9 +122,9 @@ DataReader ソースを使用している間、キューにポストするデー
 
 データ管理クラスターから blob コンテナーが返されなかった場合に発生します
 
-基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+基底クラス: [Exception](/dotnet/api/system.exception)
 
-|フィールド名   |Type     |意味       
+|フィールド名   |Type     |説明       
 |-------------|---------|------------------------------|
 |KustoEndpoint| String  | 関連する DM のエンドポイント
                             
@@ -135,9 +135,9 @@ DataReader ソースを使用している間、キューにポストするデー
 
 インジェストプロパティが複数回構成されている場合に発生します
 
-基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+基底クラス: [Exception](/dotnet/api/system.exception)
 
-|フィールド名   |Type     |意味       
+|フィールド名   |Type     |説明       
 |-------------|---------|------------------------------------|
 |PropertyName | String  | 重複するプロパティの名前
                             
@@ -145,9 +145,9 @@ DataReader ソースを使用している間、キューにポストするデー
 
 メッセージをキューに投稿できなかった場合に発生します
 
-基底クラス: [Exception](https://msdn.microsoft.com/library/system.exception(v=vs.110).aspx)
+基底クラス: [Exception](/dotnet/api/system.exception)
 
-|フィールド名   |Type     |意味       
+|フィールド名   |Type     |説明       
 |-------------|---------|---------------------------------|
 |QueueUri     | String  | キューの URI
 |エラー        | String  | キューへの投稿を試行しているときに生成されたエラーメッセージ
@@ -157,7 +157,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 ### <a name="dataformatnotspecifiedexception"></a>DataFormatNotSpecifiedException
 
-データ形式が必要ですが、では指定されていない場合に発生します。`IngestionProperties`
+データ形式が必要ですが、では指定されていない場合に発生します。 `IngestionProperties`
 
 基本クラス: IngestClientException
 
@@ -189,12 +189,12 @@ DataReader ソースを使用している間、キューにポストするデー
 
 基本クラス: IngestClientException
 
-|フィールド名   |Type     |意味       
+|フィールド名   |Type     |説明       
 |-------------|---------|-----------------------|
 |サイズ         | long    | インジェストソースのサイズ
 |MaxSize      | long    | インジェストに許可される最大サイズ
 
-インジェストソースが最大サイズの 4 GB を超えると、例外がスローされます。 サイズの検証は、IngestionProperties クラスのフラグによってオーバーライドでき `IgnoreSizeLimit` ます。 [IngestionProperties class](kusto-ingest-client-reference.md#class-kustoingestionproperties) ただし、1 GB を超える 1[つのソースを](about-kusto-ingest.md#ingestion-best-practices)取り込むことは推奨されません。
+インジェストソースが最大サイズの 4 GB を超えると、例外がスローされます。 サイズの検証は、IngestionProperties クラスのフラグによってオーバーライドでき `IgnoreSizeLimit` ます。 [IngestionProperties class](kusto-ingest-client-reference.md#class-kustoingestionproperties) ただし、1 GB を超える 1 [つのソースを](about-kusto-ingest.md#ingestion-best-practices)取り込むことは推奨されません。
 
 ### <a name="uploadfiletotempblobingestclientexception"></a>UploadFileToTempBlobIngestClientException
 
@@ -218,13 +218,13 @@ DataReader ソースを使用している間、キューにポストするデー
 
 インジェスト中に1つ以上のエラーが発生した場合に発生します
 
-基本クラス: [AggregateException](https://msdn.microsoft.com/library/system.aggregateexception(v=vs.110).aspx)
+基本クラス: [AggregateException](/dotnet/api/system.aggregateexception)
 
-|フィールド名      |Type                             |意味       
+|フィールド名      |Type                             |説明       
 |----------------|---------------------------------|-----------------------|
 |IngestionErrors | IList<IngestClientException>    | 取り込みの試行中に発生したエラーと、それらに関連するソース
 |IsGlobalError   | [bool]                            | すべてのソースで例外が発生したかどうかを示します
 
 ## <a name="next-steps"></a>次の手順
 
-ネイティブコードのエラーの詳細については、「[ネイティブコードのエラー](../../concepts/errorsinnativecode.md)」を参照してください。
+ネイティブコードのエラーの詳細については、「 [ネイティブコードのエラー](../../concepts/errorsinnativecode.md)」を参照してください。

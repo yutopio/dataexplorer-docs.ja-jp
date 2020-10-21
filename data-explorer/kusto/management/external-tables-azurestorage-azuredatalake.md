@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: c10e6502c4e18a5c30d971c4814c2270a0b27ff1
-ms.sourcegitcommit: 830837607f344f1ce1f146f946a41e45bfebcb22
+ms.openlocfilehash: 0532219b8efc1cab7508d1838882b6fa48f5048f
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/07/2020
-ms.locfileid: "91806684"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343268"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -138,7 +138,7 @@ Blob コンテナーまたは Azure Data Lake Store ファイルシステム (�
 <a name="properties"></a>
 *省略可能なプロパティ*
 
-| プロパティ         | Type     | 説明       |
+| プロパティ         | Type     | [説明]       |
 |------------------|----------|-------------------------------------------------------------------------------------|
 | `folder`         | `string` | テーブルのフォルダー                                                                     |
 | `docString`      | `string` | テーブルをドキュメント化する文字列                                                       |
@@ -378,5 +378,5 @@ dataformat=parquet
 ```
 ## <a name="next-steps"></a>次のステップ
 
-* [外部テーブル全般制御コマンド](externaltables.md)
+* [外部テーブル全般制御コマンド](./external-table-commands.md)
 * [外部 SQL テーブルを作成および変更する](external-sql-tables.md)

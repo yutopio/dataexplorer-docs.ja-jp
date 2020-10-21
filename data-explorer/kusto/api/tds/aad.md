@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 01/02/2019
-ms.openlocfilehash: 6766a817a1568eeb3cbcf2eb5bc0440cdd10eec6
-ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
+ms.openlocfilehash: 262842c7117dd5d7a9737f1038197ae93321985f
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89428431"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343319"
 ---
 # <a name="ms-tds-with-azure-active-directory"></a>Azure Active Directory を使用した MS-CHAP
 
@@ -82,7 +82,7 @@ public class Sample {
 
 ## <a name="azure-ad-application-authentication"></a>アプリケーション認証の Azure AD
 
-Kusto にプロビジョニングされた Azure AD アプリケーションは、Kusto に接続するための Azure AD をサポートする SQL クライアントライブラリを使用できます。 Azure AD アプリケーションの詳細については、「 [Azure AD アプリケーションの作成](../../management/access-control/how-to-provision-aad-app.md)」を参照してください。
+Kusto にプロビジョニングされた Azure AD アプリケーションは、Kusto に接続するための Azure AD をサポートする SQL クライアントライブラリを使用できます。 Azure AD アプリケーションの詳細については、「 [Azure AD アプリケーションの作成](../../../provision-azure-ad-app.md)」を参照してください。
 
 ### <a name="net-sql-client-application"></a>.NET SQL クライアント (アプリケーション)
 

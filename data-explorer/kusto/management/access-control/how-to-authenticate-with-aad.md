@@ -1,6 +1,6 @@
 ---
 title: アクセスのために AAD を使用した kusto-Azure データエクスプローラー
-description: この記事では、azure データエクスプローラーで Azure データエクスプローラーアクセスを行うために AAD で認証する方法について説明します。
+description: この記事では、azure データエクスプローラーで Azure データエクスプローラーアクセスを行うために AAD で認証 How-To について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -9,16 +9,16 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 09/13/2019
-ms.openlocfilehash: f74848ac3b634affbafde8d0441a4340aff230da
-ms.sourcegitcommit: dc42f4a7fa617a06b5566ce40b7cdc66cfd22185
+ms.openlocfilehash: e1c2a6f5cbec90d59ed54f15147b912ffbc8fdd3
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/04/2020
-ms.locfileid: "87557620"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343421"
 ---
-# <a name="how-to-authenticate-with-aad-for-azure-data-explorer-access"></a>Azure データエクスプローラーアクセス用に AAD で認証する方法
+# <a name="how-to-authenticate-with-aad-for-azure-data-explorer-access"></a>Azure データエクスプローラーアクセス用に AAD で認証 How-To
 
-Azure データエクスプローラーにアクセスするには、 **Azure Active Directory**サービスに対して認証を行うことをお勧めします ( **Azure AD**または単に**AAD**とも呼ばれることもあります)。 これにより、Azure データエクスプローラーでは、2段階のプロセスを使用して、アクセスプリンシパルのディレクトリ資格情報を確認することができなくなります。
+Azure データエクスプローラーにアクセスするには、 **Azure Active Directory** サービスに対して認証を行うことをお勧めします ( **Azure AD**または単に **AAD**とも呼ばれることもあります)。 これにより、Azure データエクスプローラーでは、2段階のプロセスを使用して、アクセスプリンシパルのディレクトリ資格情報を確認することができなくなります。
 
 1. 最初の手順では、クライアントは AAD サービスと通信して認証を行い、クライアントがアクセスする特定の Azure データエクスプローラーエンドポイントに対して特別に発行されたアクセストークンを要求します。
 2. 2番目のステップでは、クライアントは Azure データエクスプローラーに要求を発行し、最初の手順で取得したアクセストークンを Azure データエクスプローラーに対する id の証明として提供します。
@@ -26,18 +26,18 @@ Azure データエクスプローラーにアクセスするには、 **Azure Ac
 その後、Azure データエクスプローラーは AAD がアクセストークンを発行したセキュリティプリンシパルに代わって要求を実行し、すべての承認チェックはこの id を使用して実行されます。
 
 ほとんどの場合は、Azure データエクスプローラー Sdk のいずれかを使用してサービスにプログラムでアクセスすることをお勧めします。これにより、上記のフロー (およびその他の多く) を実装する手間が大幅に排除されます。 例については、「 [.NET SDK](../../api/netfx/about-the-sdk.md)」を参照してください。
-その後、認証プロパティは[Kusto 接続文字列](../../api/connection-strings/kusto.md)によって設定されます。
+その後、認証プロパティは [Kusto 接続文字列](../../api/connection-strings/kusto.md)によって設定されます。
 これが不可能な場合は、このフローを自分で実装する方法の詳細について、「」を参照してください。
 
 主な認証シナリオは次のとおりです。
 
 * **サインインしているユーザーを認証するクライアントアプリケーション**。
   このシナリオでは、対話型 (クライアント) アプリケーションは、資格情報 (ユーザー名とパスワードなど) に対して AAD プロンプトをユーザーに対してトリガーします。
-  「[ユーザー認証](#user-authentication)」を参照してください。
+  「 [ユーザー認証](#user-authentication)」を参照してください。
 
 * **"ヘッドレス" アプリケーション**。
   このシナリオでは、資格情報を提供するユーザーが存在せずにアプリケーションが実行されており、アプリケーションは、構成されている資格情報を使用して、AAD に対して "自身" として認証されます。
-  「[アプリケーション認証](#application-authentication)」を参照してください。
+  「 [アプリケーション認証](#application-authentication)」を参照してください。
 
 * **代理認証**。
   このシナリオでは、"web サービス" または "web アプリ" シナリオと呼ばれることもあり、アプリケーションは別のアプリケーションから AAD アクセストークンを取得し、それを Azure データエクスプローラーで使用できる別の AAD アクセストークンに "変換" します。
@@ -46,7 +46,7 @@ Azure データエクスプローラーにアクセスするには、 **Azure Ac
 
 ## <a name="specifying-the-aad-resource-for-azure-data-explorer"></a>Azure データエクスプローラーの AAD リソースの指定
 
-AAD からアクセストークンを取得する場合、クライアントは、トークンを発行する必要がある aad**リソース**を aad に通知する必要があります。 Azure データエクスプローラーエンドポイントの AAD リソースは、ポート情報とパスを除いて、エンドポイントの URI です。 次に例を示します。
+AAD からアクセストークンを取得する場合、クライアントは、トークンを発行する必要がある aad **リソース** を aad に通知する必要があります。 Azure データエクスプローラーエンドポイントの AAD リソースは、ポート情報とパスを除いて、エンドポイントの URI です。 次に例を示します。
 
 ```txt
 https://help.kusto.windows.net
@@ -56,7 +56,7 @@ https://help.kusto.windows.net
 
 ## <a name="specifying-the-aad-tenant-id"></a>AAD テナント ID の指定
 
-AAD はマルチテナントサービスであり、すべての組織は AAD で**ディレクトリ**と呼ばれるオブジェクトを作成できます。 ディレクトリオブジェクトは、ユーザーアカウント、アプリケーション、グループなどのセキュリティ関連のオブジェクトを保持します。 AAD は、多くの場合、ディレクトリを**テナント**として参照します。 AAD テナントは GUID (**テナント ID**) によって識別されます。 多くの場合、AAD テナントは、組織のドメイン名で識別することもできます。
+AAD はマルチテナントサービスであり、すべての組織は AAD で **ディレクトリ** と呼ばれるオブジェクトを作成できます。 ディレクトリオブジェクトは、ユーザーアカウント、アプリケーション、グループなどのセキュリティ関連のオブジェクトを保持します。 AAD は、多くの場合、ディレクトリを **テナント**として参照します。 AAD テナントは GUID (**テナント ID**) によって識別されます。 多くの場合、AAD テナントは、組織のドメイン名で識別することもできます。
 
 たとえば、"Contoso" という組織には、テナント ID とドメイン名が含まれている場合があり `4da81d62-e0a8-4899-adad-4349ca6bfe24` `contoso.com` ます。
 
@@ -70,11 +70,11 @@ AAD には、認証用のエンドポイントがいくつかあります。
 * 認証されているプリンシパルをホストしているテナントが不明な場合は、上記のを値に置き換えることによって "common" エンドポイントを使用でき `{tenantId}` `common` ます。
 
 > [!NOTE]
-> 認証に使用される AAD エンドポイントは、 **aad 機関 URL**または単に**aad 機関**とも呼ばれます。
+> 認証に使用される AAD エンドポイントは、 **aad 機関 URL** または単に **aad 機関**とも呼ばれます。
 
 ## <a name="aad-token-cache"></a>AAD トークンキャッシュ
 
-Azure データエクスプローラー SDK を使用する場合、AAD トークンは、ユーザーごとのトークンキャッシュ (サインインしたユーザーによってのみアクセスまたは復号化できる **%APPDATA%\Kusto\tokenCache.data**という名前のファイル) にローカルコンピューターに格納されます。キャッシュは、ユーザーに資格情報の入力を求める前にトークンを検査します。これにより、ユーザーが資格情報を入力する回数が大幅に短縮されます。
+Azure データエクスプローラー SDK を使用する場合、AAD トークンは、ユーザーごとのトークンキャッシュ (サインインしたユーザーによってのみアクセスまたは復号化できる **%APPDATA%\Kusto\tokenCache.data** という名前のファイル) にローカルコンピューターに格納されます。キャッシュは、ユーザーに資格情報の入力を求める前にトークンを検査します。これにより、ユーザーが資格情報を入力する回数が大幅に短縮されます。
 
 > [!NOTE]
 > AAD トークンキャッシュを使用すると、ユーザーが Azure データエクスプローラーにアクセスする際に表示される対話型プロンプトの数を減らすことができますが、完了することはできません。 さらに、ユーザーが資格情報の入力を求められるときに事前に予測することはできません。
@@ -87,7 +87,7 @@ Azure データエクスプローラー SDK を使用する場合、AAD トー�
 
 Azure データエクスプローラー SDK を使用しないアプリケーションでも、AAD サービスセキュリティプロトコルクライアントを実装する代わりに、AAD クライアントライブラリ (ADAL) を使用できます。 https://github.com/AzureADSamples/WebApp-WebAPI-OpenIDConnect-DotNet.Net アプリケーションから実行する例については、[] を参照してください。
 
-Azure データエクスプローラーアクセスのユーザーを認証するには、まず、アプリケーションに委任されたアクセス許可が付与されている必要があり `Access Kusto` ます。 詳細については、 [AAD アプリケーションのプロビジョニングに関する Kusto のガイドを](how-to-provision-aad-app.md#set-up-delegated-permissions-for-kusto-service-application)参照してください。
+Azure データエクスプローラーアクセスのユーザーを認証するには、まず、アプリケーションに委任されたアクセス許可が付与されている必要があり `Access Kusto` ます。 詳細については、 [AAD アプリケーションのプロビジョニングに関する Kusto のガイドを](../../../provision-azure-ad-app.md#configure-delegated-permissions-for-the-application-registration) 参照してください。
 
 次の簡単なコードスニペットは、ADAL を使用して Azure データエクスプローラーにアクセスするための AAD ユーザートークンを取得する方法を示しています (ログオン UI を起動します)。
 
@@ -141,17 +141,17 @@ request.Headers.Set(HttpRequestHeader.Authorization, string.Format(CultureInfo.I
 
 1. [Azure portal](https://portal.azure.com/)を開き、正しいテナントにサインインしていることを確認します (ポータルへのサインインに使用する id については、上部/右コーナーを参照してください)。
 
-2. [リソース] ウィンドウで、[ **Azure Active Directory**]、[**アプリの登録**] の順にクリックします。
+2. [リソース] ウィンドウで、[ **Azure Active Directory**]、[ **アプリの登録**] の順にクリックします。
 
 3. 代理フローを使用するアプリケーションを見つけて開きます。
 
-4. [ **API のアクセス許可**] をクリックし、**アクセス許可を追加**します。
+4. [ **API のアクセス許可**] をクリックし、 **アクセス許可を追加**します。
 
 5. **Azure データエクスプローラー**という名前のアプリケーションを検索し、それを選択します。
 
 6. [ **User_impersonation/アクセス Kusto**] を選択します。
 
-7. [**アクセス許可の追加**] をクリックします。
+7. [ **アクセス許可の追加**] をクリックします。
 
 **手順 2: サーバーコードでトークン交換を実行する**
 
@@ -185,7 +185,7 @@ var queryResult = client.ExecuteQuery(databaseName, query, null);
 **AAD アプリケーションの構成**
 
 > [!NOTE]
-> AAD アプリをセットアップするために従う必要がある標準の[手順](./how-to-provision-aad-app.md)に加えて、aad アプリケーションで oauth 暗黙的フローを有効にする必要もあります。 これを実現するには、azure portal のアプリケーションページで [マニフェスト] を選択し、[oauth2AllowImplicitFlow] を [true] に設定します。
+> AAD アプリをセットアップするために従う必要がある標準の [手順](../../../provision-azure-ad-app.md) に加えて、aad アプリケーションで oauth 暗黙的フローを有効にする必要もあります。 これを実現するには、azure portal のアプリケーションページで [マニフェスト] を選択し、[oauth2AllowImplicitFlow] を [true] に設定します。
 
 **詳細**
 
@@ -250,6 +250,6 @@ var settings = {
 $.ajax(settings).then(function(data) {/* do something wil the data */});
 ```
 
-> 警告-認証時に次の例外または同様の例外が発生した場合:`ReferenceError: AuthenticationContext is not defined`
+> 警告-認証時に次の例外または同様の例外が発生した場合: `ReferenceError: AuthenticationContext is not defined`
 これは、グローバル名前空間に AuthenticationContext がないことが原因である可能性があります。
 残念ながら、AdalJS には、認証コンテキストがグローバル名前空間で定義されるという、ドキュメントに記載されていない要件があります。

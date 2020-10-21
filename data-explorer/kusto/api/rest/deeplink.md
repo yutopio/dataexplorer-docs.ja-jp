@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: aa47811bfe8004037cb04e642c234003087617a1
-ms.sourcegitcommit: b4d6c615252e7c7d20fafd99c5501cb0e9e2085b
+ms.openlocfilehash: 412e489365daabfdde7de8cd61e398100f4bc3ef
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83863236"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337399"
 ---
 # <a name="ui-deep-links"></a>UI ディープリンク
 
@@ -26,13 +26,13 @@ UI ディープリンク REST API:
 * データベース (省略可能) は、URI パスの最初の唯一のフラグメントとして指定されています。 クエリでは、データベースは必須であり、制御コマンドでは省略可能です。
 
 * クエリまたは制御コマンド (オプション) は、URI クエリパラメーターを使用して指定する `query` か、 `querysrc` (クエリを保持する web リソースを参照する) uri クエリパラメーターを使用して指定します。
-  `query`クエリまたはコントロールコマンド自体のテキストで使用できます (HTTP クエリパラメーターエンコーディングを使用してエンコードされます)。 または、クエリまたは制御コマンドテキストの gzip の base64 エンコードで使用することもできます (長いクエリを圧縮して、既定のブラウザー URI の長さの制限に合わせることができるようにします)。
+  `query` クエリまたはコントロールコマンド自体のテキストで使用できます (HTTP クエリパラメーターエンコーディングを使用してエンコードされます)。 または、クエリまたは制御コマンドテキストの gzip の base64 エンコードで使用することもできます (長いクエリを圧縮して、既定のブラウザー URI の長さの制限に合わせることができるようにします)。
 
 * クラスター接続の名前 (省略可能) は、URI クエリパラメーターを使用して指定し `name` ます。
 
 * UI ツールは、省略可能な URI クエリパラメーターを使用して指定し `web` ます。
-  `web=0`デスクトップアプリケーション Kusto. エクスプローラーを示します。 `web=1`Kusto. WebExplorer web アプリケーションを示します。
-  `web=2`は、以前のバージョンの Kusto. WebExplorer (Application Insights Analytics に基づく) です。 `web=3`は、空のプロファイルを持つ Kusto. WebExplorer です (以前に開いていたタブやクラスターは使用できません)。 最後に、表示 `web` されて `saw=1` いる Kusto エクスプローラーを示すために、クエリパラメーターをに置き換えることができます。
+  `web=0` デスクトップアプリケーション Kusto. エクスプローラーを示します。 `web=1` Kusto. WebExplorer web アプリケーションを示します。
+  `web=2` は、以前のバージョンの Kusto. WebExplorer (Application Insights Analytics に基づく) です。 `web=3` は、空のプロファイルを持つ Kusto. WebExplorer です (以前に開いていたタブやクラスターは使用できません)。 最後に、表示 `web` されて `saw=1` いる Kusto エクスプローラーを示すために、クエリパラメーターをに置き換えることができます。
 
 リンクの例をいくつか次に示します。
 
@@ -52,19 +52,19 @@ UI ディープリンク REST API:
 この REST API は、特定の Kusto エンジンクラスターへの接続を開き、そのクラスターに対してクエリを実行する特別に細工されたスタートアップパラメーターを使用して、Kusto エクスプローラーデスクトップクライアントツールをインストールして実行するリダイレクトを実行します。
 
 * パス: `/` [*DatabaseName*']
-* 助動詞`GET`
-* クエリ文字列:`web=0`
+* 助動詞 `GET`
+* クエリ文字列: `web=0`
 
 > [!NOTE]
-> Kusto を起動するためのリダイレクト URI 構文の詳細については、「 [Kusto によるディープリンク](../../tools/kusto-explorer-using.md#deep-linking-queries)」を参照してください。
+> Kusto を起動するためのリダイレクト URI 構文の詳細については、「 [Kusto によるディープリンク](../../tools/kusto-explorer-using.md#deep-linking-queries) 」を参照してください。
 
 ## <a name="deep-linking-to-kustowebexplorer"></a>Kusto へのディープリンク (WebExplorer)
 
 この REST API は、web アプリケーションである Kusto. WebExplorer へのリダイレクトを実行します。
 
 * パス: `/` [*DatabaseName*']
-* 助動詞`GET`
-* クエリ文字列:`web=1`
+* 助動詞 `GET`
+* クエリ文字列: `web=1`
 
 ## <a name="specifying-the-query-or-control-command-in-the-uri"></a>URI でのクエリまたは制御コマンドの指定
 
@@ -81,6 +81,5 @@ URI クエリ文字列パラメーターを指定する場合 `query` は、uri 
 >
 > さらに、そのサービスで認証/承認情報が必要な場合は、URI 自体の一部として指定する必要があります。
 >
-> たとえば、が `querysrc` Azure Blob Storage の blob を指している場合、CORS をサポートするようにストレージアカウントを構成し、blob 自体をパブリック (セキュリティ要求なしでダウンロードできるようにするため) にするか、適切な AZURE STORAGE SAS を URI に追加する必要があります。 CORS の構成は、 [Azure portal](https://portal.azure.com/)または[Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)から行うことができます。
-> [Azure Storage での CORS のサポートを](https://docs.microsoft.com/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)参照してください。
-
+> たとえば、が `querysrc` Azure Blob Storage の blob を指している場合、CORS をサポートするようにストレージアカウントを構成し、blob 自体をパブリック (セキュリティ要求なしでダウンロードできるようにするため) にするか、適切な AZURE STORAGE SAS を URI に追加する必要があります。 CORS の構成は、 [Azure portal](https://portal.azure.com/) または [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/)から行うことができます。
+> [Azure Storage での CORS のサポートを](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)参照してください。

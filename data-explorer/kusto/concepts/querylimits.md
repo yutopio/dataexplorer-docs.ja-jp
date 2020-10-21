@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: d0f815cd523e0e53111e791d8faaaf6c37c7bb7b
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: ee36823bb3f730a12f7ad2d1febe91439d4a2aad
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92252844"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343285"
 ---
 # <a name="query-limits"></a>クエリの制限
 
@@ -154,7 +154,7 @@ Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too
 
 既定では、クエリのタイムアウトは4分、制御コマンドでは10分に設定されています。 この値は、必要に応じて増やすことができます (1 時間に上限)。
 
-* Kusto. エクスプローラーを使用してクエリを実行する場合は、**ツール** &gt; **オプション**の *  &gt; **接続** &gt; **クエリサーバーのタイムアウト**を使用します。
+* Kusto を使用してクエリを実行する場合は、**ツール** &gt; **オプション**の _ &gt; _*Connections* *  &gt; **クエリサーバーのタイムアウト**を使用します。
 * プログラムによって、 `servertimeout` クライアント要求プロパティを、型の値 `System.TimeSpan` (最大1時間) に設定します。
 
 **タイムアウトに関する注意事項**

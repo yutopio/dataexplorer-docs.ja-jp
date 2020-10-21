@@ -1,6 +1,6 @@
 ---
-title: SQL へのデータのエクスポート - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでの SQL へのデータのエクスポートについて説明します。
+title: SQL にデータをエクスポートする-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーで SQL にデータをエクスポートする方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,68 +8,68 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7deeb3868800f00a828eb09cc605e4d7e5227032
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 61c65e2667356f2b2ee9e53c3dd1c210e84c72f8
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81521626"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342809"
 ---
-# <a name="export-data-to-sql"></a>SQL へのデータのエクスポート
+# <a name="export-data-to-sql"></a>SQL にデータをエクスポートする
 
-データを SQL にエクスポートすると、クエリを実行し、その結果を SQL データベース (Azure SQL Database サービスによってホストされる SQL データベースなど) のテーブルに送信できます。
+SQL にデータをエクスポートすると、クエリを実行し、その結果を SQL database のテーブル (Azure SQL Database サービスによってホストされる SQL データベースなど) に送信できます。
 
 **構文**
 
-`.export`[`async` `to` `sql` ] *Sql テーブル名*`with` `(` *Sql 接続文字列*[*プロパティ名*`=`*プロパティ値*`,`..`)`] `<|` *クエリ*
+`.export`[ `async` ] `to` `sql` *Sqltablename* *sqltablename* [ `with` `(` *PropertyName* `=` *PropertyValue* `,` ... `)` ] `<|`*クエリ*
 
 各値の説明:
-* *非同期*: コマンドは非同期モードで実行されます (オプション)。
-* *テーブル名*データが挿入される SQL データベーステーブル名。
+* *async*: コマンドを非同期モードで実行します (省略可能)。
+* *Sqltablename* データが挿入される SQL データベーステーブルの名前。
   インジェクション攻撃から保護するために、この名前は制限されています。
-* *SqlConnectionString*は`string`、接続文字列の形式に`ADO.NET`従って、接続先の SQL エンドポイントとデータベースを記述するリテラルです。 セキュリティ上の理由から、接続文字列は制限されています。
-* *プロパティ名*、*プロパティ値*は、名前 (識別子) と値 (文字列リテラル) のペアです。
+* *Sqlconnectionstring* は、 `string` 接続文字列の形式に従ったリテラルで `ADO.NET` あり、接続先の SQL エンドポイントとデータベースについて説明します。 セキュリティ上の理由から、接続文字列は制限されています。
+* *PropertyName*、 *PropertyValue* は、名前 (識別子) と値 (文字列リテラル) のペアです。
 
 プロパティ:
 
 |名前               |値           |説明|
 |-------------------|-----------------|-----------|
-|`firetriggers`     |`true` または `false`|の`true`場合、SQL テーブルに定義された INSERT トリガを起動するようにターゲット システムに指示します。 既定では、 `false`です。 (詳細については、「[一括挿入](https://msdn.microsoft.com/library/ms188365.aspx)」および[「システム.データ.SqlClient.SqlBulkCopy」を参照してください](https://msdn.microsoft.com/library/system.data.sqlclient.sqlbulkcopy(v=vs.110).aspx)。|
-|`createifnotexists`|`true` または `false`|の`true`場合、ターゲット SQL テーブルが存在しない場合は作成されます。この`primarykey`場合、主キーである結果列を示すために、プロパティを指定する必要があります。 既定では、 `false`です。|
-|`primarykey`       |                 |の`createifnotexists`場合`true`は、このコマンドで SQL テーブルの主キーとして使用される結果の列の名前を示します。|
-|`persistDetails`   |`bool`           |コマンドが結果を保持する必要があることを示します`async`(フラグを参照)。 デフォルトは非同期`true`実行ですが、呼び出し元が結果を必要としない場合はオフにできます)。 同期実行`false`ではデフォルトですが、有効にすることもできます。 |
-|`token`            |`string`         |Kusto が認証のために SQL エンドポイントに転送する AAD アクセス トークン。 設定されている場合、SQL 接続文字列には、 、、`Authentication``User ID`または`Password`などの認証情報を含める必要があります。|
+|`firetriggers`     |`true` または `false`|`true`の場合、SQL テーブルで定義された挿入トリガーを起動するように対象システムに指示します。 既定値は、`false` です。 (詳細については、「 [BULK INSERT](/sql/t-sql/statements/bulk-insert-transact-sql) と [SqlBulkCopy](/dotnet/api/system.data.sqlclient.sqlbulkcopy))」を参照してください。|
+|`createifnotexists`|`true` または `false`|`true`の場合、対象の SQL テーブルが存在しない場合は作成されます。 `primarykey` この場合は、主キーである結果列を示すためにプロパティを指定する必要があります。 既定値は、`false` です。|
+|`primarykey`       |                 |がの場合 `createifnotexists` `true` 、このコマンドで SQL テーブルの主キーとして使用される、結果の列の名前を示します。|
+|`persistDetails`   |`bool`           |コマンドが結果を永続化する必要があることを示します (フラグを参照 `async` )。 `true`非同期実行では、は既定でになりますが、呼び出し元が結果を必要としない場合は無効にすることができます。 `false`同期実行では、は既定でに設定されますが、有効にすることができます。 |
+|`token`            |`string`         |Kusto が認証のために SQL エンドポイントに転送する AAD アクセストークン。 設定すると、SQL 接続文字列に、、またはのような認証情報を含めないで `Authentication` `User ID` `Password` ください。|
 
 ## <a name="limitations-and-restrictions"></a>制限事項と制約事項
 
-SQL データベースにデータをエクスポートする場合、いくつかの制限事項と制約事項があります。
+SQL database にデータをエクスポートする際には、いくつかの制限事項と制約事項があります。
 
-1. Kusto はクラウド サービスであるため、接続文字列はクラウドからアクセス可能なデータベースを指している必要があります。 (特に、オンプレミスのデータベースはパブリック クラウドからアクセスできないので、そのデータベースにエクスポートできません)。
+1. Kusto はクラウドサービスなので、接続文字列はクラウドからアクセスできるデータベースを指す必要があります。 (特に、パブリッククラウドからアクセスできないため、オンプレミスのデータベースにエクスポートすることはできません)。
 
-2. Kusto は、呼び出し元のプリンシパルが Azure アクティブ`aaduser=`ディレクトリ`aadapp=`プリンシパル (または) である場合に、Active Directory 統合認証をサポートします。
-   また、接続文字列の一部として SQL データベースの資格情報を提供することもできます。 他の認証方法はサポートされていません。 SQL データベースに提示される ID は、常に Kusto サービス ID 自体ではなく、コマンドの呼び出し元から発行されます。
+2. Kusto は、呼び出し元のプリンシパルが Azure Active Directory プリンシパル (または) の場合に Active Directory 統合認証をサポート `aaduser=` `aadapp=` します。
+   また、Kusto では、接続文字列の一部として SQL データベースの資格情報を指定することもできます。 その他の認証方法はサポートされていません。 SQL database に提示される id は、Kusto サービス id 自体ではなく、コマンドの呼び出し元から常に長年ます。
 
-3. SQL データベースにターゲット表が存在する場合は、クエリ結果スキーマと一致する必要があります。 場合によっては (Azure SQL Database など)、テーブルに ID 列としてマークされた列が 1 つあることを意味します。
+3. SQL データベースの対象のテーブルが存在する場合は、クエリの結果スキーマと一致している必要があります。 場合によっては (Azure SQL Database など)、テーブルに1つの列が id 列としてマークされていることに注意してください。
 
-4. 大量のデータをエクスポートする場合、時間がかかる場合があります。 一括インポート時には、ターゲットの SQL テーブルを最小限のログ記録に設定することをお勧めします。
-   [データの一括インポートとエクスポート>データベース機能> SQL Server データベース エンジン> ..](https://msdn.microsoft.com/library/ms190422.aspx)を参照してください。
+4. 大量のデータをエクスポートすると、長い時間がかかる場合があります。 一括インポート中に最小ログ記録の対象となる SQL テーブルを設定することをお勧めします。
+   [データの一括インポートと一括エクスポートについては、「SQL Server データベースエンジン >... > データベース > 機能](/sql/relational-databases/import-export/prerequisites-for-minimal-logging-in-bulk-import)」を参照してください。
 
-5. データ エクスポートは SQL 一括コピーを使用して実行され、ターゲット SQL データベースにトランザクション保証はありません。 詳細については、「[トランザクションおよび一括コピー操作](https://docs.microsoft.com/dotnet/framework/data/adonet/sql/transaction-and-bulk-copy-operations)」を参照してください。
+5. データのエクスポートは、SQL 一括コピーを使用して実行され、対象の SQL データベースに対するトランザクションの保証は提供されません。 詳細については [、「トランザクションと一括コピーの操作](/dotnet/framework/data/adonet/sql/transaction-and-bulk-copy-operations) 」を参照してください。
 
-6. SQL テーブル名は、文字、数字、スペース、アンダースコア ()、ドット (`_``.`) 、およびハイフン (`-`) から成る名前に制限されています。
+6. SQL テーブル名は、文字、数字、スペース、アンダースコア ( `_` )、ドット ( `.` )、およびハイフン () で構成される名前に制限されてい `-` ます。
 
-7. SQL 接続文字列は、次のように制限されます。 `Persist Security Info` `false` `Encrypt` `true` `Trust Server Certificate` `false`
+7. SQL 接続文字列は次のように制限されます。 `Persist Security Info` が明示的にに設定され `false` 、 `Encrypt` がに設定され、 `true` `Trust Server Certificate` がに設定されてい `false` ます。
 
-8. 新しい SQL テーブルを作成するときに、列の主キー プロパティを指定できます。 列が type`string`の場合、主キー列に関する他の制限により、SQL はテーブルの作成を拒否する可能性があります。 この問題を回避するには、データをエクスポートする前に、SQL でテーブルを手動で作成します。 この制限の理由は、SQL の主キー列のサイズは無制限にすることはできませんが、Kusto テーブル列には宣言されたサイズ制限がないためです。
+8. 新しい SQL テーブルを作成するときに、列の主キープロパティを指定できます。 列の型がである場合 `string` 、主キー列に対する他の制限により、SQL はテーブルの作成を拒否する可能性があります。 この回避策は、データをエクスポートする前に、SQL でテーブルを手動で作成することです。 この制限の理由は、SQL の主キー列のサイズを無制限にすることはできませんが、Kusto テーブルの列には、宣言されたサイズの制限がないためです。
 
-## <a name="azure-db-aad-integrated-authentication-documentation"></a>Azure DB AAD 統合認証ドキュメント
+## <a name="azure-db-aad-integrated-authentication-documentation"></a>Azure DB AAD 統合認証のドキュメント
 
-* [SQL データベースでの認証に Azure アクティブ ディレクトリ認証を使用する](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication)
-* [Azure SQL DB および SQL DW ツールの Azure AD 認証拡張機能](https://azure.microsoft.com/blog/azure-ad-authentication-extensions-for-azure-sql-db-and-sql-dw-tools/)
+* [SQL Database を使用した認証に Azure Active Directory 認証を使用する](/azure/sql-database/sql-database-aad-authentication)
+* [Azure SQL DB および SQL DW tools 用の認証拡張機能の Azure AD](https://azure.microsoft.com/blog/azure-ad-authentication-extensions-for-azure-sql-db-and-sql-dw-tools/)
 
 **使用例** 
 
-この例では、Kusto はクエリを実行し、クエリによって生成された最初のレコード セット`MySqlTable`を server`MyDatabase``myserver`のデータベースのテーブルにエクスポートします。
+この例では、Kusto はクエリを実行し、クエリによって生成された最初のレコードセットをサーバー内のデータベースのテーブルにエクスポートし `MySqlTable` `MyDatabase` `myserver` ます。
 
 ```kusto 
 .export async to sql MySqlTable
@@ -77,8 +77,8 @@ SQL データベースにデータをエクスポートする場合、いくつ�
     <| print Id="d3b68d12-cbd3-428b-807f-2c740f561989", Name="YSO4", DateOfBirth=datetime(2017-10-15)
 ```
 
-この例では、Kusto はクエリを実行し、クエリによって生成された最初のレコード セット`MySqlTable`を server`MyDatabase``myserver`のデータベースのテーブルにエクスポートします。
-ターゲット・データベースにターゲット表が存在しない場合は、作成されます。
+この例では、Kusto はクエリを実行し、クエリによって生成された最初のレコードセットをサーバー内のデータベースのテーブルにエクスポートし `MySqlTable` `MyDatabase` `myserver` ます。
+ターゲットテーブルがターゲットデータベースに存在しない場合は、作成されます。
 
 ```kusto 
 .export async to sql ['dbo.MySqlTable']

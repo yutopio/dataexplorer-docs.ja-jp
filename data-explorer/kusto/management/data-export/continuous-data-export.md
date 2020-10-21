@@ -8,16 +8,16 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/03/2020
-ms.openlocfilehash: fab1f41fc4b72b497900276d33beb1b89820c02c
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 7f9465df4847a24a4877c8b1cb637ba1d7542db3
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201623"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342537"
 ---
 # <a name="continuous-data-export-overview"></a>継続的なデータエクスポートの概要
 
-この記事では、定期的に実行されるクエリを使用して、Kusto から [外部テーブル](../externaltables.md) にデータを連続エクスポートする方法について説明します。 結果は、Azure Blob Storage、エクスポートされたデータのスキーマなどの変換先を定義する外部テーブルに格納されます。 このプロセスでは、すべてのレコードが "厳密に1回" エクスポートされることを保証しますが、 [例外](#exactly-once-export)もあります。 
+この記事では、定期的に実行されるクエリを使用して、Kusto から [外部テーブル](../external-table-commands.md) にデータを連続エクスポートする方法について説明します。 結果は、Azure Blob Storage、エクスポートされたデータのスキーマなどの変換先を定義する外部テーブルに格納されます。 このプロセスでは、すべてのレコードが "厳密に1回" エクスポートされることを保証しますが、 [例外](#exactly-once-export)もあります。 
 
 連続したデータのエクスポートを有効にするには、 [外部テーブルを作成](../external-tables-azurestorage-azuredatalake.md#create-or-alter-external-table) し、外部テーブルを指す [連続エクスポート定義を作成](create-alter-continuous.md) します。 
 
@@ -95,4 +95,3 @@ ms.locfileid: "88201623"
 * 連続エクスポートは、データベース間およびクラスター間の呼び出しをサポートしていません。
 * 連続エクスポートは、Azure データエクスプローラーから継続的にデータをストリーミングするように設計されていません。 連続エクスポートは分散モードで実行され、すべてのノードが同時にエクスポートされます。 各実行によってクエリされるデータの範囲が小さい場合、連続エクスポートの出力は多数の小さな成果物になります。 成果物の数は、クラスター内のノードの数によって異なります。
 * 連続エクスポートによって使用されるアーティファクトが Event Grid 通知をトリガーするように設計されている場合は、Event Grid のドキュメントの「 [既知の問題」セクション](../../../ingest-data-event-grid-overview.md#known-event-grid-issues)を参照してください。
- 

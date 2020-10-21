@@ -8,20 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/23/2020
-ms.openlocfilehash: 6db37366ddd3d70aaa89c0d6eebd1ec8affbb76d
-ms.sourcegitcommit: e87b6cb2075d36dbb445b16c5b83eff7eaf3cdfa
+ms.openlocfilehash: 608d177d555419f8e2340ddacffd32382118eb7f
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85264445"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343302"
 ---
 # <a name="fact-and-dimension-tables"></a>ファクトとディメンション テーブル
 
 Azure データエクスプローラーデータベースのスキーマを設計するときは、テーブルを2つのカテゴリのうちの1つに広範に属しているものと考えてください。
-* [ファクトテーブル](https://en.wikipedia.org/wiki/Fact_table)
-* [ディメンションテーブル](https://en.wikipedia.org/wiki/Dimension_(data_warehouse)#Dimension_table)
+* [ファクト テーブル](https://en.wikipedia.org/wiki/Fact_table)
+* [ディメンション テーブル](https://en.wikipedia.org/wiki/Dimension_(data_warehouse)#Dimension_table)
 
-## <a name="fact-tables"></a>ファクトテーブル
+## <a name="fact-tables"></a>ファクト テーブル
 ファクトテーブルは、サービスログや測定情報など、変更できない "ファクト" レコードを持つテーブルです。 レコードは、ストリーミング方式または大きなまとまりでテーブルに徐々に追加されます。 これらのレコードは、コストが原因で削除されるまで、または値が失われてしまうため、そのままになります。 それ以外の場合、レコードは更新されません。
 
 エンティティデータはファクトテーブルに保持されることがあり、エンティティデータの変更は遅くなります。 たとえば、場所を変更することの少ないオフィス機器など、一部の物理的なエンティティに関するデータです。
@@ -31,18 +31,18 @@ Kusto のデータは不変であるため、一般的な方法は、各テー�
 
 その後、各エンティティ id の最後のレコードのみが取得されます。
 
-## <a name="dimension-tables"></a>ディメンションテーブル
+## <a name="dimension-tables"></a>ディメンション テーブル
 ディメンションテーブル:
 * エンティティ識別子の参照テーブルなどの参照データをそのプロパティに保持する
 * 単一のトランザクションでコンテンツ全体が変更されるテーブルにスナップショットのようなデータを保持する
 
-ディメンションテーブルは、新しいデータに対して定期的に取り込まれたされるわけではありません。 代わりに、データコンテンツ全体が一度に更新されます。これには、 [... または replace](../management/data-ingestion/ingest-from-query.md)、 [. move エクステント](../management/extents-commands.md#move-extents)、などの操作を使用し[ます。](../management/rename-table-command.md)
+ディメンションテーブルは、新しいデータに対して定期的に取り込まれたされるわけではありません。 代わりに、データコンテンツ全体が一度に更新されます。これには、 [... または replace](../management/data-ingestion/ingest-from-query.md)、 [. move エクステント](../management/move-extents.md)、などの操作を使用し[ます。](../management/rename-table-command.md)
 
-ディメンションテーブルがファクトテーブルから派生している場合があります。 このプロセスは、ファクトテーブルの[更新ポリシー](../management/updatepolicy.md)を使用して実行できます。また、テーブルに対するクエリでは、各エンティティの最後のレコードを取得します。
+ディメンションテーブルがファクトテーブルから派生している場合があります。 このプロセスは、ファクトテーブルの [更新ポリシー](../management/updatepolicy.md) を使用して実行できます。また、テーブルに対するクエリでは、各エンティティの最後のレコードを取得します。
 
 ## <a name="differentiate-fact-and-dimension-tables"></a>ファクトテーブルとディメンションテーブルを区別する
 
-Kusto には、ファクトテーブルとディメンションテーブルを区別するプロセスがあります。 そのうちの1つは[連続エクスポート](../management/data-export/continuous-data-export.md)です。
+Kusto には、ファクトテーブルとディメンションテーブルを区別するプロセスがあります。 そのうちの1つは [連続エクスポート](../management/data-export/continuous-data-export.md)です。
 
 これらのメカニズムでは、ファクトテーブルのデータを正確に1回処理することが保証されます。 [データベースカーソル](../management/databasecursor.md)機構に依存しています。
 

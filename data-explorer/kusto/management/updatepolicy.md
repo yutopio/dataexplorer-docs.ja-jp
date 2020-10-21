@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 9b2d35c796cfd1f41dc2fd8e9385a4c446000b86
-ms.sourcegitcommit: ed902a5a781e24e081cd85910ed15cd468a0db1e
+ms.openlocfilehash: 28e88b71b5d7a2f8729e2f9eef416ee5804a2880
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/11/2020
-ms.locfileid: "88072448"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337637"
 ---
 # <a name="update-policy-overview"></a>更新ポリシーの概要
 
@@ -36,7 +36,7 @@ ms.locfileid: "88072448"
 ### <a name="query-limitations"></a>クエリの制限事項 
 
 * クエリでは、格納されている関数を呼び出すことができますが、複数データベースにまたがるクエリやクロスクラスタークエリを含めることはできません。 
-* 更新ポリシーの一部として実行されるクエリには、 [RestrictedViewAccess ポリシー](restrictedviewaccesspolicy.md)が有効になっているか[行レベルセキュリティポリシー](rowlevelsecuritypolicy.md)が有効になっているテーブルに対する読み取りアクセス権がありません。
+* 更新ポリシーの一部として実行されるクエリには、 [RestrictedViewAccess ポリシー](restrictedviewaccesspolicy.md) が有効になっているか [行レベルセキュリティポリシー](rowlevelsecuritypolicy.md) が有効になっているテーブルに対する読み取りアクセス権がありません。
 * `Source` `Query` ポリシーの一部またはパートによって参照される関数内のテーブルを参照する場合 `Query` :
    * テーブルの修飾名は使用しないでください。 代わりに `TableName` を使用してください。 
    * またはを使用しないで `database("DatabaseName").TableName` `cluster("ClusterName").database("DatabaseName").TableName` ください。
@@ -49,7 +49,7 @@ ms.locfileid: "88072448"
 テーブルには、0個、1個、または複数の更新ポリシーオブジェクトが関連付けられている場合があります。
 これらの各オブジェクトは、次のプロパティが定義された JSON プロパティバッグとして表されます。
 
-|プロパティ |Type |説明  |
+|プロパティ |Type |[説明]  |
 |---------|---------|----------------|
 |IsEnabled                     |`bool`  |更新ポリシーが有効 (true) か無効 (false) かを示します。                                                                                                                               |
 |source                        |`string`|更新ポリシーを起動するテーブルの名前                                                                                                                                 |
@@ -66,10 +66,10 @@ ms.locfileid: "88072448"
 
 更新ポリシーを制御するコマンドは次のとおりです。
 
-* [。テーブル*TableName*ポリシーの更新を表示](update-policy.md#show-update-policy)すると、テーブルの現在の更新ポリシーが表示されます。
-* [. alter Table *TableName* policy update](update-policy.md#alter-update-policy)は、テーブルの現在の更新ポリシーを設定します。
-* [。 alter-merge Table *TableName* policy update](update-policy.md#alter-merge-table-tablename-policy-update)は、テーブルの現在の更新ポリシーに追加します。
-* [。テーブル*TableName*ポリシーの更新を削除](update-policy.md#delete-table-tablename-policy-update)すると、テーブルの現在の更新ポリシーに追加されます。
+* [。テーブル *TableName* ポリシーの更新を表示](update-policy.md#show-update-policy) すると、テーブルの現在の更新ポリシーが表示されます。
+* [. alter Table *TableName* policy update](update-policy.md#alter-update-policy) は、テーブルの現在の更新ポリシーを設定します。
+* [。 alter-merge Table *TableName* policy update](update-policy.md#alter-merge-table-tablename-policy-update) は、テーブルの現在の更新ポリシーに追加します。
+* [。テーブル *TableName* ポリシーの更新を削除](update-policy.md#delete-table-tablename-policy-update) すると、テーブルの現在の更新ポリシーに追加されます。
 
 ## <a name="update-policy-is-initiated-following-ingestion"></a>更新ポリシーはインジェスト後に開始されます
 
@@ -78,9 +78,9 @@ ms.locfileid: "88072448"
 * [。インジェスト (プル)](../management/data-ingestion/ingest-from-storage.md)
 * [。インジェスト (インライン)](../management/data-ingestion/ingest-inline.md)
 * [. set |. append |. set-or-append |. set-or-replace](../management/data-ingestion/ingest-from-query.md)
-  * 更新ポリシーがコマンドの一部として呼び出されると `.set-or-replace` 、既定の動作では、派生テーブル内のデータはソーステーブルと同じ方法で置き換えられます。
-* [.move extents](../management/extents-commands.md#move-extents)
-* [.replace extents](../management/extents-commands.md#replace-extents)
+  * 更新ポリシーがコマンドの一部として呼び出されると  `.set-or-replace` 、既定の動作では、派生テーブル内のデータはソーステーブルと同じ方法で置き換えられます。
+* [.move extents](./move-extents.md)
+* [.replace extents](./replace-extents.md)
   * `PropagateIngestionProperties`コマンドはインジェスト操作でのみ有効です。 更新ポリシーがまたはコマンドの一部としてトリガーされた場合 `.move extents` `.replace extents` 、このオプションによる影響はありません。
 
 ## <a name="regular-ingestion-using-update-policy"></a>更新ポリシーを使用した通常のインジェスト
@@ -93,12 +93,12 @@ ms.locfileid: "88072448"
 
 ## <a name="zero-retention-on-source-table"></a>ソーステーブルのリテンション期間なし
 
-場合によっては、データがターゲットテーブルへのステップ実行のストーンとしてのみソーステーブルに取り込まれたされ、生データをソーステーブルに保持する必要がないことがあります。 ソーステーブルの[保有ポリシー](retentionpolicy.md)で論理的な削除期間を0に設定し、更新ポリシーをトランザクションとして設定します。 この状況では、次のようになります。 
+場合によっては、データがターゲットテーブルへのステップ実行のストーンとしてのみソーステーブルに取り込まれたされ、生データをソーステーブルに保持する必要がないことがあります。 ソーステーブルの [保有ポリシー](retentionpolicy.md)で論理的な削除期間を0に設定し、更新ポリシーをトランザクションとして設定します。 この状況では、次のようになります。 
 
 * ソースデータは、ソーステーブルからはクエリできません。 
 * 取り込み操作の一部として、ソースデータが永続的なストレージに保存されることはありません。 
 * 運用上のパフォーマンスが向上します。 
-* バックグラウンドのクリーンアップ操作のためのインジェスト後のリソースが削減されます。 これらの操作は、ソーステーブルの[エクステント](../management/extents-overview.md)に対して行われます。
+* バックグラウンドのクリーンアップ操作のためのインジェスト後のリソースが削減されます。 これらの操作は、ソーステーブルの [エクステント](../management/extents-overview.md) に対して行われます。
 
 ## <a name="performance-impact"></a>パフォーマンスへの影響
 
@@ -106,7 +106,7 @@ ms.locfileid: "88072448"
 
 ### <a name="evaluate-resource-usage"></a>リソースの使用状況の評価
 
-次のシナリオでは、[クエリを表示し](../management/queries.md)、リソースの使用状況 (CPU、メモリなど) を評価します。
+次のシナリオでは、 [クエリを表示し](../management/queries.md)、リソースの使用状況 (CPU、メモリなど) を評価します。
 * ソーステーブル名 ( `Source` 更新ポリシーのプロパティ) は `MySourceTable` です。
 * `Query`更新ポリシーのプロパティは、という名前の関数を呼び出し `MyFunction()` ます。
 
@@ -122,7 +122,7 @@ MyFunction()
 
 既定では、更新ポリシーの実行に失敗しても、ソーステーブルへのデータの取り込みには影響しません。 ただし、更新ポリシーが次のように定義されている場合、 `IsTransactional` ポリシーの実行に失敗すると、ソーステーブルへのデータのインジェストが強制的に失敗します。 場合によっては、ソーステーブルへのデータの取り込みは成功しますが、ターゲットテーブルへの取り込み中に更新ポリシーが失敗します。
 
-ポリシーの更新中に発生したエラーは、[[インジェストエラーの表示] コマンド](../management/ingestionfailures.md)を使用して取得できます。
+ポリシーの更新中に発生したエラーは、[ [インジェストエラーの表示] コマンド](../management/ingestionfailures.md)を使用して取得できます。
  
 ```kusto
 .show ingestion failures 

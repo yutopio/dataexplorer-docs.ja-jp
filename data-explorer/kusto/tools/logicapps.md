@@ -7,18 +7,18 @@ ms.reviewer: docohe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/14/2020
-ms.openlocfilehash: ae79fd334b3ac2a59a99c5ad8d63fccf0ed6784c
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4c918c43f748f97b3bb3f6d0342c660775c1e5c8
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875227"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342656"
 ---
 # <a name="microsoft-logic-app-and-azure-data-explorer"></a>Microsoft Logic App と Azure データエクスプローラー
 
-Azure Kusto Logic App コネクタを使用すると、 [Microsoft Logic app](https://docs.microsoft.com/azure/logic-apps/logic-apps-what-are-logic-apps) コネクタを使用して、スケジュールされたタスクまたはトリガーされたタスクの一部として kusto クエリとコマンドを自動的に実行することができます。
+Azure Kusto Logic App コネクタを使用すると、 [Microsoft Logic app](/azure/logic-apps/logic-apps-what-are-logic-apps) コネクタを使用して、スケジュールされたタスクまたはトリガーされたタスクの一部として kusto クエリとコマンドを自動的に実行することができます。
 
-ロジックアプリとフローは、同じコネクタ上に構築されています。 そのため、フローに適用される [制限事項](flow.md#limitations)、 [アクション](flow.md#azure-kusto-flow-actions)、 [認証](flow.md#authentication) 、 [使用例](flow.md#azure-kusto-flow-actions) については、 [flow のドキュメントページ](flow.md)で説明されているように、Logic Apps にも適用されます。
+ロジックアプリとパワー自動化は、同じコネクタ上に構築されています。 そのため、電源自動化に適用される [制限事項](../../flow.md#limitations)、 [アクション](../../flow.md#flow-actions)、 [認証](../../flow.md#authentication) 、および [使用例](../../flow-usage.md) は、Logic Apps にも適用されます。これについては、「 [power の自動化のドキュメント」ページ](../../flow.md)を参照してください。
 
 ## <a name="how-to-create-a-logic-app-with-azure-data-explorer"></a>Azure データエクスプローラーでロジックアプリを作成する方法
 
@@ -54,7 +54,7 @@ Azure Kusto Logic App コネクタを使用すると、 [Microsoft Logic app](ht
 
     ![ロジックアプリ Kusto Flow コネクタ](./Images/logicapps/logicapp-kustoconnector.png "logicapp-kustoconnector")
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
-* 繰り返しアクションの構成の詳細については、 [Flow のドキュメントページ](flow.md)を参照してください。
-* ロジックアプリのアクションを構成する方法については、 [使用例](flow.md#azure-kusto-flow-actions) を参照してください。
+* 繰り返しアクションの構成の詳細については、「 [Power オートメーションのドキュメント」ページ](../../flow.md)を参照してください。
+* ロジックアプリのアクションを構成する方法については、 [使用例](../../flow-usage.md) を参照してください。

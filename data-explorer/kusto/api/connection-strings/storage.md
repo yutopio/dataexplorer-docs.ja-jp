@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/23/2020
-ms.openlocfilehash: 0456ad7115c51bcdc51b0db82bc9f9b88953be32
-ms.sourcegitcommit: 39b04c97e9ff43052cdeb7be7422072d2b21725e
+ms.openlocfilehash: 4b212435eb506ce71b52e19d3304461e9be35b5e
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/12/2020
-ms.locfileid: "83226212"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342503"
 ---
 # <a name="storage-connection-strings"></a>ストレージの接続文字列
 
@@ -60,15 +60,15 @@ URI の形式は次のとおりです。
 
 各値の説明:
 
-* _Filesystem_は、adls ファイルシステムオブジェクトの名前です (Blob コンテナーとほぼ同等)。
-* _Storageaccountname_はストレージアカウントの名前です
-* _パス_は、スラッシュ ( `/` ) 文字を区切り記号として使用されるディレクトリまたはファイルへのパスです。
-* _Callercredentials_は、次に示すように、サービスへのアクセスに使用される資格情報を示します。
+* _Filesystem_ は、adls ファイルシステムオブジェクトの名前です (Blob コンテナーとほぼ同等)。
+* _Storageaccountname_ はストレージアカウントの名前です
+* _パス_ は、スラッシュ ( `/` ) 文字を区切り記号として使用されるディレクトリまたはファイルへのパスです。
+* _Callercredentials_ は、次に示すように、サービスへのアクセスに使用される資格情報を示します。
 
 Azure Data Lake Store Gen 2 にアクセスする場合、呼び出し元はサービスにアクセスするための有効な資格情報を提供する必要があります。 資格情報を提供する次の方法がサポートされています。
 
 * `;sharedkey=` *ACCOUNTKEY*を URI に追加し、 _AccountKey_をストレージアカウントキーにします。
-* `;impersonate`を URI に追加します。 Kusto は、要求元のプリンシパル id を使用して、リソースにアクセスするために偽装します。 プリンシパルは、[ここ](https://docs.microsoft.com/azure/storage/blobs/data-lake-storage-access-control)に記載されているように、読み取り/書き込み操作を実行できるように、適切な RBAC ロールの割り当てを持っている必要があります。 (たとえば、読み取り操作の最小ロールは `Storage Blob Data Reader` ロールです)。
+* `;impersonate`を URI に追加します。 Kusto は、要求元のプリンシパル id を使用して、リソースにアクセスするために偽装します。 プリンシパルは、 [ここ](/azure/storage/blobs/data-lake-storage-access-control)に記載されているように、読み取り/書き込み操作を実行できるように、適切な RBAC ロールの割り当てを持っている必要があります。 (たとえば、読み取り操作の最小ロールは `Storage Blob Data Reader` ロールです)。
 * `;token=` *AADTOKEN*を URI に追加します。 _AadToken_は base 64 でエンコードされた AAD アクセストークンです (リソースのトークンであることを確認してください `https://storage.azure.com/` )。
 * `;prompt`を URI に追加します。 Kusto は、リソースにアクセスする必要があるときにユーザー資格情報を要求します。 (ユーザーへのクラウド展開は無効になっており、テスト環境でのみ有効になっています)。
 * Azure Data Lake Storage Gen 2 の標準クエリ () を使用して、共有アクセス (SAS) キーを指定し `?sig=...` ます。 このメソッドは、Kusto がリソースにアクセスする必要がある時間に制限されている場合に使用します。
@@ -83,6 +83,3 @@ Azure Data Lake Store Gen 2 にアクセスする場合、呼び出し元はサ�
 * `;impersonate`を URI に追加します。 Kusto は、要求元のプリンシパル id を使用し、それを偽装してリソースにアクセスします。
 * `;token=` *AADTOKEN*を URI に追加します。 *AadToken*は base 64 でエンコードされた AAD アクセストークンです (リソースのトークンであることを確認してください `https://management.azure.com/` )。
 * `;prompt`を URI に追加します。 Kusto は、リソースにアクセスする必要があるときにユーザー資格情報を要求します。 (ユーザーへのクラウド展開は無効になっており、テスト環境でのみ有効になっています)。
-
-
-

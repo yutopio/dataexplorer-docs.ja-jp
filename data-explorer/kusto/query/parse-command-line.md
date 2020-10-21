@@ -8,12 +8,12 @@ ms.reviewer: slneimer
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/28/2020
-ms.openlocfilehash: f330c10e95cdc36eae497811ef895ef827918b43
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a13e3def33ea7098a48db7ffefa4406097863c2a
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346492"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342724"
 ---
 # <a name="parse_command_line"></a>parse_command_line()
 
@@ -26,7 +26,7 @@ Unicode コマンドライン文字列を解析し、コマンドライン引数
 ## <a name="arguments"></a>引数
 
 * *command_line*: 解析するコマンドライン。
-* *parser_type*: 現在サポートされている唯一の値は `"Windows"` 、 [CommandLineToArgvW](https://docs.microsoft.com/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw)と同じようにコマンドラインを解析するです。
+* *parser_type*: 現在サポートされている唯一の値は `"Windows"` 、 [CommandLineToArgvW](/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw)と同じようにコマンドラインを解析するです。
 
 ## <a name="returns"></a>戻り値
 

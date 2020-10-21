@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/21/2019
-ms.openlocfilehash: 5ec069979d41a7c750c140ad84ef0db4ba5638a4
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: b966dbd43d1f40842240eaebf7d4008450e1f746
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92245064"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343200"
 ---
 # <a name="external_table"></a>external_table()
 
@@ -38,8 +38,8 @@ external_table('StormEvent')
 
 * *MappingName*: 実際の (外部) データシャードのフィールドをこの関数によって出力される列にマップするマッピングオブジェクトの省略可能な名前です。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
-* [外部テーブル全般制御コマンド](../management/externaltables.md)
+* [外部テーブル全般制御コマンド](../management/external-table-commands.md)
 * [Azure Storage または Azure Data Lake の外部テーブルを作成および変更する](../management/external-tables-azurestorage-azuredatalake.md)
 * [外部 SQL テーブルを作成および変更する](../management/external-sql-tables.md)

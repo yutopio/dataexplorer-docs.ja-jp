@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 9a697cfd37590f0368d5a8f0bacf91d02e1c8725
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 365ce1e4c8e5dd2157a7975095b9e30dfd1e3722
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92003162"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342707"
 ---
 # <a name="troubleshooting"></a>トラブルシューティング
 
@@ -148,7 +148,7 @@ Following errors were detected during this operation.
 この現象は、別のアプリケーションが ClickOnce 信頼プロンプトの既定の動作をオーバーライドしていることが原因である可能性があります。 
 1. 既定の構成設定を表示します。
 1. 構成設定をコンピューター上の実際の設定と比較します。
-1. [このハウツー記事で](https://docs.microsoft.com/visualstudio/deployment/how-to-configure-the-clickonce-trust-prompt-behavior)説明されているように、必要に応じて構成設定をリセットします。
+1. [このハウツー記事で](/visualstudio/deployment/how-to-configure-the-clickonce-trust-prompt-behavior)説明されているように、必要に応じて構成設定をリセットします。
 
 ### <a name="cleanup-application-data"></a>アプリケーションデータのクリーンアップ
 
@@ -175,7 +175,7 @@ Kusto エクスプローラーアプリケーションによって保存され�
 
 また、特定のバージョンの Kusto エクスプローラーに戻すこともできます。
 
-1. `appwiz.cpl` を実行します。
+1. `appwiz.cpl` を実行する。
 1. [ **Kusto エクスプローラー** ] を選択し、[ **アンインストールと変更**] を選択します。
 1. [ **アプリケーションを以前の状態に復元する**] を選択します。
 
@@ -183,4 +183,4 @@ Kusto エクスプローラーアプリケーションによって保存され�
 
 * [Kusto エクスプローラーのユーザーインターフェイス](kusto-explorer.md#overview-of-the-user-interface)について説明します。
 * [コマンドラインからの Kusto の実行](kusto-explorer-using.md#kustoexplorer-command-line-arguments)について説明します。
-* [Kusto クエリ言語 (KQL)](https://docs.microsoft.com/azure/kusto/query/)について学習する
+* [Kusto クエリ言語 (KQL)](../query/index.md)について学習する

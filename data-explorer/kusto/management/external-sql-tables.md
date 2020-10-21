@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 79816960b75735e226395f70286ea9d81829a173
-ms.sourcegitcommit: 08c54dabc1efe3d4e2d2581c4b668a6b73daf855
+ms.openlocfilehash: d6473fd0efd588bfc7a6990dd2f57d70960b40e2
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89510697"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342758"
 ---
 # <a name="create-and-alter-external-sql-tables"></a>外部 SQL テーブルを作成および変更する
 
@@ -40,11 +40,11 @@ ms.locfileid: "89510697"
 
 ## <a name="optional-properties"></a>省略可能なプロパティ
 
-| プロパティ            | Type            | 説明                          |
+| プロパティ            | Type            | [説明]                          |
 |---------------------|-----------------|---------------------------------------------------------------------------------------------------|
 | `folder`            | `string`        | テーブルのフォルダー。                  |
 | `docString`         | `string`        | テーブルを文書化する文字列。      |
-| `firetriggers`      | `true`/`false`  | `true`の場合、SQL テーブルで定義された挿入トリガーを起動するように対象システムに指示します。 既定値は、`false` です。 (詳細については、「 [BULK INSERT](https://msdn.microsoft.com/library/ms188365.aspx) と [SqlBulkCopy](https://msdn.microsoft.com/library/system.data.sqlclient.sqlbulkcopy(v=vs.110).aspx))」を参照してください。 |
+| `firetriggers`      | `true`/`false`  | `true`の場合、SQL テーブルで定義された挿入トリガーを起動するように対象システムに指示します。 既定値は、`false` です。 (詳細については、「 [BULK INSERT](/sql/t-sql/statements/bulk-insert-transact-sql) と [SqlBulkCopy](/dotnet/api/system.data.sqlclient.sqlbulkcopy))」を参照してください。 |
 | `createifnotexists` | `true`/ `false` | `true`の場合、対象の SQL テーブルが存在しない場合は作成されます。 `primarykey` この場合、主キーである結果列を示すために、このプロパティを指定する必要があります。 既定値は、`false` です。  |
 | `primarykey`        | `string`        | がの場合 `createifnotexists` `true` 、このコマンドによって作成された場合、結果の列名が SQL テーブルの主キーとして使用されます。                  |
 
@@ -75,7 +75,7 @@ with
 
 **出力**
 
-| TableName   | TableType | フォルダー         | DocString | プロパティ                            |
+| TableName   | TableType | Folder         | DocString | Properties                            |
 |-------------|-----------|----------------|-----------|---------------------------------------|
 | MySqlExternalTable | Sql       | ExternalTables | Docs      | {<br>  "TargetEntityKind": "sqltable" ",<br>  "TargetEntityName": "MySqlTable",<br>  "TargetEntityConnectionString": "Server = tcp: database. windows. net, 1433;Authentication = Active Directory Integrated、Initial Catalog = mydatabase; "、<br>  "FireTriggers": true、<br>  "CreateIfNotExists": true、<br>  "PrimaryKey": "x"<br>} |
 
@@ -96,7 +96,7 @@ Kusto は、 `SELECT x, s FROM MySqlTable` SQL データベースに対してク
 
 クエリが Kusto 側でさらに実行するためにテーブル全体 (または関連する列) の読み取りを必要とする場合は、外部テーブルを使用して SQL テーブルに対してクエリを実行します。 T-sql で SQL クエリを最適化できる場合は、 [sql_request プラグイン](../query/sqlrequestplugin.md)を使用します。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
-* [外部テーブル全般制御コマンド](externaltables.md)
+* [外部テーブル全般制御コマンド](./external-table-commands.md)
 * [Azure Storage または Azure Data Lake の外部テーブルを作成および変更する](external-tables-azurestorage-azuredatalake.md)

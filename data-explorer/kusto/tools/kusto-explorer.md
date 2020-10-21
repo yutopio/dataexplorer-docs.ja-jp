@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: 8f56568f87c391122b468d7f3ae8027eabe4641e
-ms.sourcegitcommit: 9dbbdf0c339f9af78d754e3fb44b9a4f2469003a
+ms.openlocfilehash: a424e34561792287d6e761f8d5b0747fbf8c7100
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 10/21/2020
-ms.locfileid: "92292851"
+ms.locfileid: "92342792"
 ---
 # <a name="kustoexplorer-installation-and-user-interface"></a>Kusto.Explorer のインストールとユーザー インターフェイス
 
@@ -338,4 +338,4 @@ Kusto.Explorer のツールとユーティリティの詳細については、�
 * [Kusto.Explorer コード アナライザー](kusto-explorer-code-analyzer.md)
 * [Kusto.Explorer コード ナビゲーション](kusto-explorer-codenav.md)
 * [Kusto.Explorer コードのリファクタリング](kusto-explorer-refactor.md)
-* [Kusto クエリ言語 (KQL)](https://docs.microsoft.com/azure/kusto/query/)
+* [Kusto クエリ言語 (KQL)](/azure/kusto/query/)

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 01/27/2020
-ms.openlocfilehash: 2c6efc03ea252eba5ed63e99d9214e59113856e9
-ms.sourcegitcommit: bb8c61dea193fbbf9ffe37dd200fa36e428aff8c
+ms.openlocfilehash: cf9f9e5f6a9c5afca58e2637ed4e639882e3749d
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83373577"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337416"
 ---
 # <a name="querymanagement-http-request"></a>クエリ/管理の HTTP 要求
 
@@ -39,22 +39,22 @@ POST https://help.kusto.windows.net/v1/rest/mgmt HTTP/1.1
 
 次の表に、クエリおよび管理操作に使用される共通のヘッダーを示します。
 
-|標準ヘッダー  |説明                                                                                 |必須/オプション |
+|標準ヘッダー  |説明                                                                                 |必須/省略可能 |
 |-----------------|--------------------------------------------------------------------------------------------|------------------|
 |`Accept`         |`application/json`                                                                   |必須          |
 |`Accept-Encoding`|サポートされているエンコーディングはとです。 `gzip``deflate`                                                |省略可能          |
 |`Authorization`  |[認証](./authentication.md)を参照                                                   |必須          |
-|`Connection`     |を有効にすることをお勧めします。`Keep-Alive`                                                   |省略可能          |
+|`Connection`     |を有効にすることをお勧めします。 `Keep-Alive`                                                   |省略可能          |
 |`Content-Length` |既知の場合は、要求本文の長さを指定することをお勧めします。                            |省略可能          |
 |`Content-Type`   |`application/json`に設定`charset=utf-8`                                              |必須          |
-|`Expect`         |をに設定できます。`100-Continue`                                                                |省略可能          |
+|`Expect`         |をに設定できます。 `100-Continue`                                                                |省略可能          |
 |`Host`           |要求が送信された修飾ドメイン名 (など) に設定します `help.kusto.windows.net` 。 |必須|
 
 次の表に、クエリおよび管理操作に使用される共通のカスタムヘッダーを示します。 特に指定がない限り、これらのヘッダーはテレメトリの目的でのみ使用され、機能には影響しません。
 
 すべてのヘッダーは省略可能です。 カスタムヘッダーを指定することをお勧めし `x-ms-client-request-id` ます。 実行中のクエリのキャンセルなど、一部のシナリオでは、要求の識別に使用されるため、このヘッダーが必要です。
 
-|カスタムヘッダー           |説明                                                                                               |
+|カスタムヘッダー           |[説明]                                                                                               |
 |------------------------|----------------------------------------------------------------------------------------------------------|
 |`x-ms-app`              |要求を行っているアプリケーションの (フレンドリ名) 名前                                                 |
 |`x-ms-user`             |要求を行っているユーザーのフレンドリ名                                                        |
@@ -67,7 +67,7 @@ POST https://help.kusto.windows.net/v1/rest/mgmt HTTP/1.1
 
 要求では、次のパラメーターを渡すことができます。 これらは、GET または POST のどちらを使用するかに応じて、要求でクエリパラメーターまたは本文の一部としてエンコードされます。
 
-|パラメーター   |説明                                                                                 |必須/オプション |
+|パラメーター   |説明                                                                                 |必須/省略可能 |
 |------------|--------------------------------------------------------------------------------------------|------------------|
 |`csl`       |実行するクエリまたはコントロールコマンドのテキスト                                             |必須          |
 |`db`        |クエリまたはコントロールコマンドの対象であるスコープ内のデータベースの名前            |一部のコントロールコマンドでは省略可能。 <br>他のコマンドおよびすべてのクエリに必要です。 </br>                                                                   |
@@ -116,7 +116,7 @@ x-ms-app: MyApp
 
 1. 認証用のトークンを取得します。
 
-    `AAD_TENANT_NAME_OR_ID`、、 `AAD_APPLICATION_ID` およびを `AAD_APPLICATION_KEY` 関連する値に置き換えます ( [AAD アプリケーション認証](../../management/access-control/how-to-provision-aad-app.md)を設定した後)
+    `AAD_TENANT_NAME_OR_ID`、、 `AAD_APPLICATION_ID` およびを `AAD_APPLICATION_KEY` 関連する値に置き換えます ( [AAD アプリケーション認証](../../../provision-azure-ad-app.md)を設定した後)
 
     ```
     curl "https://login.microsoftonline.com/AAD_TENANT_NAME_OR_ID/oauth2/token" \

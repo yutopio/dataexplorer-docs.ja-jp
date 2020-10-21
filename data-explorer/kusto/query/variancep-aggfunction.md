@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの var
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 70118746a079d76b1b6729bed3aae96c48399538
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6cb9ce6ab41e5417d9d39d90d6b7fb31dd8b1fab
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87338662"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251319"
 ---
 # <a name="variancep-aggregation-function"></a>variancep () (集計関数)
 
-グループ全体の*Expr*の分散を計算し、グループを[母集団](https://en.wikipedia.org/wiki/Statistical_population)と見なします。 
+グループ全体の *Expr* の分散を計算し、グループを [母集団](https://en.wikipedia.org/wiki/Statistical_population)と見なします。 
 
 * 使用された式:
 
@@ -35,7 +35,7 @@ ms.locfileid: "87338662"
 
 ## <a name="returns"></a>戻り値
 
-グループ全体の*Expr*の分散値。
+グループ全体の *Expr* の分散値。
  
 ## <a name="examples"></a>例
 

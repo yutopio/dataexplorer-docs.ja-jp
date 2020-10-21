@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 92ee54ce675c2e8396d842fdf029f2d3f3d5380b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 603d69be34ea6040f6c864958eea86e570204d04
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345676"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250172"
 ---
 # <a name="serialize-operator"></a>serialize 演算子
 
 入力行セットの順序を、ウィンドウ関数に対して安全に使用できることを示します。
 
-演算子は、宣言的な意味を持ちます。 入力行セットをシリアル化 (順序付け) としてマークし、[ウィンドウ関数](./windowsfunctions.md)を適用できるようにします。
+演算子は、宣言的な意味を持ちます。 入力行セットをシリアル化 (順序付け) としてマークし、 [ウィンドウ関数](./windowsfunctions.md) を適用できるようにします。
 
 ```kusto
 T | serialize rn=row_number()
@@ -49,6 +49,6 @@ Traces
 
 次の演算子の出力行セットは、非シリアル化としてマークされます。
 
-[sample](./sampleoperator.md)、 [sample-distinct](./sampledistinctoperator.md)、 [distinct](./distinctoperator.md)、 [join](./joinoperator.md)、 [top nested](./topnestedoperator.md)、 [count](./countoperator.md)、[要約](./summarizeoperator.md)、[ファセット](./facetoperator.md)、 [mv-展開](./mvexpandoperator.md)、[評価](./evaluateoperator.md)、[縮小](./reduceoperator.md)、および[シリーズ](./make-seriesoperator.md)
+[sample](./sampleoperator.md)、 [sample-distinct](./sampledistinctoperator.md)、 [distinct](./distinctoperator.md)、 [join](./joinoperator.md)、 [top nested](./topnestedoperator.md)、 [count](./countoperator.md)、 [要約](./summarizeoperator.md)、 [ファセット](./facetoperator.md)、 [mv-展開](./mvexpandoperator.md)、 [評価](./evaluateoperator.md)、 [縮小](./reduceoperator.md)、および [シリーズ](./make-seriesoperator.md)
 
 その他のすべての演算子は、シリアル化プロパティを保持します。 入力行セットがシリアル化されている場合は、出力行セットもシリアル化されます。

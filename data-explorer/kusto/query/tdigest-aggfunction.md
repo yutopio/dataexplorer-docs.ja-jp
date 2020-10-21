@@ -4,25 +4,25 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
-ms.openlocfilehash: 47b6ab3db5f0ea252fa86ef925026613654afeea
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 9e8f61038856096d4ca6676c5304bb9fc6112070
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87341639"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250698"
 ---
 # <a name="tdigest-aggregation-function"></a>tdigest () (集計関数)
 
 グループ全体のの中間結果を計算し [`percentiles()`](percentiles-aggfunction.md) ます。
 
 > [!NOTE]
-> 集計のコンテキストでのみ使用でき[ます。集計](summarizeoperator.md)の内部です。
+> 集計のコンテキストでのみ使用でき [ます。集計](summarizeoperator.md)の内部です。
 
-詳細については、[基になるアルゴリズム (T ダイジェスト) と推定エラー](percentiles-aggfunction.md#estimation-error-in-percentiles)を参照してください。
+詳細については、 [基になるアルゴリズム (T ダイジェスト) と推定エラー](percentiles-aggfunction.md#estimation-error-in-percentiles)を参照してください。
 
 ## <a name="syntax"></a>構文
 
@@ -41,9 +41,9 @@ ms.locfileid: "87341639"
  
 **ヒント**
 
-* 集計関数[tdigest_merge ()](tdigest-merge-aggfunction.md)を使用して、の出力を `tdigest` 別のグループにもう一度マージします。
+* 集計関数 [tdigest_merge ()](tdigest-merge-aggfunction.md) を使用して、の出力を `tdigest` 別のグループにもう一度マージします。
 
-* 関数[percentile_tdigest ()](percentile-tdigestfunction.md)を使用して、結果の百分位/percentilew を計算し `tdigest` ます。
+* 関数 [percentile_tdigest ()](percentile-tdigestfunction.md) を使用して、結果の百分位/percentilew を計算し `tdigest` ます。
 
 ## <a name="examples"></a>例
 

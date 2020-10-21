@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーの tdi
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/09/2019
-ms.openlocfilehash: f85c2c45ff4e69ba59f2a13313c8c2ac494c56a6
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 4b7c143d29b8a2f446f4929098e9fac4e6166796
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87340991"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250626"
 ---
 # <a name="tdigest_merge"></a>tdigest_merge()
 
 `tdigest`結果のマージ (集計バージョンのスカラーバージョン [`tdigest_merge()`](tdigest-merge-aggfunction.md) )。
 
-基になるアルゴリズム (T ダイジェスト) と推定エラーの詳細については、[こちら](percentiles-aggfunction.md#estimation-error-in-percentiles)を参照してください。
+基になるアルゴリズム (T ダイジェスト) と推定エラーの詳細については、 [こちら](percentiles-aggfunction.md#estimation-error-in-percentiles)を参照してください。
 
 ## <a name="syntax"></a>構文
 

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: 9514f7c94568e73a704e6ba6f4bcc5bf61590d2f
-ms.sourcegitcommit: 6f610cd9c56dbfaff4eb0470ac0d1441211ae52d
+ms.openlocfilehash: 1317f9767182ad76f226fae6995763ea832cd36a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/12/2020
-ms.locfileid: "91954775"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250848"
 ---
 # <a name="summarize-operator"></a>summarize 演算子
 
@@ -65,17 +65,17 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 |機能|説明|
 |--------|-----------|
-|[any ()](any-aggfunction.md)|グループの空でないランダムな値を返します|
+|[any()](any-aggfunction.md)|グループの空でないランダムな値を返します|
 |[anyif()](anyif-aggfunction.md)|グループに対して空でないランダムな値 (述語を含む) を返します。|
 |[arg_max()](arg-max-aggfunction.md)|引数が最大化されている場合に1つ以上の式を返します|
 |[arg_min()](arg-min-aggfunction.md)|引数が最小化されている場合に1つ以上の式を返します|
-|[avg ()](avg-aggfunction.md)|グループ全体の平均値を返します|
+|[avg()](avg-aggfunction.md)|グループ全体の平均値を返します|
 |[avgif()](avgif-aggfunction.md)|グループ全体の平均値を返します (述語を含む)|
 |[binary_all_and](binary-all-and-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `AND`|
 |[binary_all_or](binary-all-or-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `OR`|
 |[binary_all_xor](binary-all-xor-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `XOR`|
 |[buildschema()](buildschema-aggfunction.md)|入力のすべての値を制御する最小限のスキーマを返します。 `dynamic`|
-|[count ()](count-aggfunction.md)|グループの数を返します|
+|[count()](count-aggfunction.md)|グループの数を返します|
 |[countif()](countif-aggfunction.md)|グループの述語を使用してカウントを返します。|
 |[dcount()](dcount-aggfunction.md)|グループ要素の概数を返します。|
 |[dcountif()](dcountif-aggfunction.md)|グループ要素の概数を返します (述語を含む)|
@@ -94,11 +94,11 @@ T | summarize count() by price_range=bin(price, 10.0)
 |[percentiles_array ()](percentiles-aggfunction.md)|グループのパーセンタイル近似を返します。|
 |[percentilesw()](percentiles-aggfunction.md)|グループの加重パーセンタイルの概数を返します|
 |[percentilesw_array ()](percentiles-aggfunction.md)|グループの加重パーセンタイル近似を返します。|
-|[stdev ()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
+|[stdev()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
 |[stdevif()](stdevif-aggfunction.md)|グループ全体の標準偏差を返します (述語を含む)|
-|[sum ()](sum-aggfunction.md)|グループ内の要素の合計を返します。|
+|[sum()](sum-aggfunction.md)|グループ内の要素の合計を返します。|
 |[sumif()](sumif-aggfunction.md)|グループ内の要素の合計を返します (述語を含む)|
-|[分散 ()](variance-aggfunction.md)|グループ間の分散を返します。|
+|[variance()](variance-aggfunction.md)|グループ間の分散を返します。|
 |[varianceif()](varianceif-aggfunction.md)|グループ間の分散を返します (述語を含む)|
 
 ## <a name="aggregates-default-values"></a>既定値の集計

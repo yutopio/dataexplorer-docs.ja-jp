@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの検�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: edd35e5e259666e8ce4360c072aaac6717e6f8c3
-ms.sourcegitcommit: f9d3f54114fb8fab5c487b6aea9230260b85c41d
+ms.openlocfilehash: 24e79b7feeb51a0626ed270a90c3d323fa94cbf3
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/18/2020
-ms.locfileid: "85071878"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250282"
 ---
 # <a name="search-operator"></a>search 演算子
 
@@ -25,17 +25,17 @@ ms.locfileid: "85071878"
 
 ## <a name="arguments"></a>引数
 
-* *TabularSource*: テーブル名、 [union 演算子](unionoperator.md)、表形式クエリの結果など、検索対象のデータソースとして機能するオプションの表形式の式。*TableSources*を含むオプションの語句と共に使用することはできません。
+* *TabularSource*: テーブル名、 [union 演算子](unionoperator.md)、表形式クエリの結果など、検索対象のデータソースとして機能するオプションの表形式の式。 *TableSources*を含むオプションの語句と共に使用することはできません。
 
 * *CaseSensitivity*: `string` 大文字小文字の区別に関して、すべてのスカラー演算子の動作を制御する省略可能なフラグ。 有効な値は、2つのシノニム `default` と (などの演算子 (たとえば、大文字と小文字を区別しない) および (大文字と小文字を区別 `case_insensitive` `has` `case_sensitive` する一致モードにすべての演算子を強制する) です。
 
 * *TableSources*: 検索の一部として使用する "ワイルドカード" テーブル名のコンマ区切りのリストです (省略可能)。
   この一覧には、 [union 演算子](unionoperator.md)の一覧と同じ構文があります。
-  オプションの*TabularSource*と一緒に表示することはできません。
+  オプションの *TabularSource*と一緒に表示することはできません。
 
-* *Searchpredicate*: 検索対象を定義する必須の述語です (つまり、入力内のすべてのレコードに対して評価されるブール式であり、返される場合、 `true` レコードは出力されます)。*Searchpredicate*の構文は、ブール式の通常の Kusto 構文を拡張し、次のように変更します。
+* *Searchpredicate*: 検索対象を定義する必須の述語です (つまり、入力内のすべてのレコードに対して評価されるブール式であり、返される場合、 `true` レコードは出力されます)。 *Searchpredicate* の構文は、ブール式の通常の Kusto 構文を拡張し、次のように変更します。
 
-  **文字列照合拡張機能**: *searchpredicate*の用語として表示される文字列リテラルは `has` 、、、 `hasprefix` `hassuffix` 、および反転 ( `!` )、または大文字と小文字を区別する ( `sc` ) バージョンの演算子を使用して、すべての列とリテラルの用語が一致することを示します。 、、またはを適用するかどうかは、 `has` `hasprefix` `hassuffix` リテラルの開始または終了 (またはその両方) がアスタリスク () であるかどうかによって決まり `*` ます。 リテラル内のアスタリスクは使用できません。
+  **文字列照合拡張機能**: *searchpredicate* の用語として表示される文字列リテラルは `has` 、、、 `hasprefix` `hassuffix` 、および反転 ( `!` )、または大文字と小文字を区別する ( `sc` ) バージョンの演算子を使用して、すべての列とリテラルの用語が一致することを示します。 、、またはを適用するかどうかは、 `has` `hasprefix` `hassuffix` リテラルの開始または終了 (またはその両方) がアスタリスク () であるかどうかによって決まり `*` ます。 リテラル内のアスタリスクは使用できません。
 
     |リテラル   |演算子   |
     |----------|-----------|
@@ -58,7 +58,7 @@ ms.locfileid: "85071878"
 
 ## <a name="summary-of-string-matching-extensions"></a>文字列一致拡張機能の概要
 
-  |# |構文                                 |意味 (同等 `where` )           |コメント|
+  |# |構文                                 |意味 (同等 `where` )           |説明|
   |--|---------------------------------------|---------------------------------------|--------|
   | 1|`search "err"`                         |`where * has "err"`                    ||
   | 2|`search in (T1,T2,A*) and "err"`       |<code>union T1,T2,A* &#124; where * has "err"<code>   ||
@@ -74,7 +74,7 @@ ms.locfileid: "85071878"
   |12|`search "abc" and ("def" or "hij")`    |`where * has "abc" and (* has "def" or * has hij")`||
   |13|`search "err" or (A>a and A<b)`        |`where * has "err" or (A>a and A<b)`   ||
 
-## <a name="remarks"></a>Remarks
+## <a name="remarks"></a>解説
 
 [検索演算子](findoperator.md)**とは異なり**、 `search` 演算子は次の機能をサポートしていません。
 

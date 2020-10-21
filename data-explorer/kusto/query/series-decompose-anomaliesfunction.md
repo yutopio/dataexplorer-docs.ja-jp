@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの ser
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/28/2019
-ms.openlocfilehash: 770eded43fff091c8c500fcda59efcc2d4f95d9e
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: ded1f7ed499d0a8379fdf5b8e9949fa06351fc07
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803575"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250194"
 ---
 # <a name="series_decompose_anomalies"></a>series_decompose_anomalies()
 
@@ -28,7 +28,7 @@ ms.locfileid: "87803575"
 
 ## <a name="arguments"></a>引数
 
-* *Series*: 数値の配列である動的配列のセル。通常は、[系列](make-seriesoperator.md)または[make_list](makelist-aggfunction.md)演算子の結果の出力です。
+* *Series*: 数値の配列である動的配列のセル。通常は、 [系列](make-seriesoperator.md) または [make_list](makelist-aggfunction.md) 演算子の結果の出力です。
 * *しきい*値: 異常しきい値、軽度またはより強力な異常を検出するための既定の 1.5 (k 値)
 * *季節*性: 季節分析を制御する整数 (次のいずれかを含む)
     * -1: [series_periods_detect](series-periods-detectfunction.md)を使用した、季節性の自動検出 [既定]
@@ -40,9 +40,9 @@ ms.locfileid: "87803575"
     * "linefit": 線形回帰を使用した傾向コンポーネントの抽出
 * *Test_points*: 0 [既定] または正の整数。これは、学習 (回帰) プロセスから除外する系列の末尾の点の数を指定します。 このパラメーターは、予測のために設定する必要があります
 * *AD_method*: 次のいずれかを含む残留タイムシリーズの異常検出メソッドを制御する文字列。
-    * "ctukey": カスタム10パーセンタイルの範囲を持つ[Tukey のフェンステスト](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences)[default]
-    * "tukey": [tukey のフェンステスト](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences)標準 25-75 パーセンタイル範囲の詳細については、「」を参照してください[series_outliers](series-outliersfunction.md)
-* *Seasonality_threshold*:*季節*性が自動検出に設定されている場合の季節性スコアのしきい値。 既定のスコアのしきい値は `0.6` です。 詳細については、「」を参照してください[series_periods_detect](series-periods-detectfunction.md)
+    * "ctukey": カスタム10パーセンタイルの範囲を持つ [Tukey のフェンステスト](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) [default]
+    * "tukey": [tukey のフェンステスト](https://en.wikipedia.org/wiki/Outlier#Tukey's_fences) 標準 25-75 パーセンタイル範囲の詳細については、「」を参照してください [series_outliers](series-outliersfunction.md)
+* *Seasonality_threshold*: *季節* 性が自動検出に設定されている場合の季節性スコアのしきい値。 既定のスコアのしきい値は `0.6` です。 詳細については、「」を参照してください [series_periods_detect](series-periods-detectfunction.md)
 
 ## <a name="returns"></a>戻り値
 
@@ -55,7 +55,7 @@ ms.locfileid: "87803575"
 ## <a name="the-algorithm"></a>アルゴリズム
 
 この関数は、次の手順に従います。
-1. ベースラインと残余シリーズを作成するために、各パラメーターを使用して[series_decompose ()](series-decomposefunction.md)を呼び出します。
+1. ベースラインと残余シリーズを作成するために、各パラメーターを使用して [series_decompose ()](series-decomposefunction.md) を呼び出します。
 1. [Series_outliers ()](series-outliersfunction.md)を、残余シリーズで選択した異常検出方法と共に適用して、ad_score シリーズを計算します。
 1. Ad_score にしきい値を適用することによって、ad_flag の系列を計算し、それぞれをマークアップ/ダウン/異常なしにマークします。
  
@@ -63,7 +63,7 @@ ms.locfileid: "87803575"
 
 ### <a name="detect-anomalies-in-weekly-seasonality"></a>週単位の季節性で異常を検出する
 
-次の例では、週単位の季節性を持つ系列を生成し、それに外れ値を追加します。 `series_decompose_anomalies`周期性を自動検出し、繰り返しパターンをキャプチャするベースラインを生成します。 追加した外れ値は、ad_score コンポーネントで明確に把握できます。
+次の例では、週単位の季節性を持つ系列を生成し、それに外れ値を追加します。 `series_decompose_anomalies` 周期性を自動検出し、繰り返しパターンをキャプチャするベースラインを生成します。 追加した外れ値は、ad_score コンポーネントで明確に把握できます。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -99,7 +99,7 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 | render timechart
 ```
 
-:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-outliers-with-trend.png" alt-text="傾向がある週単位の季節性の外れ値" border="false":::
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-outliers-with-trend.png" alt-text="ベースラインと外れ値を示す週単位の季節性" border="false":::
 
 次に、同じ例を実行しますが、系列の傾向が予想されるため、 `linefit` trend パラメーターでを指定します。 ベースラインが入力系列に非常に近いことがわかります。 挿入されたすべての外れ値が検出され、いくつかの偽陽性も検出されます。 しきい値の調整については、次の例を参照してください。
 
@@ -118,7 +118,7 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 | render timechart  
 ```
 
-:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-linefit-trend.png" alt-text="Linefit 傾向での週単位の季節性の異常" border="false":::
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-linefit-trend.png" alt-text="ベースラインと外れ値を示す週単位の季節性" border="false":::
 
 ### <a name="tweak-the-anomaly-detection-threshold"></a>異常検出のしきい値を調整する
 
@@ -139,4 +139,4 @@ series_multiply(10, series_decompose_anomalies_y_ad_flag) // multiply by 10 for 
 | render timechart  
 ```
 
-:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-higher-threshold.png" alt-text="異常しきい値が高い週単位の異常" border="false":::
+:::image type="content" source="images/series-decompose-anomaliesfunction/weekly-seasonality-higher-threshold.png" alt-text="ベースラインと外れ値を示す週単位の季節性" border="false":::

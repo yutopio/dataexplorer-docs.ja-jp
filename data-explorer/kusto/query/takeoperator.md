@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a57dd8cde9ea00b0b68ae95ff557bd3b530357cc
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 5192bb2d752a5754ae36840611b9f7b0e84da256
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87804153"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250724"
 ---
 # <a name="take-operator"></a>take 演算子
 
@@ -26,7 +26,7 @@ T | take 5
 ソースデータを並べ替える場合を除き、どのレコードが返されるかは保証されません。
 
 > [!NOTE]
-> `take`は、データを対話的に参照しているときに小さなサンプルレコードを表示するためのシンプルで迅速かつ効率的な方法ですが、データセットが変更されていない場合でも、複数回実行しても結果の一貫性が保証されないことに注意してください。
+> `take` は、データを対話的に参照しているときに小さなサンプルレコードを表示するためのシンプルで迅速かつ効率的な方法ですが、データセットが変更されていない場合でも、複数回実行しても結果の一貫性が保証されないことに注意してください。
 > クエリによって返される行の数がクエリによって明示的に制限されていない (演算子が使用されていない) 場合でも `take` 、Kusto はその数値を既定で制限します。 詳細については、「 [Kusto クエリの制限](../concepts/querylimits.md)」を参照してください。
 
 ## <a name="syntax"></a>構文

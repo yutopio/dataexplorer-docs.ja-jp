@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの sub
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b0e83e8d0baf33e5c11cb8b7ecafa607a08fe32b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3780aac9ad2675e901ffff63a89177b478d461ea
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350861"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251385"
 ---
 # <a name="substring"></a>substring()
 
@@ -35,9 +35,9 @@ substring("abcdefg", 1, 2) == "bc"
 * *startingIndex*: 要求された部分文字列の0から始まる開始文字位置。
 * *length*: 省略可能なパラメーター。部分文字列で要求された文字数を指定するために使用できます。 
 
-**メモ**
+**ノート**
 
-*startingIndex*には負の数を指定できます。この場合、部分文字列はソース文字列の末尾から取得されます。
+*startingIndex* には負の数を指定できます。この場合、部分文字列はソース文字列の末尾から取得されます。
 
 ## <a name="returns"></a>戻り値
 

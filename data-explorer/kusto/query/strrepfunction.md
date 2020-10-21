@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 797684aa70cb8205463cc41558afec82449c433d
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a5ee36d40035ab2afd19af2da2a0cb174ee365ca
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350878"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251444"
 ---
 # <a name="strrep"></a>strrep()
 
-指定された[文字列](./scalar-data-types/string.md)を繰り返します。
+指定された [文字列](./scalar-data-types/string.md) を繰り返します。
 
 * 最初または3番目の引数が文字列型でない場合は、強制的に文字列に変換されます。
 
@@ -33,7 +33,7 @@ ms.locfileid: "87350878"
 
 ## <a name="returns"></a>戻り値
 
-指定した回数だけ繰り返される値。*区切り記号*と連結されます。
+指定した回数だけ繰り返される値。 *区切り記号*と連結されます。
 
 *乗数*が許容される最大値 (1024) を超える場合、入力文字列は1024回繰り返されます。
  

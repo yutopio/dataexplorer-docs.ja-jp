@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8e93e86814adf2789d01e03173196468f085b7c2
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 9a1a18ffdfc28d0487464202baa759acccd3e40e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87804102"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250476"
 ---
 # <a name="todouble-toreal"></a>todouble()、toreal()
 
@@ -24,7 +24,7 @@ toreal("123.4") == 123.4
 ```
 
 > [!NOTE]
-> 可能であれば[、double () または real ()](./scalar-data-types/real.md)を使用することをお勧めします。
+> 可能であれば [、double () または real ()](./scalar-data-types/real.md) を使用することをお勧めします。
 
 ## <a name="syntax"></a>構文
 

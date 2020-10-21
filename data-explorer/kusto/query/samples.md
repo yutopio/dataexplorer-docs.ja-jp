@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーのサ�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: bc28fcb860dc067d55dd2e5ce9de3f3a17b402f2
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 0db8c472ed3b23a1bf46f8fce9cbd38b0ca960b3
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942320"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251026"
 ---
 # <a name="samples"></a>サンプル
 
@@ -47,9 +47,9 @@ StormEvents
 |[開始]|London|2817330|2015-12-09T10:12:02.32|
 |Game|London|2817330|2015-12-09T10:12:52.45|
 |[開始]|Manchester|4267667|2015-12-09T10:14:02.23|
-|停止|London|2817330|2015-12-09T10:23:43.18|
+|Stop|London|2817330|2015-12-09T10:23:43.18|
 |Cancel|Manchester|4267667|2015-12-09T10:27:26.29|
-|停止|Manchester|4267667|2015-12-09T10:28:31.72|
+|Stop|Manchester|4267667|2015-12-09T10:28:31.72|
 
 すべてのイベントには SessionId があります。 問題は、開始イベントと停止イベントを同じ ID に一致させることです。
 
@@ -702,7 +702,7 @@ let B = datatable(Timestamp:datetime, ID:string, EventB:string)
 A; B
 ```
 
-|Timestamp|ID|EventB|
+|Timestamp|id|EventB|
 |---|---|---|
 |2019-01-01 00:00: 00.0000000|x|Ax1|
 |2019-01-01 00:00: 00.0000000|z|Az1|
@@ -712,7 +712,7 @@ A; B
 
 </br>
 
-|Timestamp|ID|EventA|
+|Timestamp|id|EventA|
 |---|---|---|
 |2019-01-01 00:00: 03.0000000|x|B|
 |2019-01-01 00:00: 04.0000000|x|B|
@@ -721,7 +721,7 @@ A; B
 
 予想される出力: 
 
-|ID|Timestamp|EventB|A_Timestamp|EventA|
+|id|Timestamp|EventB|A_Timestamp|EventA|
 |---|---|---|---|---|
 |x|2019-01-01 00:00: 03.0000000|B|2019-01-01 00:00: 01.0000000|Ax2|
 |x|2019-01-01 00:00: 04.0000000|B|2019-01-01 00:00: 01.0000000|Ax2|

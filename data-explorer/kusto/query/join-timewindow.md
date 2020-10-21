@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの時�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1ca7f38fa377be40cd290b04af65cc6fd59075cd
-ms.sourcegitcommit: e093e4fdc7dafff6997ee5541e79fa9db446ecaa
+ms.openlocfilehash: b1f951f23587451d62deefa5feb24e2d1fc6b612
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85763717"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92251115"
 ---
 # <a name="time-window-join"></a>時間枠内での結合
 
@@ -84,7 +84,7 @@ T
 
 ```
 
-|SessionId|開始|End|
+|SessionId|[開始]|End|
 |---|---|---|
 |0|2017-10-01 00:00: 00.0000000|2017-10-01 00:01: 00.0000000|
 
@@ -119,7 +119,7 @@ T
 | project SessionId, Start, End 
 ```
 
-|SessionId|開始|End|
+|SessionId|[開始]|End|
 |---|---|---|
 |0|2017-10-01 00:00: 00.0000000|2017-10-01 00:01: 00.0000000|
 
@@ -155,7 +155,7 @@ T
 | project SessionId, Start, End 
 ```
 
-|SessionId|開始|End|
+|SessionId|[開始]|End|
 |---|---|---|
 |0|2017-10-01 00:00: 00.0000000|2017-10-01 00:01: 00.0000000|
 

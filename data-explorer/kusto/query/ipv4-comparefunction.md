@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの ipv
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: 68082b68a1c7772135f711248ddfcd4079bc753e
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 06cb9078464d782d6034ec11e3e0cdc4c249b541
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803932"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92250357"
 ---
 # <a name="ipv4_compare"></a>ipv4_compare()
 
@@ -32,7 +32,7 @@ ipv4_compare('192.168.1.1', '192.168.1.255', 24) == 0
 
 ## <a name="arguments"></a>引数
 
-* *Expr1 or*, *Expr2*: IPv4 アドレスを表す文字列式。 IPv4 文字列は[、IP プレフィックス表記](#ip-prefix-notation)を使用してマスクできます。
+* *Expr1 or*, *Expr2*: IPv4 アドレスを表す文字列式。 IPv4 文字列は [、IP プレフィックス表記](#ip-prefix-notation)を使用してマスクできます。
 * *PrefixMask*: 0 ~ 32 の整数で、考慮される最上位ビットの数を表します。
 
 ## <a name="ip-prefix-notation"></a>IP プレフィックスの表記

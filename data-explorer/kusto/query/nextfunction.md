@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの次�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a265d536f655df3086ece1b9953eaade4717781c
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ca9361c0a43a2881f7448312e4f8a5129426e55a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346628"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248726"
 ---
 # <a name="next"></a>next()
 
-シリアル化された[行セット](./windowsfunctions.md#serialized-row-set)の現在の行の後にあるオフセット位置にある行の列の値を返します。
+シリアル化された [行セット](./windowsfunctions.md#serialized-row-set)の現在の行の後にあるオフセット位置にある行の列の値を返します。
 
 ## <a name="syntax"></a>構文
 

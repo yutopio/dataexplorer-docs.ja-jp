@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの in 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2019
-ms.openlocfilehash: a6551ee2d4ac01d6d896cc8daff466f3c4a7852e
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 52e26bb5564079de56817e75a203a400ef7f1a50
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803966"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248989"
 ---
 # <a name="in-and-in-operators"></a>in および !in 演算子
 
@@ -51,12 +51,12 @@ Table1 | where col in ('value1', 'value2')
 
 * *T* -レコードをフィルター処理するための表形式の入力。
 * *col* -フィルター処理する列。
-* *式の一覧*-表形式、スカラー式、またはリテラル式のコンマ区切りのリスト。
-* *表形式式*-値のセットを含む表形式の式です。 式に複数の列がある場合は、最初の列が使用されます。
+* *式の一覧* -表形式、スカラー式、またはリテラル式のコンマ区切りのリスト。
+* *表形式式* -値のセットを含む表形式の式です。 式に複数の列がある場合は、最初の列が使用されます。
 
 ## <a name="returns"></a>戻り値
 
-述語がである*T*内の行 `true` 。
+述語がである *T* 内の行 `true` 。
 
 ## <a name="examples"></a>例  
 

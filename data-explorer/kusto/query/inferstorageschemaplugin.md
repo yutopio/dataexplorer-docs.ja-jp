@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの inf
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: f5ad4cdc2b74ddb62a4572249bb06fab6c656243
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3c3aa61bdb804d2a1bd6735ea4a22e06e1f1878e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347427"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249000"
 ---
 # <a name="infer_storage_schema-plugin"></a>infer_storage_schema プラグイン
 
-このプラグインは、外部データのスキーマを推測し、それを CSL スキーマ文字列として返します。 この文字列は、[外部テーブルを作成](../management/external-tables-azurestorage-azuredatalake.md#create-or-alter-external-table)するときに使用できます。
+このプラグインは、外部データのスキーマを推測し、それを CSL スキーマ文字列として返します。 この文字列は、 [外部テーブルを作成](../management/external-tables-azurestorage-azuredatalake.md#create-or-alter-external-table)するときに使用できます。
 
 ```kusto
 let options = dynamic({
@@ -32,16 +32,16 @@ evaluate infer_storage_schema(options)
 
 ## <a name="syntax"></a>構文
 
-`evaluate` `infer_storage_schema(` *オプション* `)`
+`evaluate` `infer_storage_schema(` *Options* `)`
 
 ## <a name="arguments"></a>引数
 
-単一*オプション*の引数は、 `dynamic` 要求のプロパティを指定するプロパティバッグを保持する型の定数値です。
+単一 *オプション* の引数は、 `dynamic` 要求のプロパティを指定するプロパティバッグを保持する型の定数値です。
 
 |名前                    |必須|説明|
 |------------------------|--------|-----------|
-|`StorageContainers`|はい|格納されているデータ成果物のプレフィックス URI を表す[ストレージ接続文字列](../api/connection-strings/storage.md)の一覧|
-|`DataFormat`|はい|サポートされている[データ形式](../../ingestion-supported-formats.md)の1つ。|
+|`StorageContainers`|はい|格納されているデータ成果物のプレフィックス URI を表す [ストレージ接続文字列](../api/connection-strings/storage.md) の一覧|
+|`DataFormat`|はい|サポートされている [データ形式](../../ingestion-supported-formats.md)の1つ。|
 |`FileExtension`|いいえ|このファイル拡張子で終わるファイルのみをスキャンします。 必須ではありませんが、これを指定するとプロセスが高速化されます (または、データの読み取りに関する問題を回避できます)。|
 |`FileNamePrefix`|いいえ|このプレフィックスで始まるファイルのみをスキャンします。 必須ではありませんが、指定するとプロセスが高速化される可能性があります。|
 |`Mode`|いいえ|スキーマの推論方法。次のいずれかに `any` `last` `all` なります。 (最初に検出された) ファイル、最後に書き込まれたファイル、またはすべてのファイルからデータスキーマを推論します。 既定値は `last` です。|
@@ -52,7 +52,7 @@ evaluate infer_storage_schema(options)
 
 > [!NOTE]
 > * ストレージコンテナー URI の秘密キーには、*読み取り*に加えて、*リスト*に対するアクセス許可が必要です。
-> * スキーマ推論戦略 ' all ' は、検出された*すべて*のアイテムからの読み取りを意味し、スキーマをマージするため、非常に "高額" な操作です。
+> * スキーマ推論戦略 ' all ' は、検出された *すべて* のアイテムからの読み取りを意味し、スキーマをマージするため、非常に "高額" な操作です。
 > * 返される型の中には、誤った型推測 (または、スキーママージ処理の結果として) の結果として実際の型を使用できないものがあります。 このため、外部テーブルを作成する前に、結果を慎重に確認する必要があります。
 
 ## <a name="example"></a>例

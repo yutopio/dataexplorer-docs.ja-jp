@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの iif
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0d912f94a224b073fe9214f70077067d3a24c906
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 0279e3b0bfc28397b2270f012b8152b456c770cd
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347478"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242403"
 ---
 # <a name="iif"></a>iif()
 
@@ -28,8 +28,8 @@ ms.locfileid: "87347478"
 ## <a name="arguments"></a>引数
 
 * *述語*: 値に評価される式 `boolean` 。
-* *Iftrue*:*述語*がと評価された場合に、評価され、その値が関数から返される `true` 式。
-* *ifFalse*:*述語*がと評価された場合に、評価され、その値が関数から返される `false` 式。
+* *Iftrue*: *述語* がと評価された場合に、評価され、その値が関数から返される `true` 式。
+* *ifFalse*: *述語* がと評価された場合に、評価され、その値が関数から返される `false` 式。
 
 ## <a name="returns"></a>戻り値
 

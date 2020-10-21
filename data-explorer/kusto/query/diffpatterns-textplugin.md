@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの dif
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b0a71f9db9062d83f55ebf9db1efabb6d86f9786
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 9efa144335369c3d450fadb7ac92e3dec4c87865
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803286"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249258"
 ---
 # <a name="diffpatterns_text-plugin"></a>diffpatterns_text プラグイン
 
@@ -37,7 +37,7 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
     分析するテキスト列は文字列型である必要があります。
     
-* BooleanCondition-*ブール式*
+* BooleanCondition- *ブール式*
 
     入力テーブルと比較する2つのレコードのサブセットを生成する方法を定義します。 このアルゴリズムでは、クエリが条件に従って "True" と "False" の2つのデータセットに分割され、その間の (テキスト) の相違点が分析されます。 
 
@@ -51,7 +51,7 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
 * しきい値-0.015 < *double* < 1 [既定値: 0.05]
 
-    2つのセット間の最小パターン (比率) の差を設定します (「[パターン](diffpatternsplugin.md)の違い」を参照してください)。
+    2つのセット間の最小パターン (比率) の差を設定します (「 [パターン](diffpatternsplugin.md)の違い」を参照してください)。
 
 * MaxTokens-0 < *int* [既定値:20]
 

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーにお�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a76a402725eaefe9f12cbb67228381e3b0c25351
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a93b24af949beedc02ddd3dbbc479074f0aa891c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348260"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249134"
 ---
 # <a name="endofyear"></a>endofyear()
 
@@ -30,7 +30,7 @@ ms.locfileid: "87348260"
 
 ## <a name="returns"></a>戻り値
 
-指定された場合、オフセットを使用して、指定された*日付*値の年の終わりを表す datetime。
+指定された場合、オフセットを使用して、指定された *日付* 値の年の終わりを表す datetime。
 
 ## <a name="example"></a>例
 

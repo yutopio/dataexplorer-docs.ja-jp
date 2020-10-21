@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの set
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: bd442f70b3411b61f213098fefec918622f8d916
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 1657e6e9b82e433d7712dfb21930c4ae4d20a315
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351184"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242671"
 ---
 # <a name="set_difference"></a>set_difference()
 
@@ -43,7 +43,7 @@ range x from 1 to 3 step 1
 | project set_difference(a1, a2, a3)
 ```
 
-|Column1|
+|列 1|
 |---|
 |[4]|
 |8|

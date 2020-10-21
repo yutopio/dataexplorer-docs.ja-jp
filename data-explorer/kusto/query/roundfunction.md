@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの rou
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: c281d3347e82b429ded187ee142ea13fa7594567
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 90d424929fe0b2034e4778ca2167e1e14dfbf79e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345744"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242904"
 ---
 # <a name="round"></a>round()
 
@@ -21,7 +21,7 @@ ms.locfileid: "87345744"
 
 ## <a name="syntax"></a>構文
 
-`round(`*ソース*[ `,` *有効桁数*]`)`
+`round(`*ソース* [ `,` *有効桁数*]`)`
 
 ## <a name="arguments"></a>引数
 

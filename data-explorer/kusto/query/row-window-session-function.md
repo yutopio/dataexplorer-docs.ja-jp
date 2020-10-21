@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの row
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ce8da96733dd483b8600c7cfb3618ed986e9d2b0
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: f872004a8291adc95f594c6301075faa02c8ec6c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351558"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242866"
 ---
 # <a name="row_window_session"></a>row_window_session()
 
-`row_window_session()`シリアル化された[行セット](./windowsfunctions.md#serialized-row-set)内の列のセッション開始値を計算します。
+`row_window_session()` シリアル化された [行セット](./windowsfunctions.md#serialized-row-set)内の列のセッション開始値を計算します。
 
 ## <a name="syntax"></a>構文
 
@@ -33,13 +33,13 @@ ms.locfileid: "87351558"
 * *`MaxDistanceBetweenNeighbors`* 新しいセッションを開始するための2番目の条件を確立します。1つの値から次の値への最大距離です。 *`Expr`*
   これは型のスカラー定数です `timespan` 。
 
-* *Restart*は、型の省略可能なスカラー式です `boolean` 。 指定した場合、に評価されるすべての値 `true` が直ちにセッションを再起動します。
+* *Restart* は、型の省略可能なスカラー式です `boolean` 。 指定した場合、に評価されるすべての値 `true` が直ちにセッションを再起動します。
 
 ## <a name="returns"></a>戻り値
 
 関数は、各セッションの開始時に値を返します。
 
-**メモ**
+**ノート**
 
 関数には、次の概念計算モデルがあります。
 

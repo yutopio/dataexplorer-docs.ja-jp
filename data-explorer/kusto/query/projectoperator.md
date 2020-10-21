@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの Pro
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7a7cbb563a10b1cd1bdd91f12b0ce9d7da1c0e7b
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7529fb02c85d10ac451e78b878a21040e966ee34
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346033"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242273"
 ---
 # <a name="project-operator"></a>project 演算子
 
@@ -36,7 +36,7 @@ or
 ## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル。
-* *ColumnName:* 出力に表示される列の名前 (省略可能)。 *式*が存在しない場合は、 *ColumnName*が必須であり、その名前の列が入力に含まれている必要があります。 省略した場合、名前は自動的に生成されます。 *Expression*から複数の列が返される場合は、列名のリストをかっこで囲んで指定できます。 この場合、*式*の出力列には指定された名前が付けられ、残りの出力列はすべて削除されます。 列名のリストが指定されていない場合は、生成された名前を持つすべての*式*の出力列が出力に追加されます。
+* *ColumnName:* 出力に表示される列の名前 (省略可能)。 *式*が存在しない場合は、 *ColumnName*が必須であり、その名前の列が入力に含まれている必要があります。 省略した場合、名前は自動的に生成されます。 *Expression*から複数の列が返される場合は、列名のリストをかっこで囲んで指定できます。 この場合、 *式*の出力列には指定された名前が付けられ、残りの出力列はすべて削除されます。 列名のリストが指定されていない場合は、生成された名前を持つすべての *式*の出力列が出力に追加されます。
 * *Expression:* 入力列を参照する、省略可能なスカラー式。 *ColumnName*が省略されていない場合、*式*は必須です。
 
     入力内の既存の列と同じ名前を持つ新しい計算列を返すことは、問題ありません。
@@ -58,4 +58,4 @@ T
     B=2*B                      // Calculate a new column B from the old B
 ```
 
-[series_stats](series-statsfunction.md)は、複数の列を返す関数の例です。
+[series_stats](series-statsfunction.md) は、複数の列を返す関数の例です。

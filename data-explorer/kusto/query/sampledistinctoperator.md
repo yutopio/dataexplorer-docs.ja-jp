@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーのサ�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3cb1de08604964d4d71c5868ef7564c728b1f2c4
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: cfd8385a5dc8f959e1fe195bfe333a6868f55cb4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351541"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242726"
 ---
 # <a name="sample-distinct-operator"></a>sample-distinct 演算子
 
@@ -30,13 +30,13 @@ T | sample-distinct 5 of DeviceId
 *T* `| sample-distinct` *numberofvalues* `of` *ColumnName*
 
 ## <a name="arguments"></a>引数
-* *Numberofvalues*: 返される*T*の個別の値の数。 任意の数値式を指定できます。
+* *Numberofvalues*: 返される *T* の個別の値の数。 任意の数値式を指定できます。
 
 **ヒント**
 
  Let ステートメントを使用して後でフィルター処理を行うことで、母集団をサンプリングすることができます `sample-distinct` `in` (例を参照)。 
 
- 単なるサンプルではなく、最上位の値が必要な場合は、 [top-hitters](tophittersoperator.md)演算子を使用できます。 
+ 単なるサンプルではなく、最上位の値が必要な場合は、 [top-hitters](tophittersoperator.md) 演算子を使用できます。 
 
  (特定の列の値ではなく) データ行をサンプリングする場合は、「 [sample 演算子](sampleoperator.md)」を参照してください。
 

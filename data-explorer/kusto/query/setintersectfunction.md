@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの set
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/02/2019
-ms.openlocfilehash: 709da983599b4e8b0c8b06cf7bff4276ba03b5cf
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 682cff2dc5a4334a4543767048429b1ea04dc329
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351167"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242445"
 ---
 # <a name="set_intersect"></a>set_intersect()
 
@@ -43,7 +43,7 @@ range x from 1 to 3 step 1
 | project set_intersect(a1, a2, a3)
 ```
 
-|Column1|
+|列 1|
 |---|
 | [1]|
 |3|

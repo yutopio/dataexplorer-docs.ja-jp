@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの not
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 3ae821e76c78f8beba465651ffc759bfefdfa001
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7dd8f04010cbc10afa34fa8b27e6be8d31feae9d
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346611"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248696"
 ---
 # <a name="not-between-operator-between"></a>not-between 演算子 (!between)
 
@@ -24,7 +24,7 @@ Table1 | where Num1 !between (1 .. 10)
 Table1 | where Time !between (datetime(2017-01-01) .. datetime(2017-01-01))
 ```
 
-`!between`は、任意の数値、datetime、または timespan 式で操作できます。
+`!between` は、任意の数値、datetime、または timespan 式で操作できます。
  
 ## <a name="syntax"></a>構文
 

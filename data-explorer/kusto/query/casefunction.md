@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 087ff2fc38f3b72e4abdbb86ce4b7ac98a5569e6
-ms.sourcegitcommit: d0f8d71261f8f01e7676abc77283f87fc450c7b1
+ms.openlocfilehash: 809c11f337db86e9b9bdfbd93439e5f743008c38
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91765368"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249305"
 ---
 # <a name="case"></a>case()
 
@@ -49,11 +49,11 @@ range Size from 1 to 15 step 2
 
 |サイズ|bucket|
 |---|---|
-|1|小|
-|3|小|
+|1|Small|
+|3|Small|
 |5|中間|
 |7|中間|
 |9|中間|
-|11|大|
-|13|大|
-|15|大|
+|11|Large|
+|13|Large|
+|15|Large|

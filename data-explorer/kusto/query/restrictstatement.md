@@ -4,18 +4,18 @@ description: この記事では、Azure データエクスプローラーの Res
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 52cec808795024bd58b6a4ef6cf08e5b700c0e33
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: f510e62e6b1ad828f0e132bbad214dc7119f8235
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803626"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92243021"
 ---
 # <a name="restrict-statement"></a>restrict ステートメント
 
@@ -23,7 +23,7 @@ ms.locfileid: "87803626"
 
 Restrict ステートメントは、その後に続くクエリステートメントで参照できるテーブル/ビューエンティティのセットを制限します。 たとえば、2つのテーブル (、) を含むデータベースでは、 `A` `B` アプリケーションがクエリの残りの部分にアクセスできないようにし、ビューを使用して `B` 限られた形式のテーブルだけを表示することができ `A` ます。
 
-Restrict ステートメントの主なシナリオは、ユーザーからのクエリを受け入れ、それらのクエリに行レベルのセキュリティメカニズムを適用する中間層アプリケーションの場合です。 中間層アプリケーションは、ユーザーのクエリにプレフィックスとして**論理モデル**を付けることができます。これは、ユーザーのデータへのアクセスを制限するビューを定義する let ステートメントのセットです (たとえば、 `T | where UserId == "..."` )。 最後に追加されたステートメントとして、ユーザーのアクセスを論理モデルのみに制限します。
+Restrict ステートメントの主なシナリオは、ユーザーからのクエリを受け入れ、それらのクエリに行レベルのセキュリティメカニズムを適用する中間層アプリケーションの場合です。 中間層アプリケーションは、ユーザーのクエリにプレフィックスとして **論理モデル**を付けることができます。これは、ユーザーのデータへのアクセスを制限するビューを定義する let ステートメントのセットです (たとえば、 `T | where UserId == "..."` )。 最後に追加されたステートメントとして、ユーザーのアクセスを論理モデルのみに制限します。
 
 > [!NOTE]
 > Restrict ステートメントを使用して、別のデータベースまたはクラスター内のエンティティへのアクセスを制限することができます (クラスター名ではワイルドカードはサポートされていません)。

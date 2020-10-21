@@ -4,24 +4,24 @@ description: この記事では、Azure データエクスプローラーの ext
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: f745d9cb180842e86c184a24ed24c4e2f024f129
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: da705d558a09bdcc52bf07fc807e53fdccb9396c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348124"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249092"
 ---
 # <a name="extent_tags"></a>extent_tags()
 
 ::: zone pivot="azuredataexplorer"
 
-現在のレコードが存在するデータシャード ("extent") の[タグ](../management/extents-overview.md#extent-tagging)を持つ動的配列を返します。 
+現在のレコードが存在するデータシャード ("extent") の [タグ](../management/extents-overview.md#extent-tagging) を持つ動的配列を返します。 
 
 データシャードにアタッチされていない計算データにこの関数を適用すると、空の値が返されます。
 

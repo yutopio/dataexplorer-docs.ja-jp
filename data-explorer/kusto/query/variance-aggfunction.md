@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの分�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4222e0672290a6d934382dd6f922aec082a19af7
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 5a031efb5068e4497df0fa7acb54561c3b3caffb
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87338679"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92240942"
 ---
 # <a name="variance-aggregation-function"></a>variance () (集計関数)
 
-グループ全体の*Expr*の分散を計算し、グループを[サンプル](https://en.wikipedia.org/wiki/Sample_%28statistics%29)として検討します。 
+グループ全体の *Expr* の分散を計算し、グループを [サンプル](https://en.wikipedia.org/wiki/Sample_%28statistics%29)として検討します。 
 
 * 使用された式:
 
@@ -35,7 +35,7 @@ ms.locfileid: "87338679"
 
 ## <a name="returns"></a>戻り値
 
-グループ全体の*Expr*の分散値。
+グループ全体の *Expr* の分散値。
  
 ## <a name="examples"></a>例
 

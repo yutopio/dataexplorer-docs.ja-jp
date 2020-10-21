@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの new
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: b376afda0874fdb70934ffc6861192ef9028e9aa
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 447191158ce3de69c4429b5af4a33d24150af77c
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347087"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248853"
 ---
 # <a name="new_activity_metrics-plugin"></a>new_activity_metrics プラグイン
 
-のコーホートの便利なアクティビティメトリック (個別のカウント値、個別の値の数、保持率、およびチャーン率) を計算し `New Users` ます。 各コーホート `New Users` (時間枠で最初に表示されたすべてのユーザー) は、以前のすべてのコーホートと比較されます。 比較では、以前の*すべて*の時間ウィンドウが考慮されます。 たとえば、from = T2、to = T3 のレコードでは、ユーザーの個別のカウントは、T1 と T2 の両方で見られなかった T3 のすべてのユーザーになります。 
+のコーホートの便利なアクティビティメトリック (個別のカウント値、個別の値の数、保持率、およびチャーン率) を計算し `New Users` ます。 各コーホート `New Users` (時間枠で最初に表示されたすべてのユーザー) は、以前のすべてのコーホートと比較されます。 比較では、以前の *すべて* の時間ウィンドウが考慮されます。 たとえば、from = T2、to = T3 のレコードでは、ユーザーの個別のカウントは、T1 と T2 の両方で見られなかった T3 のすべてのユーザーになります。 
 ```kusto
 T | evaluate new_activity_metrics(id, datetime_column, startofday(ago(30d)), startofday(now()), 1d, dim1, dim2, dim3)
 ```
@@ -48,15 +48,15 @@ T | evaluate new_activity_metrics(id, datetime_column, startofday(ago(30d)), sta
 |---|---|---|---|---|---|---|---|---|---|
 |型: as of *TimelineColumn*|同じ|long|long|double|double|double|..|..|..|
 
-* `from_TimelineColumn`-新しいユーザーのコーホート。 このレコードのメトリックは、この期間内に最初に表示されたすべてのユーザーを指します。 *最初*に確認された決定は、分析期間内の以前のすべての期間を考慮します。 
-* `to_TimelineColumn`-比較する期間。 
-* `dcount_new_values`- `to_TimelineColumn` より前の*すべて*の期間に表示されなかった個別のユーザーの数 `from_TimelineColumn` 。 
-* `dcount_retained_values`-最初に表示されたすべての新しいユーザーのうち、に `from_TimelineColumn` 表示された個別のユーザーの数 `to_TimelineCoumn` 。
+* `from_TimelineColumn` -新しいユーザーのコーホート。 このレコードのメトリックは、この期間内に最初に表示されたすべてのユーザーを指します。 *最初*に確認された決定は、分析期間内の以前のすべての期間を考慮します。 
+* `to_TimelineColumn` -比較する期間。 
+* `dcount_new_values` - `to_TimelineColumn` より前の *すべて* の期間に表示されなかった個別のユーザーの数 `from_TimelineColumn` 。 
+* `dcount_retained_values` -最初に表示されたすべての新しいユーザーのうち、に `from_TimelineColumn` 表示された個別のユーザーの数 `to_TimelineCoumn` 。
 * `dcount_churn_values`-で最初に表示されたすべての新しいユーザーのうち、 `from_TimelineColumn` で見ら*not*れなかった個別のユーザーの数 `to_TimelineCoumn` 。
-* `retention_rate`- `dcount_retained_values` コーホートの外の割合 (ユーザーはに最初に表示さ `from_TimelineColumn` れます)。
-* `churn_rate`- `dcount_churn_values` コーホートの外の割合 (ユーザーはに最初に表示さ `from_TimelineColumn` れます)。
+* `retention_rate` - `dcount_retained_values` コーホートの外の割合 (ユーザーはに最初に表示さ `from_TimelineColumn` れます)。
+* `churn_rate` - `dcount_churn_values` コーホートの外の割合 (ユーザーはに最初に表示さ `from_TimelineColumn` れます)。
 
-**メモ**
+**ノート**
 
 の定義については、 `Retention Rate` `Churn Rate` [activity_metrics プラグイン](./activity-metrics-plugin.md)のドキュメントの「**メモ**」セクションを参照してください。
 
@@ -104,15 +104,15 @@ Users
 出力からのいくつかのレコードを分析するには、次のようにします。 
 * レコード `R=3` 、 `from_TimelineColumn`  =  `2019-11-01` 、 `to_TimelineColumn`  =  `2019-11-03` :
     * このレコードに対して考慮されたユーザーは、11/1 に表示されるすべての新しいユーザーです。 これは最初の期間であるため、bin のすべてのユーザー– [0, 2, 3, 4]
-    * `dcount_new_values`–11/1 で見られなかった11/3 のユーザーの数。 これには、1人のユーザー () が含まれ `5` ます。 
-    * `dcount_retained_values`-11/1 のすべての新規ユーザーのうち、11/3 まで保持されたのはどれくらいですか? は3つ ( `[0,2,4]` ) ですが、 `count_churn_values` は 1 (user = `3` ) です。 
-    * `retention_rate`= 0.75 –11/1 で最初に表示された4つの新しいユーザーのうち、3人のユーザーが保持しています。 
+    * `dcount_new_values` –11/1 で見られなかった11/3 のユーザーの数。 これには、1人のユーザー () が含まれ `5` ます。 
+    * `dcount_retained_values` -11/1 のすべての新規ユーザーのうち、11/3 まで保持されたのはどれくらいですか? は3つ ( `[0,2,4]` ) ですが、 `count_churn_values` は 1 (user = `3` ) です。 
+    * `retention_rate` = 0.75 –11/1 で最初に表示された4つの新しいユーザーのうち、3人のユーザーが保持しています。 
 
 * レコード `R=9` 、 `from_TimelineColumn`  =  `2019-11-02` 、 `to_TimelineColumn`  =  `2019-11-04` :
     * このレコードは、11/2 – users and で最初に表示された新しいユーザーに焦点を当てて `1` `5` います。 
-    * `dcount_new_values`–すべての期間に見られなかった11/4 のユーザーの数 `T0 .. from_Timestamp` 。 つまり、11/4 であっても、11/1 または11/2 には表示されていなかったユーザーは存在しません。 
-    * `dcount_retained_values`– 11/2 () のすべての新規ユーザーのうち `[1,5]` 、11/4 まで保持された日数 このようなユーザー () が1つあり `[1]` ますが、count_churn_values は1つ (ユーザー `5` ) です。 
-    * `retention_rate`0.5 –11/2 の2つの新しいユーザーのうち、11/4 に保持されていた1人のユーザー。 
+    * `dcount_new_values` –すべての期間に見られなかった11/4 のユーザーの数 `T0 .. from_Timestamp` 。 つまり、11/4 であっても、11/1 または11/2 には表示されていなかったユーザーは存在しません。 
+    * `dcount_retained_values` – 11/2 () のすべての新規ユーザーのうち `[1,5]` 、11/4 まで保持された日数 このようなユーザー () が1つあり `[1]` ますが、count_churn_values は1つ (ユーザー `5` ) です。 
+    * `retention_rate` 0.5 –11/2 の2つの新しいユーザーのうち、11/4 に保持されていた1人のユーザー。 
 
 
 ### <a name="weekly-retention-rate-and-churn-rate-single-week"></a>週単位のリテンション率とチャーン率 (1 週間)

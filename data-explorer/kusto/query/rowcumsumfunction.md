@@ -4,28 +4,28 @@ description: この記事では、Azure データエクスプローラーの row
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 83dc48589fce7332c8e24d1e5a47c75a6cfca608
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 6ad1df20972238bee17217f5d9de19a020b4cbce
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87345727"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242855"
 ---
 # <a name="row_cumsum"></a>row_cumsum()
 
-シリアル化された[行セット](./windowsfunctions.md#serialized-row-set)内の列の累積合計を計算します。
+シリアル化された [行セット](./windowsfunctions.md#serialized-row-set)内の列の累積合計を計算します。
 
 ## <a name="syntax"></a>構文
 
 `row_cumsum``(`*用語*[ `,` *再起動*]`)`
 
-* *Term*は、合計する値を示す式です。
-  式は、、、 `decimal` 、またはのいずれかの型のスカラーである必要があり `int` `long` `real` ます。 Null*用語*の値は、合計には影響しません。
-* *Restart*は `bool` 、累積操作を再起動するタイミング (0 に戻す) を示す型の省略可能な引数です。 データのパーティションを示すために使用できます。次の2番目の例を参照してください。
+* *Term* は、合計する値を示す式です。
+  式は、、、 `decimal` 、またはのいずれかの型のスカラーである必要があり `int` `long` `real` ます。 Null *用語* の値は、合計には影響しません。
+* *Restart* は `bool` 、累積操作を再起動するタイミング (0 に戻す) を示す型の省略可能な引数です。 データのパーティションを示すために使用できます。次の2番目の例を参照してください。
 
 ## <a name="returns"></a>戻り値
 

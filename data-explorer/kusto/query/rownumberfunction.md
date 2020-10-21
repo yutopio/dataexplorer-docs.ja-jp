@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの row
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: ea51e6171b8a7683a0454d177dc729ed754b8896
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 457e9445aa113e76052b9c4d96019352215d08f9
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351592"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242808"
 ---
 # <a name="row_number"></a>row_number()
 
-シリアル化された[行セット](./windowsfunctions.md#serialized-row-set)内の現在の行のインデックスを返します。
+シリアル化された [行セット](./windowsfunctions.md#serialized-row-set)内の現在の行のインデックスを返します。
 行インデックスは、既定で最初の行のに対して開始され、 `1` `1` 追加の行ごとにによってインクリメントされます。
 必要に応じて、行インデックスをとは異なる値で開始することもでき `1` ます。
 また、指定された述語に従って行インデックスをリセットすることもできます。
@@ -26,8 +26,8 @@ ms.locfileid: "87351592"
 
 `row_number``(`[*StartingIndex* [ `,` *再起動*]]`)`
 
-* *StartingIndex*は、 `long` 開始する行インデックスの値を示す型の定数式です (または、に再起動します)。 既定値は `1` です。
-* *Restart*は、 `bool` 番号を*StartingIndex*値に再起動するタイミングを示す型の省略可能な引数です。 指定しない場合、の既定値 `false` が使用されます。
+* *StartingIndex* は、 `long` 開始する行インデックスの値を示す型の定数式です (または、に再起動します)。 既定値は `1` です。
+* *Restart* は、 `bool` 番号を *StartingIndex* 値に再起動するタイミングを示す型の省略可能な引数です。 指定しない場合、の既定値 `false` が使用されます。
 
 ## <a name="returns"></a>戻り値
 

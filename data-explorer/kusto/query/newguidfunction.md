@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの new
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 1f4e4245ddd49d2340eab5a118e5ac94be1b4f77
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 7e40f097d04bcc3fad8abf70c9af57b7efc53e4d
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346645"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92248748"
 ---
 # <a name="new_guid"></a>new_guid()
 
@@ -25,4 +25,4 @@ new_guid()
 
 ## <a name="syntax"></a>構文
 
-* `new_guid()`-型の新しい値を生成 `guid` します。
+* `new_guid()` -型の新しい値を生成 `guid` します。

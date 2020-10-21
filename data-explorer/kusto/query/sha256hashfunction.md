@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの has
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b813ce4c0901ef66177e8e7bdaa42a1744bd5912
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 3d6cd8b71ac5abed2d56e567c992a15512141063
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87351116"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92242598"
 ---
 # <a name="hash_sha256"></a>hash_sha256()
 
@@ -32,7 +32,7 @@ ms.locfileid: "87351116"
 16進数文字列としてエンコードされた、指定されたスカラーの sha256 ハッシュ値 (文字の文字列。それぞれが 0 ~ 255 の範囲の1つの16進数を表します)。
 
 > [!WARNING]
-> この関数 (SHA256) で使用されるアルゴリズムは、今後変更されることはありませんが、計算が非常に複雑です。 1つのクエリの実行中に "ライトウェイト" ハッシュ関数を必要とするユーザーには、代わりに関数[hash ()](./hashfunction.md)を使用することをお勧めします。
+> この関数 (SHA256) で使用されるアルゴリズムは、今後変更されることはありませんが、計算が非常に複雑です。 1つのクエリの実行中に "ライトウェイト" ハッシュ関数を必要とするユーザーには、代わりに関数 [hash ()](./hashfunction.md) を使用することをお勧めします。
 
 ## <a name="examples"></a>例
 

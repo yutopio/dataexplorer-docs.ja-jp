@@ -4,43 +4,43 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/03/2020
-ms.openlocfilehash: e37d3733909b84a2991c54a9242d7f44b18d64cb
-ms.sourcegitcommit: de81b57b6c09b6b7442665e5c2932710231f0773
+ms.openlocfilehash: b5d5ef5ba3b29bf1bc468a64baa159106b164604
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87264683"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92249379"
 ---
 # <a name="query-best-practices"></a>クエリのベスト プラクティス
 
 ここでは、クエリの実行を高速化するためのベストプラクティスをいくつか紹介します。
 
-|アクション  |用途  |使用しない  |Notes  |
+|アクション  |使用  |使用しない  |メモ  |
 |---------|---------|---------|---------|
 | **時間フィルター** | 最初に時間フィルターを使用する。 ||Kusto は、時間フィルターを使用するように高度に最適化されています。| 
-|**文字列演算子**      | 演算子を使用する `has`     | 使用しない`contains`     | 完全なトークンを検索する場合は、 `has` 部分文字列が検索されないため、はより適切に機能します。   |
-|**大文字と小文字を区別する演算子**     |  `==` を使用します       | 使用しない`=~`       |  可能な場合は、大文字と小文字を区別する演算子を使用します。       |
-| | `in` を使用します | 使用しない`in~`|
-|  | `contains_cs` を使用します         | 使用しない`contains`        | を使用でき `has` / `has_cs` 、使用しない場合は `contains` / `contains_cs` 、さらに優れています。 |
-| **検索 (テキストを)**    |    特定の列を検索する     |    使用しない`*`    |   `*`すべての列に対してフルテキスト検索を行います。    |
-| **多数の行にわたる[動的オブジェクト](./scalar-data-types/dynamic.md)からのフィールドの抽出**    |  ほとんどのクエリでは、大量の行にわたって動的オブジェクトからフィールドを抽出する場合、インジェスト時に列を具体化します。      |         | このようにして、列の抽出に1回だけ支払います。    |
-| **`let`ステートメントの値が複数回使用されています** | [具体化 () 関数](./materializefunction.md)を使用する |  |   の使用方法の詳細につい `materialize()` ては、「[具体化 ()](materializefunction.md)」を参照してください。|
+|**文字列演算子**      | 演算子を使用する `has`     | 使用しない `contains`     | 完全なトークンを検索する場合は、 `has` 部分文字列が検索されないため、はより適切に機能します。   |
+|**大文字と小文字を区別する演算子**     |  `==` を使用します       | 使用しない  `=~`       |  可能な場合は、大文字と小文字を区別する演算子を使用します。       |
+| | `in` を使用します | 使用しない `in~`|
+|  | `contains_cs` を使用します         | 使用しない `contains`        | を使用でき `has` / `has_cs` 、使用しない場合は `contains` / `contains_cs` 、さらに優れています。 |
+| **検索 (テキストを)**    |    特定の列を検索する     |    使用しない  `*`    |   `*` すべての列に対してフルテキスト検索を行います。    |
+| **多数の行にわたる [動的オブジェクト](./scalar-data-types/dynamic.md) からのフィールドの抽出**    |  ほとんどのクエリでは、大量の行にわたって動的オブジェクトからフィールドを抽出する場合、インジェスト時に列を具体化します。      |         | このようにして、列の抽出に1回だけ支払います。    |
+| **`let` ステートメントの値が複数回使用されています** | [具体化 () 関数](./materializefunction.md)を使用する |  |   の使用方法の詳細につい `materialize()` ては、「 [具体化 ()](materializefunction.md)」を参照してください。|
 | **10億を超えるレコードに変換を適用する**| 変換に取り込むデータの量を減らすために、クエリをリシェイプします。| 避けることができる場合は、大量のデータを変換しないでください。 | |
 | **新しいクエリ** | `limit [small number]`またはを `count` 最後に使用します。 | |     不明なデータセットに対してバインドされていないクエリを実行すると、クライアントに対して Gb の結果が返される可能性があり、その結果、応答が遅くなり、クラスターがビジー状態になります。|
-| **大文字と小文字を区別しない比較** | `Col =~ "lowercasestring"` を使用します | 使用しない`tolower(Col) == "lowercasestring"` |
+| **大文字と小文字を区別しない比較** | `Col =~ "lowercasestring"` を使用します | 使用しない `tolower(Col) == "lowercasestring"` |
 | **既に小文字 (または大文字) になっているデータを比較する** | `Col == "lowercasestring"` (または `Col == "UPPERCASESTRING"`) | 大文字と小文字を区別しない比較は使用しないでください。||
 | **列のフィルター処理** |  テーブル列に対してフィルター処理を行います。|計算列に対してフィルター処理を行わないでください。 | |
-| | `T | where predicate(<expression>)` を使用します | 使用しない`T | extend _value = <expression> | where predicate(_value)` ||
+| | `T | where predicate(<expression>)` を使用します | 使用しない `T | extend _value = <expression> | where predicate(_value)` ||
 | **summarize 演算子** |  集計演算子のに高カーディナリティがある場合は、 [hint = シャッフルを使用します。](./shufflequery.md) `group by keys` | | 高カーディナリティは、100万を超える場合に最適です。|
 |**[join 演算子](./joinoperator.md)** | 最初の行として使用する行がよりも多いテーブルを選択します (クエリの先頭が一番左)。 ||
 | クラスター間での結合 |クラスター間では、ほとんどのデータが配置されている結合の "右側" 側でクエリを実行します。 ||
-|左側が小さく、右側が大きいときに結合 | ヒントを使用[します。方法 = ブロードキャスト](./broadcastjoin.md) || Small は、最大10万のレコードを参照します。 |
-|両側が大きすぎる場合に結合 | ヒントを使用[します。方法 = シャッフル](./shufflequery.md) || 結合キーのカーディナリティが高い場合に使用します。|
-|**同じ形式またはパターンを共有する文字列を使用して列の値を抽出する**|  [Parse 演算子](./parseoperator.md)を使用する | 複数のステートメントを使用しないで `extract()` ください。  | たとえば、次のような値です。`"Time = <time>, ResourceId = <resourceId>, Duration = <duration>, ...."`
+|左側が小さく、右側が大きいときに結合 | ヒントを使用 [します。方法 = ブロードキャスト](./broadcastjoin.md) || Small は、最大10万のレコードを参照します。 |
+|両側が大きすぎる場合に結合 | ヒントを使用 [します。方法 = シャッフル](./shufflequery.md) || 結合キーのカーディナリティが高い場合に使用します。|
+|**同じ形式またはパターンを共有する文字列を使用して列の値を抽出する**|  [Parse 演算子](./parseoperator.md)を使用する | 複数のステートメントを使用しないで `extract()` ください。  | たとえば、次のような値です。 `"Time = <time>, ResourceId = <resourceId>, Duration = <duration>, ...."`
 |**[extract () 関数](./extractfunction.md)**| 解析された文字列がすべて同じ形式またはパターンに従っていない場合は、を使用します。| |正規表現を使用して必要な値を抽出します。|
 | **[具体化 () 関数](./materializefunction.md)** | 具体化されたデータセットを減らすことができるすべての演算子をプッシュし、引き続きクエリのセマンティクスを維持します。 | |たとえば、フィルターを使用するか、必要な列のみを射影します。
 

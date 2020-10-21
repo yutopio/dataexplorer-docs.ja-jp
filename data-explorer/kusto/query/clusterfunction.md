@@ -4,18 +4,18 @@ description: この記事では、Azure データエクスプローラーの clu
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 3e1f74d6605b4916a2718a00fd252141060d748f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: b2f9dd3fd3eede1f6d527c97b905353f9a331620
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348889"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253062"
 ---
 # <a name="cluster-scope-function"></a>cluster () (スコープ関数)
 
@@ -33,11 +33,11 @@ cluster('help').database('Sample').SomeTable
 
 ## <a name="arguments"></a>引数
 
-* *Stringconstant*: 参照されているクラスターの名前。 クラスター名には、完全修飾 DNS 名か、サフィックスが付けられた文字列を指定でき `.kusto.windows.net` ます。 引数は、クエリの実行前には_定数_にする必要があります。つまり、サブクエリの評価から取得することはできません。
+* *Stringconstant*: 参照されているクラスターの名前。 クラスター名には、完全修飾 DNS 名か、サフィックスが付けられた文字列を指定でき `.kusto.windows.net` ます。 引数は、クエリの実行前には _定数_ にする必要があります。つまり、サブクエリの評価から取得することはできません。
 
 **ノート**
 
-* 同じクラスター内のデータベースにアクセスする場合は、 [database ()](databasefunction.md)関数を使用します。
+* 同じクラスター内のデータベースにアクセスする場合は、 [database ()](databasefunction.md) 関数を使用します。
 * クラスター間およびデータベース間のクエリの詳細について[は、こちら](cross-cluster-or-database-queries.md)を参照してください。  
 
 ## <a name="examples"></a>例

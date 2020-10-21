@@ -4,27 +4,27 @@ description: この記事では、Azure データエクスプローラーのク�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/10/2019
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 778b8c276d6264b890c0b0be7b127f578663a64d
-ms.sourcegitcommit: 4f576c1b89513a9e16641800abd80a02faa0da1c
+ms.openlocfilehash: e546f71c3eb4eda09ff7061dd1a3be9eb6ad6c88
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/22/2020
-ms.locfileid: "85129058"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252881"
 ---
 # <a name="query-statement-types"></a>クエリ ステートメントの種類
 
 ::: zone pivot="azuredataexplorer"
 
-クエリは、セミコロン () で区切られた1つ以上の**クエリステートメント**で構成さ `;` れます。
-これらのクエリステートメントの少なくとも1つは、[表形式の式ステートメント](./tabularexpressionstatements.md)である必要があります。
+クエリは、セミコロン () で区切られた1つ以上の **クエリステートメント**で構成さ `;` れます。
+これらのクエリステートメントの少なくとも1つは、 [表形式の式ステートメント](./tabularexpressionstatements.md)である必要があります。
 表形式の式ステートメントは、1つまたは複数の表形式の結果を生成します。
-クエリに複数の表形式式ステートメントがある場合、クエリにはテーブル式ステートメントの[バッチ](./batches.md)が含まれ、これらのステートメントによって生成される表形式の結果はすべてクエリによって返されます。
+クエリに複数の表形式式ステートメントがある場合、クエリにはテーブル式ステートメントの [バッチ](./batches.md) が含まれ、これらのステートメントによって生成される表形式の結果はすべてクエリによって返されます。
 
 クエリステートメントには、次の2種類があります。
 
@@ -45,7 +45,7 @@ ms.locfileid: "85129058"
 
 * [Set ステートメント](./setstatement.md)では、クエリの処理方法と結果が返される方法に影響するクエリオプションを設定します。
 
-* 最も重要なクエリステートメントである[テーブル式ステートメント](./tabularexpressionstatements.md)は、"興味深い" データを結果として返します。
+* 最も重要なクエリステートメントである [テーブル式ステートメント](./tabularexpressionstatements.md)は、"興味深い" データを結果として返します。
 
 ## <a name="application-query-statements"></a>アプリケーションクエリステートメント
 

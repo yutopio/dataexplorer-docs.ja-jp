@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
-ms.openlocfilehash: a96e47eeb8c0a27ffb1f1446b68d6adc8e564e4b
-ms.sourcegitcommit: bc09599c282b20b5be8f056c85188c35b66a52e5
+ms.openlocfilehash: 8f56568f87c391122b468d7f3ae8027eabe4641e
+ms.sourcegitcommit: 9dbbdf0c339f9af78d754e3fb44b9a4f2469003a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/19/2020
-ms.locfileid: "88610646"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92292851"
 ---
 # <a name="kustoexplorer-installation-and-user-interface"></a>Kusto.Explorer のインストールとユーザー インターフェイス
 
@@ -26,10 +26,12 @@ Kusto.Explorer を使用すると、次のことができます。
 
 ## <a name="installing-kustoexplorer"></a>Kusto.Explorer のインストール
 
-* [https://aka.ms/ke](https://aka.ms/ke) から Kusto.Explorer ツールをダウンロードしてインストールします。
+* 以下から Kusto.Explorer ツールをダウンロードしてインストールします。
+     * [https://aka.ms/ke](https://aka.ms/ke) (CDN の場所)
+     * [https://aka.ms/ke-mirror](https://aka.ms/ke-mirror) (CDN 以外の場所)
 
-* 代わりに、ブラウザーでご自分の Kusto クラスター (`https://<your_cluster>.kusto.windows.net.`) にアクセスします。
-   &lt;your_cluster&gt; をご自分の Azure Data Explorer クラスター名に置き換えます。
+* 代わりに、ブラウザーでご自分の Kusto クラスター (`https://<your_cluster>.<region>.kusto.windows.net.`) にアクセスします。
+   &lt;your_cluster&gt; と &lt;region&gt; は、ご自分の Azure Data Explorer クラスター名とデプロイ リージョンに置き換えてください。
 
 ### <a name="using-chrome-and-kustoexplorer"></a>Chrome と Kusto.Explorer を使用する
 
@@ -63,7 +65,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ### <a name="home-tab"></a>[ホーム] タブ
 
-:::image type="content" source="images/kusto-explorer/home-tab.png" alt-text="Kusto.Explorer の [ホーム] タブ":::
+:::image type="content" source="images/kusto-explorer/home-tab.png" alt-text="Kusto.Explorer の開始":::
 
 [ホーム] タブには、最近使用した機能がセクションに分けて表示されます。
 
@@ -75,7 +77,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ### <a name="query-section"></a>[クエリ] セクション
 
-:::image type="content" source="images/kusto-explorer/home-query-menu.png" alt-text="クエリ メニュー Kusto.Explorer":::
+:::image type="content" source="images/kusto-explorer/home-query-menu.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー|    動作|
 |----|----------|
@@ -84,7 +86,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ### <a name="share-section"></a>[共有] セクション
 
-:::image type="content" source="images/kusto-explorer/home-share-menu.png" alt-text="Kusto.Explorer の共有メニュー":::
+:::image type="content" source="images/kusto-explorer/home-share-menu.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー|    動作|
 |----|----------|
@@ -94,7 +96,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ### <a name="visualizations-section"></a>[視覚化] セクション
 
-:::image type="content" source="images/kusto-explorer/home-visualizations-menu.png" alt-text="Kusto.Explorer の視覚化メニュー":::
+:::image type="content" source="images/kusto-explorer/home-visualizations-menu.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー         | 動作|
 |-------------|---------|
@@ -118,7 +120,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ### <a name="view-section"></a>[表示] セクション
 
-:::image type="content" source="images/kusto-explorer/home-view-menu.png" alt-text="Kusto.Explorer の表示メニュー":::
+:::image type="content" source="images/kusto-explorer/home-view-menu.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー           | 動作|
 |---------------|---------|
@@ -136,7 +138,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ## <a name="file-tab"></a>[ファイル] タブ
 
-:::image type="content" source="images/kusto-explorer/file-tab.png" alt-text="Kusto.Explorer の [ファイル] タブ":::
+:::image type="content" source="images/kusto-explorer/file-tab.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー| 動作|
 |---------------|---------|
@@ -164,7 +166,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ## <a name="connections-tab"></a>[接続] タブ
 
-:::image type="content" source="images/kusto-explorer/connections-tab.png" alt-text="Kusto.Explorer の [接続] タブ":::
+:::image type="content" source="images/kusto-explorer/connections-tab.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー|動作|
 |----|----------|
@@ -189,7 +191,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ## <a name="view-tab"></a>[表示] タブ
 
-:::image type="content" source="images/kusto-explorer/view-tab.png" alt-text="Kusto.Explorer の [表示] タブ":::
+:::image type="content" source="images/kusto-explorer/view-tab.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー|動作|
 |----|----------|
@@ -218,7 +220,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ## <a name="tools-tab"></a>[ツール] タブ
 
-:::image type="content" source="images/kusto-explorer/tools-tab.png" alt-text="Kusto.Explorer の [ツール] タブ":::
+:::image type="content" source="images/kusto-explorer/tools-tab.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー|動作|
 |----|----------|
@@ -238,7 +240,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ## <a name="monitoring-tab"></a>[監視] タブ
 
-:::image type="content" source="images/kusto-explorer/monitoring-tab.png" alt-text="Kusto.Explorer の [監視] タブ":::
+:::image type="content" source="images/kusto-explorer/monitoring-tab.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー             | 動作|
 |-----------------|---------| 
@@ -249,7 +251,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ## <a name="management-tab"></a>[管理] タブ
 
-:::image type="content" source="images/kusto-explorer/management-tab.png" alt-text="Kusto.Explorer の [管理] タブ":::
+:::image type="content" source="images/kusto-explorer/management-tab.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー             | 動作|
 |-----------------|---------|
@@ -261,7 +263,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ## <a name="help-tab"></a>[ヘルプ] タブ
 
-:::image type="content" source="images/kusto-explorer/help-tab.png" alt-text="Kusto.Explorer の [ヘルプ] タブ":::
+:::image type="content" source="images/kusto-explorer/help-tab.png" alt-text="Kusto.Explorer の開始":::
 
 |メニュー             | 動作|
 |-----------------|---------|
@@ -274,7 +276,7 @@ Kusto.Explorer のメニュー パネルには、次のタブがあります。
 
 ## <a name="connections-panel"></a>接続パネル
 
-:::image type="content" source="images/kusto-explorer/connections-panel.png" alt-text="Kusto.Explorer の接続パネル":::
+:::image type="content" source="images/kusto-explorer/connections-panel.png" alt-text="Kusto.Explorer の開始":::
 
 [接続] ペインには、構成されているすべてのクラスター接続が表示されます。 クラスターごとに、データベース、テーブル、およびそれらに格納されている属性 (列) が表示されます。 項目を選択します (これによりメイン パネルの検索またはクエリに対して暗黙的なコンテキストが設定されます)。または、項目をダブルクリックして、検索またはクエリ パネルに名前をコピーします。
 
@@ -309,7 +311,7 @@ Data Source=https://CLUSTER_NAME.kusto.windows.net;Initial Catalog=DATABASE_NAME
 >[!NOTE]
 > ユーザーのドメイン名は、クラスターをホストしているテナントの名前と同じである必要はありません。
 
-:::image type="content" source="images/kusto-explorer/advanced-connection-string.png" alt-text="Kusto.Explorer の高度な接続文字列":::
+:::image type="content" source="images/kusto-explorer/advanced-connection-string.png" alt-text="Kusto.Explorer の開始":::
 
 ## <a name="keyboard-shortcuts"></a>キーボード ショートカット
 
@@ -321,7 +323,7 @@ Kusto.Explorer では、結果パネルの各行の重大度または詳細レ�
 
 出力の配色を変更する、またはこの動作を無効にするには、 **[ツール]** メニューから、 **[オプション]**  >  **[結果ビューアー]**  >  **[Verbosity color scheme]\(配色の詳細\)** を選択します。
 
-:::image type="content" source="images/kusto-explorer/ke-color-scheme.png" alt-text="Kusto.Explorer の配色の変更":::
+:::image type="content" source="images/kusto-explorer/ke-color-scheme.png" alt-text="Kusto.Explorer の開始":::
 
 ## <a name="next-steps"></a>次のステップ
 

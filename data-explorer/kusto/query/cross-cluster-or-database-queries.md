@@ -4,18 +4,18 @@ description: この記事では、Azure データエクスプローラーでの�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: a1516f3b3410c1a27f27a91d2eb120539441f712
-ms.sourcegitcommit: c3bbb9a6bfd7c5506f05afb4968fdc2043a9fbbf
+ms.openlocfilehash: 57b7b6b4c67e0e8903903cef670a561b30b3904e
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85332505"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252570"
 ---
 # <a name="cross-database-and-cross-cluster-queries"></a>複数のデータベースに対するクエリと複数のクラスターに対するクエリ
 
@@ -26,7 +26,7 @@ ms.locfileid: "85332505"
 * [クライアントライブラリ](../api/netfx/about-kusto-data.md)を使用する場合、現在のクラスターと既定のデータベースは `Data Source` それぞれ、 `Initial Catalog` [接続文字列](../api/connection-strings/kusto.md)のプロパティとプロパティによって指定されます。
 
 ## <a name="queries"></a>クエリ
-既定以外のデータベースからテーブルにアクセスするには、*修飾名*の構文を使用する必要があります。
+既定以外のデータベースからテーブルにアクセスするには、 *修飾名* の構文を使用する必要があります。
 
 現在のクラスター内のデータベースにアクセスします。
 
@@ -39,9 +39,9 @@ database("<database name>").<table name>
 cluster("<cluster name>").database("<database name>").<table name>
 ```
 
-*データベース名*では大文字と小文字が区別されます
+*データベース名* では大文字と小文字が区別されます
 
-*クラスター名*は大文字と小文字が区別されず、次のいずれかの形式にすることができます。
+*クラスター名* は大文字と小文字が区別されず、次のいずれかの形式にすることができます。
    * などの整形式の URL `http://contoso.kusto.windows.net:1234/` 。 HTTP および HTTPS スキームのみがサポートされています。
    * のような完全修飾ドメイン名 (FQDN) `contoso.kusto.windows.net` 。 この文字列はと同じです `https://` **`contoso.kusto.windows.net`** `:443/` 。
    * またはなど、短い名前 (ドメイン部分のないホスト名 [および地域] `contoso` ) `contoso.westus` 。 これらの文字列は、およびとして解釈され `https://` **`contoso`** `.kusto.windows.net:443/` `https://` **`contoso.westus`** `.kusto.windows.net:443/` ます。
@@ -50,7 +50,7 @@ cluster("<cluster name>").database("<database name>").<table name>
 > 複数データベースにまたがるアクセスは、通常のアクセス許可のチェックに従います。
 > クエリを実行するには、既定のデータベースに対する読み取り権限と、クエリで参照されている他のすべてのデータベース (現在のクラスターとリモートクラスター内) に対する読み取り権限を持っている必要があります。
 
-*修飾名*は、テーブル名を使用できる任意のコンテキストで使用できます。
+*修飾名* は、テーブル名を使用できる任意のコンテキストで使用できます。
 
 次のすべてが有効です。
 
@@ -74,7 +74,7 @@ union withsource=TableName *, database("OtherDb*").*Table, cluster("OtherCluster
 
 ## <a name="access-restriction"></a>アクセス制限
 
-限定[アクセス](./restrictstatement.md)ステートメントに修飾名またはパターンを含めることもできます。クラスター名のワイルドカードは許可されません。
+限定 [アクセス](./restrictstatement.md) ステートメントに修飾名またはパターンを含めることもできます。クラスター名のワイルドカードは許可されません。
 
 ```kusto
 restrict access to (my*, database("MyOther*").*, cluster("OtherCluster").database("my2*").*);
@@ -83,7 +83,7 @@ restrict access to (my*, database("MyOther*").*, cluster("OtherCluster").databas
 上の例では、次のエンティティへのクエリアクセスが制限されています。
 
 * 既定のデータベースの " *my.* .." で始まる任意のエンティティ名。 
-* 現在のクラスターの*Myother...* という名前のすべてのデータベース内の任意のテーブル。
+* 現在のクラスターの *Myother...* という名前のすべてのデータベース内の任意のテーブル。
 * クラスター *OtherCluster.kusto.windows.net*内の*my2*という名前のすべてのデータベース内の任意のテーブル。
 
 ## <a name="functions-and-views"></a>関数とビュー
@@ -121,7 +121,7 @@ database("OtherDb").MyView("exception") | extend CalCol=database("OtherDb").MyCa
 
 * リモート関数は表形式スキーマを返す必要があります。 スカラー関数は、同じクラスター内でのみアクセスできます。
 * リモート関数は、スカラーパラメーターのみを受け入れることができます。 1つ以上のテーブル引数を取得する関数は、同じクラスター内でのみアクセスできます。
-* リモート関数のスキーマは、そのパラメーターが既知で不変である必要があります。 詳細については、「[クロスクラスタークエリとスキーマ変更](../concepts/crossclusterandschemachanges.md)」を参照してください。
+* リモート関数のスキーマは、そのパラメーターが既知で不変である必要があります。 詳細については、「 [クロスクラスタークエリとスキーマ変更](../concepts/crossclusterandschemachanges.md)」を参照してください。
 
 次のクラスター間呼び出しが有効です。
 
@@ -158,7 +158,7 @@ cluster("OtherCluster").database("OtherDb").MyCalc(datatable(x:string, y:string)
 cluster("OtherCluster").database("OtherDb").SomeTable("MyTable")
 ```
 
-次のクエリは、 `GetDataPivot` データに基づく変数スキーマの出力を持つリモート関数を呼び出します ([pivot () プラグイン](pivotplugin.md)には動的出力があります)。
+次のクエリは、 `GetDataPivot` データに基づく変数スキーマの出力を持つリモート関数を呼び出します ([pivot () プラグイン](pivotplugin.md) には動的出力があります)。
 この呼び出しは、規則 #3 に違反するため、有効ではありません。
 
 の表形式関数 `OtherDb` 。

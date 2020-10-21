@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーでの 
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 857a48ab02ae04e68a8475b7109cebbb2275ca55
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 15dcf79938f4b83f18055b6f59a9b70998ab6049
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803303"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252816"
 ---
 # <a name="as-operator"></a>as 演算子
 
@@ -21,13 +21,13 @@ ms.locfileid: "87803303"
 
 ## <a name="syntax"></a>構文
 
-*T* `|` `as` [ `hint.materialized` `=` `true` ]*名前*
+*T* `|` `as` [ `hint.materialized` `=` `true` ] *名前*
 
 ## <a name="arguments"></a>引数
 
 * *T*: 表形式の式。
 * *名前*: 表形式の式の一時的な名前。
-* `hint.materialized`: に設定されている場合 `true` 、テーブル式の値は、[具体化 ()](./materializefunction.md)関数呼び出しによってラップされているかのように具体化されます。
+* `hint.materialized`: に設定されている場合 `true` 、テーブル式の値は、 [具体化 ()](./materializefunction.md) 関数呼び出しによってラップされているかのように具体化されます。
 
 > [!NOTE]
 > * によって指定された名前は、 `as` `withsource=` [union](./unionoperator.md)の列、 `source_` [find](./findoperator.md)列、および `$table` [search](./searchoperator.md)の列で使用されます。

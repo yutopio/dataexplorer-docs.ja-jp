@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの ass
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/26/2019
-ms.openlocfilehash: 050974af47b0f5cd0e041694ee5f680b8c321614
-ms.sourcegitcommit: 3dfaaa5567f8a5598702d52e4aa787d4249824d4
+ms.openlocfilehash: 442fbec2742a4d1edc7a9ad03a81db27e6d18574
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87803320"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252774"
 ---
 # <a name="assert"></a>assert()
 
@@ -29,11 +29,11 @@ ms.locfileid: "87803320"
 * *message*: アサーションがに評価される場合に使用される `false` メッセージ。 *メッセージ*は文字列リテラルである必要があります。
 
 > [!NOTE]
-> `condition`クエリ分析フェーズ中に定数に評価される必要があります。 言い換えると、定数を参照する他の式から構築することができ、行コンテキストにバインドすることはできません。
+> `condition` クエリ分析フェーズ中に定数に評価される必要があります。 言い換えると、定数を参照する他の式から構築することができ、行コンテキストにバインドすることはできません。
 
 ## <a name="returns"></a>戻り値
 
-* `true`-条件がの場合`true`
+* `true` -条件がの場合 `true`
 * 条件がに評価された場合にセマンティックエラーを発生させ `false` ます。
 
 ## <a name="examples"></a>例

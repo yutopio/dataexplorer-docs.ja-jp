@@ -4,24 +4,24 @@ description: この記事では、Azure データエクスプローラーにお�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8e237441d28f12ffc6f27f8a591980a701825e39
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 1558e2463c2958965fcb501aff99c7ec14fe8688
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87347461"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252955"
 ---
 # <a name="indexof"></a>indexof()
 
 指定した文字列が入力文字列内で最初に見つかった位置の0から始まるインデックスをレポートします。
 
-Lookup または入力文字列が*文字列*型でない場合、関数は強制的に値を*文字列*にキャストします。
+Lookup または入力文字列が *文字列* 型でない場合、関数は強制的に値を *文字列*にキャストします。
 
-詳細については、「[`indexof_regex()`](indexofregexfunction.md)」を参照してください。
+詳細については、[`indexof_regex()`](indexofregexfunction.md) を参照してください。
 
 ## <a name="syntax"></a>構文
 
@@ -41,7 +41,7 @@ Lookup または入力文字列が*文字列*型でない場合、関数は強�
 
 入力に文字列が見つからない場合は、-1 を返します。
 
-無関係 (0 未満) *start_index*、*出現*、または (-1 未満) の*長さ*のパラメーター-は*null*を返します。
+無関係 (0 未満) *start_index*、 *出現*、または (-1 未満) の *長さ* のパラメーター-は *null*を返します。
 
 ## <a name="examples"></a>例
 ```kusto

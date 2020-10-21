@@ -4,22 +4,22 @@ description: この記事では、Azure データエクスプローラーの act
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 75f1c92dfb76c56894d1f38dec24a31690f3f789
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: a35cbb4c9078d58f2c9de3c681453c578baf1476
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87349841"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252872"
 ---
 # <a name="active_users_count-plugin"></a>active_users_count プラグイン
 
 個別の値の数を計算します。各値は、少なくとも、少なくとも最小数の期間に表示されます。
 
-"ファン以外" の種類を含まない、"ファン" の個別のカウントを計算する場合に便利です。 ユーザーは、"ファン" としてカウントされます。これは、元の状態の間にアクティブだった場合に限ります。 ルックバック期間は、ユーザーが検討され `active` ている ("ファン") かどうかを判断するためにのみ使用されます。 集計自体には、[元に戻す] ウィンドウのユーザーは含まれません。 これに対して、 [sliding_window_counts](sliding-window-counts-plugin.md)集計は、ルックバック期間のスライディングウィンドウで実行されます。
+"ファン以外" の種類を含まない、"ファン" の個別のカウントを計算する場合に便利です。 ユーザーは、"ファン" としてカウントされます。これは、元の状態の間にアクティブだった場合に限ります。 ルックバック期間は、ユーザーが検討され `active` ている ("ファン") かどうかを判断するためにのみ使用されます。 集計自体には、[元に戻す] ウィンドウのユーザーは含まれません。 これに対して、 [sliding_window_counts](sliding-window-counts-plugin.md) 集計は、ルックバック期間のスライディングウィンドウで実行されます。
 
 ```kusto
 T | evaluate active_users_count(id, datetime_column, startofday(ago(30d)), startofday(now()), 7d, 1d, 2, 7d, dim1, dim2, dim3)
@@ -92,6 +92,6 @@ T | evaluate active_users_count(User, Timestamp, Start, End, LookbackWindow, Per
 * ユーザーは、少なくとも3つの異なる日 (Period = 1d、ActivePeriods = 3) で表示されていました。
 * ユーザーは、現在の外観を含めて、8d のルックバックウィンドウで表示されていました。
 
-次の図では、この条件によってアクティブになっているのは、7/20 のユーザー A と7/4 のユーザー B のみです (上記のプラグインの結果を参照してください)。 ユーザー B の表示は7/4 の [元に戻す] ウィンドウには含まれますが、6/29-30 の開始終了時間の範囲には含まれません。 
+次の図では、この条件によってアクティブになっているのは、7/20 のユーザー A と7/4 のユーザー B のみです (上記のプラグインの結果を参照してください)。 ユーザー B の表示は7/4 の [元に戻す] ウィンドウには含まれていますが、6/29-30 の Start-End の時間範囲には含まれていません。 
 
 :::image type="content" source="images/queries/active-users-count.png" alt-text="アクティブなユーザーカウントの例":::

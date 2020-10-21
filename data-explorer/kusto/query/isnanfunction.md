@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの isn
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f73effae8d91524f46548d57288a23d79cffd0a5
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: a8cde58db626ca7bc3433e8e36c8d369a7e592b1
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91103268"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253240"
 ---
 # <a name="isnan"></a>isnan()
 
@@ -46,7 +46,7 @@ range x from -1 to 1 step 1
 | extend isnan=isnan(div)
 ```
 
-|x|Y|div|isnan|
+|x|y|div|isnan|
 |---|---|---|---|
 |-1|1|-1|0|
 |0|0|NaN|1|

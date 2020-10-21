@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーの外�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 8bb30180a7506b594e5747e3591f0d1aff80f8c3
-ms.sourcegitcommit: f689547c0f77b1b8bfa50a19a4518cbbc6d408e5
+ms.openlocfilehash: 5b17b69fd49e937b672da07dd0b5c8abae9100fb
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/08/2020
-ms.locfileid: "89557362"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253054"
 ---
 # <a name="externaldata-operator"></a>externaldata 演算子
 
@@ -36,7 +36,7 @@ ms.locfileid: "89557362"
 
 現在サポートされているプロパティは次のとおりです。
 
-| プロパティ         | 種類     | 説明       |
+| プロパティ         | Type     | 説明       |
 |------------------|----------|-------------------|
 | `format`         | `string` | データ形式。 指定しない場合、ファイル拡張子 (既定値は) からデータ形式を検出しようとし `CSV` ます。 [インジェストデータ形式](../../ingestion-supported-formats.md)のいずれかがサポートされています。 |
 | `ignoreFirstRecord` | `bool` | True に設定すると、すべてのファイルの最初のレコードが無視されることを示します。 このプロパティは、ヘッダーを使用して CSV ファイルにクエリを実行する場合に便利です。 |

@@ -4,20 +4,20 @@ description: この記事では、Azure データエクスプローラーの mak
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 3904f852fdf813d8b2aff264d6b1bc0019335d78
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 93b8ed12bcfb83c39964f820e61f928357af62c8
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87346951"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253188"
 ---
 # <a name="make_timespan"></a>make_timespan()
 
-指定された期間から[timespan](./scalar-data-types/timespan.md)スカラー値を作成します。
+指定された期間から [timespan](./scalar-data-types/timespan.md) スカラー値を作成します。
 
 ```kusto
 make_timespan(1,12,30,55.123) == time(1.12:30:55.123)
@@ -40,7 +40,7 @@ make_timespan(1,12,30,55.123) == time(1.12:30:55.123)
 
 ## <a name="returns"></a>戻り値
 
-作成が成功した場合、結果は[timespan](./scalar-data-types/timespan.md)値になります。それ以外の場合、結果は null になります。
+作成が成功した場合、結果は [timespan](./scalar-data-types/timespan.md) 値になります。それ以外の場合、結果は null になります。
  
 ## <a name="example"></a>例
 

@@ -4,16 +4,16 @@ description: この記事では、Azure データエクスプローラーにお�
 services: data-explorer
 author: orspod
 ms.author: orspodek
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 57fa1764753e730f9ff0a2b01a70e0c221217d23
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: 47a5c9dd11af7282c38aabdd08b8b3bec571e57a
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87348277"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92253036"
 ---
 # <a name="endofweek"></a>endofweek()
 
@@ -32,7 +32,7 @@ ms.locfileid: "87348277"
 
 ## <a name="returns"></a>戻り値
 
-指定された場合、オフセットを使用して、指定された*日付*値の週の終わりを表す datetime。
+指定された場合、オフセットを使用して、指定された *日付* 値の週の終わりを表す datetime。
 
 ## <a name="example"></a>例
 

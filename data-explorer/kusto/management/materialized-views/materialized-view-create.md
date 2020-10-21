@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: f67b2d61cfed297886447a97dd178dfb578a2c68
-ms.sourcegitcommit: 463ee13337ed6d6b4f21eaf93cf58885d04bccaa
+ms.openlocfilehash: 95f8ce19c6edb419de4fb5053a79c243e3e332c4
+ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/30/2020
-ms.locfileid: "91572145"
+ms.lasthandoff: 10/20/2020
+ms.locfileid: "92252823"
 ---
 # <a name="create-materialized-view"></a>.create materialized-view
 
@@ -76,16 +76,16 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
         同様に、結合が外部結合の場合、ファクトテーブルのレコードが処理され、ディメンションテーブルの列に null 値を持つビューに追加されます。 ビューに既に追加されている (null 値を持つ) レコードは、再度処理されません。 ディメンションテーブルの列の値は、null のままになります。
 
-## <a name="properties"></a>プロパティ
+## <a name="properties"></a>Properties
 
 句では、次のものがサポートされてい `with(propertyName=propertyValue)` ます。 すべてのプロパティは省略可能です。
 
 |プロパティ|Type|説明 |
 |----------------|-------|---|
-|バック|bool|現在、 *SourceTable* () にあるすべてのレコードに基づいてビューを作成するか `true` 、"後から" () を作成するかを指定し `false` ます。 既定値は `false` です。| 
+|バック|[bool]|現在、 *SourceTable* () にあるすべてのレコードに基づいてビューを作成するか `true` 、"後から" () を作成するかを指定し `false` ます。 既定値は `false`です。| 
 |effectiveDateTime|DATETIME| と共に指定した場合、作成されるのは、 `backfill=true` datetime の後の取り込まれたレコードだけです。 バックフィルも true に設定する必要があります。 Datetime リテラルが必要です。次に例を示します。 `effectiveDateTime=datetime(2019-05-01)`|
 |dimensionTables|Array|ビュー内のディメンションテーブルのコンマ区切りの一覧です。 [クエリ引数](#query-argument)を参照してください
-|autoUpdateSchema|bool|ソーステーブルの変更時にビューを自動更新するかどうかを指定します。 既定値は `false` です。 このオプションは、型のビュー `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (列の引数がの場合のみ `*` ) に対してのみ有効です。 このオプションが true に設定されている場合、ソーステーブルへの変更は具体化されたビューに自動的に反映されます。
+|autoUpdateSchema|[bool]|ソーステーブルの変更時にビューを自動更新するかどうかを指定します。 既定値は `false`です。 このオプションは、型のビュー `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (列の引数がの場合のみ `*` ) に対してのみ有効です。 このオプションが true に設定されている場合、ソーステーブルへの変更は具体化されたビューに自動的に反映されます。
 |folder|string|具体化されたビューのフォルダー。|
 |docString|string|具体化されたビューを文書化する文字列|
 
@@ -161,14 +161,14 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
     <!-- csl -->
     ```
-    .create materialized-view EnrichedArgMax on table T with (dimensionTable = ['DimUsers'])
+    .create materialized-view EnrichedArgMax on table T with (dimensionTables = ['DimUsers'])
     {
         T
         | lookup DimUsers on User  
         | summarize arg_max(Timestamp, *) by User 
     }
     
-    .create materialized-view EnrichedArgMax on table T with (dimensionTable = ['DimUsers'])
+    .create materialized-view EnrichedArgMax on table T with (dimensionTables = ['DimUsers'])
     {
         DimUsers | project User, Age, Address
         | join kind=rightouter hint.strategy=broadcast T on User
@@ -287,17 +287,17 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
 `.cancel` `operation` *operationId*
 
-### <a name="properties"></a>プロパティ
+### <a name="properties"></a>Properties
 
 |プロパティ|Type|説明
 |----------------|-------|---|
-|operationId|GUID|具体化されたビューの作成コマンドから返された操作 ID。|
+|operationId|Guid|具体化されたビューの作成コマンドから返された操作 ID。|
 
 ### <a name="output"></a>出力
 
 |出力パラメーター |Type |説明
 |---|---|---
-|OperationId|GUID|具体化されたビューの作成コマンドの操作 ID。
+|OperationId|Guid|具体化されたビューの作成コマンドの操作 ID。
 |操作|String|操作の種類。
 |StartedOn|DATETIME|作成操作の開始時刻。
 |CancellationState|string|- `Cancelled successfully` (作成がキャンセルされました)、 `Cancellation failed` (キャンセルがタイムアウトするまで待機)、( `Unknown` ビューの作成は現在実行されていませんが、この操作によって取り消されていません)。

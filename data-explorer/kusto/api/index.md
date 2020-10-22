@@ -8,12 +8,12 @@ ms.reviewer: vladikb
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/11/2020
-ms.openlocfilehash: b9fd03bfd08a31d872ca3c0ef48bd96514e9eb18
-ms.sourcegitcommit: 9e0289945270db517e173aa10024e0027b173b52
+ms.openlocfilehash: b352ed44e7beb487588cf94f37d280eb6b51cdf9
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89428398"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337467"
 ---
 # <a name="azure-data-explorer-api-overview"></a>Azure Data Explorer API の概要
 
@@ -23,7 +23,7 @@ Azure Data Explorer サービスは、次の通信エンドポイントをサポ
    このエンドポイントでは、クエリに対する [Kusto クエリ言語](../query/index.md)と[制御コマンド](../management/index.md)がサポートされます。
 1. [MS-TDS](#ms-tds) エンドポイント。これは、Microsoft SQL Server 製品で使用される Microsoft の表形式データ ストリーム (TDS) プロトコルのサブセットを実装します。
    このエンドポイントは、クエリのための SQL Server エンドポイントとの通信方法を認識しているツールで役立ちます。
-1. Azure サービスの標準的な手段である [Azure Resource Manager (ARM)](https://docs.microsoft.com/azure/role-based-access-control/resource-provider-operations#microsoftkusto) エンドポイント。 このエンドポイントは、Azure Data Explorer クラスターなどのリソースを管理するために使用されます。
+1. Azure サービスの標準的な手段である [Azure Resource Manager (ARM)](/azure/role-based-access-control/resource-provider-operations#microsoftkusto) エンドポイント。 このエンドポイントは、Azure Data Explorer クラスターなどのリソースを管理するために使用されます。
 
 ## <a name="rest-api"></a>REST API
 

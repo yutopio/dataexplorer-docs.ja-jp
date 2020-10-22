@@ -8,22 +8,22 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a708a83e4bef1c1d9b774f0304e2dd8c7cba8cda
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 2938019237c882891af8ff86f4d33de3605a9063
+ms.sourcegitcommit: ee904f45e3eb3feab046263aa9956cb7780a056d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92244784"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92356522"
 ---
 # <a name="project-away-operator"></a>project-away 演算子
 
-出力から除外する入力の列を選択します
+出力から除外する入力の列を選択します。
 
 ```kusto
 T | project-away price, quantity, zz*
 ```
 
-結果の列の順序は、テーブル内の元の順序によって決まります。 引数として指定された列だけが削除されます。 その他の列は、結果に含まれます。  (逆の処理を実行する `project`も組み合わせて使います)。
+結果の列の順序は、テーブル内の元の順序によって決まります。 引数として指定された列だけが削除されます。 その他の列は、結果に含まれます。 (逆の処理を実行する `project`も組み合わせて使います)。
 
 ## <a name="syntax"></a>構文
 
@@ -38,13 +38,11 @@ T | project-away price, quantity, zz*
 
 引数として指定されていない列を含むテーブル。 入力テーブルと同じ数の行が含まれています。
 
-**ヒント**
-
-* [`project-rename`](projectrenameoperator.md)列の名前を変更する場合は、を使用します。
-* [`project-reorder`](projectreorderoperator.md)列の順序を変更する場合は、を使用します。
-
-* 元の `project-away` テーブルに存在する列、またはクエリの一部として計算された列を使用できます。
-
+> [!TIP]
+>
+> * 列の名前を変更するには、を使用 [`project-rename`](projectrenameoperator.md) します。
+> * 列の順序を変更するには、を使用 [`project-reorder`](projectreorderoperator.md) します。
+> * 元の `project-away` テーブルに存在する列、またはクエリの一部として計算された列を使用できます。
 
 ## <a name="examples"></a>例
 
@@ -64,11 +62,14 @@ datatable(A:long, B:long, C:long) [1, 2, 3]
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
-print  a2='a2', b = 'b', a3='a3', a1='a1'
-|  project-away a* 
+print a2='a2', b = 'b', a3='a3', a1='a1'
+| project-away a*
 ```
 
 |b|
 |---|
 |b|
 
+## <a name="see-also"></a>関連項目
+
+出力に保持する入力列を選択するには、 [プロジェクトの [保持](project-keep-operator.md)] を使用します。

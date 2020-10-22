@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7bcb33d30bdfdbd22b28dbb7364427cfa3a81a5b
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: de8ff4b9256c8f964350bafd64eac15b028f53d4
+ms.sourcegitcommit: ee904f45e3eb3feab046263aa9956cb7780a056d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92242140"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92356488"
 ---
 # <a name="project-reorder-operator"></a>project-reorder 演算子
 
@@ -36,9 +36,9 @@ T | project-reorder Col2, Col1, Col* asc
 > [!NOTE]
 > * あいまいな *Columnnameorpattern* 一致では、列はパターンに一致する最初の位置に表示されます。
 > * の列の指定 `project-reorder` は省略可能です。 明示的に指定されていない列は、出力テーブルの最後の列として表示されます。
-> * [`project-away`](projectawayoperator.md)列を削除するには、を使用します。
-> * [`project-rename`](projectrenameoperator.md)列の名前を変更するには、を使用します。
-
+> * 列を削除するには、を使用 [`project-away`](projectawayoperator.md) します。
+> * 保持する列を選択するには、を使用 [`project-keep`](project-keep-operator.md) します。
+> * 列の名前を変更するには、を使用 [`project-rename`](projectrenameoperator.md) します。
 
 ## <a name="returns"></a>戻り値
 

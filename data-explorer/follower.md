@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 11/07/2019
-ms.openlocfilehash: 36c5201f7b9d9f1cad2b82d569733c9d9f2abb90
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.date: 10/06/2020
+ms.openlocfilehash: d07dc282ba3996113903bd1b7c5ab08672d46543
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874003"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92003047"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>フォロワー データベースを使用して Azure Data Explorer にデータベースをアタッチする
 
@@ -34,7 +34,10 @@ ms.locfileid: "88874003"
 
 ## <a name="attach-a-database"></a>データベースのアタッチ
 
-データベースのアタッチにはさまざまな方法があります。 この記事では、C#、Python または Azure Resource Manager テンプレートを使用してデータベースをアタッチする方法について説明します。 データベースをアタッチするには、リーダー クラスターとフォロワー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。 [Azure portal](/azure/role-based-access-control/role-assignments-portal)、[PowerShell](/azure/role-based-access-control/role-assignments-powershell)、[Azure CLI](/azure/role-based-access-control/role-assignments-cli) および [Resource Manager テンプレート](/azure/role-based-access-control/role-assignments-template)を使用して、ロールの割り当てを追加または削除することができます。 詳細については、「[Azure のロールベースのアクセス制御 (Azure RBAC)](/azure/role-based-access-control/overview)」および[各種ロール](/azure/role-based-access-control/rbac-and-directory-admin-roles)に関する記事をご覧ください。 
+データベースのアタッチにはさまざまな方法があります。 この記事では、C#、Python、Powershell、または Azure Resource Manager テンプレートを使用してデータベースをアタッチする方法について説明します。 データベースをアタッチするには、リーダー クラスターとフォロワー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。 [Azure portal](/azure/role-based-access-control/role-assignments-portal)、[PowerShell](/azure/role-based-access-control/role-assignments-powershell)、[Azure CLI](/azure/role-based-access-control/role-assignments-cli) および [Resource Manager テンプレート](/azure/role-based-access-control/role-assignments-template)を使用して、ロールの割り当てを追加または削除することができます。 詳細については、「[Azure のロールベースのアクセス制御 (Azure RBAC)](/azure/role-based-access-control/overview)」および[各種ロール](/azure/role-based-access-control/rbac-and-directory-admin-roles)に関する記事をご覧ください。 
+
+
+# <a name="c"></a>[C#](#tab/csharp)
 
 ### <a name="attach-a-database-using-c"></a>C# を使用したデータベースのアタッチ
 
@@ -43,9 +46,9 @@ ms.locfileid: "88874003"
 * [Microsoft.Azure.Management.kusto](https://www.nuget.org/packages/Microsoft.Azure.Management.Kusto/) をインストールします。
 * [認証用の Microsoft.Rest.ClientRuntime.Azure.Authentication](https://www.nuget.org/packages/Microsoft.Rest.ClientRuntime.Azure.Authentication) をインストールします。
 
-#### <a name="code-example"></a>コード例
+#### <a name="example"></a>例
 
-```Csharp
+```csharp
 var tenantId = "xxxxxxxx-xxxxx-xxxx-xxxx-xxxxxxxxx";//Directory (tenant) ID
 var clientId = "xxxxxxxx-xxxxx-xxxx-xxxx-xxxxxxxxx";//Application ID
 var clientSecret = "xxxxxxxxxxxxxx";//Client secret
@@ -77,6 +80,8 @@ AttachedDatabaseConfiguration attachedDatabaseConfigurationProperties = new Atta
 var attachedDatabaseConfigurations = resourceManagementClient.AttachedDatabaseConfigurations.CreateOrUpdate(followerResourceGroupName, followerClusterName, attachedDatabaseConfigurationName, attachedDatabaseConfigurationProperties);
 ```
 
+# <a name="python"></a>[Python](#tab/python)
+
 ### <a name="attach-a-database-using-python"></a>Python を使用したデータベースのアタッチ
 
 #### <a name="needed-modules"></a>必要なモジュール
@@ -86,7 +91,7 @@ pip install azure-common
 pip install azure-mgmt-kusto
 ```
 
-#### <a name="code-example"></a>コード例
+#### <a name="example"></a>例
 
 ```python
 from azure.mgmt.kusto import KustoManagementClient
@@ -124,6 +129,51 @@ attached_database_configuration_properties = AttachedDatabaseConfiguration(clust
 #Returns an instance of LROPoller, see https://docs.microsoft.com/python/api/msrest/msrest.polling.lropoller?view=azure-python
 poller = kusto_management_client.attached_database_configurations.create_or_update(follower_resource_group_name, follower_cluster_name, attached_database_Configuration_name, attached_database_configuration_properties)
 ```
+
+# <a name="powershell"></a>[Powershell](#tab/azure-powershell)
+
+### <a name="attach-a-database-using-powershell"></a>PowerShell を使用してデータベースをアタッチする
+
+#### <a name="needed-modules"></a>必要なモジュール
+
+```
+Install : Az.Kusto
+```
+
+#### <a name="example"></a>例
+
+```Powershell
+$FollowerClustername = 'follower'
+$FollowerClusterSubscriptionID = 'xxxxxxxx-xxxxx-xxxx-xxxx-xxxxxxxxx'
+$FollowerResourceGroupName = 'followerResouceGroup'
+$DatabaseName = "db"  ## Can be specific database name or * for all databases
+$LeaderClustername = 'leader'
+$LeaderClusterSubscriptionID = 'xxxxxxxx-xxxxx-xxxx-xxxx-xxxxxxxxx'
+$LeaderClusterResourceGroup = 'leaderResouceGroup'
+$DefaultPrincipalsModificationKind = 'Union'
+##Construct the LeaderClusterResourceId and Location
+$getleadercluster = Get-AzKustoCluster -Name $LeaderClustername -ResourceGroupName $LeaderClusterResourceGroup -SubscriptionId $LeaderClusterSubscriptionID -ErrorAction Stop
+$LeaderClusterResourceid = $getleadercluster.Id
+$Location = $getleadercluster.Location
+##Handle the config name if all databases needs to be followed
+if($DatabaseName -eq '*')  {
+        $configname = $FollowerClustername + 'config'
+       } 
+else {
+        $configname = $DatabaseName   
+     }
+New-AzKustoAttachedDatabaseConfiguration -ClusterName $FollowerClustername `
+    -Name $configname `
+    -ResourceGroupName $FollowerResourceGroupName `
+    -SubscriptionId $FollowerClusterSubscriptionID `
+    -DatabaseName $DatabaseName `
+    -ClusterResourceId $LeaderClusterResourceid `
+    -DefaultPrincipalsModificationKind $DefaultPrincipalsModificationKind `
+    -Location $Location `
+    -ErrorAction Stop 
+```
+
+# <a name="resource-manager-template"></a>[Resource Manager テンプレート](#tab/azure-resource-manager)
 
 ### <a name="attach-a-database-using-an-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用したデータベースのアタッチ
 
@@ -200,7 +250,6 @@ poller = kusto_management_client.attached_database_configurations.create_or_upda
 
    ![テンプレートのデプロイ](media/follower/template-deployment.png)
 
-
 |**設定**  |**説明**  |
 |---------|---------|
 |Follower Cluster Name (フォロワー クラスター名)     |  テンプレートを配置するフォロワー クラスターの名前。  |
@@ -209,28 +258,38 @@ poller = kusto_management_client.attached_database_configurations.create_or_upda
 |Leader Cluster Resource ID (リーダー クラスターのリソース ID)    |   リーダー クラスターのリソース ID。      |
 |Default Principals Modification Kind (既定のプリンシパル変更の種類)    |   既定のプリンシパル変更の種類。 `Union`、`Replace`、または `None` を指定できます。 既定のプリンシパル変更の種類について詳しくは、「[プリンシパル変更の種類の管理コマンド](kusto/management/cluster-follower.md#alter-follower-database-principals-modification-kind)」をご覧ください。      |
 |場所   |   すべてのリソースの場所。 リーダーとフォロワーは同じ場所にある必要があります。       |
- 
-### <a name="verify-that-the-database-was-successfully-attached"></a>データベースが正常にアタッチされたことを確認する
 
-データベースが正常にアタッチされたことを確認するには、[Azure portal](https://portal.azure.com) でアタッチされたデータベースを見つけます。 
+---
+
+## <a name="verify-that-the-database-was-successfully-attached"></a>データベースが正常にアタッチされたことを確認する
+
+データベースが正常にアタッチされたことを確認するには、[Azure portal](https://portal.azure.com) でアタッチされたデータベースを見つけます。 [フォロワー](#check-your-follower-cluster)または[リーダー](#check-your-leader-cluster) のクラスターでデータベースが正常にアタッチされたことを確認できます。
+
+### <a name="check-your-follower-cluster"></a>フォロワー クラスターを確認する  
 
 1. フォロワー クラスターに移動し、 **[データベース]** を選択します。
 1. データベースの一覧で、新しい読み取り専用データベースを検索します。
 
     ![読み取り専用のフォロワー データベース](media/follower/read-only-follower-database.png)
 
-あるいは:
+### <a name="check-your-leader-cluster"></a>リーダー クラスターを確認する
 
 1. リーダー クラスターに移動し、 **[データベース]** を選択します。
 2. 関連するデータベースの **[他のユーザーと共有]**  >  が **[はい]** に設定されていることを確認します。
 
     ![アタッチされたデータベースの読み取りと書き込み](media/follower/read-write-databases-shared.png)
 
-## <a name="detach-the-follower-database-using-c"></a>C# を使用したフォロワー データベースのデタッチ 
+## <a name="detach-the-follower-database"></a>フォロワー データベースをデタッチする  
 
-### <a name="detach-the-attached-follower-database-from-the-follower-cluster"></a>フォロワー クラスターにアタッチされたフォロワー データベースをデタッチする
+> [!NOTE]
+> フォロワーまたはリーダー側からデータベースをデタッチするには、データベースをデタッチするクラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。 下の例では、サービス プリンシパルを使用します。
 
-フォロワー クラスターにアタッチされたデータベースは、次の方法でデタッチできます。
+# <a name="c"></a>[C#](#tab/csharp)
+
+### <a name="detach-the-attached-follower-database-from-the-follower-cluster-using-c"></a>C# を使用して、フォロワー クラスターにアタッチされたフォロワー データベースをデタッチする
+
+
+フォロワー クラスターにアタッチされたフォロワー データベースは、次の方法でデタッチできます。
 
 ```csharp
 var tenantId = "xxxxxxxx-xxxxx-xxxx-xxxx-xxxxxxxxx";//Directory (tenant) ID
@@ -252,10 +311,7 @@ var attachedDatabaseConfigurationsName = "uniqueName";
 resourceManagementClient.AttachedDatabaseConfigurations.Delete(followerResourceGroupName, followerClusterName, attachedDatabaseConfigurationsName);
 ```
 
-フォロワー側からデータベースをデタッチするには、フォロワー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。
-上の例では、サービス プリンシパルを使用します。
-
-### <a name="detach-the-attached-follower-database-from-the-leader-cluster"></a>リーダー クラスターにアタッチされたフォロワー データベースをデタッチする
+### <a name="detach-the-attached-follower-database-from-the-leader-cluster-using-c"></a>C# を使用して、リーダー クラスターにアタッチされたフォロワー データベースをデタッチする
 
 リーダー クラスターにアタッチされたデータベースは、次の方法でデタッチできます。
 
@@ -285,11 +341,9 @@ var followerDatabaseDefinition = new FollowerDatabaseDefinition()
 resourceManagementClient.Clusters.DetachFollowerDatabases(leaderResourceGroupName, leaderClusterName, followerDatabaseDefinition);
 ```
 
-リーダー側からデータベースをデタッチするには、リーダー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。 上の例では、サービス プリンシパルを使用します。
+# <a name="python"></a>[Python](#tab/python)
 
-## <a name="detach-the-follower-database-using-python"></a>Python を使用したフォロワー データベースのデタッチ
-
-### <a name="detach-the-attached-follower-database-from-the-follower-cluster"></a>フォロワー クラスターにアタッチされたフォロワー データベースをデタッチする
+### <a name="detach-the-attached-follower-database-from-the-follower-cluster-using-python"></a>Python を使用して、フォロワー クラスターにアタッチされたフォロワー データベースをデタッチする
 
 フォロワー クラスターにアタッチされたデータベースは、次の方法でデタッチできます。
 
@@ -319,10 +373,8 @@ attached_database_configurationName = "uniqueName"
 #Returns an instance of LROPoller, see https://docs.microsoft.com/python/api/msrest/msrest.polling.lropoller?view=azure-python
 poller = kusto_management_client.attached_database_configurations.delete(follower_resource_group_name, follower_cluster_name, attached_database_configurationName)
 ```
-フォロワー側からデータベースをデタッチするには、フォロワー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。
-上の例では、サービス プリンシパルを使用します。
 
-### <a name="detach-the-attached-follower-database-from-the-leader-cluster"></a>リーダー クラスターにアタッチされたフォロワー データベースをデタッチする
+### <a name="detach-the-attached-follower-database-from-the-leader-cluster-using-python"></a>Python を使用して、リーダー クラスターにアタッチされたフォロワー データベースをデタッチする
 
 リーダー クラスターにアタッチされたデータベースは、次の方法でデタッチできます。
 
@@ -356,13 +408,40 @@ attached_database_configuration_name = "uniqueName"
 location = "North Central US"
 cluster_resource_id = "/subscriptions/" + follower_subscription_id + "/resourceGroups/" + follower_resource_group_name + "/providers/Microsoft.Kusto/Clusters/" + follower_cluster_name
 
-
 #Returns an instance of LROPoller, see https://docs.microsoft.com/python/api/msrest/msrest.polling.lropoller?view=azure-python
 poller = kusto_management_client.clusters.detach_follower_databases(resource_group_name = leader_resource_group_name, cluster_name = leader_cluster_name, cluster_resource_id = cluster_resource_id, attached_database_configuration_name = attached_database_configuration_name)
 ```
 
-リーダー側からデータベースをデタッチするには、リーダー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。
-上の例では、サービス プリンシパルを使用します。
+# <a name="powershell"></a>[Powershell](#tab/azure-powershell)
+
+### <a name="detach-a-database-using-powershell"></a>Powershell を使用してデータベースをデタッチする
+
+#### <a name="needed-modules"></a>必要なモジュール
+
+```
+Install : Az.Kusto
+```
+
+#### <a name="example"></a>例
+
+```Powershell
+$FollowerClustername = 'follower'
+$FollowerClusterSubscriptionID = 'xxxxxxxx-xxxxx-xxxx-xxxx-xxxxxxxxx'
+$FollowerResourceGroupName = 'followerResouceGroup'
+$DatabaseName = "sanjn"  ## Can be specific database name or * for all databases
+
+##Construct the Configuration name 
+$confignameraw = (Get-AzKustoAttachedDatabaseConfiguration -ClusterName $FollowerClustername -ResourceGroupName $FollowerResourceGroupName -SubscriptionId $FollowerClusterSubscriptionID) | Where-Object {$_.DatabaseName -eq $DatabaseName }
+$configname =$confignameraw.Name.Split("/")[1]
+
+Remove-AzKustoAttachedDatabaseConfiguration -ClusterName $FollowerClustername -Name $configname -ResourceGroupName $FollowerResourceGroupName
+```
+
+# <a name="resource-manager-template"></a>[Resource Manager テンプレート](#tab/azure-resource-manager)
+
+C#、Python、または PowerShell を使用して[フォロワー データベースをデタッチ](#detach-the-follower-database)します。
+
+---
 
 ## <a name="manage-principals-permissions-and-caching-policy"></a>プリンシパル、アクセス許可、キャッシュ ポリシーの管理
 
@@ -397,3 +476,4 @@ poller = kusto_management_client.clusters.detach_follower_databases(resource_gro
 ## <a name="next-steps"></a>次のステップ
 
 * フォロワー クラスター構成の詳細については、「[フォロワー クラスターを管理するための管理コマンド](kusto/management/cluster-follower.md)」をご覧ください。
+

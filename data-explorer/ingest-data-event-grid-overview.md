@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 4ef0365336c1c4e04d19acbb14e2b6d1ec4cdd82
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: 96ae579eaf72e907b1dcb89c3147e8048b318d94
+ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502689"
+ms.lasthandoff: 10/15/2020
+ms.locfileid: "92098355"
 ---
 # <a name="create-a-connection-to-event-grid"></a>Event Grid への接続を作成する
 
-Event Grid は、Azure ストレージをリッスンし、サブスクライブしたイベントが発生したときに情報をプルするように Azure Data Explorer を更新するパイプラインです。 Azure Data Explorer は、BLOB 作成通知の [Azure Event Grid](/azure/event-grid/overview) サブスクリプションを使用した Azure Storage (BLOB ストレージと ADLSv2) からの継続的なインジェストと、これらの通知のイベント ハブを介した Azure Data Explorer へのストリーミングを提供します。
+Event Grid インジェストは、Azure ストレージをリッスンし、サブスクライブしたイベントが発生したときに情報をプルするように Azure Data Explorer を更新するパイプラインです。 Azure Data Explorer では、BLOB 作成または BLOB 名前変更の通知に対する [Azure Event Grid](/azure/event-grid/overview) サブスクリプションを使用して Azure Storage (Blob Storage と ADLSv2) からの継続的なインジェストが提供され、イベント ハブを介してそれらの通知が Azure Data Explorer にストリーミングされます。
 
 Event Grid のインジェスト パイプラインでは、いくつかの手順が実行されます。 [特定の形式のデータ](#data-format)が取り込まれるターゲット テーブルを Azure Data Explorer に作成します。 次に、Azure Data Explorer で Event Grid データ接続を作成します。 Event Grid データ接続では、データを送信するテーブルやテーブルのマッピングなど、[イベントのルーティング](#set-events-routing)情報を把握している必要があります。 また、取り込まれるデータ、ターゲット テーブル、およびマッピングを記述する[インジェスト プロパティ](#set-ingestion-properties)も指定します。 サンプル データを生成し、[BLOB にアップロード](#upload-blobs)して、接続をテストすることができます。 インジェスト後、[BLOB を削除](#delete-blobs-using-storage-lifecycle)します。 このプロセスは、[Azure portal](ingest-data-event-grid.md)、[C#](data-connection-event-grid-csharp.md) または [Python](data-connection-event-grid-python.md) によるプログラム、または [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)を使用して管理できます。
 
@@ -65,11 +65,10 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
 ローカル ファイルから BLOB を作成し、インジェストのプロパティを BLOB メタデータに設定して、それをアップロードすることができます。 例については、「[Event Grid の通知をサブスクライブすることで Azure Data Explorer に BLOB を取り込む](ingest-data-event-grid.md#generate-sample-data)」のページを参照してください。
 
 > [!NOTE]
-> `BlockBlob` を使用してデータを生成します。 `AppendBlob` がサポートされていません。
-
-> [!NOTE]
-> Azure Data Lake Gen2 ストレージの SDK を使用するには、ファイルのアップロードに `CreateFile` を使用し、最後の `Flush` で close パラメーターを「true」に設定する必要があります。
+> * `BlockBlob` を使用してデータを生成します。 `AppendBlob` がサポートされていません。
+> * Azure Data Lake Gen2 ストレージの SDK を使用するには、ファイルのアップロードに `CreateFile` を使用し、最後の `Flush` で close パラメーターを「true」に設定する必要があります。
 > Data Lake Gen2 SDK の正しい使用方法の詳細な例については、「[Azure Data Lake SDK を使用してファイルをアップロードする](data-connection-event-grid-csharp.md#upload-file-using-azure-data-lake-sdk)」を参照してください。
+> * イベント ハブ エンドポイントでイベントの受信が認識されない場合、Azure Event Grid によって再試行メカニズムがアクティブ化されます。 この再試行配信に失敗した場合、配信されなかったイベントは Event Grid の "*配信不能*" プロセスを使用してストレージ アカウントに配信できます。 詳細については、[Event Grid のメッセージの配信と再試行](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration)に関する記事を参照してください。
 
 ## <a name="delete-blobs-using-storage-lifecycle"></a>ストレージ ライフサイクルを使用した BLOB の削除
 
@@ -81,9 +80,10 @@ Azure Data Explorer では、取り込み後に BLOB は削除されません。
     * エクスポート コマンドに指定された接続文字列、または[外部テーブル](kusto/management/data-export/export-data-to-an-external-table.md)に指定された接続文字列が [ADLS Gen2 形式](kusto/api/connection-strings/storage.md#azure-data-lake-store)の接続文字列 (`abfss://filesystem@accountname.dfs.core.windows.net`など) であるが、ストレージ アカウントが階層型名前空間に対して有効になっていない場合、Event Grid 通知はトリガーされません。
     * アカウントが階層型名前空間に対して有効でない場合、接続文字列で [Blob Storage](kusto/api/connection-strings/storage.md#azure-storage-blob) 形式 (たとえば、`https://accountname.blob.core.windows.net`) を使用する必要があります。 ADLS Gen2 接続文字列を使用している場合でもエクスポートは想定どおりに動作しますが、通知はトリガーされず、Event Grid インジェストは機能しません。
 
+
 ## <a name="next-steps"></a>次の手順
 
 * [Event Grid の通知をサブスクライブすることで Azure Data Explorer に BLOB を取り込む](ingest-data-event-grid.md)
-* [C# を使用して Azure Data Explorer 用にイベント ハブ データ接続を作成する](data-connection-event-hub-csharp.md)
+* [C# を使用して Azure Data Explorer 用に Event Grid データ接続を作成する](data-connection-event-grid-csharp.md)
 * [Python を使用して Azure Data Explorer 用に Event Grid データ接続を作成する](data-connection-event-grid-python.md)
 * [Azure Resource Manager テンプレートを使用して Azure Data Explorer 用に Event Grid データ接続を作成する](data-connection-event-grid-resource-manager.md)

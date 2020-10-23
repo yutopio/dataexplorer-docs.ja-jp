@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
-ms.openlocfilehash: e6630067cb02f3bf4685e274d2d5d2a6d00a97c5
-ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
+ms.openlocfilehash: 04b1f53ad16d8658d3a12d36370261afac02fe86
+ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91615038"
+ms.lasthandoff: 10/15/2020
+ms.locfileid: "92098423"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Azure Data Explorer のデータ インジェスト概要 
 
@@ -126,7 +126,7 @@ Kusto クエリ言語 (KQL) のコマンドを使用してデータをエンジ�
 | [**Go**](kusto/api/golang/kusto-golang-client-library.md) | すべての形式がサポートされる | 非圧縮で 1 GB (注を参照) | バッチ処理、ストリーミング、直接 | 組織のニーズに合わせて独自のコードを作成する |
 
 > [!Note] 
-> 上の表で参照されている場合、インジェストでは最大ファイル サイズとして 5 GB がサポートされます。 100 MB から 1 GB の間のファイルを取り込むことをお勧めします。
+> 上の表で参照されている場合、インジェストでは最大ファイル サイズとして 4 GB がサポートされます。 100 MB から 1 GB の間のファイルを取り込むことをお勧めします。
 
 ## <a name="ingestion-process"></a>インジェスト プロセス
 

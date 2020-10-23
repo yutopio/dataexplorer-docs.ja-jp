@@ -1,18 +1,18 @@
 ---
 title: C# を使用してカスタマー マネージド キーを構成する
-description: この記事では、Azure Data Explorer でデータに対するカスタマー マネージド キーの暗号化を構成する方法について説明します。
+description: この記事では、C# を使用して Azure Data Explorer データを暗号化するためにカスタマー マネージド キーを構成する方法について説明します。
 author: orspod
 ms.author: orspodek
 ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 01/06/2020
-ms.openlocfilehash: ade06e6fffb31a5c76fa12fe02d5192e4126091e
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: db20566a9aa9b5c720ea9f72ec9c980042db0625
+ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872099"
+ms.lasthandoff: 10/13/2020
+ms.locfileid: "92002997"
 ---
 # <a name="configure-customer-managed-keys-using-c"></a>C# を使用してカスタマー マネージド キーを構成する
 

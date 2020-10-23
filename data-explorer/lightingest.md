@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/28/2020
-ms.openlocfilehash: 1825ef642e5427df58800c8d6a71f75ff484bcf5
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: f3925ed2b3012dffbd7e96ca6dd6a795b0499071
+ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872643"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92175703"
 ---
 # <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>LightIngest を使用して Azure Data Explorer にデータを取り込む
  
@@ -36,8 +36,9 @@ LightIngest は、インジェスト期間に時間の制約がないため、�
 
 1. コンピューター上の抽出した *tools* ディレクトリに移動します。
 1. 場所バーから既存の場所情報を削除します。
-    
-    :::image type="content" source="kusto/tools/images/KustoTools-Lightingest/lightingest-locationbar.png" alt-text="LightIngest の既存の場所情報を削除する":::
+
+    :::image type="content" source="media/lightingest/lightingest-locationbar.png" alt-text="Lightingest のダウンロード":::
+
 
 1. 「`cmd`」と入力して、**Enter** キーを押します。
 1. コマンド プロンプトで、「`LightIngest.exe`」に続けて関連するコマンドライン引数を入力します。
@@ -45,7 +46,7 @@ LightIngest は、インジェスト期間に時間の制約がないため、�
     > [!Tip]
     > サポートされているコマンド ライン引数を確認するには、「`LightIngest.exe /help`」と入力します。
     >
-    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="LightIngest のコマンド ライン ヘルプ":::
+    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="Lightingest のダウンロード":::
 
 1. 「`ingest-`」に続けて、インジェストを管理する Azure Data Explorer クラスターへの接続文字列を入力します。
     接続文字列を二重引用符で囲み、その後に [Kusto 接続文字列の指定](kusto/api/connection-strings/kusto.md)を入力します。

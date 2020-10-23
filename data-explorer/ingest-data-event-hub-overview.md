@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: b3a8c379ad010a9787fdb8b7d4e2961fb58ead9e
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: c20e18a31105dca584ebe35198462e8755cf8dc4
+ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502665"
+ms.lasthandoff: 10/19/2020
+ms.locfileid: "92175722"
 ---
 # <a name="create-a-connection-to-event-hub"></a>イベント ハブへの接続を作成する
 
@@ -30,7 +30,7 @@ Azure Data Explorer でのデータ インジェストに関する一般的な�
     > [!NOTE]
     > イベント ハブでは、.raw 形式はサポートされていません。
 
-* [サポートされる圧縮](ingestion-supported-formats.md#supported-data-compression-formats)を確認してください。
+* `GZip` 圧縮アルゴリズムを使用してデータを圧縮できます。 [インジェスト プロパティ](#set-ingestion-properties)で `Compression` を指定します。
    * 圧縮形式 (Avro、Parquet、ORC) については、データ圧縮はサポートされません。
    * カスタム エンコードおよび埋め込み[システム プロパティ](#set-event-system-properties-mapping)は、圧縮データではサポートされていません。
   

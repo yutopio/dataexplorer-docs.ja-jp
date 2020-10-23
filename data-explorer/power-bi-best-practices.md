@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 404d8f2d6b7eacc61571575613fd8017baadb54d
-ms.sourcegitcommit: 1618cbad18f92cf0cda85cb79a5cc1aa789a2db7
+ms.openlocfilehash: 4cb2c64e2a66d8412277717e505626965bca1052
+ms.sourcegitcommit: 7024f73c76bf5b506557fd0ef7a0f4f40ec7d313
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/01/2020
-ms.locfileid: "91614851"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92021221"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Power BI を使用して Azure Data Explorer データのクエリと視覚化を行う場合のベスト プラクティス
 
@@ -91,9 +91,10 @@ M クエリで、次のすべてのオプションを使用できます。
 | NoTruncate | `[NoTruncate=true]` | set `notruncation` ステートメントをクエリに追加します。 呼び出し元に返されるクエリ結果の切り詰めの抑制を有効にします。
 | AdditionalSetStatements | `[AdditionalSetStatements="set query_datascope=hotcache"]` | 指定した set ステートメントをクエリに追加します。 これらのステートメントは、クエリの実行中にクエリ オプションを設定するために使用されます。 クエリ オプションは、クエリの実行方法とクエリが結果を返す方法を制御します。
 | CaseInsensitive | `[CaseInsensitive=true]` | 大文字と小文字を区別しないクエリをコネクタが生成するようにします。クエリでは、値を比較するときに、`==` 演算子ではなく、`=~` 演算子が使用されます。
+| タイムアウト | `[Timeout=#duration(0,10,0,0)]` | クエリに対するクライアントとサーバー両方のタイムアウトを、指定された期間に構成します。
 
-    > [!NOTE]
-    > You can combine multiple options together to reach the desired behavior: `[NoTruncate=true, CaseInsensitive=true]`
+> [!NOTE]
+> You can combine multiple options together to reach the desired behavior: `[NoTruncate=true, CaseInsensitive=true]`
 
 ### <a name="reaching-kusto-query-limits"></a>Kusto クエリの制限に達する
 

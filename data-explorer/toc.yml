@@ -338,7 +338,7 @@
         - name: Apache Spark コネクタ
           href: spark-connector.md
         - name: Azure Synapse Apache Spark からの接続
-          href: 'https://docs.microsoft.com/azure/synapse-analytics/quickstart-connect-azure-data-explorer?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json'
+          href: /azure/synapse-analytics/quickstart-connect-azure-data-explorer?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json
         - name: Azure Databricks から接続する
           href: connect-from-databricks.md
         - name: ノートブック
@@ -349,13 +349,13 @@
               items:
                 - name: Kusto 拡張機能の概要
                   displayName: Azure Data Studio
-                  href: 'https://docs.microsoft.com/sql/azure-data-studio/extensions/kusto-extension?context=/azure/data-explorer/context/context'
+                  href: /sql/azure-data-studio/extensions/kusto-extension?context=/azure/data-explorer/context/context
                 - name: Kusto 拡張機能を使用する
                   displayName: Azure Data Studio
-                  href: 'https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context'
+                  href: /sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context
                 - name: Kqlmagic を使用する
                   displayName: Azure Data Studio
-                  href: 'https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kqlmagic?context=/azure/data-explorer/context/context'
+                  href: /sql/azure-data-studio/notebooks/notebooks-kqlmagic?context=%252fazure%252fdata-explorer%252fcontext%252fcontext
         - name: Azure Pipelines
           href: devops.md
         - name: Kusto の同期
@@ -550,6 +550,8 @@
               href: ./kusto/query/projectoperator.md
             - name: project-away 演算子
               href: ./kusto/query/projectawayoperator.md
+            - name: project-keep 演算子
+              href: ./kusto/query/project-keep-operator.md
             - name: project-rename 演算子
               href: ./kusto/query/projectrenameoperator.md
             - name: project-reorder 演算子

@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: overview
 ms.date: 09/24/2018
-ms.openlocfilehash: 764dea2e3fe82bf795db81a4e8d3f89e256d3517
-ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
+ms.openlocfilehash: 10192cca4e03aa92ec018f7875e457d4cf109f72
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/15/2020
-ms.locfileid: "92098457"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342928"
 ---
 # <a name="what-is-azure-data-explorer"></a>Azure Data Explorerとは
 
@@ -44,7 +44,7 @@ Azure データ エクスプローラーは、イベント ハブなどの一般
 
 Azure データ エクスプローラーの使用は一般的に次のパターンに従います。
 
-1. **データベースの作成:** *クラスター*を作成し、そのクラスターで 1 つまたは複数の*データベース*を作成します。 [クイック スタート: Azure データ エクスプローラー クラスターとデータベースを作成する](create-cluster-database-portal.md)
+1. **データベースの作成:** *クラスター* を作成し、そのクラスターで 1 つまたは複数の *データベース* を作成します。 [クイック スタート: Azure データ エクスプローラー クラスターとデータベースを作成する](create-cluster-database-portal.md)
 
 1. **データの取り込み:** クエリを実行できるように、データをデータベース テーブルに読み込みます。 [クイック スタート: イベント ハブから Azure Data Explorer にデータを取り込む](ingest-data-event-hub.md)
 
@@ -64,7 +64,7 @@ Azure Data Explorer とそのクエリ言語に関するフィードバックを
 
 * 質問する
   * [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-data-explorer)
-  * [Microsoft Q&A](https://docs.microsoft.com/answers/topics/azure-data-explorer.html)
+  * [Microsoft Q&A](/answers/topics/azure-data-explorer.html)
   * [Microsoft Tech Community](https://techcommunity.microsoft.com/t5/Azure-Data-Explorer/bd-p/Kusto)
 * [ユーザーの声で製品について提案する](https://aka.ms/AzureDataExplorer.UserVoice)
 

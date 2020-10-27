@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: tutorial
 ms.date: 04/07/2019
-ms.openlocfilehash: a7a964f8bb022885c6ac3bc4828469031987b162
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: f6d993383ecf6c25bf144228e77f02f944bc02d8
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872626"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343336"
 ---
 # <a name="write-queries-for-azure-data-explorer"></a>Azure データ エクスプローラーのクエリを記述する
 
@@ -22,7 +22,7 @@ ms.locfileid: "88872626"
 
 この記事では、2 つの方法のいずれかでクエリを実行できます。
 
-- 学習の補助目的で設定した Azure データ エクスプローラー *ヘルプ クラスター*で。
+- 学習の補助目的で設定した Azure データ エクスプローラー *ヘルプ クラスター* で。
     Azure Active Directory に登録されている組織の電子メール アカウントで[クラスターにサインインします](https://dataexplorer.azure.com/clusters/help/databases/samples)。
 
 - StormEvents サンプル データが含まれる独自のクラスターで。 詳細については、「[クイック スタート:Azure Data Explorer クラスターとデータベースを作成する](create-cluster-database-portal.md)」、および「[Azure のデータ エクスプローラーにサンプル データを取り込む](ingest-sample-data.md)」を参照してください。
@@ -55,7 +55,7 @@ StormEvents
 |   23|
 | |
 
-詳細については、「[Query language reference](https://aka.ms/kustolangref)」 (クエリ言語参照) を参照してください。
+詳細については、「[Query language reference](./kusto/query/index.md)」 (クエリ言語参照) を参照してください。
 
 ## <a name="most-common-operators"></a>最も一般的な演算子
 
@@ -190,9 +190,9 @@ StormEvents
 | summarize event_count = count() by State
 ```
 
-**summarize** 演算子では、同じ値を持つ行が **by** 句でグループ化され、集計関数 (**count** など) が使用され、各グループが 1 つの行に組み合わされます。 そのため、このケースでは、州ごとに行が 1 つ与えられ、その州の行数用に列が 1 つ与えられます。
+**summarize** 演算子では、同じ値を持つ行が **by** 句でグループ化され、集計関数 ( **count** など) が使用され、各グループが 1 つの行に組み合わされます。 そのため、このケースでは、州ごとに行が 1 つ与えられ、その州の行数用に列が 1 つ与えられます。
 
-集計関数にはさまざまなものがあります。1 つの **summarize** 演算子でいくつかの集計関数を使用し、複数の列を計算できます。 たとえば、各州で発生した嵐の数とその一意の番号を取得し、**top** を使用して嵐の影響を最も受けた州を取得できます。
+集計関数にはさまざまなものがあります。1 つの **summarize** 演算子でいくつかの集計関数を使用し、複数の列を計算できます。 たとえば、各州で発生した嵐の数とその一意の番号を取得し、 **top** を使用して嵐の影響を最も受けた州を取得できます。
 
 **\[** [**クリックするとクエリが実行されます**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSsp5uWqUSguzc1NLMqsSlUIBkk455fmlSjYKiSDaA1NHYWQyoJU%2fzSwXDFQPAUiAdYPktJUSKoE6kwsSQUZVpJfoGAKEYGblZJanAwAgbFb73QAAAA%3d) **\]**
 
@@ -270,7 +270,7 @@ StormEvents
 
 ### <a name="bin"></a>bin()
 
-[**bin()** ](kusto/query/binfunction.md):値を切り捨てて、指定された bin サイズの倍数である整数にします。
+[**bin()**](kusto/query/binfunction.md):値を切り捨てて、指定された bin サイズの倍数である整数にします。
 
 次のクエリでは、1 日のバケット サイズで数が算出されます。
 
@@ -284,7 +284,7 @@ StormEvents
 
 ### <a name="case"></a>case()
 
-[**case()** ](kusto/query/casefunction.md):述語の一覧が評価され、述語が満たされた最初の結果式か最後の **else** 式が返されます。 この演算子を使用し、データを分類またはグループ化できます。
+[**case()**](kusto/query/casefunction.md):述語の一覧が評価され、述語が満たされた最初の結果式か最後の **else** 式が返されます。 この演算子を使用し、データを分類またはグループ化できます。
 
 次のクエリでは、新しい列 `deaths_bucket` が返され、死亡者が数でグループ化されます。
 
@@ -303,7 +303,7 @@ StormEvents
 
 ### <a name="extract"></a>extract()
 
-[**extract()** ](kusto/query/extractfunction.md):テキスト文字列から正規表現との一致を取得します。
+[**extract()**](kusto/query/extractfunction.md):テキスト文字列から正規表現との一致を取得します。
 
 次のクエリでは、トレースから特定の属性値が抽出されます。
 
@@ -319,7 +319,7 @@ MyData
 
 ### <a name="parse_json"></a>parse_json()
 
-[**parse_json()** ](kusto/query/parsejsonfunction.md):文字列が JSON 値として解釈され、値が dynamic として返されます。 複合 JSON オブジェクトの複数の要素を抽出する必要がある場合、**extractjson()** 関数の使用より優れています。
+[**parse_json()**](kusto/query/parsejsonfunction.md):文字列が JSON 値として解釈され、値が dynamic として返されます。 複合 JSON オブジェクトの複数の要素を抽出する必要がある場合、 **extractjson()** 関数の使用より優れています。
 
 次のクエリでは、配列から JSON 要素が抽出されます。
 
@@ -357,7 +357,7 @@ MyData
 
 ### <a name="ago"></a>ago()
 
-[**ago()** ](kusto/query/agofunction.md):現在の UTC 時刻から指定された期間を減算します。
+[**ago()**](kusto/query/agofunction.md):現在の UTC 時刻から指定された期間を減算します。
 
 次のクエリでは、過去 12 時間のデータが返されます。
 
@@ -373,7 +373,7 @@ print TimeStamp= range(now(-5d), now(), 1h), SomeCounter = range(1,121)
 
 ### <a name="startofweek"></a>startofweek()
 
-[**startofweek()** ](kusto/query/startofweekfunction.md):日付を含む週の始まりが返されます。オフセットが指定されている場合、そのオフセットでシフトされます。
+[**startofweek()**](kusto/query/startofweekfunction.md):日付を含む週の始まりが返されます。オフセットが指定されている場合、そのオフセットでシフトされます。
 
 次のクエリでは、さまざまなオフセットで週の始まりが返されます。
 
@@ -384,11 +384,11 @@ range offset from -1 to 1 step 1
 | project weekStart = startofweek(now(), offset),offset
 ```
 
-このクエリでは **range** 演算子が使用されます。この演算子では、値の単一列テーブルが生成されます。 [**startofday()** ](kusto/query/startofdayfunction.md)、[**startofweek()** ](kusto/query/startofweekfunction.md)、[**startofyear()** ](kusto/query/startofyearfunction.md))、[**startofmonth()** ](kusto/query/startofmonthfunction.md)、[**endofday()** ](kusto/query/endofdayfunction.md)、[**endofweek()** ](kusto/query/endofweekfunction.md)、[**endofmonth()** ](kusto/query/endofmonthfunction.md)、[**endofyear()** ](kusto/query/endofyearfunction.md) も参照してください。
+このクエリでは **range** 演算子が使用されます。この演算子では、値の単一列テーブルが生成されます。 [**startofday()**](kusto/query/startofdayfunction.md)、 [**startofweek()**](kusto/query/startofweekfunction.md)、 [**startofyear()**](kusto/query/startofyearfunction.md))、 [**startofmonth()**](kusto/query/startofmonthfunction.md)、 [**endofday()**](kusto/query/endofdayfunction.md)、 [**endofweek()**](kusto/query/endofweekfunction.md)、 [**endofmonth()**](kusto/query/endofmonthfunction.md)、 [**endofyear()**](kusto/query/endofyearfunction.md) も参照してください。
 
 ### <a name="between"></a>between()
 
-[**between()** ](kusto/query/betweenoperator.md):両端を含む範囲内に入っている値が一致として出力されます。
+[**between()**](kusto/query/betweenoperator.md):両端を含む範囲内に入っている値が一致として出力されます。
 
 次のクエリでは、指定のデータ範囲でデータが絞り込まれます。
 
@@ -505,7 +505,7 @@ StormEvents
 
 ## <a name="advanced-aggregations"></a>高度な集計
 
-この記事の前半では、**count** や **summarize** など、基本的な集計を取り上げました。 このセクションでは、より高度なオプションを紹介します。
+この記事の前半では、 **count** や **summarize** など、基本的な集計を取り上げました。 このセクションでは、より高度なオプションを紹介します。
 
 ### <a name="top-nested"></a>top-nested
 
@@ -542,7 +542,7 @@ StormEvents
 
 ### <a name="dcount"></a>dcount()
 
-[**dcount()** ](kusto/query/dcount-aggfunction.md):グループ内のある式の個別値の数が見積もられ、返されます。 すべての値を数える際に [**count()** ](kusto/query/countoperator.md) を使用します。
+[**dcount()**](kusto/query/dcount-aggfunction.md):グループ内のある式の個別値の数が見積もられ、返されます。 すべての値を数える際に [**count()**](kusto/query/countoperator.md) を使用します。
 
 次のクエリでは、個別の `Source` が `State` を基準に数えられます。
 
@@ -555,7 +555,7 @@ StormEvents
 
 ### <a name="dcountif"></a>dcountif()
 
-[**dcountif()** ](kusto/query/dcountif-aggfunction.md):評価の結果、述語が真であるとされた行の式の個別値の数が見積もられ、返されます。
+[**dcountif()**](kusto/query/dcountif-aggfunction.md):評価の結果、述語が真であるとされた行の式の個別値の数が見積もられ、返されます。
 
 次のクエリでは、`DamageProperty < 5000` となっている `Source` の個別値が数えられます。
 
@@ -569,7 +569,7 @@ StormEvents
 
 ### <a name="dcount_hll"></a>dcount_hll()
 
-[**dcount_hll()** ](kusto/query/dcount-hllfunction.md):([**hll**](kusto/query/hll-aggfunction.md) または [**hll_merge**](kusto/query/hll-merge-aggfunction.md) によって生成される) HyperLogLog 結果から **dcount** が計算されます。
+[**dcount_hll()**](kusto/query/dcount-hllfunction.md):( [**hll**](kusto/query/hll-aggfunction.md) または [**hll_merge**](kusto/query/hll-merge-aggfunction.md) によって生成される) HyperLogLog 結果から **dcount** が計算されます。
 
 次のクエリでは、HLL アルゴリズムを使用してカウントが生成されます。
 
@@ -584,7 +584,7 @@ StormEvents
 
 ### <a name="arg_max"></a>arg_max()
 
-[**arg_max()** ](kusto/query/arg-max-aggfunction.md):グループ内で式を最大化する行を見つけ、別の式の値を返します (* の場合、式全体が返されます)。
+[**arg_max()**](kusto/query/arg-max-aggfunction.md):グループ内で式を最大化する行を見つけ、別の式の値を返します (* の場合、式全体が返されます)。
 
 次のクエリでは、各州で最後に洪水が報告された時刻が返されます。
 
@@ -599,7 +599,7 @@ StormEvents
 
 ### <a name="makeset"></a>makeset()
 
-[**makeset()** ](kusto/query/makeset-aggfunction.md):グループ内である式により受け取られる個別値セットを dynamic (JSON) 配列で返します。
+[**makeset()**](kusto/query/makeset-aggfunction.md):グループ内である式により受け取られる個別値セットを dynamic (JSON) 配列で返します。
 
 次のクエリでは、各州より洪水が報告された時刻がすべて返され、個別値セットから配列が作成されます。
 
@@ -631,7 +631,7 @@ FloodDataSet
 
 ### <a name="percentiles"></a>percentiles()
 
-[**percentiles()** ](kusto/query/percentiles-aggfunction.md):式により定義される人口について、指定の[**最も近いランクのパーセンタイル**](kusto/query/percentiles-aggfunction.md)に対する見積もりを返します。 精度は、パーセンタイル リージョンの人口密度によって異なります。 [**summarize**](kusto/query/summarizeoperator.md) 内の集計というコンテキストでのみ使用できます。
+[**percentiles()**](kusto/query/percentiles-aggfunction.md):式により定義される人口について、指定の [**最も近いランクのパーセンタイル**](kusto/query/percentiles-aggfunction.md)に対する見積もりを返します。 精度は、パーセンタイル リージョンの人口密度によって異なります。 [**summarize**](kusto/query/summarizeoperator.md) 内の集計というコンテキストでのみ使用できます。
 
 次のクエリでは、嵐の継続時間に対してパーセンタイルが計算されます。
 
@@ -684,7 +684,7 @@ LightningStorms
 
 ### <a name="join"></a>join
 
-[**join**](kusto/query/joinoperator.md):各テーブルの指定の列で値を照合することで、2 つのテーブルの行を結合し、新しいテーブルを形成します。 Kusto では、**fullouter**、**inner**、**innerunique**、**leftanti**、**leftantisemi**、**leftouter**、**leftsemi**、**rightanti**、**rightantisemi**、**rightouter**、**rightsemi** というすべての結合型に対応しています。
+[**join**](kusto/query/joinoperator.md):各テーブルの指定の列で値を照合することで、2 つのテーブルの行を結合し、新しいテーブルを形成します。 Kusto では、 **fullouter** 、 **inner** 、 **innerunique** 、 **leftanti** 、 **leftantisemi** 、 **leftouter** 、 **leftsemi** 、 **rightanti** 、 **rightantisemi** 、 **rightouter** 、 **rightsemi** というすべての結合型に対応しています。
 
 次の例では、内部結合を使用して 2 つのテーブルが結合されます。
 
@@ -710,11 +710,11 @@ X
 ```
 
 > [!TIP]
-> 結合の前に入力テーブルの行と列の数を減らすには、**where** と **project** を使用します。 一方のテーブルがもう一方よりも常に小さい場合は、それを結合の左側 (パイプされる側) として使います。 一致した場合に結合する列は、同じ名前を持つ必要があります。 いずれかのテーブルで列の名前を変更する必要がある場合は、**project** 演算子を使用します。
+> 結合の前に入力テーブルの行と列の数を減らすには、 **where** と **project** を使用します。 一方のテーブルがもう一方よりも常に小さい場合は、それを結合の左側 (パイプされる側) として使います。 一致した場合に結合する列は、同じ名前を持つ必要があります。 いずれかのテーブルで列の名前を変更する必要がある場合は、 **project** 演算子を使用します。
 
 ### <a name="serialize"></a>serialize
 
-[**serialize**](kusto/query/serializeoperator.md):**row_number()** のようなシリアル化されたデータを必要とする関数を使用できるように、行セットがシリアル化されます。
+[**serialize**](kusto/query/serializeoperator.md): **row_number()** のようなシリアル化されたデータを必要とする関数を使用できるように、行セットがシリアル化されます。
 
 データがシリアル化されているため、次のクエリは成功します。
 
@@ -727,7 +727,7 @@ StormEvents
 | extend row_number = row_number()
 ```
 
-行セットは、それが **sort**、**top**、**range** 演算子の結果であり、任意で後ろに **project**、**project-away**、**extend**、**where**、**parse**、**mv-expand**、**take** 演算子が続く場合も、シリアル化されていると見なされます。
+行セットは、それが **sort** 、 **top** 、 **range** 演算子の結果であり、任意で後ろに **project** 、 **project-away** 、 **extend** 、 **where** 、 **parse** 、 **mv-expand** 、 **take** 演算子が続く場合も、シリアル化されていると見なされます。
 
 **\[** [**クリックするとクエリが実行されます**](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAEAAsuyS%2fKdS1LzSsp5uWqUSguzc1NLMqsSlVIzi%2fNK9HQVEiqVAguSSxJBcvmF5XABRQSi5NBgqkVJal5KQpF%2beXxeaW5SalFCrZIHA1NAEGimf5iAAAA) **\]**
 
@@ -790,7 +790,7 @@ window)
 
 ### <a name="activity_engagement-plugin"></a>activity_engagement プラグイン
 
-[**activity_engagement プラグイン**](kusto/query/activity-engagement-plugin.md):変化するタイムライン ウィンドウを対象に、ID 列に基づいてアクティビティ エンゲージメント率が計算されます。 **activity_engagement プラグイン**は、DAU、WAU、MAU (毎日、毎週、毎月のアクティブ ユーザー) の計算に利用できます。
+[**activity_engagement プラグイン**](kusto/query/activity-engagement-plugin.md):変化するタイムライン ウィンドウを対象に、ID 列に基づいてアクティビティ エンゲージメント率が計算されます。 **activity_engagement プラグイン** は、DAU、WAU、MAU (毎日、毎週、毎月のアクティブ ユーザー) の計算に利用できます。
 
 次のクエリでは、7 日間の移動ウィンドウを対象に、あるアプリケーションを毎日使用するユーザーの合計とそのアプリケーションを週単位で使用するユーザーの合計の比率が返されます。
 
@@ -917,7 +917,7 @@ StormEvents
 
 ## <a name="functions"></a>関数
 
-このセクションでは、[**関数**](kusto/query/functions/index.md)を扱います。サーバー上に保管される再利用可能なクエリです。 関数はクエリや他の関数で呼び出すことができます (再帰関数はサポートされていません)。
+このセクションでは、 [**関数**](kusto/query/functions/index.md)を扱います。サーバー上に保管される再利用可能なクエリです。 関数はクエリや他の関数で呼び出すことができます (再帰関数はサポートされていません)。
 
 > [!NOTE]
 > ヘルプ センターで関数を作成することはできません。読み取り専用です。 この部分には独自のテスト クラスターを使用します。
@@ -948,4 +948,4 @@ MyFunction ("Texas")
 
 ## <a name="next-steps"></a>次のステップ
 
-[Kusto クエリ言語リファレンス](https://aka.ms/kustolangref)
+[Kusto クエリ言語リファレンス](./kusto/query/index.md)

@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: 8dfb0fb6637214d77df5bed436649bb10f808a47
-ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
+ms.openlocfilehash: a274577da1fb93b78b56250c1176fb0e9bda8eed
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90533968"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343081"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-python"></a>Python を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -32,7 +32,7 @@ ms.locfileid: "90533968"
 
 * [Python 3.4 以上](https://www.python.org/downloads/)。
 
-* [リソースにアクセスできる Azure AD アプリケーションとサービス プリンシパル](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)。 `Directory (tenant) ID`、`Application ID`、`Client Secret` の値を取得します。
+* [リソースにアクセスできる Azure AD アプリケーションとサービス プリンシパル](/azure/active-directory/develop/howto-create-service-principal-portal)。 `Directory (tenant) ID`、`Application ID`、`Client Secret` の値を取得します。
 
 ## <a name="install-python-package"></a>Python パッケージのインストール
 
@@ -43,7 +43,7 @@ pip install azure-common
 pip install azure-mgmt-kusto
 ```
 ## <a name="authentication"></a>認証
-この記事の例を実行するには、リソースにアクセスできる Azure AD アプリケーションとサービス プリンシパルが必要です。 「[Azure AD アプリケーションを作成する](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)」を参照して、無料の Azure AD アプリケーションを作成し、サブスクリプション スコープでロールの割り当てを追加します。 `Directory (tenant) ID`、`Application ID`、および `Client Secret` を取得する方法も示されています。
+この記事の例を実行するには、リソースにアクセスできる Azure AD アプリケーションとサービス プリンシパルが必要です。 「[Azure AD アプリケーションを作成する](/azure/active-directory/develop/howto-create-service-principal-portal)」を参照して、無料の Azure AD アプリケーションを作成し、サブスクリプション スコープでロールの割り当てを追加します。 `Directory (tenant) ID`、`Application ID`、および `Client Secret` を取得する方法も示されています。
 
 ## <a name="create-the-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターを作成する
 
@@ -92,7 +92,7 @@ pip install azure-mgmt-kusto
    | resource_group_name | *testrg* | クラスターが作成されるリソース グループの名前。 |
 
     > [!NOTE]
-    > **クラスターの作成**は、実行時間の長い操作となります。 メソッド **create_or_update** は LROPoller インスタンスを返します。詳細については、[LROPoller クラス](/python/api/msrest/msrest.polling.lropoller?view=azure-python)を参照してください。
+    > **クラスターの作成** は、実行時間の長い操作となります。 メソッド **create_or_update** は LROPoller インスタンスを返します。詳細については、 [LROPoller クラス](/python/api/msrest/msrest.polling.lropoller?view=azure-python)を参照してください。
 
 1. クラスターが正常に作成されたかどうかを確認するには、次のコマンドを実行します。
 

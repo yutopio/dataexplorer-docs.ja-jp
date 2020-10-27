@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/28/2020
-ms.openlocfilehash: f3925ed2b3012dffbd7e96ca6dd6a795b0499071
-ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
+ms.openlocfilehash: 5e15983039209e2e0c62ebd761e416ebb3bd1076
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92175703"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342622"
 ---
 # <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>LightIngest を使用して Azure Data Explorer にデータを取り込む
  
@@ -30,7 +30,7 @@ LightIngest は、インジェスト期間に時間の制約がないため、�
 ## <a name="install-lightingest"></a>LightIngest をインストールする
 
 1. LightIngest をダウンロードしたコンピューター上の場所に移動します。
-1. WinRAR を使用して、*tools* ディレクトリをコンピューターに抽出します。
+1. WinRAR を使用して、 *tools* ディレクトリをコンピューターに抽出します。
 
 ## <a name="run-lightingest"></a>LightIngest を実行する
 
@@ -40,7 +40,7 @@ LightIngest は、インジェスト期間に時間の制約がないため、�
     :::image type="content" source="media/lightingest/lightingest-locationbar.png" alt-text="Lightingest のダウンロード":::
 
 
-1. 「`cmd`」と入力して、**Enter** キーを押します。
+1. 「`cmd`」と入力して、 **Enter** キーを押します。
 1. コマンド プロンプトで、「`LightIngest.exe`」に続けて関連するコマンドライン引数を入力します。
 
     > [!Tip]
@@ -144,7 +144,7 @@ To use the LightIngest command below:
 
 引数の値には次の値を含める必要があります。
 * 単一引用符で囲まれたタイムスタンプ形式の直前の定数テキスト (プレフィックス)
-* タイムスタンプ形式 (標準 [.NET DateTime 表記](https://docs.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings))
+* タイムスタンプ形式 (標準 [.NET DateTime 表記](/dotnet/standard/base-types/custom-date-and-time-format-strings))
 * タイムスタンプの直後の定数テキスト (サフィックス)。
 
 **使用例** 

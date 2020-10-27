@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: b52ab47f52e39fb47975e65aea1f076885826715
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: c031b97e620be5b3ed6e3e26f7c509cfd4359f20
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873714"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343047"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-python"></a>Python を使用して Azure Data Explorer 用に Event Grid データ接続を作成する
 
@@ -30,7 +30,7 @@ ms.locfileid: "88873714"
 * アクティブなサブスクリプションが含まれる Azure アカウント。 [無料で作成できます](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)。
 * [Python 3.4 以上](https://www.python.org/downloads/)。
 * [クラスターとデータベース](create-cluster-database-python.md)。
-* [テーブルと列のマッピング](net-standard-ingest-data.md#create-a-table-on-your-test-cluster)。
+* [テーブルと列のマッピング](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster)。
 * [データベースとテーブルのポリシー](database-table-policies-csharp.md) (省略可能)。
 * [Event Grid サブスクリプションのあるストレージ アカウント](ingest-data-event-grid.md)。
 

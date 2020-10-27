@@ -7,12 +7,12 @@ ms.reviewer: toleibov
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/11/2020
-ms.openlocfilehash: e89ce6f77545b4f0b42cbb3d792edd5ceeb0ed34
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4949190befdc8adcec9f8115305a2a403994395f
+ms.sourcegitcommit: 88291fd9cebc26e5210463cb95be5540bf84eef8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874675"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92437404"
 ---
 # <a name="enable-infrastructure-encryption-double-encryption-during-cluster-creation-in-azure-data-explorer"></a>Azure Data Explorer でのクラスターの作成中に、インフラストラクチャの暗号化 (二重暗号化) を有効にする
   
@@ -20,8 +20,7 @@ ms.locfileid: "88874675"
 
 > [!IMPORTANT]
 > * 二重暗号化を有効にすることは、クラスターの作成中にしかできません。
-> * クラスターでインフラストラクチャの暗号化を有効にした後は、それを無効することは**できません**。
-> * 二重暗号化は、インフラストラクチャの暗号化がサポートされているリージョンでのみ使用できます。 詳細については、[ストレージ インフラストラクチャの暗号化](/azure/storage/common/infrastructure-encryption-enable)に関する記事を参照してください。
+> * クラスターでインフラストラクチャの暗号化を有効にした後は、それを無効することは **できません** 。
 
 # <a name="azure-portal"></a>[Azure portal](#tab/portal)
 

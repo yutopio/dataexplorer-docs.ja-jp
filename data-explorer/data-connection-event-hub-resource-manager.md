@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 11/28/2019
-ms.openlocfilehash: 3a17d9e63f0e6803b6950d39ccd58183d44bb51e
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 988ace99e8671de229f9bdf796260e64f9d36932
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873578"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342996"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用して Azure Data Explorer 用に Event Hub データ接続を作成する
 
@@ -30,7 +30,7 @@ ms.locfileid: "88873578"
 * Azure サブスクリプションをお持ちでない場合は、開始する前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
 * [クラスターとデータベース](create-cluster-database-portal.md)を作成します
 * [テーブルと列のマッピング](ingest-data-event-hub.md#create-a-target-table-in-azure-data-explorer)を作成します
-* [イベント ハブ](https://docs.microsoft.com/azure/event-hubs/event-hubs-create)を作成します
+* [イベント ハブ](/azure/event-hubs/event-hubs-create)を作成します
 
 ## <a name="azure-resource-manager-template-for-adding-an-event-hub-data-connection"></a>Event Hub データ接続を追加するための Azure Resource Manager テンプレート
 

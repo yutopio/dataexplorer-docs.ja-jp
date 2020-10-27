@@ -7,12 +7,12 @@ ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 11/03/2019
-ms.openlocfilehash: e954b66c59e480d7fc713841e9a029da61dabd8f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: aefbde03b123e9c5413b1ed39e85db096f3ff3d7
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87350538"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343455"
 ---
 # <a name="prepay-for-azure-data-explorer-markup-units-with-azure-data-explorer-reserved-capacity"></a>Azure Data Explorer 予約容量を使用して Azure Data Explorer 割増ユニットを前払いする
 
@@ -23,7 +23,7 @@ Azure Data Explorer では、割増ユニットを前払いすると、従量課
 Azure Data Explorer の予約容量は [Azure portal](https://portal.azure.com) で購入できます。 Azure Data Explorer の予約容量を購入するには:
 
 * 少なくとも 1 つのエンタープライズまたは従量課金制のサブスクリプションの所有者である必要があります。
-* Enterprise サブスクリプションの場合、**EA ポータル**で [[予約インスタンスを追加します]](https://ea.azure.com) を有効にする必要があります。 または、その設定が無効になっている場合は、ユーザーはサブスクリプションの EA 管理者である必要があります。
+* Enterprise サブスクリプションの場合、 **EA ポータル** で [[予約インスタンスを追加します]](https://ea.azure.com) を有効にする必要があります。 または、その設定が無効になっている場合は、ユーザーはサブスクリプションの EA 管理者である必要があります。
 * クラウド ソリューション プロバイダー (CSP) プログラムの場合、管理者エージェントまたはセールス エージェントのみが Azure Data Explorer の予約容量を購入できます。
 
 企業のお客様と従量課金制のお客様が予約を購入した場合の課金方法については、以下を参照してください。
@@ -74,7 +74,7 @@ Azure の予約の詳細については、次の記事を参照してくださ�
 * [Azure の予約割引を理解する](/azure/cost-management-billing/reservations/understand-reservation-charges)
 * [従量課金制サブスクリプションの予約使用量について](/azure/cost-management-billing/reservations/understand-reserved-instance-usage)
 * [エンタープライズ加入契約の予約使用量について](/azure/cost-management-billing/reservations/understand-reserved-instance-usage-ea)
-* [パートナー センターのクラウド ソリューション プロバイダー (CSP) プログラムでの Azure の予約](https://docs.microsoft.com/partner-center/azure-reservations)
+* [パートナー センターのクラウド ソリューション プロバイダー (CSP) プログラムでの Azure の予約](/partner-center/azure-reservations)
 
 ## <a name="need-help-contact-us"></a>お困りの際は、 お問い合わせ
 

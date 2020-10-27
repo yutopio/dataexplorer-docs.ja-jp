@@ -7,12 +7,12 @@ ms.reviewer: prvavill
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/31/2020
-ms.openlocfilehash: 630b03fc0e89005f1031aba4cbd1a86d803ff275
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 0fe11b4218f86d501c88e6a217f9ae867a17f5f4
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942031"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343472"
 ---
 # <a name="monitor-azure-data-explorer-using-resource-health-preview"></a>Resource Health を使用して Azure Data Explorer を監視する (プレビュー)
 
@@ -38,13 +38,13 @@ Resource Health では、次のようなさまざまな正常性の状態を調�
 
 ### <a name="available"></a>利用可能
 
-**利用可能**の正常性状態は、Azure Data Explorer リソースが正常であり、問題がないことを示します。
+**利用可能** の正常性状態は、Azure Data Explorer リソースが正常であり、問題がないことを示します。
 
 :::image type="content" source="media/monitor-with-resource-health/available.png" alt-text="Azure Data Explorer リソースの [リソース正常性] ページのスクリーンショット。状態が [利用可能] と表示され、強調表示されています。" border="false":::
 
 ### <a name="unavailable"></a>使用不可
 
-**使用不可**の正常性状態は、クエリやインジェストを実行できなくなるような問題が Azure Data Explorer リソースに発生していることを示します。 たとえば、Azure Data Explorer リソースのノードが予期せず再起動されたようなケースが該当します。 Azure Data Explorer リソースが長期間この状態のままである場合は、[サポート]()に問い合わせてください。
+**使用不可** の正常性状態は、クエリやインジェストを実行できなくなるような問題が Azure Data Explorer リソースに発生していることを示します。 たとえば、Azure Data Explorer リソースのノードが予期せず再起動されたようなケースが該当します。 Azure Data Explorer リソースが長期間この状態のままである場合は、[サポート]()に問い合わせてください。
 
 :::image type="content" source="media/monitor-with-resource-health/unavailable.png" alt-text="Azure Data Explorer リソースの [リソース正常性] ページのスクリーンショット。状態が [利用可能] と表示され、強調表示されています。" border="false":::
 
@@ -53,10 +53,10 @@ Resource Health では、次のようなさまざまな正常性の状態を調�
 
 ### <a name="unknown"></a>Unknown
 
-**不明**の正常性状態は、**Resource Health** がこの Azure Data Explorer リソースに関する情報を 10 分以上受け取っていないことを示します。 この状態は Azure Data Explorer リソースの正常性を明確に示すものではありませんが、トラブルシューティング プロセスにおいて重要なデータ ポイントです。 Azure Data Explorer クラスターが正常に機能している場合、状態は数分内に**利用可能**に変わります。 **不明**の正常性状態は、プラットフォーム内のイベントの影響をリソースが受けていることを示唆している可能性があります。 
+**不明** の正常性状態は、 **Resource Health** がこの Azure Data Explorer リソースに関する情報を 10 分以上受け取っていないことを示します。 この状態は Azure Data Explorer リソースの正常性を明確に示すものではありませんが、トラブルシューティング プロセスにおいて重要なデータ ポイントです。 Azure Data Explorer クラスターが正常に機能している場合、状態は数分内に **利用可能** に変わります。 **不明** の正常性状態は、プラットフォーム内のイベントの影響をリソースが受けていることを示唆している可能性があります。 
 
 > [!TIP]
-> Azure Data Explorer クラスター リソースが停止状態の場合、その正常性は**不明**になります。
+> Azure Data Explorer クラスター リソースが停止状態の場合、その正常性は **不明** になります。
 
 :::image type="content" source="media/monitor-with-resource-health/unknown.png" alt-text="Azure Data Explorer リソースの [リソース正常性] ページのスクリーンショット。状態が [利用可能] と表示され、強調表示されています。" border="false":::
 
@@ -68,6 +68,6 @@ Resource Health では、次のようなさまざまな正常性の状態を調�
 
 ## <a name="next-steps"></a>次のステップ
 
-* [Resource Health アラートを構成する](https://docs.microsoft.com/azure/service-health/resource-health-alert-arm-template-guide)
+* [Resource Health アラートを構成する](/azure/service-health/resource-health-alert-arm-template-guide)
 * [チュートリアル:Azure Data Explorer で監視データを取り込んでクエリを実行する](ingest-data-no-code.md)
 * [メトリックを使用した Azure Data Explorer のパフォーマンス、正常性、および使用状況の監視](using-metrics.md)

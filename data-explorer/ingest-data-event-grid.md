@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 3452ca547778869ae08e7aef92c1a3a7a4754446
-ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
+ms.openlocfilehash: 209a58dd53dd773567aeb527fa45499ddd397c20
+ms.sourcegitcommit: 4f24d68f1ae4903a2885985aa45fd15948867175
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/15/2020
-ms.locfileid: "92098440"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92558225"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Event Grid の通知をサブスクライブすることで Azure Data Explorer に BLOB を取り込む
 
@@ -98,7 +98,7 @@ Azure Data Explorer で、Event Hubs のデータの送信先となるテーブ�
     | 詳細設定 | *データにヘッダーが含まれている* | ヘッダーを無視します。 *SV 型ファイルでサポートされています。|
 
    > [!NOTE]
-   > **既定のルーティング設定**をすべて指定する必要はありません。 部分的な設定も受け入れられます。
+   > **既定のルーティング設定** をすべて指定する必要はありません。 部分的な設定も受け入れられます。
 1. **[Next:確認と作成]** を選択します
 
 ### <a name="data-connection---review--create-tab"></a>データ接続 - [確認と作成] タブ
@@ -155,11 +155,11 @@ Azure Storage リソースを操作するいくつかの基本的な Azure CLI �
 ```
 
 > [!NOTE]
-> インジェストのパフォーマンスを最高にするには、インジェストのために送信される圧縮された BLOB の "*圧縮されていない状態*" でのサイズを伝える必要があります。 Event Grid の通知には基本情報しか含まれていないため、サイズ情報は明示的に伝達する必要があります。 圧縮されていないサイズの情報は、BLOB メタデータの `rawSizeBytes` プロパティに "*圧縮されていない*" データ サイズ (バイト単位) を設定することで提供できます。
+> インジェストのパフォーマンスを最高にするには、インジェストのために送信される圧縮された BLOB の " *圧縮されていない状態* " でのサイズを伝える必要があります。 Event Grid の通知には基本情報しか含まれていないため、サイズ情報は明示的に伝達する必要があります。 圧縮されていないサイズの情報は、BLOB メタデータの `rawSizeBytes` プロパティに " *圧縮されていない* " データ サイズ (バイト単位) を設定することで提供できます。
 
 ### <a name="ingestion-properties"></a>インジェストのプロパティ
 
-BLOB メタデータを使用して、BLOB インジェストの[インジェストのプロパティ](ingest-data-event-grid-overview.md#set-ingestion-properties)を指定できます。 
+BLOB メタデータを使用して、BLOB インジェストの[インジェストのプロパティ](ingest-data-event-grid-overview.md#ingestion-properties)を指定できます。 
 
 > [!NOTE]
 > Azure Data Explorer では、BLOB 投稿の取り込みは削除されません。
@@ -170,8 +170,8 @@ BLOB メタデータを使用して、BLOB インジェストの[インジェス
 
 > [!NOTE]
 > Azure Data Explorer には、インジェスト プロセスを最適化することを目的とした、データ インジェストの集計 (バッチ処理) ポリシーがあります。
-既定では、ポリシーは 5 分間に構成されます。
-このポリシーは、必要に応じて、後で変更できます。 この記事では、数分間の待機時間が発生する可能性があります。
+> 既定では、ポリシーは 5 分間に構成されます。
+> このポリシーは、必要に応じて、後で変更できます。 この記事では、数分間の待機時間が発生する可能性があります。
 
 1. アプリの実行中に Azure portal でイベント グリッドを確認すると、アクティビティの急上昇が見られます。
 

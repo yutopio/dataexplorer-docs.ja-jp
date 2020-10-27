@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/12/2020
-ms.openlocfilehash: 0d6695ddf6923dcbf44ac3466a2388edc7618551
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: d81ed37a7502e0795fc82f38a918719a5da8db8e
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874972"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342894"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-kibana-with-the-k2bridge-open-source-connector"></a>K2Bridge オープンソース コネクタを使用して Kibana で Azure Data Explorer のデータを視覚化する
 
@@ -40,7 +40,7 @@ Kibana で Azure Data Explorer のデータを視覚化するには、事前に�
 
 * [Helm V3](https://github.com/helm/helm#install)。Kubernetes パッケージ マネージャーです。
 
-* Azure Kubernetes Service (AKS) クラスターまたはその他の Kubernetes クラスター。 バージョン 1.14 から 1.16 へのテストと検証が完了しました。 AKS クラスターが必要であれば、[Azure CLI を使用して](https://docs.microsoft.com/azure/aks/kubernetes-walkthrough)、または [Azure portal を使用して](https://docs.microsoft.com/azure/aks/kubernetes-walkthrough-portal)、AKS クラスターをデプロイする方法を参照してください。
+* Azure Kubernetes Service (AKS) クラスターまたはその他の Kubernetes クラスター。 バージョン 1.14 から 1.16 へのテストと検証が完了しました。 AKS クラスターが必要であれば、[Azure CLI を使用して](/azure/aks/kubernetes-walkthrough)、または [Azure portal を使用して](/azure/aks/kubernetes-walkthrough-portal)、AKS クラスターをデプロイする方法を参照してください。
 
 * [Azure Data Explorer クラスター](create-cluster-database-portal.md)。クラスターの URL とデータベース名が含まれます。
 
@@ -48,7 +48,7 @@ Kibana で Azure Data Explorer のデータを視覚化するには、事前に�
 
     サービス プリンシパルに表示アクセス許可を設定することを推奨します。より高いレベルのアクセス許可は使用しないことをお勧めします。 [Azure AD サービス プリンシパルにクラスターの表示アクセス許可を設定します](manage-database-permissions.md#manage-permissions-in-the-azure-portal)。
 
-    Azure AD サービス プリンシパルについて詳しくは、[Azure AD サービス プリンシパルの作成](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#create-an-azure-active-directory-application)に関する記事をご覧ください。
+    Azure AD サービス プリンシパルについて詳しくは、[Azure AD サービス プリンシパルの作成](/azure/active-directory/develop/howto-create-service-principal-portal#create-an-azure-active-directory-application)に関する記事をご覧ください。
 
 ## <a name="run-k2bridge-on-azure-kubernetes-service-aks"></a>Azure Kubernetes Service (AKS) で K2Bridge を実行する
 
@@ -87,7 +87,7 @@ Kibana で Azure Data Explorer のデータを視覚化するには、事前に�
         ADX_TENANT_ID=[SERVICE_PRINCIPAL_TENANT_ID]
         ```
 
-    1. 必要に応じて、Application Insights テレメトリを有効にします。 Application Insights を初めて使用する場合は、[Application Insights リソースを作成](https://docs.microsoft.com/azure/azure-monitor/app/create-new-resource)します。 変数に[インストルメンテーション キーをコピー](https://docs.microsoft.com/azure/azure-monitor/app/create-new-resource#copy-the-instrumentation-key)します。
+    1. 必要に応じて、Application Insights テレメトリを有効にします。 Application Insights を初めて使用する場合は、[Application Insights リソースを作成](/azure/azure-monitor/app/create-new-resource)します。 変数に[インストルメンテーション キーをコピー](/azure/azure-monitor/app/create-new-resource#copy-the-instrumentation-key)します。
 
         ```bash
         APPLICATION_INSIGHTS_KEY=[INSTRUMENTATION_KEY]
@@ -118,7 +118,7 @@ Kibana で Azure Data Explorer のデータを視覚化するには、事前に�
 
     1. Kibana をユーザーに公開します。 そのためには複数の方法があります。 使用する方法は、ユース ケースによって大きく異なります。
 
-        たとえば、サービスをロード バランサー サービスとして公開できます。 これを行うには、 **--set service. type = LoadBalancer** パラメーターを[以前の Kibana Helm **インストール** コマンド](#install-kibana-service)に追加します。
+        たとえば、サービスをロード バランサー サービスとして公開できます。 これを行うには、 **--set service. type = LoadBalancer** パラメーターを [以前の Kibana Helm **インストール** コマンド](#install-kibana-service)に追加します。
 
         その後、次のコマンドを実行します。
 
@@ -165,7 +165,7 @@ Azure Data Explorer が Kibana のデータ ソースとして構成されてい
 
    ![展開されたレコード](media/k2bridge/k2bridge-expand-record.png)
 
-1. 既定では、結果テーブルには **_source** 列が含まれています。 また、時間フィールドが存在する場合は、**Time** 列も含まれます。 一番左側のペインでフィールド名の横にある **[add]\(追加\)** を選択することで、結果テーブルに特定の列を追加できます。
+1. 既定では、結果テーブルには **_source** 列が含まれています。 また、時間フィールドが存在する場合は、 **Time** 列も含まれます。 一番左側のペインでフィールド名の横にある **[add]\(追加\)** を選択することで、結果テーブルに特定の列を追加できます。
 
    ![[add]\(追加\) ボタンが強調表示されている特定の列](media/k2bridge/k2bridge-specific-columns.png)
 
@@ -175,7 +175,7 @@ Azure Data Explorer が Kibana のデータ ソースとして構成されてい
     * Lucene クエリ構文の使用。 次に例を示します。
         * "error" を検索して、この値を含むすべてのレコードを検索します。
         * "status: 200" を検索して、状態値が 200 のすべてのレコードを取得します。
-    * 論理演算子 **AND**、**OR**、および **NOT** を使用します。
+    * 論理演算子 **AND** 、 **OR** 、および **NOT** を使用します。
     * アスタリスク (\*) と疑問符 (?) のワイルドカード文字を使用します。 たとえば、クエリ "destination_city:L*" は、destination-city 値が "L" または "l" で始まるレコードと一致します。 (K2Bridge では大文字と小文字は区別されません。)
 
     ![Running a query](media/k2bridge/k2bridge-run-query.png)

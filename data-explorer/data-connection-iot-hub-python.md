@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: 4c54ae4aeded5579a4c7e5e016d60c8b46ba0908
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: afef1433c8928e0b1b33ca521aeffe881aedf61a
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873289"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342962"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-python-preview"></a>Python を使用して Azure Data Explorer 用に IoT Hub データ接続を作成する (プレビュー)
 
@@ -30,7 +30,7 @@ ms.locfileid: "88873289"
 * アクティブなサブスクリプションが含まれる Azure アカウント。 [無料でアカウントを作成できます](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)。
 * [Python 3.4 以上](https://www.python.org/downloads/)。
 * [クラスターとデータベース](create-cluster-database-python.md)。
-* [テーブルと列のマッピング](net-standard-ingest-data.md#create-a-table-on-your-test-cluster)。
+* [テーブルと列のマッピング](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster)。
 * [データベースとテーブルのポリシー](database-table-policies-python.md) (省略可能)。
 * [共有アクセス ポリシーが構成されている IoT ハブ](ingest-data-iot-hub.md#create-an-iot-hub)。
 

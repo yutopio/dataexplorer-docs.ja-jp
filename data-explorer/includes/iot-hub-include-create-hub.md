@@ -8,26 +8,26 @@ ms.topic: include
 ms.date: 02/14/2020
 ms.author: orspodek
 ms.custom: include file
-ms.openlocfilehash: 8009d1317817fe399952879ce5b524d6cea4da6f
-ms.sourcegitcommit: 09da3f26b4235368297b8b9b604d4282228a443c
+ms.openlocfilehash: ea41eaf8a24bdff56c99092f6a862393eb5272ab
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87375621"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92346919"
 ---
 ここでは、[Azure portal](https://portal.azure.com) を使用して IoT ハブを作成する方法について説明します。
 
 1. [Azure portal](https://portal.azure.com) にサインインします。
 
-1. Azure ホームページから **[+ リソースの作成]** ボタンを選択し、 **[Marketplace を検索]** フィールドに「*IoT Hub*」と入力します。
+1. Azure ホームページから **[+ リソースの作成]** ボタンを選択し、 **[Marketplace を検索]** フィールドに「 *IoT Hub* 」と入力します。
 
 1. 検索結果の **[IoT Hub]** を選択し、 **[作成]** を選択します。
 
 1. **[基本]** タブで、次のように各フィールドに入力します。
 
-   - **サブスクリプション**:ハブで使用するサブスクリプションを選択します。
+   - **サブスクリプション** :ハブで使用するサブスクリプションを選択します。
 
-   - **リソース グループ**:リソース グループを選択するか、新しく作成します。 新たに作成するには、 **[新規作成]** を選択して、使用する名前を入力します。 既存のリソース グループを使用するには、そのリソース グループを選択します。 詳しくは、[「Manage Azure Resource Manager resource groups (Azure Resource Manager のリソース グループの管理)](/azure/azure-resource-manager/management/manage-resource-groups-portal)」をご覧ください。
+   - **リソース グループ** :リソース グループを選択するか、新しく作成します。 新たに作成するには、 **[新規作成]** を選択して、使用する名前を入力します。 既存のリソース グループを使用するには、そのリソース グループを選択します。 詳しくは、[「Manage Azure Resource Manager resource groups (Azure Resource Manager のリソース グループの管理)](/azure/azure-resource-manager/management/manage-resource-groups-portal)」をご覧ください。
 
    - **[リージョン]** :ハブを配置するリージョンを選択します。 ユーザーに最も近い場所を選択します。 一部の機能 ([IoT Hub デバイス ストリーム](/azure/iot-hub/iot-hub-device-streams-overview)など) は、特定のリージョンでのみご利用いただけます。 これらの制限のある機能については、サポート対象のいずれかのリージョンを選択する必要があります。
 
@@ -50,7 +50,7 @@ ms.locfileid: "87375621"
     - **[IoT Hub ユニット]** : ユニットごとに許可される 1 日あたりのメッセージの数は、ハブの価格レベルによって決まります。 たとえば、ハブで 700,000 件のイングレス メッセージをサポートする場合は、S1 レベルのユニットを 2 つ選択します。
     他のレベルのオプションについて詳しくは、[適切な IoT Hub レベルの選択](/azure/iot-hub/iot-hub-scaling)に関するページをご覧ください。
 
-    - **Azure Security Center**:IoT およびお使いのデバイスに、脅威に対する保護のレイヤーを別途追加するには、これをオンにします。 このオプションは、Free レベルのハブでは使用できません。 この機能の詳細については、[Azure Security Center for IoT](https://docs.microsoft.com/azure/asc-for-iot/) に関するページを参照してください。
+    - **Azure Security Center** :IoT およびお使いのデバイスに、脅威に対する保護のレイヤーを別途追加するには、これをオンにします。 このオプションは、Free レベルのハブでは使用できません。 この機能の詳細については、[Azure Security Center for IoT](/azure/asc-for-iot/) に関するページを参照してください。
 
     - **[詳細設定]**  >  **[Device-to-cloud パーティション]** : このプロパティでは、device-to-cloud メッセージがそのメッセージの同時閲覧者数に関連付けられます。 ほとんどのハブでは、4 つのパーティションのみが必要となります。
 

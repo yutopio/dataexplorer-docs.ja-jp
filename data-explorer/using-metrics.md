@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/19/2020
 ms.custom: contperfq1
-ms.openlocfilehash: e2adf84e869638d6019b149af7623e12a64930d8
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: a91eca7232cb2583312ea54cab92aec014f4dcbd
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91056970"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343387"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>メトリックを使用した Azure Data Explorer のパフォーマンス、正常性、および使用状況の監視
 
@@ -29,7 +29,7 @@ Azure メトリックス エクスプローラーの詳細については、[メ
 ## <a name="use-metrics-to-monitor-your-azure-data-explorer-resources"></a>メトリックを使用して Azure Data Explorer のリソースを監視する
 
 1. [Azure portal](https://portal.azure.com/) にサインインします。
-1. Azure Data Explorer クラスターの左側のペインで、「*メトリック*」を検索します。
+1. Azure Data Explorer クラスターの左側のペインで、「 *メトリック* 」を検索します。
 1. **[メトリック]** を選択して [メトリック] ペインを開き、クラスターの分析を開始します。
     :::image type="content" source="media/using-metrics/select-metrics.gif" alt-text="Azure portal でメトリックを検索して選択する":::
 
@@ -41,11 +41,11 @@ Azure Data Explorer クラスターの **[リソース]** と **[メトリック
 
 ![[メトリック] ウィンドウ](media/using-metrics/metrics-pane.png)
 
-1. メトリック グラフを作成するには、**メトリック**名と、メトリックあたりの適切な**集計**を選択します。 さまざまなメトリックの詳細については、「[サポートされている Azure Data Explorer メトリック](#supported-azure-data-explorer-metrics)」を参照してください。
+1. メトリック グラフを作成するには、 **メトリック** 名と、メトリックあたりの適切な **集計** を選択します。 さまざまなメトリックの詳細については、「[サポートされている Azure Data Explorer メトリック](#supported-azure-data-explorer-metrics)」を参照してください。
 1. 同じグラフにプロットされた複数のメトリックを表示する場合は、 **[メトリックの追加]** を選択します。
 1. 1 つのビューに複数のグラフを表示する場合は、 **[+ New chart]\(+ 新規グラフ\)** を選択します。
 1. 時間範囲を変更する場合は、時刻の選択ツールを使用します (既定: 過去 24 時間)。
-1. ディメンションを持つメトリックには、[ **[フィルターの追加]** および **[Apply Splitting]\(分割の適用\)** ](/azure/azure-monitor/platform/metrics-getting-started#apply-dimension-filters-and-splitting) を使用します。
+1. ディメンションを持つメトリックには、 [ **[フィルターの追加]** および **[Apply Splitting]\(分割の適用\)**](/azure/azure-monitor/platform/metrics-getting-started#apply-dimension-filters-and-splitting) を使用します。
 1. グラフ構成をダッシュボードに追加して、再度表示できるようにする場合は、 **[ダッシュボードにピン留めする]** を選択します。
 1. 設定した条件を使用してメトリックを視覚化するには、 **[新しいアラート ルール]** を設定します。 新しいアラート ルールにはターゲット リソース、メトリック、分割、およびグラフからのフィルター ディメンションが含まれます。 これらの設定は、[アラート ルールの作成ウィンドウ](/azure/azure-monitor/platform/metrics-charts#create-alert-rules)で変更します。
 
@@ -97,8 +97,8 @@ Azure Data Explorer 用の Azure Monitor のメトリックのアルファベッ
 | Batch blob count (バッチ BLOB 数) | Count | Avg、Max、Min | 完了したインジェスト バッチ内のデータ ソースの数。 | データベース |
 | Batch duration (バッチ期間) | Seconds | Avg、Max、Min | インジェスト フロー内のバッチ処理フェーズの期間  | データベース |
 | バッチ サイズ | バイト | Avg、Max、Min | インジェスト用に集計されたバッチで、予想される非圧縮のデータ サイズ | データベース |
-| Batches processed (処理されたバッチ) | Count | Avg、Max、Min | インジェスト用に完了したバッチの数。 `Batching Type`: バッチがバッチ処理時間、データ サイズ、または[バッチ処理ポリシー](/azure/data-explorer/kusto/management/batchingpolicy)によって設定されたファイル数の上限に達したかどうか。 | データベース、バッチ処理の種類 |
-| 検出の待機時間 | Seconds | Avg、Max、Min | データのエンキューから、データ接続によって検出されるまでの時間。 この時間は、**Kusto の合計インジェスト期間**または **KustoEventAge (インジェスト待機時間)** には含まれません。 | データベース、テーブル、データ接続の種類、データ接続名 |
+| Batches processed (処理されたバッチ) | Count | Avg、Max、Min | インジェスト用に完了したバッチの数。 `Batching Type`: バッチがバッチ処理時間、データ サイズ、または[バッチ処理ポリシー](./kusto/management/batchingpolicy.md)によって設定されたファイル数の上限に達したかどうか。 | データベース、バッチ処理の種類 |
+| 検出の待機時間 | Seconds | Avg、Max、Min | データのエンキューから、データ接続によって検出されるまでの時間。 この時間は、 **Kusto の合計インジェスト期間** または **KustoEventAge (インジェスト待機時間)** には含まれません。 | データベース、テーブル、データ接続の種類、データ接続名 |
 | (Event/IoT Hubs の) 処理されたイベント | Count | Max、Min、Sum | イベント ハブから読み取られ、クラスターによって処理されたイベントの数。 イベントは、クラスター エンジンによって拒否されたイベントと受け入れられたイベントに分類されます。 | EventStatus |
 | インジェストの待ち時間 | Seconds | Avg、Max、Min | クラスターでデータが受信された時点からクエリー用に準備できるまでの、取り込まれたデータの待ち時間。 インジェストの待ち時間の長さは、インジェストのシナリオに応じて異なります。 | なし |
 | インジェストの結果 | Count | Count | 失敗および成功したインジェスト操作の合計数。 <br> <br> **[Apply Splitting]\(分割の適用\)** を使用して、成功および失敗した結果のバケットを作成し、ディメンションを分析します ( **[値]**  >  **[状態]** )。| IngestionResultDetails |

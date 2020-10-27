@@ -7,12 +7,12 @@ ms.reviewer: takamara
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: b062b2da81662e89dc61720ebf6bb555f896a8ca
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 228722bab25dc19532860f92b8194c4fd2d79a38
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874785"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343098"
 ---
 # <a name="ingest-data-from-logstash-to-azure-data-explorer"></a>Logstash から Azure Data Explorer にデータを取り込む
 
@@ -89,7 +89,7 @@ Logstash では、エンドツーエンドのパイプラインをテストす�
 
 ## <a name="configure-logstash-to-send-data-to-azure-data-explorer"></a>Azure Data Explorer にデータを送信するように Logstash を構成する
 
-次の設定を、前の手順で使用したのと同じ構成ファイルに貼り付けます。 すべてのプレースホルダーは、お客様の設定に対応する値に置き換えてください。 詳細については、[AAD アプリケーションの作成](kusto/management/access-control/how-to-provision-aad-app.md)に関するページを参照してください。 
+次の設定を、前の手順で使用したのと同じ構成ファイルに貼り付けます。 すべてのプレースホルダーは、お客様の設定に対応する値に置き換えてください。 詳細については、[AAD アプリケーションの作成](./provision-azure-ad-app.md)に関するページを参照してください。 
 
 ```ruby
 output {
@@ -110,7 +110,7 @@ output {
 | --- | --- |
 | **path** | Logstash プラグインでは、イベントを Azure Data Explorer に送信する前に、それらを一時ファイルに書き込みます。 このパラメーターには、ファイルを書き込む場所のパスと、Azure Data Explorer サービスへのアップロードをトリガーするためのファイル ローテーションの時間表現が含まれます。|
 | **ingest_url** | インジェストに関連する通信の Kusto エンドポイント。|
-| **app_id**、**app_key**、および **app_tenant**| Azure Data Explorer に接続するために必要な資格情報。 取り込み特権を備えたアプリケーションを必ず使用してください。 |
+| **app_id** 、 **app_key** 、および **app_tenant**| Azure Data Explorer に接続するために必要な資格情報。 取り込み特権を備えたアプリケーションを必ず使用してください。 |
 | **database**| イベントを配置するデータベースの名前。 |
 | **テーブル** | イベントを配置するターゲット テーブルの名前。 |
 | **mapping** | マッピングは、受信イベント json 文字列を適切な行形式にマッピングするために使用されます (どのプロパティをどの列に入力するかを定義します)。 |

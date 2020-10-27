@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/24/2019
-ms.openlocfilehash: 8febe9934234370b217ab4f5a2591fd0b5adb759
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: e970b469b1114252cab6e125ef247f048b4067bd
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873017"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342860"
 ---
 # <a name="create-database-and-table-policies-for-azure-data-explorer-by-using-python"></a>Python を使用して Azure Data Explorer のデータベースとテーブルのポリシーを作成する
 
@@ -38,7 +38,7 @@ pip install azure-kusto-data (Optional, for changing table's policies)
 ```
 
 ## <a name="authentication"></a>認証
-この記事の例を実行するには、リソースにアクセスできる Azure AD アプリケーションとサービス プリンシパルが必要です。 [テスト用のクラスターとデータベース](create-cluster-database-csharp.md#authentication)と同じ Azure AD アプリケーションを認証用に使用できます。 別の Azure AD アプリケーションを使用する場合は、[Azure AD アプリケーションの作成](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal)に関するページを参照して、無料の Azure AD アプリケーションを作成し、サブスクリプション スコープでロールの割り当てを追加します。 `Directory (tenant) ID`、`Application ID`、および `Client Secret` を取得する方法も示されています。 新しい Azure AD アプリケーションをプリンシパルとしてデータベースに追加することが必要になる場合があります。詳細については、「[Azure Data Explorer のデータベースのアクセス許可を管理する](manage-database-permissions.md)」を参照してください。    
+この記事の例を実行するには、リソースにアクセスできる Azure AD アプリケーションとサービス プリンシパルが必要です。 [テスト用のクラスターとデータベース](create-cluster-database-csharp.md#authentication)と同じ Azure AD アプリケーションを認証用に使用できます。 別の Azure AD アプリケーションを使用する場合は、[Azure AD アプリケーションの作成](/azure/active-directory/develop/howto-create-service-principal-portal)に関するページを参照して、無料の Azure AD アプリケーションを作成し、サブスクリプション スコープでロールの割り当てを追加します。 `Directory (tenant) ID`、`Application ID`、および `Client Secret` を取得する方法も示されています。 新しい Azure AD アプリケーションをプリンシパルとしてデータベースに追加することが必要になる場合があります。詳細については、「[Azure Data Explorer のデータベースのアクセス許可を管理する](manage-database-permissions.md)」を参照してください。    
 
 ## <a name="alter-database-retention-policy"></a>データベースの保持ポリシーを変更する
 10 日間の論理的な削除期間で保持ポリシーを設定します。

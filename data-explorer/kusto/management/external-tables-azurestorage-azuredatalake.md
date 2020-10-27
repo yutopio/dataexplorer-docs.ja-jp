@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 0532219b8efc1cab7508d1838882b6fa48f5048f
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 1d0625c949fe563084caeec936e3433c9ee70f5e
+ms.sourcegitcommit: ef3d919dee27c030842abf7c45c9e82e6e8350ee
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343268"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92630111"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -54,7 +54,7 @@ ms.locfileid: "92343268"
 
 &nbsp;&nbsp;*ColumnName* `:`*ColumnType* [ `,` *ColumnName* `:` *ColumnType* ...]
 
-*ColumnName*はエンティティの[名前付け](../query/schema-entities/entity-names.md)規則に準拠し、 *ColumnType*は[サポートされているデータ型](../query/scalar-data-types/index.md)の1つです。
+*ColumnName* はエンティティの [名前付け](../query/schema-entities/entity-names.md)規則に準拠し、 *ColumnType* は [サポートされているデータ型](../query/scalar-data-types/index.md)の1つです。
 
 > [!TIP]
 > 外部データスキーマが不明な場合は、 [推定 \_ ストレージ \_ スキーマ](../query/inferstorageschemaplugin.md) プラグインを使用します。これは、外部ファイルの内容に基づいてスキーマを推論するのに役立ちます。
@@ -74,7 +74,7 @@ ms.locfileid: "92343268"
 
   *PartitionName* `:``string` `=` *ColumnName*
 
-* 文字列型の列値の [ハッシュ](../query/hashfunction.md)(剰余) に基づいてパーティション *分割します*。
+* 文字列型の列値の [ハッシュ](../query/hashfunction.md)(剰余) に基づいてパーティション *分割します* 。
 
   *PartitionName* `:``long` `=` `hash``(` *ColumnName* `,` *数値*`)`
 
@@ -90,15 +90,15 @@ ms.locfileid: "92343268"
 
 外部データ URI ファイルパス形式。パーティションに加えて指定できます。 パスの形式は、パーティション要素とテキスト区切りのシーケンスです。
 
-&nbsp;&nbsp;[*Stringseparator*] *Partition* [*stringseparator*] [*partition* [*stringseparator*]...]  
+&nbsp;&nbsp;[ *Stringseparator* ] *Partition* [ *stringseparator* ] [ *partition* [ *stringseparator* ]...]  
 
-ここで、 *partition* は in 句で宣言されたパーティションを指し `partition` `by` 、 *stringseparator* は引用符で囲まれた任意のテキストです。 連続するパーティション要素は、 *Stringseparator*を使用して別に設定する必要があります。
+ここで、 *partition* は in 句で宣言されたパーティションを指し `partition` `by` 、 *stringseparator* は引用符で囲まれた任意のテキストです。 連続するパーティション要素は、 *Stringseparator* を使用して別に設定する必要があります。
 
 元のファイルパスプレフィックスは、文字列としてレンダリングされ、対応するテキスト区切り記号で区切られたパーティション要素を使用して作成できます。 Datetime パーティション値の表示に使用する形式を指定するには、次のマクロを使用できます。
 
 &nbsp;&nbsp;`datetime_pattern``(` *DateTimeFormat* `,` *PartitionName*`)`  
 
-*DateTimeFormat*は .net 形式の仕様に準拠しており、拡張機能を使用すると、書式指定子を中かっこで囲むことができます。 たとえば、次の2つの形式は同等です。
+*DateTimeFormat* は .net 形式の仕様に準拠しており、拡張機能を使用すると、書式指定子を中かっこで囲むことができます。 たとえば、次の2つの形式は同等です。
 
 &nbsp;&nbsp;`'year='yyyy'/month='MM` そして `year={yyyy}/month={MM}`
 
@@ -114,7 +114,7 @@ ms.locfileid: "92343268"
 | `bin(`*項目*`, 1h)` | `yyyy/MM/dd/HH` |
 | `bin(`*項目*`, 1m)` | `yyyy/MM/dd/HH/mm` |
 
-*Pathformat*を外部テーブル定義から省略した場合、すべてのパーティションが定義されている順序とまったく同じ順序で区切られていると見なされ `/` ます。 パーティションは、既定の文字列表現を使用してレンダリングされます。
+*Pathformat* を外部テーブル定義から省略した場合、すべてのパーティションが定義されている順序とまったく同じ順序で区切られていると見なされ `/` ます。 パーティションは、既定の文字列表現を使用してレンダリングされます。
 
 パス形式の定義の正確性を確認するには、外部テーブルを作成するときにプロパティを使用し `sampleUris` ます。
 
@@ -138,7 +138,7 @@ Blob コンテナーまたは Azure Data Lake Store ファイルシステム (�
 <a name="properties"></a>
 *省略可能なプロパティ*
 
-| プロパティ         | Type     | [説明]       |
+| プロパティ         | 種類     | 説明       |
 |------------------|----------|-------------------------------------------------------------------------------------|
 | `folder`         | `string` | テーブルのフォルダー                                                                     |
 | `docString`      | `string` | テーブルをドキュメント化する文字列                                                       |
@@ -221,7 +221,7 @@ with (fileExtension = ".txt")
 
 **サンプル出力**
 
-|TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
+|TableName|TableType|フォルダー|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
 |ExternalTable|BLOB|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
 
@@ -270,13 +270,13 @@ dataformat=parquet
 
 **構文 :** 
 
-`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults*]
+`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults* ]
 
 ここで、 *MaxResults* は省略可能なパラメーターであり、結果の数を制限するように設定できます。
 
 **出力**
 
-| 出力パラメーター | Type   | 説明                       |
+| 出力パラメーター | 種類   | 説明                       |
 |------------------|--------|-----------------------------------|
 | URI              | string | 外部ストレージデータファイルの URI |
 | サイズ             | long   | ファイルの長さ (バイト単位)              |
@@ -378,5 +378,6 @@ dataformat=parquet
 ```
 ## <a name="next-steps"></a>次のステップ
 
-* [外部テーブル全般制御コマンド](./external-table-commands.md)
-* [外部 SQL テーブルを作成および変更する](external-sql-tables.md)
+* [外部テーブル](../../data-lake-query-data.md)に対してクエリを実行します。
+* [外部テーブルにデータをエクスポート](data-export/export-data-to-an-external-table.md)します。
+* [外部テーブルに連続データをエクスポート](data-export/continuous-data-export.md)します。

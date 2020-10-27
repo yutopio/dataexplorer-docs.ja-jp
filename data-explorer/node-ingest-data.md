@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: c7c85440c1b2e3830805efdabc3c95ec7ed5797c
-ms.sourcegitcommit: 4b6488a40c35c541a16c65a237c201b7f7dc02e2
+ms.openlocfilehash: 7262b0391abf42dc71a04eec8be9958c46726edb
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/31/2020
-ms.locfileid: "89176292"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342554"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-node-library"></a>Azure Data Explorer の Node ライブラリを使用してデータを取り込む
 
@@ -56,7 +56,7 @@ const { DataFormat } = require("azure-kusto-ingest").IngestionPropertiesEnums;
 const { BlobDescriptor } = require("azure-kusto-ingest").IngestionDescriptors;
 
 ```
-Azure Data Explorer では、アプリケーションを認証するために Azure Active Directory テナント ID が使用されます。 テナント ID を検索するには、「[Microsoft 365 のテナント ID の検索](https://docs.microsoft.com/onedrive/find-your-office-365-tenant-id)」に従ってください。
+Azure Data Explorer では、アプリケーションを認証するために Azure Active Directory テナント ID が使用されます。 テナント ID を検索するには、「[Microsoft 365 のテナント ID の検索](/onedrive/find-your-office-365-tenant-id)」に従ってください。
 
 このコードを実行する前に、`authorityId`、`kustoUri`、`kustoIngestUri`、`kustoDatabase` の値を設定します。
 
@@ -82,7 +82,7 @@ const destTableMapping = "StormEvents_CSV_Mapping";
 
 ## <a name="set-source-file-information"></a>ソース ファイルの情報を設定する
 
-他のクラスをインポートし、データ ソース ファイルに対する定数を設定します。 この例では、Azure Blob Storage でホストされているサンプル ファイルを使います。 **StormEvents**サンプル データ セットには､ [National Centers for Environmental Information から入手した気象関連データが含まれています](https://www.ncdc.noaa.gov/stormevents/)｡
+他のクラスをインポートし、データ ソース ファイルに対する定数を設定します。 この例では、Azure Blob Storage でホストされているサンプル ファイルを使います。 **StormEvents** サンプル データ セットには､ [National Centers for Environmental Information から入手した気象関連データが含まれています](https://www.ncdc.noaa.gov/stormevents/)｡
 
 ```javascript
 const container = "samplefiles";
@@ -94,7 +94,7 @@ const blobPath = `https://${account}.blob.core.windows.net/${container}/${filePa
 
 ## <a name="create-a-table-on-your-test-cluster"></a>テスト クラスターにテーブルを作成する
 
-`StormEvents.csv` ファイル内のデータのスキーマと一致するテーブルを作成します。 このコードを実行すると、次のようなメッセージが返されます: "*サインインするには、Web ブラウザーを使用してページ https://microsoft.com/devicelogin を開き、コード XXXXXXXXX を入力して認証します*"。 この手順に従ってサインインし、元のページに戻って次のコード ブロックを実行します。 接続を行う後続のコード ブロックでは、再びサインインする必要があります。
+`StormEvents.csv` ファイル内のデータのスキーマと一致するテーブルを作成します。 このコードを実行すると、次のようなメッセージが返されます: " *サインインするには、Web ブラウザーを使用してページ https://microsoft.com/devicelogin を開き、コード XXXXXXXXX を入力して認証します* "。 この手順に従ってサインインし、元のページに戻って次のコード ブロックを実行します。 接続を行う後続のコード ブロックでは、再びサインインする必要があります。
 
 ```javascript
 const kustoClient = new KustoClient(kcsbData);

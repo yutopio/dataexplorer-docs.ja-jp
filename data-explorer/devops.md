@@ -8,26 +8,26 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/05/2019
-ms.openlocfilehash: b45e6d0be5a61e4eff8f1c70d3df2fe7ee6901ea
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: a92e657bfc2f440deb20fd4b812169b1c2e32112
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874717"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342911"
 ---
 # <a name="azure-devops-task-for-azure-data-explorer"></a>Azure Data Explorer の Azure DevOps タスク
 
 [Azure DevOps Services](https://azure.microsoft.com/services/devops/) は、高性能パイプライン、無料のプライベート Git リポジトリ、構成可能なかんばんボード、広範囲で自動化された継続的テスト機能など、開発向け共同作業ツールを提供します。 [Azure Pipelines](https://azure.microsoft.com/services/devops/pipelines/) は Azure DevOps の機能であり、あらゆる言語、プラットフォーム、クラウドと連動する高性能パイプラインでコードをデプロイするよう、CI/CD を管理できます。
 [Azure Data Explorer - Admin Commands](https://marketplace.visualstudio.com/items?itemName=Azure-Kusto.PublishToADX) は the Azure Pipelines のタスクであり、リリース パイプラインを作成し、データベースの変更を Azure Data Explorer データベースにデプロイできます。 [Visual Studio Marketplace](https://marketplace.visualstudio.com/) から無料で入手できます。
 
-このドキュメントでは、**Azure Data Explorer – Admin Commands** タスクを使用し、スキーマの変更をデータベースにデプロイする簡単な例について説明します。 完全な CI/CD パイプラインについては、[Azure DevOps ドキュメント](/azure/devops/user-guide/what-is-azure-devops?view=azure-devops#vsts)を参照してください。
+このドキュメントでは、 **Azure Data Explorer – Admin Commands** タスクを使用し、スキーマの変更をデータベースにデプロイする簡単な例について説明します。 完全な CI/CD パイプラインについては、[Azure DevOps ドキュメント](/azure/devops/user-guide/what-is-azure-devops?view=azure-devops#vsts)を参照してください。
 
 ## <a name="prerequisites"></a>前提条件
 
 * Azure サブスクリプションをお持ちでない場合は、開始する前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
 * Azure Data Explorer クラスター セットアップ:
     * [Azure Data Explorer クラスターとデータベース](create-cluster-database-portal.md)。
-    * [Azure AD アプリケーションをプロビジョニングする](kusto/management/access-control/how-to-provision-aad-app.md)ことによって、Azure Active Directory (Azure AD) アプリを作成します。
+    * [Azure AD アプリケーションをプロビジョニングする](./provision-azure-ad-app.md)ことによって、Azure Active Directory (Azure AD) アプリを作成します。
     * [Azure Data Explorer データベースのアクセス許可を管理すること](manage-database-permissions.md)で、Azure Data Explorer データベースの Azure AD アプリへのアクセスを付与します。
 * Azure DevOps セットアップ:
     * [無料組織の新規登録](/azure/devops/user-guide/sign-up-invite-teammates?view=azure-devops)
@@ -37,7 +37,7 @@ ms.locfileid: "88874717"
 
 ## <a name="create-folders"></a>フォルダーを作成します。
 
-Git リポジトリでサンプル フォルダー (*Functions*、*Policies*、*Tables*) を作成します。 下の画像のように[ここ](https://github.com/Azure/azure-kusto-docs-samples/tree/master/DevOps_release_pipeline)から個々のフォルダーにファイルをコピーし、変更内容をコミットします。 次のワークフローを実行するためのサンプル ファイルが提供されます。
+Git リポジトリでサンプル フォルダー ( *Functions* 、 *Policies* 、 *Tables* ) を作成します。 下の画像のように[ここ](https://github.com/Azure/azure-kusto-docs-samples/tree/master/DevOps_release_pipeline)から個々のフォルダーにファイルをコピーし、変更内容をコミットします。 次のワークフローを実行するためのサンプル ファイルが提供されます。
 
 ![フォルダーを作成します。](media/devops/create-folders.png)
 
@@ -67,7 +67,7 @@ Git リポジトリでサンプル フォルダー (*Functions*、*Policies*、*
 
     ![変数の作成](media/devops/create-variable.png)
 
-    Azure portal の **Azure Data Explorer クラスター**の概要ページに Azure Data Explorer クラスター URI が含まれています。自分のエンドポイント URL はそこで見つかります。 URI は形式 `https://<Azure Data Explorer cluster URI>?DatabaseName=<DBName>` で構築します。  https:\//kustodocs.westus.kusto.windows.net?DatabaseName=SampleDB などです。
+    Azure portal の **Azure Data Explorer クラスター** の概要ページに Azure Data Explorer クラスター URI が含まれています。自分のエンドポイント URL はそこで見つかります。 URI は形式 `https://<Azure Data Explorer cluster URI>?DatabaseName=<DBName>` で構築します。  https:\//kustodocs.westus.kusto.windows.net?DatabaseName=SampleDB などです。
 
     ![Azure Data Explorer クラスター URI](media/devops/adx-cluster-uri.png)
 
@@ -77,14 +77,14 @@ Git リポジトリでサンプル フォルダー (*Functions*、*Policies*、*
 
     ![タスクの追加](media/devops/add-task.png)
 
-1. **Tables**、**Functions**、**Policies** をデプロイする 3 つのタスクをこの順番で作成します。 
+1. **Tables** 、 **Functions** 、 **Policies** をデプロイする 3 つのタスクをこの順番で作成します。 
 
-1. **[タスク]** タブで **[エージェント ジョブ]** の横にある **+** を選択します。 **Azure Data Explorer** を検索します。 **マーケットプレース**で、**Azure Data Explorer – Admin Commands** 拡張をインストールします。 次に、 **[Run Azure Data Explorer Command]\(Azure Data Explorer コマンドの実行\)** で **[追加]** を選択します。
+1. **[タスク]** タブで **[エージェント ジョブ]** の横にある **+** を選択します。 **Azure Data Explorer** を検索します。 **マーケットプレース** で、 **Azure Data Explorer – Admin Commands** 拡張をインストールします。 次に、 **[Run Azure Data Explorer Command]\(Azure Data Explorer コマンドの実行\)** で **[追加]** を選択します。
 
      ![管理者コマンドの追加](media/devops/add-admin-commands.png)
 
 1. 左の **[Kusto コマンド]** をクリックし、次の情報でタスクを更新します。
-    * **表示名**:タスクの名前
+    * **表示名** :タスクの名前
     * **[ファイル パス]** : **[Tables]** タスクで */Tables/* .csl を指定します。テーブル作成ファイルが *Table* フォルダーにあるためです。
     * **[エンドポイント URL]** : 前の手順で作成した `EndPoint URL` 変数を入力します。
     * **[Use Service Endpoint]\(サービス エンドポイントの使用\)** を選択し、 **[+ 新規]** を選択します。
@@ -105,7 +105,7 @@ Git リポジトリでサンプル フォルダー (*Functions*、*Policies*、*
 
     ![サービス接続の追加](media/devops/add-service-connection.png)
 
-1. 手順 1-5 をさらに 2 回繰り返し、*Functions* フォルダーと *Policies* フォルダーからファイルをデプロイします。 **[保存]** を選択します。 **[タスク]** タブで、**Deploy Tables**、**Deploy Functions**、**Deploy Policies** という 3 つのタスクが作成されていることを確認します。
+1. 手順 1-5 をさらに 2 回繰り返し、 *Functions* フォルダーと *Policies* フォルダーからファイルをデプロイします。 **[保存]** を選択します。 **[タスク]** タブで、 **Deploy Tables** 、 **Deploy Functions** 、 **Deploy Policies** という 3 つのタスクが作成されていることを確認します。
 
     ![すべてのフォルダーのデプロイ](media/devops/deploy-all-folders.png)
 

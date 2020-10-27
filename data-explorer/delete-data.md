@@ -7,12 +7,12 @@ ms.reviewer: avneraa
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/12/2020
-ms.openlocfilehash: fb9cdfbef5b4d2aa7c7b98fdc58d2ec7fdccbd0c
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 962735c666fa94a0b86cfae8775f712ee42e6d33
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874241"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342843"
 ---
 # <a name="delete-data-from-azure-data-explorer"></a>Azure データ エクスプローラーからデータを削除する
 
@@ -32,7 +32,7 @@ Azure Data Explorer は、[アイテム保持ポリシー](kusto/management/rete
 
 ## <a name="delete-data-by-dropping-extents"></a>エクステントをドロップしてデータを削除する
 
-[エクステント (データシャード)](kusto/management/extents-overview.md)とは、データが格納される内部構造です。 各エクステントは、何百万ものレコードを保持できます。 エクステントは、個別に削除することも、[ドロップ エクステントのコマンド](kusto/management/extents-commands.md#drop-extents)を使用してグループとして削除することもできます。 
+[エクステント (データシャード)](kusto/management/extents-overview.md)とは、データが格納される内部構造です。 各エクステントは、何百万ものレコードを保持できます。 エクステントは、個別に削除することも、[ドロップ エクステントのコマンド](./kusto/management/drop-extents.md)を使用してグループとして削除することもできます。
 
 ### <a name="examples"></a>例
 
@@ -52,5 +52,4 @@ Azure Data Explorer は、[アイテム保持ポリシー](kusto/management/rete
 
 ## <a name="delete-individual-rows-using-purge"></a>消去を使用して個々の行を削除する
 
-[データの消去](kusto/concepts/data-purge.md)は、個々の行を削除するために使用できます。 削除には時間がかかり、大量のシステム リソースを必要とします。 そのため、コンプライアンスのシナリオ以外にはお勧めできません。  
-
+[データの消去](kusto/concepts/data-purge.md)は、個々の行を削除するために使用できます。 削除には時間がかかり、大量のシステム リソースを必要とします。 そのため、コンプライアンスのシナリオ以外にはお勧めできません。

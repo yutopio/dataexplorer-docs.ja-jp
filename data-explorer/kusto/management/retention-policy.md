@@ -8,27 +8,27 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: ebbd9aa5544d97ef1e980bcb3a53f74dbde66547
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 79cac49a553a2b906947b4c85948b67718641587
+ms.sourcegitcommit: ef3d919dee27c030842abf7c45c9e82e6e8350ee
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967538"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92630077"
 ---
 # <a name="retention-policy-command"></a>アイテム保持ポリシー コマンド
 
-この記事では、[保持ポリシー](retentionpolicy.md)を作成および変更するために使用する制御コマンドについて説明します。
+この記事では、 [保持ポリシー](retentionpolicy.md)を作成および変更するために使用する制御コマンドについて説明します。
 
 ## <a name="show-retention-policy"></a>保持ポリシーの表示
 
 ```kusto
-.show <entity_type> <database_or_table> policy retention
+.show <entity_type> <database_or_table_or_materialized_view> policy retention
 
 .show <entity_type> *  policy retention
 ```
 
-* `entity_type`: テーブルまたはデータベース
-* `database_or_table`: `database_name` また `database_name.table_name` は `table_name` (データベースコンテキストの場合)
+* `entity_type` : テーブル、具体化したビュー、またはデータベース
+* `database_or_table_or_materialized_view`: `database_name` また `database_name.table_name` は `table_name` (データベースコンテキストの場合) または `materialized_view_name`
 
 **例**
 
@@ -45,11 +45,11 @@ ms.locfileid: "85967538"
 テーブルのデータ保持ポリシーを削除すると、テーブルはデータベースレベルから保持ポリシーを派生させます。
 
 ```kusto
-.delete <entity_type> <database_or_table> policy retention
+.delete <entity_type> <database_or_table_or_materialized_view> policy retention
 ```
 
-* `entity_type`: テーブルまたはデータベース
-* `database_or_table`: `database_name` また `database_name.table_name` は `table_name` (データベースコンテキストの場合)
+* `entity_type` : テーブル、具体化したビュー、またはデータベース
+* `database_or_table_or_materialized_view`: `database_name` また `database_name.table_name` は `table_name` (データベースコンテキストの場合) または `materialized_view_name`
 
 **例**
 
@@ -63,18 +63,18 @@ ms.locfileid: "85967538"
 ## <a name="alter-retention-policy"></a>保持ポリシーの変更
 
 ```kusto
-.alter <entity_type> <database_or_table> policy retention <retention_policy>
+.alter <entity_type> <database_or_table_or_materialized_view> policy retention <retention_policy>
 
 .alter tables (<table_name> [, ...]) policy retention <retention_policy>
 
-.alter-merge <entity_type> <database_or_table> policy retention <retention_policy>
+.alter-merge <entity_type> <database_or_table_or_materialized_view> policy retention <retention_policy>
 
-.alter-merge <entity_type> <database_or_table_name> policy retention [softdelete = <timespan>] [recoverability = disabled|enabled]
+.alter-merge <entity_type> <database_or_table_or_materialized_view> policy retention [softdelete = <timespan>] [recoverability = disabled|enabled]
 ```
 
-* `entity_type`: テーブルまたはデータベース
-* `database_or_table`: `database_name` また `database_name.table_name` は `table_name` (データベースコンテキストの場合)
-* `table_name`: データベースコンテキスト内のテーブルの名前。  ワイルドカード ( `*` ここでは許可されています)。
+* `entity_type` : テーブルまたはデータベースまたは具体化ビュー
+* `database_or_table_or_materialized_view`: `database_name` また `database_name.table_name` は `table_name` (データベースコンテキストの場合) または `materialized_view_name`
+* `table_name` : データベースコンテキスト内のテーブルの名前。  ワイルドカード ( `*` ここでは許可されています)。
 * `retention_policy` :
 
 ```kusto
@@ -95,12 +95,16 @@ ms.locfileid: "85967538"
 
 ```kusto
 .alter-merge table Table1 policy retention softdelete = 10d recoverability = disabled
+
+.alter-merge materialized-view View1 policy retention softdelete = 10d recoverability = disabled
 ```
 
 10日の論理的な削除期間で保持ポリシーを設定し、データの回復性を有効にします。
 
 ```kusto
 .alter table Table1 policy retention "{\"SoftDeletePeriod\": \"10.00:00:00\", \"Recoverability\": \"Enabled\"}"
+
+.alter materialized-view View1 policy retention "{\"SoftDeletePeriod\": \"10.00:00:00\", \"Recoverability\": \"Enabled\"}"
 ```
 
 上記と同じ保持ポリシーを設定しますが、今度は複数のテーブル (Table1、Table2、および Table3) の場合は次のようにします。

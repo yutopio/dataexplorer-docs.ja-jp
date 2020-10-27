@@ -7,12 +7,12 @@ ms.reviewer: dorcohen
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/25/2020
-ms.openlocfilehash: 7c40d6b1f62014e8ede6ed3328dd3a3974d41a88
-ms.sourcegitcommit: c2ab3176db4dd55ac9ca8eee52bbd24096d1277f
+ms.openlocfilehash: 72d092683b490c7b58335abc59fd5e3aea2f3e26
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/17/2020
-ms.locfileid: "90740305"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342945"
 ---
 # <a name="azure-data-explorer-connector-to-power-automate-preview"></a>Power Automate に接続する Azure Data Explorer コネクタ (プレビュー)
 
@@ -40,7 +40,7 @@ Azure Data Explorer Power Automate (以前は Microsoft Flow) コネクタを使
 ユーザー資格情報または Azure Active Directory (Azure AD) アプリケーションを使用して、認証を行うことができます。
 
 > [!Note]
-> アプリケーションが [Azure AD アプリケーション](kusto/management/access-control/how-to-provision-aad-app.md)であり、クラスターでクエリを実行する権限が与えられていることを確認します。
+> アプリケーションが [Azure AD アプリケーション](./provision-azure-ad-app.md)であり、クラスターでクエリを実行する権限が与えられていることを確認します。
 
 1. **[制御コマンドを実行して結果を視覚化する]** で、Flow コネクタの右上にある 3 つのドットを選択します。
 
@@ -81,7 +81,7 @@ Power Automate コネクタを使用するには、最初にトリガーを追�
     ![[フロー名] オプションが強調表示されている、[予定フローを作成] ページのスクリーンショット](./media/flow/flow-build-scheduled-flow.png)
 
 1. **[作成]**  >  **[新しいステップ]** の順に選択します。
-1. 検索ボックスに「*Kusto*」と入力し、 **[Azure Data Explorer]** を選択します。
+1. 検索ボックスに「 *Kusto* 」と入力し、 **[Azure Data Explorer]** を選択します。
 
     ![検索ボックスと Azure Data Explorer が強調表示されている、アクション オプション選択のスクリーンショット](./media/flow/flow-actions.png)
 
@@ -144,13 +144,13 @@ Azure Data Explorer コネクタを開くと、フローに追加可能な 3 つ
 任意のフローにステップを含めて、レポートを、任意のメールアドレスにメールで送信できます。 
 
 1. 新しいステップをフローに追加するには、 **[+ 新規のステップ]** を選択します。
-1. 検索ボックスに「*Office 365*」と入力し、 **[Office 365 Outlook]** を選択します。
+1. 検索ボックスに「 *Office 365* 」と入力し、 **[Office 365 Outlook]** を選択します。
 1. **[メールの送信 (V2)]** を選択します。
 1. レポートの送信先のメール アドレスを入力します。
 1. メールの件名を入力します。
 1. **[コード ビュー]** . を選択します。
 1. **[本文]** フィールドにカーソルをあわせ、 **[動的コンテンツの追加]** を選択します。
-1. **BodyHtml**を選択します。
+1. **BodyHtml** を選択します。
     ![[本文] フィールドと BodyHtml が強調表示されている、[電子メールの送信] ダイアログ ボックスのスクリーンショット](./media/flow/flow-send-email.png)
 1. **[詳細オプションの表示]** 　を選択します。
 1. **[Attachments Name -1]\(添付ファイル名 - 1\)** で、 **[Attachment Name]\(添付ファイル名\)** を選択します。

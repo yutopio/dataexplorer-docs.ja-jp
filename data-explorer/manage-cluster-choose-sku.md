@@ -7,12 +7,12 @@ ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/13/2020
-ms.openlocfilehash: 5381b558d54002ddcd50fbbec2e4fbef6d44fdbc
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 44c115cd509b72d5f83b1c1109ae09dc050d1a74
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92003064"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92337450"
 ---
 # <a name="select-the-correct-compute-sku-for-your-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターに適したコンピューティング SKU を選択する 
 
@@ -23,7 +23,7 @@ ms.locfileid: "92003064"
 エンジン クラスターのコンピューティング SKU は、[クラスターをスケールアップ](manage-cluster-vertical-scaling.md)することによっていつでも変更できます。 最初のシナリオに適した最小の SKU サイズから始めることが最善です。 クラスターをスケールアップすると、新しい SKU でクラスターが再作成される間、最大 30 分のダウンタイムが発生することに注意してください。 [Azure Advisor の推奨事項](azure-advisor.md)を使用してコンピューティング SKU を最適化することもできます。
 
 > [!TIP]
-> [コンピューティングの予約インスタンス (RI)](https://docs.microsoft.com/azure/virtual-machines/windows/prepay-reserved-vm-instances) は、Azure Data Explorer クラスターに適用されます。  
+> [コンピューティングの予約インスタンス (RI)](/azure/virtual-machines/windows/prepay-reserved-vm-instances) は、Azure Data Explorer クラスターに適用されます。  
 
 この記事では、さまざまなコンピューティング SKU オプションについて説明し、最適な選択を行うために役立つ技術的な詳細情報を提供します。
 
@@ -31,7 +31,7 @@ ms.locfileid: "92003064"
 
 Azure Data Explorer には、次の 2 種類のクラスターが用意されています。
 
-* **運用**: 運用クラスターには、エンジン クラスターとデータ管理クラスター用の 2 つのノードが含まれており、Azure Data Explorer の [SLA](https://azure.microsoft.com/support/legal/sla/data-explorer/v1_0/) のもとで運用されます。
+* **運用** : 運用クラスターには、エンジン クラスターとデータ管理クラスター用の 2 つのノードが含まれており、Azure Data Explorer の [SLA](https://azure.microsoft.com/support/legal/sla/data-explorer/v1_0/) のもとで運用されます。
 
 * **Dev/Test (SLA なし)** : Dev/Test クラスターには、エンジンとデータ管理クラスター用の 1 つのノードがあります。 このクラスターの種類は、インスタンスの数が少なく、エンジン マークアップ料金が必要ないため、最も低いコスト構成です。 冗長性がないため、このクラスター構成には SLA がありません。
 
@@ -64,7 +64,7 @@ Azure Data Explorer クラスターでは、さまざまな種類のワークロ
 
 ### <a name="select-your-compute-sku-during-cluster-creation"></a>クラスターの作成時にコンピューティング SKU を選択する
 
-Azure Data Explorer クラスターを作成する場合は、計画されたワークロードのための*最適な* VM SKU を選択してください。
+Azure Data Explorer クラスターを作成する場合は、計画されたワークロードのための *最適な* VM SKU を選択してください。
 
 次の属性も、SKU の選択に役立ちます。
  
@@ -128,4 +128,3 @@ Azure Data Explorer クラスター VM の技術仕様を次の表で説明し�
 * 変化する需要に応じて容量を変更するために、エンジン クラスターのサイズを[スケールインまたはスケールアウト](manage-cluster-horizontal-scaling.md)できます。
 
 * [Azure Advisor の推奨事項](azure-advisor.md)を使用してコンピューティング SKU を最適化します。
-

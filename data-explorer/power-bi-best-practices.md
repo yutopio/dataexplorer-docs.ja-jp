@@ -7,16 +7,16 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 4cb2c64e2a66d8412277717e505626965bca1052
-ms.sourcegitcommit: 7024f73c76bf5b506557fd0ef7a0f4f40ec7d313
+ms.openlocfilehash: a508d40d4e48205288dcb6133e267578a54198f9
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92021221"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343523"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Power BI を使用して Azure Data Explorer データのクエリと視覚化を行う場合のベスト プラクティス
 
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 [Power BI](https://docs.microsoft.com/power-bi/) はビジネス分析ソリューションであり、データを視覚化して、組織全体で結果を共有することができます。 Azure Data Explorer には、Power BI のデータに接続するオプションが 3 つ用意されています。 [組み込みのコネクタ](power-bi-connector.md)を使用するか、[Azure Data Explorer のクエリを Power BI にインポートする](power-bi-imported-query.md)か、[SQL クエリ](power-bi-sql-query.md)を使用します。 この記事では、Power BI を使用した Azure Data Explorer データのクエリと視覚化に関するヒントを紹介します。 
+Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 [Power BI](/power-bi/) はビジネス分析ソリューションであり、データを視覚化して、組織全体で結果を共有することができます。 Azure Data Explorer には、Power BI のデータに接続するオプションが 3 つ用意されています。 [組み込みのコネクタ](power-bi-connector.md)を使用するか、[Azure Data Explorer のクエリを Power BI にインポートする](power-bi-imported-query.md)か、[SQL クエリ](power-bi-sql-query.md)を使用します。 この記事では、Power BI を使用した Azure Data Explorer データのクエリと視覚化に関するヒントを紹介します。 
 
 ## <a name="best-practices-for-using-power-bi"></a>Power BI の使用に関するベスト プラクティス
 
@@ -24,17 +24,17 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 * **旅行の荷物は軽く** - レポートに必要なデータのみを Power BI に取り込みます。 詳細な対話型分析を行うには、Kusto クエリ言語を使用したアドホック探索用に最適化された [Azure Data Explorer Web UI](web-query-data.md) を使用します。
 
-* **複合モデル** - [複合モデル](https://docs.microsoft.com/power-bi/desktop-composite-models)を使用して、トップレベルのダッシュボードの集計データとフィルター処理された運用の生データを組み合わせます。 生データを使用するタイミングと、集計ビューを使用するタイミングを明確に定義できます。 
+* **複合モデル** - [複合モデル](/power-bi/desktop-composite-models)を使用して、トップレベルのダッシュボードの集計データとフィルター処理された運用の生データを組み合わせます。 生データを使用するタイミングと、集計ビューを使用するタイミングを明確に定義できます。 
 
-* **Import モードと DirectQuery モード** - 小規模なデータ セットの操作には **Import** モードを使用します。 大規模で頻繁に更新されるデータ セットには **DirectQuery** モードを使用します。 たとえば、ディメンション テーブルは、サイズが小さく、頻繁に変更されないため、**Import** モードを使用して作成します。 予想されるデータ更新の速度に応じて、更新間隔を設定します。 ファクト テーブルは、サイズが大きく、生データが含まれているため、**DirectQuery** モードを使用して作成します。 これらのテーブルを使用し、Power BI の [drillthrough](https://docs.microsoft.com/power-bi/desktop-drillthrough) を使用してフィルター処理されたデータを表示します。
+* **Import モードと DirectQuery モード** - 小規模なデータ セットの操作には **Import** モードを使用します。 大規模で頻繁に更新されるデータ セットには **DirectQuery** モードを使用します。 たとえば、ディメンション テーブルは、サイズが小さく、頻繁に変更されないため、 **Import** モードを使用して作成します。 予想されるデータ更新の速度に応じて、更新間隔を設定します。 ファクト テーブルは、サイズが大きく、生データが含まれているため、 **DirectQuery** モードを使用して作成します。 これらのテーブルを使用し、Power BI の [drillthrough](/power-bi/desktop-drillthrough) を使用してフィルター処理されたデータを表示します。
 
 * **並列性** - Azure Data Explorer は、直線的にスケーラブルなデータ プラットフォームです。そのため、次のようにエンドツーエンド フローの並列性を高めることで、ダッシュボード レンダリングのパフォーマンスを向上させることができます。
 
-  * [Power BI で DirectQuery 内のコンカレント接続](https://docs.microsoft.com/power-bi/desktop-directquery-about#maximum-number-of-connections-option-for-directquery)の数を増やします。
+  * [Power BI で DirectQuery 内のコンカレント接続](/power-bi/desktop-directquery-about#maximum-number-of-connections-option-for-directquery)の数を増やします。
 
   * [弱い整合性を使用して並列性を向上](kusto/concepts/queryconsistency.md)させます。 これは、データの鮮度に影響する可能性があります。
 
-* **効率的なスライサー** - [同期スライサー](https://docs.microsoft.com/power-bi/visuals/power-bi-visualization-slicers#sync-and-use-slicers-on-other-pages)を使用すると、準備が整う前にレポートにデータが読み込まれなくなります。 データ セットを構築し、すべてのビジュアルを配置し、すべてのスライサーをマークした後、同期スライサーを選択して必要なデータのみを読み込むことができます。
+* **効率的なスライサー** - [同期スライサー](/power-bi/visuals/power-bi-visualization-slicers#sync-and-use-slicers-on-other-pages)を使用すると、準備が整う前にレポートにデータが読み込まれなくなります。 データ セットを構築し、すべてのビジュアルを配置し、すべてのスライサーをマークした後、同期スライサーを選択して必要なデータのみを読み込むことができます。
 
 * **フィルターを使用する** - できるだけ多くの Power BI フィルターを使用し、Azure Data Explorer の検索を関連するデータ シャードに集中させます。
 
@@ -51,7 +51,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 ### <a name="how-to-simulate-a-relative-date-time-operator"></a>相対 date-time 演算子をシミュレートする方法
 
-Power BI には、`ago()` などの "*相対*" 日付/時刻演算子が含まれていません。
+Power BI には、`ago()` などの " *相対* " 日付/時刻演算子が含まれていません。
 `ago()` をシミュレートするには、`DateTime.FixedLocalNow()` および `#duration` Power BI 関数の組み合わせを使用します。
 
 このクエリではなく、`ago()` 演算子を使用します。
@@ -98,7 +98,7 @@ M クエリで、次のすべてのオプションを使用できます。
 
 ### <a name="reaching-kusto-query-limits"></a>Kusto クエリの制限に達する
 
-Kusto クエリからは、既定で最大 500,000 行または 64 MB が返されます。詳細については[クエリの制限](kusto/concepts/querylimits.md)に関する記事を参照してください。 これらの既定値をオーバーライドするには、**Azure Data Explorer (Kusto)** 接続ウィンドウで **[詳細オプション]** を使用します。
+Kusto クエリからは、既定で最大 500,000 行または 64 MB が返されます。詳細については[クエリの制限](kusto/concepts/querylimits.md)に関する記事を参照してください。 これらの既定値をオーバーライドするには、 **Azure Data Explorer (Kusto)** 接続ウィンドウで **[詳細オプション]** を使用します。
 
 ![[詳細オプション]](media/power-bi-best-practices/advanced-options.png)
 
@@ -156,7 +156,7 @@ in
    "StormEvents | where State == "ALABAMA" | take 100"
    ```
 
-   これは、次のように 2 つの引用符を使用して**詳細エディター**に表示されます。
+   これは、次のように 2 つの引用符を使用して **詳細エディター** に表示されます。
 
    ```kusto
     "StormEvents | where State == ""ALABAMA"" | take 100"

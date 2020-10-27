@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: 0df859eb52927d0d59c2cab7de18f1de4bfcf1d7
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: ff4a4f0ada7e12f5de239c1b78b39a8beace15ee
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873595"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342979"
 ---
 # <a name="create-an-iot-hub-data-connection-for-azure-data-explorer-by-using-c-preview"></a>C# を使用して Azure Data Explorer 用に IoT Hub データ接続を作成する (プレビュー)
 
@@ -27,10 +27,10 @@ ms.locfileid: "88873595"
 
 ## <a name="prerequisites"></a>前提条件
 
-* Visual Studio 2019 をインストールしていない場合は、**無料**の [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/) をダウンロードして使用できます。 Visual Studio のセットアップ中に、必ず **[Azure の開発]** を有効にしてください。
+* Visual Studio 2019 をインストールしていない場合は、 **無料** の [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/) をダウンロードして使用できます。 Visual Studio のセットアップ中に、必ず **[Azure の開発]** を有効にしてください。
 * Azure サブスクリプションをお持ちでない場合は、開始する前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
 * [クラスターとデータベース](create-cluster-database-csharp.md)を作成します
-* [テーブルと列のマッピング](net-standard-ingest-data.md#create-a-table-on-your-test-cluster)を作成します
+* [テーブルと列のマッピング](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster)を作成します
 * [データベースとテーブルのポリシー](database-table-policies-csharp.md) (オプション) を設定します
 * [共有アクセス ポリシーを構成して IoT Hub](ingest-data-iot-hub.md#create-an-iot-hub) を作成します。
 

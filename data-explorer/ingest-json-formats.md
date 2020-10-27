@@ -7,16 +7,16 @@ ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/19/2020
-ms.openlocfilehash: 711ea8d819fbf8fc66c792a51c0ddc3844647a5e
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: f599698f4b35075aaec4ff3789fa9036c40d8c17
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874751"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343234"
 ---
 # <a name="ingest-json-formatted-sample-data-into-azure-data-explorer"></a>Azure Data Explorer に JSON 書式付きサンプル データを取り込む
 
-この記事では、Azure Data Explorer データベースに JSON 書式付きデータを取り込む方法を示します。 まず、未加工の JSON とマップされた JSON の単純な例を紹介します。次に、複数行の JSON に進み、その後、配列とディクショナリを含むさらに複雑な JSON スキーマに取り組みます。  これらの例では、Kusto クエリ言語 (KQL)、 C#、または Python を使用して JSON 書式付きデータを取り込むプロセスについて詳しく説明しています。 Kusto クエリ言語の `ingest` 制御コマンドは、エンジン エンドポイントに対して直接実行されます。 運用環境のシナリオでは、インジェストは、クライアント ライブラリまたはデータ接続を使用して、データ管理サービスに対して実行されます。 これらのクライアント ライブラリを使用したデータの取り込みに関するチュートリアルについては、「[Azure Data Explorer の Python ライブラリを使用してデータを取り込む](python-ingest-data.md)」と「[Azure Data Explorer .NET Standard SDK (プレビュー) を使用してデータを取り込む](net-standard-ingest-data.md)」を参照してください。
+この記事では、Azure Data Explorer データベースに JSON 書式付きデータを取り込む方法を示します。 まず、未加工の JSON とマップされた JSON の単純な例を紹介します。次に、複数行の JSON に進み、その後、配列とディクショナリを含むさらに複雑な JSON スキーマに取り組みます。  これらの例では、Kusto クエリ言語 (KQL)、 C#、または Python を使用して JSON 書式付きデータを取り込むプロセスについて詳しく説明しています。 Kusto クエリ言語の `ingest` 制御コマンドは、エンジン エンドポイントに対して直接実行されます。 運用環境のシナリオでは、インジェストは、クライアント ライブラリまたはデータ接続を使用して、データ管理サービスに対して実行されます。 これらのクライアント ライブラリを使用したデータの取り込みに関するチュートリアルについては、「[Azure Data Explorer の Python ライブラリを使用してデータを取り込む](python-ingest-data.md)」と「[Azure Data Explorer .NET Standard SDK (プレビュー) を使用してデータを取り込む](./net-sdk-ingest-data.md)」を参照してください。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -30,7 +30,7 @@ Azure Data Explorer は、次の 2 つの JSON ファイル形式をサポート
 
 ### <a name="ingest-and-map-json-formatted-data"></a>JSON 書式付きデータを取り込んでマップする
 
-JSON 書式付きデータを取り込むには、[インジェスト プロパティ](ingestion-properties.md)を使用して "*書式*" を指定する必要があります。 JSON データを取り込むには、JSON ソース エントリをターゲット列にマップする[マッピング](kusto/management/mappings.md)が必要です。 データを取り込むときは、`IngestionMapping` プロパティと `ingestionMappingReference` (事前定義されたマッピングの場合) インジェスト プロパティを使用するか、`IngestionMappings` プロパティを使用します。 この記事では、インジェストに使用するテーブルで事前に定義されている `ingestionMappingReference` インジェスト プロパティを使用します。 次の例では、最初に JSON レコードを生データとして 1 列のテーブルに取り込みます。 次に、マッピングを使用して、各プロパティを、そのマップされた列に取り込みます。 
+JSON 書式付きデータを取り込むには、 [インジェスト プロパティ](ingestion-properties.md)を使用して " *書式* " を指定する必要があります。 JSON データを取り込むには、JSON ソース エントリをターゲット列にマップする[マッピング](kusto/management/mappings.md)が必要です。 データを取り込むときは、`IngestionMapping` プロパティと `ingestionMappingReference` (事前定義されたマッピングの場合) インジェスト プロパティを使用するか、`IngestionMappings` プロパティを使用します。 この記事では、インジェストに使用するテーブルで事前に定義されている `ingestionMappingReference` インジェスト プロパティを使用します。 次の例では、最初に JSON レコードを生データとして 1 列のテーブルに取り込みます。 次に、マッピングを使用して、各プロパティを、そのマップされた列に取り込みます。 
 
 ### <a name="simple-json-example"></a>単純な JSON の例
 

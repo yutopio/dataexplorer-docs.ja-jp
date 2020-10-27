@@ -7,16 +7,16 @@ ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/21/2020
-ms.openlocfilehash: adbf974852f071dde54cc668b213e7b7d6d7cfea
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: b019f0f8cfefab2ed111b023993c929bd5f19e5f
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88871946"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92342520"
 ---
 # <a name="connect-to-azure-data-explorer-from-azure-databricks"></a>Azure Databricks から Azure Data Explorer に接続する
 
-[Azure Databricks](https://docs.microsoft.com/azure/azure-databricks/what-is-azure-databricks) は、Microsoft Azure プラットフォーム用に最適化された Apache Spark ベースの分析プラットフォームです。 この記事では、Azure Databricks を使用して Azure Data Explorer からデータにアクセスする方法について説明します。 デバイスのログインや Azure Active Directory (Azure AD) アプリを含め、Azure Data Explorer での認証方法はいくつかあります。
+[Azure Databricks](/azure/azure-databricks/what-is-azure-databricks) は、Microsoft Azure プラットフォーム用に最適化された Apache Spark ベースの分析プラットフォームです。 この記事では、Azure Databricks を使用して Azure Data Explorer からデータにアクセスする方法について説明します。 デバイスのログインや Azure Active Directory (Azure AD) アプリを含め、Azure Data Explorer での認証方法はいくつかあります。
  
 ## <a name="prerequisites"></a>前提条件
 
@@ -38,7 +38,7 @@ Azure Databricks クラスターに [spark-kusto-connector](https://mvnrepositor
 
 ## <a name="connect-to-azure-data-explorer-by-using-an-azure-ad-app"></a>Azure AD アプリを使用して Azure Data Explorer に接続する
 
-1. [Azure AD アプリをプロビジョニングする](kusto/management/access-control/how-to-provision-aad-app.md)ことによって、Azure AD アプリを作成します。
+1. [Azure AD アプリをプロビジョニングする](./provision-azure-ad-app.md)ことによって、Azure AD アプリを作成します。
 1. 次のように、Azure Data Explorer データベース上の Azure AD アプリへのアクセスを許可します。
 
     ```kusto

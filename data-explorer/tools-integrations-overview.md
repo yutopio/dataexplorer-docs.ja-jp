@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: c1be494fd290b051455010d6e6e082d01650107c
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: fd596d840dcbaab1843833b4164901423a2ebef8
+ms.sourcegitcommit: 88291fd9cebc26e5210463cb95be5540bf84eef8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92003134"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92437378"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Azure Data Explorer のツールと統合の概要
 
@@ -63,8 +63,8 @@ Azure Data Explorer クエリを実行するために使用できるツールが
 * [Azure Data Lake](data-lake-query-data.md)
 * [Azure Synapse Apache Spark](https://docs.microsoft.com/azure/synapse-analytics/quickstart-connect-azure-data-explorer?context=/azure/data-explorer/context/context)
 * [Apache Spark](spark-connector.md)
-* Microsoft Power Apps
-* Azure Data Studio: [Kusto 拡張機能の概要](https://docs.microsoft.com/sql/azure-data-studio/extensions/kusto-extension?context=/azure/data-explorer/context/context)、[Kusto の使用](https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context)、[Kqlmagic の使用](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic?context=/azure/data-explorer/context/context)
+* [Microsoft Power Apps](power-apps-connector.md)
+* Azure Data Studio: [Kusto 拡張機能の概要](/sql/azure-data-studio/extensions/kusto-extension?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)、[Kusto の使用](/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)、[Kqlmagic の使用](/sql/azure-data-studio/notebooks-kqlmagic?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)
 
 ## <a name="visualizations-dashboards-and-reporting"></a>視覚化、ダッシュボード、レポート
 
@@ -74,7 +74,7 @@ Azure Data Explorer クエリを実行するために使用できるツールが
 
 * [Azure Notebooks](azure-notebooks.md)
 * [Jupyter Notebook](kqlmagic.md)
-* Azure Data Studio: [Kusto 拡張機能の概要](https://docs.microsoft.com/sql/azure-data-studio/extensions/kusto-extension?context=/azure/data-explorer/context/context)、[Kusto の使用](https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context)、[Kqlmagic の使用](https://docs.microsoft.com/sql/azure-data-studio/notebooks-kqlmagic?context=/azure/data-explorer/context/context)
+* Azure Data Studio: [Kusto 拡張機能の概要](/sql/azure-data-studio/extensions/kusto-extension?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)、[Kusto の使用](/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)、[Kqlmagic の使用](/sql/azure-data-studio/notebooks-kqlmagic?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)
 
 ## <a name="orchestration"></a>オーケストレーション
 

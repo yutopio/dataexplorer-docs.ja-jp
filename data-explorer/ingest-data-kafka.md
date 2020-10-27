@@ -7,12 +7,12 @@ ms.reviewer: ankhanol
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/22/2020
-ms.openlocfilehash: 14f4ed38ecb2e5b4a94dad8a73fb43ea3ff1e5ee
-ms.sourcegitcommit: c8256390d745e345f44d401e33e775702d62721d
+ms.openlocfilehash: 8274cd04dc2ecf588bf4771c06e3f8a760cac74d
+ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "91007804"
+ms.lasthandoff: 10/21/2020
+ms.locfileid: "92343166"
 ---
 # <a name="ingest-data-from-apache-kafka-into-azure-data-explorer"></a>Apache Kafka から Azure Data Explorer にデータを取り込む
  
@@ -24,8 +24,8 @@ Azure Data Explorer では、[Apache Kafka](http://kafka.apache.org/documentatio
 
 ## <a name="prerequisites"></a>必須コンポーネント
 
-* [Microsoft Azure アカウント](https://docs.microsoft.com/azure/)を作成します。
-* [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli) をインストールします。
+* [Microsoft Azure アカウント](/azure/)を作成します。
+* [Azure CLI](/cli/azure/install-azure-cli) をインストールします。
 * [Docker](https://docs.docker.com/get-docker/) と [Docker Compose](https://docs.docker.com/compose/install) をインストールします。
 * 既定のキャッシュおよびアイテム保持ポリシーを使用して、[Azure portal でAzure Data Explorer のクラスターとデータベースを作成します](create-cluster-database-portal.md)。
 
@@ -322,7 +322,7 @@ Kafka Connect REST 呼び出しを使用して、コネクタを開始します�
     | project StartTime, EndTime, Source, EventId
     ```
     
-1. [`summarize`](https://docs.microsoft.com/azure/data-explorer/write-queries#summarize) 演算子を使用します。
+1. [`summarize`](./write-queries.md#summarize) 演算子を使用します。
 
     ```kusto
     Storms
@@ -334,7 +334,7 @@ Kafka Connect REST 呼び出しを使用して、コネクタを開始します�
     
     :::image type="content" source="media/ingest-data-kafka/kusto-query.png" alt-text="Azure Data Explorer ポータルでテーブルを作成する":::
 
-その他のクエリの例とガイダンスについては、「[Azure Data Explorer のクエリを記述する](write-queries.md)」と [Kusto クエリ言語のドキュメント](https://docs.microsoft.com/azure/data-explorer/kusto/query/)を参照してください。
+その他のクエリの例とガイダンスについては、「[Azure Data Explorer のクエリを記述する](write-queries.md)」と [Kusto クエリ言語のドキュメント](./kusto/query/index.md)を参照してください。
 
 ## <a name="reset"></a>リモート アクセスの
 
@@ -348,7 +348,7 @@ Kafka Connect REST 呼び出しを使用して、コネクタを開始します�
 
 ## <a name="clean-up-resources"></a>リソースをクリーンアップする
 
-Azure Data Explorer リソースを削除するには、[az cluster delete](https://docs.microsoft.com/cli/azure/kusto/cluster#az-kusto-cluster-delete) または [az Kusto database delete](https://docs.microsoft.com/cli/azure/kusto/database#az-kusto-database-delete) を使用します。
+Azure Data Explorer リソースを削除するには、[az cluster delete](/cli/azure/kusto/cluster#az-kusto-cluster-delete) または [az Kusto database delete](/cli/azure/kusto/database#az-kusto-database-delete) を使用します。
 
 ```azurecli-interactive
 az kusto cluster delete -n <cluster name> -g <resource group name>
@@ -358,7 +358,7 @@ az kusto database delete -n <database name> --cluster-name <cluster name> -g <re
 ## <a name="next-steps"></a>次の手順
 
 * [ビッグ データ アーキテクチャ](/azure/architecture/solution-ideas/articles/big-data-azure-data-explorer)の詳細を確認します。
-* [Azure Data Explorer に JSON 書式付きサンプル データを取り込む方法](https://docs.microsoft.com/azure/data-explorer/ingest-json-formats?tabs=kusto-query-language)を確認します。
+* [Azure Data Explorer に JSON 書式付きサンプル データを取り込む方法](./ingest-json-formats.md?tabs=kusto-query-language)を確認します。
 * その他の Kafka ラボについて:
    * [分散モードでの Confluent Cloud Kafka からのインジェストのハンズオン ラボ](https://github.com/Azure/azure-kusto-labs/blob/master/kafka-integration/confluent-cloud/README.md)
    * [分散モードでの HDInsight Kafka からのインジェストのハンズオン ラボ](https://github.com/Azure/azure-kusto-labs/tree/master/kafka-integration/distributed-mode/hdinsight-kafka)

@@ -1,5 +1,5 @@
 ---
-title: Logic Apps を使用して Kusto クエリを自動的に実行する
+title: Azure で Kusto クエリを自動的に実行するには Logic Apps を使用しデータエクスプローラー
 description: Logic Apps を使用して Kusto クエリとコマンドを自動的に実行し、スケジュールを設定する方法について説明します。
 author: orspod
 ms.author: orspodek
@@ -7,14 +7,14 @@ ms.reviewer: docohe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/14/2020
-ms.openlocfilehash: 4c918c43f748f97b3bb3f6d0342c660775c1e5c8
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: a4f79fc367e2769dfe3bf51ed5ad035a7d233ea4
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342656"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902678"
 ---
-# <a name="microsoft-logic-app-and-azure-data-explorer"></a>Microsoft Logic App と Azure データエクスプローラー
+# <a name="microsoft-logic-app-and-azure-data-explorer-preview"></a>Microsoft Logic App と Azure データエクスプローラー (プレビュー)
 
 Azure Kusto Logic App コネクタを使用すると、 [Microsoft Logic app](/azure/logic-apps/logic-apps-what-are-logic-apps) コネクタを使用して、スケジュールされたタスクまたはトリガーされたタスクの一部として kusto クエリとコマンドを自動的に実行することができます。
 
@@ -33,7 +33,7 @@ Azure Kusto Logic App コネクタを使用すると、 [Microsoft Logic app](/a
 
 1. フォームの必要な詳細を入力します。
     * サブスクリプション
-    * Resource group
+    * リソース グループ
     * ロジック アプリ名
     * 地域または統合サービス環境
     * 場所
@@ -42,7 +42,7 @@ Azure Kusto Logic App コネクタを使用すると、 [Microsoft Logic app](/a
 
     ![ロジック アプリを作成する](./Images/logicapps/logicapp-create-new.png)
 
-1. ロジックアプリが作成されたら、[ **編集**] を選択します。
+1. ロジックアプリが作成されたら、[ **編集** ] を選択します。
 
     ![ロジックアプリデザイナーの編集](./Images/logicapps/logicapp-editdesigner.png "logicapp-editdesigner")
 
@@ -50,11 +50,11 @@ Azure Kusto Logic App コネクタを使用すると、 [Microsoft Logic app](/a
 
     ![ロジックアプリの空のテンプレート](./Images/logicapps/logicapp-blanktemplate.png "logicapp-空白のテンプレート")
 
-1. 繰り返しアクションを追加し、[ **Azure Kusto**] を選択します。
+1. 繰り返しアクションを追加し、[ **Azure Kusto** ] を選択します。
 
     ![ロジックアプリ Kusto Flow コネクタ](./Images/logicapps/logicapp-kustoconnector.png "logicapp-kustoconnector")
 
-## <a name="next-steps"></a>次の手順
+## <a name="next-steps"></a>次のステップ
 
 * 繰り返しアクションの構成の詳細については、「 [Power オートメーションのドキュメント」ページ](../../flow.md)を参照してください。
 * ロジックアプリのアクションを構成する方法については、 [使用例](../../flow-usage.md) を参照してください。

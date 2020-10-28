@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 8587995a6836a1f8a180eada19d450277709a6e7
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 31e4f1fc32f758164c3f232e758080213e6f428d
+ms.sourcegitcommit: 8a7165b28ac6b40722186300c26002fb132e6e4a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92248596"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92749530"
 ---
 # <a name="partition-operator"></a>partition 演算子
 
@@ -27,27 +27,27 @@ T | partition by Col1 { U | where Col2=toscalar(Col1) }
 
 ## <a name="syntax"></a>構文
 
-*T* `|` `partition` [*partitionparameters*] `by` *列* `(` *ContextualSubquery*`)`
+*T* `|` `partition` [ *partitionparameters* ] `by` *列* `(` *ContextualSubquery*`)`
 
-*T* `|` `partition` [*partitionparameters*] `by` *列*の `{` *サブクエリ*`}`
+*T* `|` `partition` [ *partitionparameters* ] `by` *列* の `{` *サブクエリ*`}`
 
 ## <a name="arguments"></a>引数
 
-* *T*: 演算子によって処理されるデータを含む表形式のソース。
+* *T* : 演算子によって処理されるデータを含む表形式のソース。
 
-* *列*: 入力テーブルのパーティション分割方法を決定する値を持つ、 *T* 内の列の名前。 以下の **メモ** を参照してください。
+* *列* : 入力テーブルのパーティション分割方法を決定する値を持つ、 *T* 内の列の名前。 以下の **メモ** を参照してください。
 
-* *ContextualSubquery*: テーブル式。 source は、 `partition` 1 つの *キー* 値を対象とした、演算子のソースです。
+* *ContextualSubquery* : テーブル式。 source は、 `partition` 1 つの *キー* 値を対象とした、演算子のソースです。
 
-* *サブクエリ*: ソースのない表形式の式です。 *キー*値は、call を使用して取得でき `toscalar()` ます。
+* *サブクエリ* : ソースのない表形式の式です。 *キー* 値は、call を使用して取得でき `toscalar()` ます。
 
-* *Partitionparameters*: 0 個以上 (スペースで区切られた) パラメーターの形式で*Name* 、 `=` 演算子の動作を制御する名前*値*。 サポートされているパラメーターは次のとおりです。
+* *Partitionparameters* : 0 個以上 (スペースで区切られた) パラメーターの形式で *Name* 、 `=` 演算子の動作を制御する名前 *値* 。 サポートされているパラメーターは次のとおりです。
 
   |名前               |値         |説明|
   |-------------------|---------------|-----------|
   |`hint.materialized`|`true`,`false` |に設定する `true` と、演算子のソースが具体化されます `partition` (既定値: `false` )。|
-  |`hint.concurrency`|*数値*|システムに対して、演算子の同時実行サブクエリの数を並列で実行するかどうかを `partition` 指定します。 *既定値*: クラスターの単一ノードの CPU コアの量 (2 ~ 16)。|
-  |`hint.spread`|*数値*|同時実行のサブクエリによって使用されるノードの数をシステムにヒントし `partition` ます。 *既定値*は1です。|
+  |`hint.concurrency`|*Number*|システムに対して、演算子の同時実行サブクエリの数を並列で実行するかどうかを `partition` 指定します。 *既定値* : クラスターの単一ノードの CPU コアの量 (2 ~ 16)。|
+  |`hint.spread`|*Number*|同時実行のサブクエリによって使用されるノードの数をシステムにヒントし `partition` ます。 *既定値* は1です。|
 
 ## <a name="returns"></a>戻り値
 
@@ -57,7 +57,7 @@ T | partition by Col1 { U | where Col2=toscalar(Col1) }
 
 * 現在、パーティション演算子は、パーティションの数によって制限されています。
   最大64の個別のパーティションを作成できます。
-  パーティション列 (*列*) に64個を超える個別の値が含まれている場合、演算子はエラーを生成します。
+  パーティション列 ( *列* ) に64個を超える個別の値が含まれている場合、演算子はエラーを生成します。
 
 * サブクエリは入力パーティションを暗黙的に参照します (サブクエリのパーティションに "name" はありません)。 サブクエリ内で入力パーティションを複数回参照するには、次のように [as 演算子](asoperator.md)を使用します (以下の **例: パーティション参照** )。
 
@@ -76,7 +76,7 @@ StormEvents
 ) 
 
 ```
-|EventType|State|イベント|怪我|
+|EventType|State|events|怪我|
 |---|---|---|---|
 |ひょう|ワイオミング州|108|0|
 |高風|ワイオミング州|81|5|
@@ -93,7 +93,7 @@ StormEvents
 
 **例: 重複していないデータパーティションのクエリ**
 
-Map/reduce スタイルで、重複していないデータパーティションに対して複雑なサブクエリを実行すると便利な場合があります (perf)。 次の例では、10個のパーティションに対して集計の手動分布を作成する方法を示します。
+Map/reduce スタイルで、重複していないデータパーティションに対して複雑なサブクエリを実行すると便利な場合があります (パフォーマンスが向上します)。 次の例では、10個のパーティションに対して集計の手動分布を作成する方法を示します。
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

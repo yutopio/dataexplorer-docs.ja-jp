@@ -8,19 +8,20 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 4fad66141a31ac7ba72ab79dc0092b963417ae72
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 7c66647dcdebfc86990c9a63f7404681b000b915
+ms.sourcegitcommit: 8a7165b28ac6b40722186300c26002fb132e6e4a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92247562"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92749513"
 ---
 # <a name="dcount_intersect-plugin"></a>dcount_intersect プラグイン
 
 値に基づいて N 個のセットの積集合 `hll` を計算し ([2.. 16] の範囲内)、N 個の値を返し `dcount` ます。
 
 指定されたセット S<sub>1</sub>、s<sub>2</sub>、.. S<sub>n</sub> -戻り値は、の個別のカウントを表します。  
-S<sub>1</sub>、s<sub>1</sub> ∩ s<sub>2</sub>、  
+S<sub>1</sub>、  
+S<sub>1</sub> ∩ s<sub>2</sub>、  
 S<sub>1</sub> ∩ s<sub>2</sub> ∩ s<sub>3</sub>、  
 ... ,  
 S<sub>1</sub> ∩ s<sub>2</sub> ∩...∩ S<sub>n</sub>
@@ -31,12 +32,12 @@ T | evaluate dcount_intersect(hll_1, hll_2, hll_3)
 
 ## <a name="syntax"></a>構文
 
-*T* `| evaluate` `dcount_intersect(` *hll_1*、 *hll_2*、[ `,` *hll_3* `,` ...]`)`
+*T* `| evaluate` `dcount_intersect(` *hll_1* 、 *hll_2* 、[ `,` *hll_3* `,` ...]`)`
 
 ## <a name="arguments"></a>引数
 
-* *T*: 入力テーブル式。
-* *hll_i*: 関数<sub>で計算さ</sub> れた set S の値 [`hll()`](./hll-aggfunction.md) 。
+* *T* : 入力テーブル式。
+* *hll_i* : 関数 <sub>で計算さ</sub> れた set S の値 [`hll()`](./hll-aggfunction.md) 。
 
 ## <a name="returns"></a>戻り値
 

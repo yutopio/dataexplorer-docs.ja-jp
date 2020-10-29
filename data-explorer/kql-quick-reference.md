@@ -7,12 +7,12 @@ ms.reviewer: ''
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 01/19/2020
-ms.openlocfilehash: ff9b78af54141f2c7fdbbf7039aad59dca2312a0
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 2fa4cbd0b1cf7b034bc7ae3202afcde3866ca347
+ms.sourcegitcommit: ee904f45e3eb3feab046263aa9956cb7780a056d
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81493987"
+ms.lasthandoff: 10/22/2020
+ms.locfileid: "92356590"
 ---
 # <a name="kql-quick-reference"></a>KQL クイック リファレンス
 
@@ -35,6 +35,9 @@ ms.locfileid: "81493987"
 | [print](kusto/query/printoperator.md)                      | 1 つ以上のスカラー式を使用して単一行が出力されます。 | `print [ColumnName =] ScalarExpression [',' ...]` |
 | [project](kusto/query/projectoperator.md)                  | 指定された順序で含める列が選択されます | `T | project ColumnName [= Expression] [, ...]` <br> または <br> `T | project [ColumnName | (ColumnName[,]) =] Expression [, ...]` |
 | [project-away](kusto/query/projectawayoperator.md)         | 出力から除外する列を選択します。 | `T | project-away ColumnNameOrPattern [, ...]` |
+| [project-keep](kusto/query/project-keep-operator.md)         | 出力に保持する列を選択します | `T | project-keep ColumnNameOrPattern [, ...]` |
+| [project-rename](kusto/query/projectrenameoperator.md)     | 結果の出力の列名を変更します | `T | project-rename new_column_name = column_name` |
+| [project-reorder](kusto/query/projectreorderoperator.md)   | 結果の出力の列を並べ替えます | `T | project-reorder Col2, Col1, Col* asc` |
 | [extend](kusto/query/extendoperator.md)                    | 計算列が作成され、それが結果セットに追加されます。 | `T | extend [ColumnName | (ColumnName[, ...]) =] Expression [, ...]` |
 | **データセットの並べ替えと集計**                 |**_並べ替えまたはグループ化により、データが意味のある方法で再構築されます_**|                  |
 | [sort](kusto/query/sortoperator.md)                        | 入力テーブルの行が 1 つ以上の列で昇順または降順に並べ替えられます。 | `T | sort by expression1 [asc|desc], expression2 [asc|desc], …` |

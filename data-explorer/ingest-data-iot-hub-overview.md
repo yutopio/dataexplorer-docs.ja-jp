@@ -8,50 +8,53 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 5437a4ecb77b81e7ffd0e60dfa3bacb76240a094
-ms.sourcegitcommit: f2f9cc0477938da87e0c2771c99d983ba8158789
+ms.openlocfilehash: 1ea8960b8d58ed9e549e042f8a4e64164952f32d
+ms.sourcegitcommit: 4f24d68f1ae4903a2885985aa45fd15948867175
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89502706"
+ms.lasthandoff: 10/27/2020
+ms.locfileid: "92558191"
 ---
-# <a name="create-a-connection-to-iot-hub"></a>IoT Hub への接続を作成する
+# <a name="iot-hub-data-connection"></a>IoT Hub データ接続
 
-[Azure IoT Hub](https://docs.microsoft.com/azure/iot-hub/about-iot-hub) は、クラウド内でホストされているマネージド サービスであり、IoT アプリケーションとそれが管理するデバイスの間の双方向通信に対する中央メッセージ ハブとして機能します。 Azure Data Explorer は、[イベント ハブと互換性のある組み込みのエンドポイント](https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messages-d2c#routing-endpoints)を使用して、お客様が管理する IoT Hub から継続的インジェストを提供します。
+[Azure IoT Hub](/azure/iot-hub/about-iot-hub) は、クラウド内でホストされているマネージド サービスであり、IoT アプリケーションとそれが管理するデバイスの間の双方向通信に対する中央メッセージ ハブとして機能します。 Azure Data Explorer は、[イベント ハブと互換性のある組み込みのエンドポイント](/azure/iot-hub/iot-hub-devguide-messages-d2c#routing-endpoints)を使用して、お客様が管理する IoT Hub から継続的インジェストを提供します。
 
-IoT のインジェスト パイプラインでは、いくつかの手順が実行されます。 まず IoT Hub を作成し、それにデバイスを登録します。 次に、[特定の形式のデータ](#data-format)が、指定された[インジェスト プロパティ](#set-ingestion-properties)を使用して取り込まれるターゲット テーブルを Azure Data Explorer に作成します。 IoT Hub 接続は、Azure Data Explorer テーブルに接続するために[イベント ルーティング](#set-events-routing)を認識している必要があります。 データは、[イベント システム プロパティのマッピング](#set-event-system-properties-mapping)に従って、選択したプロパティを使用して埋め込まれます。 このプロセスは、[Azure portal](ingest-data-iot-hub.md)、[C#](data-connection-iot-hub-csharp.md) または [Python](data-connection-iot-hub-python.md) によるプログラム、または [Azure Resource Manager テンプレート](data-connection-iot-hub-resource-manager.md)を使用して管理できます。
+IoT のインジェスト パイプラインでは、いくつかの手順が実行されます。 まず IoT Hub を作成し、それにデバイスを登録します。 次に、[特定の形式のデータ](#data-format)が、指定された[インジェスト プロパティ](#ingestion-properties)を使用して取り込まれるターゲット テーブルを Azure Data Explorer に作成します。 IoT Hub 接続は、Azure Data Explorer テーブルに接続するために[イベント ルーティング](#events-routing)を認識している必要があります。 データは、[イベント システム プロパティのマッピング](#event-system-properties-mapping)に従って、選択したプロパティを使用して埋め込まれます。 このプロセスは、[Azure portal](ingest-data-iot-hub.md)、[C#](data-connection-iot-hub-csharp.md) または [Python](data-connection-iot-hub-python.md) によるプログラム、または [Azure Resource Manager テンプレート](data-connection-iot-hub-resource-manager.md)を使用して管理できます。
 
 Azure Data Explorer でのデータ インジェストに関する一般的な情報については、「[Azure Data Explorer のデータ インジェスト概要](ingest-data-overview.md)」を参照してください。
 
 ## <a name="data-format"></a>データ形式
 
-* データは [EventData](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet) オブジェクトの形式でイベント ハブ エンドポイントから読み取られます。
+* データは [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet) オブジェクトの形式でイベント ハブ エンドポイントから読み取られます。
 * [サポートされる形式](ingestion-supported-formats.md)を確認してください。
     > [!NOTE]
     > IoT Hub では、.raw 形式はサポートされていません。
 * [サポートされる圧縮](ingestion-supported-formats.md#supported-data-compression-formats)を確認してください。
   * 元の非圧縮データ サイズは、BLOB メタデータの一部である必要があります。それ以外の場合は、Azure Data Explorer によって推定されます。 ファイルごとのインジェストの非圧縮サイズの制限は 4 GB です。
 
-## <a name="set-ingestion-properties"></a>インジェストのプロパティを設定する
+## <a name="ingestion-properties"></a>インジェストのプロパティ
 
-インジェストのプロパティは、インジェスト プロセスに、データのルーティング先と処理方法を指示します。 [EventData.Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties) を使用して、イベントの[インジェスト プロパティ](ingestion-properties.md)を指定できます。 以下のプロパティを設定できます。
+インジェストのプロパティは、インジェスト プロセスに、データのルーティング先と処理方法を指示します。 [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties) を使用して、イベントの[インジェスト プロパティ](ingestion-properties.md)を指定できます。 以下のプロパティを設定できます。
 
 |プロパティ |説明|
 |---|---|
 | テーブル | 既存のターゲット テーブルの名前 (大文字と小文字の区別あり)。 [`Data Connection`] ペインで設定された `Table` をオーバーライドします。 |
 | 形式 | データ形式。 [`Data Connection`] ペインで設定された `Data format` をオーバーライドします。 |
 | IngestionMappingReference | 使用する既存の[インジェスト マッピング](kusto/management/create-ingestion-mapping-command.md)の名前。 [`Data Connection`] ペインで設定された `Column mapping` をオーバーライドします。|
-| エンコード |  データ エンコード (既定値は UTF8)。 [.NET でサポートされているエンコード](https://docs.microsoft.com/dotnet/api/system.text.encoding?view=netframework-4.8#remarks)のいずれかを指定できます。 |
+| エンコード |  データ エンコード (既定値は UTF8)。 [.NET でサポートされているエンコード](/dotnet/api/system.text.encoding?view=netframework-4.8#remarks)のいずれかを指定できます。 |
 
-## <a name="set-events-routing"></a>イベントのルーティングを設定する
+> [!NOTE]
+> データ接続の作成後にエンキューされたイベントのみが取り込まれたます。
+
+## <a name="events-routing"></a>イベント ルーティング
 
 Azure Data Explorer クラスターへの IoT Hub 接続を設定するときに、ターゲット テーブルのプロパティ (テーブル名、データ形式、マッピング) を指定します。 この設定はデータの既定のルーティングで、静的ルーティングとも呼ばれます。
-イベント プロパティを使用して、各イベントのターゲット テーブルのプロパティを指定することもできます。 [EventData.Properties](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties) の指定に従って、接続でデータが動的にルーティングされ、このイベントの静的プロパティがオーバーライドされます。
+イベント プロパティを使用して、各イベントのターゲット テーブルのプロパティを指定することもできます。 [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties) の指定に従って、接続でデータが動的にルーティングされ、このイベントの静的プロパティがオーバーライドされます。
 
 > [!Note]
 > **[データにはルーティング情報が含まれています]** が選択されている場合は、必要なルーティング情報をイベントのプロパティの一部として指定する必要があります。
 
-## <a name="set-event-system-properties-mapping"></a>イベント システム プロパティのマッピングを設定する
+## <a name="event-system-properties-mapping"></a>イベント システム プロパティのマッピング
 
 システム プロパティは、イベントの受信時に IoT Hub のサービスによって設定されるプロパティを格納するために使用されるコレクションです。 Azure Data Explorer IoT Hub 接続により、選択したプロパティがテーブルのデータ ランディングに埋め込まれます。
 
@@ -80,7 +83,7 @@ IoT Hub では、次のシステム プロパティが公開されます。
 
 [!INCLUDE [data-explorer-container-system-properties](includes/data-explorer-container-system-properties.md)]
 
-## <a name="create-iot-hub-connection"></a>IoT Hub 接続を作成する
+## <a name="iot-hub-connection"></a>IoT Hub 接続
 
 > [!Note]
 > 最適なパフォーマンスを得るには、Azure Data Explorer クラスターと同じリージョンにすべてのリソースを作成します。

@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 57b7b6b4c67e0e8903903cef670a561b30b3904e
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: e341a6b9b51b082b16036e368c61fa4c903750da
+ms.sourcegitcommit: 64fdef912cc925c4bdcae98183eb8d7c7a6392d7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92252570"
+ms.lasthandoff: 10/29/2020
+ms.locfileid: "93027807"
 ---
 # <a name="cross-database-and-cross-cluster-queries"></a>複数のデータベースに対するクエリと複数のクラスターに対するクエリ
 
@@ -62,7 +62,7 @@ union Table1, cluster("OtherCluster").database("OtherDb").Table2 | project ...
 database("OtherDb1").Table1 | join cluster("OtherCluster").database("OtherDb2").Table2 on Key | join Table3 on Key | extend ...
 ```
 
-*修飾名*が[union 演算子](./unionoperator.md)のオペランドとして表示されている場合、ワイルドカードを使用して複数のテーブルと複数のデータベースを指定できます。 クラスター名にワイルドカードは使用できません。
+*修飾名* が [union 演算子](./unionoperator.md)のオペランドとして表示されている場合、ワイルドカードを使用して複数のテーブルと複数のデータベースを指定できます。 クラスター名にワイルドカードは使用できません。
 
 ```kusto
 union withsource=TableName *, database("OtherDb*").*Table, cluster("OtherCluster").database("*").*
@@ -84,7 +84,7 @@ restrict access to (my*, database("MyOther*").*, cluster("OtherCluster").databas
 
 * 既定のデータベースの " *my.* .." で始まる任意のエンティティ名。 
 * 現在のクラスターの *Myother...* という名前のすべてのデータベース内の任意のテーブル。
-* クラスター *OtherCluster.kusto.windows.net*内の*my2*という名前のすべてのデータベース内の任意のテーブル。
+* クラスター *OtherCluster.kusto.windows.net* 内の *my2* という名前のすべてのデータベース内の任意のテーブル。
 
 ## <a name="functions-and-views"></a>関数とビュー
 
@@ -121,7 +121,7 @@ database("OtherDb").MyView("exception") | extend CalCol=database("OtherDb").MyCa
 
 * リモート関数は表形式スキーマを返す必要があります。 スカラー関数は、同じクラスター内でのみアクセスできます。
 * リモート関数は、スカラーパラメーターのみを受け入れることができます。 1つ以上のテーブル引数を取得する関数は、同じクラスター内でのみアクセスできます。
-* リモート関数のスキーマは、そのパラメーターが既知で不変である必要があります。 詳細については、「 [クロスクラスタークエリとスキーマ変更](../concepts/crossclusterandschemachanges.md)」を参照してください。
+* パフォーマンス上の理由から、最初の呼び出しの後に、呼び出し元のクラスターによってリモートエンティティのスキーマがキャッシュされます。 そのため、リモートエンティティに加えられた変更によって、キャッシュされたスキーマ情報が一致しなくなる可能性があります。これは、クエリの失敗につながる可能性があります。 詳細については、「 [クロスクラスタークエリとスキーマ変更](../concepts/crossclusterandschemachanges.md)」を参照してください。
 
 次のクラスター間呼び出しが有効です。
 

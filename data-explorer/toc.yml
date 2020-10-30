@@ -72,6 +72,8 @@
           href: create-cluster-database-csharp.md
         - name: Python
           href: create-cluster-database-python.md
+        - name: Go
+          href: create-cluster-database-go.md
         - name: Azure Resource Manager テンプレート
           href: create-cluster-database-resource-manager.md
     - name: テーブルを作成する
@@ -168,6 +170,8 @@
               href: node-ingest-data.md
             - name: Go SDK
               href: go-ingest-data.md
+            - name: Java SDK
+              href: java-ingest-data.md
         - name: Kafka
           href: ingest-data-kafka.md
         - name: Logstash
@@ -206,7 +210,7 @@
               href: dashboard-customize-visuals.md
         - name: Power BI
           items:
-            - name: ベスト プラクティス
+            - name: Power BI ベスト プラクティス
               href: power-bi-best-practices.md
             - name: コネクタ
               href: power-bi-connector.md
@@ -246,6 +250,8 @@
               href: vnet-deploy-troubleshoot.md
             - name: VNet クラスターのプライベート エンドポイントを作成する - ポータル
               href: vnet-create-private-endpoint.md
+            - name: データ接続で使用されるリソースへのプライベートまたはサービス エンドポイントを作成する
+              href: vnet-endpoint-storage-event-hub.md
         - name: 暗号化
           items:
             - name: クラスター ディスクの暗号化 - ポータル
@@ -395,7 +401,7 @@
           href: ./kusto/query/tutorial.md
         - name: サンプル
           href: ./kusto/query/samples.md
-        - name: ベスト プラクティス
+        - name: クエリのベスト プラクティス
           href: ./kusto/query/best-practices.md
         - name: 複数のデータベースに対するクエリと複数のクラスターに対するクエリ
           href: ./kusto/query/cross-cluster-or-database-queries.md
@@ -1323,8 +1329,8 @@
           href: ./kusto/management/index.md
         - name: スキーマ
           items:
-            - name: スキーマ デザインのベスト プラクティス
-              href: ./kusto/management/best-practices.md
+            - name: スキーマ設計の管理のベスト プラクティス
+              href: ./kusto/management/management-best-practices.md
             - name: データベース管理
               href: ./kusto/management/databases.md
               items:
@@ -1730,7 +1736,7 @@
                   href: ./kusto/api/netfx/kusto-ingest-client-errors.md
                 - name: 操作の状態
                   href: ./kusto/api/netfx/kusto-ingest-client-status.md
-                - name: ベスト プラクティス
+                - name: Kusto.Ingest のベスト プラクティス
                   href: ./kusto/api/netfx/kusto-ingest-best-practices.md
                 - name: コード サンプル
                   href: ./kusto/api/netfx/kusto-ingest-client-examples.md

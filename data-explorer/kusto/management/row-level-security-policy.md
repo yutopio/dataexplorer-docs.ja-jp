@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/11/2020
-ms.openlocfilehash: f73cf5718a80528415c9aed201917c1bd52bb660
-ms.sourcegitcommit: 86636f80a12f47ea434f128fa04fe9fc09629730
+ms.openlocfilehash: 25ad7040b0318206a712a9a7fb8d3be58e0f47f3
+ms.sourcegitcommit: 0e2fbc26738371489491a96924f25553a8050d51
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/12/2020
-ms.locfileid: "91942635"
+ms.lasthandoff: 11/02/2020
+ms.locfileid: "93148441"
 ---
 # <a name="row_level_security-policy-command"></a>row_level_security ポリシー コマンド
 
@@ -51,7 +51,7 @@ ms.locfileid: "91942635"
 > には、次の制限が適用され `query` ます。
 >
 > * このクエリでは、ポリシーが定義されているテーブルとまったく同じスキーマが生成されます。 つまり、クエリの結果は、元のテーブルと同じ順序で同じ名前と型の列を返す必要があります。
-> * クエリで使用できる演算子は、、、、、、 `extend` `where` `project` `project-away` `project-rename` `project-reorder` 、およびだけ `join` `union` です。
+> * クエリで使用できる演算子は、、、、、、、、 `extend` `where` およびだけ `project` `project-away` `project-keep` `project-rename` `project-reorder` `join` `union` です。
 > * クエリでは、RLS が有効になっている他のテーブルを参照することはできません。
 > * クエリには、次のいずれか、またはその組み合わせを使用できます。
 >    * クエリ (たとえば、 `<table_name> | extend CreditCardNumber = "****"` )
@@ -77,7 +77,7 @@ ms.locfileid: "91942635"
 .alter table Customers policy row_level_security enable "TrimCreditCardNumbers"
 ```
 
-**パフォーマンス**に関する注意: `UserCanSeeFullNumbers` が最初に評価され、またはのいずれかが `AllData` 評価されますが、両方ではなく、期待される `PartialData` 結果になります。
+**パフォーマンス** に関する注意: `UserCanSeeFullNumbers` が最初に評価され、またはのいずれかが `AllData` 評価されますが、両方ではなく、期待される `PartialData` 結果になります。
 RLS のパフォーマンスへの影響の詳細については、 [こちら](rowlevelsecuritypolicy.md#performance-impact-on-queries)を参照してください。
 
 ## <a name="deleting-the-policy"></a>ポリシーを削除しています

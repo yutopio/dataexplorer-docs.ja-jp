@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 07/22/2019
-ms.openlocfilehash: cdd44f6d90e5549153cb1a1a0673a2e054839f1f
-ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
+ms.openlocfilehash: cf2673d92cb5a543baed01b91bdd828cc5862aee
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87871963"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902553"
 ---
 # <a name="quickstart-create-an-azure-data-explorer-cluster-and-database"></a>クイック スタート:Azure Data Explorer クラスターとデータベースを作成する
 
@@ -22,6 +22,7 @@ ms.locfileid: "87871963"
 > * [PowerShell](create-cluster-database-powershell.md)
 > * [C#](create-cluster-database-csharp.md)
 > * [Python](create-cluster-database-python.md)
+> * [Go](create-cluster-database-go.md)
 > * [ARM テンプレート](create-cluster-database-resource-manager.md)
 
 
@@ -54,8 +55,8 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
     | サブスクリプション | 該当するサブスクリプション | クラスターに使用する Azure サブスクリプションを選択します。|
     | Resource group | 該当するリソース グループ | 既存のリソース グループを使用するか、新しいリソース グループを作成します。 |
     | クラスター名 | 一意のクラスター名 | クラスターを識別する一意の名前を選択します。 指定したクラスター名に、ドメイン名 *[region].kusto.windows.net* が付加されます。 名前に使用できるのは、小文字と数字だけです。 4 文字以上 22 文字以内にする必要があります。
-    | リージョン | *米国西部*または*米国西部 2* | このクイックスタートでは、*米国西部*または*米国西部 2* (可用性ゾーンを使用している場合) を選択します。 運用システムでは、ニーズに最も適したリージョンを選択します。
-    | 可用性ゾーン | *1*、*2*、および/または *3* | 同じリージョン内のさまざまな可用性ゾーンにクラスター インスタンスを配置します (省略可)。 [Azure Availability Zones](/azure/availability-zones/az-overview) は、同じ Azure リージョン内の一意の物理的な場所です。 部分的なリージョンの障害から Azure Data Explorer クラスターとデータを保護します。 クラスター ノードは、既定で同じデータ センターに作成されます。 複数の可用性ゾーンを選択することで、単一障害点を排除し、高可用性を確保することができます。 可用性ゾーンへのデプロイは、クラスターの作成時にのみ可能であり、後から変更することはできません。
+    | リージョン | *米国西部* または *米国西部 2* | このクイックスタートでは、 *米国西部* または *米国西部 2* (可用性ゾーンを使用している場合) を選択します。 運用システムでは、ニーズに最も適したリージョンを選択します。
+    | 可用性ゾーン | *1* 、 *2* 、および/または *3* | 同じリージョン内のさまざまな可用性ゾーンにクラスター インスタンスを配置します (省略可)。 [Azure Availability Zones](/azure/availability-zones/az-overview) は、同じ Azure リージョン内の一意の物理的な場所です。 部分的なリージョンの障害から Azure Data Explorer クラスターとデータを保護します。 クラスター ノードは、既定で同じデータ センターに作成されます。 複数の可用性ゾーンを選択することで、単一障害点を排除し、高可用性を確保することができます。 可用性ゾーンへのデプロイは、クラスターの作成時にのみ可能であり、後から変更することはできません。
     | Compute specification (コンピューティングの仕様) | *D13_v2* | このクイック スタートでは最低価格の仕様を選択します。 実稼働環境システムでは、ニーズに最も適した仕様を選択します。
     | | | |
 
@@ -111,11 +112,11 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
     > [!NOTE]
     > クラスターを停止すると、データをクエリに使用できず、新しいデータを取り込むことはできません。
 
-1. クラスターを再起動するには、**[概要]** タブの上部にある **[開始]** を選択します。
+1. クラスターを再起動するには、 **[概要]** タブの上部にある **[開始]** を選択します。
 
     クラスターが再起動された場合、(初回のプロビジョニング同様) 利用できるようになるまでに約 10 分かかります。 データをホット キャッシュに読み込むにはさらに時間がかかります。  
 
-## <a name="clean-up-resources"></a>リソースのクリーンアップ
+## <a name="clean-up-resources"></a>リソースをクリーンアップする
 
 他のクイック スタートやチュートリアルを行う場合は、作成したリソースをそのままにします。 それ以外の場合は、コストの発生を回避するためにリソース グループをクリーンアップします。
 

@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 46ccf006c6f2cf167953c64bcaa2f3de0fbaf4b6
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 40cd53d1bff6b33b81878c85c6c22c3fb85655ee
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942218"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902574"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-an-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -22,6 +22,7 @@ ms.locfileid: "91942218"
 > * [PowerShell](create-cluster-database-powershell.md)
 > * [C#](create-cluster-database-csharp.md)
 > * [Python](create-cluster-database-python.md)
+> * [Go](create-cluster-database-go.md)
 > * [Azure Resource Manager テンプレート](create-cluster-database-resource-manager.md)
 
 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer を使用するには、最初にクラスターを作成し、そのクラスター内に 1 つまたは複数のデータベースを作成します。 その後、クエリを実行できるように、データをデータベースに取り込み (読み込み) ます。 

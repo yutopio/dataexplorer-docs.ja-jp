@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/10/2020
-ms.openlocfilehash: c133c3cf1185e7ffdb959ed6ea127af7502820c4
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 5fc25c64eabfb9fa27b66b47d0443178e19b4e57
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342571"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902498"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-go-sdk"></a>Azure Data Explorer Go SDK 使用してデータを取り込む 
 
@@ -21,6 +21,7 @@ ms.locfileid: "92342571"
 > * [Python](python-ingest-data.md)
 > * [Node](node-ingest-data.md)
 > * [Go](go-ingest-data.md)
+> * [Java](java-ingest-data.md)
 
 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer サービスとやり取りするための [Go SDK クライアント ライブラリ](kusto/api/golang/kusto-golang-client-library.md)が提供されます。 [Go SDK](https://github.com/Azure/azure-kusto-go) を使用して、Azure Data Explorer クラスター内のデータを取り込み、制御し、クエリを実行できます。 
 

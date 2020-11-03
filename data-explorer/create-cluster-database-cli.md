@@ -7,12 +7,12 @@ ms.reviewer: radennis
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: b15b2330df96071069e6b86a0fff6b9d77a6b0a1
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 24ec28fee62b4633e5a5694faf731d1888858af3
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88872830"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902604"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-azure-cli"></a>Azure CLI を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -22,6 +22,7 @@ ms.locfileid: "88872830"
 > * [PowerShell](create-cluster-database-powershell.md)
 > * [C#](create-cluster-database-csharp.md)
 > * [Python](create-cluster-database-python.md)
+> * [Go](create-cluster-database-go.md)
 > * [ARM テンプレート](create-cluster-database-resource-manager.md)
 
 Azure Data Explorer は、アプリケーション、Web サイト、IoT デバイスなどからの大量のデータ ストリーミングをリアルタイムに分析するためのフル マネージドのデータ分析サービスです。 Azure Data Explorer を使用するには、最初にクラスターを作成し、そのクラスター内に 1 つまたは複数のデータベースを作成します。 その後、クエリを実行できるように、データをデータベースに取り込み (読み込み) ます。 この記事では、Azure CLI を使用して、クラスターとデータベースを 1 つずつ作成します。
@@ -79,7 +80,7 @@ Azure Cloud Shell でコマンドを実行している場合、次の手順は�
     az kusto cluster show --cluster-name azureclitest --resource-group testrg
     ```
 
-結果に値が `Succeeded` の `provisioningState` が含まれている場合、クラスターは正常に作成されています。
+結果に値が `provisioningState` の `Succeeded` が含まれている場合、クラスターは正常に作成されています。
 
 ## <a name="create-the-database-in-the-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターでデータベースを作成する
 

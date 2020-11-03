@@ -7,20 +7,18 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/05/2019
-ms.openlocfilehash: 50e949d7ef15948dd46f5553fad8d10dad5faa96
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: fcb1cf067263b5e6a0aaf7b45605d4e93be1d8cc
+ms.sourcegitcommit: 46ae22f0f1eda2a21ac01de8d0c2fa2f57de0ad3
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875057"
+ms.lasthandoff: 11/03/2020
+ms.locfileid: "93238269"
 ---
 # <a name="query-data-using-the-azure-data-explorer-python-library"></a>Azure Data Explorer の Python ライブラリを使用してデータのクエリを実行する
 
 この記事では、Azure Data Explorer を使用してデータのクエリを実行します。 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。
 
-Azure データ エクスプ ローラーでは、[Python 用のデータ クライアント ライブラリ](https://github.com/Azure/azure-kusto-python/tree/master/azure-kusto-data)が提供されています。 このライブラリを使用すると、コードからデータをクエリできます。 学習を支援するために設定した "*ヘルプ クラスター*" 上のテーブルに接続します。 そのクラスターでテーブルのクエリを実行し、結果を返すことができます。
-
-この記事は [Azure Notebook](https://notebooks.azure.com/ManojRaheja/libraries/KustoPythonSamples/html/QueryKusto.ipynb) でも利用できます。
+Azure データ エクスプ ローラーでは、[Python 用のデータ クライアント ライブラリ](https://github.com/Azure/azure-kusto-python/tree/master/azure-kusto-data)が提供されています。 このライブラリを使用すると、コードからデータをクエリできます。 学習を支援するために設定した " *ヘルプ クラスター* " 上のテーブルに接続します。 そのクラスターでテーブルのクエリを実行し、結果を返すことができます。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -77,7 +75,7 @@ KCSB.authority_id = AAD_TENANT_ID
 
 ## <a name="connect-to-azure-data-explorer-and-execute-a-query"></a>Azure データ エクスプローラーに接続し、クエリを実行する
 
-クラスターに対してクエリを実行し、データ フレームに出力を格納します。 このコードを実行すると、次のようなメッセージが返されます: *サインインするには、Web ブラウザーを使用してページ https://microsoft.com/devicelogin を開き、コード F3W4VWZDM を入力して認証します*。 この手順に従ってサインインし、元のページに戻って次のコード ブロックを実行します。
+クラスターに対してクエリを実行し、データ フレームに出力を格納します。 このコードを実行すると、次のようなメッセージが返されます。" *サインインするには、Web ブラウザーを使用して https://microsoft.com/devicelogin ページを開き、認証するためのコード F3W4VWZDM を入力します* 。" この手順に従ってサインインし、元のページに戻って次のコード ブロックを実行します。
 
 ```python
 KUSTO_CLIENT = KustoClient(KCSB)

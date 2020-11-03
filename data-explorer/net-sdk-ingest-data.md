@@ -7,12 +7,12 @@ ms.reviewer: vladikb
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 07/07/2020
-ms.openlocfilehash: 56fd2d253cac80f097caa9206cd3b7c2a9d3c118
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 4ab82b593367a3b9fe466c2ddbd6fbee70ad628f
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343506"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902608"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-net-sdk"></a>Azure Data Explorer NET SDK 使用してデータを取り込む 
 
@@ -21,6 +21,7 @@ ms.locfileid: "92343506"
 > * [Python](python-ingest-data.md)
 > * [Node](node-ingest-data.md)
 > * [Go](go-ingest-data.md)
+> * [Java](java-ingest-data.md)
 
 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 これには、.NET 用のクライアント ライブラリとして、[取り込みライブラリ](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Ingest/)と[データ ライブラリ](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Data/)の 2 つが用意されています。 .NET SDK の詳細については、[.NET SDKについて](./kusto/api/netfx/about-the-sdk.md)の記事を参照してください。
 これらのライブラリを使用すると、クラスターにデータを取り込み (読み込み)、コードからデータのクエリを行うことができます。 この記事ではまず、テスト クラスター内にテーブルとデータ マッピングを作成します。 その後、クラスターに対するインジェストをキューに入れて、結果を検証します。

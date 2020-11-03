@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: bb15bf9393ff6ae4a06fa97ade4070dfcd5e2ef8
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 9d2e50e54d4a33b0648760fc4df395c9686904e9
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343142"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902565"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-powershell"></a>PowerShell を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -22,9 +22,10 @@ ms.locfileid: "92343142"
 > * [PowerShell](create-cluster-database-powershell.md)
 > * [C#](create-cluster-database-csharp.md)
 > * [Python](create-cluster-database-python.md)
+> * [Go](create-cluster-database-go.md)
 > * [ARM テンプレート](create-cluster-database-resource-manager.md)  
 
-Azure Data Explorer は、アプリケーション、Web サイト、IoT デバイスなどからの大量のデータ ストリーミングをリアルタイムに分析するためのフル マネージドのデータ分析サービスです。 Azure Data Explorer を使用するには、最初にクラスターを作成し、そのクラスター内に 1 つまたは複数のデータベースを作成します。 その後、クエリを実行できるように、データをデータベースに取り込み (読み込み) ます。 この記事では、PowerShell を使用して、クラスターとデータベースを 1 つずつ作成します。 [Az.Kusto](/azure/cloud-shell/overview) を使って Windows、Linux、または [Azure Cloud Shell](/powershell/module/az.kusto/?view=azps-1.4.0#kusto) で PowerShell コマンドレットとスクリプトを実行し、Azure Data Explorer のクラスターとデータベースを作成および構成できます。
+Azure Data Explorer は、アプリケーション、Web サイト、IoT デバイスなどからの大量のデータ ストリーミングをリアルタイムに分析するためのフル マネージドのデータ分析サービスです。 Azure Data Explorer を使用するには、最初にクラスターを作成し、そのクラスター内に 1 つまたは複数のデータベースを作成します。 その後、クエリを実行できるように、データをデータベースに取り込み (読み込み) ます。 この記事では、PowerShell を使用して、クラスターとデータベースを 1 つずつ作成します。 [Az.Kusto](/powershell/module/az.kusto/?view=azps-1.4.0#kusto) を使って Windows、Linux、または [Azure Cloud Shell](/azure/cloud-shell/overview) で PowerShell コマンドレットとスクリプトを実行し、Azure Data Explorer のクラスターとデータベースを作成および構成できます。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -67,7 +68,7 @@ Azure Cloud Shell でコマンドを実行している場合、次の手順は�
 
    |**設定** | **推奨値** | **フィールドの説明**|
    |---|---|---|
-   | Name | *mykustocluster* | クラスターの任意の名前。|
+   | 名前 | *mykustocluster* | クラスターの任意の名前。|
    | Sku | *D13_v2* | クラスターに使用される SKU。 |
    | ResourceGroupName | *testrg* | クラスターが作成されるリソース グループの名前。 |
 

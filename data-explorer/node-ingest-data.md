@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: 7262b0391abf42dc71a04eec8be9958c46726edb
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 128f15910fee6008a6abd99fc3562518ae5625d6
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342554"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902630"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-node-library"></a>Azure Data Explorer の Node ライブラリを使用してデータを取り込む
 
@@ -21,6 +21,7 @@ ms.locfileid: "92342554"
 > * [Python](python-ingest-data.md)
 > * [Node](node-ingest-data.md)
 > * [Go](go-ingest-data.md)
+> * [Java](java-ingest-data.md)
 
 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer では、Node 用のクライアント ライブラリとして、[取り込みライブラリ](https://github.com/Azure/azure-kusto-node/tree/master/azure-kusto-ingest)と[データ ライブラリ](https://github.com/Azure/azure-kusto-node/tree/master/azure-kusto-data)の 2 つが用意されています。 これらのライブラリを使用すると、クラスターにデータを取り込み (読み込み)、コードからデータのクエリを行うことができます。 この記事ではまず、テスト クラスター内にテーブルとデータ マッピングを作成します。 その後、クラスターに対するインジェストをキューに入れて、結果を検証します。
 

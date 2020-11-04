@@ -46,7 +46,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: セキュリティ
+    - name: Security
       items:
         - name: セキュリティの概要
           href: security.md
@@ -85,21 +85,26 @@
             - name: ワンクリックでのインジェストの概要
               href: ingest-data-one-click.md
             - name: コンテナーから新しいテーブルへの CSV データ
+              displayName: 'ingest data, ingestion, one click'
               href: one-click-ingestion-new-table.md
             - name: ローカル ファイルから既存のテーブルへの JSON データ
+              displayName: 'ingest data, ingestion, one click'
               href: one-click-ingestion-existing-table.md
         - name: ストリーミング インジェスト
           items:
             - name: Azure portal
+              displayName: 'ingest data, ingestion'
               href: ingest-data-streaming.md
             - name: C#
+              displayName: 'ingest data, ingestion'
               href: ingest-data-streaming-csharp.md
         - name: LightIngest の使用
+          displayName: 'ingest data, ingestion'
           href: lightingest.md
         - name: イベント ハブ
           items:
             - name: イベント ハブ データ接続
-              displayName: ingest
+              displayName: 'ingest, ingestion'
               href: ingest-data-event-hub-overview.md
             - name: Azure portal
               displayName: 'Event Hub, ingest, data connection'
@@ -136,7 +141,7 @@
         - name: IoT Hub
           items:
             - name: IoT Hub データ接続
-              displayName: ingest
+              displayName: 'ingest data, ingestion'
               href: ingest-data-iot-hub-overview.md
             - name: Azure portal
               displayName: 'IoT Hub, ingest, data connection'
@@ -163,20 +168,28 @@
         - name: SDK の使用
           items:
             - name: .NET SDK
+              displayName: 'ingest data, ingestion'
               href: net-sdk-ingest-data.md
             - name: Python
+              displayName: 'ingest data, ingestion'
               href: python-ingest-data.md
             - name: Node SDK
+              displayName: 'ingest data, ingestion'
               href: node-ingest-data.md
             - name: Go SDK
+              displayName: 'ingest data, ingestion'
               href: go-ingest-data.md
             - name: Java SDK
+              displayName: 'ingest data, ingestion'
               href: java-ingest-data.md
         - name: Kafka
+          displayName: 'ingest data, ingestion'
           href: ingest-data-kafka.md
         - name: Logstash
+          displayName: 'ingest data, ingestion'
           href: ingest-data-logstash.md
         - name: JSON 書式付きデータ
+          displayName: 'ingest data, ingestion'
           href: ingest-json-formats.md
     - name: クエリ データ
       items:
@@ -213,16 +226,21 @@
             - name: Power BI ベスト プラクティス
               href: power-bi-best-practices.md
             - name: コネクタ
+              displayName: PowerBI
               href: power-bi-connector.md
             - name: インポートされたクエリ
+              displayName: PowerBI
               href: power-bi-imported-query.md
             - name: SQL クエリ (SQL query)
+              displayName: PowerBI
               href: power-bi-sql-query.md
         - name: Excel
           items:
             - name: コネクタ
+              displayName: Excel
               href: excel-connector.md
             - name: 空のクエリ
+              displayName: Excel
               href: excel-blank-query.md
         - name: Grafana
           href: grafana.md
@@ -251,6 +269,7 @@
             - name: VNet クラスターのプライベート エンドポイントを作成する - ポータル
               href: vnet-create-private-endpoint.md
             - name: データ接続で使用されるリソースへのプライベートまたはサービス エンドポイントを作成する
+              displayName: 'VNet, private endpoint, Azure Storage, Event Hub'
               href: vnet-endpoint-storage-event-hub.md
         - name: 暗号化
           items:
@@ -263,14 +282,19 @@
         - name: 顧客管理キーの構成
           items:
             - name: ポータル
+              displayName: Configure customer-managed-keys
               href: customer-managed-keys-portal.md
             - name: C#
+              displayName: Configure customer-managed-keys
               href: customer-managed-keys-csharp.md
             - name: Azure Resource Manager テンプレート
+              displayName: Configure customer-managed-keys
               href: customer-managed-keys-resource-manager.md
             - name: Azure CLI
+              displayName: Configure customer-managed-keys
               href: customer-managed-keys-cli.md
             - name: PowerShell
+              displayName: Configure customer-managed-keys
               href: customer-managed-keys-powershell.md
         - name: Azure AD アプリを作成する
           href: provision-azure-ad-app.md
@@ -291,10 +315,13 @@
             - name: クラスター プリンシパルの追加
               items:
                 - name: C#
+                  displayName: cluster principal
                   href: cluster-principal-csharp.md
                 - name: Python
+                  displayName: cluster principal
                   href: cluster-principal-python.md
                 - name: Azure Resource Manager テンプレート
+                  displayName: cluster principal
                   href: cluster-principal-resource-manager.md
             - name: クラスター言語拡張機能の管理
               displayName: 'Python, R'
@@ -306,10 +333,13 @@
             - name: データベース プリンシパルの追加
               items:
                 - name: C#
+                  displayName: database principal
                   href: database-principal-csharp.md
                 - name: Python
+                  displayName: database principal
                   href: database-principal-python.md
                 - name: Azure Resource Manager テンプレート
+                  displayName: database principal
                   href: database-principal-resource-manager.md
             - name: ポリシー
               items:
@@ -386,10 +416,13 @@
     - name: トラブルシューティング
       items:
         - name: クラスターを作成する
+          displayName: troubleshoot
           href: troubleshoot-create-cluster.md
         - name: クラスターに接続する
+          displayName: troubleshoot
           href: troubleshoot-connect-cluster.md
         - name: データベースとテーブルを処理する
+          displayName: troubleshoot
           href: troubleshoot-database-table.md
 - name: リファレンス
   items:
@@ -545,7 +578,7 @@
               href: ./kusto/query/getschemaoperator.md
             - name: invoke 演算子
               href: ./kusto/query/invokeoperator.md
-            - name: join 演算子
+            - name: 結合演算子
               items:
                 - name: join 演算子
                   href: ./kusto/query/joinoperator.md
@@ -837,6 +870,10 @@
               href: ./kusto/query/gettypefunction.md
             - name: getyear()
               href: ./kusto/query/getyearfunction.md
+            - name: gzip_compress_to_base64_string()
+              href: ./kusto/query/gzip-base64-compress.md
+            - name: gzip_decompress_from_base64_string()
+              href: ./kusto/query/gzip-base64-decompress.md
             - name: hash()
               href: ./kusto/query/hashfunction.md
             - name: hash_combine()
@@ -1329,7 +1366,8 @@
           href: ./kusto/management/index.md
         - name: スキーマ
           items:
-            - name: スキーマ設計の管理のベスト プラクティス
+            - name: スキーマ デザインのベスト プラクティス
+              displayName: management
               href: ./kusto/management/management-best-practices.md
             - name: データベース管理
               href: ./kusto/management/databases.md
@@ -1563,7 +1601,7 @@
               href: ./kusto/management/data-export/export-data-to-an-external-table.md
             - name: 継続的データ エクスポート
               items:
-                - name: 概要
+                - name: 継続的データ エクスポートの概要
                   href: ./kusto/management/data-export/continuous-data-export.md
                 - name: 連続エクスポートの作成または変更
                   href: ./kusto/management/data-export/create-alter-continuous.md
@@ -1671,19 +1709,20 @@
       items:
         - name: API の概要
           href: ./kusto/api/index.md
+        - name: クライアント ライブラリ
+          href: ./kusto/api/client-libraries.md
+        - name: Connection strings
           items:
-            - name: クライアント ライブラリ
-              href: ./kusto/api/client-libraries.md
-            - name: Connection strings
+            - name: 接続文字列の概要
               href: ./kusto/api/connection-strings/index.md
-              items:
-                - name: Kusto の接続文字列
-                  href: ./kusto/api/connection-strings/kusto.md
-                - name: ストレージの接続文字列
-                  href: ./kusto/api/connection-strings/storage.md
+            - name: Kusto の接続文字列
+              href: ./kusto/api/connection-strings/kusto.md
+            - name: ストレージの接続文字列
+              href: ./kusto/api/connection-strings/storage.md
         - name: REST API
-          href: ./kusto/api/rest/index.md
           items:
+            - name: REST API の概要
+              href: ./kusto/api/rest/index.md
             - name: 認証
               href: ./kusto/api/rest/authentication.md
             - name: クエリ/管理の HTTP 要求
@@ -1696,9 +1735,12 @@
               href: ./kusto/api/rest/deeplink.md
             - name: ストリーミング インジェスト
               href: ./kusto/api/rest/streaming-ingest.md
-        - name: MS-TDS (SQL、ADO.NET、JDBC、ODBC)
-          href: ./kusto/api/tds/index.md
+        - name: MS-TDS
+          displayName: 'SQL, ADO.NET, JDBC, ODBC'
           items:
+            - name: MS-TDS の概要
+              displayName: 'SQL, ADO.NET, JDBC, ODBC'
+              href: ./kusto/api/tds/index.md
             - name: T-SQL
               href: ./kusto/api/tds/t-sql.md
             - name: TDS 経由の KQL
@@ -1721,13 +1763,15 @@
                 - name: トレースの制御
                   href: ./kusto/api/netfx/controlling-tracing.md
             - name: Kusto.Data
-              href: ./kusto/api/netfx/about-kusto-data.md
               items:
+                - name: Kusto.Data の概要
+                  href: ./kusto/api/netfx/about-kusto-data.md
                 - name: 要求プロパティ、ClientRequestProperties
                   href: ./kusto/api/netfx/request-properties.md
             - name: Kusto.Ingest
-              href: ./kusto/api/netfx/about-kusto-ingest.md
               items:
+                - name: Kusto.Ingest の概要
+                  href: ./kusto/api/netfx/about-kusto-ingest.md
                 - name: アクセス許可
                   href: ./kusto/api/netfx/kusto-ingest-client-permissions.md
                 - name: クライアント リファレンス

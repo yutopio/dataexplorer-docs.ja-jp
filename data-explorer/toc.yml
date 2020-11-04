@@ -39,6 +39,7 @@
         - name: データ インジェストのプロパティ
           href: ingestion-properties.md
         - name: データ インジェストの形式
+          displayName: supported data formats
           href: ingestion-supported-formats.md
     - name: Kusto クエリ言語
       items:
@@ -46,7 +47,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: Security
+    - name: セキュリティ
       items:
         - name: セキュリティの概要
           href: security.md

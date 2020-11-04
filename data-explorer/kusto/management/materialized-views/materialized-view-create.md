@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 95f8ce19c6edb419de4fb5053a79c243e3e332c4
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 383d1ab5d948a5fbcfb3ab2aad0ff8e5ed675075
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92252823"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349445"
 ---
 # <a name="create-materialized-view"></a>.create materialized-view
 
@@ -72,7 +72,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
     * ビューのソーステーブル (ファクトテーブル) 内のレコードは、1回だけ具体化されます。 ファクトテーブルとディメンションテーブル間のインジェストの遅延が異なると、ビューの結果に影響を与える可能性があります。
 
-    * **例**: ビュー定義には、ディメンションテーブルとの内部結合が含まれています。 具体化の時点では、ディメンションレコードは完全には取り込まれたませんでしたが、既にファクトテーブルに取り込まれたされていました。 このレコードはビューから削除され、再処理されることはありません。 
+    * **例** : ビュー定義には、ディメンションテーブルとの内部結合が含まれています。 具体化の時点では、ディメンションレコードは完全には取り込まれたませんでしたが、既にファクトテーブルに取り込まれたされていました。 このレコードはビューから削除され、再処理されることはありません。 
 
         同様に、結合が外部結合の場合、ファクトテーブルのレコードが処理され、ディメンションテーブルの列に null 値を持つビューに追加されます。 ビューに既に追加されている (null 値を持つ) レコードは、再度処理されません。 ディメンションテーブルの列の値は、null のままになります。
 
@@ -82,10 +82,10 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
 |プロパティ|Type|説明 |
 |----------------|-------|---|
-|バック|[bool]|現在、 *SourceTable* () にあるすべてのレコードに基づいてビューを作成するか `true` 、"後から" () を作成するかを指定し `false` ます。 既定値は `false`です。| 
+|バック|bool|現在、 *SourceTable* () にあるすべてのレコードに基づいてビューを作成するか `true` 、"後から" () を作成するかを指定し `false` ます。 既定値は `false` です。| 
 |effectiveDateTime|DATETIME| と共に指定した場合、作成されるのは、 `backfill=true` datetime の後の取り込まれたレコードだけです。 バックフィルも true に設定する必要があります。 Datetime リテラルが必要です。次に例を示します。 `effectiveDateTime=datetime(2019-05-01)`|
 |dimensionTables|Array|ビュー内のディメンションテーブルのコンマ区切りの一覧です。 [クエリ引数](#query-argument)を参照してください
-|autoUpdateSchema|[bool]|ソーステーブルの変更時にビューを自動更新するかどうかを指定します。 既定値は `false`です。 このオプションは、型のビュー `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (列の引数がの場合のみ `*` ) に対してのみ有効です。 このオプションが true に設定されている場合、ソーステーブルへの変更は具体化されたビューに自動的に反映されます。
+|autoUpdateSchema|bool|ソーステーブルの変更時にビューを自動更新するかどうかを指定します。 既定値は `false` です。 このオプションは、型のビュー `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (列の引数がの場合のみ `*` ) に対してのみ有効です。 このオプションが true に設定されている場合、ソーステーブルへの変更は具体化されたビューに自動的に反映されます。
 |folder|string|具体化されたビューのフォルダー。|
 |docString|string|具体化されたビューを文書化する文字列|
 
@@ -202,7 +202,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
 * 具体化されたビュークエリフィルターは、具体化されたビューディメンションの1つ (集計 by 句) によってフィルター処理されるときに最適化されます。 クエリパターンが、多くの場合、具体化されたビューのディメンションである列によってフィルター処理されることがわかっている場合は、ビューに含めます。 たとえば、によってフィルター処理される、によってを公開する具体化されたビューの場合 `arg_max` `ResourceId` `SubscriptionId` 、次のような推奨事項があります。
 
-    **操作**:
+    **操作** :
     
     ```kusto
     .create materialized-view ArgMaxResourceId on table FactResources
@@ -211,7 +211,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
     }
     ``` 
     
-    **避け**てください。
+    **避け** てください。
     
     ```kusto
     .create materialized-view ArgMaxResourceId on table FactResources
@@ -222,7 +222,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
 * 具体化されたビュー定義の一部として [更新ポリシー](../updatepolicy.md) に移動できる、変換、正規化、およびその他の大量の計算は含めないでください。 代わりに、更新ポリシーでこれらのプロセスをすべて実行し、具体化されたビューでのみ集計を実行します。 このプロセスは、ディメンションテーブルの参照に使用します (該当する場合)。
 
-    **操作**:
+    **操作** :
     
     * ポリシーの更新:
     
@@ -241,19 +241,19 @@ Create 操作には、 [データベース管理者](../access-control/role-base
     ```kusto
     .create materialized-view Usage on table Events
     {
-    &nbsp;     Target 
-    &nbsp;     | summarize count() by ResourceId 
+        Target 
+        | summarize count() by ResourceId 
     }
     ```
     
-    **避け**てください。
+    **避け** てください。
     
     ```kusto
     .create materialized-view Usage on table SourceTable
     {
-    &nbsp;     SourceTable 
-    &nbsp;     | extend ResourceId = strcat('subscriptions/', toupper(SubscriptionId), '/', resourceId)
-    &nbsp;     | summarize count() by ResourceId
+        SourceTable 
+        | extend ResourceId = strcat('subscriptions/', toupper(SubscriptionId), '/', resourceId)
+        | summarize count() by ResourceId
     }
     ```
 

@@ -7,12 +7,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 04/13/2020
-ms.openlocfilehash: 365ce1e4c8e5dd2157a7975095b9e30dfd1e3722
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 6e460ddaab7d58e4dac104db511119933c531506
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342707"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349428"
 ---
 # <a name="troubleshooting"></a>トラブルシューティング
 
@@ -127,7 +127,7 @@ Following errors were detected during this operation.
 #### <a name="enabling-clickonce-verbose-logging"></a>ClickOnce の詳細ログを有効にする
 
 1. アプリケーションがまだ起動しない場合は、次のようになります。
-    1. 次の下で LogVerbosityLevel string 値1を作成して、[詳細な ClickOnce ログ記録を有効に](https://docs.microsoft.com/visualstudio/deployment/how-to-specify-verbose-log-files-for-clickonce-deployments)します。
+    1. 次の下で LogVerbosityLevel string 値1を作成して、[詳細な ClickOnce ログ記録を有効に](/visualstudio/deployment/how-to-specify-verbose-log-files-for-clickonce-deployments)します。
 
         ```kusto
         HKEY_CURRENT_USER\Software\Classes\Software\Microsoft\Windows\CurrentVersion\Deployment
@@ -163,7 +163,7 @@ Kusto エクスプローラーアプリケーションによって保存され�
 
 必要に応じて、Kusto を完全にリセットできます。 次の手順では、コンピューターから削除されて最初からインストールする必要があるため、Kusto をプログレッシブにリセットする方法について説明します。
 
-1. Windows で、[ **プログラムの変更と削除** ] ( **[プログラムと機能**] とも呼ばれます) を開きます。
+1. Windows で、[ **プログラムの変更と削除** ] ( **[プログラムと機能** ] とも呼ばれます) を開きます。
 1. で始まるすべての項目を選択し `Kusto.Explorer` ます。
 1. **[アンインストール]** を選択します。
 
@@ -175,11 +175,11 @@ Kusto エクスプローラーアプリケーションによって保存され�
 
 また、特定のバージョンの Kusto エクスプローラーに戻すこともできます。
 
-1. `appwiz.cpl` を実行する。
-1. [ **Kusto エクスプローラー** ] を選択し、[ **アンインストールと変更**] を選択します。
-1. [ **アプリケーションを以前の状態に復元する**] を選択します。
+1. `appwiz.cpl` を実行します。
+1. [ **Kusto エクスプローラー** ] を選択し、[ **アンインストールと変更** ] を選択します。
+1. [ **アプリケーションを以前の状態に復元する** ] を選択します。
 
-## <a name="next-steps"></a>次の手順
+## <a name="next-steps"></a>次のステップ
 
 * [Kusto エクスプローラーのユーザーインターフェイス](kusto-explorer.md#overview-of-the-user-interface)について説明します。
 * [コマンドラインからの Kusto の実行](kusto-explorer-using.md#kustoexplorer-command-line-arguments)について説明します。

@@ -226,13 +226,13 @@
             - name: Power BI ベスト プラクティス
               href: power-bi-best-practices.md
             - name: コネクタ
-              displayName: PowerBI
+              displayName: Power BI
               href: power-bi-connector.md
             - name: インポートされたクエリ
-              displayName: PowerBI
+              displayName: Power BI
               href: power-bi-imported-query.md
             - name: SQL クエリ (SQL query)
-              displayName: PowerBI
+              displayName: Power BI
               href: power-bi-sql-query.md
         - name: Excel
           items:

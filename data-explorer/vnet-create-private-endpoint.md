@@ -7,12 +7,12 @@ ms.reviewer: elbirnbo
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/09/2020
-ms.openlocfilehash: e980527d2342543777ae8186b9166615f9016c5e
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 42203d1a7a89cc86a83ed94e03b1505b21476e83
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343404"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902445"
 ---
 # <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network-preview"></a>仮想ネットワーク内の Azure Data Explorer クラスターにプライベート エンドポイントを作成する (プレビュー)
 
@@ -20,12 +20,13 @@ Private Link をプライベート エンドポイントと共に使用して、
 
 [Private Link サービス](/azure/private-link/private-link-service-overview)を設定するには、Azure VNet アドレス空間の IP アドレスを持つプライベート エンドポイントを使用します。 [Azure プライベート エンドポイント](/azure/private-link/private-endpoint-overview)は、VNet のプライベート IP アドレスを使用して、Azure Data Explorer にプライベートかつ安全に接続します。 また、プライベート エンドポイントを使用して接続するように、クラスターで [DNS 構成](/azure/private-link/private-endpoint-dns)を再構成する必要があります。 この設定により、プライベート ネットワーク上のクライアントと Azure Data Explorer クラスター間のネットワーク トラフィックは、VNet および Microsoft バックボーン ネットワーク上の [Private Link](/azure/private-link/) を経由するため、パブリック インターネットにさらされません。 この記事では、クエリ (エンジン) とインジェスト (データ管理) の両方に対して、クラスター内にプライベート エンドポイントを作成して構成する方法について説明します。
 
+
 ## <a name="prerequisites"></a>前提条件
 
 * [仮想ネットワーク内に Azure Data Explorer クラスター](./vnet-create-cluster-portal.md)を作成します。
 * ネットワーク ポリシーを無効にします。
-  * Azure Data Explorer クラスターの仮想ネットワークで、[Private Link サービスのポリシー](/azure/private-link/disable-private-link-service-network-policy)を無効にします。
-  * プライベート エンドポイントの仮想ネットワーク (Azure Data Explorer クラスターの仮想ネットワークと同じ場合があります) で、[プライベート エンドポイントのポリシー](/azure/private-link/disable-private-endpoint-network-policy)を無効にします。
+* Azure Data Explorer クラスターの仮想ネットワークで、[Private Link サービスのポリシー](/azure/private-link/disable-private-link-service-network-policy)を無効にします。
+* プライベート エンドポイントの仮想ネットワーク (Azure Data Explorer クラスターの仮想ネットワークと同じ場合があります) で、[プライベート エンドポイントのポリシー](/azure/private-link/disable-private-endpoint-network-policy)を無効にします。
 
 ## <a name="create-private-link-service"></a>Private Link サービスの作成
 
@@ -39,7 +40,7 @@ Private Link をプライベート エンドポイントと共に使用して、
 
 1. **[Create private link service]\(Private Link サービスの作成\)** ペインで、次のフィールドに入力します。
 
-    :::image type="content" source="media/vnet-create-private-endpoint/private-link-basics.png" alt-text="Azure Data Explorer ポータルで Private Link サービスを作成するための最初の 3 つの手順を示す Gif":::
+    :::image type="content" source="media/vnet-create-private-endpoint/private-link-basics.png" alt-text="[Create private link service]\(Private Link サービスの作成\) のタブ 1 - [基本]":::
 
     **設定** | **推奨値** | **フィールドの説明**
     |---|---|---|
@@ -50,7 +51,11 @@ Private Link をプライベート エンドポイントと共に使用して、
 
 1. **[送信設定]** ペインで、次のフィールドに入力します。
 
-    :::image type="content" source="media/vnet-create-private-endpoint/private-link-outbound.png" alt-text="Azure Data Explorer ポータルで Private Link サービスを作成するための最初の 3 つの手順を示す Gif" *ロード バランサーのデータ管理名は、次の形式になります: kudatamgmt-{clustername}-elb* "|
+    :::image type="content" source="media/vnet-create-private-endpoint/private-link-outbound.png" alt-text="Private Link のタブ 2 - [送信設定]":::
+
+    |**設定** | **推奨値** | **フィールドの説明**
+    |---|---|---|
+    | Load Balancer | エンジンまたは " *データ管理* " のロード バランサー | クラスター エンジンに対して作成されたロード バランサー、エンジンのパブリック IP を指すロード バランサーを選択します。  ロード バランサーのエンジン名は、次の形式になります: kucompute-{clustername}-elb <br> " *ロード バランサーのデータ管理名は、次の形式になります: kudatamgmt-{clustername}-elb* "|
     | ロード バランサーのフロントエンド IP アドレス | エンジンまたはデータ管理のパブリック IP。 | ロード バランサーのパブリック IP アドレスを選択します。 |
     | ソース NAT サブネット | クラスターのサブネット | クラスターがデプロイされているサブネット。
     
@@ -65,9 +70,9 @@ Private Link をプライベート エンドポイントと共に使用して、
 1. ポータルの左上隅にある **[+ リソースの作成]** ボタンを選択します。
 1. " *プライベート エンドポイント* " を検索します。
 1. **[プライベート エンドポイント]** で、 **[作成]** を選択します。
-1. **[Create a private endpoint]\(プライベート エンドポイントの作成\)** ペインで、次のフィールドに入力します。
+1. **[プライベート エンドポイントの作成]** ペインで、次のフィールドに入力します。
 
-    :::image type="content" source="media/vnet-create-private-endpoint/step-one-basics.png" alt-text="Azure Data Explorer ポータルで Private Link サービスを作成するための最初の 3 つの手順を示す Gif":::
+    :::image type="content" source="media/vnet-create-private-endpoint/step-one-basics.png" alt-text="プライベート エンドポイントの作成フォームでの手順 1 - 基本":::
 
     **設定** | **推奨値** | **フィールドの説明**
     |---|---|---|
@@ -78,7 +83,7 @@ Private Link をプライベート エンドポイントと共に使用して、
     
 1. **[リソース]** ペインで、次のフィールドに入力します。
 
-    :::image type="content" source="media/vnet-create-private-endpoint/step-two-resource.png" alt-text="Azure Data Explorer ポータルで Private Link サービスを作成するための最初の 3 つの手順を示す Gif":::
+    :::image type="content" source="media/vnet-create-private-endpoint/step-two-resource.png" alt-text="仮想ネットワークの作成フォーム手順 2 - リソース":::
 
     **設定** | **Value**
     |---|---|
@@ -100,7 +105,7 @@ Private Link をプライベート エンドポイントと共に使用して、
 1. Private Link サービスの設定で、 **[プライベート エンドポイント接続]** を選択します。
 1. 接続の一覧からプライベート エンドポイントを選択し、 **[承認]** を選択します。
 
-:::image type="content" source="media/vnet-create-private-endpoint/private-link-approve.png" alt-text="Azure Data Explorer ポータルで Private Link サービスを作成するための最初の 3 つの手順を示す Gif"::: 
+:::image type="content" source="media/vnet-create-private-endpoint/private-link-approve.png" alt-text="プライベート エンドポイントを作成するための承認手順"::: 
 
 ## <a name="set-dns-configuration"></a>DNS 構成の設定
 

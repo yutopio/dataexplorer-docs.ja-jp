@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: 5a7f680dc2ab76a9f952efa52d60b59c7b1d1c93
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: ac73abcf1355531a3b8d9917a6f5d9a0d3965c01
+ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452852"
+ms.lasthandoff: 10/28/2020
+ms.locfileid: "92902334"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
@@ -30,7 +30,7 @@ Azure Data Explorer では、Virtual Network (VNet) のサブネットへのク�
 
 各サービス (エンジンとデータ管理サービス) に対して次の IP アドレスを使用して、Azure Data Explorer クラスターにアクセスできます。
 
-* **プライベート IP**:VNet 内のクラスターにアクセスするために使用されます。
+* **プライベート IP** :VNet 内のクラスターにアクセスするために使用されます。
 * **[パブリック IP]** : 管理と監視のために VNet の外部からクラスターにアクセスするため、およびクラスターから開始された送信接続の発信元アドレスとして使用されます。
 
 サービスにアクセスするために、次の DNS レコードが作成されます。 
@@ -67,7 +67,7 @@ Azure Data Explorer クラスターをサブネットにデプロイすると、
 ## <a name="private-endpoints"></a>プライベート エンドポイント
 
 [プライベート エンドポイント](/azure/private-link/private-endpoint-overview)を使用すると、Azure リソース (Storage/Event Hub/Data Lake Gen 2 など) にプライベートにアクセスし、Virtual Network からのプライベート IP を使用して、リソースを効果的に VNet に取り込むことができます。
-VNet から、データ接続によって使用されるリソース (Event Hub や Storage など) および外部テーブル (Storage、Data Lake Gen 2、SQL Database など) への[プライベート エンドポイント](/azure/private-link/private-endpoint-overview)を作成して、基になるリソースにプライベートにアクセスします。
+VNet から、データ接続によって使用されるリソース (イベント ハブや Storage など) および外部テーブル (Storage、Data Lake Gen 2、SQL Database など) への[プライベート エンドポイント](/azure/private-link/private-endpoint-overview)を作成して、基になるリソースにプライベートにアクセスします。
 
  > [!NOTE]
  > プライベート エンドポイントを設定するには、[DNS の構成](/azure/private-link/private-endpoint-dns)が必要です。[Azure プライベート DNS ゾーン](/azure/dns/private-dns-privatednszone)の設定のみがサポートされています。 カスタムの DNS サーバーはサポートされていません。 
@@ -211,7 +211,7 @@ VNet から、データ接続によって使用されるリソース (Event Hub 
 
 ## <a name="expressroute-setup"></a>ExpressRoute セットアップ
 
-ExpressRoute を使用して、オンプレミス ネットワークを Azure 仮想ネットワークに接続できます。 一般的なセットアップでは、Border Gateway Protocol (BGP) セッションを介して既定のルート (0.0.0.0/0) をアドバタイズします。 これにより、Virtual Network からのトラフィックが、トラフィックを破棄する可能性がある顧客のオンプレミス ネットワークに強制的に転送されるため、送信フローが中断される結果となります。 この既定の設定を解決するために、[ユーザー定義ルート (UDR)](/azure/virtual-network/virtual-networks-udr-overview#user-defined) (0.0.0.0/0) を構成でき、次ホップは*インターネット*になります。 UDR は BGP よりも優先されるため、トラフィックはインターネットに送られます。
+ExpressRoute を使用して、オンプレミス ネットワークを Azure 仮想ネットワークに接続できます。 一般的なセットアップでは、Border Gateway Protocol (BGP) セッションを介して既定のルート (0.0.0.0/0) をアドバタイズします。 これにより、Virtual Network からのトラフィックが、トラフィックを破棄する可能性がある顧客のオンプレミス ネットワークに強制的に転送されるため、送信フローが中断される結果となります。 この既定の設定を解決するために、 [ユーザー定義ルート (UDR)](/azure/virtual-network/virtual-networks-udr-overview#user-defined) (0.0.0.0/0) を構成でき、次ホップは *インターネット* になります。 UDR は BGP よりも優先されるため、トラフィックはインターネットに送られます。
 
 ## <a name="securing-outbound-traffic-with-firewall"></a>ファイアウォールを使用した送信トラフィックのセキュリティ保護
 
@@ -245,12 +245,12 @@ crl3.digicert.com:80
 ```
 
 > [!NOTE]
-> [Azure Firewall](/azure/firewall/overview) を使用している場合は、次のプロパティを使用して**ネットワーク ルール**を追加します。 <br>
-> **Protocol**:TCP <br> **[Source Type]\(ソースの種類\)** : IP アドレス <br> **送信元**: * <br> **サービス タグ**:AzureMonitor <br> **宛先ポート**:443
+> [Azure Firewall](/azure/firewall/overview) を使用している場合は、次のプロパティを使用して **ネットワーク ルール** を追加します。 <br>
+> **Protocol** :TCP <br> **[Source Type]\(ソースの種類\)** : IP アドレス <br> **送信元** : * <br> **サービス タグ** :AzureMonitor <br> **宛先ポート** :443
 
-また、非対称ルートの問題を防ぐために、次ホップが*インターネット*である[管理アドレス](#azure-data-explorer-management-ip-addresses)および[正常性監視アドレス](#health-monitoring-addresses)を使用するサブネット上の[ルート テーブル](/azure/virtual-network/virtual-networks-udr-overview)を定義する必要があります。
+また、非対称ルートの問題を防ぐために、次ホップが *インターネット* である [管理アドレス](#azure-data-explorer-management-ip-addresses)および [正常性監視アドレス](#health-monitoring-addresses)を使用するサブネット上の [ルート テーブル](/azure/virtual-network/virtual-networks-udr-overview)を定義する必要があります。
 
-たとえば、**米国西部**リージョンでは、次の UDR を定義する必要があります。
+たとえば、 **米国西部** リージョンでは、次の UDR を定義する必要があります。
 
 | 名前 | アドレス プレフィックス | 次ホップ |
 | --- | --- | --- |

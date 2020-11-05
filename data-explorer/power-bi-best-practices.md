@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: a508d40d4e48205288dcb6133e267578a54198f9
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 2d2caef1f406b63bcfd22e8bc565efce8c1f9d39
+ms.sourcegitcommit: 0e2fbc26738371489491a96924f25553a8050d51
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343523"
+ms.lasthandoff: 11/02/2020
+ms.locfileid: "93148509"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Power BI を使用して Azure Data Explorer データのクエリと視覚化を行う場合のベスト プラクティス
 
@@ -173,6 +173,20 @@ in
 クエリ パラメーターは、それをサポートする任意のクエリ ステップで使用できます。 たとえば、パラメーターの値に基づいて結果をフィルター処理します。
 
 ![パラメーターを使用して結果をフィルター処理する](media/power-bi-best-practices/filter-using-parameter.png)
+
+### <a name="use-valuenativequery-for-azure-data-explorer-features"></a>Azure Data Explorer の機能に対して Value.NativeQuery を使用する
+
+Power BI でサポートされていない Azure Data Explorer の機能を使用するには、M の [Value.NativeQuery()](https://docs.microsoft.com/powerquery-m/value-nativequery) メソッドを使用します。このメソッドにより、生成されたクエリに Kusto クエリ言語フラグメントが挿入されます。また、実行されたクエリをより詳細に制御するためにも使用できます。
+
+次の例では、Azure Data Explorer で `percentiles()` 関数を使用する方法を示します。
+
+```m
+let
+    StormEvents = AzureDataExplorer.Contents(DefaultCluster, DefaultDatabase){[Name = DefaultTable]}[Data],
+    Percentiles = Value.NativeQuery(StormEvents, "| summarize percentiles(DamageProperty, 50, 90, 95) by State")
+in
+    Percentiles
+```
 
 ### <a name="dont-use-power-bi-data-refresh-scheduler-to-issue-control-commands-to-kusto"></a>Kusto に制御コマンドを発行するために Power BI データ更新スケジューラを使用しない
 

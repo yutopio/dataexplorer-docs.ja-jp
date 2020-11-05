@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: cb8e9d5afea956ee42fe3b444c564059e34b9a24
-ms.sourcegitcommit: d9569989283f4e98846725e2bc4c96149bd01281
+ms.openlocfilehash: 5732d0fa9773d0c8fe5420026cb855d1040b8706
+ms.sourcegitcommit: 42cc7d11f41a5bfa9e021764b044dcd68d99a258
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/17/2020
-ms.locfileid: "92155420"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93403767"
 ---
 # <a name="sandboxes"></a>サンドボックス
 
@@ -65,8 +65,8 @@ Kusto のデータエンジンサービスでは、セキュリティで保護�
 
 ## <a name="errors"></a>エラー
 
-|ErrorCode                 |Status                     |メッセージ                                                                                            |考えられる理由                                                                                                    |
+|ErrorCode                 |Status                     |Message                                                                                            |考えられる理由                                                                                                    |
 |--------------------------|---------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 |E_SB_QUERY_THROTTLED_ERROR|TooManyRequests (429)      |サンドボックス化されたクエリは、調整によって中止されました。 バックオフが正常に完了した後に再試行する   |ターゲットノードに使用可能なサンドボックスがありません。 新しいサンドボックスは数秒で利用可能になります         |
 |E_SB_QUERY_THROTTLED_ERROR|TooManyRequests (429)      |種類 ' {kind} ' のサンドボックスはまだ初期化されていません                                            |サンドボックスポリシーは最近変更されました。 新しいサンドボックス obeying 新しいポリシーが数秒で利用可能になります|
-|                          |InternalServiceError (520) |サンドボックスの初期化でエラーが発生したため、サンドボックス化されたクエリが中止されました                         |予期しないインフラストラクチャエラーです。 問題が解決しない場合は、サポートリクエストを開いてください                         |
+|                          |InternalServiceError (520) |サンドボックスの初期化でエラーが発生したため、サンドボックス化されたクエリが中止されました                         |予期しないインフラストラクチャエラーです。                         |

@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/15/2019
-ms.openlocfilehash: a6aa19e3a88e7338494d6f6fad0e23a5ab4a03e4
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 59813656fce6afea3ecba62b13c971e74b095fe1
+ms.sourcegitcommit: 42cc7d11f41a5bfa9e021764b044dcd68d99a258
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92252305"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93403716"
 ---
 # <a name="hll_merge-aggregation-function"></a>hll_merge () (集計関数)
 
@@ -21,7 +21,7 @@ ms.locfileid: "92252305"
 
 * 集計のコンテキスト内でのみ使用できます[。](summarizeoperator.md)
 
-詳細については、 [基になるアルゴリズム (*H*Yper*l*og*l*og) と推定精度](dcount-aggfunction.md#estimation-accuracy)に関する説明を参照してください。
+詳細については、 [基になるアルゴリズム ( *H* Yper *l* og *l* og) と推定精度](dcount-aggfunction.md#estimation-accuracy)に関する説明を参照してください。
 
 ## <a name="syntax"></a>構文
 
@@ -37,4 +37,4 @@ ms.locfileid: "92252305"
  
 **ヒント**
 
-1) 関数 [dcount_hll] (dcount-hllfunction.md) を使用して、 `dcount` 集計関数からを計算し `hll`  /  `hll-merge` ます。
+1) 関数[dcount_hll](dcount-hllfunction.md)を使用して、 `dcount` 集計関数からを計算し `hll`  /  `hll-merge` ます。

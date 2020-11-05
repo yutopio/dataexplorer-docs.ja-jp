@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 1d0625c949fe563084caeec936e3433c9ee70f5e
-ms.sourcegitcommit: ef3d919dee27c030842abf7c45c9e82e6e8350ee
+ms.openlocfilehash: df38761d7ffebdf5e36c14ea25b0d02377bfa128
+ms.sourcegitcommit: fdc1f917621e9b7286bba23903101298cccc4c95
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92630111"
+ms.lasthandoff: 11/05/2020
+ms.locfileid: "93364124"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -219,9 +219,17 @@ dataformat=csv
 with (fileExtension = ".txt")
 ```
 
+クエリでパーティション列でフィルター処理するには、クエリ述語で元の列名を指定します。
+
+```kusto
+external_table("ExternalTable")
+ | where Timestamp between (datetime(2020-01-01) .. datetime(2020-02-01))
+ | where CustomerName in ("John.Doe", "Ivan.Ivanov")
+```
+
 **サンプル出力**
 
-|TableName|TableType|フォルダー|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
+|TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
 |ExternalTable|BLOB|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
 
@@ -241,6 +249,14 @@ dataformat=parquet
 ( 
    h@'https://storageaccount.blob.core.windows.net/container1;secretKey'
 )
+```
+
+クエリで仮想列によってフィルター処理を行うには、クエリ述語でパーティション名を指定します。
+
+```kusto
+external_table("ExternalTable")
+ | where Date between (datetime(2020-01-01) .. datetime(2020-02-01))
+ | where CustomerName in ("John.Doe", "Ivan.Ivanov")
 ```
 
 <a name="file-filtering"></a>

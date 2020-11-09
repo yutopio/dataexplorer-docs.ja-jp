@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 03/18/2020
-ms.openlocfilehash: a79c815202e65fa32f62a76c700d808d0fda86ea
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 33d3515a8465a1e9c3397e675a51c95aa3f00d42
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91941997"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373835"
 ---
 # <a name="kusto-ingest-client-library"></a>Kusto インジェストクライアントライブラリ 
 
@@ -53,7 +53,7 @@ IKustoDirectIngestClient で定義されているダイレクトインジェス�
 
 次の図は、Kusto との直接インジェストクライアントの対話の概要を示しています。
 
-:::image type="content" source="../images/about-kusto-ingest/direct-ingest.png" alt-text="クエリのインジェストモードで kusto サービスにクエリを送信する方法を示す図。":::
+:::image type="content" source="../images/about-kusto-ingest/direct-ingest.png" alt-text="Kusto インジェストライブラリが直接インジェストモードで Kusto サービスにクエリを送信する方法を示す図。":::
 
 > [!NOTE]
 > 実稼働グレードのインジェストソリューションでは、Direct モードは推奨されません。
@@ -71,7 +71,7 @@ IKustoDirectIngestClient で定義されているダイレクトインジェス�
 
 ## <a name="ingestion-best-practices"></a>インジェストのベストプラクティス
 
-[インジェストのベストプラクティス](kusto-ingest-best-practices.md) では、インジェストと、インジェストのスループットについて説明します。
+[インジェストのベストプラクティス](kusto-ingest-best-practices.md) では、COGS (購入した商品のコスト) と、インジェストのスループットの視点を示します。
 
 * **スレッドセーフ-** Kusto インジェストクライアントの実装はスレッドセーフであり、再利用が想定されています。 `KustoQueuedIngestClient`または複数のインジェスト操作に対してクラスのインスタンスを作成する必要はありません。 の1つのインスタンス `KustoQueuedIngestClient` が、ターゲット Kusto クラスターごとのプロセスごとに必要です。 複数のインスタンスを実行すると、カウンターの生産性が向上し、データ管理クラスターで DoS が発生する可能性があります。
 
@@ -83,10 +83,10 @@ IKustoDirectIngestClient で定義されているダイレクトインジェス�
 * **インジェストアクセス許可-** 
 [Kusto インジェストのアクセス許可](kusto-ingest-client-permissions.md)では、パッケージを使用した取り込みを成功させるために必要なアクセス許可の設定について説明 `Kusto.Ingest` します。
 
-* **使用状況-** 前述のように、Kusto の持続可能な高スケールのインジェストソリューションの推奨される基準は、 **KustoQueuedIngestClient**である必要があります。
+* **使用状況-** 前述のように、Kusto の持続可能な高スケールのインジェストソリューションの推奨される基準は、 **KustoQueuedIngestClient** である必要があります。
 Kusto サービスの不要な負荷を最小限に抑えるために、kusto クラスターごとに、プロセスごとにクライアント (キューに登録またはダイレクト) を取り込むために kusto 1 つのインスタンスを使用することをお勧めします。 Kusto インジェストクライアントの実装は、スレッドセーフで、完全再入可能です。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 * [Kusto. インジェストクライアントリファレンス](kusto-ingest-client-reference.md) には、kusto インジェストクライアントインターフェイスおよび実装の完全なリファレンスが含まれています。 インジェストクライアントを作成する方法、インジェスト要求を補強する方法、インジェストの進行状況を管理する方法などについて説明します。
 

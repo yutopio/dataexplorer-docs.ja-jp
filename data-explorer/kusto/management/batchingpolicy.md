@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 27c92b9081844df0e8f8d4dc207ba5d2a8a2e2f3
-ms.sourcegitcommit: a10e7c6ba96bdb94d95ef23f5d1506eb8fda0041
+ms.openlocfilehash: 0a493c4e808a43d04714487ada17964ab048de6f
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92058667"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373767"
 ---
 # <a name="ingestionbatching-policy"></a>IngestionBatching ポリシー
 
@@ -38,9 +38,9 @@ ms.locfileid: "92058667"
 ポリシーは、 `IngestionBatching` データベースまたはテーブルに対して設定できます。 既定では、ポリシーが定義されていない場合、Kusto は既定値の **5 分** を使用します。これは、バッチ処理の最大遅延時間 **1000** 項目、合計サイズ **1g** です。
 
 > [!WARNING]
-> このポリシーを非常に小さい値に設定することによる影響は、クラスターの COGS が増加し、パフォーマンスが低下することにあります。 さらに、この制限により、この値を小さくすると、複数のインジェストプロセスを並行して管理するオーバーヘッドにより、エンドツーエンドのインジェスト遅延が実質的に **向上** する可能性があります。
+> このポリシーを非常に小さい値に設定することによる影響は、クラスターの COGS (購入した商品のコスト) が増加し、パフォーマンスが低下することにあります。 さらに、この制限により、この値を小さくすると、複数のインジェストプロセスを並行して管理するオーバーヘッドにより、エンドツーエンドのインジェスト遅延が実質的に **向上** する可能性があります。
 
-## <a name="additional-resources"></a>その他の資料
+## <a name="additional-resources"></a>その他のリソース
 
 * [IngestionBatching ポリシーコマンドのリファレンス](../management/batching-policy.md)
 * [インジェストのベストプラクティス-スループットの最適化](../api/netfx/kusto-ingest-best-practices.md#optimizing-for-throughput)

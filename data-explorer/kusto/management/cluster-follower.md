@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: 73b65cc59ff98bc658c542d690812ccf5ad3895a
-ms.sourcegitcommit: e1e35431374f2e8b515bbe2a50cd916462741f49
+ms.openlocfilehash: 26412683be35825a38f959de62292f3735e7a894
+ms.sourcegitcommit: e820a59191d2ca4394e233d51df7a0584fa4494d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82108458"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94446227"
 ---
 # <a name="cluster-follower-commands"></a>クラスターのフォロワーコマンド
 
 フォロワークラスター構成を管理するための制御コマンドを以下に示します。 これらのコマンドは同期的に実行されますが、次回の定期的なスキーマ更新に適用されます。 そのため、新しい構成が適用されるまで数分の遅延が発生する場合があります。
 
-フォロワーコマンドには、[データベースレベルのコマンド](#database-level-commands)と[テーブルレベルのコマンド](#table-level-commands)が含まれます。
+フォロワーコマンドには、 [データベースレベルのコマンド](#database-level-commands) と [テーブルレベルのコマンド](#table-level-commands)が含まれます。
 
 ## <a name="database-level-commands"></a>データベースレベルのコマンド
 
@@ -27,12 +27,11 @@ ms.locfileid: "82108458"
 
 データベース (またはデータベース) の後に、1つまたは複数のデータベースレベルの上書きが構成されている他のリーダークラスターを表示します。
 
-
 **構文**
 
-`.show` `follower` `database` *DatabaseName*
+`.show``follower` `database` *DatabaseName*
 
-`.show``follower` `,`DatabaseName1... *DatabaseName1* `databases` `(``,` *DatabaseNameN*`)`
+`.show``follower` `databases` `(`*DatabaseName1* `,`...`,`*DatabaseNameN*`)`
 
 **出力** 
 
@@ -42,8 +41,8 @@ ms.locfileid: "82108458"
 | LeaderClusterMetadataPath            | String  | リーダークラスターのメタデータコンテナーへのパス。                                                               |
 | CachingPolicyOverride                | String  | JSON または null としてシリアル化された、データベースのオーバーライドキャッシュポリシー。                                         |
 | AuthorizedPrincipalsOverride         | String  | JSON または null としてシリアル化された、データベースの承認されたプリンシパルの上書きコレクション。                    |
-| AuthorizedPrincipalsModificationKind | String  | AuthorizedPrincipalsOverride (`none`、 `union`または`replace`) を使用して適用する変更の種類。                  |
-| CachingPoliciesModificationKind      | String  | データベースまたはテーブルレベルのキャッシュポリシーオーバーライド (`none`、 `union`または`replace`) を使用して適用する変更の種類。 |
+| AuthorizedPrincipalsModificationKind | String  | AuthorizedPrincipalsOverride ( `none` 、 `union` または) を使用して適用する変更の種類 `replace` 。                  |
+| CachingPoliciesModificationKind      | String  | データベースまたはテーブルレベルのキャッシュポリシーオーバーライド ( `none` 、 `union` または) を使用して適用する変更の種類 `replace` 。 |
 | IsAutoPrefetchEnabled                | Boolean | スキーマの更新のたびに、新しいデータが事前フェッチされるかどうか。        |
 | TableMetadataOverrides               | String  | テーブルレベルのプロパティのオーバーライドを JSON でシリアル化します (定義されている場合)。                                      |
 
@@ -51,12 +50,10 @@ ms.locfileid: "82108458"
 
 フォロワーデータベースキャッシュポリシーを変更して、リーダークラスター内のソースデータベースで設定されているものを上書きします。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
+**ノート**
 
-
-**メモ**
-
-* キャッシュポリシー `modification kind`の既定値は`union`です。 を変更する`modification kind`には、使用して、変更、[データベースのキャッシュ-ポリシー-](#alter-follower-database-caching-policies-modification-kind)変更-種類コマンド。
-* 次の`.show`コマンドを使用して、変更後のポリシーまたは有効なポリシーを表示できます。
+* `modification kind`キャッシュポリシーの既定値は `union` です。 を変更するには、使用して、変更、 `modification kind` [データベースのキャッシュ-ポリシー-](#alter-follower-database-caching-policies-modification-kind) 変更-種類コマンド。
+* 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
     * [。データベースの詳細を表示します](../management/show-databases.md)
     * [.show テーブルの詳細](show-tables-command.md)
@@ -64,13 +61,9 @@ ms.locfileid: "82108458"
 
 **構文**
 
-`.alter``follower` `=` *HotDataSpan* *DatabaseName* DatabaseName `policy`ホット`caching` `database` `hot`
-
-
+`.alter``follower` `database` *DatabaseName* `policy` `caching` `hot` `=` *ホット dataspan*
 
 **例**
-
-
 
 ```kusto
 .alter follower database MyDb policy caching hot = 7d
@@ -81,9 +74,9 @@ ms.locfileid: "82108458"
 フォロワーデータベースオーバーライドキャッシュポリシーを削除します。 これにより、リーダークラスターのソースデータベースで設定されたポリシーが有効になります。
 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。 
 
-**メモ**
+**ノート**
 
-* 次の`.show`コマンドを使用して、変更後のポリシーまたは有効なポリシーを表示できます。
+* 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
     * [。データベースの詳細を表示します](../management/show-databases.md)
     * [.show テーブルの詳細](show-tables-command.md)
@@ -91,7 +84,7 @@ ms.locfileid: "82108458"
 
 **構文**
 
-`.delete` `follower` `database` *DatabaseName* `policy` `caching`
+`.delete``follower` `database` *DatabaseName* DatabaseName `policy``caching`
 
 **例**
 
@@ -103,22 +96,17 @@ ms.locfileid: "82108458"
 
 承認されたプリンシパルのフォロワーデータベースコレクションに承認されたプリンシパルを追加します。 [Databaseadmin 権限](../management/access-control/role-based-authorization.md)が必要です。
 
+**ノート**
 
-
-**メモ**
-
-* このよう`modification kind`な承認された`none`プリンシパルの既定値はです。 `modification kind` [Alter フォロワーデータベースプリンシパル](#alter-follower-database-principals-modification-kind)の使用を変更するには、「変更-種類」を使用します。
-* 次の`.show`コマンドを使用して、変更後のプリンシパルの有効なコレクションを表示できます。
+* `modification kind`このような承認されたプリンシパルの既定値は `none` です。 `modification kind` [Alter フォロワーデータベースプリンシパル](#alter-follower-database-principals-modification-kind)の使用を変更するには、「変更-種類」を使用します。
+* 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
     * [。データベースプリンシパルを表示します。](../management/security-roles.md#managing-database-security-roles)
     * [。データベースの詳細を表示します](../management/show-databases.md)
 * 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
 
 **構文**
 
-`.add``follower` `users` *DatabaseName* `(` *principal1*DatabaseName (`admins``,`) Role | principal1...`viewers` |  `database`  | `monitors``,` *principaln* `)` [`'`*notes*メモ`'`]
-
-
-
+`.add``follower` `database` *DatabaseName* ( `admins`  |  `users`  |  `viewers`  |  `monitors` ) Role `(` *principal1* `,` ... `,`*Principaln* `)`[ `'` *メモ* `'` ]
 
 **例**
 
@@ -126,25 +114,21 @@ ms.locfileid: "82108458"
 .add follower database MyDB viewers ('aadgroup=mygroup@microsoft.com') 'My Group'
 ```
 
-```kusto
-
-```
-
 ### <a name="drop-follower-database-principals"></a>。フォロワーデータベースプリンシパルを削除します。
 
 承認されたプリンシパルのフォロワーデータベースコレクションから承認されたプリンシパルを削除します。
 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**メモ**
+**ノート**
 
-* 次の`.show`コマンドを使用して、変更後のプリンシパルの有効なコレクションを表示できます。
+* 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
     * [。データベースプリンシパルを表示します。](../management/security-roles.md#managing-database-security-roles)
     * [。データベースの詳細を表示します](../management/show-databases.md)
 * 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
 
 **構文**
 
-`.drop``follower` `monitors` *DatabaseName* `(` *principal1*DatabaseName (`admins` | `users`) principal1`,`. | .. `database` `viewers` | `,` *principaln*`)`
+`.drop``follower` `database` *DatabaseName* ( `admins`  |  `users`  |  `viewers`  |  `monitors` ) `(` *principal1* `,` ... `,`*Principaln*`)`
 
 **例**
 
@@ -156,19 +140,17 @@ ms.locfileid: "82108458"
 
 フォロワーデータベースの承認されたプリンシパルの変更の種類を変更します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**メモ**
+**ノート**
 
-* 次の`.show`コマンドを使用して、変更後のプリンシパルの有効なコレクションを表示できます。
+* 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
     * [。データベースプリンシパルを表示します。](../management/security-roles.md#managing-database-security-roles)
     * [。データベースの詳細を表示します](../management/show-databases.md)
 * 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
 
 **構文**
 
-`.alter``follower`  |  *DatabaseName*  | DatabaseName`replace`= (`none`) `database` 
- `principals-modification-kind` `union`
-
-
+`.alter``follower` `database` *DatabaseName* 
+ `principals-modification-kind` = ( `none`  |  `union`  |  `replace` )
 
 **例**
 
@@ -180,18 +162,16 @@ ms.locfileid: "82108458"
 
 フォロワーデータベースおよびテーブルキャッシュポリシーの変更の種類を変更します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**メモ**
+**ノート**
 
-* 変更後のデータベース/テーブルレベルのキャッシュポリシーの有効なコレクションを表示するには、次`.show`の標準コマンドを使用します。
+* 変更後のデータベース/テーブルレベルのキャッシュポリシーの有効なコレクションを表示するには、次の標準コマンドを使用し `.show` ます。
     * [。テーブルの詳細を表示します](show-tables-command.md)
     * [。データベースの詳細を表示します](../management/show-databases.md)
 * 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
 
 **構文**
 
-`.alter``follower` `union` *DatabaseName* `replace`DatabaseName = ()`none` |  `database` `caching-policies-modification-kind`  | 
-
-
+`.alter``follower` `database` *DatabaseName* `caching-policies-modification-kind` = ( `none`  |  `union`  |  `replace` )
 
 **例**
 
@@ -199,7 +179,29 @@ ms.locfileid: "82108458"
 .alter follower database MyDB caching-policies-modification-kind = union
 ```
 
+### <a name="alter-follower-database-prefetch-extents"></a>. alter フォロワー database プリフェッチ-エクステント
 
+フォロワークラスターは、基になるストレージからノードの SSD (cache) にフェッチされる前に、新しいデータをクエリ可能なものにすることはできません。
+
+次のコマンドは、各スキーマ更新時に新しいエクステントをプリフェッチする、フォロワーデータベース構成を変更します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
+
+> [!WARNING]
+> * この設定を有効にすると、フォロワーデータベースのデータの鮮度が低下する可能性があります。
+> * 既定の構成はで `false` あり、既定値のままにしておくことをお勧めします。
+> * 設定をに変更することを選択した場合 `true` は、構成の変更後、ある期間の鮮度への影響を厳密に評価することをお勧めします。
+
+**構文**
+
+`.alter``follower` `database` *DatabaseName* `prefetch-extents` = ( `true`  |  `false` )
+
+`.alter``follower` `database` *DatabaseName* [ `from` `h@'` *リーダークラスターのメタデータコンテナーへのパス* `'` ] `prefetch-extents` = ( `true`  |  `false` )
+
+**例**
+
+<!-- csl -->
+```
+.alter follower database MyDB prefetch-extents = false
+```
 
 ## <a name="table-level-commands"></a>テーブルレベルのコマンド
 
@@ -208,11 +210,9 @@ ms.locfileid: "82108458"
 フォロワーデータベースのテーブルレベルのキャッシュポリシーを変更して、リーダークラスターのソースデータベースで設定されているポリシーを上書きします。
 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。 
 
+**ノート**
 
-
-**メモ**
-
-* 次の`.show`コマンドを使用して、変更後のポリシーまたは有効なポリシーを表示できます。
+* 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
     * [。データベースの詳細を表示します](../management/show-databases.md)
     * [.show テーブルの詳細](show-tables-command.md)
@@ -220,17 +220,11 @@ ms.locfileid: "82108458"
 
 **構文**
 
+`.alter``follower` `database` *DatabaseName* テーブル *TableName* `policy` `caching` `hot` `=` *ホット dataspan*
 
-
-
-
-`.alter``follower` `=` *DatabaseName* `hot` *TableName* *HotDataSpan* DatabaseName テーブル TableName `caching`ホット dataspan `policy` `database`
-
-`.alter``follower` `(` *DatabaseName* `,`DatabaseName テーブル TableName1... *TableName1* `database``,` `caching` *TableNameN* `)`のホット*HotDataSpan* dataspan `policy` `hot` `=`
+`.alter``follower` `database` *DatabaseName* テーブル `(` *TableName1* `,` ... `,`*TableNameN* `)``policy` `caching` `hot``=`*ホット dataspan*
 
 **例**
-
-
 
 ```kusto
 .alter follower database MyDb tables (Table1, Table2) policy caching hot = 7d
@@ -240,9 +234,9 @@ ms.locfileid: "82108458"
 
 フォロワーデータベースの上書きテーブルレベルキャッシュポリシーを削除して、リーダークラスターのソースデータベースでポリシーを設定します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。 
 
-**メモ**
+**ノート**
 
-* 次の`.show`コマンドを使用して、変更後のポリシーまたは有効なポリシーを表示できます。
+* 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
     * [。データベースの詳細を表示します](../management/show-databases.md)
     * [.show テーブルの詳細](show-tables-command.md)
@@ -250,9 +244,9 @@ ms.locfileid: "82108458"
 
 **構文**
 
-`.delete``follower` `table` *TableName* *DatabaseName* DatabaseName TableName `database` `policy``caching`
+`.delete``follower` `database` *DatabaseName* `table` *TableName* TableName `policy``caching`
 
-`.delete``follower` `(` *TableName1* *DatabaseName* DatabaseName `tables` TableName1`,`... `database``,``)` *TableNameN* TableNameN `policy``caching`
+`.delete``follower` `database` *DatabaseName* `tables` `(` *TableName1* `,` ... `,`*TableNameN* `)``policy``caching`
 
 **例**
 
@@ -266,33 +260,33 @@ ms.locfileid: "82108458"
 
 次の点に注意してください。
 
-* フォロワークラスター `MyFollowerCluster`は、リーダークラスターのデータベース`MyDatabase`に`MyLeaderCluster`従っています。
-    * `MyDatabase``N`テーブル`MyTable1`:、 `MyTable2`、 `MyTable3`、...`MyTableN` (`N` > 3)。
+* フォロワークラスターは、 `MyFollowerCluster` リーダークラスターのデータベース `MyDatabase` に従って `MyLeaderCluster` います。
+    * `MyDatabase``N`テーブル: `MyTable1` 、、 `MyTable2` `MyTable3` 、... `MyTableN` ( `N` > 3)。
     * `MyLeaderCluster`の場合:
     
-    | `MyTable1`キャッシュポリシー | `MyTable2`キャッシュポリシー | `MyTable3`...`MyTableN`キャッシュポリシー   | `MyDatabase`承認されたプリンシパル                                                    |
+    | `MyTable1` キャッシュポリシー | `MyTable2` キャッシュポリシー | `MyTable3`...`MyTableN` キャッシュポリシー   | `MyDatabase` 承認されたプリンシパル                                                    |
     |---------------------------|---------------------------|------------------------------------------|---------------------------------------------------------------------------------------|
-    | ホットデータスパン =`7d`      | ホットデータスパン =`30d`     | ホットデータスパン =`365d`                   | *Viewers* = ビューアー`aadgroup=scubadivers@contoso.com`;*管理者* = `aaduser=jack@contoso.com` |
+    | ホットデータスパン = `7d`      | ホットデータスパン = `30d`     | ホットデータスパン = `365d`                   | *ビューアー*  =  `aadgroup=scubadivers@contoso.com` ; *管理者* = `aaduser=jack@contoso.com` |
      
-    * 必要`MyFollowerCluster`なのは次のとおりです。
+    * `MyFollowerCluster`必要なのは次のとおりです。
     
-    | `MyTable1`キャッシュポリシー | `MyTable2`キャッシュポリシー | `MyTable3`...`MyTableN`キャッシュポリシー   | `MyDatabase`承認されたプリンシパル                                                    |
+    | `MyTable1` キャッシュポリシー | `MyTable2` キャッシュポリシー | `MyTable3`...`MyTableN` キャッシュポリシー   | `MyDatabase` 承認されたプリンシパル                                                    |
     |---------------------------|---------------------------|------------------------------------------|---------------------------------------------------------------------------------------|
-    | ホットデータスパン =`1d`      | ホットデータスパン =`3d`      | ホットデータスパン = `0d` (キャッシュされているものはありません) | *管理者* = `aaduser=jack@contoso.com`、*ビューアー* = `aaduser=jill@contoso.com`         |
+    | ホットデータスパン = `1d`      | ホットデータスパン = `3d`      | ホットデータスパン = `0d` (キャッシュされているものはありません) | *管理者*  =  `aaduser=jack@contoso.com` 、 *ビューアー* = `aaduser=jill@contoso.com`         |
 
 > [!IMPORTANT] 
-> と`MyFollowerCluster`は`MyLeaderCluster`両方とも同じリージョンに存在する必要があります。
+> `MyFollowerCluster`とは両方とも `MyLeaderCluster` 同じリージョンに存在する必要があります。
 
 ### <a name="steps-to-execute"></a>実行する手順
 
-*前提条件:* クラスターの`MyFollowerCluster`データベース`MyDatabase`をフォローするよう`MyLeaderCluster`にクラスターをセットアップします。
+*前提条件:* クラスター `MyFollowerCluster` のデータベースをフォローするようにクラスターをセットアップ `MyDatabase` `MyLeaderCluster` します。
 
 > [!NOTE]
-> 制御コマンドを実行するプリンシパルは、データベース`DatabaseAdmin` `MyDatabase`上のであることが必要です。
+> 制御コマンドを実行するプリンシパルは、データベース上のであることが必要です `DatabaseAdmin` `MyDatabase` 。
 
 #### <a name="show-the-current-configuration"></a>現在の構成を表示します
 
-に従っ`MyDatabase`て現在の構成を確認し`MyFollowerCluster`ます。
+に従って現在の構成を確認し `MyDatabase` `MyFollowerCluster` ます。
 
 ```kusto
 .show follower database MyDatabase
@@ -306,13 +300,13 @@ ms.locfileid: "82108458"
 |CachingPolicyOverride                | null                                                     |
 |AuthorizedPrincipalsOverride         | []                                                       |
 |AuthorizedPrincipalsModificationKind | なし                                                     |
-|IsAutoPrefetchEnabled                | False                                                    |
+|IsAutoPrefetchEnabled                | ×                                                    |
 |TableMetadataOverrides               |                                                          |
 |CachingPoliciesModificationKind      | Union                                                    |                                                                                                                      |
 
 #### <a name="override-authorized-principals"></a>承認されたプリンシパルのオーバーライド
 
-の承認されたプリンシパル`MyDatabase`のコレクション`MyFollowerCluster`を、データベース管理者として aad ユーザーを1人だけ含むコレクションに置き換え、1つの aad ユーザーをデータベースビューアーとして置き換えます。
+の承認されたプリンシパルのコレクションを、 `MyDatabase` `MyFollowerCluster` データベース管理者として aad ユーザーを1人だけ含むコレクションに置き換え、1つの aad ユーザーをデータベースビューアーとして置き換えます。
 
 ```kusto
 .add follower database MyDatabase admins ('aaduser=jack@contoso.com')
@@ -322,7 +316,7 @@ ms.locfileid: "82108458"
 .alter follower database MyDatabase principals-modification-kind = replace
 ```
 
-次の2つの特定のプリンシパルに`MyDatabase`対してのみアクセスが許可されています`MyFollowerCluster`
+次の2つ `MyDatabase` の特定のプリンシパルに対してのみアクセスが許可されています `MyFollowerCluster`
 
 ```kusto
 .show database MyDatabase principals
@@ -330,8 +324,8 @@ ms.locfileid: "82108458"
 
 | Role                       | PrincipalType | PrincipalDisplayName                        | PrincipalObjectId                    | Principal(n)                                                                      | Notes |
 |----------------------------|---------------|---------------------------------------------|--------------------------------------|-----------------------------------------------------------------------------------|-------|
-| データベース MyDatabase 管理者  | AAD ユーザー      | ジャック Kusto (upn: jack@contoso.com)       | 12345678-abcd-efef-1234-350bf486087b | aaduser = 87654321-efef1234-350bf486087b; 55555555-4444-3333-2222-2d7cd011db47 |       |
-| データベース MyDatabase ビューアー | AAD ユーザー      | Jill Kusto (upn: jack@contoso.com)       | abcdefab-abcd-efef-1234-350bf486087b | aaduser = 54321789氏 efef1234-350bf486087b; 55555555-4444-3333-2222-2d7cd011db47 |       |
+| データベース MyDatabase 管理者  | AAD ユーザー      | ジャック Kusto (upn: jack@contoso.com )       | 12345678-abcd-efef-1234-350bf486087b | aaduser = 87654321-efef1234-350bf486087b; 55555555-4444-3333-2222-2d7cd011db47 |       |
+| データベース MyDatabase ビューアー | AAD ユーザー      | Jill Kusto (upn: jack@contoso.com )       | abcdefab-abcd-efef-1234-350bf486087b | aaduser = 54321789氏 efef1234-350bf486087b; 55555555-4444-3333-2222-2d7cd011db47 |       |
 
 ```kusto
 .show follower database MyDatabase
@@ -346,7 +340,7 @@ ms.locfileid: "82108458"
 
 #### <a name="override-caching-policies"></a>キャッシュポリシーのオーバーライド
 
-`MyDatabase`に`MyFollowerCluster`対するデータベースおよびテーブルレベルのキャッシュポリシーのコレクションを、すべてのテーブル (2 *not*つの特定のテーブル`MyTable1` `MyTable2`を除く) を除いて、データがキャッシュされないように設定し`1d`ます`3d`。これにより、との期間にわたってデータがキャッシュされます。
+に対するデータベースおよびテーブルレベルのキャッシュポリシーのコレクションを `MyDatabase` 、 `MyFollowerCluster` すべてのテーブル (2 つの特定のテーブルを除く) を除いて、データがキャッシュされ *ない* ように設定します。これにより、 `MyTable1` `MyTable2` との期間にわたってデータがキャッシュされ `1d` `3d` ます。
 
 ```kusto
 .alter follower database MyDatabase policy caching hot = 0d
@@ -358,7 +352,7 @@ ms.locfileid: "82108458"
 .alter follower database MyDatabase caching-policies-modification-kind = replace
 ```
 
-データがキャッシュされているのはこれら2つの特定のテーブルだけで、残りの`0d`テーブルのホットデータ期間は次のようになります。
+データがキャッシュされているのはこれら2つの特定のテーブルだけで、残りのテーブルのホットデータ期間は次のようになり `0d` ます。
 
 ```kusto
 .show tables details
@@ -381,9 +375,9 @@ ms.locfileid: "82108458"
 | {"MyTable1": {"CachingPolicyOverride": {"Dataホットスパン": {"Value": "1.00:00:00"}, "Indexホットスパン": {"Value": "1.00:00:00"}}}} |
 | {"MyTable2": {"CachingPolicyOverride": {"Dataホットスパン": {"Value": "3.00:00:00"}, "Indexホットスパン": {"Value": "3.00:00:00"}}}} |
 
-#### <a name="summary"></a>要約
+#### <a name="summary"></a>まとめ
 
-`MyDatabase`をフォローしている現在の構成を`MyFollowerCluster`確認します。
+をフォローしている現在の構成を確認し `MyDatabase` `MyFollowerCluster` ます。
 
 ```kusto
 .show follower database MyDatabase
@@ -397,6 +391,6 @@ ms.locfileid: "82108458"
 |CachingPolicyOverride                | {"Dataホットスパン": {"Value": "00:00:00"}, "Indexホットスパン": {"Value": "00:00:00"}}                                                                                                        |
 |AuthorizedPrincipalsOverride         | [{"Principal": {"FullyQualifiedName": "aaduser = 87654321234-350bf486087b",...}、{"Principal": {"FullyQualifiedName": "aaduser = 54321789 efef1234-350bf486087b",...}] |
 |AuthorizedPrincipalsModificationKind | Replace                                                                                                                                                                         |
-|IsAutoPrefetchEnabled                | False                                                                                                                                                                           |
+|IsAutoPrefetchEnabled                | ×                                                                                                                                                                           |
 |TableMetadataOverrides               | {"MyTargetTable": {"CachingPolicyOverride": {"" MySourceTable ": {" CachingPolicyOverride ": {" Dataホットスパン ": {" Value ":" 1.00:00:00 "},...}}} のように、{" MyTargetTable ": {" CachingPolicyOverride ": {" Dataホットスパン ": {       |
 |CachingPoliciesModificationKind      | Replace                                                                                                                                                                         |

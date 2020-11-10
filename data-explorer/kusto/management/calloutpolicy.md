@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/01/2020
-ms.openlocfilehash: 6e3bb943347e4ea794733451fcf65674e5e23ca7
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: da1cca764563b4ad2ce96ceaeb117e33d059303d
+ms.sourcegitcommit: 25c0440cb0390b9629b819611844f1375de00a66
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452665"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94417610"
 ---
 # <a name="callout-policy"></a>Callout ポリシー
 
@@ -22,7 +22,7 @@ Azure データエクスプローラークラスターは、さまざまなシ�
 
 コールアウトポリシーはクラスターレベルで管理され、次の種類に分類されます。
 * `kusto` -Azure データエクスプローラークロスクラスタークエリを制御します。
-* `sql` - [SQL プラグイン](../query/sqlrequestplugin.md)を制御します。
+* `sql` - [SQL プラグイン](../query/sqlrequestplugin.md) と [mysql_request プラグイン](../query/mysqlrequest-plugin.md)を制御します。
 * `cosmosdb` - [CosmosDB プラグイン](../query/cosmosdb-plugin.md)を制御します。
 * `sandbox_artifacts`-サンドボックスプラグイン ([python](../query/pythonplugin.md)  |  [R](../query/rplugin.md)) を制御します。
 * `external_data` - [外部テーブル](../query/schema-entities/externaltables.md) または [externaldata](../query/externaldata-operator.md) 演算子を使用して外部データへのアクセスを制御します。

@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 2d2caef1f406b63bcfd22e8bc565efce8c1f9d39
-ms.sourcegitcommit: 0e2fbc26738371489491a96924f25553a8050d51
+ms.openlocfilehash: 442185ed0afd977c103d0b571472c0f5e742908c
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/02/2020
-ms.locfileid: "93148509"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349479"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Power BI を使用して Azure Data Explorer データのクエリと視覚化を行う場合のベスト プラクティス
 
@@ -176,7 +176,7 @@ in
 
 ### <a name="use-valuenativequery-for-azure-data-explorer-features"></a>Azure Data Explorer の機能に対して Value.NativeQuery を使用する
 
-Power BI でサポートされていない Azure Data Explorer の機能を使用するには、M の [Value.NativeQuery()](https://docs.microsoft.com/powerquery-m/value-nativequery) メソッドを使用します。このメソッドにより、生成されたクエリに Kusto クエリ言語フラグメントが挿入されます。また、実行されたクエリをより詳細に制御するためにも使用できます。
+Power BI でサポートされていない Azure Data Explorer の機能を使用するには、M の [Value.NativeQuery()](/powerquery-m/value-nativequery) メソッドを使用します。このメソッドにより、生成されたクエリに Kusto クエリ言語フラグメントが挿入されます。また、実行されたクエリをより詳細に制御するためにも使用できます。
 
 次の例では、Azure Data Explorer で `percentiles()` 関数を使用する方法を示します。
 

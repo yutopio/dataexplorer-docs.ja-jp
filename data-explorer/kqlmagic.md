@@ -7,12 +7,12 @@ ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/20/2020
-ms.openlocfilehash: 3af348677bf520d1ccd78388bb6a7a30506e572d
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 857c654c70a2170a42902514718a52fbf7b02944
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92249990"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349462"
 ---
 # <a name="use-a-jupyter-notebook-and-kqlmagic-extension-to-analyze-data-in-azure-data-explorer"></a>Jupyter Notebook と Kqlmagic 拡張機能を使用して Azure Data Explorer 内のデータを分析する
 
@@ -22,7 +22,7 @@ Jupyter Notebook はオープン ソースの Web アプリケーションであ
 ## <a name="prerequisites"></a>前提条件
 
 - Azure Active Directory (Azure AD) のメンバーである、組織の電子メール アカウント。
-- ローカル コンピューターにインストールされている Jupyter Notebook。または、[Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/notebooks/notebooks-kqlmagic?view=sql-server-ver15) を使用。
+- ローカル コンピューターにインストールされている Jupyter Notebook。または、[Azure Data Studio](/sql/azure-data-studio/notebooks/notebooks-kqlmagic?view=sql-server-ver15) を使用。
 
 ## <a name="install-kqlmagic-library"></a>Kqlmagic ライブラリをインストールする
 

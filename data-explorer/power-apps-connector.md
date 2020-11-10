@@ -7,12 +7,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/20/2020
-ms.openlocfilehash: 4b74b3aa7a765f6d54454e84dfeaeac2f6bfedd6
-ms.sourcegitcommit: 88291fd9cebc26e5210463cb95be5540bf84eef8
+ms.openlocfilehash: 17ee68efa1f7c43814c4c86f9e5881cd0ba9af61
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/22/2020
-ms.locfileid: "92437510"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349547"
 ---
 # <a name="create-power-apps-application-to-query-data-in-azure-data-explorer-preview"></a>Azure Data Explorer でデータのクエリを実行するための Power Apps アプリケーションを作成する (プレビュー)
 
@@ -23,7 +23,7 @@ Power Apps は、ビジネス データに接続するカスタム アプリを�
 ## <a name="prerequisites"></a>前提条件
 
 * Power Platform のライセンス。 [https://powerapps.microsoft.com](https://powerapps.microsoft.com) で開始します。
-* [Power Apps スイート](https://docs.microsoft.com/powerapps/powerapps-overview)に関する知識。
+* [Power Apps スイート](/powerapps/powerapps-overview)に関する知識。
 
 ## <a name="connect-to-azure-data-explorer-connector"></a>Azure Data Explorer コネクタに接続する
 
@@ -36,11 +36,11 @@ Power Apps は、ビジネス データに接続するカスタム アプリを�
 
 1. 検索バーで **Azure Data Explorer** を検索します。 結果の選択肢から、 **[Azure Data Explorer]** を選択します。
 
-    :::image type="content" source="media/power-apps-connector/search-adx.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/search-adx.png" alt-text="Power Apps での Azure Data Explorer の接続の検索と選択":::
 
 1. **[Azure Data Explorer]** ポップアップで **[作成]** を選択します。 必要に応じて資格情報を指定します。
 
-    :::image type="content" source="media/power-apps-connector/create-connector.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/create-connector.png" alt-text="Azure Data Explorer へのコネクタを作成 - ポップアップ ウィンドウ":::
 
 ## <a name="create-app"></a>アプリを作成する
 
@@ -48,11 +48,11 @@ Power Apps は、ビジネス データに接続するカスタム アプリを�
 1. メニュー バーで **[+ 新しいアプリ]** を選択します。
 1. 表示されたドロップダウンから **[キャンバス]** を選択します。
 
-    :::image type="content" source="media/power-apps-connector/create-new-app.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/create-new-app.png" alt-text="新しいアプリとキャンバスの作成 - Azure Data Explorer への Power Apps コネクタ":::
 
 1. **[空のアプリ]** セクションで **[タブレット レイアウト]** を選択します。
 
-    :::image type="content" source="media/power-apps-connector/blank-canvas.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/blank-canvas.png" alt-text="タブレット レイアウトで空のキャンバスから開始 - Azure Data Explorer への Power Apps コネクタ":::
 
 ### <a name="add-connector"></a>コネクタを追加する
 
@@ -60,18 +60,18 @@ Power Apps は、ビジネス データに接続するカスタム アプリを�
 1. **[コネクタ]** を展開します。
 1. 表示されたオプションから **[Azure Data Explorer]** を選択します。
 
-    :::image type="content" source="media/power-apps-connector/data-connectors-adx.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/data-connectors-adx.png" alt-text="Power Apps で Azure Data Explorer へのコネクタを追加する":::
 
 **[アプリ内]** という新しい領域が表示され、 **[Azure Data Explorer]** が含まれています。
 
-   :::image type="content" source="media/power-apps-connector/adx-appears.png" alt-text="Power Apps での新しい接続の作成":::
+   :::image type="content" source="media/power-apps-connector/adx-appears.png" alt-text="Power Apps の [アプリ内] 領域に Azure Data Explorer が表示される":::
 
 ### <a name="save-your-app"></a>アプリを保存する
 
 1. メニュー バーで **[ファイル]** を選択します。 
 1. 左側のナビゲーションで **[保存]** を選択します。
 
-    :::image type="content" source="media/power-apps-connector/save-app.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/save-app.png" alt-text="Power Apps にアプリを保存する":::
 
 1. アプリのわかりやすい名前を入力します。 右下にある **[保存]** ボタンをクリックします。
 
@@ -81,11 +81,11 @@ Power Apps は、ビジネス データに接続するカスタム アプリを�
 1. **[詳細設定]** を選択します。
 1. 表示されたオプションから **[動的スキーマ]** を選択します。 この機能を有効にします。
 
-    :::image type="content" source="media/power-apps-connector/dynamic-schema.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/dynamic-schema.png" alt-text="Power Apps で動的スキーマの設定を有効にする - Azure Data Explorer への接続":::
 
 1. **[委任できないクエリのデータ行の制限]** 設定を検索します。 返されるレコード数の制限を設定します。
 
-    :::image type="content" source="media/power-apps-connector/set-limit.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/set-limit.png" alt-text="Power Apps での返される結果の制限 - Azure Data Explorer":::
 
     > [!NOTE]
     > 返されるレコードの既定の制限は 500 で、最大は 2,000 です。
@@ -101,7 +101,7 @@ Power Apps は、ビジネス データに接続するカスタム アプリを�
 1. 右側のポップアウトで **[詳細設定]** タブをクリックします。
 1. **[Items]\(アイテム\)** 入力ボックスに「["CALIFORNIA","MICHIGAN"]」を入力します。
 
-    :::image type="content" source="media/power-apps-connector/populate-dropdown.png" alt-text="Power Apps での新しい接続の作成" lightbox="media/power-apps-connector/populate-dropdown.png":::
+    :::image type="content" source="media/power-apps-connector/populate-dropdown.png" alt-text="ドロップダウン メニューのアイテムを入力する" lightbox="media/power-apps-connector/populate-dropdown.png":::
 
 1. **ドロップダウン** を選択したまま、数式バーの **[プロパティ]** ドロップダウンから **[OnChange]** を選択します。
 
@@ -120,7 +120,7 @@ Power Apps は、ビジネス データに接続するカスタム アプリを�
     
 1. **[スキーマのキャプチャ]** ボタンをクリックします。 処理が終わるのを待ちます。
 
-    :::image type="content" source="media/power-apps-connector/capture-schema.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/capture-schema.png" alt-text="ドロップダウン メニューで [スキーマのキャプチャ] ボタンを選択する":::
 
 ### <a name="add-data-table"></a>データ テーブルを追加する
 
@@ -131,23 +131,23 @@ Power Apps は、ビジネス データに接続するカスタム アプリを�
 1. **[フィールドの編集]** リンクを選択します。 
 1. 表示されたポップアウトで **[+ フィールドの追加]** を選択します。 
     
-    :::image type="content" source="media/power-apps-connector/insert-data-table-small.png" alt-text="Power Apps での新しい接続の作成" lightbox="media/power-apps-connector/insert-data-table.png":::
+    :::image type="content" source="media/power-apps-connector/insert-data-table-small.png" alt-text="テーブルの位置の変更と罫線の追加" lightbox="media/power-apps-connector/insert-data-table.png":::
 
 1. 目的のフィールドを選択し、 **[追加]** ボタンをクリックします。 選択したデータ テーブルのプレビューが表示されます。
 
-    :::image type="content" source="media/power-apps-connector/preview-table.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/preview-table.png" alt-text="データが取り込まれたテーブルのプレビュー":::
 
 ### <a name="validate"></a>検証
 
 1. 画面の右上にある **[Preview the app]\(アプリのプレビュー\)** ボタンをクリックします。
 1. ドロップダウンを選択してみたり、データ テーブルをスクロールしたりして、データの取得と表示が正常に行われることを確認します。
 
-    :::image type="content" source="media/power-apps-connector/preview-app.png" alt-text="Power Apps での新しい接続の作成":::
+    :::image type="content" source="media/power-apps-connector/preview-app.png" alt-text="Azure Data Explorer からのデータを使用して Power Apps で新しいアプリをプレビューする":::
 
 ### <a name="limitations"></a>制限事項
 
 * Power Apps には、クライアントに返される結果のレコード数が最大で 2,000 件という制限があります。 これらのレコードの合計メモリの上限は 64 MB、実行時間の上限は 7 分です。
-* コネクタは、[フォーク](https://docs.microsoft.com/azure/data-explorer/kusto/query/forkoperator)演算子と[ファセット](https://docs.microsoft.com/azure/data-explorer/kusto/query/facetoperator)演算子をサポートしていません。
-* **タイムアウトの例外** :コネクタのタイムアウト制限は 7 分間です。 タイムアウトが発生する可能性を回避するには、クエリを効率化して実行速度を上げるか、チャンクに分割します。 各チャンクは、クエリの別のパートで実行可能です。 詳細については、「[クエリのベスト プラクティス](https://docs.microsoft.com/azure/data-explorer/kusto/query/best-practices)」を参照してください。
+* コネクタは、[フォーク](./kusto/query/forkoperator.md)演算子と[ファセット](./kusto/query/facetoperator.md)演算子をサポートしていません。
+* **タイムアウトの例外** :コネクタのタイムアウト制限は 7 分間です。 タイムアウトが発生する可能性を回避するには、クエリを効率化して実行速度を上げるか、チャンクに分割します。 各チャンクは、クエリの別のパートで実行可能です。 詳細については、「[クエリのベスト プラクティス](./kusto/query/best-practices.md)」を参照してください。
 
 ## <a name="next-steps"></a>次のステップ

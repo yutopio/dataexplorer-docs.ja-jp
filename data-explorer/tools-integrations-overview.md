@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: fd596d840dcbaab1843833b4164901423a2ebef8
-ms.sourcegitcommit: 88291fd9cebc26e5210463cb95be5540bf84eef8
+ms.openlocfilehash: 71f00cf921609432860a94061be7411e484fd0c9
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/22/2020
-ms.locfileid: "92437378"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349326"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Azure Data Explorer のツールと統合の概要
 
@@ -39,7 +39,7 @@ Azure Data Explorer には、データ インジェスト、クエリ、視覚�
 * IoT Hub: [IoT Hub からの取り込みの概要](ingest-data-iot-hub-overview.md)と、[Azure portal](ingest-data-iot-hub.md)、[C#](data-connection-iot-hub-csharp.md)、[Python](data-connection-iot-hub-python.md)、または [Azure Resource Manager テンプレート](data-connection-iot-hub-resource-manager.md)の使用
 * [Logstash](ingest-data-logstash.md)
 * Azure Data Factory: [統合の概要](data-factory-integration.md)、[データのコピー](data-factory-load-data.md)、[Azure Data Factory テンプレートを使用した一括コピー](data-factory-template.md)、および [Azure Data Factory コマンド アクティビティを使用した Azure Data Explorer 制御コマンドの実行](data-factory-command-activity.md)
-* [Azure Synapse Apache Spark](https://docs.microsoft.com/azure/synapse-analytics/quickstart-connect-azure-data-explorer?context=/azure/data-explorer/context/context)
+* [Azure Synapse Apache Spark](/azure/synapse-analytics/quickstart-connect-azure-data-explorer?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)
 * [Apache Spark](spark-connector.md)
 * [Apache Kafka](ingest-data-kafka.md)
 * [Cosmos DB](https://github.com/Azure/azure-kusto-labs/tree/master/cosmosdb-adx-integration)
@@ -61,7 +61,7 @@ Azure Data Explorer クエリを実行するために使用できるツールが
 
 * [Azure Monitor](query-monitor-data.md)
 * [Azure Data Lake](data-lake-query-data.md)
-* [Azure Synapse Apache Spark](https://docs.microsoft.com/azure/synapse-analytics/quickstart-connect-azure-data-explorer?context=/azure/data-explorer/context/context)
+* [Azure Synapse Apache Spark](/azure/synapse-analytics/quickstart-connect-azure-data-explorer?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)
 * [Apache Spark](spark-connector.md)
 * [Microsoft Power Apps](power-apps-connector.md)
 * Azure Data Studio: [Kusto 拡張機能の概要](/sql/azure-data-studio/extensions/kusto-extension?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)、[Kusto の使用](/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)、[Kqlmagic の使用](/sql/azure-data-studio/notebooks-kqlmagic?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)
@@ -72,7 +72,7 @@ Azure Data Explorer クエリを実行するために使用できるツールが
 
 ## <a name="notebook-connectivity"></a>Notebook の接続
 
-* [Azure Notebooks](azure-notebooks.md)
+* [Azure Notebooks](/sql/azure-data-studio/notebooks/notebooks-kqlmagic?context=%252fazure%252fdata-explorer%252fcontext%252fcontext%253fcontext%253d%252fazure%252fdata-explorer%252fcontext%252fcontext)
 * [Jupyter Notebook](kqlmagic.md)
 * Azure Data Studio: [Kusto 拡張機能の概要](/sql/azure-data-studio/extensions/kusto-extension?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)、[Kusto の使用](/sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)、[Kqlmagic の使用](/sql/azure-data-studio/notebooks-kqlmagic?context=%252fazure%252fdata-explorer%252fcontext%252fcontext)
 

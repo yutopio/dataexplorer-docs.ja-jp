@@ -10,32 +10,33 @@ ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 1a6349547d5cf1eb3af5a21f6e8c504573f15e52
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: a8a0aae8732104ee64630c1fddb4d563cb542351
+ms.sourcegitcommit: 25c0440cb0390b9629b819611844f1375de00a66
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92241766"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94417559"
 ---
 # <a name="sql_request-plugin"></a>sql_request プラグイン
 
 ::: zone pivot="azuredataexplorer"
 
 プラグインは、 `sql_request` SQL Server ネットワークエンドポイントに SQL クエリを送信し、結果の最初の行セットを返します。
+クエリでは、複数の行セットが返される場合がありますが、Kusto クエリの残りの部分で使用できるのは最初の行セットだけです。
 
 ## <a name="syntax"></a>構文
 
-  `evaluate``sql_request` `(` *ConnectionString* `,` *sqlquery* [ `,` *sqlquery* [ `,` *オプション*]]`)`
+  `evaluate``sql_request` `(` *ConnectionString* `,` *sqlquery* [ `,` *sqlquery* [ `,` *オプション* ]]`)`
 
 ## <a name="arguments"></a>引数
 
-* *ConnectionString*: `string` SQL Server ネットワークエンドポイントを指す接続文字列を示すリテラルです。 [認証の有効な方法](#authentication)と、[ネットワークエンドポイント](#specify-the-network-endpoint)を指定する方法を参照してください。
+* *ConnectionString* : `string` SQL Server ネットワークエンドポイントを指す接続文字列を示すリテラルです。 [認証の有効な方法](#authentication)と、[ネットワークエンドポイント](#specify-the-network-endpoint)を指定する方法を参照してください。
 
-* *Sqlquery*: `string` SQL エンドポイントに対して実行されるクエリを示すリテラル。 1つ以上の行セットを返す必要がありますが、Kusto クエリの残りの部分では最初の行セットのみを使用できます。
+* *Sqlquery* : `string` SQL エンドポイントに対して実行されるクエリを示すリテラル。 1つ以上の行セットを返す必要がありますが、Kusto クエリの残りの部分では最初の行セットのみを使用できます。
 
-* *Sqlparameters*: `dynamic` クエリと共にパラメーターとして渡すキーと値のペアを保持する型の定数値。 省略可能。
+* *Sqlparameters* : `dynamic` クエリと共にパラメーターとして渡すキーと値のペアを保持する型の定数値。 省略可能。
   
-* *Options*: `dynamic` キーと値のペアとしてより高度な設定を保持する型の定数値。 現時点では、 `token` 認証のために SQL エンドポイントに転送される呼び出し元提供の Azure AD アクセストークンを渡すためにのみ、設定できます。 省略可能。
+* *Options* : `dynamic` キーと値のペアとしてより高度な設定を保持する型の定数値。 現時点では、 `token` 認証のために SQL エンドポイントに転送される呼び出し元提供の Azure AD アクセストークンを渡すためにのみ、設定できます。 省略可能。
 
 ## <a name="examples"></a>例
 
@@ -121,7 +122,7 @@ Sql_request プラグインは、SQL Server エンドポイントに対する3�
 接続文字列の一部として SQL ネットワークエンドポイントを指定することは必須です。
 適切な構文は次のとおりです。
 
-`Server``=` `tcp:` *FQDN* [ `,` *ポート*]
+`Server``=` `tcp:` *FQDN* [ `,` *ポート* ]
 
 各値の説明:
 

@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/28/2020
-ms.openlocfilehash: 4eedb1a7f9204ff211d258938666cc6ce3b3391a
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: 51f44d1a3cd29121a99e442f4033176b00b9e09f
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92906202"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349394"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-using-go"></a>Go を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -41,7 +41,7 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
 ### <a name="authentication"></a>認証
 
-何らかの操作を実行する前に、プログラムによって Azure Data Explorer に対する認証が行われる必要があります。 [クライアント資格情報の認証の種類](https://docs.microsoft.com/azure/developer/go/azure-sdk-authorization#use-environment-based-authentication)が、[auth.NewAuthorizerFromEnvironment](https://pkg.go.dev/github.com/Azure/go-autorest/autorest/azure/auth?tab=doc#NewAuthorizerFromEnvironment) によって使用されます。これによって、次の定義済み環境変数が検索されます: `AZURE_CLIENT_ID`、`AZURE_CLIENT_SECRET`、`AZURE_TENANT_ID`。
+何らかの操作を実行する前に、プログラムによって Azure Data Explorer に対する認証が行われる必要があります。 [クライアント資格情報の認証の種類](/azure/developer/go/azure-sdk-authorization#use-environment-based-authentication)が、[auth.NewAuthorizerFromEnvironment](https://pkg.go.dev/github.com/Azure/go-autorest/autorest/azure/auth?tab=doc#NewAuthorizerFromEnvironment) によって使用されます。これによって、次の定義済み環境変数が検索されます: `AZURE_CLIENT_ID`、`AZURE_CLIENT_SECRET`、`AZURE_TENANT_ID`。
 
 次の例では、この手法を使用して [kusto.ClustersClient](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClustersClient) が作成される方法を示します。
 
@@ -195,7 +195,7 @@ func deleteCluster(sub, clusterName, rgName string) {
     cd azure-data-explorer-go-cluster-management
     ```
 
-1. プログラムにより、クライアントの資格情報を使用して認証が行われます。 Azure CLI の [az ad sp create-for-rbac](https://docs.microsoft.com/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac) コマンドを使用してサービス プリンシパルを作成します。 次の手順で使用するために、クライアント ID、クライアント シークレット、およびテナント ID の情報を保存します。
+1. プログラムにより、クライアントの資格情報を使用して認証が行われます。 Azure CLI の [az ad sp create-for-rbac](/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac) コマンドを使用してサービス プリンシパルを作成します。 次の手順で使用するために、クライアント ID、クライアント シークレット、およびテナント ID の情報を保存します。
 
 1. サービス プリンシパル情報を含む必要な環境変数をエクスポートします。 クラスターを作成するサブスクリプション ID、リソース グループ、リージョンを入力します。
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: 26412683be35825a38f959de62292f3735e7a894
-ms.sourcegitcommit: e820a59191d2ca4394e233d51df7a0584fa4494d
+ms.openlocfilehash: 2ca15e1970ab785bfd5da8623f3dcc569576f1d9
+ms.sourcegitcommit: 2ee2901cb82e1655b7f0d960d3427da084230731
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94446227"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94520566"
 ---
 # <a name="cluster-follower-commands"></a>クラスターのフォロワーコマンド
 
@@ -50,7 +50,7 @@ ms.locfileid: "94446227"
 
 フォロワーデータベースキャッシュポリシーを変更して、リーダークラスター内のソースデータベースで設定されているものを上書きします。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**ノート**
+**メモ**
 
 * `modification kind`キャッシュポリシーの既定値は `union` です。 を変更するには、使用して、変更、 `modification kind` [データベースのキャッシュ-ポリシー-](#alter-follower-database-caching-policies-modification-kind) 変更-種類コマンド。
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
@@ -74,7 +74,7 @@ ms.locfileid: "94446227"
 フォロワーデータベースオーバーライドキャッシュポリシーを削除します。 これにより、リーダークラスターのソースデータベースで設定されたポリシーが有効になります。
 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。 
 
-**ノート**
+**メモ**
 
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
@@ -96,7 +96,7 @@ ms.locfileid: "94446227"
 
 承認されたプリンシパルのフォロワーデータベースコレクションに承認されたプリンシパルを追加します。 [Databaseadmin 権限](../management/access-control/role-based-authorization.md)が必要です。
 
-**ノート**
+**メモ**
 
 * `modification kind`このような承認されたプリンシパルの既定値は `none` です。 `modification kind` [Alter フォロワーデータベースプリンシパル](#alter-follower-database-principals-modification-kind)の使用を変更するには、「変更-種類」を使用します。
 * 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
@@ -119,7 +119,7 @@ ms.locfileid: "94446227"
 承認されたプリンシパルのフォロワーデータベースコレクションから承認されたプリンシパルを削除します。
 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**ノート**
+**メモ**
 
 * 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
     * [。データベースプリンシパルを表示します。](../management/security-roles.md#managing-database-security-roles)
@@ -140,7 +140,7 @@ ms.locfileid: "94446227"
 
 フォロワーデータベースの承認されたプリンシパルの変更の種類を変更します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**ノート**
+**メモ**
 
 * 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
     * [。データベースプリンシパルを表示します。](../management/security-roles.md#managing-database-security-roles)
@@ -162,7 +162,7 @@ ms.locfileid: "94446227"
 
 フォロワーデータベースおよびテーブルキャッシュポリシーの変更の種類を変更します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**ノート**
+**メモ**
 
 * 変更後のデータベース/テーブルレベルのキャッシュポリシーの有効なコレクションを表示するには、次の標準コマンドを使用し `.show` ます。
     * [。テーブルの詳細を表示します](show-tables-command.md)
@@ -181,14 +181,14 @@ ms.locfileid: "94446227"
 
 ### <a name="alter-follower-database-prefetch-extents"></a>. alter フォロワー database プリフェッチ-エクステント
 
-フォロワークラスターは、基になるストレージからノードの SSD (cache) にフェッチされる前に、新しいデータをクエリ可能なものにすることはできません。
+フォロワークラスターは、基になるストレージからノード ' SSD (キャッシュ) に新しいデータがフェッチされるのを待機してから、このデータをクエリ可能にします。
 
-次のコマンドは、各スキーマ更新時に新しいエクステントをプリフェッチする、フォロワーデータベース構成を変更します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
+次のコマンドは、各スキーマ更新時に新しいエクステントをプリフェッチする、フォロワーデータベース構成を変更します。 このコマンドには、 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
 > [!WARNING]
-> * この設定を有効にすると、フォロワーデータベースのデータの鮮度が低下する可能性があります。
-> * 既定の構成はで `false` あり、既定値のままにしておくことをお勧めします。
-> * 設定をに変更することを選択した場合 `true` は、構成の変更後、ある期間の鮮度への影響を厳密に評価することをお勧めします。
+> * この設定により、フォロワーデータベースのデータの鮮度が低下する可能性があります。
+> * 既定の構成はです `false` 。既定の構成を使用することをお勧めします。
+> * 設定をに変更することを選択した場合は `true` 、構成の変更後、ある期間の鮮度への影響を厳密に評価します。
 
 **構文**
 
@@ -210,7 +210,7 @@ ms.locfileid: "94446227"
 フォロワーデータベースのテーブルレベルのキャッシュポリシーを変更して、リーダークラスターのソースデータベースで設定されているポリシーを上書きします。
 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。 
 
-**ノート**
+**メモ**
 
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
@@ -234,7 +234,7 @@ ms.locfileid: "94446227"
 
 フォロワーデータベースの上書きテーブルレベルキャッシュポリシーを削除して、リーダークラスターのソースデータベースでポリシーを設定します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。 
 
-**ノート**
+**メモ**
 
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
@@ -300,7 +300,7 @@ ms.locfileid: "94446227"
 |CachingPolicyOverride                | null                                                     |
 |AuthorizedPrincipalsOverride         | []                                                       |
 |AuthorizedPrincipalsModificationKind | なし                                                     |
-|IsAutoPrefetchEnabled                | ×                                                    |
+|IsAutoPrefetchEnabled                | False                                                    |
 |TableMetadataOverrides               |                                                          |
 |CachingPoliciesModificationKind      | Union                                                    |                                                                                                                      |
 
@@ -391,6 +391,6 @@ ms.locfileid: "94446227"
 |CachingPolicyOverride                | {"Dataホットスパン": {"Value": "00:00:00"}, "Indexホットスパン": {"Value": "00:00:00"}}                                                                                                        |
 |AuthorizedPrincipalsOverride         | [{"Principal": {"FullyQualifiedName": "aaduser = 87654321234-350bf486087b",...}、{"Principal": {"FullyQualifiedName": "aaduser = 54321789 efef1234-350bf486087b",...}] |
 |AuthorizedPrincipalsModificationKind | Replace                                                                                                                                                                         |
-|IsAutoPrefetchEnabled                | ×                                                                                                                                                                           |
+|IsAutoPrefetchEnabled                | False                                                                                                                                                                           |
 |TableMetadataOverrides               | {"MyTargetTable": {"CachingPolicyOverride": {"" MySourceTable ": {" CachingPolicyOverride ": {" Dataホットスパン ": {" Value ":" 1.00:00:00 "},...}}} のように、{" MyTargetTable ": {" CachingPolicyOverride ": {" Dataホットスパン ": {       |
 |CachingPoliciesModificationKind      | Replace                                                                                                                                                                         |

@@ -7,15 +7,15 @@ ms.author: orspodek
 ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/23/2020
+ms.date: 10/08/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 61b9dff7d03732611f0a0f47b7c8fc9d6784ac96
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: c3a099dbe431087fd6b79d78ad2b8ec10d5a5a37
+ms.sourcegitcommit: b6f0f112b6ddf402e97c011a902bd70ba408e897
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92246024"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94497786"
 ---
 # <a name="tutorial"></a>チュートリアル
 
@@ -256,7 +256,7 @@ StormEvents
 | render timechart
 ```
 
-:::image type="content" source="images/tutorial/time-series-start-bin.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/time-series-start-bin.png" alt-text="時間別の折れ線グラフイベントビン分割":::
 
 ## <a name="multiple-series"></a>複数の系列
 
@@ -270,11 +270,11 @@ StormEvents
 | summarize count() by bin(StartTime, 10h), Source
 ```
 
-:::image type="content" source="images/tutorial/table-count-source.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/table-count-source.png" alt-text="ソース別のテーブル数":::
 
 上記のにレンダリング語句を追加するだけ `| render timechart` です。
 
-:::image type="content" source="images/tutorial/line-count-source.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/line-count-source.png" alt-text="ソース別の折れ線グラフ数":::
 
 では `render timechart` 最初の列が x 軸として使用され、他の列は個別の行として表示されることに注意してください。
 
@@ -293,11 +293,11 @@ StormEvents
 | render timechart
 ```
 
-:::image type="content" source="images/tutorial/time-count-hour.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/time-count-hour.png" alt-text="時間別の時間グラフの数":::
 
 現在、では、 `render` 期間に適切にラベル付けされませんが、代わりにを使用でき `| render columnchart` ます。
 
-:::image type="content" source="images/tutorial/column-count-hour.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/column-count-hour.png" alt-text="1時間ごとの縦棒グラフ":::
 
 ## <a name="compare-multiple-daily-series"></a>複数の日次系列の比較
 
@@ -312,7 +312,7 @@ StormEvents
 | render timechart
 ```
 
-:::image type="content" source="images/tutorial/time-hour-state.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/time-hour-state.png" alt-text="時間と状態別の時間グラフ":::
 
 X 軸を継続時間ではなく時間番号にするには、を除算し `1h` ます。
 
@@ -325,7 +325,7 @@ StormEvents
 | render columnchart
 ```
 
-:::image type="content" source="images/tutorial/column-hour-state.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/column-hour-state.png" alt-text="時間と州別の縦棒グラフ":::
 
 ## <a name="join"></a>Join
 
@@ -344,7 +344,7 @@ StormEvents
 | distinct State
 ```
 
-:::image type="content" source="images/tutorial/join-events-la.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/join-events-la.png" alt-text="イベントの結合 (稲妻と大量)":::
 
 ## <a name="user-session-example-of-join"></a>ユーザーセッションの結合の例
 
@@ -370,7 +370,7 @@ Events
 | take 10
 ```
 
-:::image type="content" source="images/tutorial/user-session-extend.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/user-session-extend.png" alt-text="ユーザーセッションの拡張":::
 
 結合を実行する前に必要な列のみを選択する場合は、 `project` を使用することをお勧めします。
 その場合、同じ句で、タイムスタンプ列の名前を変更します。
@@ -391,11 +391,11 @@ StormEvents
 | render timechart
 ```
 
-:::image type="content" source="images/tutorial/event-count-duration.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/event-count-duration.png" alt-text="期間別のイベント数線上":::
 
 またはを使用し `| render columnchart` ます。
 
-:::image type="content" source="images/tutorial/column-event-count-duration.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/column-event-count-duration.png" alt-text="期間別の縦棒グラフイベント数線上":::
 
 ## <a name="percentiles"></a>パーセンタイル
 
@@ -409,7 +409,7 @@ StormEvents
 
 この場合、句を指定しなかったので、 `by` 結果は単一行になります。
 
-:::image type="content" source="images/tutorial/summarize-percentiles-duration.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/summarize-percentiles-duration.png" alt-text="期間別のパーセンタイルの概要テーブル":::
 
 この結果から次のことがわかります。
 
@@ -431,7 +431,8 @@ StormEvents
 | summarize percentiles(duration, 5, 20, 50, 80, 95) by State
 ```
 
-:::image type="content" source="images/tutorial/summarize-percentiles-state.png" alt-text="状態別のストームイベント数の縦棒グラフ":::
+:::image type="content" source="images/tutorial/summarize-percentiles-state.png" alt-text="状態別のパーセンタイル期間の概要表":::
+
 
 ## <a name="let-assign-a-result-to-a-variable"></a>let: 結果を変数に代入する
 
@@ -449,7 +450,6 @@ LightningStorms
 | join (AvalancheStorms) on State
 | distinct State
 ```
-
 > [!TIP]
 > Kusto エクスプローラークライアントでは、このの部分の間に空白行を入れないでください。 必ず、すべて間を空けずに実行してください。
 
@@ -475,13 +475,13 @@ database("db").Table
 Logs | join database("Telemetry").Metrics on Request MachineId | ...
 ```
 
-既定のデータベースが*テレメトリ*の場合
+既定のデータベースが *テレメトリ* の場合
 
 ```kusto
 union Requests, database("Diagnostics").Logs | ...
 ```
     
-上記では、両方のデータベースが現在接続しているクラスターに存在していることを前提としています。 *テレメトリ*データベースが*TelemetryCluster.kusto.windows.net*という別のクラスターに属していて、それにアクセスするために必要なものとします。
+上記では、両方のデータベースが現在接続しているクラスターに存在していることを前提としています。 *テレメトリ* データベースが *TelemetryCluster.kusto.windows.net* という別のクラスターに属していて、それにアクセスするために必要なものとします。
 
 ```kusto
 Logs | join cluster("TelemetryCluster").database("Telemetry").Metrics on Request MachineId | ...
@@ -490,10 +490,221 @@ Logs | join cluster("TelemetryCluster").database("Telemetry").Metrics on Request
 > [!NOTE]
 > クラスターが指定されている場合、データベースは必須です
 
+
+
+
 ::: zone-end
 
 ::: zone pivot="azuremonitor"
 
-この機能は、ではサポートされていません Azure Monitor
+Kusto クエリ言語について学習する最善の方法は、簡単なクエリを見て、言語の "感覚" を得ることです。 これらのクエリは、Azure データエクスプローラーチュートリアルで使用されているものと似ていますが、Log Analytics ワークスペースの共通テーブルのデータを使用しています。 
+
+Log Analytics を使用してこれらのクエリを実行します。これは、Azure Monitor のログデータを使用してログクエリを作成し、その結果を評価するための Azure portal のツールです。 Log Analytics に慣れていない場合は、 [Log Analytics チュートリアル](/azure/azure-monitor/log-query/log-analytics-tutorial.md)のチュートリアルを参照してください。
+
+ここでは、すべてのクエリで [Log Analytics デモ環境](https://ms.portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade)を使用します。 独自の環境を使用できますが、ここで使用しているテーブルの一部が存在しない可能性があります。 デモ環境のデータは静的ではないため、クエリの結果はここに示されている結果とは多少異なる場合があります。
+
+
+## <a name="count-rows"></a>行数のカウント
+[InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) には、コンテナーの Azure Monitor for VMs や Azure Monitor などの洞察によって収集されるパフォーマンスデータが含まれています。 その大きさを調べるために、次のように単に行数をカウントする演算子にコンテンツをパイプします。
+
+クエリは、データソース (通常はテーブル名) で、必要に応じてパイプ文字の1つ以上のペアと、表形式演算子を指定します。 この場合、InsightsMetrics テーブルのすべてのレコードが返された後、 [count operator](./countoperator.md) 演算子に送信されます。これにより、クエリの最後のコマンドである結果が出力されます。
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+InsightsMetrics | count
+```
+
+結果は次のとおりです。
+
+|Count|
+|-----|
+|1263191|
+    
+
+
+
+## <a name="where-filtering-by-a-boolean-expression"></a>where: ブール式によるフィルター処理
+[Azureactivity](/azure/azure-monitor/reference/tables/azureactivity) には、azure で発生したサブスクリプションレベルまたは管理グループレベルのイベントに関する洞察を提供する、azure アクティビティログのエントリがあります。 特定の週のエントリのみを表示してみましょう `Critical` 。
+
+
+KQL で [where](/azure/data-explorer/kusto/query/whereoperator) 演算子が非常によく使われており、指定された条件に一致する行にテーブルをフィルター処理します。 この例では、複数のコマンドを使用します。 クエリではまず、テーブルのすべてのレコードを取得し、そのデータを時間範囲内のレコードだけにフィルター処理して、その結果をレベルのレコードだけにフィルター処理し `Critical` ます。
+
+> [!NOTE]
+> 列を使用してクエリにフィルターを指定するだけでなく `TimeGenerated` 、Log Analytics で時間の範囲を指定することもできます。 詳細については、「[Azure Monitor Log Analytics のログ クエリのスコープと時間範囲](/azure/azure-monitor/log-query/scope)」を参照してください。
+
+```kusto
+AzureActivity
+| where TimeGenerated > datetime(10-01-2020) and TimeGenerated < datetime(10-07-2020)
+| where Level == 'Critical'
+```
+
+[![Where フィルターの例の結果](images/tutorial/am-results-where.png)](images/tutorial/am-results-where.png#lightbox)
+
+
+## <a name="project-select-a-subset-of-columns"></a>プロジェクト: 列のサブセットを選択します
+
+必要な列だけを取得するには、 [project](./projectoperator.md) を使用します。 前の例を基にして、出力を特定の列に限定してみましょう。
+
+```kusto
+AzureActivity
+| where TimeGenerated > datetime(10-01-2020) and TimeGenerated < datetime(10-07-2020)
+| where Level == 'Critical'
+| project TimeGenerated, Level, OperationNameValue, ResourceGroup, _ResourceId
+```
+
+[![プロジェクトの結果の例](images/tutorial/am-results-project.png)](images/tutorial/am-results-project.png#lightbox)
+
+
+## <a name="take-show-me-n-rows"></a>take: n 行を表示する
+[Networkmonitoring](/azure/azure-monitor/reference/tables/networkmonitoring) には、Azure virtual network の監視データがあります。 [Take](./takeoperator.md)演算子を使用して、そのテーブル内の5つのサンプル行を見てみましょう。 [Take](./takeoperator.md)は、特定の順序でテーブルから特定の数の行を表示します。
+
+```kusto
+NetworkMonitoring
+| take 10
+| project TimeGenerated, Computer, SourceNetwork, DestinationNetwork, HighLatency, LowLatency
+```
+
+[![Take の結果の例](images/tutorial/am-results-take.png)](images/tutorial/am-results-take.png#lightbox)
+
+## <a name="sort-and-top"></a>sort と top
+ランダムなレコードではなく、最初に時間によって並べ替えられた最新の5つのレコードを返すことができます。
+
+```kusto
+NetworkMonitoring
+| sort by TimeGenerated desc
+| take 5
+| project TimeGenerated, Computer, SourceNetwork, DestinationNetwork, HighLatency, LowLatency
+```
+
+この正確な動作を取得するには、代わりに [top](./topoperator.md) 演算子を使用します。 
+
+```kusto
+NetworkMonitoring
+| top 5 by TimeGenerated desc
+| project TimeGenerated, Computer, SourceNetwork, DestinationNetwork, HighLatency, LowLatency
+```
+
+[![Top の例の結果](images/tutorial/am-results-top.png)](images/tutorial/am-results-top.png#lightbox)
+
+
+## <a name="extend-compute-derived-columns"></a>拡張: 計算派生列
+[Extend](./projectoperator.md)演算子は[project](./projectoperator.md)に似ていますが、列を置き換えるのではなく、列のセットにを追加する点が異なります。 また、両方の演算子を使用して、各行の計算に基づいて新しい列を作成することもできます。
+
+パフォーマンス [テーブルには、Log Analytics](/azure/azure-monitor/reference/tables/perf) エージェントを実行している仮想マシンから収集されたパフォーマンスデータが含まれます。 
+
+```kusto
+Perf
+| where ObjectName == "LogicalDisk" and CounterName == "Free Megabytes"
+| project TimeGenerated, Computer, FreeMegabytes = CounterValue
+| extend FreeGigabytes = FreeMegabytes / 1000
+```
+
+[![拡張の例の結果](images/tutorial/am-results-extend.png)](images/tutorial/am-results-extend.png#lightbox)
+
+
+## <a name="summarize-aggregate-groups-of-rows"></a>まとめ: 行の集計グループ
+[集計](./summarizeoperator.md)演算子は、句内で同じ値を持つ行をグループ化し、 `by` などの集計関数を使用して、 `count` 各グループを1つの行に結合します。 [集計関数](./summarizeoperator.md#list-of-aggregation-functions)がいくつかあります。1つの集計演算子で使用して、複数の計算列を生成することができます。 
+
+[Securityevent](/azure/azure-monitor/reference/tables/securityevent)は、監視対象コンピューターで開始されるログオンやプロセスなどのセキュリティイベントを保持します。 各コンピューターで発生した各レベルのイベントの数をカウントできます。 この例では、コンピューターとレベルの組み合わせごとに1行、イベント数の列があります。
+
+```kusto
+SecurityEvent
+| summarize count() by Computer, Level
+```
+
+[![集計数の結果の例](images/tutorial/am-results-summarize-count.png)](images/tutorial/am-results-summarize-count.png#lightbox)
+
+
+## <a name="summarize-by-scalar-values"></a>スカラー値による集計
+数値や時刻の値などのスカラー値で集計できますが、 [bin ()](./binfunction.md) 関数を使用して、行を個別のデータセットにグループ化する必要があります。 たとえば、によって集計した場合、 `TimeGenerated` ほぼすべての時刻値に対して行が取得されます。 `bin()` これらの値を1時間または1日に統合します。
+
+[InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) には、コンテナーの Azure Monitor for VMs や Azure Monitor などの洞察によって収集されるパフォーマンスデータが含まれています。 次のクエリは、複数のコンピューターの1時間ごとの平均プロセッサ使用率を示しています。
+
+```kusto
+InsightsMetrics
+| where Computer startswith "DC"
+| where Namespace  == "Processor" and Name == "UtilizationPercentage"
+| summarize avg(Val) by Computer, bin(TimeGenerated, 1h)
+```
+
+
+[![Avg サンプルの結果](images/tutorial/am-results-summarize-avg.png)](images/tutorial/am-results-summarize-avg.png#lightbox)
+
+
+
+## <a name="render-display-a-chart-or-table"></a>Render: グラフまたはテーブルを表示します。
+[Render](./renderoperator.md?pivots=azuremonitor)操作は、クエリの出力をどのように表示するかを指定します。 既定では Log Analytics はテーブルとして出力を表示し、クエリの実行後に異なる種類のグラフを選択できます。 演算子は、 `render` 特定のグラフの種類が通常推奨されるクエリに含める場合に便利です。
+
+次の例では、1台のコンピューターの1時間ごとの平均プロセッサ使用率を示し、出力を時間グラフとしてレンダリングします。
+
+```kusto
+InsightsMetrics
+| where Computer == "DC00.NA.contosohotels.com"
+| where Namespace  == "Processor" and Name == "UtilizationPercentage"
+| summarize avg(Val) by Computer, bin(TimeGenerated, 1h)
+| render timechart
+```
+
+[![Render の結果の例](images/tutorial/am-results-render.png)](images/tutorial/am-results-render.png#lightbox)
+
+
+
+## <a name="multiple-series"></a>複数の系列
+句に複数の値がある場合 `summarize by` 、グラフには、値のセットごとに個別の系列が表示されます。
+
+```kusto
+InsightsMetrics
+| where Computer startswith "DC"
+| where Namespace  == "Processor" and Name == "UtilizationPercentage"
+| summarize avg(Val) by Computer, bin(TimeGenerated, 1h)
+| render timechart
+```
+
+
+[![複数の系列を含む render の結果の例](images/tutorial/am-results-render-multiple.png)](images/tutorial/am-results-render-multiple.png#lightbox)
+
+## <a name="join-data-from-two-tables"></a>2つのテーブルのデータを結合する
+1つのクエリで2つのテーブルからデータを取得する必要がある場合はどうすればよいでしょうか。 [Join](/azure/data-explorer/kusto/query/joinoperator?pivots=azuremonitor)演算子を使用すると、複数のテーブルの行を結合して1つの結果セットにすることができます。 各テーブルには、一致する行が含まれるように、一致する値を持つ列が必要です。
+
+[Vmcomputer](/azure/azure-monitor/reference/tables/vmcomputer) は、監視対象のバーチャルマシンに関する詳細を格納するために Azure Monitor for VMs によって使用されるテーブルです。 [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) は、これらの仮想マシンから収集されたパフォーマンスデータを保持します。 *InsightsMetrics* で収集された1つの値は使用可能なメモリですが、使用可能なメモリの割合はありません。 割合を計算するには、 *Vmcomputer* にある各仮想マシンの物理メモリが必要です。
+
+次のクエリ例では、結合を使用してこの計算を実行します。 [Distinct](/azure/data-explorer/kusto/query/joinoperator)は *vmcomputer* と共に使用されます。詳細は各コンピューターから定期的に収集され、そのテーブルの各に対して複数の行が作成されるためです。 2つのテーブルは、[ *コンピューター* 列を使用して結合されます。 これは、 *InsightsMetrics* 内の行ごとに両方のテーブルの列を含む結果セットに行が作成され、 *vmcomputer* の *computer* 列の値と *一致する値* が設定されていることを意味します。
+
+```kusto
+VMComputer
+| distinct Computer, PhysicalMemoryMB
+| join kind=inner (
+    InsightsMetrics
+    | where Namespace == "Memory" and Name == "AvailableMB"
+    | project TimeGenerated, Computer, AvailableMemoryMB = Val
+) on Computer
+| project TimeGenerated, Computer, PercentMemory = AvailableMemoryMB / PhysicalMemoryMB * 100
+```
+
+[![結合の結果の例](images/tutorial/am-results-join.png)](images/tutorial/am-results-join.png#lightbox)
+
+
+## <a name="let-assign-a-result-to-a-variable"></a>let: 結果を変数に代入する
+クエリの読み取りと管理を容易にするために、 [let](./letstatement.md) を使用します。 この演算子を使用すると、後で使用できる変数にクエリの結果を割り当てることができます。 前の例の同じクエリは、次のように書き換えることができます。
+
+ 
+```kusto
+let PhysicalComputer = VMComputer
+    | distinct Computer, PhysicalMemoryMB;
+    let AvailableMemory = 
+InsightsMetrics
+    | where Namespace == "Memory" and Name == "AvailableMB"
+    | project TimeGenerated, Computer, AvailableMemoryMB = Val;
+PhysicalComputer
+| join kind=inner (AvailableMemory) on Computer
+| project TimeGenerated, Computer, PercentMemory = AvailableMemoryMB / PhysicalMemoryMB * 100
+```
+
+[![Let の例の結果](images/tutorial/am-results-let.png)](images/tutorial/am-results-let.png#lightbox)
+
+## <a name="next-steps"></a>次の手順
+
+- [Kusto クエリ言語のコードサンプルを表示](samples.md?pivots=azuremonitor)します。
+
 
 ::: zone-end

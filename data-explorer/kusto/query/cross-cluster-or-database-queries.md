@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: e341a6b9b51b082b16036e368c61fa4c903750da
-ms.sourcegitcommit: 64fdef912cc925c4bdcae98183eb8d7c7a6392d7
+ms.openlocfilehash: dbab2bda9ee24c79e4b62427a7da5bd7db3f0077
+ms.sourcegitcommit: b6f0f112b6ddf402e97c011a902bd70ba408e897
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/29/2020
-ms.locfileid: "93027807"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94497447"
 ---
 # <a name="cross-database-and-cross-cluster-queries"></a>複数のデータベースに対するクエリと複数のクラスターに対するクエリ
 
@@ -183,6 +183,6 @@ cluster("OtherCluster").database("OtherDb").GetDataPivot()
 
 ::: zone pivot="azuremonitor"
 
-複数のデータベースにまたがるクエリとクロスクラスタークエリは、Azure Monitor ではサポートされていません。
+複数のデータベースにまたがるクエリとクロスクラスタークエリは、Azure Monitor ではサポートされていません。 複数のワークスペースとアプリにまたがるクエリについては、「 [Azure Monitor でのクロスワークスペースクエリ](/azure/azure-monitor/log-query/cross-workspace-query) 」を参照してください。
 
 ::: zone-end

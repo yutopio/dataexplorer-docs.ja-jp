@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/16/2020
-ms.openlocfilehash: 5446337177d0e261bd86fbd18119c34b861b89e4
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.openlocfilehash: 606ae915e822cf4f2c02ac590a5bb05bdb17f28a
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942388"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373903"
 ---
 # <a name="monitor-azure-data-explorer-ingestion-commands-and-queries-using-diagnostic-logs"></a>診断ログを使用して Azure Data Explorer のインジェスト、コマンド、およびクエリを監視する
 
@@ -33,13 +33,18 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
 # <a name="ingestion"></a>[データの取り込み](#tab/ingestion)
 
-* **成功したインジェスト操作**:ログには、正常に完了したインジェスト操作に関する情報が含まれています。
-* **失敗したインジェスト操作**:ログには、失敗したインジェスト操作に関する詳細情報 (エラーの詳細を含む) が含まれています。 
+> [!NOTE]
+> インジェスト ログは、SDK、データ接続、およびコネクタを使用するインジェスト エンドポイントへのキューによるインジェストでサポートされています。
+>
+> インジェスト ログは、ストリーミング インジェスト、エンジンへの直接インジェスト、クエリからのインジェスト、および set-or-append コマンドではサポートされていません。
+
+* **成功したインジェスト操作** :ログには、正常に完了したインジェスト操作に関する情報が含まれています。
+* **失敗したインジェスト操作** :ログには、失敗したインジェスト操作に関する詳細情報 (エラーの詳細を含む) が含まれています。 
 
 # <a name="commands-and-queries"></a>[コマンドとクエリ](#tab/commands-and-queries)
 
-* **コマンド**:これらのログには、最終的な状態に達した管理者コマンドに関する情報が含まれています。
-* **クエリ**:これらのログには、最終的な状態に達したクエリに関する詳細情報が含まれています。 
+* **コマンド** :これらのログには、最終的な状態に達した管理者コマンドに関する情報が含まれています。
+* **クエリ** :これらのログには、最終的な状態に達したクエリに関する詳細情報が含まれています。 
 
     > [!NOTE]
     > クエリ ログのデータには、クエリのテキストは含まれていません。

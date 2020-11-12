@@ -7,14 +7,14 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/26/2020
-ms.openlocfilehash: 66bbaddc6fcc953c620b2b439027ecec97016f19
-ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
+ms.openlocfilehash: 114e3b00b35ff6dd30241cd6afc4666fdedf6f62
+ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90534019"
+ms.lasthandoff: 11/04/2020
+ms.locfileid: "93349496"
 ---
-# <a name="visualize-data-with-azure-data-explorer-dashboards"></a>Azure Data Explorer ダッシュボードを使用してデータを視覚化する
+# <a name="visualize-data-with-azure-data-explorer-dashboardspreview"></a>Azure Data Explorer ダッシュボードを使用してデータを視覚化する (プレビュー)
 
 Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer には、クエリの実行とダッシュボードの構築を行える Web アプリケーションが用意されています。 ダッシュボードは、スタンドアロンの Web アプリケーションである [Web UI](web-query-data.md) で使用できます。 Azure Data Explorer は、[Power BI](power-bi-connector.md) や [Grafana](grafana.md) などの他のダッシュボード サービスとも統合されています。
 
@@ -76,12 +76,12 @@ Azure Data Explorer のダッシュボードには、次の 3 つの主な利点
 |**[変数名]**     |   クエリで使用されるパラメーターの名前。      |
 |**データの種類**    |    パラメーター値のデータ型。     |
 |**Pin as dashboard filter (ダッシュボード フィルターとしてピン留め)**   |   パラメーターベースのフィルターをダッシュボードにピン留めするか、ダッシュボードからピン留めを外します。       |
-|**ソース**     |    パラメーター値のソース。 <ul><li>**Fixed values (固定値)** :手動で導入される静的なフィルター値。 </li><li>**Query**: KQL クエリを使用して動的に導入される値。  </li></ul>    |
+|**ソース**     |    パラメーター値のソース。 <ul><li>**Fixed values (固定値)** :手動で導入される静的なフィルター値。 </li><li>**Query** : KQL クエリを使用して動的に導入される値。  </li></ul>    |
 |**Add a “Select all” value (「すべて選択」の値を追加)**    |   単一選択と複数選択のパラメーターの種類にのみ適用されます。 すべてのパラメーター値のデータを取得するために使用します。      |
 
 ## <a name="add-query"></a>クエリの追加
 
-**クエリの追加**では、Kusto クエリ言語のスニペットを使用してデータを取得し、ビジュアルをレンダリングします。 各クエリは 1 つのビジュアルをサポートできます。
+**クエリの追加** では、Kusto クエリ言語のスニペットを使用してデータを取得し、ビジュアルをレンダリングします。 各クエリは 1 つのビジュアルをサポートできます。
 
 1. ダッシュボード キャンバスまたは上部のメニューバーから **[クエリの追加]** を選択します。
 
@@ -150,13 +150,13 @@ Azure Data Explorer のダッシュボードには、次の 3 つの主な利点
 
     :::image type="content" source="media/adx-dashboards/auto-refresh-toggle.png" alt-text="自動更新を有効にする":::
 
-1. **[適用]** を選択し、ダッシュボードを**保存**します。
+1. **[適用]** を選択し、ダッシュボードを **保存** します。
 
 > [!NOTE]
 > * 最も短い最小時間間隔を選択すると、クラスターでの不要な負荷が軽減されます。 
 > * ダッシュボードの閲覧者: 
 >    * 個人用に使用する場合に限り、最小時間間隔を変更できます。 
->    * 設定編集者によって指定された**最小間隔**より小さい値は選択できません。
+>    * 設定編集者によって指定された **最小間隔** より小さい値は選択できません。
 
 ## <a name="next-steps"></a>次の手順
 

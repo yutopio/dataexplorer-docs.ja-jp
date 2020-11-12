@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: 9427692d0533550967bfe84a35fd833a4c03b39e
-ms.sourcegitcommit: 811cf98edefd919b412d80201400919eedcab5cd
+ms.openlocfilehash: 9c066b47e69fd36052ae6e6e8d7599ebc17b3ff7
+ms.sourcegitcommit: f71801764fdccb061f3cf1e3cfe43ec1557e4e0f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/01/2020
-ms.locfileid: "89274809"
+ms.lasthandoff: 11/03/2020
+ms.locfileid: "93293234"
 ---
 # <a name="use-one-click-ingestion-to-ingest-csv-data-from-a-container-to-a-new-table-in-azure-data-explorer"></a>ワンクリックでのインジェストを使用して Azure Data Explorer の新しいテーブルにコンテナーの CSV データを取り込む
 
@@ -22,18 +22,18 @@ ms.locfileid: "89274809"
 
 [ワンクリックでのインジェスト](ingest-data-one-click.md)を使用すると、JSON、CSV、その他の形式のデータをすばやくテーブルに取り込んで、マッピング構造を簡単に作成することができます。 データは、ストレージ、ローカル ファイル、コンテナーから、1 回限りまたは継続的なインジェスト プロセスとして取り込むことができます。  
 
-このドキュメントでは、特定のユース ケースで直感的なワンクリック ウィザードを使用して、**コンテナー**の **CSV** データを**新しいテーブル**に取り込む方法について説明します。 この同じプロセスにわずかな調整を行えば、さまざまなユース ケースに対応できます。
+このドキュメントでは、特定のユース ケースで直感的なワンクリック ウィザードを使用して、 **コンテナー** の **CSV** データを **新しいテーブル** に取り込む方法について説明します。 この同じプロセスにわずかな調整を行えば、さまざまなユース ケースに対応できます。
 
 ワンクリックでのインジェストの概要と一連の前提条件については、[ワンクリックでのインジェスト](ingest-data-one-click.md)に関するページを参照してください。
 Azure Data Explorer の既存のテーブルにデータを取り込む方法については、[既存のテーブルへのワンクリックでのインジェスト](one-click-ingestion-existing-table.md)に関するページを参照してください。
 
 ## <a name="ingest-new-data"></a>新しいデータを取り込む
 
-1. Web UI の左側のメニューで、"*データベース*" を右クリックし、 **[Ingest new data (Preview)]\(新しいデータの取り込み (プレビュー)\)** を選択します。
+1. Web UI の左側のメニューで、" *データベース* " を右クリックし、 **[Ingest new data]\(新しいデータの取り込み\)** を選択します。
 
     :::image type="content" source="media/one-click-ingestion-new-table/one-click-ingestion-in-web-ui.png" alt-text="新しいデータの取り込み":::
 
-1. **[Ingest new data (Preview)]\(新しいデータの取り込み (プレビュー)\)** ウィンドウの **[ソース]** タブが選択されます。 
+1. **[Ingest new data]\(新しいデータの取り込み\)** ウィンドウの **[ソース]** タブが選択されます。 
 
 1. **[新しいテーブルの作成]** を選択し、新しいテーブルの名前を入力します。 英数字、ハイフン、アンダースコアを使用できます。 特殊文字はサポートされていません。
 
@@ -52,7 +52,7 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
       :::image type="content" source="media/one-click-ingestion-new-table/from-container.png" alt-text="コンテナーからのワンクリックでのインジェスト":::
 
      > [!TIP] 
-     > **ファイルから**のインジェストについては、[ワンクリックでのインジェストを使用した、Azure Data Explorer の既存のテーブルへのローカル ファイルの JSON データの取り込み](one-click-ingestion-existing-table.md#select-an-ingestion-type)に関するページを参照してください
+     > **ファイルから** のインジェストについては、 [ワンクリックでのインジェストを使用した、Azure Data Explorer の既存のテーブルへのローカル ファイルの JSON データの取り込み](one-click-ingestion-existing-table.md#select-an-ingestion-type)に関するページを参照してください
 
 データのサンプルが表示されます。 必要に応じて、データをフィルター処理して、特定の文字で始まる、または終わるファイルだけを取り込んでください。 フィルターを調整すると、プレビューが自動的に更新されます。
 
@@ -71,7 +71,7 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
         この場合、データ形式は **CSV** です
 
         > [!TIP]
-        > **JSON** ファイルを使用する場合は、[ワンクリックでのインジェストを使用した、Azure Data Explorer の既存のテーブルへのローカル ファイルの JSON データの取り込み](one-click-ingestion-existing-table.md#edit-the-schema)に関するページを参照してください。
+        > **JSON** ファイルを使用する場合は、 [ワンクリックでのインジェストを使用した、Azure Data Explorer の既存のテーブルへのローカル ファイルの JSON データの取り込み](one-click-ingestion-existing-table.md#edit-the-schema)に関するページを参照してください。
 
    1. ファイルの見出し行が無視されるように、 **[列名を含む]** チェック ボックスをオンにすることができます。
 

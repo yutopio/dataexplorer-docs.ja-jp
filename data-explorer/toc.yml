@@ -555,6 +555,8 @@
               href: ./kusto/query/diffpatterns-textplugin.md
             - name: infer_storage_schema プラグイン
               href: ./kusto/query/inferstorageschemaplugin.md
+            - name: mysql_request プラグイン
+              href: ./kusto/query/mysqlrequest-plugin.md
             - name: narrow プラグイン
               href: ./kusto/query/narrowplugin.md
             - name: pivot プラグイン
@@ -719,6 +721,8 @@
           href: ./kusto/query/arrayindexoffunction.md
         - name: array_length()
           href: ./kusto/query/arraylengthfunction.md
+        - name: array_reverse()
+          href: ./kusto/query/array-reverse-function.md
         - name: array_rotate_left()
           href: ./kusto/query/array_rotate_leftfunction.md
         - name: array_rotate_right()
@@ -1644,6 +1648,14 @@
                   href: ./kusto/management/data-export/show-continuous-failures.md
         - name: データベース カーソル
           href: ./kusto/management/databasecursor.md
+        - name: プラグイン コマンド
+          items:
+            - name: .show plugins
+              href: ./kusto/management/show-plugins.md
+            - name: .enable plugin
+              href: ./kusto/management/enable-plugin.md
+            - name: .disable plugin
+              href: ./kusto/management/disable-plugin.md
         - name: クエリ結果のキャッシュ
           href: ./kusto/management/query-results-cache-commands.md
           items:

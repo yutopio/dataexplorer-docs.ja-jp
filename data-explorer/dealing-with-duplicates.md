@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 12/19/2018
-ms.openlocfilehash: ef71c978681c9e355e82791d4df3ad7da8db66f7
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: fd277cd46a183606e35219f733dbf86b094d62f8
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88874700"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373801"
 ---
 # <a name="handle-duplicate-data-in-azure-data-explorer"></a>Azure Data Explorer で重複データを処理する
 
@@ -109,7 +109,7 @@ DeviceEventsAll
     > [!NOTE]
     > 更新ポリシーを使用すると、取り込みの最中にデータのフィルター処理が発生するほか、その後データの取り込みが 2 回 (`DeviceEventsAll` テーブルに 1 回、`DeviceEventsUnique` テーブルに 1 回) 行われることになるので、取り込みにかかる時間が長くなります。
 
-1. (省略可能) データのコピーがいくつも保存されないように、`DeviceEventsAll` テーブルのデータ保有期間の値をこれまでよりも低いものに設定します。 日数はデータの量と、トラブルシューティングに備えてデータを保持しておきたい期間の長さに応じて選択してください。 保有期間を `0d` 日に設定すると、データがストレージにアップロードされなくなるため、COGS を抑えると共にパフォーマンスを改善できます。
+1. (省略可能) データのコピーがいくつも保存されないように、`DeviceEventsAll` テーブルのデータ保有期間の値をこれまでよりも低いものに設定します。 日数はデータの量と、トラブルシューティングに備えてデータを保持しておきたい期間の長さに応じて選択してください。 保有期間を `0d` 日に設定すると、データがストレージにアップロードされなくなるため、COGS (売却済商品の原価) を抑えると共にパフォーマンスを改善できます。
 
     ```kusto
     .alter-merge table DeviceEventsAll policy retention softdelete = 1d

@@ -7,12 +7,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/12/2020
-ms.openlocfilehash: 6bf447a845954bde58a0308a03bee45f98f16111
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 68b8ca90898335a971113c1929eea49f4c0cbc5d
+ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873238"
+ms.lasthandoff: 11/09/2020
+ms.locfileid: "94373869"
 ---
 # <a name="enable-data-purge-on-your-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターでのデータ消去を有効にする
 
@@ -20,7 +20,7 @@ ms.locfileid: "88873238"
 
 Azure Data Explorer では、個々のレコードを削除する機能がサポートされています。 `.purge` コマンドを使用したデータの削除では個人データが保護されるため、他のシナリオでは使用しないでください。 それは、頻繁な削除要求や大量のデータの削除をサポートするように設計されていないため、サービスのパフォーマンスに多大な影響を与える可能性があります。
 
-`.purge` コマンドを実行すると、完了までに数日かかる可能性のあるプロセスがトリガーされます。 `predicate` の適用対象であるレコードの "密度" が高い場合、プロセスでは、テーブル内のすべてのデータが再び取り込まれます。 このプロセスは、パフォーマンスと COGS に多大な影響を与えます。 詳細については、[Azure Data Explorer でのデータ消去](kusto/concepts/data-purge.md)に関する記事をご覧ください。
+`.purge` コマンドを実行すると、完了までに数日かかる可能性のあるプロセスがトリガーされます。 `predicate` の適用対象であるレコードの "密度" が高い場合、プロセスでは、テーブル内のすべてのデータが再び取り込まれます。 このプロセスは、パフォーマンスと COGS (売却済商品の原価) に多大な影響を与えます。 詳細については、[Azure Data Explorer でのデータ消去](kusto/concepts/data-purge.md)に関する記事をご覧ください。
 
 ## <a name="methods-of-invoking-purge-operations"></a>消去操作の呼び出し方法 
 
@@ -61,7 +61,7 @@ Azure Data Explorer (Kusto) では、個々のレコードの削除とテーブ�
 ## <a name="limitations"></a>制限事項
 
 * 消去プロセスは最終処理であり、元に戻すことはできません。 このプロセスを "元に戻す" ことや、消去されたデータを回復することはできません。 したがって、[undo table drop](kusto/management/undo-drop-table-command.md) などのコマンドによって消去されたデータを回復することはできません。同様に、データを前のバージョンにロールバックしても、最後の消去の "前" の状態に戻すことはできません。
-* `.purge` コマンドは、次のデータ管理エンドポイントに対して実行されます: *https://ingest- [YourClusterName].[Region].kusto.windows.net*。 このコマンドを実行するには、関連するデータベースに対する[データベース管理者](kusto/management/access-control/role-based-authorization.md)権限が必要です。 
+* `.purge` コマンドは、次のデータ管理エンドポイントに対して実行されます: *https://ingest- [YourClusterName].[Region].kusto.windows.net* 。 このコマンドを実行するには、関連するデータベースに対する[データベース管理者](kusto/management/access-control/role-based-authorization.md)権限が必要です。 
 * 消去プロセスによるパフォーマンスへの影響のため、呼び出し元には、最小限のテーブルに関連データが含まれるようにデータ スキーマを変更し、テーブルごとにバッチ コマンドを実行して、消去プロセスによる COGS への多大な影響を軽減することが期待されています。
 * 消去コマンドの `predicate` パラメーターを使用して、消去するレコードを指定します。 `Predicate` のサイズは 63 KB に制限されています。 
 

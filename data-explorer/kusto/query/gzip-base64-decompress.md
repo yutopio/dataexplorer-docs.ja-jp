@@ -8,14 +8,14 @@ ms.reviewer: elgevork
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/01/2020
-ms.openlocfilehash: 19fc8c7ce74cfe632034722fda2b23c5105d013a
-ms.sourcegitcommit: 0e2fbc26738371489491a96924f25553a8050d51
+ms.openlocfilehash: a35fd4ed2f43c991aa08e2e1594103cb5f5bd7a7
+ms.sourcegitcommit: 3eabd78305d32cd9b8a6bd1d76877ddc19d8ac63
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/02/2020
-ms.locfileid: "93148549"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94548888"
 ---
-# <a name="gzip_decompress_from_base64_string"></a>gzip_decompress_from_base64_string ()
+# <a name="gzip_decompress_from_base64_string"></a>gzip_decompress_from_base64_string()
 
 Base64 から入力文字列をデコードし、gzip 圧縮解除を実行します。
 
@@ -27,6 +27,11 @@ Base64 から入力文字列をデコードし、gzip 圧縮解除を実行し�
 
 *input_string* : `string` gzip で圧縮され、base64 でエンコードされた入力。 関数は、1つの文字列引数を受け入れます。
 
+> [!NOTE]
+> この関数は、必須の gzip ヘッダーフィールド (ID1、ID2、および CM) をチェックし、これらのフィールドのいずれかに正しくない値が含まれている場合は、空の出力を返します。
+> 省略可能なヘッダーフィールドはサポートされていません。 FLG と XFL の両方が0であることが必要です。
+
+
 ## <a name="returns"></a>戻り値
 
 * 元の `string` 文字列を表すを返します。 
@@ -36,7 +41,7 @@ Base64 から入力文字列をデコードし、gzip 圧縮解除を実行し�
 ## <a name="examples"></a>例
 
 ```kusto
-print res=gzip_decompress_from_base64_string("eAEBFADr/zEyMzQ1Njc4OTBxd2VydHl1aW9wOAkGd0xvZwAzAG5JZA==")
+print res=gzip_decompress_from_base64_string("H4sIAAAAAAAA/wEUAOv/MTIzNDU2Nzg5MHF3ZXJ0eXVpb3A6m7f2FAAAAA==")
 ```
 
 **出力:**
@@ -54,4 +59,5 @@ print res=gzip_decompress_from_base64_string("x0x0x0")
 
 ## <a name="next-steps"></a>次のステップ
 
-[Gzip_compress_to_base64_string ()](gzip-base64-compress.md)を使用して、圧縮された入力文字列を作成します。
+* [Gzip_compress_to_base64_string ()](gzip-base64-compress.md)を使用して、圧縮された入力文字列を作成します。
+* 「 [Zlib_decompress_from_base64_string](zlib-base64-decompress.md)」も参照してください。

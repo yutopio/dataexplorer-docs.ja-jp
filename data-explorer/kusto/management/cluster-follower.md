@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: 2ca15e1970ab785bfd5da8623f3dcc569576f1d9
-ms.sourcegitcommit: 2ee2901cb82e1655b7f0d960d3427da084230731
+ms.openlocfilehash: 9a670e2dead3e3cd5a2d881974678fcb44eaff29
+ms.sourcegitcommit: 3eabd78305d32cd9b8a6bd1d76877ddc19d8ac63
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94520566"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94548905"
 ---
 # <a name="cluster-follower-commands"></a>クラスターのフォロワーコマンド
 
@@ -35,7 +35,7 @@ ms.locfileid: "94520566"
 
 **出力** 
 
-| 出力パラメーター                     | Type    | 説明                                                                                                        |
+| 出力パラメーター                     | 型    | 説明                                                                                                        |
 |--------------------------------------|---------|--------------------------------------------------------------------------------------------------------------------|
 | DatabaseName                         | String  | フォローされているデータベースの名前。                                                                           |
 | LeaderClusterMetadataPath            | String  | リーダークラスターのメタデータコンテナーへのパス。                                                               |
@@ -194,8 +194,6 @@ ms.locfileid: "94520566"
 
 `.alter``follower` `database` *DatabaseName* `prefetch-extents` = ( `true`  |  `false` )
 
-`.alter``follower` `database` *DatabaseName* [ `from` `h@'` *リーダークラスターのメタデータコンテナーへのパス* `'` ] `prefetch-extents` = ( `true`  |  `false` )
-
 **例**
 
 <!-- csl -->
@@ -258,7 +256,7 @@ ms.locfileid: "94520566"
 
 次に、フォロワーデータベースを構成する手順の例を示します。
 
-次の点に注意してください。
+この例では、次のように記述されています。
 
 * フォロワークラスターは、 `MyFollowerCluster` リーダークラスターのデータベース `MyDatabase` に従って `MyLeaderCluster` います。
     * `MyDatabase``N`テーブル: `MyTable1` 、、 `MyTable2` `MyTable3` 、... `MyTableN` ( `N` > 3)。
@@ -293,7 +291,7 @@ ms.locfileid: "94520566"
 | evaluate narrow() // just for presentation purposes
 ```
 
-| 列                              | 値                                                    |
+| 列                              | [値]                                                    |
 |-------------------------------------|----------------------------------------------------------|
 |DatabaseName                         | MyDatabase                                               |
 |LeaderClusterMetadataPath            | `https://storageaccountname.blob.core.windows.net/cluster` |
@@ -322,7 +320,7 @@ ms.locfileid: "94520566"
 .show database MyDatabase principals
 ```
 
-| Role                       | PrincipalType | PrincipalDisplayName                        | PrincipalObjectId                    | Principal(n)                                                                      | Notes |
+| ロール                       | PrincipalType | PrincipalDisplayName                        | PrincipalObjectId                    | Principal(n)                                                                      | メモ |
 |----------------------------|---------------|---------------------------------------------|--------------------------------------|-----------------------------------------------------------------------------------|-------|
 | データベース MyDatabase 管理者  | AAD ユーザー      | ジャック Kusto (upn: jack@contoso.com )       | 12345678-abcd-efef-1234-350bf486087b | aaduser = 87654321-efef1234-350bf486087b; 55555555-4444-3333-2222-2d7cd011db47 |       |
 | データベース MyDatabase ビューアー | AAD ユーザー      | Jill Kusto (upn: jack@contoso.com )       | abcdefab-abcd-efef-1234-350bf486087b | aaduser = 54321789氏 efef1234-350bf486087b; 55555555-4444-3333-2222-2d7cd011db47 |       |
@@ -384,7 +382,7 @@ ms.locfileid: "94520566"
 | evaluate narrow() // just for presentation purposes
 ```
 
-| 列                              | 値                                                                                                                                                                           |
+| 列                              | [値]                                                                                                                                                                           |
 |-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |DatabaseName                         | MyDatabase                                                                                                                                                                      |
 |LeaderClusterMetadataPath            | `https://storageaccountname.blob.core.windows.net/cluster`                                                                                                                        |

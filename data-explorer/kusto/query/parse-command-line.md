@@ -8,12 +8,12 @@ ms.reviewer: slneimer
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/28/2020
-ms.openlocfilehash: a13e3def33ea7098a48db7ffefa4406097863c2a
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: da8fe0bfedf5766f4599509e83fa1c7c050d069f
+ms.sourcegitcommit: 88f8ad67711a4f614d65d745af699d013d01af32
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342724"
+ms.lasthandoff: 11/16/2020
+ms.locfileid: "94638990"
 ---
 # <a name="parse_command_line"></a>parse_command_line()
 
@@ -21,12 +21,12 @@ Unicode コマンドライン文字列を解析し、コマンドライン引数
 
 ## <a name="syntax"></a>構文
 
-`parse_command_line(`*command_line*、*parser_type*`)`
+`parse_command_line(`*command_line* 、 *parser_type*`)`
 
 ## <a name="arguments"></a>引数
 
-* *command_line*: 解析するコマンドライン。
-* *parser_type*: 現在サポートされている唯一の値は `"Windows"` 、 [CommandLineToArgvW](/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw)と同じようにコマンドラインを解析するです。
+* *command_line* : 解析するコマンドライン。
+* *parser_type* : 現在サポートされている唯一の値は `"windows"` 、 [CommandLineToArgvW](/windows/win32/api/shellapi/nf-shellapi-commandlinetoargvw)と同じようにコマンドラインを解析するです。
 
 ## <a name="returns"></a>戻り値
 

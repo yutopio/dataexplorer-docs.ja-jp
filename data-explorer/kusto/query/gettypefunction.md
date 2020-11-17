@@ -8,18 +8,18 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: 8fc1c3949ef13e504de6ba76be1bd5e600926288
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 84aa0d815328532f7a627958b56c41b998665d6b
+ms.sourcegitcommit: f7bebd245081a5cdc08e88fa4f9a769c18e13e5d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92244808"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94644605"
 ---
 # <a name="gettype"></a>gettype()
 
 1つの引数のランタイム型を返します。
 
-ランタイム型は、標準型がである式の場合には、標準 (静的) 型とは異なる場合があります。 `dynamic` このような場合は、 `gettype()` 実際の値の型 (値がメモリにエンコードされているかどうか) を明らかにするのに役立ちます。
+ランタイム型は、名目的な型がである式の場合、標準 (静的) 型とは異なる場合があります。 `dynamic` このような場合は、 `gettype()` 実際の値の型 (値がメモリにエンコードされているかどうか) を明らかにするのに役立ちます。
 
 ## <a name="syntax"></a>構文
 

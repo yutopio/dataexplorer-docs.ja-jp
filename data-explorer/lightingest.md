@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/28/2020
-ms.openlocfilehash: 5e15983039209e2e0c62ebd761e416ebb3bd1076
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: f72d2b7f2036c7c63bfc5a37e2ab944acc60bbf8
+ms.sourcegitcommit: 2ee2901cb82e1655b7f0d960d3427da084230731
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342622"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94520583"
 ---
 # <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>LightIngest を使用して Azure Data Explorer にデータを取り込む
  
@@ -30,23 +30,23 @@ LightIngest は、インジェスト期間に時間の制約がないため、�
 ## <a name="install-lightingest"></a>LightIngest をインストールする
 
 1. LightIngest をダウンロードしたコンピューター上の場所に移動します。
-1. WinRAR を使用して、 *tools* ディレクトリをコンピューターに抽出します。
+1. WinRAR を使用して、*tools* ディレクトリをコンピューターに抽出します。
 
 ## <a name="run-lightingest"></a>LightIngest を実行する
 
 1. コンピューター上の抽出した *tools* ディレクトリに移動します。
 1. 場所バーから既存の場所情報を削除します。
 
-    :::image type="content" source="media/lightingest/lightingest-locationbar.png" alt-text="Lightingest のダウンロード":::
+    :::image type="content" source="media/lightingest/lightingest-locationbar.png" alt-text="Azure Data Explorer で LightIngest の既存の場所情報を削除する":::
 
 
-1. 「`cmd`」と入力して、 **Enter** キーを押します。
+1. 「`cmd`」と入力して、**Enter** キーを押します。
 1. コマンド プロンプトで、「`LightIngest.exe`」に続けて関連するコマンドライン引数を入力します。
 
     > [!Tip]
     > サポートされているコマンド ライン引数を確認するには、「`LightIngest.exe /help`」と入力します。
     >
-    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="Lightingest のダウンロード":::
+    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="LightIngest のコマンド ライン ヘルプ":::
 
 1. 「`ingest-`」に続けて、インジェストを管理する Azure Data Explorer クラスターへの接続文字列を入力します。
     接続文字列を二重引用符で囲み、その後に [Kusto 接続文字列の指定](kusto/api/connection-strings/kusto.md)を入力します。
@@ -155,7 +155,7 @@ To use the LightIngest command below:
 
     ```kusto
     ingest-{Cluster name and region}.kusto.windows.net;AAD Federated Security=True -db:{Database} -table:Trips -source:"https://{Account}.blob.core.windows.net/{ROOT_CONTAINER};{StorageAccountKey}" -creationTimePattern:"'historicalvalues'yyyyMMdd'.parquet'"
-     -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
+     -pattern:"*.parquet" -format:parquet -limit:2 -cr:10.0 -dontWait:true
     ```
 
 * 次の形式で階層フォルダー構造を参照する BLOB URI: `https://storageaccount/container/folder/2002/12/01/blobname.extension`、 

@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 04/16/2020
-ms.openlocfilehash: bf595e27d7b4881dca7b5e2a370c90a8407a8c78
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 14895e17d77e3bbf1d98d2d68221930d3f291774
+ms.sourcegitcommit: f7bebd245081a5cdc08e88fa4f9a769c18e13e5d
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92252598"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94644622"
 ---
 # <a name="count-operator"></a>count 演算子
 
@@ -29,7 +29,7 @@ ms.locfileid: "92252598"
 
 ## <a name="returns"></a>戻り値
 
-この関数は、1 つのレコードと `long`型の列を含むテーブルを返します。 唯一のセルの値は、 *T*内のレコードの数です。 
+この関数は、1 つのレコードと `long`型の列を含むテーブルを返します。 唯一のセルの値は、 *T* 内のレコードの数です。 
 
 ## <a name="example"></a>例
 
@@ -37,3 +37,7 @@ ms.locfileid: "92252598"
 ```kusto
 StormEvents | count
 ```
+
+## <a name="see-also"></a>関連項目
+
+Count () 集計関数の詳細については、「 [count () (集計関数)](count-aggfunction.md)」を参照してください。

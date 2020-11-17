@@ -7,12 +7,12 @@ ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/19/2020
-ms.openlocfilehash: f599698f4b35075aaec4ff3789fa9036c40d8c17
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 7132542b4387c9146c337a2440b2211d2977ec72
+ms.sourcegitcommit: 3eabd78305d32cd9b8a6bd1d76877ddc19d8ac63
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343234"
+ms.lasthandoff: 11/12/2020
+ms.locfileid: "94548922"
 ---
 # <a name="ingest-json-formatted-sample-data-into-azure-data-explorer"></a>Azure Data Explorer に JSON 書式付きサンプル データを取り込む
 
@@ -30,7 +30,7 @@ Azure Data Explorer は、次の 2 つの JSON ファイル形式をサポート
 
 ### <a name="ingest-and-map-json-formatted-data"></a>JSON 書式付きデータを取り込んでマップする
 
-JSON 書式付きデータを取り込むには、 [インジェスト プロパティ](ingestion-properties.md)を使用して " *書式* " を指定する必要があります。 JSON データを取り込むには、JSON ソース エントリをターゲット列にマップする[マッピング](kusto/management/mappings.md)が必要です。 データを取り込むときは、`IngestionMapping` プロパティと `ingestionMappingReference` (事前定義されたマッピングの場合) インジェスト プロパティを使用するか、`IngestionMappings` プロパティを使用します。 この記事では、インジェストに使用するテーブルで事前に定義されている `ingestionMappingReference` インジェスト プロパティを使用します。 次の例では、最初に JSON レコードを生データとして 1 列のテーブルに取り込みます。 次に、マッピングを使用して、各プロパティを、そのマップされた列に取り込みます。 
+JSON 書式付きデータを取り込むには、[インジェスト プロパティ](ingestion-properties.md)を使用して "*書式*" を指定する必要があります。 JSON データを取り込むには、JSON ソース エントリをターゲット列にマップする[マッピング](kusto/management/mappings.md)が必要です。 データを取り込むときは、`IngestionMapping` プロパティと `ingestionMappingReference` (事前定義されたマッピングの場合) インジェスト プロパティを使用するか、`IngestionMappings` プロパティを使用します。 この記事では、インジェストに使用するテーブルで事前に定義されている `ingestionMappingReference` インジェスト プロパティを使用します。 次の例では、最初に JSON レコードを生データとして 1 列のテーブルに取り込みます。 次に、マッピングを使用して、各プロパティを、そのマップされた列に取り込みます。 
 
 ### <a name="simple-json-example"></a>単純な JSON の例
 
@@ -79,7 +79,7 @@ Kusto クエリ言語を使用して、未加工の JSON 形式でデータを�
 1. `RawEvents` テーブルにデータを取り込みます。
 
     ```kusto
-    .ingest into table RawEvents (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":json, "ingestionMappingReference":"DiagnosticRawRecordsMapping"}'
+    .ingest into table RawEvents ('https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json') with '{"format":json, "ingestionMappingReference":"DiagnosticRawRecordsMapping"}'
     ```
 
 # <a name="c"></a>[C#](#tab/c-sharp)
@@ -135,7 +135,7 @@ C# を使用して、未加工の JSON 形式でデータを取り込みます�
 
     ```csharp
     var ingestUri = "https://ingest-<ClusterName>.<Region>.kusto.windows.net:443/";
-    var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D";
+    var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json"; 
     var ingestConnectionStringBuilder =
         new KustoConnectionStringBuilder(ingestUri)
         {
@@ -195,7 +195,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
     INGEST_URI = "https://ingest-<ClusterName>.<Region>.kusto.windows.net:443/"
     KCSB_INGEST = KustoConnectionStringBuilder.with_aad_device_authentication(INGEST_URI, AAD_TENANT_ID)
     INGESTION_CLIENT = KustoIngestClient(KCSB_INGEST)
-    BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D'
+    BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json'
     
     INGESTION_PROPERTIES = IngestionProperties(database=DATABASE, table=TABLE, dataFormat=DataFormat.json, mappingReference=MAPPING)
     BLOB_DESCRIPTOR = BlobDescriptor(BLOB_PATH, FILE_SIZE)
@@ -231,7 +231,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 1. `Events` テーブルにデータを取り込みます。
 
     ```kusto
-    .ingest into table Events (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":"json", "ingestionMappingReference":"FlatEventMapping"}'
+    .ingest into table Events ('https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json') with '{"format":"json", "ingestionMappingReference":"FlatEventMapping"}'
     ```
 
     ファイル 'simple.json' には、行区切りの JSON レコードがいくつか含まれています。 形式は `json` であり、インジェスト コマンドで使用されるマッピングは、作成した `FlatEventMapping` です。
@@ -283,7 +283,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 1. `Events` テーブルにデータを取り込みます。
 
     ```csharp
-    var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D";
+    var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json";
     var properties =
         new KustoQueuedIngestionProperties(database, table)
         {
@@ -322,7 +322,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 1. `Events` テーブルにデータを取り込みます。
 
     ```python
-    BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D'
+    BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json'
     
     INGESTION_PROPERTIES = IngestionProperties(database=DATABASE, table=TABLE, dataFormat=DataFormat.json, mappingReference=MAPPING)
     BLOB_DESCRIPTOR = BlobDescriptor(BLOB_PATH, FILE_SIZE)
@@ -342,7 +342,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 `Events` テーブルにデータを取り込みます。
 
 ```kusto
-.ingest into table Events (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/multilined.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":"multijson", "ingestionMappingReference":"FlatEventMapping"}'
+.ingest into table Events ('https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/multilined.json') with '{"format":"multijson", "ingestionMappingReference":"FlatEventMapping"}'
 ```
 
 # <a name="c"></a>[C#](#tab/c-sharp)
@@ -351,7 +351,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 
 ```csharp
 var tableMapping = "FlatEventMapping";
-var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/multilined.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D";
+var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/multilined.json";
 var properties =
     new KustoQueuedIngestionProperties(database, table)
     {
@@ -371,7 +371,7 @@ ingestClient.IngestFromStorageAsync(blobPath, properties);
 
 ```python
 MAPPING = "FlatEventMapping"
-BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/multilined.JSON?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D'
+BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/multilined.json'
 INGESTION_PROPERTIES = IngestionProperties(database=DATABASE, table=TABLE, dataFormat=DataFormat.multijson, mappingReference=MAPPING)
 BLOB_DESCRIPTOR = BlobDescriptor(BLOB_PATH, FILE_SIZE)
 INGESTION_CLIENT.ingest_from_blob(
@@ -438,7 +438,7 @@ INGESTION_CLIENT.ingest_from_blob(
 1. `RawEvents` テーブルにデータを取り込みます。
 
     ```kusto
-    .ingest into table RawEvents (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/array.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":"multijson", "ingestionMappingReference":"RawEventMapping"}'
+    .ingest into table RawEvents ('https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/array.json') with '{"format":"multijson", "ingestionMappingReference":"RawEventMapping"}'
     ```
 
 1. `Events` テーブル内のデータを確認します。
@@ -488,7 +488,7 @@ INGESTION_CLIENT.ingest_from_blob(
     ```csharp
     var table = "RawEvents";
     var tableMapping = "RawEventMapping";
-    var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/array.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D";
+    var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/array.json";
     var properties =
         new KustoQueuedIngestionProperties(database, table)
         {
@@ -541,7 +541,7 @@ INGESTION_CLIENT.ingest_from_blob(
     ```python
     TABLE = "RawEvents"
     MAPPING = "RawEventMapping"
-    BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/array.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D'
+    BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/array.json'
     INGESTION_PROPERTIES = IngestionProperties(database=DATABASE, table=TABLE, dataFormat=DataFormat.multijson, mappingReference=MAPPING)
     BLOB_DESCRIPTOR = BlobDescriptor(BLOB_PATH, FILE_SIZE)
     INGESTION_CLIENT.ingest_from_blob(
@@ -595,7 +595,7 @@ INGESTION_CLIENT.ingest_from_blob(
 1. `Events` テーブルにデータを取り込みます。
 
     ```kusto
-    .ingest into table Events (h'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/dictionary.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D') with '{"format":"multijson", "ingestionMappingReference":"KeyValueEventMapping"}'
+    .ingest into table Events ('https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/dictionary.json') with '{"format":"multijson", "ingestionMappingReference":"KeyValueEventMapping"}'
     ```
 
 # <a name="c"></a>[C#](#tab/c-sharp)
@@ -637,7 +637,7 @@ INGESTION_CLIENT.ingest_from_blob(
 1. `Events` テーブルにデータを取り込みます。
 
     ```csharp
-    var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/dictionary.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D";
+    var blobPath = "https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/dictionary.json";
     var properties =
         new KustoQueuedIngestionProperties(database, table)
         {
@@ -665,7 +665,7 @@ INGESTION_CLIENT.ingest_from_blob(
 
      ```python
     MAPPING = "KeyValueEventMapping"
-    BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/dictionary.json?st=2018-08-31T22%3A02%3A25Z&se=2020-09-01T22%3A02%3A00Z&sp=r&sv=2018-03-28&sr=b&sig=LQIbomcKI8Ooz425hWtjeq6d61uEaq21UVX7YrM61N4%3D'
+    BLOB_PATH = 'https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/dictionary.json'
     INGESTION_PROPERTIES = IngestionProperties(database=DATABASE, table=TABLE, dataFormat=DataFormat.multijson, mappingReference=MAPPING)u
     BLOB_DESCRIPTOR = BlobDescriptor(BLOB_PATH, FILE_SIZE)
     INGESTION_CLIENT.ingest_from_blob(

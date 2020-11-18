@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 442185ed0afd977c103d0b571472c0f5e742908c
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: 47a18e8b8a2ec34207acacfd508114955f28953f
+ms.sourcegitcommit: 88f8ad67711a4f614d65d745af699d013d01af32
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349479"
+ms.lasthandoff: 11/16/2020
+ms.locfileid: "94639007"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Power BI を使用して Azure Data Explorer データのクエリと視覚化を行う場合のベスト プラクティス
 
@@ -26,7 +26,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 * **複合モデル** - [複合モデル](/power-bi/desktop-composite-models)を使用して、トップレベルのダッシュボードの集計データとフィルター処理された運用の生データを組み合わせます。 生データを使用するタイミングと、集計ビューを使用するタイミングを明確に定義できます。 
 
-* **Import モードと DirectQuery モード** - 小規模なデータ セットの操作には **Import** モードを使用します。 大規模で頻繁に更新されるデータ セットには **DirectQuery** モードを使用します。 たとえば、ディメンション テーブルは、サイズが小さく、頻繁に変更されないため、 **Import** モードを使用して作成します。 予想されるデータ更新の速度に応じて、更新間隔を設定します。 ファクト テーブルは、サイズが大きく、生データが含まれているため、 **DirectQuery** モードを使用して作成します。 これらのテーブルを使用し、Power BI の [drillthrough](/power-bi/desktop-drillthrough) を使用してフィルター処理されたデータを表示します。
+* **Import モードと DirectQuery モード** - 小規模なデータ セットの操作には **Import** モードを使用します。 大規模で頻繁に更新されるデータ セットには **DirectQuery** モードを使用します。 たとえば、ディメンション テーブルは、サイズが小さく、頻繁に変更されないため、**Import** モードを使用して作成します。 予想されるデータ更新の速度に応じて、更新間隔を設定します。 ファクト テーブルは、サイズが大きく、生データが含まれているため、**DirectQuery** モードを使用して作成します。 これらのテーブルを使用し、Power BI の [drillthrough](/power-bi/desktop-drillthrough) を使用してフィルター処理されたデータを表示します。
 
 * **並列性** - Azure Data Explorer は、直線的にスケーラブルなデータ プラットフォームです。そのため、次のようにエンドツーエンド フローの並列性を高めることで、ダッシュボード レンダリングのパフォーマンスを向上させることができます。
 
@@ -51,7 +51,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 ### <a name="how-to-simulate-a-relative-date-time-operator"></a>相対 date-time 演算子をシミュレートする方法
 
-Power BI には、`ago()` などの " *相対* " 日付/時刻演算子が含まれていません。
+Power BI には、`ago()` などの "*相対*" 日付/時刻演算子が含まれていません。
 `ago()` をシミュレートするには、`DateTime.FixedLocalNow()` および `#duration` Power BI 関数の組み合わせを使用します。
 
 このクエリではなく、`ago()` 演算子を使用します。
@@ -91,6 +91,7 @@ M クエリで、次のすべてのオプションを使用できます。
 | NoTruncate | `[NoTruncate=true]` | set `notruncation` ステートメントをクエリに追加します。 呼び出し元に返されるクエリ結果の切り詰めの抑制を有効にします。
 | AdditionalSetStatements | `[AdditionalSetStatements="set query_datascope=hotcache"]` | 指定した set ステートメントをクエリに追加します。 これらのステートメントは、クエリの実行中にクエリ オプションを設定するために使用されます。 クエリ オプションは、クエリの実行方法とクエリが結果を返す方法を制御します。
 | CaseInsensitive | `[CaseInsensitive=true]` | 大文字と小文字を区別しないクエリをコネクタが生成するようにします。クエリでは、値を比較するときに、`==` 演算子ではなく、`=~` 演算子が使用されます。
+| ForceUseContains | `[ForceUseContains=true]` | テキスト フィールドを操作するときに、既定の `has` ではなく `contains` を使用するクエリがコネクタによって生成されるようにします。 `has` は、はるかにパフォーマンスに優れていますが、部分文字列は処理されません。 2 つの演算子の違いの詳細については、「[文字列演算子](./kusto/query/datatypes-string-operators.md)」を参照してください。
 | タイムアウト | `[Timeout=#duration(0,10,0,0)]` | クエリに対するクライアントとサーバー両方のタイムアウトを、指定された期間に構成します。
 
 > [!NOTE]
@@ -98,7 +99,7 @@ M クエリで、次のすべてのオプションを使用できます。
 
 ### <a name="reaching-kusto-query-limits"></a>Kusto クエリの制限に達する
 
-Kusto クエリからは、既定で最大 500,000 行または 64 MB が返されます。詳細については[クエリの制限](kusto/concepts/querylimits.md)に関する記事を参照してください。 これらの既定値をオーバーライドするには、 **Azure Data Explorer (Kusto)** 接続ウィンドウで **[詳細オプション]** を使用します。
+Kusto クエリからは、既定で最大 500,000 行または 64 MB が返されます。詳細については[クエリの制限](kusto/concepts/querylimits.md)に関する記事を参照してください。 これらの既定値をオーバーライドするには、**Azure Data Explorer (Kusto)** 接続ウィンドウで **[詳細オプション]** を使用します。
 
 ![[詳細オプション]](media/power-bi-best-practices/advanced-options.png)
 

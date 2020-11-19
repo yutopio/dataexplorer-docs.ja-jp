@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 10/08/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c3a099dbe431087fd6b79d78ad2b8ec10d5a5a37
-ms.sourcegitcommit: b6f0f112b6ddf402e97c011a902bd70ba408e897
+ms.openlocfilehash: c87979b788c83a819f9e65658b5e44e40e53ad1d
+ms.sourcegitcommit: 0820454feb02ae489f3a86b688690422ae29d788
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94497786"
+ms.lasthandoff: 11/19/2020
+ms.locfileid: "94932737"
 ---
 # <a name="tutorial"></a>チュートリアル
 
@@ -499,7 +499,7 @@ Logs | join cluster("TelemetryCluster").database("Telemetry").Metrics on Request
 
 Kusto クエリ言語について学習する最善の方法は、簡単なクエリを見て、言語の "感覚" を得ることです。 これらのクエリは、Azure データエクスプローラーチュートリアルで使用されているものと似ていますが、Log Analytics ワークスペースの共通テーブルのデータを使用しています。 
 
-Log Analytics を使用してこれらのクエリを実行します。これは、Azure Monitor のログデータを使用してログクエリを作成し、その結果を評価するための Azure portal のツールです。 Log Analytics に慣れていない場合は、 [Log Analytics チュートリアル](/azure/azure-monitor/log-query/log-analytics-tutorial.md)のチュートリアルを参照してください。
+Log Analytics を使用してこれらのクエリを実行します。これは、Azure Monitor のログデータを使用してログクエリを作成し、その結果を評価するための Azure portal のツールです。 Log Analytics に慣れていない場合は、 [Log Analytics チュートリアル](/azure/azure-monitor/log-query/log-analytics-tutorial)のチュートリアルを参照してください。
 
 ここでは、すべてのクエリで [Log Analytics デモ環境](https://ms.portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade)を使用します。 独自の環境を使用できますが、ここで使用しているテーブルの一部が存在しない可能性があります。 デモ環境のデータは静的ではないため、クエリの結果はここに示されている結果とは多少異なる場合があります。
 

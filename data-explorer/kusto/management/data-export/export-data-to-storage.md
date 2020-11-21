@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: b470d017937ed6f2687016ab8a7cf53fed7b51ab
-ms.sourcegitcommit: 993bc7b69096ab5516d3c650b9df97a1f419457b
+ms.openlocfilehash: bd7482abb9c13130d863e9abb73819d9409109ea
+ms.sourcegitcommit: c815c6ccf33864e21e1d3daff26a4f077dff88f7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89614475"
+ms.lasthandoff: 11/21/2020
+ms.locfileid: "95012168"
 ---
 # <a name="export-data-to-storage"></a>データをストレージにエクスポートする
 
@@ -41,14 +41,14 @@ ms.locfileid: "89614475"
 
 * *PropertyName* /*PropertyValue*: 0 個以上のオプションのエクスポートプロパティ:
 
-|プロパティ        |Type    |説明                                                                                                                |
+|プロパティ        |種類    |Description                                                                                                                |
 |----------------|--------|---------------------------------------------------------------------------------------------------------------------------|
 |`sizeLimit`     |`long`  |1つのストレージアーティファクト (圧縮前) のサイズ制限 (バイト単位)。 許容範囲は 100 MB (既定値) ~ 1 GB です。|
 |`includeHeaders`|`string`|出力の場合は `csv` / `tsv` 、列ヘッダーの生成を制御します。 のいずれか `none` (既定値、ヘッダー行は出力されません)、 `all` (ヘッダー行をすべてのストレージ成果物に出力する)、または `firstFile` (1 つ目のストレージ成果物にのみヘッダー行を出力する) を指定できます。|
 |`fileExtension` |`string`|ストレージアーティファクトの "拡張機能" 部分 (やなど) を示し `.csv` `.tsv` ます。 圧縮が使用されている場合は、 `.gz` も追加されます。|
 |`namePrefix`    |`string`|生成された各ストレージアーティファクト名に追加するプレフィックスを示します。 指定されていない場合は、ランダムなプレフィックスが使用されます。       |
 |`encoding`      |`string`|テキストをエンコードする方法を示します。 `UTF8NoBOM` (既定値) または `UTF8BOM` 。 |
-|`compressionType`|`string`|使用する圧縮の種類を示します。 指定できる値は `gzip` または `snappy` です。 既定値は `gzip` です。 `snappy` 形式には、(必要に応じて) 使用でき `parquet` ます。 |
+|`compressionType`|`string`|使用する圧縮の種類を示します。 指定できる値は `gzip` または `snappy` です。 既定値は `gzip`です。 `snappy` 形式には、(必要に応じて) 使用でき `parquet` ます。 |
 |`distribution`   |`string`  |配布ヒント ( `single` 、 `per_node` 、 `per_shard` )。 値がと等しい場合 `single` 、1つのスレッドがストレージに書き込みます。 それ以外の場合、エクスポートでは、クエリを並列実行するすべてのノードから書き込みが行われます。 「 [Evaluate plugin operator](../../query/evaluateoperator.md)」を参照してください。 既定値は `per_shard` です。
 |`distributed`   |`bool`  |分散エクスポートを無効/有効にします。 を false に設定することは、distribution ヒントと同じです `single` 。 既定値は true です。
 |`persistDetails`|`bool`  |コマンドが結果を永続化する必要があることを示します (フラグを参照 `async` )。 `true`非同期実行では、は既定でになりますが、呼び出し元が結果を必要としない場合はオフにすることができます。 `false`同期実行では、が既定でに設定されますが、これらのモードでも有効にすることができます。 |
@@ -98,10 +98,36 @@ ms.locfileid: "89614475"
   <| myLogs | where id == "moshe" | limit 10000
 ```
 
-#### <a name="known-issues"></a>既知の問題
+## <a name="failures-during-export-commands"></a>エクスポートコマンドのエラー
 
-**Export コマンドの実行中に発生したエラー**
+エクスポートコマンドは、実行中に失敗する可能性があります。 [連続エクスポート](continuous-data-export.md) では、コマンドが自動的に再試行されます。 通常のエクスポートコマンド ([storage へのエクスポート](export-data-to-storage.md)、 [外部テーブルへのエクスポート](export-data-to-an-external-table.md)) では、再試行は実行されません。
 
-* エクスポートコマンドは、実行中に失敗する可能性があります。 エクスポートコマンドが失敗した場合、既にストレージに書き込まれていたアーティファクトは削除されません。 これらのアーティファクトはストレージに残ります。 コマンドが失敗した場合、一部のアーティファクトが書き込まれていても、エクスポートが不完全であると想定します。 コマンドの完了と正常に完了したときにエクスポートされた成果物の両方を追跡する最良の方法は、 [. show 操作](../operations.md#show-operations) と [. 操作の詳細の表示](../operations.md#show-operation-details) コマンドを使用することです。
+*  エクスポートコマンドが失敗した場合、既にストレージに書き込まれていたアーティファクトは削除されません。 これらのアーティファクトはストレージに残ります。 コマンドが失敗した場合、一部のアーティファクトが書き込まれていても、エクスポートが不完全であると想定します。 
+* コマンドの完了と正常に完了したときにエクスポートされた成果物の両方を追跡する最良の方法は、 [. show 操作](../operations.md#show-operations) と [. 操作の詳細の表示](../operations.md#show-operation-details) コマンドを使用することです。
 
-* 既定では、エクスポートコマンドは、データを含むすべての [エクステント](../extents-overview.md) がストレージへの書き込みを同時にエクスポートするように分散されます。 大規模なエクスポートでは、このようなエクステントの数が多い場合、ストレージの調整または一時的なストレージエラーが発生するストレージの負荷が高くなる可能性があります。 このような場合は、export コマンドに提供されるストレージアカウントの数を増やして (負荷がアカウント間で分散される)、または distribution ヒントをに設定して同時実行を減らすことをお勧めし `per_node` ます (「コマンドのプロパティ」を参照してください)。 ディストリビューションを完全に無効にすることもできますが、これはコマンドのパフォーマンスに大きな影響を与える可能性があります。
+### <a name="storage-failures"></a>ストレージの障害
+
+既定では、エクスポートコマンドは、ストレージへの同時書き込みが多数存在する可能性があるように配布されます。 ディストリビューションのレベルは、エクスポートコマンドの種類によって異なります。
+* 標準コマンドの既定のディストリビューション `.export` はです `per_shard` 。これは、ストレージへの書き込みを同時にエクスポートするデータを含むすべての [エクステント](../extents-overview.md) を意味します。 
+* [外部テーブルコマンドへのエクスポート](export-data-to-an-external-table.md)の既定のディストリビューションはです `per_node` 。これは、同時実行がクラスター内のノードの数であることを意味します。
+
+エクステントまたはノードの数が多い場合は、ストレージの調整または一時的なストレージエラーが発生する記憶域の負荷が高くなる可能性があります。 次の推奨事項では、これらのエラーを優先順位に従って解決できます。
+
+* エクスポートコマンドまたは [外部テーブル定義](../external-tables-azurestorage-azuredatalake.md) に対して提供されるストレージアカウントの数を増やします (負荷は、アカウント間で均等に分散されます)。
+* ディストリビューションヒントをに設定して同時実行を減らし `per_node` ます (「コマンドのプロパティ」を参照してください)。
+* [ [クライアント要求] プロパティ](../../api/netfx/request-properties.md)を `query_fanout_nodes_percent` 目的の同時実行 (ノードの割合) に設定して、エクスポートするノードの同時実行数を減らします。 プロパティは、エクスポートクエリの一部として設定できます。 たとえば、次のコマンドは、記憶域に書き込むノードの数を、クラスターノードの50% に同時に制限します。
+
+    ```kusto
+    .export async  to csv
+        ( h@"https://storage1.blob.core.windows.net/containerName;secretKey" ) 
+        with
+        (
+            distribuion="per_node"
+        ) 
+        <| 
+        set query_fanout_nodes_percent = 50;
+        ExportQuery
+    ```
+
+* パーティション分割された外部テーブルにエクスポートする場合、プロパティを設定すると `spread` / `concurrency` 同時実行性が低下する可能性があります (詳細については、[コマンドのプロパティ](export-data-to-an-external-table.md#syntax)を参照してください)
+* 上記のいずれの操作も行わない場合、プロパティを false に設定してディストリビューションを完全に無効にすることもでき `distributed` ますが、コマンドのパフォーマンスに大きな影響を与える可能性があるため、この方法はお勧めしません。

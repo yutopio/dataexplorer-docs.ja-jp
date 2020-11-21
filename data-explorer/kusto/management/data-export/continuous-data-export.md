@@ -8,14 +8,14 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/03/2020
-ms.openlocfilehash: 7f9465df4847a24a4877c8b1cb637ba1d7542db3
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: be16f33c649640ef92ed971665d4c7610c5501bf
+ms.sourcegitcommit: c815c6ccf33864e21e1d3daff26a4f077dff88f7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342537"
+ms.lasthandoff: 11/21/2020
+ms.locfileid: "95012205"
 ---
-# <a name="continuous-data-export-overview"></a>継続的なデータエクスポートの概要
+# <a name="continuous-data-export-overview"></a>継続的データ エクスポートの概要
 
 この記事では、定期的に実行されるクエリを使用して、Kusto から [外部テーブル](../external-table-commands.md) にデータを連続エクスポートする方法について説明します。 結果は、Azure Blob Storage、エクスポートされたデータのスキーマなどの変換先を定義する外部テーブルに格納されます。 このプロセスでは、すべてのレコードが "厳密に1回" エクスポートされることを保証しますが、 [例外](#exactly-once-export)もあります。 
 
@@ -38,9 +38,9 @@ ms.locfileid: "92342537"
   * `single` `distributed` = `false` ディストリビューションを完全に無効にするには、(または) を使用します。 この設定により、連続エクスポートプロセスが大幅に遅くなり、連続エクスポートの各反復で作成されるファイルの数が影響を受ける可能性があります。 
 * **ファイルの数**:
   * 連続エクスポートの各繰り返しでエクスポートされるファイルの数は、外部テーブルのパーティション分割方法によって異なります。 詳細については、「 [外部テーブルへのエクスポートコマンド](export-data-to-an-external-table.md#number-of-files)」を参照してください。 連続エクスポートの反復は、常に新しいファイルに書き込み、既存のファイルには追加されません。 その結果、エクスポートされたファイルの数も、連続エクスポートが実行される頻度によって決まります。 Frequency パラメーターが `intervalBetweenRuns` です。
-* **場所**:
+* **外部テーブルストレージアカウント**:
   * 最適なパフォーマンスを得るには、Azure データエクスプローラークラスターとストレージアカウントを同じ Azure リージョンに共存させる必要があります。
-  * エクスポートされたデータ量が大きい場合は、ストレージの調整を回避するために、外部テーブルに対して複数のストレージアカウントを構成することをお勧めします。 「 [データをストレージにエクスポートする」を](export-data-to-storage.md#known-issues)参照してください。
+  * エクスポートされたデータ量が大きい場合は、ストレージの調整を回避するために、外部テーブルに対して複数のストレージアカウントを構成することをお勧めします。 詳細については、「 [エクスポートコマンドの実行中のストレージ障害](export-data-to-storage.md#failures-during-export-commands) 」を参照してください。
 
 ## <a name="exactly-once-export"></a>厳密に1回のエクスポート
 
@@ -48,7 +48,7 @@ ms.locfileid: "92342537"
 
 "厳密に1回" のエクスポートの保証は、[エクスポートされた [アーティファクトの表示] コマンド](show-continuous-artifacts.md)で報告されたファイルに対してのみ実行されます。 連続エクスポートでは、各レコードが外部テーブルに1回だけ書き込まれることは保証されません。 エクスポートの開始後にエラーが発生し、一部のアイテムが既に外部テーブルに書き込まれていた場合は、外部テーブルに重複が含まれている可能性があります。 書き込み操作が完了前に中止された場合、外部テーブルに破損したファイルが含まれている可能性があります。 このような場合、アイテムは外部テーブルから削除されませんが、[エクスポートされた [アーティファクトの表示] コマンド](show-continuous-artifacts.md)では報告されません。 を使用してエクスポートされたファイルを使用する `show exported artifacts command` と、重複と破損は保証されません。
 
-## <a name="export-to-fact-and-dimension-tables"></a>ファクトテーブルとディメンションテーブルへのエクスポート
+## <a name="export-from-fact-and-dimension-tables"></a>ファクトテーブルとディメンションテーブルからのエクスポート
 
 既定では、エクスポートクエリで参照されるすべてのテーブルは、 [ファクトテーブル](../../concepts/fact-and-dimension-tables.md)と見なされます。 そのため、データベースカーソルにスコープが設定されています。 この構文では、スコープ (ファクト) であり、スコープが設定されていないテーブル (ディメンション) を明示的に宣言します。 `over`詳細については、 [create コマンド](create-alter-continuous.md)のパラメーターを参照してください。
 

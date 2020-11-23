@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: ee36823bb3f730a12f7ad2d1febe91439d4a2aad
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 3b857e0e16c212c2f12d43f9709a9278526a7344
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343285"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324688"
 ---
 # <a name="query-limits"></a>クエリの制限
 
@@ -31,7 +31,7 @@ Kusto は、大規模なデータセットをホストし、関連するすべ�
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>結果セットのサイズの制限 (結果の切り捨て)
 
-**結果の切り捨て** は、クエリによって返される結果セットに対して既定で設定される制限です。 Kusto によって、クライアントに返されるレコードの数が **50万**に制限され、それらのレコードのデータサイズ全体が **64 MB**に制限されます。 これらの制限を超えた場合、クエリは "部分的なクエリエラー" で失敗します。 全体のデータサイズを超えると、次のメッセージで例外が生成されます。
+**結果の切り捨て** は、クエリによって返される結果セットに対して既定で設定される制限です。 Kusto によって、クライアントに返されるレコードの数が **50万** に制限され、それらのレコードのデータサイズ全体が **64 MB** に制限されます。 これらの制限を超えた場合、クエリは "部分的なクエリエラー" で失敗します。 全体のデータサイズを超えると、次のメッセージで例外が生成されます。
 
 ```
 The Kusto DataEngine has failed to execute a query: 'Query result set has exceeded the internal data size limit 67108864 (E_QUERY_RESULT_SET_TOO_LARGE).'
@@ -79,7 +79,7 @@ MyTable | where User=="UserId1"
 
 結果の切り捨て制限は、エクスポートのためにコマンドを使用するか、後で集計するために削除でき `.export` ます。 後の集計を選択した場合は、Kusto を使用して集計することを検討してください。
 
-Kusto は、呼び出し元にストリーミングすることで、"無限に大きい" 結果を処理できるクライアントライブラリを多数提供します。 これらのライブラリのいずれかを使用して、ストリーミングモードに構成します。 たとえば、.NET Framework クライアント (ExecuteQueryV2Async) を使用して、接続文字列の streaming プロパティを *true*に設定するか、常に結果をストリーミングする *()* 呼び出しを使用します。
+Kusto は、呼び出し元にストリーミングすることで、"無限に大きい" 結果を処理できるクライアントライブラリを多数提供します。 これらのライブラリのいずれかを使用して、ストリーミングモードに構成します。 たとえば、.NET Framework クライアント (ExecuteQueryV2Async) を使用して、接続文字列の streaming プロパティを *true* に設定するか、常に結果をストリーミングする *()* 呼び出しを使用します。
 
 結果の切り捨ては、クライアントに返される結果ストリームだけでなく、既定で適用されます。 また、クラスター化されていないクエリで別のクラスターに発行されるサブクエリにも、同じような影響を及ぼす既定で適用されます。
 
@@ -154,7 +154,7 @@ Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too
 
 既定では、クエリのタイムアウトは4分、制御コマンドでは10分に設定されています。 この値は、必要に応じて増やすことができます (1 時間に上限)。
 
-* Kusto を使用してクエリを実行する場合は、**ツール** &gt; **オプション**の _ &gt; _*Connections* *  &gt; **クエリサーバーのタイムアウト**を使用します。
+* Kusto を使用してクエリを実行する場合は、**ツール** &gt; **オプション** の _ &gt; _ *Connections* *  &gt; **クエリサーバーのタイムアウト** を使用します。
 * プログラムによって、 `servertimeout` クライアント要求プロパティを、型の値 `System.TimeSpan` (最大1時間) に設定します。
 
 **タイムアウトに関する注意事項**
@@ -163,20 +163,15 @@ Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too
 * また、クライアント側では、実際に使用されるタイムアウト値は、ユーザーによって要求されたサーバーのタイムアウト値よりも若干高くなります。 この違いは、ネットワーク待機時間を許容することです。
 * [許可された最大要求タイムアウト] を自動的に使用するには、[クライアント要求] プロパティ `norequesttimeout` をに設定 `true` します。
 
-<!--
-  Request timeout can also be set using a set statement, but we don't mention
-  it here since it shouldn't be used in production scenarios.
--->
-
 ## <a name="limit-on-query-cpu-resource-usage"></a>クエリ CPU リソース使用率の制限
 
 Kusto を使用すると、クエリを実行し、クラスターと同じ CPU リソースを使用できます。 複数のクエリが実行されている場合、クエリ間で公平なラウンドロビンを試行します。 この方法では、アドホッククエリに最適なパフォーマンスが得られます。
 それ以外の場合は、特定のクエリに使用される CPU リソースを制限することもできます。 たとえば、"バックグラウンドジョブ" を実行すると、同時アドホッククエリの優先度を高くするためにシステムの待機時間が長くなる可能性があります。
 
-Kusto は、クエリの実行時に2つの [クライアント要求プロパティ](../api/netfx/request-properties.md) を指定することをサポートしています。 プロパティは  *query_fanout_threads_percent* および *query_fanout_nodes_percent*です。
+Kusto は、クエリの実行時に2つの [クライアント要求プロパティ](../api/netfx/request-properties.md) を指定することをサポートしています。 プロパティは  *query_fanout_threads_percent* および *query_fanout_nodes_percent* です。
 どちらのプロパティも、既定値が最大値 (100) の整数ですが、特定のクエリが他の値に対して縮小される場合があります。 
 
-1つ目の *query_fanout_threads_percent*は、スレッド使用のファンアウト factor を制御します。 100% の場合、クラスターは各ノードのすべての Cpu を割り当てます。 たとえば、Azure D14 ノードにデプロイされたクラスター上の16個の Cpu。 50% の場合、Cpu の半分が使用されます。 数値は CPU 全体に切り上げられるので、0に設定するのが安全です。 2番目の *query_fanout_nodes_percent*は、サブクエリのディストリビューション操作ごとに使用する、クラスター内のクエリノードの数を制御します。 同様の方法で機能します。
+1つ目の *query_fanout_threads_percent* は、スレッド使用のファンアウト factor を制御します。 100% の場合、クラスターは各ノードのすべての Cpu を割り当てます。 たとえば、Azure D14 ノードにデプロイされたクラスター上の16個の Cpu。 50% の場合、Cpu の半分が使用されます。 数値は CPU 全体に切り上げられるので、0に設定するのが安全です。 2番目の *query_fanout_nodes_percent* は、サブクエリのディストリビューション操作ごとに使用する、クラスター内のクエリノードの数を制御します。 同様の方法で機能します。
 
 ## <a name="limit-on-query-complexity"></a>クエリの複雑さに対する制限
 

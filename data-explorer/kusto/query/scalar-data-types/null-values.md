@@ -10,17 +10,17 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c493431fcfa22ad0419659a5b6e036205f3bf299
-ms.sourcegitcommit: 194453a8eb11c3ccb54c473e887c84cb8e91b939
+ms.openlocfilehash: ac8852adb5138bffe10a4726470b1c53d74cec1b
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/31/2020
-ms.locfileid: "87473974"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324382"
 ---
 # <a name="null-values"></a>null 値
 
 Kusto のすべてのスカラーデータ型には、欠損値を表す特別な値が含まれています。
-この値は、 **null 値**として、または単に**null**と呼ばれます。
+この値は、 **null 値** として、または単に **null** と呼ばれます。
 
 ## <a name="null-literals"></a>null リテラル
 
@@ -36,7 +36,7 @@ print bool(null), datetime(null), dynamic(null), guid(null), int(null), long(nul
 
 ## <a name="comparing-null-to-something"></a>Null と何かの比較
 
-Null 値は、それ自体を含むデータ型の他の値と等しいかどうかを比較しません。 (つまり、 `null == null` は false です)。値が null 値かどうかを判断するには、 [isnull ()](../isnullfunction.md)関数および[isnotnull ()](../isnotnullfunction.md)関数を使用します。
+Null 値は、それ自体を含むデータ型の他の値と等しいかどうかを比較しません。 (つまり、 `null == null` は false です)。値が null 値かどうかを判断するには、 [isnull ()](../isnullfunction.md) 関数および [isnotnull ()](../isnotnullfunction.md) 関数を使用します。
 
 ## <a name="binary-operations-on-null"></a>Null に対する二項演算
 
@@ -60,14 +60,20 @@ Null 値は、それ自体を含むデータ型の他の値と等しいかどう
 
 |a     |b     |isnull (a)|isempty (a)|strlen (a)|isnull (b)|
 |------|------|---------|----------|---------|---------|
-|&nbsp;|&nbsp;|False    |true      |0        |true     |
-|&nbsp;|&nbsp;|False    |False     |1        |true     |
-|a     |1     |False    |False     |1        |False    |
+|&nbsp;|&nbsp;|false    |true      |0        |true     |
+|&nbsp;|&nbsp;|false    |false     |1        |true     |
+|a     |1     |false    |false     |1        |false    |
 
 ::: zone pivot="azuredataexplorer"
 
 * Kusto エクスプローラーで上記のクエリを実行すると、すべて `true` の値がとして表示され、 `1` すべての `false` 値がとして表示され `0` ます。
 
+* Kusto では、テーブルの列が null 値を持つことを制限する方法は提供されていません (つまり、SQL の制約に相当するものはありません `NOT NULL` )。
+
 ::: zone-end
 
+::: zone pivot="azuremonitor"
+
 * Kusto では、テーブルの列が null 値を持つことを制限する方法は提供されていません (つまり、SQL の制約に相当するものはありません `NOT NULL` )。
+
+::: zone-end

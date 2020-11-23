@@ -10,27 +10,18 @@ ms.topic: reference
 ms.date: 10/08/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c87979b788c83a819f9e65658b5e44e40e53ad1d
-ms.sourcegitcommit: 0820454feb02ae489f3a86b688690422ae29d788
+ms.openlocfilehash: 8a3c0b058b2c1cf5023ce0069a7dd938fce5caec
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/19/2020
-ms.locfileid: "94932737"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324739"
 ---
 # <a name="tutorial"></a>チュートリアル
 
 ::: zone pivot="azuredataexplorer"
 
 Kusto クエリ言語について学習する最善の方法は、いくつかの単純なクエリを見て、 [いくつかのサンプルデータを含むデータベース](https://help.kusto.windows.net/Samples)を使用して言語の "感覚" を取得することです。 この記事に示されているクエリは、そのデータベースで実行する必要があります。 `StormEvents`このサンプルデータベースの表では、米国で発生したストームに関する情報を提供しています。
-
-<!--
-  TODO: Provide link to reference data we used originally in StormEvents
--->
-
-<!--
-  TODO: A few samples below reference non-existent tables, such as Events and Logs.
-        We need to add these tables.
--->
 
 ## <a name="count-rows"></a>行数のカウント
 
@@ -68,7 +59,7 @@ StormEvents
 | project StartTime, EndTime , State , EventType , EpisodeNarrative
 ```
 
-|StartTime|EndTime|State|EventType|EpisodeNarrative|
+|StartTime|EndTime|状態|EventType|EpisodeNarrative|
 |---|---|---|---|---|
 |2007-02-19 00:00: 00.0000000|2007-02-19 08:00: 00.0000000|カリフォルニア|洪水|南のサンホアキンバレーで正面システムを移動すると、午前19時の午前1時に、雨の雨を西洋のに簡単に移行できます。 軽微なフラッディングは、Taft 付近の州幹線道路166で報告されています。|
 
@@ -83,7 +74,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|EventType|State|EventNarrative|
+|StartTime|EndTime|EventType|状態|EventNarrative|
 |---|---|---|---|---|
 |2007-09-18 20:00: 00.0000000|2007-09-19 18:00: 00.0000000|重い雨|フロリダ|Coastal Volusia 郡の一部にわたって24時間のうち9インチの雨がいます。|
 |2007-09-20 21:57: 00.0000000|2007-09-20 22:05: 00.0000000|Tornado|フロリダ|Eustis 町で触れた tornado は、西 Crooked Lake の北端にあります。 Tornado は、北北西を Eustis 移動したときに EF1 の強さをすばやく極めるします。 このトラックは、長さが2マイル未満で、最大幅が300ヤードになっています。  Tornado は7本の自宅を破壊しています。 20個の自宅が、大きなダメージを受け、81の自宅が軽微な損害を報告しました。 重大な負傷や、プロパティの破損は $620万に設定されていました。|
@@ -108,7 +99,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|EventType|State|EventNarrative|
+|StartTime|EndTime|EventType|状態|EventNarrative|
 |---|---|---|---|---|
 |2007-12-31 22:30: 00.0000000|2007-12-31 23:59: 00.0000000|冬の嵐|ミシガン|この大きな雪のイベントは、新年の朝に続きます。|
 |2007-12-31 22:30: 00.0000000|2007-12-31 23:59: 00.0000000|冬の嵐|ミシガン|この大きな雪のイベントは、新年の朝に続きます。|
@@ -138,7 +129,7 @@ StormEvents
 | project StartTime, EndTime, Duration, EventType, State
 ```
 
-|StartTime|EndTime|Duration|EventType|State|
+|StartTime|EndTime|Duration|EventType|状態|
 |---|---|---|---|---|
 |2007-09-18 20:00: 00.0000000|2007-09-19 18:00: 00.0000000|22:00:00|重い雨|フロリダ|
 |2007-09-20 21:57: 00.0000000|2007-09-20 22:05: 00.0000000|00:08:00|Tornado|フロリダ|
@@ -184,7 +175,7 @@ StormEvents
 | top 5 by StormCount desc
 ```
 
-|State|StormCount|TypeOfStorms|
+|状態|StormCount|TypeOfStorms|
 |---|---|---|
 |テキサス州|4701|27|
 |カンザス|3166|21|
@@ -702,7 +693,7 @@ PhysicalComputer
 
 [![Let の例の結果](images/tutorial/am-results-let.png)](images/tutorial/am-results-let.png#lightbox)
 
-## <a name="next-steps"></a>次の手順
+## <a name="next-steps"></a>次のステップ
 
 - [Kusto クエリ言語のコードサンプルを表示](samples.md?pivots=azuremonitor)します。
 

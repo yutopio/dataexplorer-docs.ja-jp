@@ -8,18 +8,18 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/27/2020
-ms.openlocfilehash: 08e6ee9aaff1273438be80ca9ce342de91ba9459
-ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
+ms.openlocfilehash: 319f325cd121acaf521179c9794cc7b1db921cee
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/09/2020
-ms.locfileid: "94373886"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324552"
 ---
 # <a name="scalar-function-types"></a>スカラー関数の種類
 
 ## <a name="binary-functions"></a>Binary 関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[binary_and()](binary-andfunction.md)|2つの値の間のビットごとの and 演算の結果を返します。|
 |[binary_not()](binary-notfunction.md)|入力値のビットごとの否定を返します。|
@@ -31,7 +31,7 @@ ms.locfileid: "94373886"
 
 ## <a name="conversion-functions"></a>変換関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[tobool()](toboolfunction.md)|入力をブール値 (符号付き8ビット) 表現に変換します。|
 |[todatetime()](todatetimefunction.md)|入力を datetime スカラーに変換します。|
@@ -41,7 +41,7 @@ ms.locfileid: "94373886"
 
 ## <a name="datetimetimespan-functions"></a>DateTime/timespan 関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[ago()](agofunction.md)|現在の UTC 時刻から指定された期間を減算します。|
 |[datetime_add()](datetime-addfunction.md)|指定された datetime に加算された、指定した datepart から指定された量を乗算した新しい datetime を計算します。|
@@ -78,13 +78,13 @@ ms.locfileid: "94373886"
 
 ## <a name="dynamicarray-functions"></a>動的/配列関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[array_concat()](arrayconcatfunction.md)|複数の動的配列を連結して1つの配列にします。|
 |[array_iif()](arrayifffunction.md)|配列に要素ごとの iif 関数を適用します。|
 |[array_index_of()](arrayindexoffunction.md)|指定した項目を配列内で検索し、その位置を返します。|
 |[array_length()](arraylengthfunction.md)|動的配列内の要素の数を計算します。|
-|[array_reverse ()](array-reverse-function.md)|動的配列内の要素の順序を反転させます。|
+|[array_reverse()](array-reverse-function.md)|動的配列内の要素の順序を反転させます。|
 |[array_rotate_left()](array_rotate_leftfunction.md)|動的配列内の値を左に回転します。|
 |[array_rotate_right()](array_rotate_rightfunction.md)|動的配列内の値を右に回転します。|
 |[array_shift_left()](array_shift_leftfunction.md)|動的配列内の値を左にシフトします。|
@@ -109,7 +109,7 @@ ms.locfileid: "94373886"
 
 ## <a name="window-scalar-functions"></a>ウィンドウスカラー関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[次へ ()](nextfunction.md)|シリアル化された行セットの場合、はオフセットに従って、後の行から指定された列の値を返します。|
 |[prev()](prevfunction.md)|シリアル化された行セットの場合、はオフセットに従って前の行から指定された列の値を返します。|
@@ -118,13 +118,13 @@ ms.locfileid: "94373886"
 
 ## <a name="flow-control-functions"></a>フロー制御関数
 
-|関数名            |Description                                             |
+|関数名            |説明                                             |
 |-------------------------|--------------------------------------------------------|
 |[toscalar()](toscalarfunction.md)|評価された式のスカラー定数値を返します。|
 
 ## <a name="mathematical-functions"></a>数学関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[abs ()](abs-function.md)|入力の絶対値を計算します。|
 |[acos()](acosfunction.md)|コサインが指定された数値 (cos () の逆演算) である角度を返します。|
@@ -144,7 +144,7 @@ ms.locfileid: "94373886"
 |[isfinite()](isfinitefunction.md)|入力が有限値である (無限または NaN ではない) かどうかを返します。|
 |[isinf()](isinffunction.md)|入力が無限 (正または負) の値であるかどうかを返します。|
 |[isnan()](isnanfunction.md)|入力が非数 (NaN) 値かどうかを返します。|
-|[log()](log-function.md)|自然対数関数を返します。|
+|[log ()](log-function.md)|自然対数関数を返します。|
 |[log10()](log10-function.md)|常用対数関数を返します。|
 |[log2()](log2-function.md)|底2の対数関数を返します。|
 |[loggamma()](loggammafunction.md)|ガンマ関数の絶対値のログを計算します。|
@@ -153,7 +153,7 @@ ms.locfileid: "94373886"
 |[pow()](powfunction.md)|を累乗した結果を返します。|
 |[radians()](radiansfunction.md)|数式ラジアン = (PI/180) * 角度 (°) を使用して、角度の角度を度数で値に変換します。|
 |[rand()](randfunction.md)|乱数を返します。|
-|[range()](rangefunction.md)|等間隔に並んだ一連の値を保持する動的配列を生成します。|
+|[範囲 ()](rangefunction.md)|等間隔に並んだ一連の値を保持する動的配列を生成します。|
 |[round()](roundfunction.md)|丸められたソースを指定した有効桁数に戻します。|
 |[sign()](signfunction.md)|数値式の符号。|
 |[sin()](sinfunction.md)|サイン関数を返します。|
@@ -163,7 +163,7 @@ ms.locfileid: "94373886"
 
 ## <a name="metadata-functions"></a>メタデータ関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[column_ifexists()](columnifexists.md)|列名を文字列および既定値として取得します。 存在する場合は、その列への参照を返します。それ以外の場合は、既定値を返します。|
 |[current_cluster_endpoint()](current-cluster-endpoint-function.md)|クエリを実行している現在のクラスターを返します。|
@@ -179,16 +179,16 @@ ms.locfileid: "94373886"
 
 ## <a name="rounding-functions"></a>丸め関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[bin()](binfunction.md)|値を切り捨てて、指定された bin サイズの倍数である整数にします。|
 |[bin_at()](binatfunction.md)|ビンの開始点を制御して、値を固定サイズの "ビン" に切り捨てます。 (「Bin 関数」も参照してください)。|
 |[ceiling()](ceilingfunction.md)|指定した数値式以上の最小の整数を計算します。|
-|[floor ()](floorfunction.md)|値を切り捨てて、指定された bin サイズの倍数である整数にします。|
+|[floor()](floorfunction.md)|値を切り捨てて、指定された bin サイズの倍数である整数にします。|
 
 ## <a name="conditional-functions"></a>条件関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[case()](casefunction.md)|述語の一覧を評価し、述語が満たされている最初の結果式を返します。|
 |[coalesce()](coalescefunction.md)|式のリストを評価し、null 以外の最初の式 (文字列の場合は空でない) を返します。|
@@ -198,7 +198,7 @@ ms.locfileid: "94373886"
 
 ## <a name="series-element-wise-functions"></a>系列の要素ごとの関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[series_add()](series-addfunction.md)|2つの数値系列入力の要素ごとの加算を計算します。|
 |[series_divide()](series-dividefunction.md)|2つの数値系列入力の要素ごとの除算を計算します。|
@@ -213,7 +213,7 @@ ms.locfileid: "94373886"
 
 ## <a name="series-processing-functions"></a>系列処理関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[series_decompose()](series-decomposefunction.md)|系列をコンポーネントに分解します。|
 |[series_decompose_anomalies()](series-decompose-anomaliesfunction.md)|系列分解に基づいて系列の異常を検出します。|
@@ -241,7 +241,7 @@ ms.locfileid: "94373886"
 
 ## <a name="string-functions"></a>文字列関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[base64_encode_tostring()](base64_encode_tostringfunction.md)|文字列を base64 文字列としてエンコードします。|
 |[base64_decode_tostring()](base64_decode_tostringfunction.md)|Base64 文字列を UTF-8 文字列にデコードします。|
@@ -265,7 +265,7 @@ ms.locfileid: "94373886"
 |[parse_url()](parseurlfunction.md)|絶対 URL 文字列を解析し、URL のすべての部分を含む動的オブジェクトを返します。|
 |[parse_urlquery()](parseurlqueryfunction.md)|Url クエリ文字列を解析し、動的オブジェクトにクエリパラメーターが含まれていることを返します。|
 |[parse_version()](parse-versionfunction.md)|バージョンの入力文字列形式を、比較可能な10進数に変換します。|
-|[replace()](replacefunction.md)|正規表現のすべての一致を別の文字列に置き換えます。|
+|[replace ()](replacefunction.md)|正規表現のすべての一致を別の文字列に置き換えます。|
 |[reverse()](reversefunction.md)|関数は、入力文字列を逆にします。|
 |[split()](splitfunction.md)|指定された区切り記号に従って指定された文字列を分割し、含まれている部分文字列を含む文字列配列を返します。|
 |[strcat()](strcatfunction.md)|1 ~ 64 の引数を連結します。|
@@ -275,7 +275,7 @@ ms.locfileid: "94373886"
 |[strrep()](strrepfunction.md)|指定された文字列を繰り返す回数 (既定値-1)。|
 |[substring()](substringfunction.md)|あるインデックスから文字列の末尾までの位置から、ソース文字列から部分文字列を抽出します。|
 |[toupper()](toupperfunction.md)|文字列を大文字に変換します。|
-|[translate ()](translatefunction.md)|指定された文字列の文字セット (' searchList ') を別の文字セット (' replacementList ') に置換します。|
+|[translate()](translatefunction.md)|指定された文字列の文字セット (' searchList ') を別の文字セット (' replacementList ') に置換します。|
 |[trim()](trimfunction.md)|指定した正規表現の先頭と末尾の一致をすべて削除します。|
 |[trim_end()](trimendfunction.md)|指定した正規表現の末尾の一致を削除します。|
 |[trim_start()](trimstartfunction.md)|指定された正規表現の先頭の一致を削除します。|
@@ -284,10 +284,11 @@ ms.locfileid: "94373886"
 
 ## <a name="ipv4ipv6-functions"></a>IPv4/IPv6 機能
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[ipv4_compare()](ipv4-comparefunction.md)|2つの IPv4 文字列を比較します。|
 |[ipv4_is_match()](ipv4-is-matchfunction.md)|2つの IPv4 文字列を一致と見なします。|
+|[ipv4_is_private ()](ipv4-is-privatefunction.md)|IPv4 文字列アドレスがプライベートネットワーク Ip のセットに属しているかどうかを確認します。|
 |[parse_ipv4()](parse-ipv4function.md)|入力文字列を long (符号付き64ビット) 数値表現に変換します。|
 |[parse_ipv4_mask()](parse-ipv4-maskfunction.md)|入力文字列と IP プレフィックスマスクを long (符号付き64ビット) 数値表現に変換します。|
 |[ipv6_compare()](ipv6-comparefunction.md)|2つの IPv4 または IPv6 文字列を比較します。|
@@ -299,13 +300,13 @@ ms.locfileid: "94373886"
 
 ## <a name="type-functions"></a>Type 関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
-|[gettype()](gettypefunction.md)|1つの引数のランタイム型を返します。|
+|[gettype ()](gettypefunction.md)|1つの引数のランタイム型を返します。|
 
 ## <a name="scalar-aggregation-functions"></a>スカラー集計関数
 
-|関数名     |Description                                          |
+|関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[dcount_hll()](dcount-hllfunction.md)|Hll の結果 (hll または hll-merge によって生成されたもの) を計算します。|
 |[hll_merge()](hllmergefunction.md)|Hll の結果をマージします (集計バージョン hll-merge () のスカラーバージョン)。|
@@ -316,7 +317,7 @@ ms.locfileid: "94373886"
 
 ## <a name="geospatial-functions"></a>地理空間の関数
 
-|関数名|Description|
+|関数名|説明|
 |--------------------------------------------------------------------------|--------------------------------------------------------|
 |[geo_distance_2points()](geo-distance-2points-function.md)|地球上の2つの地理空間座標間の最短距離を計算します。|
 |[geo_distance_point_to_line()](geo-distance-point-to-line-function.md)|地球の座標と線の間の最短距離を計算します。|
@@ -332,7 +333,7 @@ ms.locfileid: "94373886"
 
 ## <a name="hash-functions"></a>ハッシュ関数
 
-|関数名|Description|
+|関数名|説明|
 |--------------------------------------------------------------------------|--------------------------------------------------------|
 |[hash ()](hashfunction.md)|入力値のハッシュ値を返します。|
 |[hash_combine()](hash_combinefunction.md)|2つ以上のハッシュ値を結合します。|

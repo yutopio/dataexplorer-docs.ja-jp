@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 4bda122b589e3ba297b3e7c350d15687da6ee123
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: 3b30a3e578b6bb1f21dedfcfec7629b60bb255f3
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91057004"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324501"
 ---
 # <a name="security-roles-management"></a>セキュリティロールの管理
 
@@ -24,7 +24,7 @@ ms.locfileid: "91057004"
 この記事では、セキュリティロールの管理に使用する制御コマンドについて説明します。
 セキュリティロールでは、データベースやテーブルなどのセキュリティで保護されたリソースを操作する権限を持つセキュリティプリンシパル (ユーザーおよびアプリケーション) と、許可する操作を定義します。 たとえば、特定のデータベースのセキュリティロールを持つプリンシパルは、 `database viewer` そのデータベースのすべてのエンティティを照会して表示できます (ただし、制限されたテーブルは除きます)。
 
-セキュリティロールは、セキュリティプリンシパルまたはセキュリティグループに関連付けることができます (他のセキュリティプリンシパルまたは他のセキュリティグループを持つことができます)。 セキュリティプリンシパルがセキュリティで保護されたリソースに対して操作を実行しようとすると、システムは、そのプリンシパルが少なくとも1つのセキュリティロールに関連付けられているかどうかを確認し、リソースに対してこの操作を実行するアクセス許可を付与します。 これは、 **承認チェック**と呼ばれます。 承認チェックに失敗すると、操作が中止されます。
+セキュリティロールは、セキュリティプリンシパルまたはセキュリティグループに関連付けることができます (他のセキュリティプリンシパルまたは他のセキュリティグループを持つことができます)。 セキュリティプリンシパルがセキュリティで保護されたリソースに対して操作を実行しようとすると、システムは、そのプリンシパルが少なくとも1つのセキュリティロールに関連付けられているかどうかを確認し、リソースに対してこの操作を実行するアクセス許可を付与します。 これは、 **承認チェック** と呼ばれます。 承認チェックに失敗すると、操作が中止されます。
 
 **構文**
 
@@ -77,7 +77,7 @@ ms.locfileid: "91057004"
 
 このコマンドを実行すると、次のような結果になる可能性があります。
 
-|Role |PrincipalType |PrincipalDisplayName |PrincipalObjectId |Principal(n) 
+|ロール |PrincipalType |PrincipalDisplayName |PrincipalObjectId |Principal(n) 
 |---|---|---|---|---
 |データベース Apsty 管理者 |Azure AD ユーザー |Smith のマーク |cd709aed-a26c-e3953dec735e |aaduser =msmith@fabrikam.com|
 
@@ -108,9 +108,6 @@ ms.locfileid: "91057004"
 * `skip-results`が指定されている場合、コマンドが更新されたデータベースプリンシパルの一覧を返さないことを要求します。
 
 * *説明*(指定されている場合) は、変更に関連付けられ、対応するコマンドによって取得されるテキストです `.show` 。
-
-<!-- TODO: Need more examples for the public syntax. Until then we're keeping this internal -->
-
 
 ## <a name="managing-table-security-roles"></a>テーブルのセキュリティロールの管理
 

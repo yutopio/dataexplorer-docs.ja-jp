@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.custom: has-adal-ref
 ms.date: 10/23/2018
-ms.openlocfilehash: 8ef966cb2be70ddca6fb5ab10813abe12cb5bce1
-ms.sourcegitcommit: fd3bf300811243fc6ae47a309e24027d50f67d7e
+ms.openlocfilehash: 2224fe28c7f0088ac1a16cdee4d452e354ff0800
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/13/2020
-ms.locfileid: "83382354"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324756"
 ---
 # <a name="controlling-and-suppressing-kusto-sdk-client-side-tracing"></a>Kusto SDK のクライアント側トレースの制御と抑制
 
@@ -39,12 +39,12 @@ Kusto.Cloud.Platform.Utils.TraceSourceManager.SetTraceVerbosityForAll(
 構成ファイルを使用して Kusto クライアントライブラリからのトレースを抑制するには、ファイル `Kusto.Cloud.Platform.dll.tweaks` (ライブラリに含まれています) を変更し `Kusto.Data` ます。
 
 ```xml
-    <!-- Overrides the default trace verbosity level -->
+    //Overrides the default trace verbosity level
     <add key="Kusto.Cloud.Platform.Utils.Tracing.OverrideTraceVerbosityLevel" value="0" />
 ```
 
 > [!NOTE]
-> 調整を有効にするには、の値にマイナス記号を付けることはできません。`key`
+> 調整を有効にするには、の値にマイナス記号を付けることはできません。 `key`
 
 代替手段は次のとおりです。
 
@@ -57,7 +57,7 @@ Kusto.Cloud.Platform.Utils.Anchor.Tweaks.SetProgrammaticAppSwitch(
 
 ## <a name="enable-the-kusto-client-libraries-tracing"></a>Kusto クライアントライブラリのトレースを有効にする
 
-Kusto クライアントライブラリからのトレースを有効にするには、アプリケーションの app.config*ファイル*で .net トレースを有効にします。 たとえば、アプリケーションが `MyApp.exe` Kusto. Data クライアントライブラリを使用しているとします。 次のようにファイルの*MyApp. .exe. .config*を変更すると、 `Kusto.Data` アプリケーションの次回起動時にトレースが有効になります。
+Kusto クライアントライブラリからのトレースを有効にするには、アプリケーションの *app.config ファイル* で .net トレースを有効にします。 たとえば、アプリケーションが `MyApp.exe` Kusto. Data クライアントライブラリを使用しているとします。 ファイル *MyApp.exe.config* を次のように変更すると、次にアプリケーションを起動するときにトレースが有効になり `Kusto.Data` ます。
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -73,7 +73,7 @@ Kusto クライアントライブラリからのトレースを有効にする�
 </configuration>
 ```
 
-このコードでは、 *Rollogs*という名前のサブディレクトリにある CSV ファイルに書き込むトレースリスナーを構成します。 サブディレクトリは、プロセスのディレクトリにあります。
+このコードでは、 *Rollogs* という名前のサブディレクトリにある CSV ファイルに書き込むトレースリスナーを構成します。 サブディレクトリは、プロセスのディレクトリにあります。
 
 > [!NOTE]
 > いつ.NET 互換のトレースリスナークラスも使用できます

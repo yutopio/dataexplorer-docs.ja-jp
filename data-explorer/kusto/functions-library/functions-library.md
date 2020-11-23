@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: ebde38055cb2d962b6007668117a55c779cc9c94
-ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
+ms.openlocfilehash: 552d55cdf3e40a4138b6521ffa2afdd85eeab68b
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92175495"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324620"
 ---
 # <a name="functions-library"></a>関数ライブラリ
 
@@ -24,7 +24,7 @@ ms.locfileid: "92175495"
 
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
-|[kmeans_fl ()](kmeans-fl.md)|K-のアルゴリズムを使用してクラスターを最適化します。 |
+|[kmeans_fl()](kmeans-fl.md)|K-のアルゴリズムを使用してクラスターを最適化します。 |
 |[predict_fl()](predict-fl.md)|トレーニング済みの既存の機械学習モデルを使用して予測します。 |
 |[predict_onnx_fl()](predict-onnx-fl.md)| ONNX 形式でトレーニング済みの既存の機械学習モデルを使用して予測します。 |
 
@@ -33,7 +33,8 @@ ms.locfileid: "92175495"
 |関数名     |説明                                          |
 |-------------------------|--------------------------------------------------------|
 |[quantize_fl()](quantize-fl.md)|量子化メトリック列。 |
-|[series_dot_product_fl ()](series-dot-product-fl.md)|2つの数値ベクトルのドット積を計算します。 |
+|[series_dot_product_fl()](series-dot-product-fl.md)|2つの数値ベクトルのドット積を計算します。 |
+|[series_exp_smoothing_fl ()](series-exp-smoothing-fl.md)|系列に基本的な指数平滑フィルターを適用します。 |
 |[series_fit_poly_fl()](series-fit-poly-fl.md)|回帰分析を使用して多項式を系列に適合させる。 |
 |[series_moving_avg_fl()](series-moving-avg-fl.md)|系列に移動平均フィルターを適用します。 |
 |[series_rolling_fl()](series-rolling-fl.md)|系列にローリング集計関数を適用します。 |

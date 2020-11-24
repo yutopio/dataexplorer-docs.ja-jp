@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/08/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: b2b304d012ea541f6855091874be8ea5483fae63
-ms.sourcegitcommit: b6f0f112b6ddf402e97c011a902bd70ba408e897
+ms.openlocfilehash: b448f4249c777d9b9d61e58dad993f3da1817fda
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94497637"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512470"
 ---
 # <a name="samples"></a>サンプル
 
@@ -333,7 +334,7 @@ Logs
 | project count_, Message 
 ```
 
-|count_|メッセージ
+|count_|Message
 |---|---
 |7125|メソッド ' RunCycleFromInterimData ' の ExecuteAlgorithmMethod に失敗しました...
 |7125|InferenceHostService は、tem failed..Sys呼び出します。NullReferenceException: オブジェクト参照がオブジェクトのインスタンスに設定されていません...
@@ -382,7 +383,7 @@ Logs
 | evaluate autocluster()
 ```
 
-|Count |パーセント (%)|コンポーネント|クラスター|メッセージ
+|Count |パーセント (%)|コンポーネント|クラスター|Message
 |---|---|---|---|---
 |7125|26.64|InferenceHostService|DB4|メソッドの ExecuteAlgorithmMethod....
 |7125|26.64|不明なコンポーネント|DB4|InferenceHostService の呼び出しに失敗しました....
@@ -498,7 +499,7 @@ Devices
 
 ## <a name="create-and-use-query-time-dimension-tables"></a>クエリ時間ディメンションテーブルを作成して使用する
 
-多くの場合、クエリの結果は、データベースに格納されていないアドホックディメンションテーブルと結合する必要があります。 結果が1つのクエリにスコープが設定されたテーブルになる式を定義できます。 次に例を示します。
+多くの場合、クエリの結果は、データベースに格納されていないアドホックディメンションテーブルと結合する必要があります。 結果が1つのクエリにスコープが設定されたテーブルになる式を定義できます。 例:
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -544,7 +545,7 @@ JobHistory
 
 列の各値について最新の2つのレコードを返すクエリ。 `ID` "latest" は、 `timestamp` [最上位の入れ子になった演算子](topnestedoperator.md)で "最高値を持つ" と定義されています。
 
-次に例を示します。
+例:
 
 ```kusto
 datatable(id:string, timestamp:datetime, bla:string)           // #1
@@ -685,7 +686,7 @@ Fruits
 ## <a name="find-preceding-event"></a>前のイベントを検索
 次の例では、2つのデータセット間の前のイベントを検索する方法を示します。  
 
-*目的:* : a と B の2つのデータセットがあります。B の各レコードについて、の前のイベントを検索します (つまり、"古い" が B よりも前の arg_max レコード)。 次のサンプルデータセットに予想される出力を次に示します。 
+*目的:*: a と B の2つのデータセットがあります。B の各レコードについて、の前のイベントを検索します (つまり、"古い" が B よりも前の arg_max レコード)。 次のサンプルデータセットに予想される出力を次に示します。 
 
 ```kusto
 let A = datatable(Timestamp:datetime, ID:string, EventA:string)
@@ -706,7 +707,7 @@ let B = datatable(Timestamp:datetime, ID:string, EventB:string)
 A; B
 ```
 
-|Timestamp|id|EventB|
+|Timestamp|ID|EventB|
 |---|---|---|
 |2019-01-01 00:00: 00.0000000|x|Ax1|
 |2019-01-01 00:00: 00.0000000|z|Az1|
@@ -716,7 +717,7 @@ A; B
 
 </br>
 
-|Timestamp|id|EventA|
+|Timestamp|ID|EventA|
 |---|---|---|
 |2019-01-01 00:00: 03.0000000|x|B|
 |2019-01-01 00:00: 04.0000000|x|B|
@@ -725,7 +726,7 @@ A; B
 
 予想される出力: 
 
-|id|Timestamp|EventB|A_Timestamp|EventA|
+|ID|Timestamp|EventB|A_Timestamp|EventA|
 |---|---|---|---|---|
 |x|2019-01-01 00:00: 03.0000000|B|2019-01-01 00:00: 01.0000000|Ax2|
 |x|2019-01-01 00:00: 04.0000000|B|2019-01-01 00:00: 01.0000000|Ax2|
@@ -921,7 +922,7 @@ Heartbeat
 | project ComputerIP, last_octet, next_ip
 ```
 
-次の例では、文字列 *Trace* で "Duration" の定義を検索します。 一致は *real* にキャストされた後、" *Duration を timespan 型にキャストする* " 時間定数 (1 s) で乗算されます。
+次の例では、文字列 *Trace* で "Duration" の定義を検索します。 一致は *real* にキャストされた後、"*Duration を timespan 型にキャストする*" 時間定数 (1 s) で乗算されます。
 ```Kusto
 let Trace="A=12, B=34, Duration=567, ...";
 print Duration = extract("Duration=([0-9.]+)", 1, Trace, typeof(real));  //result: 567
@@ -931,8 +932,8 @@ print Duration_seconds =  extract("Duration=([0-9.]+)", 1, Trace, typeof(real)) 
 
 ### <a name="isempty-isnotempty-notempty"></a>isempty、isnotempty、notempty
 
-- *isempty* は、引数が空の文字列または null 値の場合に true を返します ( *isnull* も参照)。
-- *isnotempty* は、引数が空の文字列または null 値でない場合に true を返します ( *isnotnull* も参照)。 別名: *notempty* 。
+- *isempty* は、引数が空の文字列または null 値の場合に true を返します (*isnull* も参照)。
+- *isnotempty* は、引数が空の文字列または null 値でない場合に true を返します (*isnotnull* も参照)。 別名: *notempty*。
 
 
 ```Kusto
@@ -1229,7 +1230,7 @@ Event
 次のセクションでは、Kusto クエリ言語でクエリの結果を集計する例を紹介します。
 
 ### <a name="count"></a>count
-任意のフィルターが適用された結果セット内の行数をカウントします。 次の例では、過去 30 分間にわたる _Perf_ テーブル内の行数の合計が返されます。 結果は、 *count_* という名前の列で返されます (特定の名前を列に割り当てた場合を除く)。
+任意のフィルターが適用された結果セット内の行数をカウントします。 次の例では、過去 30 分間にわたる _Perf_ テーブル内の行数の合計が返されます。 結果は、*count_* という名前の列で返されます (特定の名前を列に割り当てた場合を除く)。
 
 
 ```Kusto
@@ -1433,7 +1434,7 @@ Heartbeat
 | ... | ... |
 
 ### <a name="handling-missing-bins"></a>不足しているビンの処理
-`mvexpand` の便利な適用方法の 1 つは、不足しているビンの既定値を埋める必要がある場合です。たとえば、ハートビートを調べて、特定のマシンのアップタイムを確認しているとします。 また、 _Category_ 列に示されているハートビートのソースを確認する必要もあるとします。 通常は、次のように単純な summarize ステートメントを使用することでしょう。
+`mvexpand` の便利な適用方法の 1 つは、不足しているビンの既定値を埋める必要がある場合です。たとえば、ハートビートを調べて、特定のマシンのアップタイムを確認しているとします。 また、_Category_ 列に示されているハートビートのソースを確認する必要もあるとします。 通常は、次のように単純な summarize ステートメントを使用することでしょう。
 
 ```Kusto
 Heartbeat
@@ -1515,9 +1516,9 @@ SecurityEvent
 | top 10 by Duration desc
 ```
 
-この例では、最初のデータセットでは、すべてのサインイン イベントがフィルター選択されます。 これは、すべてのサインアウト イベントをフィルター選択する、2 番目のデータセットと結合されます。 予想列は _Computer_ 、 _Account_ 、 _TargetLogonId_ 、および _TimeGenerated_ です。 データセットは、共有列 _TargetLogonId_ で関連付けられています。 相関関係ごとに 1 つのレコードが出力されます。これにはサインイン時間とサインアウト時間の両方が含まれます。
+この例では、最初のデータセットでは、すべてのサインイン イベントがフィルター選択されます。 これは、すべてのサインアウト イベントをフィルター選択する、2 番目のデータセットと結合されます。 予想列は _Computer_、_Account_、_TargetLogonId_、および _TimeGenerated_ です。 データセットは、共有列 _TargetLogonId_ で関連付けられています。 相関関係ごとに 1 つのレコードが出力されます。これにはサインイン時間とサインアウト時間の両方が含まれます。
 
-両方のデータセットに同じ名前の列がある場合、右側のデータセットの列にインデックス番号が追加されます。したがって、この例では、結果の _TargetLogonId_ には左側のテーブルの値が、 _TargetLogonId1_ には右側のテーブルの値が示されています。 この場合、2 番目の _TargetLogonId1_ 列は、`project-away` 演算子を使用して削除されました。
+両方のデータセットに同じ名前の列がある場合、右側のデータセットの列にインデックス番号が追加されます。したがって、この例では、結果の _TargetLogonId_ には左側のテーブルの値が、_TargetLogonId1_ には右側のテーブルの値が示されています。 この場合、2 番目の _TargetLogonId1_ 列は、`project-away` 演算子を使用して削除されました。
 
 > [!NOTE]
 > パフォーマンスを向上させるには、`project` 演算子を使用して、結合されたデータセットの関連する列のみを保持します。
@@ -1677,7 +1678,7 @@ Heartbeat
 
 ![テーブル](images/samples/table-display.png)
 
-より見やすくするために、 **[グラフ]** 、 **[円]** オプションの順に選択し、結果を視覚化します。
+より見やすくするために、**[グラフ]**、**[円]** オプションの順に選択し、結果を視覚化します。
 
 ![円グラフ](images/samples/charts-and-diagrams-pie.png)
 
@@ -1719,7 +1720,7 @@ SecurityEvent
 | summarize count() by tostring(EventID), AccountType, bin(TimeGenerated, 1h)
 ```
 
-結果をグラフとして表示するときには、`by` 句の最初の列が使用されます。 次の例は、 _EventID_ を使用した積み上げ縦棒グラフを示しています。 ディメンションは `string` 型である必要があるため、この例では _EventID_ が文字列にキャストされます。 
+結果をグラフとして表示するときには、`by` 句の最初の列が使用されます。 次の例は、_EventID_ を使用した積み上げ縦棒グラフを示しています。 ディメンションは `string` 型である必要があるため、この例では _EventID_ が文字列にキャストされます。 
 
 ![棒グラフ EventID](images/samples/charts-and-diagrams-multiple-dimension-1.png)
 
@@ -1800,7 +1801,7 @@ week
 :::image type="content" source="images/samples/cohorts.png" alt-text="コーホート分析の出力":::
 
 ### <a name="rolling-monthly-active-users-and-user-stickiness"></a>変化する月間アクティブ ユーザーとユーザーの持続性
-次の例では、スライディング ウィンドウ計算を実行できる [series_fir](/azure/kusto/query/series-firfunction) 関数を使用した時系列分析を使用しています。 監視対象のサンプル アプリケーションは、カスタム イベントを通じてユーザーのアクティビティを追跡するオンライン ストアです。 このクエリでは _AddToCart_ と _Checkout_ という 2 種類のユーザー アクティビティを追跡し、 _アクティブ ユーザー_ を特定の日に少なくとも 1 回の精算を実行したユーザーと定義しています。
+次の例では、スライディング ウィンドウ計算を実行できる [series_fir](/azure/kusto/query/series-firfunction) 関数を使用した時系列分析を使用しています。 監視対象のサンプル アプリケーションは、カスタム イベントを通じてユーザーのアクティビティを追跡するオンライン ストアです。 このクエリでは _AddToCart_ と _Checkout_ という 2 種類のユーザー アクティビティを追跡し、_アクティブ ユーザー_ を特定の日に少なくとも 1 回の精算を実行したユーザーと定義しています。
 
 
 

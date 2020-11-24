@@ -8,16 +8,17 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: e611bfb1d5dbf0122553b223a200400c526c975f
-ms.sourcegitcommit: 42cc7d11f41a5bfa9e021764b044dcd68d99a258
+ms.localizationpriority: high
+ms.openlocfilehash: 92627b3325a7a2ba8e2e4d58a82ebf6db3977221
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93403750"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512878"
 ---
 # <a name="user-defined-functions"></a>ユーザー定義関数
 
-**ユーザー定義関数** は、クエリ自体 ( **アドホック関数** ) の一部として定義したり、データベースメタデータの一部として永続化したりすることができる再利用可能なサブクエリです ( **ストアド関数** )。 ユーザー定義関数は、 **名前** を使用して呼び出されます。これには、0個以上の **入力引数** (スカラーまたは表形式) が用意されており、関数 **本体** に基づいて単一の値 (スカラーまたは表形式) が生成されます。
+**ユーザー定義関数** は、クエリ自体 (**アドホック関数**) の一部として定義したり、データベースメタデータの一部として永続化したりすることができる再利用可能なサブクエリです (**ストアド関数**)。 ユーザー定義関数は、 **名前** を使用して呼び出されます。これには、0個以上の **入力引数** (スカラーまたは表形式) が用意されており、関数 **本体** に基づいて単一の値 (スカラーまたは表形式) が生成されます。
 
 ユーザー定義関数は、次の2つのカテゴリのいずれかに属します。
 
@@ -64,9 +65,9 @@ ArgName:ArgType [= ArgDefaultValue]
 ```
  テーブル引数の場合、 *Argtype* にはテーブル定義と同じ構文 (かっこと、列名と型のペアのリスト) があり、 `(*)` "任意の表形式スキーマ" を指定するための追加のサポートがあります。
 
-次に例を示します。
+例:
 
-|構文                        |入力引数リストの説明                                 |
+|Syntax                        |入力引数リストの説明                                 |
 |------------------------------|-----------------------------------------------------------------|
 |`()`                          |引数なし|
 |`(s:string)`                  |`s`型の値を取得する単一のスカラー引数が呼び出されました`string`|
@@ -189,7 +190,7 @@ print f(12, c=7) // Returns "12-b.default-7"
 
 引数を受け取らないユーザー定義関数は、名前または名前によって、またはかっこで囲まれた空の引数リストを使用して呼び出すことができます。
 
-例 :
+次に例を示します。
 
 ```kusto
 // Bind the identifier a to a user-defined function (lambda) that takes
@@ -242,7 +243,7 @@ datatable (a:string) ["sad", "really", "sad"]
 | invoke append_to_column_a(":-)")
 ```
 
-## <a name="default-values"></a>既定値
+## <a name="default-values"></a>既定の値
 
 関数は、次の条件下で、一部のパラメーターに既定値を提供する場合があります。
 
@@ -280,9 +281,9 @@ let T_notview = () { print x=2 };
 union T*
 ```
 
-## <a name="restrictions"></a>制限
+## <a name="restrictions"></a>制限事項
 
-次の制約が適用されます。
+次の制限事項が適用されます。
 
 * ユーザー定義関数は、関数が呼び出される行コンテキストに依存する [toscalar ()](../toscalarfunction.md) 呼び出し情報に渡すことはできません。
 * テーブル式を返すユーザー定義関数は、行コンテキストによって異なる引数を使用して呼び出すことはできません。

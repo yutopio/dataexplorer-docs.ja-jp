@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/08/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8a3c0b058b2c1cf5023ce0069a7dd938fce5caec
-ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
+ms.openlocfilehash: cae5a3abd7a633bf143d1233db459a98ca53daaf
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95324739"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513014"
 ---
 # <a name="tutorial"></a>チュートリアル
 
@@ -138,7 +139,7 @@ StormEvents
 |2007-12-30 16:00: 00.0000000|2007-12-30 16:05: 00.0000000|00:05:00|雷雨風|グルジア|
 
 列名を再利用し、計算結果を同じ列に割り当てることができます。
-次に例を示します。
+例:
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

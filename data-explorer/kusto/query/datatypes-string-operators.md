@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/19/2020
-ms.openlocfilehash: 1c394d9125bd354cab21d3087c273f983627a0d6
-ms.sourcegitcommit: c351c2c8ab6e184827c4702eb0ec8bf783c7bbd3
+ms.localizationpriority: high
+ms.openlocfilehash: d7c975dcf3fb00ed1108f55957a35f494310203e
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/18/2020
-ms.locfileid: "94874782"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513235"
 ---
 # <a name="string-operators"></a>文字列演算子
 
@@ -86,7 +87,7 @@ Kusto は、 *4 文字* 以上のすべての用語で構成される用語イ�
 ## <a name="performance-tips"></a>パフォーマンスに関するヒント
 
 パフォーマンスを向上させるために、同じタスクを実行する2つの演算子がある場合は、大文字と小文字を区別してを使用します。
-次に例を示します。
+例:
 
 * で `=~` はなく、を使用します。 `==`
 * で `in~` はなく、を使用します。 `in`

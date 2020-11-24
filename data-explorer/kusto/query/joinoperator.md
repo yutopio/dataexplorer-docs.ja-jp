@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8324d0c6537d6d22a2814a7aa80625278dc36aec
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: b90e5f1c95ec75a946490cd75b5dd89ad2cb1aba
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92241506"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513337"
 ---
 # <a name="join-operator"></a>join 演算子
 
@@ -25,21 +26,21 @@ ms.locfileid: "92241506"
 Table1 | join (Table2) on CommonColumn, $left.Col1 == $right.Col2
 ```
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 *左テーブル* `|``join`[*Joinparameters*] `(` *右テーブル* `)` `on` *属性*
 
 ## <a name="arguments"></a>引数
 
-* 左*テーブル*: 行をマージする**左側**のテーブルまたは表形式の式 (**外部**テーブルとも呼ばれます)。 として表さ `$left` れます。
+* 左 *テーブル*: 行をマージする **左側** のテーブルまたは表形式の式 (**外部** テーブルとも呼ばれます)。 として表さ `$left` れます。
 
 * *Right table*: 行をマージする、 **右側** のテーブルまたは表形式の式 ( **内部** テーブルとも呼ばれます)。 として表さ `$right` れます。
 
-* *属性*:*左テーブル*から行を*右テーブル*の行と照合する方法を記述する1つまたは複数のコンマで区切られた**ルール**です。 複数のルールは、論理演算子を使用して評価され `and` ます。
+* *属性*:*左テーブル* から行を *右テーブル* の行と照合する方法を記述する1つまたは複数のコンマで区切られた **ルール** です。 複数のルールは、論理演算子を使用して評価され `and` ます。
 
-  **ルール**には次のいずれかを指定できます。
+  **ルール** には次のいずれかを指定できます。
 
-  |ルールの種類        |構文          |Predicate    |
+  |ルールの種類        |Syntax          |Predicate    |
   |-----------------|--------------|-------------------------|
   |名前による等値 |*[ColumnName]*    |`where`*左テーブル*。*ColumnName* `==`*右テーブル*。*ColumnName*|
   |値による等値|`$left.`*左の列* `==``$right.`*右の列*|`where``$left.`*左の列* `==` `$right.`*右の列*       |
@@ -47,7 +48,7 @@ Table1 | join (Table2) on CommonColumn, $left.Col1 == $right.Col2
     > [!NOTE]
     > "値による等値" の場合、列名はと表記で示される適用可能な所有者テーブルで修飾されて *いる必要があり* `$left` `$right` ます。
 
-* *Joinparameters*: *Name* `=` 行一致操作と実行プランの動作を制御する名前*値*の形式で、空白で区切られた0個以上のパラメーター。 サポートされているパラメーターは次のとおりです。
+* *Joinparameters*: *Name* `=` 行一致操作と実行プランの動作を制御する名前 *値* の形式で、空白で区切られた0個以上のパラメーター。 サポートされているパラメーターは次のとおりです。
 
     ::: zone pivot="azuredataexplorer"
 
@@ -140,8 +141,8 @@ Join 演算子の正確なフレーバーは、 *kind* キーワードを使用�
 |[`leftouter`](#left-outer-join-flavor)|左外部結合|
 |[`rightouter`](#right-outer-join-flavor)|右外部結合|
 |[`fullouter`](#full-outer-join-flavor)|完全外部結合|
-|[`leftanti`](#left-anti-join-flavor)、 [`anti`](#left-anti-join-flavor) 、または [`leftantisemi`](#left-anti-join-flavor)|左のアンチジョイン|
-|[`rightanti`](#right-anti-join-flavor) または [`rightantisemi`](#right-anti-join-flavor)|右のアンチジョイン|
+|[`leftanti`](#left-anti-join-flavor)、 [`anti`](#left-anti-join-flavor) 、または [`leftantisemi`](#left-anti-join-flavor)|Left Anti Join|
+|[`rightanti`](#right-anti-join-flavor) または [`rightantisemi`](#right-anti-join-flavor)|Right Anti Join|
 |[`leftsemi`](#left-semi-join-flavor)|左半結合|
 |[`rightsemi`](#right-semi-join-flavor)|右半結合|
 
@@ -159,7 +160,7 @@ X | join kind=innerunique Y on Key
 
 **テーブル X**
 
-|Key |Value1
+|キー |Value1
 |---|---
 |a |1
 |b |2
@@ -168,7 +169,7 @@ X | join kind=innerunique Y on Key
 
 **テーブル Y**
 
-|Key |Value2
+|キー |Value2
 |---|---
 |b |10
 |c |20
@@ -181,7 +182,7 @@ X | join kind=innerunique Y on Key
 
 結合の有効な左側 (重複除去後のテーブル X) は次のようになります。
 
-|Key |Value1
+|キー |Value1
 |---|---
 |a |1
 |b |2
@@ -207,7 +208,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join Y on Key
 ```
 
-|Key|Value1|Key1|Value2|
+|キー|Value1|Key1|Value2|
 |---|---|---|---|
 |b|2|b|10|
 |c|4|c|20|
@@ -238,7 +239,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=inner Y on Key
 ```
 
-|Key|Value1|Key1|Value2|
+|キー|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -353,7 +354,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftouter Y on Key
 ```
 
-|Key|Value1|Key1|Value2|
+|キー|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -383,7 +384,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightouter Y on Key
 ```
 
-|Key|Value1|Key1|Value2|
+|キー|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -413,7 +414,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=fullouter Y on Key
 ```
 
-|Key|Value1|Key1|Value2|
+|キー|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -444,7 +445,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftanti Y on Key
 ```
 
-|Key|Value1|
+|キー|Value1|
 |---|---|
 |a|1|
 
@@ -473,7 +474,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightanti Y on Key
 ```
 
-|Key|Value2|
+|キー|Value2|
 |---|---|
 |d|40|
 
@@ -502,7 +503,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftsemi Y on Key
 ```
 
-|Key|Value1|
+|キー|Value1|
 |---|---|
 |b|3|
 |b|2|
@@ -530,7 +531,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightsemi Y on Key
 ```
 
-|Key|Value2|
+|キー|Value2|
 |---|---|
 |b|10|
 |c|20|

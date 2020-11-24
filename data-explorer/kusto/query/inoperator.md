@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2019
-ms.openlocfilehash: 52e26bb5564079de56817e75a203a400ef7f1a50
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: ffb24abe744bfbe3f7f95336edf0263becfa7ec9
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92248989"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513252"
 ---
 # <a name="in-and-in-operators"></a>in および !in 演算子
 
@@ -29,22 +30,22 @@ Table1 | where col in ('value1', 'value2')
 > * 式リストでは、最大値を生成でき `1,000,000` ます。
 > * 入れ子になった配列は、1つの値リストにフラット化されます。 たとえば、`x in (dynamic([1,[2,3]]))` を `x in (1,2,3)` にします。
  
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 ### <a name="case-sensitive-syntax"></a>大文字と小文字を区別する構文
 
-*T* `|` `where` *col* `in` `(` *スカラー式の*T col リスト`)`   
+*T* `|` `where` *col* `in` `(` *スカラー式の* T col リスト`)`   
 *T* `|` `where` *列* `in` `(` *表形式式*`)`   
  
-*T* `|` `where` *col* `!in` `(` *スカラー式の*T col リスト`)`  
+*T* `|` `where` *col* `!in` `(` *スカラー式の* T col リスト`)`  
 *T* `|` `where` *列* `!in` `(` *表形式式*`)`   
 
 ### <a name="case-insensitive-syntax"></a>大文字と小文字を区別しない構文
 
-*T* `|` `where` *col* `in~` `(` *スカラー式の*T col リスト`)`   
+*T* `|` `where` *col* `in~` `(` *スカラー式の* T col リスト`)`   
 *T* `|` `where` *列* `in~` `(` *表形式式*`)`   
  
-*T* `|` `where` *col* `!in~` `(` *スカラー式の*T col リスト`)`  
+*T* `|` `where` *col* `!in~` `(` *スカラー式の* T col リスト`)`  
 *T* `|` `where` *列* `!in~` `(` *表形式式*`)`   
 
 ## <a name="arguments"></a>引数
@@ -157,7 +158,7 @@ Lightning_By_State
 | summarize sum(lightning_events) by State 
 ```
 
-| State     | sum_lightning_events |
+| 状態     | sum_lightning_events |
 |-----------|----------------------|
 | ALABAMA   | 29                   |
 | ウィスコンシン | 31                   |
@@ -185,6 +186,6 @@ StormEvents | where State in (InterestingStates()) | count
 .show function InterestingStates
 ```
 
-|名前|パラメーター|Body|Folder|DocString|
+|名前|パラメーター|本文|フォルダー|DocString|
 |---|---|---|---|---|
 |InterestingStates|()|{dynamic (["ワシントン", "フロリダ", "ジョージア", "ニューヨーク"])}

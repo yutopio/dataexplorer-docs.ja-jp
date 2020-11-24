@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: a942015908c9608a76d3c49c411de9d17d6e70f5
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 2b034719fa7c2f3714020c722b5717f5cf8590ff
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92248610"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512963"
 ---
 # <a name="parse-operator"></a>parse 演算子
 
@@ -24,7 +25,7 @@ ms.locfileid: "92248610"
 T | parse Text with "ActivityName=" name ", ActivityType=" type
 ```
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 *T* `| parse` [ `kind=regex` [ `flags=regex_flags` ] | `simple` | `relaxed` ]*式* `with` `*` (*stringconstant* *ColumnName* [ `:` *ColumnType*]) `*` ...
 
@@ -60,14 +61,14 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
     > [!NOTE] 
     > `*`型の列の後にを使用することはできません `string` 。
 
-* 解析パターンは、*文字列定数*だけでなく、 *ColumnName*で始めることができます。
+* 解析パターンは、*文字列定数* だけでなく、 *ColumnName* で始めることができます。
 
 * 解析された *式* が型でない場合は `string` 、型に変換され `string` ます。
 
 * Regex モードが使用されている場合、regex フラグを追加して、解析で使用される regex 全体を制御するオプションがあります。
 
 * Regex モードでは、解析によってパターンが正規表現に変換されます。 [RE2 構文](re2.md)を使用して照合を実行し、内部で処理される番号付きのキャプチャグループを使用します。
-    次に例を示します。
+    例:
 
     ```kusto
     parse kind=regex Col with * <regex1> var1:string <regex2> var2:long
@@ -219,8 +220,8 @@ Traces
 **緩やかモード**
 
 この緩やかモードの例では、 *Totalslices* 拡張列を型にする必要があり `long` ます。 ただし、解析された文字列では、値が " *Nonvalidlongvalue*" になっています。
-*Releasetime*拡張列では、値*nonvaliddatetime*を*datetime*として解析できません。
-この2つの拡張列では、値が null になりますが、 *sliceNumber*などの他の列は正しい値を取得します。
+*Releasetime* 拡張列では、値 *nonvaliddatetime* を *datetime* として解析できません。
+この2つの拡張列では、値が null になりますが、 *sliceNumber* などの他の列は正しい値を取得します。
 
 以下の同じクエリに対して option *kind = simple* を使用すると、すべての拡張列に対して null が返されます。 このオプションは拡張列に対して厳密であり、緩やかモードと単純モードの違いがあります。
 

@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 9bafeee9cec5ac81034b879f054e445d8b118dcf
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 6fc2e55b43e7c7c2dc2bb537730f8f627e3e4a66
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92243418"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513116"
 ---
 # <a name="bin"></a>bin()
 
@@ -26,14 +27,14 @@ Null 値、ビンサイズが null の場合、またはビンサイズが負の
 
 エイリアスが `floor()` 機能します。
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 `bin(`*値* `,`*roundTo*`)`
 
 ## <a name="arguments"></a>引数
 
 * *値*: 数値、日付、または timespan。 
-* *roundTo*: "bin サイズ"。 *値*を除算する数値または timespan。 
+* *roundTo*: "bin サイズ"。 *値* を除算する数値または timespan。 
 
 ## <a name="returns"></a>戻り値
 

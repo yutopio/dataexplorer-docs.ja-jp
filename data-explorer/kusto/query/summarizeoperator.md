@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/20/2020
-ms.openlocfilehash: 1317f9767182ad76f226fae6995763ea832cd36a
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 810eba264c717d156f74b9958edecb712d58a4fd
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92250848"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513201"
 ---
 # <a name="summarize-operator"></a>summarize 演算子
 
@@ -32,7 +33,7 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 各間隔 ([0,10.0]、[10.0,20.0] など) で価格を持つ項目の数を示すテーブル。 この例では、数の列と価格範囲の列があります。 他のすべての入力列は無視されます。
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 *T* `| summarize` [[*列* `=` ] *集計* [ `,` ...]] [ `by` [*列* `=` ] *groupexpression* [ `,` ...]]
 
@@ -46,8 +47,8 @@ T | summarize count() by price_range=bin(price, 10.0)
 > [!NOTE]
 > 入力テーブルが空の場合、出力は *Groupexpression* が使用されているかどうかによって異なります。
 >
-> * *Groupexpression*が指定されていない場合、出力は単一の (空の) 行になります。
-> * *Groupexpression*を指定した場合、出力には行が含まれません。
+> * *Groupexpression* が指定されていない場合、出力は単一の (空の) 行になります。
+> * *Groupexpression* を指定した場合、出力には行が含まれません。
 
 ## <a name="returns"></a>戻り値
 
@@ -59,17 +60,17 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 > [!NOTE]
 > * 集計式とグループ化式の両方に任意の式を指定できますが、単純な列名を使用するか、 `bin()` を数値列に適用する方がより効率的です。
-> * Datetime 列の自動時間単位ビンはサポートされなくなりました。 代わりに、明示的なビン分割を使用してください。 たとえば、「 `summarize by bin(timestamp, 1h)` 」のように入力します。
+> * Datetime 列の自動時間単位ビンはサポートされなくなりました。 代わりに、明示的なビン分割を使用してください。 たとえば、`summarize by bin(timestamp, 1h)` のようにします。
 
 ## <a name="list-of-aggregation-functions"></a>集計関数の一覧
 
-|機能|説明|
+|関数|説明|
 |--------|-----------|
 |[any()](any-aggfunction.md)|グループの空でないランダムな値を返します|
 |[anyif()](anyif-aggfunction.md)|グループに対して空でないランダムな値 (述語を含む) を返します。|
 |[arg_max()](arg-max-aggfunction.md)|引数が最大化されている場合に1つ以上の式を返します|
 |[arg_min()](arg-min-aggfunction.md)|引数が最小化されている場合に1つ以上の式を返します|
-|[avg()](avg-aggfunction.md)|グループ全体の平均値を返します|
+|[avg ()](avg-aggfunction.md)|グループ全体の平均値を返します|
 |[avgif()](avgif-aggfunction.md)|グループ全体の平均値を返します (述語を含む)|
 |[binary_all_and](binary-all-and-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `AND`|
 |[binary_all_or](binary-all-or-aggfunction.md)|グループのバイナリを使用して集計値を返します。 `OR`|

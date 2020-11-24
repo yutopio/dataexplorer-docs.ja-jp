@@ -8,12 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/23/2018
-ms.openlocfilehash: a1c4b89677e08872fdf81e72f7391511b7d6c637
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.localizationpriority: high
+ms.openlocfilehash: e65b16ac4a280f2ecbef2c4557cac4a8d7be13b3
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680716"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513133"
 ---
 # <a name="the-datetime-data-type"></a>Datetime データ型
 
@@ -29,7 +30,7 @@ ms.locfileid: "90680716"
 
 ## <a name="datetime-literals"></a>datetime リテラル
 
-型のリテラルには `datetime` `datetime(` *value* `)` 、次の表に示すように、*値*に対して複数の形式がサポートされている構文値があります。
+型のリテラルには `datetime` `datetime(` *value* `)` 、次の表に示すように、*値* に対して複数の形式がサポートされている構文値があります。
 
 |例                                                     |値                                                         |
 |------------------------------------------------------------|--------------------------------------------------------------|

@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 3b857e0e16c212c2f12d43f9709a9278526a7344
-ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
+ms.localizationpriority: high
+ms.openlocfilehash: cbdebe75713bb7cd786941e7546ab477df497c20
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95324688"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512912"
 ---
 # <a name="query-limits"></a>クエリの制限
 
@@ -60,7 +61,7 @@ The Kusto DataEngine has failed to execute a query: 'Query result set has exceed
 要求オプションを使用して、結果の切り捨てを無効にすることができ `notruncation` ます。
 何らかの形式の制限を設定しておくことをお勧めします。
 
-次に例を示します。
+例:
 
 ```kusto
 set notruncation;
@@ -177,7 +178,7 @@ Kusto は、クエリの実行時に2つの [クライアント要求プロパ�
 
 クエリの実行中は、クエリを表す関係演算子のツリーにクエリテキストが変換されます。
 ツリーの深さが数千レベルの内部しきい値を超えた場合、クエリは複雑すぎると見なされ、処理に失敗し、エラーコードが表示されます。 このエラーは、関係演算子ツリーが制限を超えていることを示します。
-多数のバイナリ演算子が連結されているクエリがあるため、制限を超えています。 次に例を示します。
+多数のバイナリ演算子が連結されているクエリがあるため、制限を超えています。 例:
 
 ```kusto
 T 

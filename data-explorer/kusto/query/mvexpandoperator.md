@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
-ms.openlocfilehash: a9f5517baf0963b4857759fc18158cfa0eee0bb1
-ms.sourcegitcommit: 05489ce5257c0052aee214a31562578b0ff403e7
+ms.localizationpriority: high
+ms.openlocfilehash: 3324cfe658b2eb29c54ff8a3d44ed660ec13ead5
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88793885"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512725"
 ---
 # <a name="mv-expand-operator"></a>mv-expand 演算子
 
@@ -21,7 +22,7 @@ ms.locfileid: "88793885"
 
 `mv-expand` は、 [動的](./scalar-data-types/dynamic.md)に型指定された配列またはプロパティバッグ列に適用されます。これにより、コレクション内の各値が個別の行を取得します。 展開された行内のその他の列はすべて複製されます。 
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 *T* `| mv-expand ` [ `bagexpansion=` ( `bag`  |  `array` )] [ `with_itemindex=` *indexcolumnname*] *ColumnName* [ `,` *columnname* ...] [ `limit` *rowlimit*]
 
@@ -49,7 +50,7 @@ ms.locfileid: "88793885"
 
 2 つのモードのプロパティ バッグの展開がサポートされています。
 * `bagexpansion=bag`: プロパティ バッグは、単一エントリのプロパティ バッグに展開されます。 このモードは、既定の展開です。
-* `bagexpansion=array`: プロパティバッグは2要素の `[` *キー* `,` *値*配列構造に展開され `]` 、キーと値への一貫したアクセスを可能にします (たとえば、プロパティ名に対して個別のカウントの集計を実行します)。 
+* `bagexpansion=array`: プロパティバッグは2要素の `[` *キー* `,` *値* 配列構造に展開され `]` 、キーと値への一貫したアクセスを可能にします (たとえば、プロパティ名に対して個別のカウントの集計を実行します)。 
 
 ## <a name="examples"></a>例
 

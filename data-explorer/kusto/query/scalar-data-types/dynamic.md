@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/09/2020
-ms.openlocfilehash: e909754a040308d752b19155e1e69a10097ab219
-ms.sourcegitcommit: 2126c5176df272d149896ac5ef7a7136f12dc3f3
+ms.localizationpriority: high
+ms.openlocfilehash: 582683a9261d84fa24d819b5234e58effaf90a97
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/13/2020
-ms.locfileid: "86280501"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512028"
 ---
 # <a name="the-dynamic-data-type"></a>動的データ型
 
@@ -39,12 +40,12 @@ ms.locfileid: "86280501"
 
 `dynamic(` *値* `)`
 
-*値*は次のとおりです。
+*値* は次のとおりです。
 
 * `null`。この場合、リテラルは null 動的値を表します `dynamic(null)` 。
 * 別のスカラーデータ型リテラル。この場合、リテラルは `dynamic` "inner" 型のリテラルを表します。 たとえば、 `dynamic(4)` は、long スカラーデータ型の値4を保持する動的な値です。
 * 動的またはその他のリテラルの配列: `[` *listofvalues* `]` 。 たとえば、 `dynamic([1, 2, "hello"])` は、3つの要素 (2 つの `long` 値と1つの値) から成る動的配列です `string` 。
-* プロパティバッグ: `{` *名前*の `=` *値*... `}` . たとえば、 `dynamic({"a":1, "b":{"a":2}})` は、2つのスロット、、およびを持つプロパティバッグで、 `a` `b` 2 番目のスロットは別のプロパティバッグです。
+* プロパティバッグ: `{` *名前* の `=` *値* ... `}` . たとえば、 `dynamic({"a":1, "b":{"a":2}})` は、2つのスロット、、およびを持つプロパティバッグで、 `a` `b` 2 番目のスロットは別のプロパティバッグです。
 
 ```kusto
 print o=dynamic({"a":123, "b":"hello", "c":[1,2,3], "d":{}})
@@ -58,13 +59,13 @@ print o=dynamic({"a":123, "b":"hello", "c":[1,2,3], "d":{}})
 print d=dynamic({"a": datetime(1970-05-11)})
 ```
 
-`string`JSON エンコーディング規則に従う値を値に解析するには、 `dynamic` 関数を使用し `parse_json` ます。 次に例を示します。
+`string`JSON エンコーディング規則に従う値を値に解析するには、 `dynamic` 関数を使用し `parse_json` ます。 例:
 
 * `parse_json('[43, 21, 65]')` - 数値の配列
-* `parse_json('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')`-辞書
+* `parse_json('{"name":"Alan", "age":21, "address":{"street":432,"postcode":"JLK32P"}}')` -辞書
 * `parse_json('21')` - 数値を示す、動的な型の単一の値
 * `parse_json('"21"')` - 文字列を示す、動的な型の単一の値
-* `parse_json('{"a":123, "b":"hello", "c":[1,2,3], "d":{}}')`-上記の例と同じ値を指定し `o` ます。
+* `parse_json('{"a":123, "b":"hello", "c":[1,2,3], "d":{}}')` -上記の例と同じ値を指定し `o` ます。
 
 > [!NOTE]
 > JavaScript とは異なり、JSON では、 `"` 文字列とプロパティバッグプロパティ名の前後に二重引用符 () 文字を使用することを義務付けています。
@@ -120,7 +121,7 @@ print d=dynamic({"a": datetime(1970-05-11)})
 
 > 動的オブジェクトを時した後、値を単純型にキャストする必要があります。
 
-|Expression | 値 | 型|
+|Expression | 値 | Type|
 |---|---|---|
 | X | parse_json (' [100101102] ')| array|
 |X [0]|parse_json (' 100 ')|動的|
@@ -144,22 +145,22 @@ print d=dynamic({"a": datetime(1970-05-11)})
 
 いくつかの関数を使用すると、新しいオブジェクトを作成でき `dynamic` ます。
 
-* [pack ()](../packfunction.md)は、名前と値のペアからプロパティバッグを作成します。
-* [pack_array ()](../packarrayfunction.md)は、名前と値のペアから配列を作成します。
-* [range ()](../rangefunction.md)は、数値の算術系列を含む配列を作成します。
-* [zip ()](../zipfunction.md)は、2つの配列の "parallel" 値を1つの配列に組み合わせます。
-* [repeat ()](../repeatfunction.md)は、値を繰り返す配列を作成します。
+* [pack ()](../packfunction.md) は、名前と値のペアからプロパティバッグを作成します。
+* [pack_array ()](../packarrayfunction.md) は、名前と値のペアから配列を作成します。
+* [range ()](../rangefunction.md) は、数値の算術系列を含む配列を作成します。
+* [zip ()](../zipfunction.md) は、2つの配列の "parallel" 値を1つの配列に組み合わせます。
+* [repeat ()](../repeatfunction.md) は、値を繰り返す配列を作成します。
 
 さらに、集計 `dynamic` 値を保持する配列を作成する集計関数がいくつかあります。
 
-* [buildschema ()](../buildschema-aggfunction.md)は、複数の値の集計スキーマを返し `dynamic` ます。
-* [make_bag ()](../make-bag-aggfunction.md)は、グループ内の動的な値のプロパティバッグを返します。
-* [make_bag_if ()](../make-bag-if-aggfunction.md)は、グループ内の動的な値のプロパティバッグを返します (述語を含む)。
-* [make_list ()](../makelist-aggfunction.md)は、すべての値を含む配列を順番に返します。
-* [make_list_if ()](../makelistif-aggfunction.md)は、すべての値を含む配列を (述語を含む) 順番に返します。
-* [make_list_with_nulls ()](../make-list-with-nulls-aggfunction.md)は、null 値を含むすべての値を順番に保持する配列を返します。
-* [make_set ()](../makeset-aggfunction.md)は、すべての一意の値を保持する配列を返します。
-* [make_set_if ()](../makesetif-aggfunction.md)は、すべての一意の値を保持する配列を返します (述語を含む)。
+* [buildschema ()](../buildschema-aggfunction.md) は、複数の値の集計スキーマを返し `dynamic` ます。
+* [make_bag ()](../make-bag-aggfunction.md) は、グループ内の動的な値のプロパティバッグを返します。
+* [make_bag_if ()](../make-bag-if-aggfunction.md) は、グループ内の動的な値のプロパティバッグを返します (述語を含む)。
+* [make_list ()](../makelist-aggfunction.md) は、すべての値を含む配列を順番に返します。
+* [make_list_if ()](../makelistif-aggfunction.md) は、すべての値を含む配列を (述語を含む) 順番に返します。
+* [make_list_with_nulls ()](../make-list-with-nulls-aggfunction.md) は、null 値を含むすべての値を順番に保持する配列を返します。
+* [make_set ()](../makeset-aggfunction.md) は、すべての一意の値を保持する配列を返します。
+* [make_set_if ()](../makesetif-aggfunction.md) は、すべての一意の値を保持する配列を返します (述語を含む)。
 
 ## <a name="operators-and-functions-over-dynamic-types"></a>動的な型に対する演算子と関数
 
@@ -171,9 +172,9 @@ print d=dynamic({"a": datetime(1970-05-11)})
 |[`bag_keys(`bag`)`](../bagkeysfunction.md)| 動的プロパティバッグオブジェクト内のすべてのルートキーを列挙します。
 |[`bag_merge(`bag1,..., bagN`)`](../bag-merge-function.md)| 動的プロパティバッグを、すべてのプロパティがマージされた動的プロパティバッグにマージします。
 |[`extractjson(`path、object`)`](../extractjsonfunction.md)|オブジェクトに移動するためのパスを使用します。
-|[`parse_json(`電源`)`](../parsejsonfunction.md)| JSON 文字列を動的オブジェクトに変換します。
+|[`parse_json(`ソース`)`](../parsejsonfunction.md)| JSON 文字列を動的オブジェクトに変換します。
 |[`range(`from、to、step`)`](../rangefunction.md)| 値の配列。
-|[`mv-expand`listColumn](../mvexpandoperator.md) | リスト内の指定されたセルの各値に対して、行を複製します。
+|[`mv-expand` listColumn](../mvexpandoperator.md) | リスト内の指定されたセルの各値に対して、行を複製します。
 |[`summarize buildschema(`項目`)`](../buildschema-aggfunction.md) |列の内容から型スキーマを推測します。
 |[`summarize make_bag(`項目`)`](../make-bag-aggfunction.md) | 列のプロパティバッグ (dictionary) 値を、キーの重複なしで1つのプロパティバッグにマージします。
 |[`summarize make_bag_if(`列、述語`)`](../make-bag-if-aggfunction.md) | 列のプロパティバッグ (ディクショナリ) 値を1つのプロパティバッグにマージします。キーの重複はありません (述語を含む)。

@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/29/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 069733d2215257106ede58f4fd6e4f2a923a8982
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: bc083cadbae44723c85c0a119b90ab5b43aba388
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92243125"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512844"
 ---
 # <a name="render-operator"></a>render 演算子
 
@@ -30,7 +31,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 > * Render 操作では、データは変更されません。 結果の拡張プロパティに注釈 ("視覚化") が挿入されます。 注釈には、クエリ内の演算子によって提供される情報が含まれています。
 > * 視覚化情報の解釈は、ユーザーエージェントによって行われます。 さまざまなエージェント (Kusto. エクスプローラー、Kusto. WebExplorer など) では、さまざまな視覚エフェクトがサポートされる場合があります。
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 *T* `|` `render` *視覚化* [ `with` `(` *PropertyName* `=` *PropertyValue* [ `,` ...] `)` ]
 
@@ -73,7 +74,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 
 ::: zone-end
 
-* *PropertyName* /*PropertyValue*は、レンダリング時に使用する追加情報を示します。
+* *PropertyName* /*PropertyValue* は、レンダリング時に使用する追加情報を示します。
   すべてのプロパティは省略可能です。 サポートされているプロパティは次のとおりです。
 
 ::: zone pivot="azuredataexplorer"
@@ -110,7 +111,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 ::: zone-end
 
 いくつかの視覚化は、プロパティを指定することによってさらに詳細にすることができ `kind` ます。
-次のとおりです。
+これらのボタンの役割は、次のとおりです。
 
 |*視覚化*|`kind`             |説明                        |
 |---------------|-------------------|-----------------------------------|

@@ -8,14 +8,15 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
+ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: b3b7d571662d8a9ed0fd592547f32a131d26e277
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: b8ad39e8c1233acc2df6c30059a6926cea85f37a
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92245747"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512810"
 ---
 # <a name="union-operator"></a>union 演算子
 
@@ -25,7 +26,7 @@ ms.locfileid: "92245747"
 Table1 | union Table2, Table3
 ```
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 *T* `| union` [*UnionParameters*] [ `kind=` `inner` | `outer` ] [ `withsource=` *ColumnName*] [ `isfuzzy=` `true` | `false` ]*テーブル*[ `,` *テーブル*]...  
 
@@ -49,12 +50,12 @@ Table1 | union Table2, Table3
 同じように、複数のクラスターが参照されている場合は、 __クラスターとデータベース__ の両方の要件が値に存在します。 
 * `isfuzzy=``true`  |  `false` : がに設定されている場合は `isfuzzy` `true` 、共用体の区間のあいまい解決を許可します。 `Fuzzy` ソースのセットに適用さ `union` れます。 これは、クエリを分析し、実行の準備をしている間に、一連の共用体のソースが存在し、その時点でアクセス可能なテーブル参照のセットに縮小されることを意味します。 少なくとも1つのテーブルが見つかった場合、解決エラーが発生すると、クエリの状態の結果 (参照が不足している場合は1つ) に警告が生成されますが、クエリの実行が妨げられることはありません。解決策が成功しなかった場合、クエリはエラーを返します。
 既定値は、`isfuzzy=` `false` です。
-* *UnionParameters*: *Name* `=` 行一致操作と実行プランの動作を制御する名前*値*の形式の0個以上 (スペース区切り) のパラメーターです。 サポートされているパラメーターは次のとおりです。 
+* *UnionParameters*: *Name* `=` 行一致操作と実行プランの動作を制御する名前 *値* の形式の0個以上 (スペース区切り) のパラメーターです。 サポートされているパラメーターは次のとおりです。 
 
   |名前           |値                                        |説明                                  |
   |---------------|----------------------------------------------|---------------------------------------------|
-  |`hint.concurrency`|*数値*|システムに対して、演算子の同時実行サブクエリの数を並列で実行するかどうかを `union` 指定します。 *既定値*: クラスターの単一ノードの CPU コアの量 (2 ~ 16)。|
-  |`hint.spread`|*数値*|同時実行のサブクエリによって使用されるノードの数をシステムにヒントし `union` ます。 *既定値*は1です。|
+  |`hint.concurrency`|*Number*|システムに対して、演算子の同時実行サブクエリの数を並列で実行するかどうかを `union` 指定します。 *既定値*: クラスターの単一ノードの CPU コアの量 (2 ~ 16)。|
+  |`hint.spread`|*Number*|同時実行のサブクエリによって使用されるノードの数をシステムにヒントし `union` ます。 *既定値* は1です。|
 
 ::: zone-end
 
@@ -79,7 +80,7 @@ Table1 | union Table2, Table3
 
 すべての入力テーブルに存在する行と同数の行を含むテーブル。
 
-**ノート**
+**メモ**
 
 ::: zone pivot="azuredataexplorer"
 

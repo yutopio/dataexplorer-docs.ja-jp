@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 0f49ee6763d4afadf12e9e008bd7ea8e61c49acc
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 3125a51733f6672d041e6c1522ea755e5677cb0c
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92246107"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512861"
 ---
 # <a name="parse_json"></a>parse_json()
 
@@ -21,7 +22,7 @@ ms.locfileid: "92246107"
 
 JSON 複合オブジェクトの複数の要素を抽出する必要がある場合、この関数は [extractjson () 関数](./extractjsonfunction.md) よりも優れています。
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 `parse_json(`*json*`)`
 
@@ -35,10 +36,10 @@ JSON 複合オブジェクトの複数の要素を抽出する必要がある場
 
 ## <a name="returns"></a>戻り値
 
-`dynamic` *Json*の値によって決定される型のオブジェクト。
-* *Json*の型がである場合 `dynamic` 、その値はその値として使用されます。
-* *Json*の型が `string` で、が適切に[書式設定](https://json.org/)された json 文字列である場合、文字列が解析され、生成された値が返されます。
-* *Json*の型が `string` であっても、[適切に書式設定](https://json.org/)された json 文字列ではない場合、戻り値は、元の値を保持する型のオブジェクトになり `dynamic` `string` ます。
+`dynamic` *Json* の値によって決定される型のオブジェクト。
+* *Json* の型がである場合 `dynamic` 、その値はその値として使用されます。
+* *Json* の型が `string` で、が適切に [書式設定](https://json.org/)された json 文字列である場合、文字列が解析され、生成された値が返されます。
+* *Json* の型が `string` であっても、[適切に書式設定](https://json.org/)された json 文字列ではない場合、戻り値は、元の値を保持する型のオブジェクトになり `dynamic` `string` ます。
 
 ## <a name="example"></a>例
 
@@ -56,11 +57,11 @@ T
 | extend duration_value=d.duration.value, duration_min=d["duration"]["min"]
 ```
 
-**ノート**
+**メモ**
 
 "スロット" の1つが別の JSON 文字列であるプロパティバッグを記述する JSON 文字列を使用するのが一般的です。 
 
-次に例を示します。
+例:
 
 ```kusto
 let d='{"a":123, "b":"{\\"c\\":456}"}';

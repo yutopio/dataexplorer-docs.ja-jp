@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 7529fb02c85d10ac451e78b878a21040e966ee34
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: f94003573cab076d8fa83537cb7868e21b9b084c
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92242273"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513269"
 ---
 # <a name="project-operator"></a>project 演算子
 
@@ -25,19 +26,19 @@ ms.locfileid: "92242273"
 T | project cost=price*quantity, price
 ```
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 *T* `| project` *ColumnName* [ `=` *式*] [ `,` ...]
   
-or
+または
   
 *T* `| project` [*columnname*  |  `(` *columnname*[ `,` ] `)` `=` ]*式*[ `,` ...]
 
 ## <a name="arguments"></a>引数
 
 * *T*: 入力テーブル。
-* *ColumnName:* 出力に表示される列の名前 (省略可能)。 *式*が存在しない場合は、 *ColumnName*が必須であり、その名前の列が入力に含まれている必要があります。 省略した場合、名前は自動的に生成されます。 *Expression*から複数の列が返される場合は、列名のリストをかっこで囲んで指定できます。 この場合、 *式*の出力列には指定された名前が付けられ、残りの出力列はすべて削除されます。 列名のリストが指定されていない場合は、生成された名前を持つすべての *式*の出力列が出力に追加されます。
-* *Expression:* 入力列を参照する、省略可能なスカラー式。 *ColumnName*が省略されていない場合、*式*は必須です。
+* *ColumnName:* 出力に表示される列の名前 (省略可能)。 *式* が存在しない場合は、 *ColumnName* が必須であり、その名前の列が入力に含まれている必要があります。 省略した場合、名前は自動的に生成されます。 *Expression* から複数の列が返される場合は、列名のリストをかっこで囲んで指定できます。 この場合、 *式* の出力列には指定された名前が付けられ、残りの出力列はすべて削除されます。 列名のリストが指定されていない場合は、生成された名前を持つすべての *式* の出力列が出力に追加されます。
+* *Expression:* 入力列を参照する、省略可能なスカラー式。 *ColumnName* が省略されていない場合、*式* は必須です。
 
     入力内の既存の列と同じ名前を持つ新しい計算列を返すことは、問題ありません。
 

@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/09/2020
-ms.openlocfilehash: 879b858904ac9f024f70dfef6096141a9ff81bd7
-ms.sourcegitcommit: b8415e01464ca2ac9cd9939dc47e4c97b86bd07a
+ms.localizationpriority: high
+ms.openlocfilehash: c102637adfa1fd0340d28a67b52354956b511ada
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028478"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513315"
 ---
 # <a name="let-statement"></a>let ステートメント
 
@@ -47,31 +48,31 @@ Let ステートメントでバインドされた式は次のようになりま�
 
 [ `view` ] `(` [*TabularArguments*] [ `,` ] [*ScalarArguments*] `)` `{` *functionbody*`}`
 
-`TabularArguments`-[*TabularArgName* `:` `(` [*atrname* `:` *atrname*] [ `,` ...] `)` ][`,` ... ][`,`]
+`TabularArguments` -[*TabularArgName* `:` `(` [*atrname* `:` *atrname*] [ `,` ...] `)` ][`,` ... ][`,`]
 
  または
 
  [*TabularArgName* `:` `(``*` `)`]
 
-`ScalarArguments`-[*Argname* `:` *argname*] [ `,` ...]
+`ScalarArguments` -[*Argname* `:` *argname*] [ `,` ...]
 
 
 |フィールド  |定義  |例  |
 |---------|---------|---------|
 | **view** | は、引数を持たないパラメーターなしのラムダにのみ出現する可能性があります。 これは、"すべてのテーブル" がクエリである場合に、バインドされた名前が含まれることを示します。 | たとえば、を使用する場合 `union *` です。|
-| ***TabularArguments*** | 正式な表形式の式の引数の一覧。 
+| ***TabularArguments** _ | 正式な表形式の式の引数の一覧。 
 | 各表形式引数には次のものがあります。||
-|<ul><li> *TabularArgName*</li></ul> | 正式な表形式引数の名前。 名前は*Functionbody*に出現し、ラムダが呼び出されたときに特定の値にバインドされることがあります。 ||
+|<ul><li> _TabularArgName *</li></ul> | 正式な表形式引数の名前。 名前は *Functionbody* に出現し、ラムダが呼び出されたときに特定の値にバインドされることがあります。 ||
 |<ul><li>テーブルスキーマ定義 </li></ul> | 属性のリストとその型| AtrName: Atrname|
-| ***ScalarArguments*** | 正式なスカラー引数の一覧。 
+| ***ScalarArguments** _ | 正式なスカラー引数の一覧。 
 |各スカラー引数には次のものがあります。||
-|<ul><li>*ArgName*</li></ul> | 正式なスカラー引数の名前。 名前は*Functionbody*に出現し、ラムダが呼び出されたときに特定の値にバインドされることがあります。  |
+|<ul><li>_ArgName *</li></ul> | 正式なスカラー引数の名前。 名前は *Functionbody* に出現し、ラムダが呼び出されたときに特定の値にバインドされることがあります。  |
 | <ul><li>*ArgType* </li></ul>| 仮引数の型。 | 現在、ラムダ引数の型としてサポートされている型は、、、、、、、およびです。また、これらの型のエイリアスについても同様 `bool` `string` `long` `datetime` `timespan` `real` `dynamic` です。
 
 > [!NOTE]
 >ラムダ呼び出しで使用される表形式の式には、一致する型のすべての属性が含まれている必要があります (ただし、これらに限定されるわけではありません)。
 >
->`(*)`表形式の式として使用できます。 
+>`(*)` 表形式の式として使用できます。 
 >
 > 任意の表形式の式は、ラムダ呼び出しで使用でき、そのいずれの列もラムダ式ではアクセスできません。 
 >

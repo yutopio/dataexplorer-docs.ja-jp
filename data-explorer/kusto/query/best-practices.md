@@ -8,18 +8,19 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/03/2020
-ms.openlocfilehash: b5d5ef5ba3b29bf1bc468a64baa159106b164604
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 762c3075c162ba35bdba539d0e86460c78f3297e
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92249379"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95511790"
 ---
 # <a name="query-best-practices"></a>クエリのベスト プラクティス
 
 ここでは、クエリの実行を高速化するためのベストプラクティスをいくつか紹介します。
 
-|アクション  |使用  |使用しない  |メモ  |
+|アクション  |用途  |使用しない  |ノート  |
 |---------|---------|---------|---------|
 | **時間フィルター** | 最初に時間フィルターを使用する。 ||Kusto は、時間フィルターを使用するように高度に最適化されています。| 
 |**文字列演算子**      | 演算子を使用する `has`     | 使用しない `contains`     | 完全なトークンを検索する場合は、 `has` 部分文字列が検索されないため、はより適切に機能します。   |

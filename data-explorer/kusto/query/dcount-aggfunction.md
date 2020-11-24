@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b35bb7944e894256056e03eb756ac85cf1354ba8
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: 947ab0af6a5aaa98bb07b08005b940fdf2ce6ae5
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92247701"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513184"
 ---
 # <a name="dcount-aggregation-function"></a>dcount () (集計関数)
 
@@ -22,7 +23,7 @@ ms.locfileid: "92247701"
 > [!NOTE]
 > `dcount()`集計関数は、大きなセットのカーディナリティを推定するために主に役立ちます。 精度のためにパフォーマンスをトレードし、実行ごとに異なる結果が返される場合があります。 入力の順序は、出力に影響を与える可能性があります。
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 ... `|` `summarize` `dcount` `(`*`Expr`*[, *`Accuracy`*]`)` ...
 
@@ -80,4 +81,4 @@ T | summarize dcount(B) by G | count
 
 次の図は、サポートされているすべての精度設定の相対的な推定誤差の確率分布関数をパーセントで示したものです。
 
-:::image type="content" border="false" source="images/dcount-aggfunction/hll-error-distribution.png" alt-text="D カウント":::
+:::image type="content" border="false" source="images/dcount-aggfunction/hll-error-distribution.png" alt-text="hll エラーの分布":::

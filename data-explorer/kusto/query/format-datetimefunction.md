@@ -8,12 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b9523bf62232c09bdb7fd45298c9430095e39363
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.localizationpriority: high
+ms.openlocfilehash: ec9fc6edf0e62c694e1090ea5d5adade333a80ac
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92244665"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512929"
 ---
 # <a name="format_datetime"></a>format_datetime()
 
@@ -23,7 +24,7 @@ ms.locfileid: "92244665"
 format_datetime(datetime(2015-12-14 02:03:04.12345), 'y-M-d h:m:s.fffffff') == "15-12-14 2:3:4.1234500"
 ```
 
-## <a name="syntax"></a>構文
+## <a name="syntax"></a>Syntax
 
 `format_datetime(`*datetime* `,`*形式*`)`
 

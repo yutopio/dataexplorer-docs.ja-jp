@@ -1,39 +1,39 @@
 ---
-title: Azure Monitor の Kusto ログクエリ言語について
-description: Kusto log クエリの詳細について理解しているユーザーのためのヘルプ。
+title: Azure データエクスプローラーおよび Azure Monitor のために Kusto にマップする
+description: ログクエリを記述する Kusto クエリ言語について学習するために、このようなユーザーのための概念マッピング。
 ms.service: data-explorer
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
 ms.date: 08/21/2018
-ms.openlocfilehash: f574493f2029d08fd71b44c858592a6fd8467c82
-ms.sourcegitcommit: b6f0f112b6ddf402e97c011a902bd70ba408e897
+ms.openlocfilehash: 8679b47a2c698c88c4d1773f9c50dee495532ae7
+ms.sourcegitcommit: faa747df81c49b96d173dbd5a28d2ca4f3a2db5f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94499109"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95783235"
 ---
-# <a name="splunk-to-kusto-query-language"></a>Kusto クエリ言語について
+# <a name="splunk-to-kusto-query-language-map"></a>Kusto クエリ言語マップについて
 
-この記事の目的は、kusto にログクエリを記述する Kusto クエリ言語について説明します。 2 つを直接比較し、主要な相違点と、既存の知識を活用できる類似点を明らかにします。
+この記事は、kusto でログクエリを作成するための Kusto クエリ言語について説明しています。 2つの間に直接比較が行われ、重要な相違点と類似点が強調表示されるため、既存の知識を基に構築できます。
 
 ## <a name="structure-and-concepts"></a>構造と概念
 
 次の表は、出力と Kusto のログの概念とデータ構造を比較したものです。
 
- | 概念 | Splunk | Kusto |  解説 |
+ | 概念 | Splunk | Kusto |  コメント |
  |:---|:---|:---|:---|
- | 展開単位  | cluster |  cluster |  Kusto では、任意のクロスクラスタークエリを使用できます。 Splunk ではできません。 |
- | データ キャッシュ |  バケット  |  キャッシュおよび保持ポリシー |  データの期間とキャッシュ レベルを制御します。 この設定は、クエリのパフォーマンスと展開のコストに直接影響します。 |
+ | 展開単位  | cluster |  cluster |  Kusto では、任意のクラスター間クエリを実行できます。 Splunk ではできません。 |
+ | データキャッシュ |  バケット  |  キャッシュと保持ポリシー |  データの期間とキャッシュ レベルを制御します。 この設定は、クエリのパフォーマンスと展開のコストに直接影響します。 |
  | データの論理パーティション  |  インデックス (index)  |  database  |  データの論理的な分離を可能にします。 どちらの実装でも、これらのパーティション間の和集合と結合が可能です。 |
- | 構造化されたイベント メタデータ | 該当なし | table |  Splunk には、イベント メタデータの検索言語に対して公開される概念はありません。 Kusto ログには、列を持つテーブルという概念があります。 各イベント インスタンスは行にマップされます。 |
- | データ レコード | イベント | 行 |  用語の変更のみです。 |
- | データ レコード属性 | フィールド |  column |  Kusto では、これはテーブル構造の一部として事前に定義されています。 Splunk では、イベントごとに固有のフィールドのセットがあります。 |
- | 型 | データ型 |  データ型 |  Kusto データ型は、列に対して設定されるため、より明示的になります。 どちらにもデータ型を動的に操作する機能があり、JSON のサポートを含めて、データ型のセットはほぼ同等です。 |
- | クエリと検索  | 検索 | query |  概念は、基本的に Kusto との両方で同じです。 |
- | イベント取り込み時刻 | システム時刻 | ingestion_time() |  Splunk では、イベントのインデックスが作成された時刻のシステム タイムスタンプが各イベントに設定されます。 Kusto では、ingestion_time () 関数を通じて参照できるシステム列を公開する ingestion_time というポリシーを定義できます。 |
+ | 構造化されたイベントのメタデータ | 該当なし | table |  イベントメタデータの概念を検索言語に公開することはできません。 Kusto ログには、列を持つテーブルという概念があります。 各イベント インスタンスは行にマップされます。 |
+ | データレコード | イベント | 行 |  用語の変更のみです。 |
+ | データレコード属性 | フィールド |  column |  Kusto では、この設定はテーブル構造の一部として事前定義されています。 Splunk では、イベントごとに固有のフィールドのセットがあります。 |
+ | types | データ型 |  データ型 |  Kusto データ型は、列に設定されているため、より明示的になります。 どちらも、データ型とほぼ同等のデータセット (JSON サポートを含む) を使用して動的に作業できます。 |
+ | クエリと検索  | 検索 | query |  基本的に、Kusto との間での概念は同じです。 |
+ | イベントインジェスト時間 | システム時刻 | `ingestion_time()` |  この場合、各イベントは、イベントのインデックスが作成された時刻のシステムタイムスタンプを取得します。 Kusto では、 [ingestion_time ()](ingestiontimefunction.md)関数を通じて参照できるシステム列を公開する[ingestion_time](../management/ingestiontimepolicy.md)というポリシーを定義できます。 |
 
-## <a name="functions"></a>関数
+## <a name="functions"></a>機能
 
 次の表では、Kusto に含まれる関数を指定しています。
 
@@ -42,135 +42,148 @@ ms.locfileid: "94499109"
 | `strcat` | `strcat()` | (1) |
 | `split`  | `split()` | (1) |
 | `if`     | `iff()`   | (1) |
-| `tonumber` | `todouble()`<br>`tolong()`<br>`toint()` | (1) |
-| `upper`<br>`lower` |toupper()<br>`tolower()`|(1) |
-| `replace` | `replace()` | (1)<br> どちらの製品も `replace()` が受け取るパラメーターの数は 3 つですが、パラメーターは異なることにも注意してください。 |
-| `substr` | `substring()` | (1)<br>Splunk では 1 から始まるインデックスを使用することにも注意してください。 Kusto notes の0から始まるインデックス。 |
+| `tonumber` | `todouble()`<br />`tolong()`<br />`toint()` | (1) |
+| `upper`<br />`lower` |toupper()<br />`tolower()`|(1) |
+| `replace` | `replace()` | (1)<br /> ただし、 `replace()` どちらの製品でも3つのパラメーターを受け取るが、パラメーターが異なることに注意してください。 |
+| `substr` | `substring()` | (1)<br />Splunk では 1 から始まるインデックスを使用することにも注意してください。 Kusto notes の0から始まるインデックス。 |
 | `tolower` |  `tolower()` | (1) |
 | `toupper` | `toupper()` | (1) |
 | `match` | `matches regex` |  (2)  |
 | `regex` | `matches regex` | Splunk では、`regex` は演算子です。 Kusto では、これは関係演算子です。 |
 | `searchmatch` | == | Splunk の `searchmatch` では、厳密な文字列を検索できます。
-| `random` | rand()<br>rand(n) | Splunk の関数は、0 から 2<sup>31</sup>-1 までの値を返します。 Kusto ' は、0.0 ~ 1.0 の範囲の数値を返します。または、パラメーターが指定されている場合は 0 ~ n-1 の範囲の数値を返します。
+| `random` | rand()<br />rand(n) | の関数は、0から 2<sup>31</sup>-1 までの数値を返します。 Kusto は、0.0 ~ 1.0 の範囲の数値を返します。または、パラメーターが指定されている場合は 0 ~ n-1 の範囲の値を返します。
 | `now` | `now()` | (1)
-| `relative_time` | `totimespan()` | (1)<br>Kusto では、relative_time (datetimeVal、offsetVal) は datetimeVal + totimespan (offsetVal) に相当します。<br>たとえば、<code>search &#124; eval n=relative_time(now(), "-1d@d")</code> を <code>...  &#124; extend myTime = now() - totimespan("1d")</code> にします。
+| `relative_time` | `totimespan()` | (1)<br />Kusto では、と同じ意味です `relative_time(datetimeVal, offsetVal)` `datetimeVal + totimespan(offsetVal)` 。<br />たとえば、 `search` &#124; が `eval n=relative_time(now(), "-1d@d")` &#124; になり `...` `extend myTime = now() - totimespan("1d")` ます。
 
-(1) Splunk では、関数は `eval` 演算子で呼び出されます。 Kusto では、またはの一部として使用され `extend` `project` ます。<br>(2) Splunk では、関数は `eval` 演算子で呼び出されます。 Kusto では、演算子と共に使用でき `where` ます。
+(1) の場合、関数は演算子を使用して呼び出され `eval` ます。 Kusto では、またはの一部として使用され `extend` `project` ます。<br />(2) 式では、演算子を使用して関数が呼び出され `eval` ます。 Kusto では、演算子と共に使用でき `where` ます。
 
 
-## <a name="operators"></a>オペレーター
+## <a name="operators"></a>演算子
 
-次のセクションでは、さまざまな演算子を使用する例について説明します。
+次のセクションでは、さまざまな演算子を使用する方法の例について説明します。
 
 > [!NOTE]
-> 次の例では、"" というフィールド _ルール_ が Kusto のテーブルにマップされ、[ログ分析 _ingestion_time ()_ ] 列にマップされる既定のタイムスタンプがあります。
+> 次の例では、[出力] フィールドを `rule` Kusto のテーブルにマップし、[既定のタイムスタンプ] を [ログ分析] 列にマップし `ingestion_time()` ます。
 
 ### <a name="search"></a>検索
+
 Splunk では、`search` キーワードを省略し、引用符なしの文字列を指定することができます。 Kusto では、を使用して各クエリを開始する必要があります `find` 。引用符で囲まれていない文字列は列名であり、参照値は引用符で囲まれた文字列である必要があります。 
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `search` | <code>search Session.Id="c8894ffd-e684-43c9-9125-42adc25cd3fc" earliest=-24h</code> |
-| Kusto | `find` | <code>find Session.Id=="c8894ffd-e684-43c9-9125-42adc25cd3fc" and ingestion_time()> ago(24h)</code> |
+| Splunk | `search` | `search Session.Id="c8894ffd-e684-43c9-9125-42adc25cd3fc" earliest=-24h` |
+| Kusto | `find` | `find Session.Id=="c8894ffd-e684-43c9-9125-42adc25cd3fc" and ingestion_time()> ago(24h)` |
 
 
 ### <a name="filter"></a>Assert
-Kusto ログクエリは、フィルターが適用された表形式の結果セットから開始します。 Splunk では、フィルター処理は現在のインデックスに対する既定の操作です。 Splunk でも `where` 演算子を使用できますが、推奨されません。
+
+Kusto ログクエリは、が適用された表形式の結果セットから開始 `filter` します。 Splunk では、フィルター処理は現在のインデックスに対する既定の操作です。 また、演算子を使用することもでき `where` ます。ただし、この操作はお勧めしません。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `search` | <code>Event.Rule="330009.2" Session.Id="c8894ffd-e684-43c9-9125-42adc25cd3fc" _indextime>-24h</code> |
-| Kusto | `where` | <code>Office_Hub_OHubBGTaskError<br>&#124; where Session_Id == "c8894ffd-e684-43c9-9125-42adc25cd3fc" and ingestion_time() > ago(24h)</code> |
+| Splunk | `search` | `Event.Rule="330009.2" Session.Id="c8894ffd-e684-43c9-9125-42adc25cd3fc" _indextime>-24h` |
+| Kusto | `where` | `Office_Hub_OHubBGTaskError`<br />&#124; `where Session_Id == "c8894ffd-e684-43c9-9125-42adc25cd3fc" and ingestion_time() > ago(24h)` |
 
-### <a name="getting-n-eventsrows-for-inspection"></a>検査のために n 個のイベント/行を取得する 
-Kusto ログクエリは、の `take` 別名としてもサポート `limit` します。 Splunk では、結果が順序付けされている場合、`head` は最初の n 個の結果を返します。 Kusto では、limit は順序付けされませんが、最初の n 個の行が返されます。
+### <a name="get-n-events-or-rows-for-inspection"></a>検査のために *n 個* のイベントまたは行を取得する
 
-| 製品 | 演算子 | 例 |
-|:---|:---|:---|
-| Splunk | `head` | <code>Event.Rule=330009.2<br>&#124; head 100</code> |
-| Kusto | `limit` | <code>Office_Hub_OHubBGTaskError<br>&#124; limit 100</code> |
-
-### <a name="getting-the-first-n-eventsrows-ordered-by-a-fieldcolumn"></a>フィールド/列で順序づけされた最初の n イベント/行を取得する
-下位の結果の場合、Splunk では `tail` を使用します。 Kusto では、順序付けの方向をで指定でき `asc` ます。
+Kusto ログクエリは、の `take` 別名としてもサポート `limit` します。 この場合、結果が順序付けされている場合は、 `head` 最初の *n* 件の結果が返されます。 Kusto では、は並べ替えられません `limit` が、最初の *n 個* の行が返されます。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `head` |  <code>Event.Rule="330009.2"<br>&#124; sort Event.Sequence<br>&#124; head 20</code> |
-| Kusto | `top` | <code>Office_Hub_OHubBGTaskError<br>&#124; top 20 by Event_Sequence</code> |
+| Splunk | `head` | `Event.Rule=330009.2`<br />&#124; `head 100` |
+| Kusto | `limit` | `Office_Hub_OHubBGTaskError`<br />&#124; `limit 100` |
 
-### <a name="extending-the-result-set-with-new-fieldscolumns"></a>新しいフィールド/列で結果セットを拡張する
-Splunk には `eval` 関数もありますが、`eval` 演算子と同等ではありません。 関数と Kusto の演算子は両方とも、 `eval` `extend` スカラー関数と算術演算子のみをサポートしています。
+### <a name="get-the-first-n-events-or-rows-ordered-by-a-field-or-column"></a>フィールドまたは列で並べ替えられた最初の *n 個* のイベントまたは行を取得します。
 
-| 製品 | 演算子 | 例 |
-|:---|:---|:---|
-| Splunk | `eval` |  <code>Event.Rule=330009.2<br>&#124; eval state= if(Data.Exception = "0", "success", "error")</code> |
-| Kusto | `extend` | <code>Office_Hub_OHubBGTaskError<br>&#124; extend state = iif(Data_Exception == 0,"success" ,"error")</code> |
-
-### <a name="rename"></a>名前の変更 
-Kusto は、演算子を使用して `project-rename` フィールドの名前を変更します。 `project-rename` によって、クエリでフィールドにあらかじめ構築されているインデックスを利用できるようにします。 Splunk では、同じことを行うために `rename` 演算子が用意されています。
+一番下の結果を表示するには、を使用し `tail` ます。 Kusto では、を使用して順序付けの方向を指定でき `asc` ます。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `rename` |  <code>Event.Rule=330009.2<br>&#124; rename Date.Exception as execption</code> |
-| Kusto | `project-rename` | <code>Office_Hub_OHubBGTaskError<br>&#124; project-rename exception = Date_Exception</code> |
+| Splunk | `head` |  `Event.Rule="330009.2"`<br />&#124; `sort Event.Sequence`<br />&#124; `head 20` |
+| Kusto | `top` | `Office_Hub_OHubBGTaskError`<br />&#124; `top 20 by Event_Sequence` |
 
-### <a name="format-resultsprojection"></a>形式の書式設定/プロジェクション
-Splunk には、`project-away` と似た演算子はないようです。 UI を使用してフィールドをフィルター処理できます。
+### <a name="extend-the-result-set-with-new-fields-or-columns"></a>新しいフィールドまたは列を使用して結果セットを拡張する
+
+この関数には、関数があり `eval` ますが、 `eval` Kusto の演算子と比較することはできません。 `eval` `extend` 関数と Kusto の演算子は両方とも、スカラー関数と算術演算子のみをサポートしています。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `table` |  <code>Event.Rule=330009.2<br>&#124; table rule, state</code> |
-| Kusto | `project`<br>`project-away` | <code>Office_Hub_OHubBGTaskError<br>&#124; project exception, state</code> |
+| Splunk | `eval` |  `Event.Rule=330009.2`<br />&#124; `eval state= if(Data.Exception = "0", "success", "error")` |
+| Kusto | `extend` | `Office_Hub_OHubBGTaskError`<br />&#124; `extend state = iif(Data_Exception == 0,"success" ,"error")` |
+
+### <a name="rename"></a>[名前の変更]
+
+Kusto は、演算子を使用して `project-rename` フィールドの名前を変更します。 演算子では `project-rename` 、フィールドに対して事前に作成されたインデックスをクエリで利用できます。 `rename`同じ操作を行う演算子があります。
+
+| 製品 | 演算子 | 例 |
+|:---|:---|:---|
+| Splunk | `rename` |  `Event.Rule=330009.2`<br />&#124; `rename Date.Exception as execption` |
+| Kusto | `project-rename` | `Office_Hub_OHubBGTaskError`<br />&#124; `project-rename exception = Date_Exception` |
+
+### <a name="format-results-and-projection"></a>結果と投影の書式設定
+
+式に似た演算子がないよう `project-away` です。 UI を使用して、フィールドを除外することができます。
+
+| 製品 | 演算子 | 例 |
+|:---|:---|:---|
+| Splunk | `table` |  `Event.Rule=330009.2`<br />&#124; `table rule, state` |
+| Kusto | `project`<br />`project-away` | `Office_Hub_OHubBGTaskError`<br />&#124; `project exception, state` |
 
 ### <a name="aggregation"></a>集計
-さまざまな集計関数の [集計関数の一覧](summarizeoperator.md#list-of-aggregation-functions) を参照してください。
+
+使用可能な [集計関数の一覧](summarizeoperator.md#list-of-aggregation-functions) を参照してください。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `stats` |  <code>search (Rule=120502.*)<br>&#124; stats count by OSEnv, Audience</code> |
-| Kusto | `summarize` | <code>Office_Hub_OHubBGTaskError<br>&#124; summarize count() by App_Platform, Release_Audience</code> |
+| Splunk | `stats` |  `search (Rule=120502.*)`<br />&#124; `stats count by OSEnv, Audience` |
+| Kusto | `summarize` | `Office_Hub_OHubBGTaskError`<br />&#124; `summarize count() by App_Platform, Release_Audience` |
 
 
 ### <a name="join"></a>Join
-Splunk での結合には重要な制限があります。 サブクエリには 10000 件の結果の制限があり (展開構成ファイルで設定)、結合の種類の数に制限があります。
+
+`join` には、大きな制限があります。 サブクエリには、(配置構成ファイルで設定された) 1万の結果の制限があり、使用可能な結合の種類の数に制限があります。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `join` |  <code>Event.Rule=120103* &#124; stats by Client.Id, Data.Alias \| join Client.Id max=0 [search earliest=-24h Event.Rule="150310.0" Data.Hresult=-2147221040]</code> |
-| Kusto | `join` | <code>cluster("OAriaPPT").database("Office PowerPoint").Office_PowerPoint_PPT_Exceptions<br>&#124; where  Data_Hresult== -2147221040<br>&#124; join kind = inner (Office_System_SystemHealthMetadata<br>&#124; summarize by Client_Id, Data_Alias)on Client_Id</code>   |
+| Splunk | `join` |  `Event.Rule=120103* &#124; stats by Client.Id, Data.Alias` <br />&#124; `join Client.Id max=0 [search earliest=-24h Event.Rule="150310.0" Data.Hresult=-2147221040]` |
+| Kusto | `join` | `cluster("OAriaPPT").database("Office PowerPoint").Office_PowerPoint_PPT_Exceptions`<br />&#124; `where  Data_Hresult== -2147221040`<br />&#124; `join kind = inner (Office_System_SystemHealthMetadata`<br />&#124; `summarize by Client_Id, Data_Alias)on Client_Id`   |
 
 ### <a name="sort"></a>並べ替え
-Splunk では、昇順に並べ替えるには、`reverse` 演算子を使用する必要があります。 Kusto では、最初または最後に null を格納する場所を定義することもできます。
+
+順序を昇順に並べ替えるには、演算子を使用する必要があり `reverse` ます。 Kusto では、先頭または末尾に null を格納する場所を定義することもできます。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `sort` |  <code>Event.Rule=120103<br>&#124; sort Data.Hresult<br>&#124; reverse</code> |
-| Kusto | `order by` | <code>Office_Hub_OHubBGTaskError<br>&#124; order by Data_Hresult,  desc</code> |
+| Splunk | `sort` |  `Event.Rule=120103`<br />&#124; `sort Data.Hresult` <br />&#124; `reverse` |
+| Kusto | `order by` | `Office_Hub_OHubBGTaskError`<br />&#124; `order by Data_Hresult,  desc` |
 
 ### <a name="multivalue-expand"></a>複数値の展開
-これは、両方とも同じような演算子であり、Kusto です。
+
+複数値の展開演算子は、両方とも、すべての値が同じで、Kusto に似ています。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `mvexpand` |  `mvexpand foo` |
-| Kusto | `mvexpand` | `mvexpand foo` |
+| Splunk | `mvexpand` |  `mvexpand solutions` |
+| Kusto | `mv-expand` | `mv-expand solutions` |
 
-### <a name="results-facets-interesting-fields"></a>Results facets, interesting fields
+### <a name="result-facets-interesting-fields"></a>結果ファセット、興味深いフィールド
+
 Azure portal での Log Analytics では、最初の列のみが展開されます。 すべての列は、API を介して利用します。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `fields` |  <code>Event.Rule=330009.2<br>&#124; fields App.Version, App.Platform</code> |
-| Kusto | `facets` | <code>Office_Excel_BI_PivotTableCreate<br>&#124; facet by App_Branch, App_Version</code> |
+| Splunk | `fields` |  `Event.Rule=330009.2`<br />&#124; `fields App.Version, App.Platform` |
+| Kusto | `facets` | `Office_Excel_BI_PivotTableCreate`<br />&#124; `facet by App_Branch, App_Version` |
 
-### <a name="de-duplicate"></a>重複除去
-選択されたレコードの順序を逆にする代わりに、`summarize arg_min()` を使用できます。
+### <a name="deduplicate"></a>重複除去
+
+Kusto では、を使用し `summarize arg_min()` て、選択したレコードの順序を逆にすることができます。
 
 | 製品 | 演算子 | 例 |
 |:---|:---|:---|
-| Splunk | `dedup` |  <code>Event.Rule=330009.2<br>&#124; dedup device_id sortby -batterylife</code> |
-| Kusto | `summarize arg_max()` | <code>Office_Excel_BI_PivotTableCreate<br>&#124; summarize arg_max(batterylife, *) by device_id</code> |
+| Splunk | `dedup` |  `Event.Rule=330009.2`<br />&#124; `dedup device_id sortby -batterylife` |
+| Kusto | `summarize arg_max()` | `Office_Excel_BI_PivotTableCreate`<br />&#124; `summarize arg_max(batterylife, *) by device_id` |
 
-## <a name="next-steps"></a>次の手順
+## <a name="next-steps"></a>次のステップ
 
-- [Kusto クエリ言語](tutorial.md?pivots=azuremonitor)に関するチュートリアルを紹介します。
+- [Kusto クエリ言語](tutorial.md?pivots=azuremonitor)のチュートリアルについて説明します。

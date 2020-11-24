@@ -11,12 +11,12 @@ ms.date: 03/29/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: bc083cadbae44723c85c0a119b90ab5b43aba388
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
+ms.openlocfilehash: 5670f3f9c7aa8b3d6b10f88433d19246e2daf6d6
+ms.sourcegitcommit: faa747df81c49b96d173dbd5a28d2ca4f3a2db5f
 ms.translationtype: MT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 11/24/2020
-ms.locfileid: "95512844"
+ms.locfileid: "95783337"
 ---
 # <a name="render-operator"></a>render 演算子
 
@@ -43,7 +43,7 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 
 |*視覚化*     |説明|
 |--------------------|-|
-| `anomalychart`     | 線上と同様ですが、 [series_decompose_anomalies](./series-decompose-anomaliesfunction.md)関数を使用した[異常を強調](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)表示します。 |
+| `anomalychart`     | 線上と同様ですが、 [series_decompose_anomalies](./series-decompose-anomaliesfunction.md)関数を使用した[異常を強調](./samples.md#get-more-from-your-data-by-using-kusto-with-machine-learning)表示します。 |
 | `areachart`        | 面グラフ。 最初の列は x 軸で、数値型の列である必要があります。 その他の数値列は y 軸です。 |
 | `barchart`         | 最初の列は x 軸で、テキスト、datetime、または数値を指定できます。 その他の列は数値であり、横方向のストリップとして表示されます。|
 | `card`             | 最初の結果レコードは、スカラー値のセットとして扱われ、カードとして表示されます。 |
@@ -169,8 +169,8 @@ range x from -2 to 2 step 0.1
 
 ::: zone pivot="azuredataexplorer"
 
-[チュートリアルのレンダリング例](./tutorial.md#render-display-a-chart-or-table)。
+[チュートリアルのレンダリング例](./tutorial.md#displaychartortable)
 
-[異常検出](./samples.md#get-more-out-of-your-data-in-kusto-with-machine-learning)
+[異常検出](./samples.md#get-more-from-your-data-by-using-kusto-with-machine-learning)
 
 ::: zone-end

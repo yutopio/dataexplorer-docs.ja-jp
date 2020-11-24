@@ -201,6 +201,8 @@
           href: data-lake-query-data.md
         - name: Azure Monitor でデータのクエリを実行する
           href: query-monitor-data.md
+        - name: Power Apps アプリケーションでデータのクエリを実行する
+          href: power-apps-connector.md
         - name: Python のインラインで KQL をデバッグする
           href: debug-inline-python.md
         - name: SDK の使用
@@ -370,8 +372,6 @@
           href: using-metrics.md
         - name: リソースの正常性を使用してクラスターの正常性を監視する
           href: monitor-with-resource-health.md
-        - name: Azure Data Explorer でデータのクエリを実行するための Power Apps アプリケーションを作成する
-          href: power-apps-connector.md
     - name: データの共有
       items:
         - name: Azure Data Share の使用
@@ -912,6 +912,8 @@
           href: ./kusto/query/ipv4-comparefunction.md
         - name: ipv4_is_match()
           href: ./kusto/query/ipv4-is-matchfunction.md
+        - name: ipv4_is_private()
+          href: ./kusto/query/ipv4-is-privatefunction.md
         - name: ipv6_compare()
           href: ./kusto/query/ipv6-comparefunction.md
         - name: ipv6_is_match()
@@ -1845,6 +1847,8 @@
           href: kusto/functions-library/quantize-fl.md
         - name: series_dot_product_fl()
           href: kusto/functions-library/series-dot-product-fl.md
+        - name: series_exp_smoothing_fl()
+          href: kusto/functions-library/series-exp-smoothing-fl.md
         - name: series_fit_poly_fl()
           href: kusto/functions-library/series-fit-poly-fl.md
         - name: series_moving_avg_fl()

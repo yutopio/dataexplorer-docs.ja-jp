@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: 4ef7e15e3009b3ccd098136d9c5013dbe31813b7
-ms.sourcegitcommit: f71801764fdccb061f3cf1e3cfe43ec1557e4e0f
+ms.openlocfilehash: bf6dced9b0df0b90b0b1ff87389c9dab31ebe7c0
+ms.sourcegitcommit: f7bebd245081a5cdc08e88fa4f9a769c18e13e5d
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/03/2020
-ms.locfileid: "93293134"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94644639"
 ---
 # <a name="what-is-one-click-ingestion"></a>ワンクリックでのインジェストとは
 
@@ -40,7 +40,7 @@ ms.locfileid: "93293134"
 
 ワンクリックでのインジェスト ウィザードを使用すると、ワンクリックでのデータ取り込み手順を画面の指示に従って行うことができます。
 
-* クラスターの **[Welcome to Azure Data Explorer]\(Azure Data Explorer へようこそ\)** ホーム画面からワンクリックでのインジェスト ウィザードにアクセスするには、最初の 2 つの手順 ( [クラスターの作成とデータベースの作成](#prerequisites)) を完了してから、 **[新しいデータの取り込み]** を選択します。
+* クラスターの **[Welcome to Azure Data Explorer]\(Azure Data Explorer へようこそ\)** ホーム画面からワンクリックでのインジェスト ウィザードにアクセスするには、最初の 2 つの手順 ([クラスターの作成とデータベースの作成](#prerequisites)) を完了してから、 **[新しいデータの取り込み]** を選択します。
 
     :::image type="content" source="media/ingest-data-one-click/welcome-ingestion.png" alt-text="[Welcome to Azure Data Explorer]\(Azure Data Explorer へようこそ\) からの新しいデータの取り込み":::
 
@@ -48,7 +48,7 @@ ms.locfileid: "93293134"
 
     :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Web UI 上でのワンクリックでのインジェストの選択":::
 
-* Azure portal からウィザードにアクセスするには、左側のメニューから **[クエリ]** を選択し、 **データベース** または **テーブル** を右クリックして、 **[Ingest new data]\(新しいデータの取り込み\)** を選択します。
+* Azure portal からウィザードにアクセスするには、左側のメニューから **[クエリ]** を選択し、**データベース** または **テーブル** を右クリックして、 **[Ingest new data]\(新しいデータの取り込み\)** を選択します。
 
     :::image type="content" source="media/ingest-data-one-click/access-from-portal.png" alt-text="Azure portal からワンクリックでのインジェスト ウィザードにアクセスする":::
 
@@ -115,11 +115,12 @@ ms.locfileid: "93293134"
 * データ ソースが **コンテナー** の場合は、次のようになります。
     * Azure Data Explorer の[バッチ処理ポリシー](kusto/management/batchingpolicy.md)によりデータが集計されます。 
     * インジェストが完了すると、インジェスト レポートをダウンロードして、処理された各 BLOB のパフォーマンスを確認できます。 
-    * **[Create continuous ingestion]\(継続的なインジェストの作成\)** を選択し、 [Event Grid を使用して継続的なインジェスト](one-click-ingestion-new-table.md#create-continuous-ingestion-for-container)を設定することができます。
+    * **[Create continuous ingestion]\(継続的なインジェストの作成\)** を選択し、[Event Grid を使用して継続的なインジェスト](one-click-ingestion-new-table.md#create-continuous-ingestion-for-container)を設定することができます。
  
 ### <a name="initial-data-exploration"></a>初期データ探索
    
 インジェストが完了すると、ウィザードには、データの初期探索で **[クイック コマンド](one-click-ingestion-existing-table.md#explore-quick-queries-and-tools)** を使用するためのオプションが表示されます。
+
 
 ## <a name="next-steps"></a>次のステップ
 

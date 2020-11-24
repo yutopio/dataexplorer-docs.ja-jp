@@ -7,12 +7,13 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/26/2020
-ms.openlocfilehash: 114e3b00b35ff6dd30241cd6afc4666fdedf6f62
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.localizationpriority: high
+ms.openlocfilehash: 23bd17b54a1910633baabf2b78a1015f31eead5a
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349496"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512776"
 ---
 # <a name="visualize-data-with-azure-data-explorer-dashboardspreview"></a>Azure Data Explorer ダッシュボードを使用してデータを視覚化する (プレビュー)
 
@@ -76,7 +77,7 @@ Azure Data Explorer のダッシュボードには、次の 3 つの主な利点
 |**[変数名]**     |   クエリで使用されるパラメーターの名前。      |
 |**データの種類**    |    パラメーター値のデータ型。     |
 |**Pin as dashboard filter (ダッシュボード フィルターとしてピン留め)**   |   パラメーターベースのフィルターをダッシュボードにピン留めするか、ダッシュボードからピン留めを外します。       |
-|**ソース**     |    パラメーター値のソース。 <ul><li>**Fixed values (固定値)** :手動で導入される静的なフィルター値。 </li><li>**Query** : KQL クエリを使用して動的に導入される値。  </li></ul>    |
+|**ソース**     |    パラメーター値のソース。 <ul><li>**Fixed values (固定値)** :手動で導入される静的なフィルター値。 </li><li>**Query**: KQL クエリを使用して動的に導入される値。  </li></ul>    |
 |**Add a “Select all” value (「すべて選択」の値を追加)**    |   単一選択と複数選択のパラメーターの種類にのみ適用されます。 すべてのパラメーター値のデータを取得するために使用します。      |
 
 ## <a name="add-query"></a>クエリの追加

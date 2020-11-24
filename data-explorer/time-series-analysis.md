@@ -7,17 +7,18 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/07/2019
-ms.openlocfilehash: 8c1ad74af063fe0380fec24b2717d4fdafe319df
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.localizationpriority: high
+ms.openlocfilehash: d7046b8767413889bc77240032a2292deb7c89a3
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875312"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512997"
 ---
 # <a name="time-series-analysis-in-azure-data-explorer"></a>Azure データ エクスプローラーの時系列分析
 
 Azure データ エクスプローラー (ADX) は、クラウド サービスまたは IoT デバイスからのテレメトリ データの継続的なコレクションを実行します。 このデータは、サービスの正常性の監視、物理的な運用プロセス、および使用状況の傾向などのさまざまな情報について分析できます。 分析は、パターンをその一般的なベースラインのパターンと比較した偏差を調べるために、選択されたメトリックの時系列で実行されます。
-ADX には、複数の時系列の作成、操作、および分析のためのネイティブ サポートが含まれています。 このトピックでは、ADX を使用して**何千もの秒単位の時系列**を作成および分析して、ほぼリアルタイムの監視ソリューションとワークフローを可能にする方法について説明します。
+ADX には、複数の時系列の作成、操作、および分析のためのネイティブ サポートが含まれています。 このトピックでは、ADX を使用して **何千もの秒単位の時系列** を作成および分析して、ほぼリアルタイムの監視ソリューションとワークフローを可能にする方法について説明します。
 
 ## <a name="time-series-creation"></a>時系列の作成
 

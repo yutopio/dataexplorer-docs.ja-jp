@@ -7,12 +7,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/17/2020
-ms.openlocfilehash: 058a42cc21c6af9642d91231e6b1620315f94f55
-ms.sourcegitcommit: 313a91d2a34383b5a6e39add6c8b7fabb4f8d39a
+ms.localizationpriority: high
+ms.openlocfilehash: ec62c1d0dfe439ac77d7fce9e69af8e5c8a7a8a0
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/16/2020
-ms.locfileid: "90680688"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512793"
 ---
 # <a name="query-data-in-azure-data-lake-using-azure-data-explorer"></a>Azure Data Explorer を使用して Azure Data Lake でデータのクエリを実行する
 
@@ -138,7 +139,7 @@ external_table('ApiCalls') | take 10
 
 ## <a name="query-taxirides-external-table-in-the-help-cluster"></a>ヘルプ クラスターで *TaxiRides* 外部テーブルのクエリを実行する
 
-"*ヘルプ*" と呼ばれるテスト クラスターを使用して、さまざまな Azure Data Explorer 機能を試してください。 "*ヘルプ*" クラスターには、何十億ものタクシーの乗車情報を含む[ニューヨーク市のタクシー データセット](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)の外部テーブル定義が格納されています。
+"*ヘルプ*" と呼ばれるテスト クラスターを使用して、さまざまな Azure Data Explorer 機能を試してください。 "*ヘルプ*" クラスターには、何十億ものタクシーの乗車情報を含む [ニューヨーク市のタクシー データセット](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page)の外部テーブル定義が格納されています。
 
 ### <a name="create-external-table-taxirides"></a>外部テーブル *TaxiRides* を作成する 
 
@@ -217,7 +218,7 @@ dataformat=csv
 
 #### <a name="query-taxirides-external-table-without-partitioning"></a>パーティション分割を行わずに *TaxiRides* 外部テーブルのクエリを実行する
 
-外部テーブル *TaxiRides* で[このクエリを実行](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAAx3LSwqAMAwFwL3gHYKreh1xL7F9YrCtElP84OEV9zM4DZo5DsZjhGt6PqWTgL1p6+qhvaTEKjeI/FqyuZbGiwJf63QAi9vEL2UbAhtMEv6jyAH6+VhS9jOr1dULfUgAm2cAAAA=)して、データ セット全体で曜日別の乗車状況を示します。 
+外部テーブル *TaxiRides* で [このクエリを実行](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAAx3LSwqAMAwFwL3gHYKreh1xL7F9YrCtElP84OEV9zM4DZo5DsZjhGt6PqWTgL1p6+qhvaTEKjeI/FqyuZbGiwJf63QAi9vEL2UbAhtMEv6jyAH6+VhS9jOr1dULfUgAm2cAAAA=)して、データ セット全体で曜日別の乗車状況を示します。 
 
 ```kusto
 external_table("TaxiRides")
@@ -231,7 +232,7 @@ external_table("TaxiRides")
 
 #### <a name="query-taxirides-external-table-with-partitioning"></a>パーティション分割を行って TaxiRides 外部テーブルのクエリを実行する 
 
-外部テーブル *TaxiRides* に対して[このクエリを実行](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA13NQQqDMBQE0L3gHT6ukkVF3fQepXv5SQYMNWmIP6ilh68WuinM6jHMYBPkyPMobGao5s6bv3mHpdF19aZ1QgYlbx8ljY4F4gPIQFYgkvqJGrr+eun6I5ralv58OP27t5QQOPsXiOyzRFGazE6WzSh7wtnIiA75uISdOEtdfQDLWmP+ogAAAA==)すると、2017 年 1 月に使用されたタクシーの種類 (イエローまたはグリーン) が示されます。 
+外部テーブル *TaxiRides* に対して [このクエリを実行](https://dataexplorer.azure.com/clusters/help/databases/Samples?query=H4sIAAAAAAAAA13NQQqDMBQE0L3gHT6ukkVF3fQepXv5SQYMNWmIP6ilh68WuinM6jHMYBPkyPMobGao5s6bv3mHpdF19aZ1QgYlbx8ljY4F4gPIQFYgkvqJGrr+eun6I5ralv58OP27t5QQOPsXiOyzRFGazE6WzSh7wtnIiA75uISdOEtdfQDLWmP+ogAAAA==)すると、2017 年 1 月に使用されたタクシーの種類 (イエローまたはグリーン) が示されます。 
 
 ```kusto
 external_table("TaxiRides")

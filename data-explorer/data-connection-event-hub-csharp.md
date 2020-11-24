@@ -7,17 +7,18 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: c98c2a9781f167848989d1b55c70d1d9bda8e239
-ms.sourcegitcommit: 64fdef912cc925c4bdcae98183eb8d7c7a6392d7
+ms.openlocfilehash: f2f0011ea66b4951de9f4aa9eaca70b738b5e346
+ms.sourcegitcommit: 574296b9a84084de031684a65f32b6c1bd1a4858
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/29/2020
-ms.locfileid: "93027790"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "94714110"
 ---
 # <a name="create-an-event-hub-data-connection-for-azure-data-explorer-by-using-c"></a>C# を使用して Azure Data Explorer 用にイベント ハブ データ接続を作成する
 
 > [!div class="op_single_selector"]
 > * [ポータル](ingest-data-event-hub.md)
+> * [ワンクリック](one-click-event-hub.md)
 > * [C#](data-connection-event-hub-csharp.md)
 > * [Python](data-connection-event-hub-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-event-hub-resource-manager.md)
@@ -27,7 +28,7 @@ ms.locfileid: "93027790"
 
 ## <a name="prerequisites"></a>前提条件
 
-* Visual Studio 2019 をインストールしていない場合は、 **無料** の [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/) をダウンロードして使用できます。 Visual Studio のセットアップ中に、必ず **[Azure の開発]** を有効にしてください。
+* Visual Studio 2019 をインストールしていない場合は、**無料** の [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/) をダウンロードして使用できます。 Visual Studio のセットアップ中に、必ず **[Azure の開発]** を有効にしてください。
 * Azure サブスクリプションをお持ちでない場合は、開始する前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
 * [クラスターとデータベース](create-cluster-database-csharp.md)を作成します
 * [テーブルと列のマッピング](./net-sdk-ingest-data.md#create-a-table-on-your-test-cluster)を作成します

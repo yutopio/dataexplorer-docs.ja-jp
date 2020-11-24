@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/28/2020
-ms.openlocfilehash: 51f44d1a3cd29121a99e442f4033176b00b9e09f
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: 05f0055e5faf99d14864338db7f6ad6a4c99946e
+ms.sourcegitcommit: 0820454feb02ae489f3a86b688690422ae29d788
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349394"
+ms.lasthandoff: 11/19/2020
+ms.locfileid: "94932703"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-using-go"></a>Go を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -43,7 +43,7 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
 何らかの操作を実行する前に、プログラムによって Azure Data Explorer に対する認証が行われる必要があります。 [クライアント資格情報の認証の種類](/azure/developer/go/azure-sdk-authorization#use-environment-based-authentication)が、[auth.NewAuthorizerFromEnvironment](https://pkg.go.dev/github.com/Azure/go-autorest/autorest/azure/auth?tab=doc#NewAuthorizerFromEnvironment) によって使用されます。これによって、次の定義済み環境変数が検索されます: `AZURE_CLIENT_ID`、`AZURE_CLIENT_SECRET`、`AZURE_TENANT_ID`。
 
-次の例では、この手法を使用して [kusto.ClustersClient](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClustersClient) が作成される方法を示します。
+次の例では、この手法を使用して [kusto.ClustersClient](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v48.2.0+incompatible/services/kusto/mgmt/2020-02-15/kusto) が作成される方法を示します。
 
 ```go
 func getClustersClient(subscription string) kusto.ClustersClient {

@@ -7,12 +7,13 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 06/15/2020
-ms.openlocfilehash: 78666938417ce02d5320c56b247e1b854b842234
-ms.sourcegitcommit: 7fa9d0eb3556c55475c95da1f96801e8a0aa6b0f
+ms.localizationpriority: high
+ms.openlocfilehash: 479bd512f759a20123e5eb94fcc9ec54e2a13455
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/11/2020
-ms.locfileid: "91942337"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95513304"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>クイック スタート:Azure Data Explorer の Web UI でデータのクエリを実行する
 
@@ -95,7 +96,7 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
    このクエリでは 1 番目と同じレコードが返されますが、`project` ステートメントで指定されている列のみが含まれます。 結果は次のテーブルのようになります。
 
-    :::image type="content" source="media/web-query-data/result-set-02.png" alt-text="10 件のストーム イベントの開始時刻、終了時刻、エピソード、イベント ID、州、イベントの種類を一覧表示した表のスクリーンショット。" border="false":::
+    :::image type="content" source="media/web-query-data/result-set-02.png" alt-text="10 件のストーム イベントの開始時刻、終了時刻、州、イベントの種類、被害の特性、体験談のエピソードを一覧表示した表のスクリーンショット。" border="false":::
 
 1. クエリ ウィンドウの上部にある **[Recall]\(リコール\)** を選択します。
 
@@ -131,7 +132,7 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
 1. グリッドで **California** を展開し、その州のレコードを確認します。
 
-    :::image type="content" source="media/web-query-data/result-set-03.png" alt-text="10 件のストーム イベントの開始時刻、終了時刻、エピソード、イベント ID、州、イベントの種類を一覧表示した表のスクリーンショット。" border="false":::
+    :::image type="content" source="media/web-query-data/result-set-03.png" alt-text="クエリ結果のグリッドのスクリーンショット。California グループが 3 行に展開されて、California のイベントのデータが表示されています。" border="false":::
 
     この種類のグループ化は、探索的分析を行うときに役に立ちます。
 
@@ -175,7 +176,7 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
 1. クエリ ウィンドウの上部にある **[Share]\(共有\)** を選択します。 
 
-:::image type="content" source="media/web-query-data/share-menu.png" alt-text="10 件のストーム イベントの開始時刻、終了時刻、エピソード、イベント ID、州、イベントの種類を一覧表示した表のスクリーンショット。":::
+:::image type="content" source="media/web-query-data/share-menu.png" alt-text="共有メニュー":::
 
 ドロップダウンでは、次のオプションを使用できます。
 * リンクをクリップボードに保存
@@ -194,7 +195,7 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
 1. リンクを新しいブラウザー ウィンドウに貼り付けます。 クエリを実行した後の結果は次のようになります。
 
-    :::image type="content" source="media/web-query-data/shared-query.png" alt-text="10 件のストーム イベントの開始時刻、終了時刻、エピソード、イベント ID、州、イベントの種類を一覧表示した表のスクリーンショット。":::
+    :::image type="content" source="media/web-query-data/shared-query.png" alt-text="共有クエリのディープ リンク":::
 
 ### <a name="pin-to-dashboard"></a>[ダッシュボードにピン留めする]
 
@@ -211,7 +212,7 @@ Web UI でクエリを使用してデータ探索を完了し、必要なデー�
     1. **[View dashboard after creation]\(作成後にダッシュボードを表示する\)** チェックボックスをオンにします (新しいダッシュボードの場合)。
     1. **[ピン留め]** の選択
 
-    :::image type="content" source="media/web-query-data/pin-to-dashboard.png" alt-text="10 件のストーム イベントの開始時刻、終了時刻、エピソード、イベント ID、州、イベントの種類を一覧表示した表のスクリーンショット。":::
+    :::image type="content" source="media/web-query-data/pin-to-dashboard.png" alt-text="[ダッシュボードにピン留めする] ペイン":::
     
 > [!NOTE]
 > **[ダッシュボードにピン留めする]** では、選択したクエリのみがピン留めされます。 ダッシュボードのデータ ソースを作成し、レンダリング コマンドをダッシュボードでビジュアルに変換するには、データベースの一覧で、関連するデータベースを選択する必要があります。
@@ -220,7 +221,7 @@ Web UI でクエリを使用してデータ探索を完了し、必要なデー�
 
 クエリ結果を CSV ファイルにエクスポートするには、 **[ファイル]**  >  **[CSV にエクスポート]** を選択します。
 
-:::image type="content" source="media/web-query-data/export-results.png" alt-text="10 件のストーム イベントの開始時刻、終了時刻、エピソード、イベント ID、州、イベントの種類を一覧表示した表のスクリーンショット。":::
+:::image type="content" source="media/web-query-data/export-results.png" alt-text="結果を CSV ファイルにエクスポートする":::
 
 ## <a name="provide-feedback"></a>フィードバックの提供
 

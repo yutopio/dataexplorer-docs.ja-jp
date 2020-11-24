@@ -8,12 +8,12 @@ ms.topic: include
 ms.date: 09/07/2018
 ms.author: orspodek
 ms.custom: include file, devx-track-azurecli
-ms.openlocfilehash: e21bd487ff110068ceee4a737a27157068e1f17a
-ms.sourcegitcommit: 1c836079c713db3aef33529e6a15af47e2984e7f
+ms.openlocfilehash: 035435d535a2b67b0de8c4fb9e2af9b1ea1dc5ff
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/23/2020
-ms.locfileid: "92470899"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95394713"
 ---
 このセクションでは、Azure CLI を使用して、この記事用のデバイス ID を作成します。 デバイス ID には大文字と小文字の区別があります。
 
@@ -36,4 +36,3 @@ ms.locfileid: "92470899"
 
 結果として得られたデバイスの接続文字列をメモしておきます。 このデバイス接続文字列は、デバイス アプリからデバイスとして IoT Hub に接続する際に使用します。
 
-<!-- images and links -->

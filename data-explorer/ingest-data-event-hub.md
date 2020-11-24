@@ -7,17 +7,19 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 69438457dfcbfc4e29805d5d193c227538910e45
-ms.sourcegitcommit: 97404e9ed4a28cd497d2acbde07d00149836d026
+ms.localizationpriority: high
+ms.openlocfilehash: 798a8b201ee87d5c43aeb31d6af515d41c516bef
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/21/2020
-ms.locfileid: "90832660"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512215"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>イベント ハブから Azure Data Explorer にデータを取り込む
 
 > [!div class="op_single_selector"]
 > * [ポータル](ingest-data-event-hub.md)
+> * [ワンクリック](one-click-event-hub.md)
 > * [C#](data-connection-event-hub-csharp.md)
 > * [Python](data-connection-event-hub-python.md)
 > * [Azure Resource Manager テンプレート](data-connection-event-hub-resource-manager.md)
@@ -141,10 +143,10 @@ Azure データ エクスプローラーには、Event Hubs からの取り込�
    |---|---|---|
    | テーブル名 | *TestTable* | **TestDatabase** に作成したテーブル。 |
    | データ形式 | *JSON* | サポートされている形式は、Avro、CSV、JSON、MULTILINE JSON、ORC、PARQUET、PSV、SCSV、SOHSV、TSV、TXT、TSVE、APACHEAVRO、および W3CLOG です。 |
-   | マッピング | *TestMapping* | **TestDatabase** に作成した[マッピング](kusto/management/mappings.md)。これにより、受信データを **TestTable** の列名とデータ型にマッピングします。 JSON、MULTILINE JSON、AVRO では必須。その他の形式では省略可能。|
+   | マッピング | *TestMapping* | **TestDatabase** に作成した [マッピング](kusto/management/mappings.md)。これにより、受信データを **TestTable** の列名とデータ型にマッピングします。 JSON、MULTILINE JSON、AVRO では必須。その他の形式では省略可能。|
     
    > [!NOTE]
-   > * **既定のルーティング設定**をすべて指定する必要はありません。 部分的な設定も受け入れられます。
+   > * **既定のルーティング設定** をすべて指定する必要はありません。 部分的な設定も受け入れられます。
    > * データ接続の作成後にエンキューされたイベントのみが取り込まれたます。
 
 1. **［作成］** を選択します 
@@ -155,8 +157,7 @@ Azure データ エクスプローラーには、Event Hubs からの取り込�
 > * システム プロパティは、単一レコードのイベントに対してサポートされています。
 > * `csv` マッピングの場合、レコードの先頭にプロパティが追加されます。 `json` マッピングの場合、ドロップダウン リストに表示される名前に従ってプロパティが追加されます。
 
-テーブルの **[データ ソース]** セクションで **[イベント システムのプロパティ]** を選択した場合は、テーブル スキーマとマッピングに[システム プロパティ](ingest-data-event-hub-overview.md#system-properties)を含める必要があります。
-
+テーブルの **[データ ソース]** セクションで **[イベント システムのプロパティ]** を選択した場合は、テーブル スキーマとマッピングに [システム プロパティ](ingest-data-event-hub-overview.md#system-properties)を含める必要があります。
 
 ## <a name="copy-the-connection-string"></a>接続文字列のコピー
 

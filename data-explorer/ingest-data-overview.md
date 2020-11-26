@@ -7,12 +7,13 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/18/2020
-ms.openlocfilehash: 8e8673a4502df6167cb2979678588046fc6d5b1b
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.localizationpriority: high
+ms.openlocfilehash: 5304d2fcce23d6143faebb9326a6ab960a964f22
+ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343251"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95512402"
 ---
 # <a name="azure-data-explorer-data-ingestion-overview"></a>Azure Data Explorer のデータ インジェスト概要 
 
@@ -32,7 +33,7 @@ Azure Data Explorer は、外部ソースからデータをプルし、保留中
 
 * **[インジェストのプロパティ](ingestion-properties.md)** :データの取り込まれる方法に影響を与えるプロパティ (タグ付け、マッピング、作成時間など)。
 
-* **アクセス許可** :データを取り込むプロセスでは、 [データベース インジェスター レベルのアクセス許可](kusto/management/access-control/role-based-authorization.md)が必要です。 クエリなどの他の操作では、データベース管理者、データベース ユーザー、またはテーブル管理者のアクセス許可が必要になる場合があります。
+* **アクセス許可**:データを取り込むプロセスでは、[データベース インジェスター レベルのアクセス許可](kusto/management/access-control/role-based-authorization.md)が必要です。 クエリなどの他の操作では、データベース管理者、データベース ユーザー、またはテーブル管理者のアクセス許可が必要になる場合があります。
 
 ## <a name="batching-vs-streaming-ingestion"></a>バッチ処理とストリーミング インジェスト
 
@@ -62,13 +63,13 @@ Azure Data Explorer では複数のインジェスト方法がサポートされ
 
 ### <a name="ingestion-using-connectors-and-plugins"></a>コネクタとプラグインを使用したインジェスト
 
-* **Logstash プラグイン** 。 [Logstash から Azure Data Explorer へのデータの取り込み](ingest-data-logstash.md)に関するページを参照してください。
+* **Logstash プラグイン**。[Logstash から Azure Data Explorer へのデータの取り込み](ingest-data-logstash.md)に関するページを参照してください。
 
-* **Kafka コネクタ** 。 [Kafka から Azure Data Explorer へのデータの取り込み](ingest-data-kafka.md)に関するページを参照してください。
+* **Kafka コネクタ**。[Kafka から Azure Data Explorer へのデータの取り込み](ingest-data-kafka.md)に関するページを参照してください。
 
 * **[Power Automate](https://flow.microsoft.com/)** :Azure Data Explorer への自動化されたワークフロー パイプライン。 Power Automate を使用してクエリを実行し、クエリ結果をトリガーとして使用して事前設定されたアクションを実行することができます。 「[Power Automate に接続する Azure Data Explorer コネクタ (プレビュー)](flow.md)」を参照してください。
 
-* **Apache Spark コネクタ** :任意の Spark クラスターで実行できるオープンソース プロジェクト。 Azure Data Explorer と Spark クラスター間でデータを移動するためのデータ ソースとデータ シンクを実装します。 データ ドリブン シナリオをターゲットとする、高速でスケーラブルなアプリケーションを作成することができます。 「[Apache Spark 用の Azure Data Explorer コネクタ](spark-connector.md)」を参照してください。
+* **Apache Spark コネクタ**:任意の Spark クラスターで実行できるオープンソース プロジェクト。 Azure Data Explorer と Spark クラスター間でデータを移動するためのデータ ソースとデータ シンクを実装します。 データ ドリブン シナリオをターゲットとする、高速でスケーラブルなアプリケーションを作成することができます。 「[Apache Spark 用の Azure Data Explorer コネクタ](spark-connector.md)」を参照してください。
 
 ### <a name="programmatic-ingestion-using-sdks"></a>SDK を使用したプログラムによるインジェスト
 
@@ -98,9 +99,9 @@ Azure データ エクスプローラーで提供されている SDK を使用�
 
 Kusto クエリ言語 (KQL) のコマンドを使用してデータをエンジンに直接取り込む方法は多数あります。 この方法ではデータ管理サービスがバイパスされるため、これは探索およびプロトタイプにのみ適しています。 運用環境または大規模なシナリオでは、この方法を使用しないでください。
 
-  * **インライン インジェスト** :取り込まれるデータをコマンド テキスト自体の一部として、制御コマンド [.ingest inline](kusto/management/data-ingestion/ingest-inline.md) がエンジンに送信されます。 この方法は、即席のテストを目的としたものです。
+  * **インライン インジェスト**:取り込まれるデータをコマンド テキスト自体の一部として、制御コマンド [.ingest inline](kusto/management/data-ingestion/ingest-inline.md) がエンジンに送信されます。 この方法は、即席のテストを目的としたものです。
 
-  * **クエリからの取り込み** :クエリまたはコマンドの結果としてデータを間接的に指定し、制御コマンド [.set、.append、.set-or-append、または .set-or-replace](kusto/management/data-ingestion/ingest-from-query.md) がエンジンに送信されます。
+  * **クエリからの取り込み**:クエリまたはコマンドの結果としてデータを間接的に指定し、制御コマンド [.set、.append、.set-or-append、または .set-or-replace](kusto/management/data-ingestion/ingest-from-query.md) がエンジンに送信されます。
 
   * **ストレージからの取り込み (プル)** :エンジンによってアクセス可能であり、コマンドで指定された外部ストレージ (Azure Blob Storage など) にデータを格納して、制御コマンド [.ingest into](kusto/management/data-ingestion/ingest-from-storage.md) がエンジンに送信されます。
 
@@ -118,7 +119,7 @@ Kusto クエリ言語 (KQL) のコマンドを使用してデータをエンジ�
 | [**IoT Hub**](ingest-data-iot-hub-overview.md) | [サポートされるデータ形式](ingest-data-iot-hub-overview.md#data-format)  | 該当なし | バッチ処理、ストリーミング | IoT メッセージ、IoT イベント、IoT プロパティ | |
 | [**イベント ハブ**](ingest-data-event-hub-overview.md) | [サポートされるデータ形式](ingest-data-event-hub-overview.md#data-format) | 該当なし | バッチ処理、ストリーミング | メッセージ、イベント | |
 | [**Event Grid**](ingest-data-event-grid-overview.md) | [サポートされるデータ形式](ingest-data-event-grid-overview.md#data-format) | 非圧縮で 1 GB | バッチ処理 | Azure ストレージからの継続的なインジェスト、Azure ストレージ内の外部データ | 100 KB が最適なファイル サイズ。BLOB の名前変更と BLOB の作成に使用される |
-| [**.NET SDK**](./net-sdk-ingest-data.md) | すべての形式がサポートされる | 非圧縮で 1 GB (注を参照) | バッチ処理、ストリーミング、直接 | 組織のニーズに合わせて独自のコードを作成する |
+| [ **.NET SDK**](./net-sdk-ingest-data.md) | すべての形式がサポートされる | 非圧縮で 1 GB (注を参照) | バッチ処理、ストリーミング、直接 | 組織のニーズに合わせて独自のコードを作成する |
 | [**Python**](python-ingest-data.md) | すべての形式がサポートされる | 非圧縮で 1 GB (注を参照) | バッチ処理、ストリーミング、直接 | 組織のニーズに合わせて独自のコードを作成する |
 | [**Node.js**](node-ingest-data.md) | すべての形式がサポートされる | 非圧縮で 1 GB (注を参照) | バッチ処理、ストリーミング、直接 | 組織のニーズに合わせて独自のコードを作成する |
 | [**Java**](kusto/api/java/kusto-java-client-library.md) | すべての形式がサポートされる | 非圧縮で 1 GB (注を参照) | バッチ処理、ストリーミング、直接 | 組織のニーズに合わせて独自のコードを作成する |

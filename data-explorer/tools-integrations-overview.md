@@ -8,12 +8,12 @@ ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 07/08/2020
-ms.openlocfilehash: 71f00cf921609432860a94061be7411e484fd0c9
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: f996c3e6abbd145e963765f8aa1457f7ddddeb7e
+ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349326"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95324773"
 ---
 # <a name="azure-data-explorer-tools-and-integrations-overview"></a>Azure Data Explorer のツールと統合の概要
 
@@ -57,6 +57,13 @@ Azure Data Explorer クエリを実行するために使用できるツールが
 * [Web UI](web-query-data.md)
 * [Kusto.Cli](kusto/tools/kusto-cli.md)
 
+### <a name="query-open-source-repositories"></a>オープンソース リポジトリにクエリを実行する
+
+次のオープンソース リポジトリには、Kusto クエリ言語 (KQL) のパーサーとエディターのソース コードが含まれています。
+
+* [Kusto クエリ言語パーサー](https://github.com/microsoft/Kusto-Query-Language) - Kusto クエリ言語のパーサーおよびセマンティック ツリー用の .NET Core リポジトリ。
+* [Monaco エディター用の Kusto クエリ言語プラグイン](https://github.com/Azure/monaco-kusto) - Web および電子ベースのアプリケーションに埋め込むことができる Kusto クエリ言語エディター。 
+
 ### <a name="query-integrations"></a>クエリの統合
 
 * [Azure Monitor](query-monitor-data.md)
@@ -93,4 +100,3 @@ Azure Data Explorer クエリを実行するために使用できるツールが
 * [Azure Pipelines](devops.md) 
 * [Kusto の同期](kusto/tools/synckusto.md) 
 
-<!--Open Source Tools-->

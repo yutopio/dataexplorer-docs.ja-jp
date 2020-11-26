@@ -7,12 +7,12 @@ ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/16/2020
-ms.openlocfilehash: 606ae915e822cf4f2c02ac590a5bb05bdb17f28a
-ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
+ms.openlocfilehash: fed4027d946792448f2c564d8daa019c991b50d2
+ms.sourcegitcommit: 3af95ea6a6746441ac71b1a217bbb02ee23d5f28
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/09/2020
-ms.locfileid: "94373903"
+ms.lasthandoff: 11/23/2020
+ms.locfileid: "95473584"
 ---
 # <a name="monitor-azure-data-explorer-ingestion-commands-and-queries-using-diagnostic-logs"></a>診断ログを使用して Azure Data Explorer のインジェスト、コマンド、およびクエリを監視する
 
@@ -38,13 +38,14 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 >
 > インジェスト ログは、ストリーミング インジェスト、エンジンへの直接インジェスト、クエリからのインジェスト、および set-or-append コマンドではサポートされていません。
 
-* **成功したインジェスト操作** :ログには、正常に完了したインジェスト操作に関する情報が含まれています。
-* **失敗したインジェスト操作** :ログには、失敗したインジェスト操作に関する詳細情報 (エラーの詳細を含む) が含まれています。 
+* **成功したインジェスト操作**:ログには、正常に完了したインジェスト操作に関する情報が含まれています。
+* **失敗したインジェスト操作**:ログには、失敗したインジェスト操作に関する詳細情報 (エラーの詳細を含む) が含まれています。 
+* **インジェスト バッチ処理の操作**:これらのログには、インジェストの準備ができているバッチの詳細な統計情報 (期間、バッチ サイズ、BLOB 数) が含まれています。
 
 # <a name="commands-and-queries"></a>[コマンドとクエリ](#tab/commands-and-queries)
 
-* **コマンド** :これらのログには、最終的な状態に達した管理者コマンドに関する情報が含まれています。
-* **クエリ** :これらのログには、最終的な状態に達したクエリに関する詳細情報が含まれています。 
+* **コマンド**:これらのログには、最終的な状態に達した管理者コマンドに関する情報が含まれています。
+* **クエリ**:これらのログには、最終的な状態に達したクエリに関する詳細情報が含まれています。 
 
     > [!NOTE]
     > クエリ ログのデータには、クエリのテキストは含まれていません。
@@ -67,16 +68,16 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
     :::image type="content" source="media/using-diagnostic-logs/configure-diagnostics-settings.png" alt-text="診断設定の構成":::
 
-    1. 診断設定の **[名前]** を選択します。
-    1. ストレージ アカウント、イベント ハブ、Log Analytics から 1 つ以上のターゲットを選択します。
-    1. 収集するログ (`SucceededIngestion`、 `FailedIngestion`、 `Command`、または `Query`) を選択します。
+    1. **診断設定の名前** を入力します。
+    1. Log Analytics ワークスペース、ストレージ アカウント、イベント ハブから 1 つ以上のターゲットを選択します。
+    1. 収集するログ (`SucceededIngestion`、`FailedIngestion`、`Command`、`Query`、`TableUsageStatistics`、または `TableDetails`) を選択します。
     1. 収集する [[メトリック]](using-metrics.md#supported-azure-data-explorer-metrics) を選択します (省略可能)。  
     1. **[保存]** を選択して、新しい診断ログの設定とメトリックを保存します。
 
 新しい設定は数分で設定されます。 ログは、構成したアーカイブ ターゲット (ストレージ アカウント、イベント ハブ、Log Analytics) に表示されます。 
 
 > [!NOTE]
-> If you send logs to Log Analytics, the `SucceededIngestion`, `FailedIngestion`, `Command`, and `Query` logs will be stored in Log Analytics tables named: `SucceededIngestion`, `FailedIngestion`, `ADXCommand`, `ADXQuery`, respectively.
+> Log Analytics にログを送信すると、`SucceededIngestion`、`FailedIngestion`、`Command`、`Query` の各ログは、それぞれ `SucceededIngestion`、`FailedIngestion`、`ADXIngestionBatching`、`ADXCommand`、`ADXQuery` という名前の Log Analytics テーブルに格納されます。
 
 ## <a name="diagnostic-logs-schema"></a>診断ログのスキーマ
 
@@ -94,7 +95,7 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 |resourceId         |Azure Resource Manager リソース ID
 |operationName      |操作の名前:'MICROSOFT.KUSTO/CLUSTERS/INGEST/ACTION'
 |operationVersion   |スキーマのバージョン:'1.0' 
-|category           |操作のカテゴリ。 `SucceededIngestion` または `FailedIngestion`。 [正常な運用](#successful-ingestion-operation-log)と[運用の失敗](#failed-ingestion-operation-log)それぞれでプロパティは異なります。
+|category           |操作のカテゴリ。 `SucceededIngestion`、`FailedIngestion` または `IngestionBatching`。 [正常な操作](#successful-ingestion-operation-log)、[失敗した操作](#failed-ingestion-operation-log)、[バッチ処理の操作](#ingestion-batching-operation-log)のプロパティはそれぞれ異なります。
 |properties         |操作の詳細情報。
 
 #### <a name="successful-ingestion-operation-log"></a>成功したインジェスト操作のログ
@@ -110,13 +111,13 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
     "category": "SucceededIngestion",
     "properties":
     {
-        "succeededOn": "2019-05-27 07:55:05.3693628",
-        "operationId": "b446c48f-6e2f-4884-b723-92eb6dc99cc9",
-        "database": "Samples",
-        "table": "StormEvents",
-        "ingestionSourceId": "66a2959e-80de-4952-975d-b65072fc571d",
-        "ingestionSourcePath": "https://kustoingestionlogs.blob.core.windows.net/sampledata/events8347293.json",
-        "rootActivityId": "d0bd5dd3-c564-4647-953e-05670e22a81d"
+        "SucceededOn": "2019-05-27 07:55:05.3693628",
+        "OperationId": "b446c48f-6e2f-4884-b723-92eb6dc99cc9",
+        "Database": "Samples",
+        "Table": "StormEvents",
+        "IngestionSourceId": "66a2959e-80de-4952-975d-b65072fc571d",
+        "IngestionSourcePath": "https://kustoingestionlogs.blob.core.windows.net/sampledata/events8347293.json",
+        "RootActivityId": "d0bd5dd3-c564-4647-953e-05670e22a81d"
     }
 }
 ```
@@ -124,13 +125,13 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
 |名前               |説明
 |---                |---
-|succeededOn        |インジェストの完了時刻
-|operationId        |Azure Data Explorer インジェスト操作 ID
-|database           |ターゲット データベースの名前
-|table              |ターゲット テーブルの名前
-|ingestionSourceId  |インジェスト データ ソースの ID
-|ingestionSourcePath|インジェスト データ ソースまたは BLOB URI のパス
-|rootActivityId     |アクティビティ ID
+|SucceededOn        |インジェストの完了時刻
+|OperationId        |Azure Data Explorer インジェスト操作 ID
+|データベース           |ターゲット データベースの名前
+|テーブル              |ターゲット テーブルの名前
+|IngestionSourceId  |インジェスト データ ソースの ID
+|IngestionSourcePath|インジェスト データ ソースまたは BLOB URI のパス
+|RootActivityId     |アクティビティ ID
 
 #### <a name="failed-ingestion-operation-log"></a>インジェスト操作の失敗ログ
 
@@ -165,18 +166,58 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
 |名前               |説明
 |---                |---
-|failedOn           |インジェストの完了時刻
-|operationId        |Azure Data Explorer インジェスト操作 ID
-|database           |ターゲット データベースの名前
-|table              |ターゲット テーブルの名前
-|ingestionSourceId  |インジェスト データ ソースの ID
-|ingestionSourcePath|インジェスト データ ソースまたは BLOB URI のパス
-|rootActivityId     |アクティビティ ID
-|details            |エラーとエラーメッセージの詳しい説明
-|errorCode          |エラー コード 
-|failureStatus      |`Permanent` または `Transient`。 一時的なエラーは、再試行することで成功する可能性があります。
-|originatesFromUpdatePolicy|エラーが更新ポリシーによって発生した場合は True です
-|shouldRetry        |再試行が成功した場合は True です
+|FailedOn           |インジェストの完了時刻
+|OperationId        |Azure Data Explorer インジェスト操作 ID
+|データベース           |ターゲット データベースの名前
+|テーブル              |ターゲット テーブルの名前
+|IngestionSourceId  |インジェスト データ ソースの ID
+|IngestionSourcePath|インジェスト データ ソースまたは BLOB URI のパス
+|RootActivityId     |アクティビティ ID
+|詳細            |エラーとエラーメッセージの詳しい説明
+|ErrorCode          |エラー コード 
+|FailureStatus      |`Permanent` または `Transient`。 一時的なエラーは、再試行することで成功する可能性があります。
+|OriginatesFromUpdatePolicy|エラーが更新ポリシーによって発生した場合は True です
+|ShouldRetry        |再試行が成功した場合は True です
+
+#### <a name="ingestion-batching-operation-log"></a>インジェスト バッチ処理の操作ログ
+
+**例:**
+
+```json
+{
+  "resourceId": "/SUBSCRIPTIONS/12534EB3-8109-4D84-83AD-576C0D5E1D06/RESOURCEGROUPS/KEREN/PROVIDERS/MICROSOFT.KUSTO/CLUSTERS/KERENEUS",
+  "time": "2020-05-27T07:55:05.3693628Z",
+  "operationVersion": "1.0",
+  "operationName": "MICROSOFT.KUSTO/CLUSTERS/INGESTIONBATCHING/ACTION",
+  "category": "IngestionBatching",
+  "correlationId": "2bb51038-c7dc-4ebd-9d7f-b34ece4cb735",
+  "properties": {
+    "Database": "Samples",
+    "Table": "StormEvents",
+    "BatchingType": "Size",
+    "SourceCreationTime": "2020-05-27 07:52:04.9623640",
+    "BatchTimeSeconds": 215.5,
+    "BatchSizeBytes": 2356425,
+    "DataSourcesInBatch": 4,
+    "RootActivityId": "2bb51038-c7dc-4ebd-9d7f-b34ece4cb735"
+  }
+}
+
+```
+**インジェスト バッチ処理操作の診断ログのプロパティ**
+
+|名前               |説明
+|---                   |---
+| TimeGenerated        | このイベントが生成された時刻 (UTC) |
+| データベース             | ターゲット テーブルを保有するデータベースの名前 |
+| テーブル                | データ取り込み先のターゲット テーブルの名前 |
+| BatchingType         | バッチ処理の種類: バッチが、バッチ処理ポリシーによって設定されたバッチ処理時間、データ サイズ、またはファイル数の上限に達したかどうか |
+| SourceCreationTime   | このバッチ内の BLOB が作成された最早時刻 (UTC) |
+| BatchTimeSeconds     | このバッチの合計バッチ処理時間 (秒) |
+| BatchSizeBytes       | このバッチ内のデータの非圧縮サイズの合計 (バイト) |
+| DataSourcesInBatch   | このバッチ内のデータ ソースの数 |
+| RootActivityId       | 操作のアクティビティ ID |
+
 
 # <a name="commands-and-queries"></a>[コマンドとクエリ](#tab/commands-and-queries)
 

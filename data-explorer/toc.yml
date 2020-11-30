@@ -1371,6 +1371,8 @@
           href: ./kusto/query/re2.md
         - name: SQL から Kusto のチート シート
           href: ./kusto/query/sqlcheatsheet.md
+        - name: Splunk から Kusto のチート シート
+          href: ./kusto/query/splunk-cheat-sheet.md
     - name: クエリ ツール
       items:
         - name: Kusto.Explorer
@@ -1838,24 +1840,37 @@
     - name: 関数ライブラリ
       items:
         - name: 関数の一覧
+          displayName: functions library
           href: kusto/functions-library/functions-library.md
         - name: kmeans_fl()
+          displayName: functions library
           href: kusto/functions-library/kmeans-fl.md
         - name: predict_fl()
+          displayName: functions library
           href: kusto/functions-library/predict-fl.md
         - name: predict_onnx_fl()
+          displayName: functions library
           href: kusto/functions-library/predict-onnx-fl.md
         - name: quantize_fl()
+          displayName: functions library
           href: kusto/functions-library/quantize-fl.md
         - name: series_dot_product_fl()
+          displayName: functions library
           href: kusto/functions-library/series-dot-product-fl.md
+        - name: series_downsample_fl()
+          displayName: functions library
+          href: kusto/functions-library/series-downsample-fl.md
         - name: series_exp_smoothing_fl()
+          displayName: functions library
           href: kusto/functions-library/series-exp-smoothing-fl.md
         - name: series_fit_poly_fl()
+          displayName: functions library
           href: kusto/functions-library/series-fit-poly-fl.md
         - name: series_moving_avg_fl()
+          displayName: functions library
           href: kusto/functions-library/series-moving-avg-fl.md
         - name: series_rolling_fl()
+          displayName: functions library
           href: kusto/functions-library/series-rolling-fl.md
     - name: Azure Policy の組み込み
       displayName: 'samples, policies, definitions'

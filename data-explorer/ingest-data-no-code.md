@@ -206,7 +206,7 @@ Azure Data Explorer の *TestDatabase* データベースで **[クエリ]** を
 
 ### <a name="create-the-target-tables"></a>ターゲット テーブルを作成する
 
-Azure Monitor ログの構造は表形式ではありません。 データを操作し、各イベントを 1 つまたは複数のレコードに展開します。 生データは、アクティビティ ログの場合は *ActivityLogsRawRecords* 、診断メトリックとログの場合は *DiagnosticRawRecords* という中間テーブルに取り込まれます。 その時点で、データを操作および展開します。 更新ポリシーを使用すると、展開されたデータは、アクティビティ ログの場合は *ActivityLogs* テーブル、診断メトリックの場合は *DiagnosticMetrics* 、診断ログの場合は *DiagnosticLogs* に取り込まれます。 つまり、アクティビティ ログを取り込むには 2 つの異なるテーブルを作成し、診断メトリックと診断ログを取り込むには 3 つの異なるテーブルを作成する必要があります。
+Azure Monitor ログの構造は表形式ではありません。 データを操作し、各イベントを 1 つまたは複数のレコードに展開します。 生データは、アクティビティ ログの場合は *ActivityLogsRawRecords*、診断メトリックとログの場合は *DiagnosticRawRecords* という中間テーブルに取り込まれます。 その時点で、データを操作および展開します。 更新ポリシーを使用すると、展開されたデータは、アクティビティ ログの場合は *ActivityLogs* テーブル、診断メトリックの場合は *DiagnosticMetrics*、診断ログの場合は *DiagnosticLogs* に取り込まれます。 つまり、アクティビティ ログを取り込むには 2 つの異なるテーブルを作成し、診断メトリックと診断ログを取り込むには 3 つの異なるテーブルを作成する必要があります。
 
 Azure Data Explorer の Web UI を使用して、Azure Data Explorer データベースにターゲット テーブルを作成します。
 
@@ -327,7 +327,7 @@ Azure Data Explorer の Web UI を使用して、Azure Data Explorer データ�
     }
     ```
 
-2. [更新ポリシー](kusto/management/updatepolicy.md)をターゲット テーブルに追加します。 このポリシーでは、 *DiagnosticRawRecords* 中間データ テーブルに新しく取り込まれたデータに対してクエリが自動的に実行され、その結果が *DiagnosticMetrics* テーブルに取り込まれます。
+2. [更新ポリシー](kusto/management/updatepolicy.md)をターゲット テーブルに追加します。 このポリシーでは、*DiagnosticRawRecords* 中間データ テーブルに新しく取り込まれたデータに対してクエリが自動的に実行され、その結果が *DiagnosticMetrics* テーブルに取り込まれます。
 
     ```kusto
     .alter table DiagnosticMetrics policy update @'[{"Source": "DiagnosticRawRecords", "Query": "DiagnosticMetricsExpand()", "IsEnabled": "True", "IsTransactional": true}]'
@@ -360,7 +360,7 @@ Azure Data Explorer の Web UI を使用して、Azure Data Explorer データ�
     }
     ```
 
-2. [更新ポリシー](kusto/management/updatepolicy.md)をターゲット テーブルに追加します。 このポリシーでは、 *DiagnosticRawRecords* 中間データ テーブルに新しく取り込まれたデータに対してクエリが自動的に実行され、その結果が *DiagnosticLogs* テーブルに取り込まれます。
+2. [更新ポリシー](kusto/management/updatepolicy.md)をターゲット テーブルに追加します。 このポリシーでは、*DiagnosticRawRecords* 中間データ テーブルに新しく取り込まれたデータに対してクエリが自動的に実行され、その結果が *DiagnosticLogs* テーブルに取り込まれます。
 
     ```kusto
     .alter table DiagnosticLogs policy update @'[{"Source": "DiagnosticRawRecords", "Query": "DiagnosticLogsExpand()", "IsEnabled": "True", "IsTransactional": true}]'
@@ -390,7 +390,7 @@ Azure Data Explorer の Web UI を使用して、Azure Data Explorer データ�
     }
     ```
 
-2. [更新ポリシー](kusto/management/updatepolicy.md)をターゲット テーブルに追加します。 このポリシーでは、 *ActivityLogsRawRecords* 中間データ テーブルに新しく取り込まれたデータに対してクエリが自動的に実行され、その結果が *ActivityLogs* テーブルに取り込まれます。
+2. [更新ポリシー](kusto/management/updatepolicy.md)をターゲット テーブルに追加します。 このポリシーでは、*ActivityLogsRawRecords* 中間データ テーブルに新しく取り込まれたデータに対してクエリが自動的に実行され、その結果が *ActivityLogs* テーブルに取り込まれます。
 
     ```kusto
     .alter table ActivityLogs policy update @'[{"Source": "ActivityLogsRawRecords", "Query": "ActivityLogRecordsExpand()", "IsEnabled": "True", "IsTransactional": true}]'
@@ -445,9 +445,9 @@ Azure 診断設定により、ストレージ アカウントまたはイベン�
       ![[診断設定] ウィンドウ](media/ingest-data-no-code/diagnostic-settings-window.png)
 
 1. **[イベント ハブの選択]** ウィンドウで、自分が作成したイベント ハブに診断ログからデータをエクスポートする方法を構成します。
-    1. **[イベント ハブの名前空間の選択]** リストで、 *AzureMonitoringData* を選択します。
-    1. **[イベント ハブ名を選択する]** リストで、 *DiagnosticData* を選択します。
-    1. **[イベント ハブ ポリシー名の選択]** リストで、 **RootManagerSharedAccessKey** を選択します。
+    1. **[イベント ハブの名前空間の選択]** リストで、*AzureMonitoringData* を選択します。
+    1. **[イベント ハブ名を選択する]** リストで、*DiagnosticData* を選択します。
+    1. **[イベント ハブ ポリシー名の選択]** リストで、**RootManagerSharedAccessKey** を選択します。
     1. **[OK]** を選択します。
 
 1. **[保存]** を選択します。
@@ -466,14 +466,14 @@ Azure 診断設定により、ストレージ アカウントまたはイベン�
 
 1. 新しい **[診断設定]** ウィンドウが開きます。 
 
-    :::image type="content" source="media/ingest-data-no-code/export-activity-log.PNG" alt-text="[診断設定] ウィンドウで診断設定を追加する、Azure Data Explorer ポータル":::
+    :::image type="content" source="media/ingest-data-no-code/export-activity-log.PNG" alt-text="入力フィールドが表示された [診断設定] ウィンドウ - Azure Data Explorer ポータル":::
 
     手順は次のとおりです。
     1. **[診断設定の名前]** フィールドに名前を入力します。  
     1. 左側にあるチェック ボックスで、サブスクリプションから収集するプラットフォーム ログを選択します。
     1. **[イベント ハブへのストリーム]** チェック ボックスをオンにします。
     1. サブスクリプションを選択します。
-    1. **[イベント ハブの名前空間]** リストで、 *AzureMonitoringData* を選択します。
+    1. **[イベント ハブの名前空間]** リストで、*AzureMonitoringData* を選択します。
     1. 必要に応じて、該当する **イベント ハブの名前** を選択します。
     1. **[イベント ハブ ポリシー名]** リストで、既定のイベント ハブ ポリシー名を選択します。
     1. ウィンドウの左上隅にある **[保存]** を選択します。 *insights-operational-logs* という名前のイベント ハブが作成されます (上でイベント ハブの名前を選択した場合)。
@@ -500,8 +500,8 @@ Azure 診断設定により、ストレージ アカウントまたはイベン�
 
 1. *kustodocs* という名前の Azure Data Explorer クラスターで、左側のメニューの **[データベース]** を選択します。
 1. **[データベース]** ウィンドウで、ご自分の *TestDatabase* データベースを選択します。
-1. 左側のメニューで、 **[データ インジェスト]** を選択します。
-1. **[データ インジェスト]** ウィンドウで、 **[+ データ接続の追加]** をクリックします。
+1. 左側のメニューで、**[データ インジェスト]** を選択します。
+1. **[データ インジェスト]** ウィンドウで、**[+ データ接続の追加]** をクリックします。
 1. **[データ接続]** ウィンドウで、次の情報を入力します。
 
     ![イベント ハブのデータ接続](media/ingest-data-no-code/event-hub-data-connection.png)
@@ -522,7 +522,7 @@ Azure 診断設定により、ストレージ アカウントまたはイベン�
 
     ターゲット テーブル: 
 
-    ルーティングには、" *静的* " と " *動的* " という 2 つのオプションがあります。 このチュートリアルでは、静的ルーティング (既定) を使用し、テーブル名、データ形式、およびマッピングを指定します。 **[My data includes routing info]\(データにルーティング情報が含まれている\)** をオフのままにしておきます。
+    ルーティングには、"*静的*" と "*動的*" という 2 つのオプションがあります。 このチュートリアルでは、静的ルーティング (既定) を使用し、テーブル名、データ形式、およびマッピングを指定します。 **[My data includes routing info]\(データにルーティング情報が含まれている\)** をオフのままにしておきます。
 
      **設定** | **推奨値** | **フィールドの説明**
     |---|---|---|
@@ -549,7 +549,7 @@ Azure 診断設定により、ストレージ アカウントまたはイベン�
 
     ターゲット テーブル: 
 
-    ルーティングには、" *静的* " と " *動的* " という 2 つのオプションがあります。 このチュートリアルでは、静的ルーティング (既定) を使用し、テーブル名、データ形式、およびマッピングを指定します。 **[My data includes routing info]\(データにルーティング情報が含まれている\)** をオフのままにしておきます。
+    ルーティングには、"*静的*" と "*動的*" という 2 つのオプションがあります。 このチュートリアルでは、静的ルーティング (既定) を使用し、テーブル名、データ形式、およびマッピングを指定します。 **[My data includes routing info]\(データにルーティング情報が含まれている\)** をオフのままにしておきます。
 
      **設定** | **推奨値** | **フィールドの説明**
     |---|---|---|

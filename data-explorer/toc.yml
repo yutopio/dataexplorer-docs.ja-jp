@@ -699,15 +699,18 @@
         - name: 数値演算子
           href: ./kusto/query/numoperators.md
         - name: 文字列演算子
-          href: ./kusto/query/datatypes-string-operators.md
+          items:
+            - name: 文字列演算子の概要
+              displayName: 'has, contains'
+              href: ./kusto/query/datatypes-string-operators.md
+            - name: in および !in 演算子
+              href: ./kusto/query/inoperator.md
+            - name: has_any 演算子
+              href: ./kusto/query/has-anyoperator.md
         - name: between 演算子
           href: ./kusto/query/betweenoperator.md
         - name: not-between 演算子 (!between)
           href: ./kusto/query/notbetweenoperator.md
-        - name: in および !in 演算子
-          href: ./kusto/query/inoperator.md
-        - name: has_any 演算子
-          href: ./kusto/query/has-anyoperator.md
     - name: スカラー関数
       items:
         - name: スカラー関数の種類

@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/28/2020
-ms.openlocfilehash: 05f0055e5faf99d14864338db7f6ad6a4c99946e
-ms.sourcegitcommit: 0820454feb02ae489f3a86b688690422ae29d788
+ms.openlocfilehash: 833a801e6455fd4d88fbbbab83010aea1d406f02
+ms.sourcegitcommit: 7edce9d9d20f9c0505abda67bb8cc3d2ecd60d15
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/19/2020
-ms.locfileid: "94932703"
+ms.lasthandoff: 12/02/2020
+ms.locfileid: "96524251"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-using-go"></a>Go を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -63,7 +63,7 @@ func getClustersClient(subscription string) kusto.ClustersClient {
 
 ### <a name="create-cluster"></a>クラスターの作成
 
-`kusto.ClustersClient` で [CreateOrUpdate](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClustersClient.CreateOrUpdate) 関数を使用して、新しい Azure Data Explorer クラスターを作成します。 プロセスが完了するのを待ってから、結果を調べます。
+`kusto.ClustersClient` で [CreateOrUpdate](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto) 関数を使用して、新しい Azure Data Explorer クラスターを作成します。 プロセスが完了するのを待ってから、結果を調べます。
 
 ```go
 func createCluster(sub, name, location, rgName string) {
@@ -78,7 +78,7 @@ func createCluster(sub, name, location, rgName string) {
 
 ### <a name="list-clusters"></a>クラスターを一覧表示する
 
-`kusto.ClustersClient` で [ListByResourceGroup](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClustersClient.ListByResourceGroup) 関数を使用して、[kusto.ClusterListResult](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClusterListResult) を取得します。次に、それが反復されて、表形式で出力が表示されます。
+`kusto.ClustersClient` で [ListByResourceGroup](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#ClustersClient.ListByResourceGroup) 関数を使用して、[kusto.ClusterListResult](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#ClusterListResult) を取得します。次に、それが反復されて、表形式で出力が表示されます。
 
 
 ```go
@@ -95,7 +95,7 @@ func listClusters(sub, rgName string) {
 
 ### <a name="create-database"></a>データベースの作成
 
-[kusto.DatabasesClient](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabasesClient) で [CreateOrUpdate](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabasesClient.CreateOrUpdate) 関数を使用して、既存のクラスターに新しい Azure Data Explorer データベースを作成します。 プロセスが完了するのを待ってから、結果を調べます。
+[kusto.DatabasesClient](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabasesClient) で [CreateOrUpdate](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabasesClient.CreateOrUpdate) 関数を使用して、既存のクラスターに新しい Azure Data Explorer データベースを作成します。 プロセスが完了するのを待ってから、結果を調べます。
 
 
 ```go
@@ -111,7 +111,7 @@ func createDatabase(sub, rgName, clusterName, location, dbName string) {
 
 ### <a name="list-databases"></a>データベースを一覧表示する
 
-`kusto.DatabasesClient` で [ListByCluster](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabasesClient.ListByCluster) 関数を使用して、[kusto.DatabaseListResult](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabaseListResult) を取得します。次に、それが反復されて、表形式で出力が表示されます。
+`kusto.DatabasesClient` で [ListByCluster](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabasesClient.ListByCluster) 関数を使用して、[kusto.DatabaseListResult](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabaseListResult) を取得します。次に、それが反復されて、表形式で出力が表示されます。
 
 
 ```go
@@ -127,7 +127,7 @@ func listDatabases(sub, rgName, clusterName string) {
 
 ### <a name="delete-database"></a>データベースの削除
 
-`kusto.DatabasesClient` で [Delete](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#DatabasesClient.Delete) 関数を使用して、クラスター内の既存のデータベースを削除します。 プロセスが完了するのを待ってから、結果を調べます。
+`kusto.DatabasesClient` で [Delete](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#DatabasesClient.Delete) 関数を使用して、クラスター内の既存のデータベースを削除します。 プロセスが完了するのを待ってから、結果を調べます。
 
 ```go
 func deleteDatabase(sub, rgName, clusterName, dbName string) {
@@ -146,7 +146,7 @@ func deleteDatabase(sub, rgName, clusterName, dbName string) {
 
 ### <a name="delete-cluster"></a>クラスターを削除する
 
-`kusto.ClustersClient` で [Delete](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go@v0.0.0-20200513030755-ac906323d9fe/services/kusto/mgmt/2020-02-15/kusto?tab=doc#ClustersClient.Delete) 関数を使用して、クラスターを削除します。 プロセスが完了するのを待ってから、結果を調べます。
+`kusto.ClustersClient` で [Delete](https://godoc.org/github.com/Azure/azure-sdk-for-go/services/preview/kusto/mgmt/2018-09-07-preview/kusto#ClustersClient.Delete) 関数を使用して、クラスターを削除します。 プロセスが完了するのを待ってから、結果を調べます。
 
 ```go
 func deleteCluster(sub, clusterName, rgName string) {

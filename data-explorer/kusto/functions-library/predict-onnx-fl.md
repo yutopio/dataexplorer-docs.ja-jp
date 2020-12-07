@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/09/2020
-ms.openlocfilehash: 9cc70418b39ece5c33d6059c7fc90c47f3039ece
-ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
+ms.openlocfilehash: f00f6cdc2a0c52ce0ad2a6832dafdf11bd02fce4
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90998978"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321881"
 ---
 # <a name="predict_onnx_fl"></a>predict_onnx_fl()
 
@@ -36,7 +36,7 @@ ms.locfileid: "90998978"
 * *features_cols*: 予測のためにモデルで使用される特徴列の名前を格納している動的配列。
 * *pred_col*: 予測を格納する列の名前。
 
-## <a name="usage"></a>使用法
+## <a name="usage"></a>使用
 
 `predict_onnx_fl()`は、 [invoke 演算子](../query/invokeoperator.md)を使用して適用されるユーザー定義の[表形式関数](../query/functions/user-defined-functions.md#tabular-function)です。 クエリにコードを埋め込むか、データベースにインストールすることができます。 使用方法には、アドホックと永続的な2つの方法があります。 例については、以下のタブを参照してください。
 
@@ -92,7 +92,7 @@ OccupancyDetection
 
 # <a name="persistent"></a>[永続的](#tab/persistent)
 
-永続的に使用するには、 [. create 関数](../management/create-function.md)を使用します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
+永続的な使用方法については、を使用 [`.create function`](../management/create-function.md) します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 ### <a name="one-time-installation"></a>1 回限りのインストール
 
@@ -131,7 +131,7 @@ predict_onnx_fl(samples:(*), models_tbl:(name:string, timestamp:datetime, model:
 }
 ```
 
-### <a name="usage"></a>使用法
+### <a name="usage"></a>使用
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

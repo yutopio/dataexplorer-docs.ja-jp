@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: e96bdb0e3b00152f287b705317f37bf984b95f26
-ms.sourcegitcommit: 4f24d68f1ae4903a2885985aa45fd15948867175
+ms.openlocfilehash: 99a35b03a171147d5bb511a9eab657903e917d01
+ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92558140"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96444128"
 ---
 # <a name="event-grid-data-connection"></a>Event Grid データ接続
 
@@ -28,6 +28,9 @@ Azure Data Explorer でのデータ インジェストに関する一般的な�
 * [サポートされる形式](ingestion-supported-formats.md)を確認してください。
 * [サポートされる圧縮](ingestion-supported-formats.md#supported-data-compression-formats)を確認してください。
     * 元の非圧縮データ サイズは、BLOB メタデータの一部である必要があります。それ以外の場合は、Azure Data Explorer によって推定されます。 ファイルごとのインジェストの非圧縮サイズの制限は 4 GB です。
+
+> [!NOTE]
+> Event Grid 通知サブスクリプションは、`BlobStorage`、`StorageV2`、または [Data Lake Storage Gen2](/azure/storage/blobs/data-lake-storage-introduction) に対して Azure Storage アカウントで設定できます。
 
 ## <a name="ingestion-properties"></a>インジェストのプロパティ
 
@@ -68,7 +71,7 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
 > * `BlockBlob` を使用してデータを生成します。 `AppendBlob` がサポートされていません。
 > * Azure Data Lake Gen2 ストレージの SDK を使用するには、ファイルのアップロードに `CreateFile` を使用し、最後の `Flush` で close パラメーターを「true」に設定する必要があります。
 > Data Lake Gen2 SDK の正しい使用方法の詳細な例については、「[Azure Data Lake SDK を使用してファイルをアップロードする](data-connection-event-grid-csharp.md#upload-file-using-azure-data-lake-sdk)」を参照してください。
-> * イベント ハブ エンドポイントでイベントの受信が認識されない場合、Azure Event Grid によって再試行メカニズムがアクティブ化されます。 この再試行配信に失敗した場合、配信されなかったイベントは Event Grid の " *配信不能* " プロセスを使用してストレージ アカウントに配信できます。 詳細については、[Event Grid のメッセージの配信と再試行](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration)に関する記事を参照してください。
+> * イベント ハブ エンドポイントでイベントの受信が認識されない場合、Azure Event Grid によって再試行メカニズムがアクティブ化されます。 この再試行配信に失敗した場合、配信されなかったイベントは Event Grid の "*配信不能*" プロセスを使用してストレージ アカウントに配信できます。 詳細については、[Event Grid のメッセージの配信と再試行](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration)に関する記事を参照してください。
 
 ## <a name="delete-blobs-using-storage-lifecycle"></a>ストレージ ライフサイクルを使用した BLOB の削除
 

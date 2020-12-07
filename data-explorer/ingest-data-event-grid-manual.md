@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/05/2020
-ms.openlocfilehash: 51d5c48fbcd2373ed5cdd1973cc9e53abb26b2de
-ms.sourcegitcommit: 58588ba8d1fc5a6adebdce2b556db5bc542e38d8
+ms.openlocfilehash: e8ec0a07549a8db4027beab8d512f58e3ab6a780
+ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/15/2020
-ms.locfileid: "92099499"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96444165"
 ---
 # <a name="manually-create-resources-for-event-grid-ingestion"></a>Event Grid インジェスト用のリソースを手動で作成する
 
@@ -31,6 +31,7 @@ Azure Data Explorer では、[Event Grid インジェスト パイプライン](
 ## <a name="prerequisites"></a>前提条件
 
 * Azure サブスクリプション。 [無料の Azure アカウント](https://azure.microsoft.com/free/)を作成します。
+* [クラスターとデータベース](create-cluster-database-portal.md)。
 * [ストレージ アカウント](/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal)。
     * Event Grid 通知サブスクリプションは、`BlobStorage`、`StorageV2`、または [Data Lake Storage Gen2](/azure/storage/blobs/data-lake-storage-introduction) に対して Azure Storage アカウントで設定できます。
 * [イベント ハブ名前空間とイベント ハブ](/azure/event-hubs/event-hubs-create)
@@ -47,7 +48,7 @@ Azure Data Explorer では、[Event Grid インジェスト パイプライン](
 
 1. **[基本]** タブの **[イベント サブスクリプションの作成]** ウィンドウで、次の値を指定します。
 
-    :::image type="content" source="media/eventgrid/create-event-grid-subscription-2.png" alt-text="Event Grid サブスクリプションを作成する":::
+    :::image type="content" source="media/eventgrid/create-event-grid-subscription-2.png" alt-text="入力するイベント サブスクリプションの値を作成する":::
 
     |**設定** | **推奨値** | **フィールドの説明**|
     |---|---|---|
@@ -60,13 +61,19 @@ Azure Data Explorer では、[Event Grid インジェスト パイプライン](
 
 1. **[エンドポイントの詳細]** で、 **[イベント ハブ]** を選択します。
 
-    :::image type="content" source="media/eventgrid/endpoint-details.png" alt-text="Event Grid サブスクリプションを作成する":::
+    :::image type="content" source="media/eventgrid/endpoint-details.png" alt-text="イベントを受け取るイベント ハンドラーを選択する - イベント ハブ - Azure Data Explorer":::
 
 1. **[エンドポイントの選択]** をクリックし、作成したイベント ハブを入力します (*test-hub* など)。
     
 1. 特定のサブジェクトを追跡する場合は、 **[フィルター]** タブを選択します。 次のように、通知用のフィルターを設定します。
    
-    :::image type="content" source="media/eventgrid/filters-tab.png" alt-text="Event Grid サブスクリプションを作成する" サフィックスです。 ワイルドカードは使用できません。
+    :::image type="content" source="media/eventgrid/filters-tab.png" alt-text="Event Grid の [フィルター] タブ":::
+
+   1. **[サブジェクト フィルタリングを有効にする]** を選択します。
+   1. **[次で始まるサブジェクト]** フィールドは、サブジェクトの "*リテラル*" プレフィックスです。 適用されるパターンは *startswith* であるため、複数のコンテナー、フォルダー、BLOB を対象にできます。 ワイルドカードは使用できません。
+       * BLOB コンテナーに対してフィルターを定義するには、フィールドを *`/blobServices/default/containers/[container prefix]`* のように設定します。
+       * BLOB プレフィックス (または Azure Data Lake Gen2 のフォルダー) に対してフィルターを定義するには、フィールドを次のように設定します。 *`/blobServices/default/containers/[container name]/blobs/[folder/blob prefix]`*
+   1. **[Subject Ends With]\(指定の値で終わる件名\)** フィールドは、BLOB の "*リテラル*" サフィックスです。 ワイルドカードは使用できません。
    1. **[Case-sensitive subject matching]\(大文字小文字を区別した件名の一致\)** フィールドは、プレフィックスとサフィックスのフィルターで大文字と小文字が区別されるかどうかを示します。
 
     イベントのフィルター処理の詳細については、[Blob Storage のイベント](/azure/storage/blobs/storage-blob-event-overview#filtering-events)に関するページをご覧ください。

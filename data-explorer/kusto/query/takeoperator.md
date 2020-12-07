@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 5192bb2d752a5754ae36840611b9f7b0e84da256
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 569554379ffe672ed75fd15da127f03fea35f6d1
+ms.sourcegitcommit: 2804e3fe40f6cf8e65811b00b7eb6a4f59c88a99
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92250724"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96748384"
 ---
 # <a name="take-operator"></a>take 演算子
 
@@ -36,17 +36,14 @@ T | take 5
 
 ( `take` と `limit` はシノニムです)。
 
-## <a name="does-kusto-support-paging-of-query-results"></a>Kusto はクエリ結果のページングをサポートしていますか?
+## <a name="paging-of-query-results"></a>クエリ結果のページング
 
-Kusto には、組み込みのページングメカニズムが用意されていません。
-
-Kusto は、大量のデータセットに対する優れたクエリパフォーマンスを提供するために格納されるデータを継続的に最適化する、複雑なサービスです。 ページングはリソースが限られているステートレスクライアントに便利なメカニズムですが、クライアントの状態情報を追跡する必要があるバックエンドサービスに負荷を移すことになります。 その後、バックエンドサービスのパフォーマンスとスケーラビリティは厳しく制限されています。
-
-ページングをサポートするには、次の機能のいずれかを実装します。
+ページングを実装する方法は次のとおりです。
 
 * クエリの結果を外部ストレージにエクスポートし、生成されたデータをページングします。
+* Kusto クエリの結果をキャッシュすることによって、ステートフルなページング API を提供する中間層アプリケーションを作成します。
+* [保存されているクエリ結果](../management/stored-query-results.md#pagination)での改ページ調整を使用します。
 
-* Kusto クエリの結果をキャッシュすることによって、ステートフルなページング API を提供する中間層アプリケーションを作成する。
 
 ## <a name="see-also"></a>関連項目
 

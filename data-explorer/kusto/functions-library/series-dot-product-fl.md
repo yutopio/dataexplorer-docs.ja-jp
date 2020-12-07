@@ -7,14 +7,14 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/18/2020
-ms.openlocfilehash: 9b1c6db6af651ae3665c07bda8598212883a8f6c
-ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
+ms.openlocfilehash: 9065c6b86807ad27c588ebffe3334c450a1addcb
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92184146"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321847"
 ---
-# <a name="series_dot_product_fl"></a>series_dot_product_fl ()
+# <a name="series_dot_product_fl"></a>series_dot_product_fl()
 
 2つの数値ベクトルのドット積を計算します。
 
@@ -30,9 +30,9 @@ ms.locfileid: "92184146"
 ## <a name="arguments"></a>引数
 
 * *vec1*: 数値の動的配列セル。
-* *vec2*: 数値の動的配列セル。 *vec1*と同じ長さです。
+* *vec2*: 数値の動的配列セル。 *vec1* と同じ長さです。
 
-## <a name="usage"></a>使用方法
+## <a name="usage"></a>使用
 
 `series_dot_product_fl()` はユーザー定義関数です。 クエリにコードを埋め込むか、データベースにインストールすることができます。 使用方法には、アドホックと永続的な2つの方法があります。 例については、以下のタブを参照してください。
 
@@ -57,7 +57,7 @@ union
 
 # <a name="persistent"></a>[永続的](#tab/persistent)
 
-永続的に使用するには、 [. create 関数](../management/create-function.md)を使用します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
+永続的な使用方法については、を使用 [`.create function`](../management/create-function.md) します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 ### <a name="one-time-installation"></a>1 回限りのインストール
 
@@ -72,7 +72,7 @@ series_dot_product_fl(vec1:dynamic, vec2:dynamic)
 }
 ```
 
-### <a name="usage"></a>使用方法
+### <a name="usage"></a>使用
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

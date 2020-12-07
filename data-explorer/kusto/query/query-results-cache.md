@@ -8,12 +8,12 @@ ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/16/2020
-ms.openlocfilehash: d0942a949454bf12840626ff25d3703a23aed2cc
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 24ab3cb3e423e3ab6b77f09f2c216feb07ae0d0f
+ms.sourcegitcommit: f134d51e52504d3ca722bdf6d33baee05118173a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92002945"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96563310"
 ---
 # <a name="query-results-cache"></a>クエリ結果のキャッシュ
 
@@ -21,7 +21,7 @@ Kusto には、クエリ結果のキャッシュが含まれています。 ク�
 
 ## <a name="use-the-cache"></a>キャッシュの使用
 
-クエリ `query_results_cache_max_age` 結果キャッシュを使用するには、オプションをクエリの一部として設定します。 このオプションは、クエリテキストまたはクライアント要求プロパティで設定できます。 次に例を示します。
+クエリ `query_results_cache_max_age` 結果キャッシュを使用するには、オプションをクエリの一部として設定します。 このオプションは、クエリテキストまたはクライアント要求プロパティで設定できます。 例:
 
 ```kusto
 set query_results_cache_max_age = time(5m);
@@ -41,9 +41,9 @@ GithubEvent
 * 2つのクエリは、(UTF-8 文字列として) 同じ表現を持ちます。
 * 2つのクエリが同じデータベースに対して行われます。
 * 2つのクエリは、同じ [クライアント要求のプロパティ](../api/netfx/request-properties.md)を共有します。 キャッシュの目的では、次のプロパティは無視されます。
-   * [ClientRequestId](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)
-   * [Application](../api/netfx/request-properties.md#the-application-x-ms-app-named-property)
-   * [User](../api/netfx/request-properties.md#the-user-x-ms-user-named-property)
+   * [ClientRequestId](../api/netfx/request-properties.md#clientrequestid-x-ms-client-request-id)
+   * [Application](../api/netfx/request-properties.md#application-x-ms-app)
+   * [ユーザー](../api/netfx/request-properties.md#user-x-ms-user)
 
 ### <a name="incompatible-queries"></a>互換性のないクエリ
 
@@ -72,7 +72,7 @@ Kusto は、クエリに応答するときに、列と列を含む追加の [Ext
 キャッシュされたクエリ結果には、そのテーブルに追加の行が追加されます。
 * 行の列には `Key` 、という文字列が含まれます。 `ServerCache`
 * 行の `Value` 列には、次の2つのフィールドを持つプロパティバッグが含まれます。
-   * `OriginalClientRequestId` -元の要求の [Clientrequestid](../api/netfx/request-properties.md#the-clientrequestid-x-ms-client-request-id-named-property)を指定します。
+   * `OriginalClientRequestId` -元の要求の [Clientrequestid](../api/netfx/request-properties.md#clientrequestid-x-ms-client-request-id)を指定します。
    * `OriginalStartedOn` -元の要求の実行開始時刻を指定します。
 
 ## <a name="distribution"></a>Distribution

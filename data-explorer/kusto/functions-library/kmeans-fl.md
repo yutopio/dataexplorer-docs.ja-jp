@@ -7,14 +7,14 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/18/2020
-ms.openlocfilehash: b56aefd94ed58b8731ea6237f131b4da74d4f7be
-ms.sourcegitcommit: 88923cfb2495dbf10b62774ab2370b59681578b9
+ms.openlocfilehash: 7d2482c36c0c55c34adbc664a6c24f64bdadf7a1
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/19/2020
-ms.locfileid: "92184165"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321949"
 ---
-# <a name="kmeans_fl"></a>kmeans_fl ()
+# <a name="kmeans_fl"></a>kmeans_fl()
 
 関数は、 `kmeans_fl()` [k の意味アルゴリズム](https://en.wikipedia.org/wiki/K-means_clustering)を使用してデータセットを使用します。
 
@@ -32,7 +32,7 @@ ms.locfileid: "92184165"
 * *features_cols*: クラスタリングに使用される機能列の名前を格納している動的配列。
 * *cluster_col*: 各レコードの出力クラスター ID を格納する列の名前。
 
-## <a name="usage"></a>使用方法
+## <a name="usage"></a>使用
 
 `kmeans_fl()`は、 [invoke 演算子](../query/invokeoperator.md)を使用して適用されるユーザー定義の[表形式関数](../query/functions/user-defined-functions.md#tabular-function)です。 クエリにコードを埋め込むか、データベースにインストールすることができます。 使用方法には、アドホックと永続的な2つの方法があります。 例については、以下のタブを参照してください。
 
@@ -76,7 +76,7 @@ OccupancyDetection
 
 # <a name="persistent"></a>[永続的](#tab/persistent)
 
-永続的に使用するには、 [. create 関数](../management/create-function.md)を使用します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
+永続的な使用方法については、を使用 [`.create function`](../management/create-function.md) します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 ### <a name="one-time-installation"></a>1 回限りのインストール
 
@@ -105,7 +105,7 @@ kmeans_fl(tbl:(*), k:int, features:dynamic, cluster_col:string)
 }
 ```
 
-### <a name="usage"></a>使用方法
+### <a name="usage"></a>使用
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 383d1ab5d948a5fbcfb3ab2aad0ff8e5ed675075
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: 3cc5efa2d8b738c58d94d0db397218663fd76740
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349445"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96470215"
 ---
 # <a name="create-materialized-view"></a>.create materialized-view
 
@@ -22,16 +22,15 @@ ms.locfileid: "93349445"
 具体化されたビューを作成するには、次の2つの方法があります。これは、コマンドの *バックフィル* オプションによって示されます。
 
  * **ソーステーブル内の既存のレコードに基づいて作成します。** 
-      * ソーステーブル内のレコードの数によっては、作成に時間がかかることがあります。 ビューは、完了するまでクエリで使用できません。
+      * ソーステーブル内のレコードの数によっては、作成に時間がかかることがあります。 ビューは、バックフィルが完了するまで、クエリでは使用できません。
       * このオプションを使用する場合、create コマンドはである必要があり、実行を監視するには `async` 、[ [操作の表示](../operations.md#show-operations) ] コマンドを使用します。
 
     * バックフィルプロセスを取り消すには、 [[操作の取り消し](#cancel-materialized-view-creation) ] コマンドを使用します。
 
       > [!IMPORTANT]
-      > * コールドキャッシュのデータでは、バックフィルオプションの使用はサポートされていません。 必要に応じて、ビューの作成に使用するホットキャッシュ期間を増やします。 この場合、スケールアウトが必要になることがあります。    
-      > * 大きなソーステーブルの場合、バックフィルオプションの使用には時間がかかることがあります。 このプロセスが実行中に失敗すると、自動的に再試行されず、create コマンドの再実行が必要になります。
+      > 大きなソーステーブルの場合、バックフィルオプションの使用には時間がかかることがあります。 このプロセスが実行中に失敗すると、自動的に再試行されず、create コマンドの再実行が必要になります。 詳細については、「具体化され [たビューのバックフィル](#backfill-a-materialized-view) 」セクションを参照してください。
     
-* **ここから具体化されたビューを作成します。** 
+* **ここから具体化されたビューを作成します。**
     * 具体化されたビューは空で作成され、ビュー作成後のレコードの取り込まれたのみが含まれます。 この種類の作成は直ちに返され、不要になり、 `async` ビューはすぐにクエリに使用できるようになります。
 
 Create 操作には、 [データベース管理者](../access-control/role-based-authorization.md) のアクセス許可が必要です。 具体化されたビューの作成者がその管理者になります。
@@ -45,7 +44,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
 ## <a name="arguments"></a>引数
 
-|引数|Type|説明
+|引数|種類|説明
 |----------------|-------|---|
 |ViewName|String|具体化したビューの名前。 ビュー名が同じデータベース内のテーブル名または関数名と競合しており、 [識別子の名前付け規則](../../query/schema-entities/entity-names.md#identifier-naming-rules)に従っている必要があります。 |
 |Targettablename|String|ビューが定義されているソーステーブルの名前。|
@@ -72,20 +71,20 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
     * ビューのソーステーブル (ファクトテーブル) 内のレコードは、1回だけ具体化されます。 ファクトテーブルとディメンションテーブル間のインジェストの遅延が異なると、ビューの結果に影響を与える可能性があります。
 
-    * **例** : ビュー定義には、ディメンションテーブルとの内部結合が含まれています。 具体化の時点では、ディメンションレコードは完全には取り込まれたませんでしたが、既にファクトテーブルに取り込まれたされていました。 このレコードはビューから削除され、再処理されることはありません。 
+    * **例**: ビュー定義には、ディメンションテーブルとの内部結合が含まれています。 具体化の時点では、ディメンションレコードは完全には取り込まれたませんでしたが、既にファクトテーブルに取り込まれたされていました。 このレコードはビューから削除され、再処理されることはありません。 
 
         同様に、結合が外部結合の場合、ファクトテーブルのレコードが処理され、ディメンションテーブルの列に null 値を持つビューに追加されます。 ビューに既に追加されている (null 値を持つ) レコードは、再度処理されません。 ディメンションテーブルの列の値は、null のままになります。
 
-## <a name="properties"></a>Properties
+## <a name="properties"></a>プロパティ
 
 句では、次のものがサポートされてい `with(propertyName=propertyValue)` ます。 すべてのプロパティは省略可能です。
 
-|プロパティ|Type|説明 |
+|プロパティ|種類|説明 |
 |----------------|-------|---|
-|バック|bool|現在、 *SourceTable* () にあるすべてのレコードに基づいてビューを作成するか `true` 、"後から" () を作成するかを指定し `false` ます。 既定値は `false` です。| 
+|バック|[bool]|現在、 *SourceTable* () にあるすべてのレコードに基づいてビューを作成するか `true` 、"後から" () を作成するかを指定し `false` ます。 既定値は `false`です。| 
 |effectiveDateTime|DATETIME| と共に指定した場合、作成されるのは、 `backfill=true` datetime の後の取り込まれたレコードだけです。 バックフィルも true に設定する必要があります。 Datetime リテラルが必要です。次に例を示します。 `effectiveDateTime=datetime(2019-05-01)`|
 |dimensionTables|Array|ビュー内のディメンションテーブルのコンマ区切りの一覧です。 [クエリ引数](#query-argument)を参照してください
-|autoUpdateSchema|bool|ソーステーブルの変更時にビューを自動更新するかどうかを指定します。 既定値は `false` です。 このオプションは、型のビュー `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (列の引数がの場合のみ `*` ) に対してのみ有効です。 このオプションが true に設定されている場合、ソーステーブルへの変更は具体化されたビューに自動的に反映されます。
+|autoUpdateSchema|[bool]|ソーステーブルの変更時にビューを自動更新するかどうかを指定します。 既定値は `false`です。 このオプションは、型のビュー `arg_max(Timestamp, *)`  /  `arg_min(Timestamp, *)`  /  `any(*)` (列の引数がの場合のみ `*` ) に対してのみ有効です。 このオプションが true に設定されている場合、ソーステーブルへの変更は具体化されたビューに自動的に反映されます。
 |folder|string|具体化されたビューのフォルダー。|
 |docString|string|具体化されたビューを文書化する文字列|
 
@@ -132,6 +131,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
         | summarize count(), dcount(User), max(Duration) by Customer, Day
     } 
     ```
+
 1. EventId 列に基づいて、ソーステーブルを重複除去する具体化されたビュー。
 
     <!-- csl -->
@@ -202,7 +202,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 
 * 具体化されたビュークエリフィルターは、具体化されたビューディメンションの1つ (集計 by 句) によってフィルター処理されるときに最適化されます。 クエリパターンが、多くの場合、具体化されたビューのディメンションである列によってフィルター処理されることがわかっている場合は、ビューに含めます。 たとえば、によってフィルター処理される、によってを公開する具体化されたビューの場合 `arg_max` `ResourceId` `SubscriptionId` 、次のような推奨事項があります。
 
-    **操作** :
+    **操作**:
     
     ```kusto
     .create materialized-view ArgMaxResourceId on table FactResources
@@ -220,9 +220,9 @@ Create 操作には、 [データベース管理者](../access-control/role-base
     }
     ```
 
-* 具体化されたビュー定義の一部として [更新ポリシー](../updatepolicy.md) に移動できる、変換、正規化、およびその他の大量の計算は含めないでください。 代わりに、更新ポリシーでこれらのプロセスをすべて実行し、具体化されたビューでのみ集計を実行します。 このプロセスは、ディメンションテーブルの参照に使用します (該当する場合)。
+* 変換、正規化、ディメンションテーブルの参照、および具体化されたビュー定義の一部として [更新ポリシー](../updatepolicy.md) に移動できるその他の大量の計算は含めないでください。 代わりに、更新ポリシーでこれらのプロセスをすべて実行し、具体化されたビューでのみ集計を実行します。
 
-    **操作** :
+    **操作**:
     
     * ポリシーの更新:
     
@@ -233,6 +233,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
         "Query": 
             "SourceTable 
             | extend ResourceId = strcat('subscriptions/', toupper(SubscriptionId), '/', resourceId)", 
+            | lookup DimResources on ResourceId
         "IsTransactional": false}]'  
     ```
         
@@ -251,14 +252,46 @@ Create 操作には、 [データベース管理者](../access-control/role-base
     ```kusto
     .create materialized-view Usage on table SourceTable
     {
-        SourceTable 
+        SourceTable
         | extend ResourceId = strcat('subscriptions/', toupper(SubscriptionId), '/', resourceId)
+        | lookup DimResources on ResourceId
         | summarize count() by ResourceId
     }
     ```
 
-> [!NOTE]
-> クエリのパフォーマンスを最適化する必要があるが、データ鮮度を犠牲にする可能性がある場合は、 [materialized_view () 関数](../../query/materialized-view-function.md)を使用します。
+> [!TIP]
+> クエリのパフォーマンスを最適化する必要があるが、データの待機時間が一定に耐えられる場合は、 [materialized_view () 関数](../../query/materialized-view-function.md)を使用します。
+
+## <a name="backfill-a-materialized-view"></a>具体化したビューのバックフィル
+
+プロパティを使用して具体化されたビューを作成すると `backfill` 、ソーステーブル (またはが使用されている場合は、それらのレコードのサブセット) で利用できるレコードに基づいて、具体化されたビューが作成され `effectiveDateTime` ます。 大きなソーステーブルの場合、バックフィルが完了するまでに時間がかかることがあります。
+
+* コールドキャッシュのデータでは、バックフィルオプションの使用はサポートされていません。 必要に応じて、表示の作成中にホットキャッシュ期間を長くします。 この場合、スケールアウトが必要になることがあります。
+
+* バックフィルプロセスでは、バックグラウンドでデータを複数のバッチに分割し、を使用してビューをバックフィルします。 バックフィルプロセスの一部として発生する一時的な障害は再試行されますが、すべての再試行が終了した場合は、create コマンドの手動再実行が必要になることがあります。
+
+* ビューの作成でエラーが発生した場合は、次のようないくつかのプロパティを変更できます。
+
+    * `MaxSourceRecordsForSingleIngest` -既定では、各取り込み操作のソースレコードの数は、バックフィル中、1ノードあたり200万レコードになります。 この既定値を変更するには、このプロパティを目的のレコード数に設定します (値は各取り込み操作のレコードの _合計_ 数です)。 この値を小さくすると、メモリ制限/クエリタイムアウトで作成に失敗した場合に役立ちます。 この値を大きくすると、ビューの作成速度が向上します。これは、クラスターが既定よりも多くのレコードで集計関数を実行できることを前提としています。
+
+    * `Concurrency` -バックフィルプロセスの一部として実行される取り込み操作は、同時に実行されます。 既定では、同時実行はです `min(number_of_nodes * 2, 5)` 。 このプロパティを設定して、同時実行を増減することができます。 クラスターの cpu 消費量に大きな影響を与える可能性があるため、この値を大きくすることをお勧めします。
+
+  たとえば、次のコマンドは、具体化されたビューをから `2020-01-01` 、レコードの各取り込み操作の最大レコード数と共に、 `3 million` の同時実行を使用して実行し `2` ます。 
+    
+    <!-- csl -->
+    ```
+    .create async materialized-view with (
+            backfill=true,
+            effectiveDateTime=datetime(2019-01-01),
+            MaxSourceRecordsForSingleIngest=3000000,
+            Concurrency=2
+        )
+        CustomerUsage on table T
+    {
+        T
+        | summarize count(), dcount(User), max(Duration) by Customer, bin(Timestamp, 1d)
+    } 
+    ```
 
 ## <a name="limitations-on-creating-materialized-views"></a>具体化されるビューの作成に関する制限事項
 
@@ -281,24 +314,24 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 > [!WARNING]
 > 具体化されたビューは、このコマンドの実行後に復元することはできません。
 
-作成プロセスをすぐに中止することはできません。 Cancel コマンドは、具体化を停止するように通知し、キャンセルが要求されたかどうかを定期的に確認します。 Cancel コマンドは、具体化されたビューの作成プロセスが取り消されるまで最大10分間待機し、キャンセルが成功した場合はレポートを返します。 キャンセルが10分以内に成功しなかった場合でも、cancel コマンドによってエラーが報告された場合でも、具体化されたビューは、作成プロセスの後半で中止される可能性があります。 [操作の [表示](../operations.md#show-operations) ] コマンドは、操作が取り消されたかどうかを示します。 コマンドは、具体化された `cancel operation` ビューの作成の取り消しでのみサポートされ、他の操作をキャンセルするためにはサポートされていません。
+作成プロセスをすぐに中止することはできません。 Cancel コマンドは、具体化を停止するように通知し、キャンセルが要求されたかどうかを定期的に確認します。 Cancel コマンドは、具体化されたビューの作成プロセスが取り消されるまで最大10分間待機し、キャンセルが成功した場合はレポートを返します。 キャンセルが10分以内に成功しなかった場合でも、cancel コマンドによってエラーが報告された場合でも、具体化されたビューは、作成プロセスの後半で中止される可能性があります。 コマンドは、 [`.show operations`](../operations.md#show-operations) 操作が取り消されたかどうかを示します。 コマンドは、具体化された `cancel operation` ビューの作成の取り消しでのみサポートされ、他の操作をキャンセルするためにはサポートされていません。
 
 ### <a name="syntax"></a>構文
 
 `.cancel` `operation` *operationId*
 
-### <a name="properties"></a>Properties
+### <a name="properties"></a>プロパティ
 
-|プロパティ|Type|説明
+|プロパティ|種類|説明
 |----------------|-------|---|
 |operationId|Guid|具体化されたビューの作成コマンドから返された操作 ID。|
 
 ### <a name="output"></a>出力
 
-|出力パラメーター |Type |説明
+|出力パラメーター |種類 |説明
 |---|---|---
 |OperationId|Guid|具体化されたビューの作成コマンドの操作 ID。
-|操作|String|操作の種類。
+|Operation|String|操作の種類。
 |StartedOn|DATETIME|作成操作の開始時刻。
 |CancellationState|string|- `Cancelled successfully` (作成がキャンセルされました)、 `Cancellation failed` (キャンセルがタイムアウトするまで待機)、( `Unknown` ビューの作成は現在実行されていませんが、この操作によって取り消されていません)。
 |ReasonPhrase|string|キャンセルが成功しなかった理由。
@@ -310,7 +343,7 @@ Create 操作には、 [データベース管理者](../access-control/role-base
 .cancel operation c4b29441-4873-4e36-8310-c631c35c916e
 ```
 
-|OperationId|操作|StartedOn|CancellationState|ReasonPhrase|
+|OperationId|Operation|StartedOn|CancellationState|ReasonPhrase|
 |---|---|---|---|---|
 |c4b29441-4873-4e36-8310-c631c35c916e|MaterializedViewCreateOrAlter|2020-05-08 19:45: 03.9184142|正常にキャンセルされました||
 

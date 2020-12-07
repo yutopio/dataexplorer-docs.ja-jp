@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: 5b17b69fd49e937b672da07dd0b5c8abae9100fb
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 4b54b7e1c16bce07c5ae97b57f0ebdb6c96a7ad7
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92253054"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320616"
 ---
 # <a name="externaldata-operator"></a>externaldata 演算子
 
@@ -28,7 +28,7 @@ ms.locfileid: "92253054"
 ## <a name="arguments"></a>引数
 
 * *ColumnName*、 *ColumnType*: 引数は、テーブルのスキーマを定義します。
-  構文は、 [create table](../management/create-table-command.md)でテーブルを定義するときに使用する構文と同じです。
+  構文は、でテーブルを定義するときに使用する構文と同じです [`.create table`](../management/create-table-command.md) 。
 
 * *StorageConnectionString*: 返されるデータを保持するストレージアーティファクトを記述する [ストレージ接続文字列](../api/connection-strings/storage.md) 。
 
@@ -36,7 +36,7 @@ ms.locfileid: "92253054"
 
 現在サポートされているプロパティは次のとおりです。
 
-| プロパティ         | Type     | 説明       |
+| プロパティ         | 種類     | 説明       |
 |------------------|----------|-------------------|
 | `format`         | `string` | データ形式。 指定しない場合、ファイル拡張子 (既定値は) からデータ形式を検出しようとし `CSV` ます。 [インジェストデータ形式](../../ingestion-supported-formats.md)のいずれかがサポートされています。 |
 | `ignoreFirstRecord` | `bool` | True に設定すると、すべてのファイルの最初のレコードが無視されることを示します。 このプロパティは、ヘッダーを使用して CSV ファイルにクエリを実行する場合に便利です。 |

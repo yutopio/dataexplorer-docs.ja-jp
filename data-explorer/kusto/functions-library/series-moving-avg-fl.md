@@ -7,14 +7,14 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 24fcdb685d9238416e6652953ab47ff82f91bd72
-ms.sourcegitcommit: 50c799c60a3937b4c9e81a86a794bdb189df02a3
+ms.openlocfilehash: 4d6ce55389c13acc0192d7dc0ef21b4940c6d240
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90075207"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321779"
 ---
-# <a name="series_moving_avg_fl"></a>series_moving_avg_fl ()
+# <a name="series_moving_avg_fl"></a>series_moving_avg_fl()
 
 系列に移動平均フィルターを適用します。
 
@@ -36,7 +36,7 @@ ms.locfileid: "90075207"
     * 現在のポイントから後方にウィンドウに適用されます。 <br>
     既定では、 *center* は False です。
 
-## <a name="usage"></a>使用法
+## <a name="usage"></a>使用
 
 `series_moving_avg_fl()` はユーザー定義関数です。 クエリにコードを埋め込むか、データベースにインストールすることができます。 使用方法には、アドホックと永続的な2つの方法があります。 例については、以下のタブを参照してください。
 
@@ -62,7 +62,7 @@ demo_make_series1
 
 # <a name="persistent"></a>[永続的](#tab/persistent)
 
-永続的に使用するには、 [. create 関数](../management/create-function.md)を使用します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
+永続的な使用方法については、を使用 [`.create function`](../management/create-function.md) します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 ### <a name="one-time-installation"></a>1 回限りのインストール
 
@@ -75,7 +75,7 @@ series_moving_avg_fl(y_series:dynamic, n:int, center:bool=false)
 }
 ```
 
-### <a name="usage"></a>使用法
+### <a name="usage"></a>使用
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

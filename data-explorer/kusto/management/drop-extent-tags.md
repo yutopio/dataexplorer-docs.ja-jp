@@ -8,19 +8,20 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/02/2020
-ms.openlocfilehash: 23784a1e3e00c242665a43dffcc528bfeff68896
-ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.openlocfilehash: 45e7d0abf42e613a9d197371dcc374fe4ac11fed
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
+ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060695"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321014"
 ---
-# <a name="drop-extent-tags"></a>。エクステントタグを削除します。
+# <a name="drop-extent-tags"></a>.drop extent tags
 
-コマンドは、特定のデータベースのコンテキストで実行されます。 データベースとテーブルのすべてまたは特定のエクステントから特定の[エクステントタグ](extents-overview.md#extent-tagging)が削除されます。  
+コマンドは、特定のデータベースのコンテキストで実行されます。 データベースとテーブルのすべてまたは特定のエクステントから特定の [エクステントタグ](extents-overview.md#extent-tagging) が削除されます。  
 
 > [!NOTE]
-> データシャードは Kusto では**エクステント**と呼ばれ、すべてのコマンドはシノニムとして "エクステント" または "エクステント" を使用します。
-> エクステントの詳細については、「[エクステント (データシャード) の概要](extents-overview.md)」を参照してください。
+> データシャードは Kusto では **エクステント** と呼ばれ、すべてのコマンドはシノニムとして "エクステント" または "エクステント" を使用します。
+> エクステントの詳細については、「 [エクステント (データシャード) の概要](extents-overview.md)」を参照してください。
 
 どの範囲から削除する必要があるかを指定するには、次の2つの方法があります。
 
@@ -29,14 +30,14 @@ ms.locfileid: "86060695"
 
 ## <a name="syntax"></a>構文
 
-`.drop`[ `async` ] `extent` `tags` `from` `table` *TableName* `(` '*Tag1*' [ `,` '*Tag2*' `,` ... `,` '*Tagn*']`)`
+`.drop` [ `async` ] `extent` `tags` `from` `table` *TableName* `(` '*Tag1*' [ `,` '*Tag2*' `,` ... `,` '*Tagn*']`)`
 
 `.drop`[ `async` ] `extent` `tags`  <|  *クエリ*
 
-`async`(省略可能): コマンドを非同期に実行します。
+`async` (省略可能): コマンドを非同期に実行します。
    * 操作 ID (Guid) が返されます。
-   * 操作の状態を監視できます。 [[操作の表示](operations.md#show-operations)] コマンドを使用します。
-   * [[操作の詳細を表示](operations.md#show-operation-details)] コマンドを使用して、正常に実行された結果を取得します。
+   * 操作の状態を監視できます。 コマンドを使用し [`.show operations`](operations.md#show-operations) ます。
+   * コマンドを使用して、 [`.show operation details`](operations.md#show-operation-details) 正常に実行された結果を取得します。
 
 ## <a name="restrictions"></a>制限
 
@@ -51,7 +52,7 @@ ms.locfileid: "86060695"
 > * `CslCommandGenerator.GenerateExtentTagsDropByRegexCommand(string tableName, string regex)`
 > * `CslCommandGenerator.GenerateExtentTagsDropBySubstringCommand(string tableName, string substring)`
 
-関連するすべてのソーステーブルとターゲットテーブルに対する[Table admin 権限](../management/access-control/role-based-authorization.md)が必要です。
+関連するすべてのソーステーブルとターゲットテーブルに対する [Table admin 権限](../management/access-control/role-based-authorization.md) が必要です。
 
 ### <a name="syntax-for-drop-extent-tags-in-query"></a>クエリ内のエクステントタグを削除するための構文
 
@@ -61,12 +62,12 @@ ms.locfileid: "86060695"
 
 ### <a name="return-output"></a>出力を返す
 
-出力パラメーター |Type |説明 
+出力パラメーター |種類 |説明 
 ---|---|---
 OriginalExtentId |string |タグが変更された元のエクステントの一意識別子 (GUID)。 エクステントは操作の一部として削除されます。
 ResultExtentId |string |変更されたタグを持つ結果エクステントの一意識別子 (GUID)。 エクステントが作成され、操作の一部として追加されます。 失敗時-"失敗"。
 ResultExtentTags |string |結果エクステントにタグが付けられているタグのコレクション (残っている場合)。操作が失敗した場合は "null"。
-説明 |string |操作が失敗した場合のエラーの詳細が含まれます。
+詳細 |string |操作が失敗した場合のエラーの詳細が含まれます。
 
 ## <a name="examples"></a>例
 
@@ -114,7 +115,7 @@ ResultExtentTags |string |結果エクステントにタグが付けられてい
 
 ## <a name="sample-output"></a>サンプル出力
 
-|OriginalExtentId |ResultExtentId | ResultExtentTags | 説明
+|OriginalExtentId |ResultExtentId | ResultExtentTags | 詳細
 |---|---|---|---
 |e133f050-a1e2-4dad-8552-1f5cf47cab69 |0d96ab2d-9dd2-4d2c-a45e-b24c65aa6687 | Partition001 |
 |cdbeb35b-87ea-499f-b545-defbae091b57 |a90a303c-8a14-4207-8f35-d8ea94ca45be | |

@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 4a9b42410c7a64a54ced0dc326b33242b4b11870
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: 0ee41d8aba05eb9b5bf3bc6db3206524fdb5ec0d
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91057205"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321303"
 ---
 # <a name="show-materialized-views-commands"></a>。具体化されたビューのコマンドを表示します
 
@@ -29,7 +29,7 @@ ms.locfileid: "91057205"
 
 `.show` `materialized-views`
 
-### <a name="properties"></a>Properties
+### <a name="properties"></a>プロパティ
 
 |プロパティ|種類|説明
 |----------------|-------|---|
@@ -56,7 +56,7 @@ ms.locfileid: "91057205"
 |Folder|string|具体化されたビューフォルダー。
 |DocString|string|具体化されたビューのドキュメント文字列。
 |AutoUpdateSchema|[bool]|ビューで自動更新が有効になっているかどうか。
-|EffectiveDateTime|DATETIME|作成時に決定される、ビューの有効な日時 (「 [具体化されたビューを作成する](materialized-view-create.md#create-materialized-view)」を参照)。
+|EffectiveDateTime|DATETIME|作成時に決定される、ビューの有効な日時です (「」を参照してください [`.create materialized-view`](materialized-view-create.md#create-materialized-view) )。
 
 ## <a name="show-materialized-view-schema"></a>。具体化されたビュースキーマを表示します
 
@@ -82,7 +82,7 @@ CSL/JSON の具体化されたビューのスキーマを返します。
 
 ## <a name="show-materialized-view-extents"></a>。具体化されたビューのエクステントを表示します
 
-具体化されたビューの *具体化* された部分に含まれるエクステントを返します。 *具体化*された部分の定義については、「具体化された[ビューのしくみ](materialized-view-overview.md#how-materialized-views-work)」を参照してください。
+具体化されたビューの *具体化* された部分に含まれるエクステントを返します。 *具体化* された部分の定義については、「具体化された [ビューのしくみ](materialized-view-overview.md#how-materialized-views-work)」を参照してください。
 
 このコマンドでは、[ [テーブルエクステントの表示](../show-extents.md#table-level) ] コマンドと同じ詳細が提供されます。
 
@@ -98,7 +98,7 @@ CSL/JSON の具体化されたビューのスキーマを返します。
 
 `.show``materialized-view` *MaterializedViewName*`failures`
 
-### <a name="properties"></a>Properties
+### <a name="properties"></a>プロパティ
 
 |プロパティ|種類|説明
 |----------------|-------|---|

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: c9ef5b2a205665c692c383654f3d050c4658c0f1
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 5d346e5b7932437322cb8a41210a6f375cd6d6f0
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92002989"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321116"
 ---
 # <a name="update-policy-commands"></a>ポリシー更新コマンド
 
@@ -25,7 +25,7 @@ ms.locfileid: "92002989"
 
 ### <a name="syntax"></a>構文
 
-* `.show``table` *TableName* TableName `policy``update`
+* `.show` `table` *TableName* `policy` `update`
 * `.show``table` *DatabaseName* `.` *TableName* TableName `policy``update`
 * `.show` `table` `*` `policy` `update`
 
@@ -67,14 +67,14 @@ ms.locfileid: "92002989"
 >    * `Query` 
 >        * スキーマで定義されているスキーマが対象テーブルのいずれかと一致することを確認します。
 >        * クエリが更新ポリシーのテーブルを参照していることを確認し `source` ます。 
-        ソースを参照しない更新ポリシークエリの定義は、のプロパティ (次の例を参照) でを設定することによって可能に `AllowUnreferencedSourceTable=true` なりますが、パフォーマンスの*with*問題により推奨されません。 ソーステーブルにインジェストを取り込むたびに、別のテーブル内のすべてのレコードが更新ポリシーの実行と見なされます。
+        ソースを参照しない更新ポリシークエリの定義は、のプロパティ (次の例を参照) でを設定することによって可能に `AllowUnreferencedSourceTable=true` なりますが、パフォーマンスの *with* 問題により推奨されません。 ソーステーブルにインジェストを取り込むたびに、別のテーブル内のすべてのレコードが更新ポリシーの実行と見なされます。
  >       * ポリシーによって、ターゲットデータベースの更新ポリシーのチェーンに循環が作成されないことを確認します。
  > * がに設定されている場合 `IsTransactional` `true` 、は、 `TableAdmin` (ソーステーブル) に対してもアクセス許可が検証されることを確認し `Source` ます。
  > * 更新ポリシーまたは機能をテストして、ソーステーブルへのインジェストごとに実行するように適用します。 詳細については、「 [更新ポリシーのパフォーマンスへの影響のテスト](updatepolicy.md#performance-impact)」を参照してください。
 
 ### <a name="returns"></a>戻り値
 
-このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトを設定し、対応する [テーブル更新ポリシーの表示](#show-update-policy) コマンドの出力を返します。
+このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトを設定し、対応するコマンドの出力を返し [`.show table update policy`](#show-update-policy) ます。
 
 ### <a name="example"></a>例
 
@@ -133,7 +133,7 @@ MyUpdateFunction()
 
 **戻り値**
 
-このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトに追加し、対応するの出力を返し [ます。テーブル *TableName* 更新ポリシーの表示](#show-update-policy) コマンドです。
+このコマンドは、現在のポリシーを上書きしてテーブルの更新ポリシーオブジェクトに追加し、対応するコマンドの出力を返し [`.show table *TableName* update policy`](#show-update-policy) ます。
 
 **例**
 
@@ -148,12 +148,12 @@ MyUpdateFunction()
 
 **構文**
 
-* `.delete``table` *TableName* TableName `policy``update`
+* `.delete` `table` *TableName* `policy` `update`
 * `.delete``table` *DatabaseName* `.` *TableName* TableName `policy``update`
 
 **戻り値**
 
-このコマンドは、テーブルの更新ポリシーオブジェクトを削除し、対応するの出力を返し [ます。テーブル *TableName* 更新ポリシー](#show-update-policy) コマンド。
+このコマンドは、テーブルの更新ポリシーオブジェクトを削除し、対応するコマンドの出力を返し [`.show table *TableName* update policy`](#show-update-policy) ます。
 
 **例**
 

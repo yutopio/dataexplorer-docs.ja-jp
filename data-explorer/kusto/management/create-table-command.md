@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/06/2020
-ms.openlocfilehash: b071c4af6bc25650d18b1b66130941f73af551ff
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 8cfdbe1420745620fcaaf6af81e4f750ca25c1cd
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967096"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321609"
 ---
 # <a name="create-table"></a>.create テーブル
 
@@ -44,4 +44,4 @@ ms.locfileid: "85967096"
 ```
 
 > [!NOTE]
-> 複数のテーブルを作成する場合は、[[テーブルの作成](create-tables-command.md)] コマンドを使用して、クラスターのパフォーマンスを向上させ、負荷を軽減します。
+> 複数のテーブルを作成する場合は、クラスターのパフォーマンスを向上させ、負荷を軽減するために、コマンドを使用し [`.create tables`](create-tables-command.md) ます。

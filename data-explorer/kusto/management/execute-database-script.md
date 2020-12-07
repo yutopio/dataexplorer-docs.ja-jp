@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/14/2020
-ms.openlocfilehash: c8fa3a000de67559c83745c598da40797e31f9b9
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 667fcc87a1e301bdcceb227bb99ad70d62f46153
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92248337"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320827"
 ---
 # <a name="execute-database-script"></a>.execute database script
 
@@ -33,7 +33,7 @@ ms.locfileid: "92248337"
 
 ### <a name="optional-properties"></a>省略可能なプロパティ
 
-| プロパティ            | Type            | 説明                          |
+| プロパティ            | 種類            | 説明                          |
 |---------------------|-----------------|---------------------------------------------------------------------------------------------------|
 | `ContinueOnErrors`            | `bool`        | に設定する `false` と、スクリプトは最初のエラーで停止します。 に設定する `true` と、スクリプトの実行は続行されます。 既定値:`false`。 |
 
@@ -41,7 +41,7 @@ ms.locfileid: "92248337"
 
 スクリプトに表示される各コマンドは、出力テーブルに個別のレコードとして報告されます。 各レコードには、次のフィールドがあります。
 
-|出力パラメーター |Type |説明
+|出力パラメーター |種類 |説明
 |---|---|--- 
 |OperationId  |Guid |コマンドの識別子。
 |CommandType  |String |コマンドの種類。
@@ -54,7 +54,7 @@ ms.locfileid: "92248337"
 >* コマンドは、入力スクリプトに表示される順序で順番に実行されます。
 >* スクリプトの実行は非トランザクションであり、エラー発生時にロールバックは実行されません。 を使用する場合は、べき等形式のコマンドを使用することをお勧めし `.execute database script` ます。
 >* コマンドの既定の動作は、最初のエラーが発生したときに失敗します。これは、プロパティ引数を使用して変更できます。
->* 読み取り専用の制御コマンド ([コマンドの表示]) は実行されず、状態と共に報告され `Skipped` ます。
+>* 読み取り専用の制御コマンド ( `.show` コマンド) は実行されず、状態と共に報告され `Skipped` ます。
 
 ## <a name="example"></a>例
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: 6b0c1247c0d161caae3301dc674a701bd1019ad3
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: 6d85b5cbf6752924bbaa03d2b81732cd69be6239
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91056936"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321626"
 ---
 # <a name="capacity-policy"></a>キャパシティ ポリシー 
 
@@ -46,7 +46,7 @@ ms.locfileid: "91056936"
 |MinimumConcurrentOperationsPerNode |long    |1つのノードでの同時実行エクステントのマージ/再構築操作の数の最小値。 既定値は1です。 |
 |MaximumConcurrentOperationsPerNode |long    |1つのノードに対するマージ/再構築操作の同時実行数の最大値。 既定値は3です。 |
 
-に示されているように、クラスターの合計エクステントのマージ容量 [。容量の表示](../management/diagnostics.md#show-capacity)は次のように計算されます。
+で示されているように、クラスターの合計エクステントのマージ容量は、次のよう [`.show capacity`](../management/diagnostics.md#show-capacity) に計算されます。
 
 `Number of nodes in cluster` 閉じる `Concurrent operations per node`
 
@@ -61,7 +61,7 @@ ms.locfileid: "91056936"
 |-----------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------|
 |MaximumConcurrentOperationsPerNode |long    |1つのノードでの消去操作の同時再構築エクステント数の最大値 |
 
-クラスターの合計エクステントの削除の合計容量 (で示されているように、によって示さ [れます。容量の表示](../management/diagnostics.md#show-capacity)) は、次の方法で計算されます。
+クラスターの合計エクステント消去の再構築容量 (で示されているように [`.show capacity`](../management/diagnostics.md#show-capacity) ) は、次のように計算されます。
 
 `Number of nodes in cluster` 閉じる `MaximumConcurrentOperationsPerNode`
 
@@ -75,7 +75,7 @@ ms.locfileid: "91056936"
 |ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクスポート操作数の最大値。                                           |
 |CoreUtilizationCoefficient         |double  |エクスポート容量を計算するときに使用するコアの割合の係数。 計算の結果は、常にによって正規化され `ClusterMaximumConcurrentOperations` ます。 |
 
-に示されているように、クラスターの合計エクスポート容量 [。容量の表示](../management/diagnostics.md#show-capacity)は次のように計算されます。
+で示されているように、クラスターの合計エクスポート容量 [`.show capacity`](../management/diagnostics.md#show-capacity) は次のように計算されます。
 
 最小値 ( `ClusterMaximumConcurrentOperations` , `Number of nodes in cluster` * 最大 (1, `Core count per node`  *  `CoreUtilizationCoefficient` ))
 
@@ -89,7 +89,7 @@ ms.locfileid: "91056936"
 |ClusterMinimumConcurrentOperations |long    |クラスター内の同時エクステントのパーティション操作数の最小値。 既定値は1  |
 |ClusterMaximumConcurrentOperations |long    |クラスター内の同時エクステントのパーティション操作数の最大値。 既定値:16 |
 
-クラスターのエクステントの合計エクステント容量 (で示されているように)。 [容量を表示](../management/diagnostics.md#show-capacity)します。
+クラスターのエクステントパーティションの合計容量 (によって示さ [`.show capacity`](../management/diagnostics.md#show-capacity) れます)。
 
 の有効値は、 `Concurrent operations` `ClusterMinimumConcurrentOperations` `ClusterMaximumConcurrentOperations` パーティション分割操作の成功率が90% を超えている限り、システムによって [,] の範囲で自動的に調整されます。
 
@@ -168,9 +168,9 @@ Maximum(`ClusterMaximumConcurrentOperations`, `Number of nodes in cluster` * `Ma
 > [!WARNING]
 > 容量ポリシーを変更する前に、Azure データエクスプローラーチームに問い合わせてください。
 
-* を使用 [します。クラスターポリシーの容量を表示](capacity-policy.md#show-cluster-policy-capacity) して、クラスターの現在の容量ポリシーを表示します。
+* を使用して、 [`.show cluster policy capacity`](capacity-policy.md#show-cluster-policy-capacity) クラスターの現在の容量ポリシーを表示します。
 
-* クラスター [ポリシーの容量を変更](capacity-policy.md#alter-cluster-policy-capacity) して、クラスターの容量ポリシーを変更してください。
+* [`.alter cluster policy capacity`](capacity-policy.md#alter-cluster-policy-capacity)クラスターの容量ポリシーを変更するには、を使用します。
 
 ## <a name="throttling"></a>Throttling
 

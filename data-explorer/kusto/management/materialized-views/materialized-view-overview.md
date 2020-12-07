@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: f19104111d8db615c82eff2e399fb4857f27c841
-ms.sourcegitcommit: 463ee13337ed6d6b4f21eaf93cf58885d04bccaa
+ms.openlocfilehash: 407db347d4d21450d5648fe8716e2d82553a9669
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/30/2020
-ms.locfileid: "91572161"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320657"
 ---
 # <a name="materialized-views-preview"></a>具体化ビュー (プレビュー)
 
@@ -23,11 +23,11 @@ ms.locfileid: "91572161"
 > 具体化されたビューにはいくつかの [制限事項](materialized-view-create.md#limitations-on-creating-materialized-views)があり、すべてのシナリオで適切に動作するとは限りません。 この機能を使用する前に、 [パフォーマンスに関する考慮事項](#performance-considerations) を確認してください。
 
 次のコマンドを使用して、具体化されたビューを管理します。
-* [.create materialized-view](materialized-view-create.md)
-* [.alter materialized-view](materialized-view-alter.md)
-* [.drop materialized-view](materialized-view-drop.md)
-* [.disable | .enable materialized-view](materialized-view-enable-disable.md)
-* [。具体化されたビューのコマンドを表示します](materialized-view-show-commands.md)
+* [`.create materialized-view`](materialized-view-create.md)
+* [`.alter materialized-view`](materialized-view-alter.md)
+* [`.drop materialized-view`](materialized-view-drop.md)
+* [`.disable | .enable materialized-view`](materialized-view-enable-disable.md)
+* [`.show materialized-views commands`](materialized-view-show-commands.md)
 
 ## <a name="why-use-materialized-views"></a>具体化したビューを使用する理由
 
@@ -43,8 +43,8 @@ ms.locfileid: "91572161"
 
 具体化されたビューを使用して対処できる一般的なシナリオを次に示します。
 
-* [Arg_max () (集計関数)](../../query/arg-max-aggfunction.md)を使用して、エンティティごとに最後のレコードを照会します。
-* [Any () (集計関数)](../../query/any-aggfunction.md)を使用して、テーブル内の重複したレコードを除外します。
+* [ `arg_max()` (集計関数)](../../query/arg-max-aggfunction.md)を使用してエンティティごとに最後のレコードを照会します。
+* [ `any()` (集計関数)](../../query/any-aggfunction.md)を使用してテーブル内のレコードを重複除去します。
 * 生データに対して定期的な統計を計算することにより、データの解決を軽減します。 期間によって、さまざまな [集計関数](materialized-view-create.md#supported-aggregation-functions) を使用します。
     * たとえば、を使用して、1 `T | summarize dcount(User) by bin(Timestamp, 1d)` 日に個別のユーザーの最新のスナップショットを保持します。
 
@@ -54,17 +54,17 @@ ms.locfileid: "91572161"
 
 具体化されたビューは、次の2つのコンポーネントで構成されます。
 
-* *具体化*された部分-既に処理されているソーステーブルの集計レコードを保持する Azure データエクスプローラーテーブル。  このテーブルは、集計のグループ化の組み合わせごとに、常に1つのレコードを保持します。
+* *具体化* された部分-既に処理されているソーステーブルの集計レコードを保持する Azure データエクスプローラーテーブル。  このテーブルは、集計のグループ化の組み合わせごとに、常に1つのレコードを保持します。
 * *デルタ*-まだ処理されていない、ソーステーブル内の新しく取り込まれたレコード。
 
-具体化されたビューに対してクエリを実行すると、具体化された部分がデルタ部分と結合され、集計クエリの最新の結果が得られます。 オフラインの具体化プロセスでは、 *デルタ* から具体化されたテーブルに新しいレコードが取り込みされ、既存のレコードが置き換えられます。 置換は、置換するレコードを保持するエクステントを再構築することによって行われます。 *デルタ*内のレコードが*具体化*された部分のすべてのデータシャードと常に交差している場合、具体化された各サイクルには*具体化*されたパーツ全体を再構築する必要があり、インジェスト率が遅れている可能性があります。 この場合、ビューは異常な状態になり、 *デルタ* は常に増加します。
+具体化されたビューに対してクエリを実行すると、具体化された部分がデルタ部分と結合され、集計クエリの最新の結果が得られます。 オフラインの具体化プロセスでは、 *デルタ* から具体化されたテーブルに新しいレコードが取り込みされ、既存のレコードが置き換えられます。 置換は、置換するレコードを保持するエクステントを再構築することによって行われます。 *デルタ* 内のレコードが *具体化* された部分のすべてのデータシャードと常に交差している場合、具体化された各サイクルには *具体化* されたパーツ全体を再構築する必要があり、インジェスト率が遅れている可能性があります。 この場合、ビューは異常な状態になり、 *デルタ* は常に増加します。
 このような状況のトラブルシューティング方法については、「 [監視](#materialized-views-monitoring) 」セクションを参照してください。
 
 ## <a name="materialized-views-queries"></a>具体化ビュークエリ
 
 具体化されたビューに対してクエリを実行する主な方法は、テーブル参照のクエリのような名前になります。 具体化されたビューに対してクエリを行うと、ビューの具体化された部分と、まだ具体化されていないソーステーブル内のレコードが結合されます。 具体化されたビューに対してクエリを実行すると、ソーステーブルに取り込まれたしたすべてのレコードに基づいて、常に最新の結果が返されます。 具体化されたビューパーツの詳細については、「具体化された [ビューのしくみ](#how-materialized-views-work)」を参照してください。 
 
-ビューにクエリを実行するもう1つの方法は、 [materialized_view () 関数](../../query/materialized-view-function.md)を使用することです。 このオプションは、ビューの具体化された部分のみのクエリをサポートし、ユーザーが許容できる最大待機時間を指定します。 このオプションは最新のレコードを返すことは保証されていませんが、常にビュー全体を照会するよりもパフォーマンスが高くなります。 この機能は、テレメトリダッシュボードなど、パフォーマンスのために鮮度を犠牲にする場合に便利です。
+ビューに対してクエリを実行するもう1つの方法は、 [ `materialized_view()` 関数](../../query/materialized-view-function.md)を使用することです。 このオプションは、ビューの具体化された部分のみのクエリをサポートし、ユーザーが許容できる最大待機時間を指定します。 このオプションは最新のレコードを返すことは保証されていませんが、常にビュー全体を照会するよりもパフォーマンスが高くなります。 この機能は、テレメトリダッシュボードなど、パフォーマンスのために鮮度を犠牲にする場合に便利です。
 
 ビューはクラスター間またはデータベース間クエリに参加できますが、ワイルドカードの共用体や検索には含まれません。
 
@@ -96,7 +96,7 @@ ms.locfileid: "91572161"
 
 * **クラスター内の具体化されるビューの数:** 上記の考慮事項は、クラスターで定義されている個々の具体化されたビューに適用されます。 各ビューは独自のリソースを消費し、多くのビューは使用可能なリソースで相互に競合します。 クラスター内の具体化されたビューの数には、ハードコーディングされた制限はありません。 ただし、一般的な推奨事項は、クラスター上の具体化されたビューの数が10個以下であることです。 クラスターで1つの具体化されたビューが定義されている場合は、 [容量ポリシー](../capacitypolicy.md#materialized-views-capacity-policy) を調整できます。
 
-* **具体化**されたビューの定義: 具体化されたビューの定義は、最適なクエリパフォーマンスを得るためのクエリのベストプラクティスに従って定義する必要があります。 詳細については、「 [create command performance tips](materialized-view-create.md#performance-tips)」を参照してください。
+* **具体化** されたビューの定義: 具体化されたビューの定義は、最適なクエリパフォーマンスを得るためのクエリのベストプラクティスに従って定義する必要があります。 詳細については、「 [create command performance tips](materialized-view-create.md#performance-tips)」を参照してください。
 
 ## <a name="materialized-views-policies"></a>具体化したビューのポリシー
 
@@ -116,15 +116,15 @@ ms.locfileid: "91572161"
 次の方法で、具体化されたビューの正常性を監視します。
 
 * Azure portal の具体化された [ビューメトリック](../../../using-metrics.md#materialized-view-metrics) を監視します。
-* [具体化され `IsHealthy` た [ビューを表示]](materialized-view-show-commands.md#show-materialized-view)から返されたプロパティを監視します。
-* [具体化された [ビューのエラーを表示する]](materialized-view-show-commands.md#show-materialized-view-failures)を使用してエラーを確認します。
+* `IsHealthy`から返されたプロパティを監視 [`.show materialized-view`](materialized-view-show-commands.md#show-materialized-view) します。
+* を使用してエラーを確認 [`.show materialized-view failures`](materialized-view-show-commands.md#show-materialized-view-failures) します。
 
 > [!NOTE]
 > 具体化は、一定のエラーがある場合でも、データをスキップしません。 ビューは常に、ソーステーブル内のすべてのレコードに基づいて、クエリの最新のスナップショットを返すことが保証されます。 定数エラーによってクエリのパフォーマンスが大幅に低下しますが、ビュークエリで結果が不正確になることはありません。
 
 ### <a name="track-resource-consumption"></a>リソース消費量の追跡
 
-具体化された**ビューのリソース消費:** 具体化されたビューの具体化プロセスによって使用されるリソースは、「[コマンドを表示する」と「-queries](../commands-and-queries.md#show-commands-and-queries) 」コマンドを使用して追跡できます。 次のものを使用して、特定のビューのレコードをフィルター処理します (との置換 `DatabaseName` `ViewName` ):
+具体化された **ビューのリソース消費:** 具体化されたビューの具体化プロセスによって消費されるリソースは、コマンドを使用して追跡できます [`.show commands-and-queries`](../commands-and-queries.md#show-commands-and-queries) 。 次のものを使用して、特定のビューのレコードをフィルター処理します (との置換 `DatabaseName` `ViewName` ):
 
 <!-- csl -->
 ```
@@ -158,8 +158,8 @@ ms.locfileid: "91572161"
    * 各具体化サイクルがビュー内のエクステントの100% に近い状態で再構築する必要がある場合、ビューは正常に完了しない可能性があり、異常になります。 各サイクルで再構築されたエクステントの数は、メトリックに表示され `MaterializedViewExtentsRebuild` ます。 [具体化された [ビュー容量] ポリシー](../capacitypolicy.md#materialized-views-capacity-policy) で再構築されたエクステント数を増やすと、この場合にも役立つことがあります。 
    * クラスターに追加の具体化されたビューがあります。クラスターには、すべてのビューを実行するのに十分な容量がありません。 同時に実行される具体化されたビュー数の既定の設定を変更するには、「具体化された [ビュー容量ポリシー](../capacitypolicy.md#materialized-views-capacity-policy) 」を参照してください。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
-* [。具体化ビューを作成します](materialized-view-create.md)
-* [.alter materialized-view](materialized-view-alter.md)
+* [`.create materialized view`](materialized-view-create.md)
+* [`.alter materialized-view`](materialized-view-alter.md)
 * [具体化されるビューでのコマンドの表示](materialized-view-show-commands.md)

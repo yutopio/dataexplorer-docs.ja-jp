@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 1d2960e4fa8274d9e39aba935a49fd8d14d166e9
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: 30929e63c39be10d066815333ba6b277c0aeb5c9
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902670"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321286"
 ---
 # <a name="partitioning-policy"></a>Partitioning ポリシー
 
@@ -28,10 +28,10 @@ ms.locfileid: "92902670"
 
 次の種類のパーティションキーがサポートされています。
 
-|種類                                                   |列の型 |パーティションのプロパティ                    |パーティションの値                                        |
-|-------------------------------------------------------|------------|----------------------------------------|----------------------|
-|[ハッシュ](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
-|[統一範囲](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`                | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
+|種類                                                   |列の型 |パーティションのプロパティ                                               |パーティションの値                                        |
+|-------------------------------------------------------|------------|-------------------------------------------------------------------|-------------------------------------------------------|
+|[ハッシュ](#hash-partition-key)                            |`string`    |`Function`, `MaxPartitionCount`, `Seed`, `PartitionAssignmentMode` | `Function`(`ColumnName`, `MaxPartitionCount`, `Seed`) |
+|[統一範囲](#uniform-range-datetime-partition-key) |`datetime`  |`RangeSize`, `Reference`, `OverrideCreationTime`                   | `bin_at`(`ColumnName`, `RangeSize`, `Reference`)      |
 
 ### <a name="hash-partition-key"></a>ハッシュパーティションキー
 
@@ -83,15 +83,16 @@ ms.locfileid: "92902670"
 
 #### <a name="partition-properties"></a>パーティションのプロパティ
 
-|プロパティ | 説明 | 推奨値 |
-|---|---|---|---|
-| `RangeSize` | `timespan`各 datetime パーティションのサイズを示すスカラー定数です。 | 値 `1.00:00:00` (1 日) で開始します。 テーブルにはマージできない小さなエクステントが多数含まれる可能性があるため、より短い値を設定しないでください。
-| `Reference` | `datetime`どの datetime パーティションがアラインされるかに従って、固定された時点を示すスカラー定数。 | `1970-01-01 00:00:00`で開始します。 Datetime パーティションキーに値があるレコードがある場合 `null` 、そのパーティション値はの値に設定され `Reference` ます。 |
+|プロパティ                | 説明                                                                                                                                                     | 推奨値                                                                                                                                                                                                                                                            |
+|------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `RangeSize`            | `timespan`各 datetime パーティションのサイズを示すスカラー定数です。                                                                                | 値 `1.00:00:00` (1 日) で開始します。 テーブルにはマージできない小さなエクステントが多数含まれる可能性があるため、より短い値を設定しないでください。                                                                                                      |
+| `Reference`            | `datetime`どの datetime パーティションがアラインされるかに従って、固定された時点を示すスカラー定数。                                          | `1970-01-01 00:00:00`で開始します。 Datetime パーティションキーに値があるレコードがある場合 `null` 、そのパーティション値はの値に設定され `Reference` ます。                                                                                                      |
+| `OverrideCreationTime` | `bool`結果エクステントの最小および最大作成時間が、パーティションキーの値の範囲によって上書きされるかどうかを示すです。 | 既定値は `false` です。 `true`データが到着時刻の順序に従っていない場合 (たとえば、1つのソースファイルには、遠くにある datetime 値が含まれている場合があります)、または、インジェストの時間ではなく、datetime 値に基づいて保持/キャッシュを強制する場合は、に設定します。 |
 
 #### <a name="uniform-range-datetime-partition-example"></a>Uniform range datetime パーティションの例
 
-コードスニペットは、という名前の型指定された列に対する uniform datetime 範囲パーティションキーを示して `datetime` `timestamp` います。
-を `datetime(1970-01-01)` 参照ポイントとして使用し、各パーティションにサイズを指定し `1d` ます。
+このスニペットは、という名前の型指定された列に対する uniform datetime 範囲パーティションキーを示して `datetime` `timestamp` います。
+は `datetime(1970-01-01)` 、各パーティションにのサイズを持つ参照ポイントとしてを使用 `1d` し、エクステントの作成時間をオーバーライドしません。
 
 ```json
 {
@@ -99,7 +100,8 @@ ms.locfileid: "92902670"
   "Kind": "UniformRange",
   "Properties": {
     "Reference": "1970-01-01T00:00:00",
-    "RangeSize": "1.00:00:00"
+    "RangeSize": "1.00:00:00",
+    "OverrideCreationTime": false
   }
 }
 ```
@@ -110,7 +112,7 @@ ms.locfileid: "92902670"
 
 データのパーティション分割ポリシーには、次の主要なプロパティがあります。
 
-* **Partitionkeys** :
+* **Partitionkeys**:
   * テーブル内のデータをパーティション分割する方法を定義する [パーティションキー](#partition-keys) のコレクション。
   * テーブルは `2` 、次のいずれかのオプションを使用して、最大でキーをパーティション分割できます。
     * 1つの [ハッシュパーティションキー](#hash-partition-key)。
@@ -121,7 +123,7 @@ ms.locfileid: "92902670"
     * `Kind`: `string` -適用するデータパーティションの種類 ( `Hash` または `UniformRange` )。
     * `Properties`: `property bag` -パーティション分割の実行に応じてパラメーターを定義します。
 
-* **EffectiveDateTime** :
+* **EffectiveDateTime**:
   * ポリシーが有効になる UTC datetime。
   * このプロパティは省略可能です。 指定されていない場合、ポリシーは、ポリシーが適用された後、データ取り込まれたで有効になります。
   * 保有期間のために削除される可能性のある同種でない (パーティション分割されていない) エクステントは、パーティション分割プロセスによって無視されます。 これらのエクステントは、作成時間がテーブルの有効な論理的な削除期間の90% に先行するため、無視されます。
@@ -154,7 +156,8 @@ ms.locfileid: "92902670"
       "Kind": "UniformRange",
       "Properties": {
         "Reference": "1970-01-01T00:00:00",
-        "RangeSize": "1.00:00:00"
+        "RangeSize": "1.00:00:00",
+        "OverrideCreationTime": false
       }
     }
   ]
@@ -179,7 +182,7 @@ ms.locfileid: "92902670"
 
 ## <a name="monitor-partitioning"></a>パーティション分割の監視
 
-クラスター内のパーティション分割の進行状況または状態を監視するには、 [. show diagnostics](../management/diagnostics.md#show-diagnostics) コマンドを使用します。
+[`.show diagnostics`](../management/diagnostics.md#show-diagnostics)クラスター内のパーティション分割の進行状況または状態を監視するには、コマンドを使用します。
 
 ```kusto
 .show diagnostics
@@ -192,7 +195,7 @@ ms.locfileid: "92902670"
     * この割合が常に90% 未満の場合は、クラスターのパーティション分割 [容量](partitioningpolicy.md#partition-capacity)を評価します。
   * `TableWithMinPartitioningPercentage`: パーティションの割合が上に表示されるテーブルの完全修飾名。
 
-を使用 [します。](commands.md) パーティション分割コマンドとそのリソース使用を監視するには、コマンドを表示します。 次に例を示します。
+[`.show commands`](commands.md)パーティション分割コマンドとそのリソースの使用を監視するには、を使用します。 例:
 
 ```kusto
 .show commands 
@@ -219,6 +222,6 @@ ms.locfileid: "92902670"
 
 どちらの場合も、データを "修正" するか、インジェストの前または後にデータ内の不要なレコードをフィルターで除外して、クラスターでのデータのパーティション分割のオーバーヘッドを軽減します。 たとえば、 [更新ポリシー](updatepolicy.md)を使用します。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 [パーティション分割ポリシー制御コマンド](../management/partitioning-policy.md)を使用して、テーブルのデータのパーティション分割ポリシーを管理します。

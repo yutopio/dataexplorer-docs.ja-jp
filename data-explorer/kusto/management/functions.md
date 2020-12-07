@@ -1,6 +1,6 @@
 ---
-title: ストアドファンクション管理の概要 - Azure データ エクスプローラ |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのストアド関数管理の概要について説明します。
+title: 格納されている関数の管理の概要-Azure データエクスプローラー |Microsoft Docs
+description: この記事では、Azure データエクスプローラーでのストアド関数管理の概要について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/18/2020
-ms.openlocfilehash: f3768c6252a96215d37bd9f19a44cbf4d3afc731
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: 4354538b206ee86e34941718bcf6d74130647fb6
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81520963"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321354"
 ---
-# <a name="stored-functions-management-overview"></a>ストアドファンクション管理機能の概要
-この節では、以下の[ユーザー定義関数](../query/functions/user-defined-functions.md)を作成および変更するために使用する制御コマンドについて説明します。
+# <a name="stored-functions-management-overview"></a>ストアド関数の管理の概要
+ここでは、次の [ユーザー定義関数](../query/functions/user-defined-functions.md)を作成および変更するために使用されるコントロールコマンドについて説明します。
 
 |機能 |説明|
 |---------|-----------|
-|[変更機能](alter-function.md) |既存の関数を変更し、データベースメタデータ内に格納します。 |
-|[変更関数のドキュメント文字列](alter-docstring-function.md) |既存の関数の DocString 値を変更します。 |
-|[.alter 関数フォルダ](alter-folder-function.md) |既存の関数の Folder 値を変更します。 |
-|[作成機能](create-function.md) |格納された関数を作成します。 |
-|[作成または変更関数](create-alter-function.md) |ストアドファンクションを作成するか、既存の関数を変更してデータベースメタデータに格納します。 |
-|[.drop 関数と .drop 関数](drop-function.md) |データベースから関数 (または関数) を削除します。 |
-|[.show 関数と .show 関数](show-function.md) |現在選択されているデータベース内のすべてのストアド関数または特定の関数を一覧表示します。 |
+|[`.alter function`](alter-function.md) |既存の関数を変更し、データベースメタデータ内に格納します。 |
+|[`.alter function docstring`](alter-docstring-function.md) |既存の関数の DocString 値を変更します。 |
+|[`.alter function folder`](alter-folder-function.md) |既存の関数のフォルダー値を変更します。 |
+|[`.create function`](create-function.md) |格納されている関数を作成します。 |
+|[`.create-or-alter function`](create-alter-function.md) |格納されている関数を作成するか、既存の関数を変更してデータベースメタデータ内に格納します。 |
+|[`.drop function` そして `.drop functions`](drop-function.md) |データベースから関数 (または関数) を削除します。 |
+|[`.show functions` そして `.show function`](show-function.md) |現在選択されているデータベースに格納されているすべての関数、または特定の関数を一覧表示します。 |

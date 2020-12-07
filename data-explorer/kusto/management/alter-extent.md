@@ -8,33 +8,33 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/02/2020
-ms.openlocfilehash: 00c4cfbb4b6415afcd68e8e41864ca4a68cc097e
-ms.sourcegitcommit: d6f35df833d5b4f2829a8924fffac1d0b49ce1c2
+ms.openlocfilehash: 61dba69c3ec40ec13960e9ddf266e47fe88ef3c6
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/07/2020
-ms.locfileid: "86060679"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321745"
 ---
 # <a name="alter-extent-tags"></a>. alter extent タグ
 
-コマンドは、特定のデータベースのコンテキストで実行されます。 クエリによって返されたすべてのエクステントの指定された[エクステントタグ](extents-overview.md#extent-tagging)を変更します。
+コマンドは、特定のデータベースのコンテキストで実行されます。 クエリによって返されたすべてのエクステントの指定された [エクステントタグ](extents-overview.md#extent-tagging) を変更します。
 
 エクステントと変更するタグは、"ExtentId" という名前の列を含むレコードセットを返す Kusto クエリを使用して指定します。
 
-すべての関連テーブルに対して[Table admin 権限](../management/access-control/role-based-authorization.md)が必要です。
+すべての関連テーブルに対して [Table admin 権限](../management/access-control/role-based-authorization.md) が必要です。
 
 > [!NOTE]
-> データシャードは Kusto では**エクステント**と呼ばれ、すべてのコマンドはシノニムとして "エクステント" または "エクステント" を使用します。
-> エクステントの詳細については、「[エクステント (データシャード) の概要](extents-overview.md)」を参照してください。
+> データシャードは Kusto では **エクステント** と呼ばれ、すべてのコマンドはシノニムとして "エクステント" または "エクステント" を使用します。
+> エクステントの詳細については、「 [エクステント (データシャード) の概要](extents-overview.md)」を参照してください。
 
 ## <a name="syntax"></a>構文
 
 `.alter`[ `async` ] `extent` `tags` `(` '*Tag1*' [ `,` '*Tag2*' `,` ... `,` '*Tagn*'] `)`  <|  *クエリ*
 
-`async`(省略可能): コマンドを非同期に実行します。
+`async` (省略可能): コマンドを非同期に実行します。
    * 操作 ID (Guid) が返されます。 
-   * 操作の状態を監視できます。 [[操作の表示](operations.md#show-operations)] コマンドを使用します。
-   * 正常に実行された結果を取得できます。 [[操作の詳細を表示](operations.md#show-operation-details)] コマンドを使用します。
+   * 操作の状態を監視できます。 コマンドを使用し [`.show operations`](operations.md#show-operations) ます。
+   * 正常に実行された結果を取得できます。 コマンドを使用し [`.show operation details`](operations.md#show-operation-details) ます。
 
 ## <a name="restrictions"></a>制限
 
@@ -42,7 +42,7 @@ ms.locfileid: "86060679"
 
 ## <a name="return-output"></a>出力を返す
 
-|出力パラメーター |Type |説明|
+|出力パラメーター |種類 |説明|
 |---|---|---|
 |OriginalExtentId |string |タグが変更された元のエクステントの一意識別子 (GUID)。 エクステントは操作の一部として削除されます。|
 |ResultExtentId |string |変更されたタグを持つ結果エクステントの一意識別子 (GUID)。 エクステントが作成され、操作の一部として追加されます。 失敗時-"失敗"。|
@@ -53,7 +53,7 @@ ms.locfileid: "86060679"
 
 ### <a name="alter-tags"></a>タグの変更 
 
-テーブル内のすべてのエクステントのタグ `MyTable` をに変更します。`MyTag`
+テーブル内のすべてのエクステントのタグ `MyTable` をに変更します。 `MyTag`
 
 ```kusto
 .alter extent tags ('MyTag') <| .show table MyTable extents

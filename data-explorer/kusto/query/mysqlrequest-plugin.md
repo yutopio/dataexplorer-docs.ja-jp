@@ -10,12 +10,12 @@ ms.topic: reference
 ms.date: 02/24/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: c44935a98110cd47f2a40bb261659e12627860c0
-ms.sourcegitcommit: 25c0440cb0390b9629b819611844f1375de00a66
+ms.openlocfilehash: e20e266e6fbae55c308cf13b7601277b8b0f30b2
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94422131"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320742"
 ---
 # <a name="mysql_request-plugin-preview"></a>mysql_request プラグイン (プレビュー)
 
@@ -25,11 +25,11 @@ ms.locfileid: "94422131"
 
 > [!IMPORTANT]
 > `mysql_request`プラグインはプレビューモードであり、既定では無効になっています。
-> プラグインを有効にするには、 [ `.enable plugin mysql_request` コマンド](../management/enable-plugin.md)を実行します。 有効になっているプラグインを確認するには、を使用 [します。プラグイン管理コマンドを表示](../management/show-plugins.md)します。
+> プラグインを有効にするには、 [ `.enable plugin mysql_request` コマンド](../management/enable-plugin.md)を実行します。 有効になっているプラグインを確認するには、 [ `.show plugin` 管理コマンド](../management/show-plugins.md)を使用します。
 
 ## <a name="syntax"></a>構文
 
-`evaluate``mysql_request` `(` *ConnectionString* `,` *sqlquery* [ `,` *sqlquery* ]`)`
+`evaluate``mysql_request` `(` *ConnectionString* `,` *sqlquery* [ `,` *sqlquery*]`)`
 
 ## <a name="arguments"></a>引数
 
@@ -85,9 +85,9 @@ Mysql_request プラグインは、MySQL サーバーエンドポイントに対
 
 接続文字列の一部として、SQL ネットワークエンドポイントを指定します。
 
-**構文** ：
+**構文**：
 
-`Server``=` *FQDN* [ `Port` `=` *ポート* ]
+`Server``=` *FQDN* [ `Port` `=` *ポート*]
 
 各値の説明:
 

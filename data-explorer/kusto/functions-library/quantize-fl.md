@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 38d353caf1e0352688ee91edfe7f1d2cef94d18a
-ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
+ms.openlocfilehash: 77524f22be72e977f73e0ac606db00d5d4b0c51d
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90998944"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321898"
 ---
 # <a name="quantize_fl"></a>quantize_fl()
 
@@ -32,9 +32,9 @@ ms.locfileid: "90998944"
 * *num_bins*: ビン数が必要です。
 * *in_cols*: 量子化する列の名前を格納している動的配列。
 * *out_cols*: ビン分割された値の各出力列の名前を格納している動的配列。
-* *ラベル*: ラベル名を含む動的配列。 このパラメーターは省略できます。 *ラベル*が指定されていない場合は、ビン範囲が使用されます。
+* *ラベル*: ラベル名を含む動的配列。 このパラメーターは省略可能です。 *ラベル* が指定されていない場合は、ビン範囲が使用されます。
 
-## <a name="usage"></a>使用法
+## <a name="usage"></a>使用
 
 `quantize_fl()` は、ユーザー定義の [表形式関数](../query/functions/user-defined-functions.md#tabular-function)であり、 [invoke 演算子](../query/invokeoperator.md)を使用して適用されます。 クエリにコードを埋め込むか、データベースにインストールすることができます。 使用方法には、アドホックと永続的な2つの方法があります。 例については、以下のタブを参照してください。
 
@@ -83,7 +83,7 @@ union
 
 # <a name="persistent"></a>[永続的](#tab/persistent)
 
-永続的に使用するには、 [. create 関数](../management/create-function.md)を使用します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
+永続的な使用方法については、を使用 [`.create function`](../management/create-function.md) します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 ### <a name="one-time-installation"></a>1 回限りのインストール
 
@@ -119,7 +119,7 @@ quantize_fl(tbl:(*), num_bins:int, in_cols:dynamic, out_cols:dynamic, labels:dyn
 }
 ```
 
-### <a name="usage"></a>使用法
+### <a name="usage"></a>使用
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

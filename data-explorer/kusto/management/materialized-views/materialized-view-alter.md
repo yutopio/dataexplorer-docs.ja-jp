@@ -8,12 +8,12 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: eaa4e759f0987940a86c509788f5e8a58b2f9e75
-ms.sourcegitcommit: 041272af91ebe53a5d573e9902594b09991aedf0
+ms.openlocfilehash: 03d047d89abc3de3c80414564ec101f309bf69b0
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/29/2020
-ms.locfileid: "91452733"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320572"
 ---
 # <a name="alter-materialized-view"></a>.alter materialized-view
 
@@ -35,7 +35,7 @@ ms.locfileid: "91452733"
 
 ## <a name="arguments"></a>引数
 
-|引数|Type|説明
+|引数|種類|説明
 |----------------|-------|---|
 |ViewName|String|具体化したビューの名前。|
 |Targettablename|String|ビューが定義されているソーステーブルの名前。|
@@ -43,13 +43,13 @@ ms.locfileid: "91452733"
 
 ## <a name="properties"></a>プロパティ
 
-`dimensionTables`は、具体化されたビューの alter コマンドで唯一サポートされているプロパティです。 クエリがディメンションテーブルを参照する場合は、このプロパティを使用する必要があります。 詳細については、「. 具体化された [ビューを作成する](materialized-view-create.md) 」を参照してください。
+`dimensionTables`は、具体化されたビューの alter コマンドで唯一サポートされているプロパティです。 クエリがディメンションテーブルを参照する場合は、このプロパティを使用する必要があります。 詳細については、コマンドを参照してください [`.create materialized-view`](materialized-view-create.md) 。
 
 ## <a name="use-cases"></a>ユース ケース
 
 * ビューに集計を追加します。たとえば、 `avg` ビュークエリをに変更して、集計をに追加し `T | summarize count(), min(Value) by Id` `T | summarize count(), min(Value), avg(Value) by Id` ます。
 * 集計演算子以外の演算子を変更します。 Tor の例では、をに変更して一部のレコードを除外し  `T | summarize arg_max(Timestamp, *) by User` `T | where User != 'someone' | summarize arg_max(Timestamp, *) by User` ます。
-* ソーステーブルが変更されたため、クエリを変更せずに Alter を実行します。 Tor の例では、に設定されていないのビューを想定しています `T | summarize arg_max(Timestamp, *) by Id` `autoUpdateSchema` (「 [具体化されたビューを作成](materialized-view-create.md) する」を参照してください)。 ビューのソーステーブルに対して列が追加または削除された場合、ビューは自動的に無効になります。 完全に同じクエリを使用して alter コマンドを実行し、具体化されたビューのスキーマを新しいテーブルスキーマに合わせて変更します。 ビューは、変更後も、[具体化された [ビューを有効に](materialized-view-enable-disable.md) する] コマンドを使用して明示的に有効にする必要があります。
+* ソーステーブルが変更されたため、クエリを変更せずに Alter を実行します。 Tor の例では、 `T | summarize arg_max(Timestamp, *) by Id` に設定されていないのビューを想定し `autoUpdateSchema` ています (「コマンド」を参照してください [`.create materialized-view`](materialized-view-create.md) )。 ビューのソーステーブルに対して列が追加または削除された場合、ビューは自動的に無効になります。 完全に同じクエリを使用して alter コマンドを実行し、具体化されたビューのスキーマを新しいテーブルスキーマに合わせて変更します。 ビューは、変更後も、[具体化された [ビューを有効に](materialized-view-enable-disable.md) する] コマンドを使用して明示的に有効にする必要があります。
 
 ## <a name="alter-materialized-view-limitations"></a>具体化ビューの制限の変更
 

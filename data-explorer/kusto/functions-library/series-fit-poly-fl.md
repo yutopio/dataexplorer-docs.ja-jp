@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: eff9a5cd8ed2d9ed7e518be9aade9ecf2aded7bf
-ms.sourcegitcommit: d0f8d71261f8f01e7676abc77283f87fc450c7b1
+ms.openlocfilehash: 454aa19c5b38eabce49fd319891772746335ceab
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/06/2020
-ms.locfileid: "91765478"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321830"
 ---
 # <a name="series_fit_poly_fl"></a>series_fit_poly_fl()
 
@@ -40,7 +40,7 @@ ms.locfileid: "91765478"
 * *x_series*: [独立変数](https://en.wikipedia.org/wiki/Dependent_and_independent_variables)、つまり x または時間軸を含む列の名前。 このパラメーターは省略可能であり、均等の [時系列](https://en.wikipedia.org/wiki/Unevenly_spaced_time_series)に対してのみ必要です。 既定値は空の文字列です。 x は均等に並んだ系列の回帰に対して冗長です。
 * *x_istime*: このブール型パラメーターは省略可能です。 このパラメーターは、 *x_series* が指定されていて、それが datetime のベクターである場合にのみ必要です。
 
-## <a name="usage"></a>使用法
+## <a name="usage"></a>使用
 
 `series_fit_poly_fl()` は、ユーザー定義関数の [表形式関数](../query/functions/user-defined-functions.md#tabular-function)であり、 [invoke 演算子](../query/invokeoperator.md)を使用して適用されます。 クエリにコードを埋め込むか、データベースにインストールすることができます。 使用方法には、アドホックと永続的な2つの方法があります。 例については、以下のタブを参照してください。
 
@@ -99,7 +99,7 @@ demo_make_series1
 
 # <a name="persistent"></a>[永続的](#tab/persistent)
 
-永続的に使用するには、 [. create 関数](../management/create-function.md)を使用します。  関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
+永続的な使用方法については、を使用 [`.create function`](../management/create-function.md) します。  関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 ### <a name="one-time-installation"></a>1回限りのインストール
 
@@ -144,7 +144,7 @@ series_fit_poly_fl(tbl:(*), y_series:string, y_fit_series:string, fit_coeff:stri
 }
 ```
 
-### <a name="usage"></a>使用法
+### <a name="usage"></a>使用
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -183,7 +183,7 @@ demo_make_series1
     | render timechart with(ycolumns=num, fnum)
     ```
     
-    :::image type="content" source="images/series-fit-poly-fl/irregular-time-series.png" alt-text="標準タイムシリーズに5番目の注文多項式が表示されるグラフ" border="false":::
+    :::image type="content" source="images/series-fit-poly-fl/irregular-time-series.png" alt-text="8番目の注文多項式が不規則な時系列に適合することを示すグラフ" border="false":::
 
 1. X & y 軸でのノイズを含む5番目の注文多項式
 
@@ -200,6 +200,6 @@ demo_make_series1
     | render linechart
     ```
         
-    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise.png" alt-text="標準タイムシリーズに5番目の注文多項式が表示されるグラフ":::
+    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise.png" alt-text="X & y 軸でのノイズによる5番目の注文多項式のフィットグラフ":::
        
-    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise-table.png" alt-text="標準タイムシリーズに5番目の注文多項式が表示されるグラフ" border="false":::
+    :::image type="content" source="images/series-fit-poly-fl/fifth-order-noise-table.png" alt-text="5番目の注文多項式とノイズの適合係数" border="false":::

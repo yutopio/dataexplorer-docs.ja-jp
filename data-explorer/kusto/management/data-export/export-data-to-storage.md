@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
-ms.openlocfilehash: bd7482abb9c13130d863e9abb73819d9409109ea
-ms.sourcegitcommit: c815c6ccf33864e21e1d3daff26a4f077dff88f7
+ms.openlocfilehash: fd0ac46aa0e2cf73cf0ee5a51359cd346bf1beda
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/21/2020
-ms.locfileid: "95012168"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321558"
 ---
 # <a name="export-data-to-storage"></a>データをストレージにエクスポートする
 
@@ -41,7 +41,7 @@ ms.locfileid: "95012168"
 
 * *PropertyName* /*PropertyValue*: 0 個以上のオプションのエクスポートプロパティ:
 
-|プロパティ        |種類    |Description                                                                                                                |
+|プロパティ        |種類    |説明                                                                                                                |
 |----------------|--------|---------------------------------------------------------------------------------------------------------------------------|
 |`sizeLimit`     |`long`  |1つのストレージアーティファクト (圧縮前) のサイズ制限 (バイト単位)。 許容範囲は 100 MB (既定値) ~ 1 GB です。|
 |`includeHeaders`|`string`|出力の場合は `csv` / `tsv` 、列ヘッダーの生成を制御します。 のいずれか `none` (既定値、ヘッダー行は出力されません)、 `all` (ヘッダー行をすべてのストレージ成果物に出力する)、または `firstFile` (1 つ目のストレージ成果物にのみヘッダー行を出力する) を指定できます。|
@@ -69,8 +69,8 @@ ms.locfileid: "95012168"
 フラグが指定されている場合、 `async` コマンドは非同期モードで実行されます。
 このモードでは、コマンドは操作 ID を使用して直ちに戻り、データのエクスポートは完了するまでバックグラウンドで続行されます。 コマンドによって返される操作 ID は、次のコマンドを使用して、進行状況と最終的な結果を追跡するために使用できます。
 
-* [。操作を表示](../operations.md#show-operations)します。進行状況を追跡します。
-* [。操作の詳細を表示](../operations.md#show-operation-details)します。完了の結果を取得します。
+* [`.show operations`](../operations.md#show-operations): 進行状況を追跡します。
+* [`.show operation details`](../operations.md#show-operation-details): 入力候補の結果を取得します。
 
 たとえば、正常に完了した後、次のようにを使用して結果を取得できます。
 
@@ -78,7 +78,7 @@ ms.locfileid: "95012168"
 .show operation f008dc1e-2710-47d8-8d34-0d562f5f8615 details
 ```
 
-**使用例** 
+**例** 
 
 この例では、Kusto はクエリを実行し、クエリによって作成された最初のレコードセットを1つ以上の圧縮された CSV blob にエクスポートします。
 列名のラベルは、各 blob の最初の行として追加されます。
@@ -103,7 +103,7 @@ ms.locfileid: "95012168"
 エクスポートコマンドは、実行中に失敗する可能性があります。 [連続エクスポート](continuous-data-export.md) では、コマンドが自動的に再試行されます。 通常のエクスポートコマンド ([storage へのエクスポート](export-data-to-storage.md)、 [外部テーブルへのエクスポート](export-data-to-an-external-table.md)) では、再試行は実行されません。
 
 *  エクスポートコマンドが失敗した場合、既にストレージに書き込まれていたアーティファクトは削除されません。 これらのアーティファクトはストレージに残ります。 コマンドが失敗した場合、一部のアーティファクトが書き込まれていても、エクスポートが不完全であると想定します。 
-* コマンドの完了と正常に完了したときにエクスポートされた成果物の両方を追跡する最良の方法は、 [. show 操作](../operations.md#show-operations) と [. 操作の詳細の表示](../operations.md#show-operation-details) コマンドを使用することです。
+* コマンドの完了と正常に完了したときにエクスポートされた成果物の両方を追跡する最良の方法は、コマンドとコマンドを使用することです [`.show operations`](../operations.md#show-operations) [`.show operation details`](../operations.md#show-operation-details) 。
 
 ### <a name="storage-failures"></a>ストレージの障害
 

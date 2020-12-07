@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/19/2020
-ms.openlocfilehash: 871ad751105ba6a3f6ce5dcba55b3a0fd1c17789
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: 37d82807751a604d88eda7de75fb4978efc0ce1b
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91056987"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321269"
 ---
 # <a name="retention-policy"></a>Retention ポリシー
 
@@ -49,13 +49,13 @@ ms.locfileid: "91056987"
 
 ## <a name="control-commands"></a>管理コマンド
 
-* を使用 [します。 [ポリシーの保持] を表示](../management/retention-policy.md) して、データベース、テーブル、または具体化された [ビュー](materialized-views/materialized-view-overview.md)の現在の保持ポリシーを表示します。
-* [Alter policy retention](../management/retention-policy.md)を使用して、データベース、テーブル、または具体化された[ビュー](materialized-views/materialized-view-overview.md)の現在の保持ポリシーを変更します。
+* [`.show policy retention`](../management/retention-policy.md)データベース、テーブル、または具体化された[ビュー](materialized-views/materialized-view-overview.md)の現在の保持ポリシーを表示するには、を使用します。
+* [`.alter policy retention`](../management/retention-policy.md)データベース、テーブル、または具体化された[ビュー](materialized-views/materialized-view-overview.md)の現在の保持ポリシーを変更するには、を使用します。
 
 ## <a name="defaults"></a>デフォルト
 
 既定では、データベースまたはテーブルを作成するときに、保持ポリシーが定義されていません。 通常、データベースが作成され、その後すぐに、既知の要件に従って作成者によって設定された保持ポリシーが設定されます。
-ポリシーが設定されていないデータベースまたはテーブルの保持ポリシーに対して [show コマンド](../management/retention-policy.md) を実行すると、 `Policy` がとして表示され `null` ます。
+ポリシーが設定されていないデータベースまたはテーブルの保持ポリシーに対して[ `.show` コマンド](../management/retention-policy.md)を実行すると、 `Policy` がとして表示され `null` ます。
 
 既定の保持ポリシーは、上記の既定値を使用して、次のコマンドを使用して適用できます。
 

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/05/2020
-ms.openlocfilehash: 19dc7db9e344a516b5c92917dccbf8362b1ca858
-ms.sourcegitcommit: 4e95f5beb060b5d29c1d7bb8683695fe73c9f7ea
+ms.openlocfilehash: 554f6ed623b5a3be12a360fab0b1d5aa6eb4c084
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91102888"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320963"
 ---
 # <a name="create-merge-table"></a>.create-merge table
 
@@ -27,9 +27,9 @@ ms.locfileid: "91102888"
 
 `.create-merge``table` *TableName* ([columnName: columnType],...) [ `with` `(` [ `docstring` `=` *ドキュメント*] [ `,` `folder` `=` *FolderName*] `)` ]
 
-テーブルが存在しない場合、は ". create table" コマンドとまったく同じように機能します。
+テーブルが存在しない場合、はコマンドとまったく同じように機能し `.create table` ます。
 
-テーブル T が存在し、". create-merge table T ()" コマンドを送信する場合は、次の <columns specification> ようになります。
+テーブル T が存在し、コマンドを送信する場合は `.create-merge table T (<columns specification>)` 、次のようになります。
 
 * <columns specification>以前に t に存在していなかったの列は、t のスキーマの末尾に追加されます。
 * に含まれていない T 内の列は、 <columns specification> t から削除されません。
@@ -37,5 +37,5 @@ ms.locfileid: "91102888"
 
 ## <a name="see-also"></a>関連項目
 
-* [.create-merge tables](create-merge-tables-command.md)
-* [。テーブルを作成します。](create-table-command.md)
+* [`.create-merge tables`](create-merge-tables-command.md)
+* [`.create table`](create-table-command.md)

@@ -8,12 +8,12 @@ ms.reviewer: orspodek
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/08/2020
-ms.openlocfilehash: 29f0c65a635b6e4fe6ffe3288cc1dcdde702fc8a
-ms.sourcegitcommit: be1bbd62040ef83c08e800215443ffee21cb4219
+ms.openlocfilehash: ccefca3d3cbf1f97661fead54bbc3cfaf207ca1a
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84665029"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321677"
 ---
 # <a name="alter-table"></a>.alter テーブル
  
@@ -28,7 +28,7 @@ ms.locfileid: "84665029"
 > コマンドを誤って使用すると、 `.alter` データが失われる可能性があります。
 
 > [!TIP]
-> には、 `.alter` 同等の機能を持つテーブルコマンドである対応するがあり `.alter-merge` ます。 詳細については、「 [alter-merge table](../management/alter-merge-table-command.md) 」を参照してください。
+> には、 `.alter` 同等の機能を持つテーブルコマンドである対応するがあり `.alter-merge` ます。 詳細については、[`.alter-merge table`](../management/alter-merge-table-command.md) を参照してください。
 
 **構文**
 
@@ -38,7 +38,7 @@ ms.locfileid: "84665029"
  * このテーブルには、指定された順序で、まったく同じ列があります。
  テーブルの列を指定します。
  * コマンドで既存の列が指定されていない場合は、削除され、その中のデータはコマンドのように失われ `.drop column` ます。
- * テーブルを変更しても、列の型を変更することはできません。 代わりに、 [alter column](alter-column.md)コマンドを使用してください。
+ * テーブルを変更しても、列の型を変更することはできません。 代わりに、 [`.alter column`](alter-column.md) コマンドを使用してください。
 
 > [!TIP]
 > `.show table [TableName] cslschema`既存の列スキーマを変更する前に、を使用して取得します。

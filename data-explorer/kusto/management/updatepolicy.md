@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 28e88b71b5d7a2f8729e2f9eef416ee5804a2880
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 8f19606a75c388917a5195d0ac5cbb0ecf4335f9
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92337637"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321133"
 ---
 # <a name="update-policy-overview"></a>更新ポリシーの概要
 
@@ -49,7 +49,7 @@ ms.locfileid: "92337637"
 テーブルには、0個、1個、または複数の更新ポリシーオブジェクトが関連付けられている場合があります。
 これらの各オブジェクトは、次のプロパティが定義された JSON プロパティバッグとして表されます。
 
-|プロパティ |Type |[説明]  |
+|プロパティ |種類 |説明  |
 |---------|---------|----------------|
 |IsEnabled                     |`bool`  |更新ポリシーが有効 (true) か無効 (false) かを示します。                                                                                                                               |
 |source                        |`string`|更新ポリシーを起動するテーブルの名前                                                                                                                                 |
@@ -66,10 +66,10 @@ ms.locfileid: "92337637"
 
 更新ポリシーを制御するコマンドは次のとおりです。
 
-* [。テーブル *TableName* ポリシーの更新を表示](update-policy.md#show-update-policy) すると、テーブルの現在の更新ポリシーが表示されます。
-* [. alter Table *TableName* policy update](update-policy.md#alter-update-policy) は、テーブルの現在の更新ポリシーを設定します。
-* [。 alter-merge Table *TableName* policy update](update-policy.md#alter-merge-table-tablename-policy-update) は、テーブルの現在の更新ポリシーに追加します。
-* [。テーブル *TableName* ポリシーの更新を削除](update-policy.md#delete-table-tablename-policy-update) すると、テーブルの現在の更新ポリシーに追加されます。
+* [`.show table *TableName* policy update`](update-policy.md#show-update-policy) テーブルの現在の更新ポリシーを表示します。
+* [`.alter table *TableName* policy update`](update-policy.md#alter-update-policy) テーブルの現在の更新ポリシーを設定します。
+* [`.alter-merge table *TableName* policy update`](update-policy.md#alter-merge-table-tablename-policy-update) テーブルの現在の更新ポリシーに追加します。
+* [`.delete table *TableName* policy update`](update-policy.md#delete-table-tablename-policy-update) テーブルの現在の更新ポリシーに追加します。
 
 ## <a name="update-policy-is-initiated-following-ingestion"></a>更新ポリシーはインジェスト後に開始されます
 
@@ -106,7 +106,7 @@ ms.locfileid: "92337637"
 
 ### <a name="evaluate-resource-usage"></a>リソースの使用状況の評価
 
-次のシナリオでは、 [クエリを表示し](../management/queries.md)、リソースの使用状況 (CPU、メモリなど) を評価します。
+[`.show queries`](../management/queries.md)次のシナリオでは、を使用してリソースの使用状況 (CPU、メモリなど) を評価します。
 * ソーステーブル名 ( `Source` 更新ポリシーのプロパティ) は `MySourceTable` です。
 * `Query`更新ポリシーのプロパティは、という名前の関数を呼び出し `MyFunction()` ます。
 
@@ -122,7 +122,7 @@ MyFunction()
 
 既定では、更新ポリシーの実行に失敗しても、ソーステーブルへのデータの取り込みには影響しません。 ただし、更新ポリシーが次のように定義されている場合、 `IsTransactional` ポリシーの実行に失敗すると、ソーステーブルへのデータのインジェストが強制的に失敗します。 場合によっては、ソーステーブルへのデータの取り込みは成功しますが、ターゲットテーブルへの取り込み中に更新ポリシーが失敗します。
 
-ポリシーの更新中に発生したエラーは、[ [インジェストエラーの表示] コマンド](../management/ingestionfailures.md)を使用して取得できます。
+ポリシーの更新中に発生したエラーは、 [ `.show ingestion failures` コマンド](../management/ingestionfailures.md)を使用して取得できます。
  
 ```kusto
 .show ingestion failures 

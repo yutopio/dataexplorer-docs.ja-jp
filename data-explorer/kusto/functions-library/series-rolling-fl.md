@@ -7,12 +7,12 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 09/08/2020
-ms.openlocfilehash: 218ef000869e4cea0f237137a0481a9b4d72d65e
-ms.sourcegitcommit: 5aba5f694420ade57ef24b96699d9b026cdae582
+ms.openlocfilehash: fe9ea2556346edaf0327e0d9ce50d4d4519d4bb3
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/22/2020
-ms.locfileid: "90998995"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321796"
 ---
 # <a name="series_rolling_fl"></a>series_rolling_fl()
 
@@ -62,7 +62,7 @@ ms.locfileid: "90998995"
 * [`tstd`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.tstd.html)
 * [`iqr` (分位点範囲間)](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.iqr.html) 
 
-## <a name="usage"></a>使用法
+## <a name="usage"></a>使用
 
 `series_rolling_fl()` は、ユーザー定義の [表形式関数](../query/functions/user-defined-functions.md#tabular-function)であり、 [invoke 演算子](../query/invokeoperator.md)を使用して適用されます。 クエリにコードを埋め込むか、データベースにインストールすることができます。 使用方法には、アドホックと永続的な2つの方法があります。 例については、以下のタブを参照してください。
 
@@ -108,7 +108,7 @@ demo_make_series1
 
 # <a name="persistent"></a>[永続的](#tab/persistent)
 
-永続的に使用するには、 [. create 関数](../management/create-function.md)を使用します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
+永続的な使用方法については、を使用 [`.create function`](../management/create-function.md) します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 ### <a name="one-time-installation"></a>1 回限りのインストール
 
@@ -140,7 +140,7 @@ series_rolling_fl(tbl:(*), y_series:string, y_rolling_series:string, n:int, aggr
 }
 ```
 
-### <a name="usage"></a>使用法
+### <a name="usage"></a>使用
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

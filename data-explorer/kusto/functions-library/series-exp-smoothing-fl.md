@@ -7,14 +7,14 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/22/2020
-ms.openlocfilehash: 373dd34145a644fe14ea4c077a8c55ddf428ba6d
-ms.sourcegitcommit: 4c7f20dfd59fb5b5b1adfbbcbc9b7da07df5e479
+ms.openlocfilehash: eabdb80852d2a81f996d3e722dda7df969a914be
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "95324930"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321813"
 ---
-# <a name="series_exp_smoothing_fl"></a>series_exp_smoothing_fl ()
+# <a name="series_exp_smoothing_fl"></a>series_exp_smoothing_fl()
 
 系列に基本的な指数平滑フィルターを適用します。
 
@@ -23,7 +23,7 @@ ms.locfileid: "95324930"
 > [!NOTE]
 > この関数は、 [UDF (ユーザー定義関数)](../query/functions/user-defined-functions.md)です。 詳細については、「 [使用方法](#usage)」を参照してください。
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
 `series_exp_smoothing_fl(`*y_series* `, [`*アルファ*`])`
   
@@ -56,7 +56,7 @@ range x from 1 to 50 step 1
 
 # <a name="persistent"></a>[永続的](#tab/persistent)
 
-永続的に使用するには、 [. create 関数](../management/create-function.md)を使用します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
+永続的な使用方法については、を使用 [`.create function`](../management/create-function.md) します。 関数を作成するには、 [データベースユーザー権限](../management/access-control/role-based-authorization.md)が必要です。
 
 ### <a name="one-time-installation"></a>1 回限りのインストール
 

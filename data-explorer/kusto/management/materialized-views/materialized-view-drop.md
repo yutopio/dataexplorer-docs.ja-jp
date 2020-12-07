@@ -8,14 +8,14 @@ ms.reviewer: yifats
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/30/2020
-ms.openlocfilehash: 6b06d1807fdfc2ed3edaa06e57436979afce423d
-ms.sourcegitcommit: 21dee76964bf284ad7c2505a7b0b6896bca182cc
+ms.openlocfilehash: 312b8dbd15f9ee570d1693f7bdbb77b9988d8207
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/23/2020
-ms.locfileid: "91057252"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320615"
 ---
-# <a name="drop-materialized-view"></a>。具体化したビューを削除します。 
+# <a name="drop-materialized-view"></a>.drop materialized-view 
 
 具体化したビューを削除します。
 
@@ -25,7 +25,7 @@ ms.locfileid: "91057252"
 
 `.drop``materialized-view` *MaterializedViewName*
 
-## <a name="properties"></a>Properties
+## <a name="properties"></a>プロパティ
 
 | プロパティ | 種類| 説明 |
 |----------------|-------|-----|
@@ -56,4 +56,4 @@ ms.locfileid: "91057252"
 |Folder|string|具体化されたビューフォルダー。
 |DocString|string|具体化されたビューのドキュメント文字列。
 |AutoUpdateSchema|[bool]|ビューで自動更新が有効になっているかどうか。
-|EffectiveDateTime|DATETIME|作成時に決定される、ビューの有効な日時 (「 [具体化されたビューを作成する](materialized-view-create.md#create-materialized-view)」を参照)
+|EffectiveDateTime|DATETIME|作成時に決定される、ビューの有効な日時 (「」を参照 [`.create materialized-view`](materialized-view-create.md#create-materialized-view) )

@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: 41eb9703f1718bb43b41927f9ec4d7cac52d67c4
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: 936b8aedb4244836eff8c8618a53693395a0343c
+ms.sourcegitcommit: 1bdbfdc04c4eac405f3931059bbeee2dedd87004
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92249935"
+ms.lasthandoff: 11/27/2020
+ms.locfileid: "96303262"
 ---
 # <a name="make_bag-aggregation-function"></a>make_bag () (集計関数)
 
@@ -28,11 +28,10 @@ ms.locfileid: "92249935"
 ## <a name="arguments"></a>引数
 
 * *Expr*: `dynamic` 集計計算に使用される型の式です。
-* *MaxSize* は、返される要素の最大数に対する整数の制限 (省略可能) です。 既定値は *1048576*です。 MaxSize 値は *1048576*を超えることはできません。
+* *MaxSize* は、返される要素の最大数に対する整数の制限 (省略可能) です。 既定値は *1048576* です。 MaxSize 値は *1048576* を超えることはできません。
 
-**注**
-
-従来の関数と古いバージョンの関数では、 `make_dictionary()` *MaxSize* = 128 の既定の制限が設定されています。
+> [!NOTE]
+> `make_dictionary()` は、以前のバージョンのと互換性のために残されて `make_bag()` います。 レガシバージョンでは、 *MaxSize* = 128 の既定の制限が設定されています。
 
 ## <a name="returns"></a>戻り値
 

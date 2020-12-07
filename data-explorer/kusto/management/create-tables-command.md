@@ -1,5 +1,5 @@
 ---
-title: . テーブルを作成する-Azure データエクスプローラー |Microsoft Docs
+title: . テーブルを作成する-Azure データエクスプローラー
 description: この記事では、Azure データエクスプローラーでテーブルを作成する方法について説明します。
 services: data-explorer
 author: orspod
@@ -8,12 +8,12 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/05/2020
-ms.openlocfilehash: ff8b3cfae6d3364b4d094f588c8130761fa5cb31
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: 28ee7e462245497dd14d3a14a1c0703cc71a8933
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85966994"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321592"
 ---
 # <a name="create-tables"></a>.create テーブル
 

@@ -1,6 +1,6 @@
 ---
-title: .show クラスター データベース - Azure データ エクスプローラー |マイクロソフトドキュメント
-description: この記事では、Azure データ エクスプローラーでのクラスター データベースの .show について説明します。
+title: 。クラスターデータベースを表示します-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでクラスターデータベースを表示する方法について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,32 +8,32 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: f354862df1bc9bef352819832125cf6f82ba0ae4
-ms.sourcegitcommit: 47a002b7032a05ef67c4e5e12de7720062645e9e
+ms.openlocfilehash: c6d25380a44a2195f407c52a2224ee28fad9f8bb
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 04/15/2020
-ms.locfileid: "81519994"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320504"
 ---
-# <a name="show-cluster-databases"></a>.show クラスタ データベース
+# <a name="show-cluster-databases"></a>.show cluster databases
 
-クラスターにアタッチされ、コマンドを呼び出すユーザーがアクセスできるすべてのデータベースを示す表を返します。 特定のデータベース名を使用する場合は、それらのデータベースのみが含まれます。
+クラスターにアタッチされているすべてのデータベースを示すテーブルを返します。このテーブルには、コマンドを呼び出したユーザーがアクセスできます。 特定のデータベース名が使用されている場合は、それらのデータベースだけが含まれます。
 
 **構文**
 
 `.show` `cluster` `databases` [`details` | `identity` | `policies` | `datastats`]
 
-`.show``cluster``,`データベース1データベース2..`,` `databases` `(`データベースN`)`
+`.show``cluster` `databases` `(`database1 `,` database2 `,` ...databaseN`)`
 
 **出力**
  
-|出力パラメーター |Type |説明 
+|出力パラメーター |種類 |説明 
 |---|---|---
 |DatabaseName  |String |データベース名。 データベース名では大文字と小文字が区別されます。 
-|永続ストレージ  |String |データベースが格納されている永続ストレージ URI。 (このフィールドは、一時データベースでは空です)。 
-|Version  |String |データベースのバージョン番号。 この番号は、データベースの変更操作ごとに更新されます (データの追加やスキーマの変更など)。 
-|IsCurrent  |Boolean |データベースが現在の接続が指すデータベースである場合は True。 
-|データベース アクセス モード  |String |クラスターがデータベースにアタッチされる方法。 たとえば、データベースが ReadOnly モードでアタッチされている場合、クラスタはデータベースを変更する要求をすべて失敗します。 
-|プリティネーム |String |データベースの名前がかなり。
-|現在のユーザーは制限されていないビューア |Boolean | 現在のユーザーがデータベース上の無制限のビューアーかどうかを指定します。
+|PersistentStorage  |String |データベースが格納されている永続的なストレージ URI。 (短期データベースの場合、このフィールドは空です)。 
+|バージョン  |String |データベースのバージョン番号。 この数は、データベースの変更操作 (データの追加やスキーマの変更など) ごとに更新されます。 
+|IsCurrent  |Boolean |データベースが現在の接続が指しているデータベースの場合は True を指定します。 
+|DatabaseAccessMode  |String |クラスターがデータベースにアタッチされる方法。 たとえば、データベースが読み取り専用モードでアタッチされている場合、クラスターはデータベースを変更するすべての要求に失敗します。 
+|"この名前" |String |データベースの名前。
+|CurrentUserIsUnrestrictedViewer |Boolean | 現在のユーザーがデータベースの無制限のビューアーであるかどうかを指定します。
 |DatabaseId |Guid |データベースの一意の ID。

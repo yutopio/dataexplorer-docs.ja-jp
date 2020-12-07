@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: 9a670e2dead3e3cd5a2d881974678fcb44eaff29
-ms.sourcegitcommit: 3eabd78305d32cd9b8a6bd1d76877ddc19d8ac63
+ms.openlocfilehash: e05f8204ba1e81b9391b6b63f190b81e1db73338
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94548905"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321048"
 ---
 # <a name="cluster-follower-commands"></a>クラスターのフォロワーコマンド
 
@@ -29,13 +29,13 @@ ms.locfileid: "94548905"
 
 **構文**
 
-`.show``follower` `database` *DatabaseName*
+`.show` `follower` `database` *DatabaseName*
 
 `.show``follower` `databases` `(`*DatabaseName1* `,`...`,`*DatabaseNameN*`)`
 
 **出力** 
 
-| 出力パラメーター                     | 型    | 説明                                                                                                        |
+| 出力パラメーター                     | 種類    | 説明                                                                                                        |
 |--------------------------------------|---------|--------------------------------------------------------------------------------------------------------------------|
 | DatabaseName                         | String  | フォローされているデータベースの名前。                                                                           |
 | LeaderClusterMetadataPath            | String  | リーダークラスターのメタデータコンテナーへのパス。                                                               |
@@ -52,12 +52,12 @@ ms.locfileid: "94548905"
 
 **メモ**
 
-* `modification kind`キャッシュポリシーの既定値は `union` です。 を変更するには、使用して、変更、 `modification kind` [データベースのキャッシュ-ポリシー-](#alter-follower-database-caching-policies-modification-kind) 変更-種類コマンド。
+* `modification kind`キャッシュポリシーの既定値は `union` です。 を変更するには、 `modification kind` コマンドを使用し [`.alter follower database caching-policies-modification-kind`](#alter-follower-database-caching-policies-modification-kind) ます。
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
-    * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
-    * [。データベースの詳細を表示します](../management/show-databases.md)
-    * [.show テーブルの詳細](show-tables-command.md)
-* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
+    * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
+    * [`.show database details`](../management/show-databases.md)
+    * [`.show table details`](show-tables-command.md)
+* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用します。 [`.show follower database`](#show-follower-database)
 
 **構文**
 
@@ -77,14 +77,14 @@ ms.locfileid: "94548905"
 **メモ**
 
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
-    * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
-    * [。データベースの詳細を表示します](../management/show-databases.md)
-    * [.show テーブルの詳細](show-tables-command.md)
-* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
+    * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
+    * [`.show database details`](../management/show-databases.md)
+    * [`.show table details`](show-tables-command.md)
+* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用します。 [`.show follower database`](#show-follower-database)
 
 **構文**
 
-`.delete``follower` `database` *DatabaseName* DatabaseName `policy``caching`
+`.delete` `follower` `database` *DatabaseName* `policy` `caching`
 
 **例**
 
@@ -100,8 +100,8 @@ ms.locfileid: "94548905"
 
 * `modification kind`このような承認されたプリンシパルの既定値は `none` です。 `modification kind` [Alter フォロワーデータベースプリンシパル](#alter-follower-database-principals-modification-kind)の使用を変更するには、「変更-種類」を使用します。
 * 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
-    * [。データベースプリンシパルを表示します。](../management/security-roles.md#managing-database-security-roles)
-    * [。データベースの詳細を表示します](../management/show-databases.md)
+    * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
+    * [`.show database details`](../management/show-databases.md)
 * 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
 
 **構文**
@@ -122,9 +122,9 @@ ms.locfileid: "94548905"
 **メモ**
 
 * 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
-    * [。データベースプリンシパルを表示します。](../management/security-roles.md#managing-database-security-roles)
-    * [。データベースの詳細を表示します](../management/show-databases.md)
-* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
+    * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
+    * [`.show database details`](../management/show-databases.md)
+* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用します。 [`.show follower database`](#show-follower-database)
 
 **構文**
 
@@ -143,8 +143,8 @@ ms.locfileid: "94548905"
 **メモ**
 
 * 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
-    * [。データベースプリンシパルを表示します。](../management/security-roles.md#managing-database-security-roles)
-    * [。データベースの詳細を表示します](../management/show-databases.md)
+    * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
+    * [`.show database details`](../management/show-databases.md)
 * 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
 
 **構文**
@@ -165,9 +165,9 @@ ms.locfileid: "94548905"
 **メモ**
 
 * 変更後のデータベース/テーブルレベルのキャッシュポリシーの有効なコレクションを表示するには、次の標準コマンドを使用し `.show` ます。
-    * [。テーブルの詳細を表示します](show-tables-command.md)
-    * [。データベースの詳細を表示します](../management/show-databases.md)
-* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
+    * [`.show tables details`](show-tables-command.md)
+    * [`.show database details`](../management/show-databases.md)
+* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用します。 [`.show follower database`](#show-follower-database)
 
 **構文**
 
@@ -211,10 +211,10 @@ ms.locfileid: "94548905"
 **メモ**
 
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
-    * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
-    * [。データベースの詳細を表示します](../management/show-databases.md)
-    * [.show テーブルの詳細](show-tables-command.md)
-* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
+    * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
+    * [`.show database details`](../management/show-databases.md)
+    * [`.show table details`](show-tables-command.md)
+* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用します。 [`.show follower database`](#show-follower-database)
 
 **構文**
 
@@ -235,10 +235,10 @@ ms.locfileid: "94548905"
 **メモ**
 
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
-    * [。データベースポリシーの保有期間を表示する](../management/retention-policy.md#show-retention-policy)
-    * [。データベースの詳細を表示します](../management/show-databases.md)
-    * [.show テーブルの詳細](show-tables-command.md)
-* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用し[ます。フォロワーデータベースを表示](#show-follower-database)する
+    * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
+    * [`.show database details`](../management/show-databases.md)
+    * [`.show table details`](show-tables-command.md)
+* 変更後にフォロワーデータベースの上書き設定を表示するには、を使用します。 [`.show follower database`](#show-follower-database)
 
 **構文**
 
@@ -264,13 +264,13 @@ ms.locfileid: "94548905"
     
     | `MyTable1` キャッシュポリシー | `MyTable2` キャッシュポリシー | `MyTable3`...`MyTableN` キャッシュポリシー   | `MyDatabase` 承認されたプリンシパル                                                    |
     |---------------------------|---------------------------|------------------------------------------|---------------------------------------------------------------------------------------|
-    | ホットデータスパン = `7d`      | ホットデータスパン = `30d`     | ホットデータスパン = `365d`                   | *ビューアー*  =  `aadgroup=scubadivers@contoso.com` ; *管理者* = `aaduser=jack@contoso.com` |
+    | ホットデータスパン = `7d`      | ホットデータスパン = `30d`     | ホットデータスパン = `365d`                   | *ビューアー*  =  `aadgroup=scubadivers@contoso.com` ;*管理者* = `aaduser=jack@contoso.com` |
      
     * `MyFollowerCluster`必要なのは次のとおりです。
     
     | `MyTable1` キャッシュポリシー | `MyTable2` キャッシュポリシー | `MyTable3`...`MyTableN` キャッシュポリシー   | `MyDatabase` 承認されたプリンシパル                                                    |
     |---------------------------|---------------------------|------------------------------------------|---------------------------------------------------------------------------------------|
-    | ホットデータスパン = `1d`      | ホットデータスパン = `3d`      | ホットデータスパン = `0d` (キャッシュされているものはありません) | *管理者*  =  `aaduser=jack@contoso.com` 、 *ビューアー* = `aaduser=jill@contoso.com`         |
+    | ホットデータスパン = `1d`      | ホットデータスパン = `3d`      | ホットデータスパン = `0d` (キャッシュされているものはありません) | *管理者*  =  `aaduser=jack@contoso.com` 、*ビューアー* = `aaduser=jill@contoso.com`         |
 
 > [!IMPORTANT] 
 > `MyFollowerCluster`とは両方とも `MyLeaderCluster` 同じリージョンに存在する必要があります。
@@ -291,7 +291,7 @@ ms.locfileid: "94548905"
 | evaluate narrow() // just for presentation purposes
 ```
 
-| 列                              | [値]                                                    |
+| 列                              | 値                                                    |
 |-------------------------------------|----------------------------------------------------------|
 |DatabaseName                         | MyDatabase                                               |
 |LeaderClusterMetadataPath            | `https://storageaccountname.blob.core.windows.net/cluster` |
@@ -382,7 +382,7 @@ ms.locfileid: "94548905"
 | evaluate narrow() // just for presentation purposes
 ```
 
-| 列                              | [値]                                                                                                                                                                           |
+| 列                              | 値                                                                                                                                                                           |
 |-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |DatabaseName                         | MyDatabase                                                                                                                                                                      |
 |LeaderClusterMetadataPath            | `https://storageaccountname.blob.core.windows.net/cluster`                                                                                                                        |

@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 05/26/2020
-ms.openlocfilehash: 8e419d471419a291b3680c4b91d3e6908b2e7f2e
-ms.sourcegitcommit: 83202ec6fec0ce98fdf993bbb72adc985d6d9c78
+ms.openlocfilehash: 7646f86c9a521ab45cf83d7704084f3a5df6b256
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87877339"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321388"
 ---
 # <a name="external-table-general-control-commands"></a>外部テーブル全般制御コマンド
 
-外部テーブルの概要については、「[外部テーブル](../query/schema-entities/externaltables.md)」を参照してください。 次のコマンドは _、任意の外部テーブル_(任意の型) に関連しています。
+外部テーブルの概要については、「 [外部テーブル](../query/schema-entities/externaltables.md) 」を参照してください。 次のコマンドは _、任意の外部テーブル_ (任意の型) に関連しています。
 
 ## <a name="show-external-tables"></a>。外部テーブルを表示します。
 
@@ -28,17 +28,17 @@ ms.locfileid: "87877339"
 
 `.show` `external` `tables`
 
-`.show``external` `table` *TableName*
+`.show` `external` `table` *TableName*
 
 **出力**
 
-| 出力パラメーター | Type   | 説明                                                         |
+| 出力パラメーター | 種類   | 説明                                                         |
 |------------------|--------|---------------------------------------------------------------------|
 | TableName        | string | 外部テーブルの名前                                             |
 | TableType        | string | 外部テーブルの種類                                              |
 | Folder           | string | テーブルのフォルダー                                                     |
 | DocString        | string | テーブルをドキュメント化する文字列                                       |
-| Properties       | string | テーブルの JSON でシリアル化されたプロパティ (テーブルの型に固有) |
+| プロパティ       | string | テーブルの JSON でシリアル化されたプロパティ (テーブルの型に固有) |
 
 
 **例:**
@@ -48,7 +48,7 @@ ms.locfileid: "87877339"
 .show external table T
 ```
 
-| TableName | TableType | Folder         | DocString | Properties |
+| TableName | TableType | Folder         | DocString | プロパティ |
 |-----------|-----------|----------------|-----------|------------|
 | T         | BLOB      | ExternalTables | Docs      | {}         |
 
@@ -62,11 +62,11 @@ ms.locfileid: "87877339"
 
 `.show``external` `table` *TableName* `schema` `as` ( `json`  |  `csl` )
 
-`.show``external` `table` *TableName*`cslschema`
+`.show` `external` `table` *TableName* `cslschema`
 
 **出力**
 
-| 出力パラメーター | Type   | 説明                        |
+| 出力パラメーター | 種類   | 説明                        |
 |------------------|--------|------------------------------------|
 | TableName        | string | 外部テーブルの名前            |
 | スキーマ           | string | JSON 形式のテーブルスキーマ |
@@ -112,7 +112,7 @@ ms.locfileid: "87877339"
 
 **出力**
 
-削除されたテーブルのプロパティを返します。 詳細については、「[外部テーブルの表示](#show-external-tables)」を参照してください。
+削除されたテーブルのプロパティを返します。 詳細については、[`.show external tables`](#show-external-tables) をご覧ください。
 
 **例:**
 
@@ -120,11 +120,11 @@ ms.locfileid: "87877339"
 .drop external table ExternalBlob
 ```
 
-| TableName | TableType | Folder         | DocString | スキーマ       | Properties |
+| TableName | TableType | Folder         | DocString | スキーマ       | プロパティ |
 |-----------|-----------|----------------|-----------|-----------------------------------------------------|------------|
 | T         | BLOB      | ExternalTables | Docs      | [{"Name": "x", "CslType": "long"},<br> {"Name": "s", "CslType": "string"}] | {}         |
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 * [Azure Storage または Azure Data Lake の外部テーブルを作成および変更する](external-tables-azurestorage-azuredatalake.md)
 * [外部 SQL テーブルを作成および変更する](external-sql-tables.md)

@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2020
-ms.openlocfilehash: f51a68fc90237c4213c0135ade4724446800dea9
-ms.sourcegitcommit: ec191391f5ea6df8c591e6d747c67b2c46f98ac4
+ms.openlocfilehash: ff13ec8fcce49f4d92212e6a38797a97f9ea9dd6
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/16/2020
-ms.locfileid: "88259893"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96321252"
 ---
 # <a name="streaming-ingestion-policy-command"></a>ストリーミングインジェストポリシーコマンド
 
@@ -39,7 +39,7 @@ ms.locfileid: "88259893"
 |EntityName|`string`|データベース名またはテーブル名
 |ポリシー    |`string`|[ストリーミングインジェストポリシーオブジェクト](#streaming-ingestion-policy-object)
 
-**使用例**
+**例**
 
 ```kusto
 .show database DB1 policy streamingingestion
@@ -75,7 +75,7 @@ ms.locfileid: "88259893"
 
 コマンドを実行すると、テーブルまたはデータベースポリシーオブジェクトが変更され、 `streamingingestion` 対応[ `.show policy` `streamingingestion` ](#display-the-policy)するコマンドの出力が返されます。
 
-**使用例**
+**例**
 
 ```kusto
 .alter database DB1 policy streamingingestion enable
@@ -101,9 +101,9 @@ ms.locfileid: "88259893"
 
 **戻り値**
 
-このコマンドは、テーブルまたはデータベースの streamingingestion ポリシーオブジェクトを削除し、対応する [show policy streamingingestion](#display-the-policy) コマンドの出力を返します。
+コマンドを実行すると、テーブルまたはデータベースの streamingingestion ポリシーオブジェクトが削除され、対応するコマンドの出力が返され [`.show policy streamingingestion`](#display-the-policy) ます。
 
-**使用例**
+**例**
 
 ```kusto
 .delete database DB1 policy streamingingestion
@@ -115,7 +115,7 @@ ms.locfileid: "88259893"
 
 ストリーミングインジェストポリシーオブジェクトは、管理コマンドの入力と出力で、次のプロパティを含む JSON 形式の文字列です。
 
-|プロパティ|Type|説明|必須/省略可能
+|プロパティ|種類|説明|必須/省略可能
 |---|---|---|---
 |IsEnabled|`bool`|エンティティのストリーミングインジェストが有効になっている| 必須
 |HintAllocatedRate|`double`|データはの推定速度 (Gb/時間)|オプション

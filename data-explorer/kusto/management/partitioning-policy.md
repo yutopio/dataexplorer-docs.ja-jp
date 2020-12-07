@@ -8,16 +8,16 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/04/2020
-ms.openlocfilehash: 4f5abfd5c7fffd126033baeb2bbb9243b4400f58
-ms.sourcegitcommit: b08b1546122b64fb8e465073c93c78c7943824d9
+ms.openlocfilehash: f34042af4578643f8b1b4120345cb37f66b71830
+ms.sourcegitcommit: a36981785765b85a961f275be24d297d38e498fd
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 07/06/2020
-ms.locfileid: "85967402"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96310019"
 ---
 # <a name="partitioning-policy-command"></a>パーティション分割ポリシー コマンド
 
-データのパーティション分割ポリシーの詳細については、[こちら](../management/partitioningpolicy.md)を参照してください。
+データのパーティション分割ポリシーの詳細については、 [こちら](../management/partitioningpolicy.md)を参照してください。
 
 ## <a name="show-policy"></a>ポリシーの表示
 
@@ -31,7 +31,7 @@ ms.locfileid: "85967402"
 
 |ポリシー名 | エンティティ名 | ポリシー | 子エンティティ | エンティティの種類
 |---|---|---|---|---
-|DataPartitioning | テーブル名 | ポリシーオブジェクトの JSON シリアル化 | null | Table
+|DataPartitioning | テーブル名 | ポリシーオブジェクトの JSON シリアル化 | null | テーブル
 
 ## <a name="alter-and-alter-merge-policy"></a>alter および alter-merge ポリシー
 
@@ -43,7 +43,7 @@ ms.locfileid: "85967402"
 
 このコマンドでは、 `.alter` テーブルに適用されているパーティション分割ポリシーを変更できます。
 
-コマンドには[databaseadmin](access-control/role-based-authorization.md)のアクセス許可が必要です。
+コマンドには [databaseadmin](access-control/role-based-authorization.md) のアクセス許可が必要です。
 
 ポリシーに対する変更は、有効になるまで最大1時間かかる場合があります。
 
@@ -77,6 +77,7 @@ ms.locfileid: "85967402"
       '"Properties": {'
         '"Reference": "1970-01-01T00:00:00",'
         '"RangeSize": "1.00:00:00"'
+        '"OverrideCreationTime": false'
       '}'
     '}'
   ']'
@@ -102,6 +103,7 @@ ms.locfileid: "85967402"
       '"Properties": {'
         '"Reference": "1970-01-01T00:00:00",'
         '"RangeSize": "1.00:00:00"'
+        '"OverrideCreationTime": false'
       '}'
     '}'
   ']'

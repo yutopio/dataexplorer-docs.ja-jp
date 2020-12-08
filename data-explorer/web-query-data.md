@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 11/22/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 5ccae7e467b2ce41a36868cdad1b059aeec3ef9d
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 38b67a0843cc38c2cbce7d5a41a8eff85b25ebd5
+ms.sourcegitcommit: 7edce9d9d20f9c0505abda67bb8cc3d2ecd60d15
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95872477"
+ms.lasthandoff: 12/02/2020
+ms.locfileid: "96524302"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>クイック スタート:Azure Data Explorer の Web UI でデータのクエリを実行する
 
@@ -55,7 +55,7 @@ Azure Data Explorer は、大量のデータのリアルタイム分析を実現
 
 1. **[クラスターの追加]** を選択します。
 
-1. **[クラスターの追加]** ダイアログ ボックスで、テスト クラスターの URL を `https://<ClusterName>.<Region>.kusto.windows.net/` の形式で入力して､ **[追加]** を選択します。 たとえば、次の図のように、https://mydataexplorercluster.westus.kusto.windows.net と指定します。
+1. **[クラスターの追加]** ダイアログ ボックスで、テスト クラスターの URL を `https://<ClusterName>.<Region>.kusto.windows.net/` の形式で入力して､ **[追加]** を選択します。 たとえば、次の図のように、`https://mydataexplorercluster.westus.kusto.windows.net` と指定します。
 
     :::image type="content" source="media/web-query-data/server-uri.png" alt-text="テスト クラスターの URL を入力する":::
     

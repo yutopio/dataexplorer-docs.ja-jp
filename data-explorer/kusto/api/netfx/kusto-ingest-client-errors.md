@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/30/2019
-ms.openlocfilehash: 61c183f11aa7658faba00c5dd3c4795f235e5467
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: a4da1c35d34a1677cc0608fdf70dcbdb5a3c7c73
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92337484"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96774607"
 ---
 # <a name="kustoingest-errors-and-exceptions"></a>Kusto. 取り込みエラーと例外
 クライアント側でのインジェスト処理中にエラーが発生した場合は、C# の例外によって示されます。
@@ -67,40 +67,7 @@ DataReader ソースを使用している間、キューにポストするデー
 
 プログラムによるインジェストエラーの処理を支援するために、エラー情報が数値エラーコード () で拡充されてい `IngestionErrorCode enumeration` ます。
 
-|ErrorCode                                      |理由                                                        |
-|-----------------------------------------------|--------------------------------------------------------------|
-|Unknown                                        | 不明なエラーが発生しました|
-|Stream_LowMemoryCondition                      | メモリ不足により、操作が実行されました|
-|Stream_WrongNumberOfFields                     | CSV ドキュメントに含まれているフィールドの数が一致しません|
-|Stream_InputStreamTooLarge                     | インジェストのために送信されたドキュメントが、許可されているサイズを超えました|
-|Stream_NoDataToIngest                          | 取り込むデータストリームが見つかりませんでした|
-|Stream_DynamicPropertyBagTooLarge              | 取り込まれたデータの動的列の1つに含まれる一意のプロパティが多すぎます|
-|Download_SourceNotFound                        | Azure storage からソースをダウンロードできませんでした-ソースが見つかりません|
-|Download_AccessConditionNotSatisfied           | Azure storage からソースをダウンロードできませんでした-アクセスが拒否されました|
-|Download_Forbidden                             | Azure storage からソースをダウンロードできませんでした-アクセスは許可されていません|
-|Download_AccountNotFound                       | Azure storage からソースをダウンロードできませんでした-アカウントが見つかりません|
-|Download_BadRequest                            | Azure storage からソースをダウンロードできませんでした-無効な要求|
-|Download_NotTransient                          | Azure storage からソースをダウンロードできませんでした-一時的なエラーではありません|
-|Download_UnknownError                          | Azure storage からソースをダウンロードできませんでした-不明なエラー|
-|UpdatePolicy_QuerySchemaDoesNotMatchTableSchema| 更新ポリシーを呼び出せませんでした。 クエリスキーマがテーブルスキーマと一致しません|
-|UpdatePolicy_FailedDescendantTransaction       | 更新ポリシーを呼び出せませんでした。 失敗した子孫トランザクション更新ポリシー|
-|UpdatePolicy_IngestionError                    | 更新ポリシーを呼び出せませんでした。 インジェストエラーが発生しました|
-|UpdatePolicy_UnknownError                      | 更新ポリシーを呼び出せませんでした。 不明なエラーが発生しました|
-|BadRequest_MissingJsonMappingtFailure          | JsonMapping パラメーターを使用して JSON パターンを取り込みませんでした|
-|BadRequest_InvalidBlob                         | エンジンが zip 以外の blob を開いて読み取ることができませんでした|
-|BadRequest_EmptyBlob                           | 空の blob|
-|BadRequest_EmptyArchive                        | Zip ファイルにアーカイブ済みの要素が含まれていません|
-|BadRequest_EmptyBlobUri                        | 指定された blob URI は空です|
-|BadRequest_DatabaseNotExist                    | データベースが存在しません|
-|BadRequest_TableNotExist                       | テーブルが存在しません|
-|BadRequest_InvalidKustoIdentityToken           | Kusto id トークンが無効です|
-|BadRequest_UriMissingSas                       | 不明な blob ストレージからの SAS を使用しない blob パス|
-|BadRequest_FileTooLarge                        | 大きすぎるファイルを取り込みようとしています|
-|BadRequest_NoValidResponseFromEngine           | 取り込みコマンドからの有効な応答がありません|
-|BadRequest_TableAccessDenied                   | テーブルへのアクセスが拒否されました|
-|BadRequest_MessageExhausted                    | メッセージを使い果たしました|
-|General_BadRequest                             | 一般的な無効な要求です。 存在しないデータベースまたはテーブルへのインジェストに関するヒント|
-|General_InternalServerError                    | 内部サーバーエラーが発生しました|
+インジェストエラーコードの完全な一覧については、「 [Azure データエクスプローラーでのエラーコードの取り込み](../../../error-codes.md)」を参照してください。
 
 ## <a name="detailed-exceptions-reference"></a>詳細な例外のリファレンス
 
@@ -225,6 +192,4 @@ DataReader ソースを使用している間、キューにポストするデー
 |IngestionErrors | IList<IngestClientException>    | 取り込みの試行中に発生したエラーと、それらに関連するソース
 |IsGlobalError   | [bool]                            | すべてのソースで例外が発生したかどうかを示します
 
-## <a name="next-steps"></a>次の手順
 
-ネイティブコードのエラーの詳細については、「 [ネイティブコードのエラー](../../concepts/errorsinnativecode.md)」を参照してください。

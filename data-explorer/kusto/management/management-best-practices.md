@@ -1,6 +1,6 @@
 ---
-title: スキーマデザインのベストプラクティス-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーでのスキーマ設計のベストプラクティスについて説明します。
+title: スキーマ管理のベストプラクティス-Azure データエクスプローラー
+description: この記事では、Azure データエクスプローラーでのスキーマ管理のベストプラクティスについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/18/2020
-ms.openlocfilehash: a16cb4b425e26a5896b4109ad6f906b5925c93a5
-ms.sourcegitcommit: 8a7165b28ac6b40722186300c26002fb132e6e4a
+ms.openlocfilehash: ba0d931fcca257cb3b5658354dfb8bf70dc6848f
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92755250"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96774624"
 ---
-# <a name="best-practices-for-schema-design"></a>スキーマ デザインのベスト プラクティス
+# <a name="best-practices-for-schema-management"></a>スキーマ管理のベストプラクティス
 
 次に、いくつかのベストプラクティスを示します。 管理コマンドの動作が向上し、サービスリソースに対する影響が大きくなります。
 
-|アクション  |用途  |使用しない | メモ |
+|アクション  |vmmblue_2  |使用しない | メモ |
 |---------|---------|---------|----
 | **複数のテーブルを作成する**    |  1つのコマンドを使用する [`.create tables`](create-tables-command.md)       | 多くのコマンドを発行しない `.create table`        | |
 | **複数のテーブル名の変更**    | を1回呼び出します。 [`.rename tables`](rename-table-command.md)        |  テーブルのペアごとに個別の呼び出しを実行しない   |    |

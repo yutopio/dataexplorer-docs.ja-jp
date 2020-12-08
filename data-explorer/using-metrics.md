@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/19/2020
 ms.custom: contperfq1
-ms.openlocfilehash: 153b4265aade03e4059db0b38362d217cdad90df
-ms.sourcegitcommit: 2804e3fe40f6cf8e65811b00b7eb6a4f59c88a99
+ms.openlocfilehash: e92717e68794b21a0c991806aa7319e528433afb
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
 ms.lasthandoff: 12/07/2020
-ms.locfileid: "96748418"
+ms.locfileid: "96774522"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>メトリックを使用した Azure Data Explorer のパフォーマンス、正常性、および使用状況の監視
 
@@ -101,7 +101,7 @@ Azure Data Explorer 用の Azure Monitor のメトリックのアルファベッ
 | 検出の待機時間 | Seconds | Avg、Max、Min | データのエンキューから、データ接続によって検出されるまでの時間。 この時間は、**Azure Data Explorer の合計インジェスト期間** および **KustoEventAge (インジェスト待機時間)** には含まれません。 | データベース、テーブル、データ接続の種類、データ接続名 |
 | (Event/IoT Hubs の) 処理されたイベント | Count | Max、Min、Sum | イベント ハブから読み取られ、クラスターによって処理されたイベントの数。 イベントは、クラスター エンジンによって拒否されたイベントと受け入れられたイベントに分類されます。 | EventStatus |
 | インジェストの待ち時間 | Seconds | Avg、Max、Min | クラスターでデータが受信された時点からクエリー用に準備できるまでの、取り込まれたデータの待ち時間。 インジェストの待ち時間の長さは、インジェストのシナリオに応じて異なります。 | なし |
-| インジェストの結果 | Count | Count | 失敗および成功したインジェスト操作の合計数。 <br> <br> **[Apply Splitting]\(分割の適用\)** を使用して、成功および失敗した結果のバケットを作成し、ディメンションを分析します ( **[値]**  >  **[状態]** )。| IngestionResultDetails |
+| インジェストの結果 | Count | Count | 失敗および成功したインジェスト操作の合計数。 <br> <br> **[Apply Splitting]\(分割の適用\)** を使用して、成功および失敗した結果のバケットを作成し、ディメンションを分析します ( **[値]**  >  **[状態]** )。| Status |
 | インジェストの量 (MB 単位) | Count | Max、Sum | 圧縮前にクラスターにインジェストされたデータの合計サイズ (MB 単位)。 | データベース |
 | ステージの待機時間 | Seconds | Avg、Max、Min | 特定のコンポーネントがこのデータのバッチを処理するための期間。 データのバッチの全コンポーネントに対する合計ステージ待機時間は、インジェストの待機時間と等しくなります。 | データベース、データ接続の種類、データ接続名|
 

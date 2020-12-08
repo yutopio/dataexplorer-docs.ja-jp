@@ -6,17 +6,20 @@ ms.author: orspodek
 ms.reviewer: takamara
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 06/03/2019
-ms.openlocfilehash: 228722bab25dc19532860f92b8194c4fd2d79a38
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.date: 11/26/2020
+ms.openlocfilehash: 83d382de4f5bd683dff934267b5258ece475a8da
+ms.sourcegitcommit: 1bdbfdc04c4eac405f3931059bbeee2dedd87004
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343098"
+ms.lasthandoff: 11/27/2020
+ms.locfileid: "96303368"
 ---
-# <a name="ingest-data-from-logstash-to-azure-data-explorer"></a>Logstash から Azure Data Explorer にデータを取り込む
+# <a name="ingest-data-from-logstash-to-azure-data-explorer-preview"></a>Logstash から Azure Data Explorer にデータを取り込む (プレビュー)
 
 [Logstash](https://www.elastic.co/products/logstash) は、多くのソースからデータを同時に取り込み、変換したデータを任意の "一時退避場所" に送信する、オープン ソースのサーバー側データ処理パイプラインです。 この記事では、そのデータを Azure Data Explorer に送信します。これは、ログとテレメトリ データのための高速で非常にスケーラブルなデータ探索サービスです。 最初にテスト クラスターにテーブルとデータのマッピングを作成し、次にデータをテーブルに送信して結果を検証するように Logstash に指示します。
+
+> [!NOTE]
+> このコネクタでは現在、json データ形式のみがサポートされています。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -42,7 +45,7 @@ ms.locfileid: "92343098"
 
 ## <a name="create-a-mapping"></a>マッピングを作成する
 
-マッピングは、受信データをターゲット テーブルのスキーマに変換するために Azure Data Explorer によって使用されます。 次のコマンドでは、`basicmsg` で示される受信 json からプロパティを抽出して `path` に出力する、`column` という名前の新しいマッピングを作成しています。
+マッピングは、受信データをターゲット テーブルのスキーマに変換するために Azure Data Explorer によって使用されます。 次のコマンドでは、`path` で示される受信 json からプロパティを抽出して `column` に出力する、`basicmsg` という名前の新しいマッピングを作成しています。
 
 クエリ ウィンドウで次のコマンドを実行します。
 
@@ -110,7 +113,7 @@ output {
 | --- | --- |
 | **path** | Logstash プラグインでは、イベントを Azure Data Explorer に送信する前に、それらを一時ファイルに書き込みます。 このパラメーターには、ファイルを書き込む場所のパスと、Azure Data Explorer サービスへのアップロードをトリガーするためのファイル ローテーションの時間表現が含まれます。|
 | **ingest_url** | インジェストに関連する通信の Kusto エンドポイント。|
-| **app_id** 、 **app_key** 、および **app_tenant**| Azure Data Explorer に接続するために必要な資格情報。 取り込み特権を備えたアプリケーションを必ず使用してください。 |
+| **app_id**、**app_key**、および **app_tenant**| Azure Data Explorer に接続するために必要な資格情報。 取り込み特権を備えたアプリケーションを必ず使用してください。 |
 | **database**| イベントを配置するデータベースの名前。 |
 | **テーブル** | イベントを配置するターゲット テーブルの名前。 |
 | **mapping** | マッピングは、受信イベント json 文字列を適切な行形式にマッピングするために使用されます (どのプロパティをどの列に入力するかを定義します)。 |

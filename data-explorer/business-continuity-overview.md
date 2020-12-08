@@ -7,12 +7,12 @@ ms.reviewer: ankhanol
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/05/2020
-ms.openlocfilehash: 39bddff724d30e19f240a25fe3a277fd2151d81e
-ms.sourcegitcommit: f7f3ecef858c1e8d132fc10d1e240dcd209163bd
+ms.openlocfilehash: 2dcb1fb83d592ff7fd81fcfc5f51cf6fc95254b7
+ms.sourcegitcommit: a36981785765b85a961f275be24d297d38e498fd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/13/2020
-ms.locfileid: "88201342"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96310036"
 ---
 # <a name="business-continuity-and-disaster-recovery-overview"></a>事業継続とディザスター リカバリーの概要
 
@@ -36,7 +36,7 @@ Azure Data Explorer における事業継続とディザスター リカバリ�
 
 #### <a name="accidental-table-deletion"></a>テーブルの誤った削除
 
-テーブル管理者以上のアクセス許可を持つユーザーは、[テーブルを削除する](kusto/management/drop-table-command.md)ことができます。 そのようなユーザーの 1 人が誤ってテーブルを削除した場合は、[`.undo drop table`](kusto/management/undo-drop-table-command.md) コマンドを使用してそのテーブルを復旧できます。 このコマンドを正常に実行するには、最初に[アイテム保持ポリシー](kusto/management/retentionpolicy.md)の "*回復性*" プロパティを有効にする必要があります。
+テーブル管理者以上のアクセス許可を持つユーザーは、[テーブルを削除する](kusto/management/drop-table-command.md)ことができます。 そのようなユーザーの 1 人が誤ってテーブルを削除した場合は、[`.undo drop table`](kusto/management/undo-drop-table-command.md) コマンドを使用してそのテーブルを復旧できます。 このコマンドを正常に実行するには、最初に [アイテム保持ポリシー](kusto/management/retentionpolicy.md)の "*回復性*" プロパティを有効にする必要があります。
 
 #### <a name="accidental-external-table-deletion"></a>外部テーブルの誤った削除
 
@@ -84,14 +84,14 @@ Azure Data Explorer では、Azure リージョン全体の停止に対する自
 ディザスター リカバリーを計画するときは、インジェスト、処理、キュレーションを事前に入念に設計する必要があります。 インジェストとは、さまざまなソースから Azure Data Explorer に統合されたデータを指します。処理とは、変換および同様のアクティビティを指します。キュレーションとは、具体化されたビュー、データ レイクへのエクスポートなどのことです。
 
 次に示すのは一般的なディザスター リカバリー構成であり、それぞれについて以下で詳しく説明します。
-* [常時オン構成](#always-on-configuration)
+* [アクティブ/アクティブ/アクティブ (Always On) 構成](#active-active-active-configuration)
 * [アクティブ/アクティブ構成](#active-active-configuration)
 * [アクティブ/ホット スタンバイ構成](#active-hot-standby-configuration)
 * [オンデマンド データ復旧クラスター構成](#on-demand-data-recovery-configuration)
 
-### <a name="always-on-configuration"></a>常時オン構成
+### <a name="active-active-active-configuration"></a>アクティブ/アクティブ/アクティブ構成
 
-停止が許容されない重要なアプリケーションのデプロイでは、Azure のペアになったリージョンの間で複数の Azure Data Explorer クラスターを使用する必要があります。 すべてのクラスターに対して並列に、インジェスト、処理、キュレーションを設定します。 クラスター SKU は、リージョン間で同じである必要があります。 Azure により、Azure のペアになったリージョン間で更新プログラムが確実にロールアウトされ、時間をずらして調整されます。 1 つの Azure リージョンが停止しても、アプリケーションが停止することはありません。 若干の遅延またはパフォーマンスの低下が発生する可能性があります。
+この構成は "Always On" とも呼ばれます。 停止が許容されない重要なアプリケーションのデプロイでは、Azure のペアになったリージョンの間で複数の Azure Data Explorer クラスターを使用する必要があります。 すべてのクラスターに対して並列に、インジェスト、処理、キュレーションを設定します。 クラスター SKU は、リージョン間で同じである必要があります。 Azure により、Azure のペアになったリージョン間で更新プログラムが確実にロールアウトされ、時間をずらして調整されます。 1 つの Azure リージョンが停止しても、アプリケーションが停止することはありません。 若干の遅延またはパフォーマンスの低下が発生する可能性があります。
 
 :::image type="content" source="media/business-continuity-overview/active-active-active-n.png" alt-text="アクティブ/アクティブ/アクティブ/n 構成":::
 
@@ -101,7 +101,7 @@ Azure Data Explorer では、Azure リージョン全体の停止に対する自
 
 ### <a name="active-active-configuration"></a>アクティブ/アクティブ構成
 
-この構成は[常時オン構成](#always-on-configuration)と同じですが、Azure のペアになった 2 つのリージョンだけが関係します。 デュアル インジェスト、処理、およびキュレーションを構成します。 ユーザーは最も近いリージョンにルーティングされます。 クラスター SKU は、リージョン間で同じである必要があります。
+この構成は[アクティブ/アクティブ/アクティブ構成](#active-active-active-configuration)と同じですが、Azure のペアになった 2 つのリージョンだけが関係します。 デュアル インジェスト、処理、およびキュレーションを構成します。 ユーザーは最も近いリージョンにルーティングされます。 クラスター SKU は、リージョン間で同じである必要があります。
 
 :::image type="content" source="media/business-continuity-overview/active-active.png" alt-text="アクティブ/アクティブ構成":::
 

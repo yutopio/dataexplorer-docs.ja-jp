@@ -8,19 +8,19 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/05/2019
-ms.openlocfilehash: a92e657bfc2f440deb20fd4b812169b1c2e32112
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 14ba0226efc5f38ef3d549f38b2a6224da7c201e
+ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342911"
+ms.lasthandoff: 11/30/2020
+ms.locfileid: "96320725"
 ---
 # <a name="azure-devops-task-for-azure-data-explorer"></a>Azure Data Explorer の Azure DevOps タスク
 
 [Azure DevOps Services](https://azure.microsoft.com/services/devops/) は、高性能パイプライン、無料のプライベート Git リポジトリ、構成可能なかんばんボード、広範囲で自動化された継続的テスト機能など、開発向け共同作業ツールを提供します。 [Azure Pipelines](https://azure.microsoft.com/services/devops/pipelines/) は Azure DevOps の機能であり、あらゆる言語、プラットフォーム、クラウドと連動する高性能パイプラインでコードをデプロイするよう、CI/CD を管理できます。
 [Azure Data Explorer - Admin Commands](https://marketplace.visualstudio.com/items?itemName=Azure-Kusto.PublishToADX) は the Azure Pipelines のタスクであり、リリース パイプラインを作成し、データベースの変更を Azure Data Explorer データベースにデプロイできます。 [Visual Studio Marketplace](https://marketplace.visualstudio.com/) から無料で入手できます。
 
-このドキュメントでは、 **Azure Data Explorer – Admin Commands** タスクを使用し、スキーマの変更をデータベースにデプロイする簡単な例について説明します。 完全な CI/CD パイプラインについては、[Azure DevOps ドキュメント](/azure/devops/user-guide/what-is-azure-devops?view=azure-devops#vsts)を参照してください。
+このドキュメントでは、**Azure Data Explorer – Admin Commands** タスクを使用し、スキーマの変更をデータベースにデプロイする簡単な例について説明します。 完全な CI/CD パイプラインについては、[Azure DevOps ドキュメント](/azure/devops/user-guide/what-is-azure-devops?view=azure-devops#vsts)を参照してください。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -37,12 +37,12 @@ ms.locfileid: "92342911"
 
 ## <a name="create-folders"></a>フォルダーを作成します。
 
-Git リポジトリでサンプル フォルダー ( *Functions* 、 *Policies* 、 *Tables* ) を作成します。 下の画像のように[ここ](https://github.com/Azure/azure-kusto-docs-samples/tree/master/DevOps_release_pipeline)から個々のフォルダーにファイルをコピーし、変更内容をコミットします。 次のワークフローを実行するためのサンプル ファイルが提供されます。
+Git リポジトリでサンプル フォルダー (*Functions*、*Policies*、*Tables*) を作成します。 下の画像のように[ここ](https://github.com/Azure/azure-kusto-docs-samples/tree/master/DevOps_release_pipeline)から個々のフォルダーにファイルをコピーし、変更内容をコミットします。 次のワークフローを実行するためのサンプル ファイルが提供されます。
 
 ![フォルダーを作成します。](media/devops/create-folders.png)
 
 > [!TIP]
-> 独自のワークフローを作成するとき、コードをべき等にすることをお勧めします。 たとえば、[.create テーブル](kusto/management/create-table-command.md)の代わりに [.create-merge テーブル](kusto/management/create-merge-table-command.md)を使用し、[.create](kusto/management/create-function.md) 関数の代わりに [.create-or-alter](kusto/management/create-alter-function.md) 関数を使用します。
+> 独自のワークフローを作成するとき、コードをべき等にすることをお勧めします。 たとえば、[`.create table`](kusto/management/create-table-command.md)の代わりに [`.create-merge table`](kusto/management/create-merge-table-command.md) を使用し、[`.create`](kusto/management/create-function.md)関数の代わりに [`.create-or-alter`](kusto/management/create-alter-function.md) 関数を使用します。
 
 ## <a name="create-a-release-pipeline"></a>リリース パイプラインを作成する
 
@@ -77,14 +77,14 @@ Git リポジトリでサンプル フォルダー ( *Functions* 、 *Policies* 
 
     ![タスクの追加](media/devops/add-task.png)
 
-1. **Tables** 、 **Functions** 、 **Policies** をデプロイする 3 つのタスクをこの順番で作成します。 
+1. **Tables**、**Functions**、**Policies** をデプロイする 3 つのタスクをこの順番で作成します。 
 
-1. **[タスク]** タブで **[エージェント ジョブ]** の横にある **+** を選択します。 **Azure Data Explorer** を検索します。 **マーケットプレース** で、 **Azure Data Explorer – Admin Commands** 拡張をインストールします。 次に、 **[Run Azure Data Explorer Command]\(Azure Data Explorer コマンドの実行\)** で **[追加]** を選択します。
+1. **[タスク]** タブで **[エージェント ジョブ]** の横にある **+** を選択します。 **Azure Data Explorer** を検索します。 **マーケットプレース** で、**Azure Data Explorer – Admin Commands** 拡張をインストールします。 次に、 **[Run Azure Data Explorer Command]\(Azure Data Explorer コマンドの実行\)** で **[追加]** を選択します。
 
      ![管理者コマンドの追加](media/devops/add-admin-commands.png)
 
 1. 左の **[Kusto コマンド]** をクリックし、次の情報でタスクを更新します。
-    * **表示名** :タスクの名前
+    * **表示名**:タスクの名前
     * **[ファイル パス]** : **[Tables]** タスクで */Tables/* .csl を指定します。テーブル作成ファイルが *Table* フォルダーにあるためです。
     * **[エンドポイント URL]** : 前の手順で作成した `EndPoint URL` 変数を入力します。
     * **[Use Service Endpoint]\(サービス エンドポイントの使用\)** を選択し、 **[+ 新規]** を選択します。
@@ -105,7 +105,7 @@ Git リポジトリでサンプル フォルダー ( *Functions* 、 *Policies* 
 
     ![サービス接続の追加](media/devops/add-service-connection.png)
 
-1. 手順 1-5 をさらに 2 回繰り返し、 *Functions* フォルダーと *Policies* フォルダーからファイルをデプロイします。 **[保存]** を選択します。 **[タスク]** タブで、 **Deploy Tables** 、 **Deploy Functions** 、 **Deploy Policies** という 3 つのタスクが作成されていることを確認します。
+1. 手順 1-5 をさらに 2 回繰り返し、*Functions* フォルダーと *Policies* フォルダーからファイルをデプロイします。 **[保存]** を選択します。 **[タスク]** タブで、**Deploy Tables**、**Deploy Functions**、**Deploy Policies** という 3 つのタスクが作成されていることを確認します。
 
     ![すべてのフォルダーのデプロイ](media/devops/deploy-all-folders.png)
 

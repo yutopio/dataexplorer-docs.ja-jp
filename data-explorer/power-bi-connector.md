@@ -6,17 +6,17 @@ ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 07/10/2019
-ms.openlocfilehash: 47bb390e6211a0448e16b3fca16560176dcc8702
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.date: 12/03/2020
+ms.openlocfilehash: d02f9732791bf66a488779e2bc413fa441664ef7
+ms.sourcegitcommit: f134d51e52504d3ca722bdf6d33baee05118173a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343540"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96563336"
 ---
 # <a name="visualize-data-using-the-azure-data-explorer-connector-for-power-bi"></a>Power BI 用 Azure Data Explorer コネクタを使用してデータを視覚化する
 
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Power BI はビジネス分析ソリューションであり、データを視覚化して、組織全体で結果を共有することができます。 Azure Data Explorer には、Power BI のデータに接続する方法が 3 つ用意されています。ビルトインのコネクタを使用する方法、Azure Data Explorer からクエリをインポートする方法、SQL クエリを使用する方法です。 この記事では、ビルトインのコネクタを使用してデータを取得し、それを Power BI レポートで視覚化する方法について説明します。 Power BI ダッシュボードの作成に Azure Data Explorer ネイティブ コネクタを使用する方法は簡単です。 Power BI コネクタでは、[Import および DirectQuery 接続モード](/power-bi/desktop-directquery-about)がサポートされています。 シナリオ、スケール、およびパフォーマンスの要件に応じて、 **Import** または **DirectQuery** モードを使用してダッシュボードを構築できます。 
+Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Power BI はビジネス分析ソリューションであり、データを視覚化して、組織全体で結果を共有することができます。 Azure Data Explorer には、Power BI のデータに接続する方法が 3 つ用意されています。ビルトインのコネクタを使用する方法、Azure Data Explorer からクエリをインポートする方法、SQL クエリを使用する方法です。 この記事では、ビルトインのコネクタを使用してデータを取得し、それを Power BI レポートで視覚化する方法について説明します。 Power BI ダッシュボードの作成に Azure Data Explorer ネイティブ コネクタを使用する方法は簡単です。 Power BI コネクタでは、[Import および DirectQuery 接続モード](/power-bi/desktop-directquery-about)がサポートされています。 シナリオ、スケール、およびパフォーマンスの要件に応じて、**Import** または **DirectQuery** モードを使用してダッシュボードを構築できます。 
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -28,7 +28,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 ## <a name="get-data-from-azure-data-explorer"></a>Azure Data Explorer からデータを取得する
 
-まず、Azure Data Explorer ヘルプ クラスターに接続し、 *StormEvents* テーブルからデータのサブセットを取り込みます。 [!INCLUDE [data-explorer-storm-events](includes/data-explorer-storm-events.md)]
+まず、Azure Data Explorer ヘルプ クラスターに接続し、*StormEvents* テーブルからデータのサブセットを取り込みます。 [!INCLUDE [data-explorer-storm-events](includes/data-explorer-storm-events.md)]
 
 1. Power BI Desktop の **[ホーム]** タブで、 **[データの取得]** 、 **[詳細]** の順に選択します。
 
@@ -76,7 +76,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
     ![サインイン](media/power-bi-connector/sign-in.png)
 
-1. **[ナビゲーター]** 画面で **[Samples]** データベースを展開し、 **[StormEvents]** を選択して **[編集]** を選択します。
+1. **[ナビゲーター]** 画面で **[Samples]** データベースを展開し、 **[StormEvents]** を選択して **[データの変換]** を選択します。
 
     ![テーブルの選択](media/power-bi-connector/select-table.png)
 
@@ -86,7 +86,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
     ![DamageCrops を降順に並べ替え](media/power-bi-connector/sort-descending.png)
 
-1. **[ホーム]** タブで **[行の保持]** を選択し、 **[上位の行を保持]** を選択します。 並べ替えたテーブルの上位 1,000 行を取り込むために、値として「 *1000* 」を入力します。
+1. **[ホーム]** タブで **[行の保持]** を選択し、 **[上位の行を保持]** を選択します。 並べ替えたテーブルの上位 1,000 行を取り込むために、値として「*1000*」を入力します。
 
     ![上位の行を保持](media/power-bi-connector/keep-top-rows.png)
 

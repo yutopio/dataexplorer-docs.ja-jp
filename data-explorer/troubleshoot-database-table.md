@@ -6,17 +6,17 @@ ms.author: orspodek
 ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 09/24/2018
-ms.openlocfilehash: fdcc048c9abdbbc7b99ba938dd5f4ce3792fce41
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.date: 12/01/2020
+ms.openlocfilehash: 8b94a36bc2e5190770db424126a3461330c4245d
+ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875363"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96444176"
 ---
 # <a name="troubleshoot-failure-to-create-or-delete-a-database-or-table-in-azure-data-explorer"></a>トラブルシューティング:Azure データ エクスプローラーでデータベースまたはテーブルの作成または削除が失敗する
 
-Azure データ エクスプローラーでは、データベースやテーブルの作業をよく行います。 この記事では、発生する可能性のある問題のトラブルシューティング手順を示します。
+Azure データ エクスプローラーでは、データベースやテーブルの作業をよく行います。 この記事では、発生する可能性のある問題のトラブルシューティング手順を示します。 
 
 ## <a name="creating-a-database"></a>データベースを作成する
 
@@ -28,7 +28,7 @@ Azure データ エクスプローラーでは、データベースやテーブ�
 
 ## <a name="deleting-or-renaming-a-database"></a>データベースの削除または名前変更
 
-適切なアクセス許可を持っていることを確認します。 データベースを削除または名前変更するには、Azure サブスクリプションの "*共同作成者*" または "*所有者*" ロールのメンバーである必要があります。 必要であれば、サブスクリプション管理者に問い合わせて、適切なロールに追加してもらいます。
+適切なアクセス許可を持っていることを確認します。 データベースを削除または名前変更するには、Azure サブスクリプションの "*共同作成者*" または "*所有者*" ロールのメンバーである必要があります。 必要であれば、サブスクリプション管理者に問い合わせて、適切なロールに追加してもらいます。 "*データベース管理者*" ロールを持っている場合は、データベースを削除または名前変更することもできます。
 
 ## <a name="creating-a-table"></a>テーブルの作成
 
@@ -60,4 +60,5 @@ Azure データ エクスプローラーでは、データベースやテーブ�
 
 ## <a name="next-steps"></a>次のステップ
 
-[クラスターの正常性を確認する](check-cluster-health.md)
+* [クラスターの正常性を確認する](check-cluster-health.md)
+* [データベースのアクセス許可を管理する](manage-database-permissions.md)

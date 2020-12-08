@@ -7,14 +7,14 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/06/2020
-ms.openlocfilehash: 3302e7cb94a2184be64664f3c3d8698b8bea7643
-ms.sourcegitcommit: 92b8057a36bd7daa16226f1526b29253bceb3602
+ms.openlocfilehash: 2f31d49e4612134cf4111e018eb5ab02c243427b
+ms.sourcegitcommit: faa747df81c49b96d173dbd5a28d2ca4f3a2db5f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/28/2020
-ms.locfileid: "91402746"
+ms.lasthandoff: 11/24/2020
+ms.locfileid: "95783363"
 ---
-# <a name="create-a-table-in-azure-data-explorer-preview"></a>Azure Data Explorer でテーブルを作成する (プレビュー)
+# <a name="create-a-table-in-azure-data-explorer"></a>Azure Data Explorer でテーブルを作成する
 
 テーブルの作成は、Azure Data Explorer の[データ インジェスト](ingest-data-overview.md)と[クエリ](write-queries.md)のプロセスにおける重要な手順です。 Azure Data Explorer で[クラスターとデータベースを作成](create-cluster-database-portal.md)した後、テーブルを作成することができます。 次の記事では、Azure Data Explorer Web UI を使用して、テーブルとスキーマのマッピングをすばやく簡単に作成する方法について説明します。 
 
@@ -26,7 +26,7 @@ ms.locfileid: "91402746"
 
 ## <a name="create-a-table"></a>テーブルを作成する
 
-1. Web UI の左側のメニューで、データベース名として **[ExampleDB]** を右クリックし、 **[Create table (preview)]\(テーブルの作成 (プレビュー\))** を選択します。
+1. Web UI の左側のメニューで、データベース名を右クリックし、 **[テーブルの作成]** を選択します。
 
     :::image type="content" source="./media/one-click-table/create-table.png" alt-text="Azure Data Explorer Web UI でテーブルを作成する":::
 
@@ -41,14 +41,14 @@ ms.locfileid: "91402746"
 1. **[ソースの種類]** で、テーブル マッピングの作成に使用するデータ ソースを選択します。 次のオプションから選択します。 **[BLOB から]** 、 **[ファイルから]** 、または **[コンテナーから]** 。
    
     
-    * **コンテナー**を使用している場合:
+    * **コンテナー** を使用している場合:
         * BLOB のストレージ URL を入力し、必要に応じてサンプル サイズを入力します。 
         * **[ファイルのフィルター]** を使用してファイルをフィルター処理します。 
         * 次の手順でスキーマの定義に使用するファイルを選択します。
 
         :::image type="content" source="media/one-click-table/storage.png" alt-text="BLOB を使用してテーブルを作成し、スキーマ マッピングを作成する":::
     
-    * **ローカル ファイル**を使用している場合:
+    * **ローカル ファイル** を使用している場合:
         * **[参照]** を選択してファイルを見つけるか、ファイルをフィールドにドラッグします。
 
         :::image type="content" source="./media/one-click-table/data-from-file.png" alt-text="ローカル ファイルのデータに基づいてテーブルを作成する":::
@@ -60,7 +60,7 @@ ms.locfileid: "91402746"
 
 ### <a name="edit-schema"></a>スキーマを編集する
 
-**[スキーマ]** タブでは、お使いの[データ形式](ingest-data-one-click.md#file-formats)と圧縮が左側のペインで自動的に識別されます。 正しく識別されない場合は、 **[データ形式]** ドロップダウン メニューを使用して、正しい形式を選択します。
+**[スキーマ]** タブでは、お使いの [データ形式](ingest-data-one-click.md#file-formats)と圧縮が左側のペインで自動的に識別されます。 正しく識別されない場合は、 **[データ形式]** ドロップダウン メニューを使用して、正しい形式を選択します。
 
    * データ形式が JSON の場合は、1 から 10 までの JSON レベルも選択する必要があります。 レベルによって、テーブル列のデータ区分が異なります。
    * データ形式が CSV の場合、ファイルの見出し行を無視するには、 **[Include column names]\(列名を含める\)** チェック ボックスをオンにします。

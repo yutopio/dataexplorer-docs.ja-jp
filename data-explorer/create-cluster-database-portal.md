@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 07/22/2019
 ms.localizationpriority: high
-ms.openlocfilehash: 44c2a5adf46d8c136675aa70a45dc89ed60c4cc8
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
+ms.openlocfilehash: 02e746a3ce929bab9883f1b4faafe7a6fb1ce953
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
-ms.locfileid: "95512742"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "95783269"
 ---
 # <a name="quickstart-create-an-azure-data-explorer-cluster-and-database"></a>クイック スタート:Azure Data Explorer クラスターとデータベースを作成する
 
@@ -66,6 +66,11 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 1. デプロイが完了したら、 **[リソースに移動]** を選択します。
 
     ![リソースに移動](media/create-cluster-database-portal/notification-resource.png)
+
+> [!NOTE]
+> デプロイが "SubscriptionNotRegistered" というエラーで失敗する場合は、操作を再試行してください。 
+> 
+> 「[Azure リソース プロバイダーと種類](/azure/azure-resource-manager/management/resource-providers-and-types)」で説明されているサブスクリプションに Kusto リソース プロバイダーが登録されていない場合、デプロイは失敗します。 デプロイが失敗すると、Kusto リソース プロバイダーによってそれ自身がサブスクリプションに登録されるので、再度実行すると成功します。
 
 ## <a name="create-a-database"></a>データベースを作成する
 

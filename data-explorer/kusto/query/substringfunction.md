@@ -1,6 +1,6 @@
 ---
-title: substring ()-Azure データエクスプローラー |Microsoft Docs
-description: この記事では、Azure データエクスプローラーの substring () について説明します。
+title: substring() - Azure Data Explorer | Microsoft Docs
+description: この記事では、Azure Data Explorer の substring() について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,15 +10,15 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 7b2f2dc18fe12f4bd07b638b6c3ca32d95a10618
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512045"
 ---
 # <a name="substring"></a>substring()
 
-あるインデックスから文字列の末尾までの位置から、ソース文字列から部分文字列を抽出します。
+あるインデックスから始まるソース文字列から文字列の末尾までの部分文字列を抽出します。
 
 必要に応じて、要求する部分文字列の長さを指定できます。
 
@@ -28,13 +28,13 @@ substring("abcdefg", 1, 2) == "bc"
 
 ## <a name="syntax"></a>構文
 
-`substring(`*ソース* `,`*startingIndex* [ `,` *長さ*]`)`
+`substring(`*source*`,` *startingIndex* [`,` *length*]`)`
 
 ## <a name="arguments"></a>引数
 
-* *source*: 部分文字列が取得されるソース文字列。
-* *startingIndex*: 要求された部分文字列の0から始まる開始文字位置。
-* *length*: 省略可能なパラメーター。部分文字列で要求された文字数を指定するために使用できます。 
+* *source*: 部分文字列の取得元となるソース文字列。
+* *startingIndex*:要求する部分文字列の、0 から始まる開始文字位置。
+* *length*:要求する部分文字列の文字数を指定するために使用できる省略可能なパラメーター。 
 
 **メモ**
 

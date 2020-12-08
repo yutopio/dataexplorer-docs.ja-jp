@@ -1,6 +1,6 @@
 ---
-title: Kusto クエリ言語の where 演算子-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーの where 演算子について説明します。
+title: Kusto クエリ言語の where 演算子 - Azure Data Explorer
+description: この記事では、Azure Data Explorer の where 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,10 +10,10 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 6ac800cd4b38396e0f32f44976c4594c093747bb
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512011"
 ---
 # <a name="where-operator"></a>where 演算子
@@ -24,38 +24,38 @@ ms.locfileid: "95512011"
 T | where fruit=="apple"
 ```
 
-**エイリアス** `filter`
+**Alias** `filter`
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
-*T* `| where` *述語*
+*T* `| where` *Predicate*
 
 ## <a name="arguments"></a>引数
 
-* *T*: レコードをフィルター処理するための表形式の入力。
-* *述語*: `boolean` *T* の列に対する [式](./scalar-data-types/bool.md)。*T* の各行に対して評価されます。
+* *T*:フィルター処理するレコードが含まれる表形式の入力。
+* *[述語]* :*T* の列に対する `boolean` [式](./scalar-data-types/bool.md)。*T* 内の各行について評価されます。
 
 ## <a name="returns"></a>戻り値
 
 *Predicate* が `true` である *T* 内の行。
 
-**メモ** Null 値: すべてのフィルター処理関数は、null 値と比較した場合に false を返します。 特殊な null 対応関数を使用すると、null 値を処理するクエリを記述できます。
+**注** Null 値: null 値と比較された場合、すべてのフィルター関数によって false が返されます。 次の特殊な null 対応関数を使用して、null 値を処理するクエリを記述できます。
 
-[isnull ()](./isnullfunction.md)、 [isnotnull ()](./isnotnullfunction.md)、 [isempty ()](./isemptyfunction.md)、 [isnotempty ()](./isnotemptyfunction.md)。 
+[isnull()](./isnullfunction.md)、[isnotnull()](./isnotnullfunction.md)、[isempty()](./isemptyfunction.md)、[isnotempty()](./isnotemptyfunction.md) 
 
 **ヒント**
 
 パフォーマンスを最大限高めるためのヒントを示します。
 
-* **シンプルな比較を使う** ("定数" とは、テーブルに対する定数です。 (' Constant ' はテーブルに対して定数を意味します。そのため、 `now()` と `ago()` は OK です。したがって、 [ `let` ステートメント](./letstatement.md)を使用してスカラー値が割り当てられます)。
+* **シンプルな比較を使う** ("定数" とは、テーブルに対する定数です。 ("定数" とは、テーブルに対する定数です。`now()` と `ago()` は適切で、[`let` ステートメント](./letstatement.md)を使って割り当てられるスカラー値も同様です)。
 
     たとえば、`where floor(Timestamp, 1d) == ago(1d)` よりも `where Timestamp >= ago(1d)` の方が適切です。
 
 * **最もシンプルな語句を先頭に配置する**: `and` で連結された複数の句がある場合は、関係する列が 1 つしかない句を先頭に配置します。 そのため、 `Timestamp > ago(1d) and OpId == EventId` の方が、逆の順序にするよりも適切です。
 
-詳細については、 [使用可能な文字列演算子](./datatypes-string-operators.md) の概要と、 [使用可能な数値演算子](./numoperators.md)の概要を参照してください。
+詳細については、[使用可能な String 演算子](./datatypes-string-operators.md)の概要および[使用可能な数値演算子](./numoperators.md)の概要を参照してください。
 
-## <a name="example-simple-comparisons-first"></a>例: 最初の単純な比較
+## <a name="example-simple-comparisons-first"></a>例:最初の単純な比較
 
 ```kusto
 Traces
@@ -64,15 +64,15 @@ Traces
     and ActivityId == SubActivityId 
 ```
 
-この例では、1時間経過していないレコードを取得し、というソースから取得 `MyCluster` し、同じ値の2つの列を保持します。 
+この例では、1 時間以内のレコードを取得しています。レコードは `MyCluster` というソースに由来し、同じ値の 2 つの列があります。 
 
-インデックスを使用してスキャンを強制的に実行できないため、2つの列の比較が最後に行われることに注意してください。
+2 つの列の比較を最後に配置していることに注目してください。これは、インデックスを使用できず、スキャンを強制するためです。
 
-## <a name="example-columns-contain-string"></a>例: 列に文字列が含まれている
+## <a name="example-columns-contain-string"></a>例:文字列を含む列
 
 ```kusto
 Traces | where * has "Kusto"
 ```
 
-"Kusto" という単語が任意の列に表示されているすべての行。
+任意の列に "Kusto" という単語が表示されるすべての行。
  

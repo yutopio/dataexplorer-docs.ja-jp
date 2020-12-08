@@ -1,6 +1,6 @@
 ---
-title: split ()-Azure データエクスプローラー |Microsoft Docs
-description: この記事では、Azure データエクスプローラーでの split () について説明します。
+title: split() - Azure Data Explorer | Microsoft Docs
+description: この記事では、Azure Data Explorer の split() について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,15 +10,15 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 4baae5bee8dd1e85a304be7fb4eae988acc404d8
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512946"
 ---
 # <a name="split"></a>split()
 
-指定された区切り記号に従って指定された文字列を分割し、含まれている部分文字列を含む文字列配列を返します。
+指定された区切り記号に従って指定された文字列を分割し、部分文字列が含まれている文字列配列を返します。
 
 必要に応じて、特定の部分文字列が存在すれば、それを返すこともできます。
 
@@ -26,9 +26,9 @@ ms.locfileid: "95512946"
 split("aaa_bbb_ccc", "_") == ["aaa","bbb","ccc"]
 ```
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
-`split(`*ソース* `,`*区切り記号*[ `,` *requestedindex*]`)`
+`split(`*source*`,` *delimiter* [`,` *requestedIndex*]`)`
 
 ## <a name="arguments"></a>引数
 

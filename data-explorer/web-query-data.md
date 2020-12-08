@@ -3,27 +3,27 @@ title: クイック スタート:Azure Data Explorer の Web UI でデータの�
 description: このクイック スタートでは、Azure Data Explorer の Web UI でデータのクエリと共有を行う方法について説明します。
 author: orspod
 ms.author: orspodek
-ms.reviewer: mblythe
+ms.reviewer: olgolden
 ms.service: data-explorer
 ms.topic: quickstart
-ms.date: 06/15/2020
+ms.date: 11/22/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 479bd512f759a20123e5eb94fcc9ec54e2a13455
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
+ms.openlocfilehash: 5ccae7e467b2ce41a36868cdad1b059aeec3ef9d
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
-ms.locfileid: "95513304"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "95872477"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>クイック スタート:Azure Data Explorer の Web UI でデータのクエリを実行する
 
-Azure Data Explorer は、ログと利用統計情報データのための高速で拡張性に優れたデータ探索サービスです。 Azure Data Explorer の Web アプリケーションを使用して、クエリを実行および共有できます。 そのアプリケーションは、Azure portal で利用でき、スタンドアロン Web アプリケーションとしても利用できます。 この記事では、スタンドアロン バージョンを使います。複数のクラスターに接続し、クエリへのディープ リンクを共有することができます。
-
-Azure サブスクリプションをお持ちでない場合は、開始する前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
+Azure Data Explorer は、大量のデータのリアルタイム分析を実現するフル マネージドの高速データ分析サービスです。 Azure Data Explorer の Web エクスペリエンスを使用すると、Azure Data Explorer クラスターに接続して、Kusto クエリ言語のコマンドとクエリを作成、実行、共有できます。 Web エクスペリエンスは、Azure portal で利用でき、スタンドアロン Web アプリケーション ([Azure Data Explorer Web UI](https://dataexplorer.azure.com)) としても使用できます。 Azure Data Explorer Web UI は、他の Web ポータルの HTML iframe 内でホストすることもできます。 Web UI および使用される Monaco エディターをホストする方法の詳細については、[Monaco IDE の統合](kusto/api/monaco/monaco-kusto.md)に関するページを参照してください。
+このクイックスタートでは、スタンドアロンの Azure Data Explorer Web UI を使用します。
 
 ## <a name="prerequisites"></a>前提条件
 
-このクイック スタートを実行するには、Azure サブスクリプションに加えて、[テスト用のクラスターとデータベース](create-cluster-database-portal.md)が必要です。
+* Azure サブスクリプション。 持っていない場合は、始める前に[無料の Azure アカウント](https://azure.microsoft.com/free/)を作成してください。
+* クラスターと、データが含まれるデータベース。 [独自のクラスターを作成する](create-cluster-database-portal.md)か、Azure Data Explorer のヘルプ クラスターを使用します。
 
 ## <a name="sign-in-to-the-application"></a>アプリケーションにサインインする
 
@@ -31,80 +31,80 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
 ## <a name="add-clusters"></a>クラスターを追加する
 
-最初にアプリケーションを開いたときには、接続はありません。
+最初にアプリケーションを開いたときには、クラスターには接続していません。
 
 ![クラスターを追加する](media/web-query-data/add-cluster.png)
 
-クエリの実行を始める前に、少なくとも 1 つのクラスターへの接続を追加する必要があります。 このセクションでは、学習補助用に設定されている "*help クラスター*" と、前のクイック スタートで作成したテスト クラスターへの接続を、Azure Data Explorer に追加します。
+クエリの実行を始める前に、クラスターへの接続を追加する必要があります。 このセクションでは、Azure Data Explorer **ヘルプ** クラスターと、[前提条件](#prerequisites)で作成したテスト クラスター (省略可能) への接続を追加します。
 
-1. アプリケーションの左上にある **[Add cluster]\(クラスターの追加\)** を選択します。
+### <a name="add-help-cluster"></a>ヘルプ クラスターを追加する
 
-1. **[Add cluster]\(クラスターの追加\)** ダイアログ ボックスで URI を入力して、 **[Add]\(追加\)** を選択します。
+1. アプリケーションの左上にある **[クラスターの追加]** を選択します。
 
-   ヘルプ クラスター URI `https://help.kusto.windows.net` を使用できます。 独自のクラスターがある場合は、そのクラスターの URI を指定します。 たとえば、次の図のように、`https://mydataexplorercluster.westus.kusto.windows.net` と指定します。
+1. **[クラスターの追加]** ダイアログ ボックスで URI https://help.kusto.windows.net を入力して、 **[追加]** を選択します。
+   
+1. 左側のウィンドウに **help** クラスターが表示されます。 **Samples** データベースを展開し、**Tables** フォルダーを開いて、アクセスできるサンプル テーブルを表示します。
 
-    ![ポータルでのサーバー URI](media/web-query-data/server-uri.png)
+    :::image type="content" source="media/web-query-data/help-cluster.png" alt-text="ヘルプ クラスターでテーブルを検索する":::
 
-1. 左側のウィンドウに **help** クラスターが表示されます。 **Samples** データベースを展開し、アクセスできるサンプル テーブルを表示します。
+このクイック スタートでこの後、および他の Azure Data Explorer 記事では、**StormEvents** テーブルを使用します。 
 
-    ![サンプル データベース](media/web-query-data/sample-databases.png)
-
-    このクイック スタートでこの後、および他の Azure Data Explorer 記事では、**StormEvents** テーブルを使用します。
+### <a name="add-your-cluster"></a>クラスターを追加する
 
 作成したテスト クラスターを追加します。
 
-1. **[Add cluster]\(クラスターの追加\)** を選択します。
+1. **[クラスターの追加]** を選択します。
 
-1. **[Add cluster]\(クラスターの追加\)** ダイアログ ボックスで、テスト クラスターの URL を `https://<ClusterName>.<Region>.kusto.windows.net/` の形式で入力して､ **[Add]\(追加\)** を選択します。
+1. **[クラスターの追加]** ダイアログ ボックスで、テスト クラスターの URL を `https://<ClusterName>.<Region>.kusto.windows.net/` の形式で入力して､ **[追加]** を選択します。 たとえば、次の図のように、https://mydataexplorercluster.westus.kusto.windows.net と指定します。
 
-    次の例では、**help** クラスターと、新しいクラスター **docscluster.westus** (完全な URL は `https://docscluster.westus.kusto.windows.net/`) が表示されています。
+    :::image type="content" source="media/web-query-data/server-uri.png" alt-text="テスト クラスターの URL を入力する":::
+    
+1. 次の例では、**help** クラスターと、新しいクラスター **docscluster.westus** (完全な URL は `https://docscluster.westus.kusto.windows.net/`) が表示されています。
 
     ![テスト クラスター](media/web-query-data/test-cluster.png)
 
 ## <a name="run-queries"></a>クエリを実行する
 
-接続したどちらのクラスターに対してもクエリを実行できます (テスト クラスターにデータがあると仮定)。 ここでは **help** クラスターに注目します。
+これで、両方のクラスターでクエリを実行できるようになりました (テスト クラスターにデータがあるものとします)。 この記事では、**ヘルプ** クラスターに注目します。
 
 1. 左側のウィンドウで **help** クラスターの下の **Samples** データベースを選択します。
 
 1. 次のクエリをコピーしてクエリ ウィンドウに貼り付けます。 ウィンドウの上部にある **[Run]\(実行\)** を選択します。
 
-    ```Kusto
+    ```kusto
     StormEvents
     | sort by StartTime desc
     | take 10
     ```
-    このクエリでは、**StormEvents** テーブルから最新の 10 レコードが返されます。 結果の左側は次のテーブルのようになります。
+    
+    このクエリを実行すると、**StormEvents** テーブルから最新の 10 レコードが返されます。 結果は次のテーブルのようになります。
 
-    :::image type="content" source="media/web-query-data/result-set-01.png" alt-text="10 件のストーム イベントの開始時刻、終了時刻、エピソード、イベント ID、州、イベントの種類を一覧表示した表のスクリーンショット。" border="false":::
+    :::image type="content" source="media/web-query-data/result-set-take-10.png" alt-text="10 個の嵐イベントのデータが一覧表示されているテーブルのスクリーンショット。" border="false":::
 
-    次の図は、クラスターが追加されてクエリと結果が表示されている、アプリケーションの現在の状態を示しています。
+    次の図には、クラスターが追加されたアプリケーションの状態、およびクエリと結果が示されています。
 
-    ![完全なアプリケーション](media/web-query-data/full-application.png)
+    :::image type="content" source="media/web-query-data/webui-take10.png" alt-text="全画面表示":::
 
 1. 次のクエリをコピーし、クエリ ウィンドウの最初のクエリの下に貼り付けます。 最初のクエリのように異なる行に書式設定されていないことに注意してください。
 
-    ```Kusto
+    ```kusto
     StormEvents | sort by StartTime desc | project StartTime, EndTime, State, EventType, DamageProperty, EpisodeNarrative | take 10
     ```
 
-1. ウィンドウで新しいクエリをクリックして、クエリを選択します。 Shift + Alt + F キーを押してクエリを書式設定すると、次の表示のようになります。
+1. 新しいクエリを選択します。 *Shift + Alt + F* キーを押して、クエリを次のように書式設定します。
 
     ![書式設定されたクエリ](media/web-query-data/formatted-query.png)
 
-1. Shift + Enter キーを押します。これは、クエリ実行のショートカットです。
+1. **[実行]** を選択するか、*Shift + Enter* キーを押して、クエリを実行します。 このクエリでは 1 番目と同じレコードが返されますが、`project` ステートメントで指定されている列のみが含まれます。 結果は次のテーブルのようになります。
 
-   このクエリでは 1 番目と同じレコードが返されますが、`project` ステートメントで指定されている列のみが含まれます。 結果は次のテーブルのようになります。
+    :::image type="content" source="media/web-query-data/result-set-project.png" alt-text="10 個の嵐イベントの開始時刻、終了時刻、州、イベントの種類、被害の特性、体験談のエピソードの一覧が表示されているテーブルのスクリーンショット。" border="false":::
 
-    :::image type="content" source="media/web-query-data/result-set-02.png" alt-text="10 件のストーム イベントの開始時刻、終了時刻、州、イベントの種類、被害の特性、体験談のエピソードを一覧表示した表のスクリーンショット。" border="false":::
-
-1. クエリ ウィンドウの上部にある **[Recall]\(リコール\)** を選択します。
-
-    クエリを再実行する必要なしに、クエリ ウィンドウに最初のクエリの結果セットが表示されます。 分析では複数のクエリを実行することがよくあり、 **[Recall]\(リコール\)** を使用すると前のクエリの結果を再表示することができます。
+    > [!TIP]
+    > クエリを再実行する必要なしに、最初のクエリの結果セットを表示するには、クエリ ウィンドウの上部の **[Recall]\(リコール\)** を選択します。 分析では複数のクエリを実行することがよくあり、 **[Recall]\(リコール\)** を使用すると前のクエリの結果を取得できます。
 
 1. もう 1 つクエリを実行し、異なる種類の出力を見てみましょう。
 
-    ```Kusto
+    ```kusto
     StormEvents
     | summarize event_count=count(), mid = avg(BeginLat) by State
     | sort by mid
@@ -112,15 +112,15 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
     | project State, event_count
     | render columnchart
     ```
+
     結果は次のグラフのようになります。
 
     ![縦棒グラフ](media/web-query-data/column-chart.png)
 
-> [!NOTE]
-> クエリ式の空白行は、クエリのどの部分が実行されるかに影響を与える可能性があります。
->
-> テキストが選択されていない場合は、クエリまたはコマンドが空白行で区切られていると想定されます。
-> テキストが選択されている場合は、選択したテキストが実行されます。
+    > [!NOTE]
+    > クエリ式の空白行は、クエリのどの部分が実行されるかに影響を与える可能性があります。
+    > * テキストが選択されていない場合は、クエリまたはコマンドが空白行で区切られていると想定されます。
+    > * テキストが選択されている場合は、選択したテキストが実行されます。
 
 ## <a name="work-with-the-table-grid"></a>テーブル グリッドを使用する
 
@@ -130,21 +130,17 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
     ![Group by State (State でグループ化)](media/web-query-data/group-by.png)
 
-1. グリッドで **California** を展開し、その州のレコードを確認します。
+1. グリッドで **California** をダブルクリックして展開し、その州のレコードを表示します。 この種類のグループ化は、探索的分析を行うときに役に立ちます。
 
-    :::image type="content" source="media/web-query-data/result-set-03.png" alt-text="クエリ結果のグリッドのスクリーンショット。California グループが 3 行に展開されて、California のイベントのデータが表示されています。" border="false":::
+    :::image type="content" source="media/web-query-data/group-expanded.png" alt-text="California グループが展開されたクエリ結果グリッドのスクリーンショット" border="false":::
 
-    この種類のグループ化は、探索的分析を行うときに役に立ちます。
-
-1. **[Group]\(グループ\)** 列をマウスでポイントし、 **[Reset columns]\(列のリセット\)** を選択します。
+1. **[Group]\(グループ\)** 列をマウスでポイントし、 **[Reset columns]\(列のリセット\)** を選択します。 この設定により、グリッドは元の状態に戻ります。
 
     ![Reset columns (列のリセット)](media/web-query-data/reset-columns.png)
 
-    グリッドが元の状態に戻ります。
-
 1. 次のクエリを実行します。
 
-    ```Kusto
+    ```kusto
     StormEvents
     | sort by StartTime desc
     | where DamageProperty > 5000
@@ -152,11 +148,13 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
     | take 10
     ```
 
-1. グリッドの右側にある **[Columns]\(列\)** を選択して、ツール パネルを表示します。
+1. 結果グリッドで、いくつかの数値セルを選択します。 テーブル グリッドを使用して、複数の行、列、セルを選択し、それらの集計を計算することができます。 現在、Web UI でサポートされている数値関数は次のとおりです: **Average**、**Count**、**Min**、**Max**、**Sum**。
 
-    ![ツール パネル](media/web-query-data/tool-panel.png)
+    :::image type="content" source="media/web-query-data/select-stats.png" alt-text="関数を選択する"::: 
 
-    このパネルは Excel のピボット テーブル フィールド リストと同様に機能し、グリッド自体でさらに分析を実行できます。
+1. グリッドの右側にある **[列]** を選択して、テーブル ツール パネルを表示します。 このパネルは Excel のピボット テーブル フィールド リストと同様に機能し、グリッド自体でさらに分析を実行できます。
+
+    ![テーブル ツール パネル](media/web-query-data/tool-panel.png)
 
 1. **[Pivot Mode]\(ピボット モード\)** を選択し、**State** 列を **[Row groups]\(行グループ\)** に、**DamageProperty** 列を **[Values]\(値\)** に、**EventType** 列を **[Column labels]\(列ラベル\)** に、それぞれドラッグします。  
 
@@ -166,7 +164,27 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
     ![ピボット テーブル](media/web-query-data/pivot-table.png)
 
-    Vermont と Alabama はそれぞれ同じカテゴリの下に 2 つのイベントがあるのに対し、Texas は異なるカテゴリに 2 つのイベントがあることに注意してください。 ピボット テーブルを使用すると、このようなことをすばやく見つけることができます。これは、迅速な分析のための優れたツールです。
+    Vermont と Alabama はそれぞれ同じカテゴリの下に 2 つのイベントがあるのに対し、Texas は異なるカテゴリに 2 つのイベントがあることに注意してください。 ピボット テーブルは、これらの違いをすばやく見つけることができる、クイック分析を行うための優れたツールです。
+
+## <a name="search-in-the-results-table"></a>結果テーブルで検索する
+
+結果テーブル内で特定の式を検索できます。
+
+1.  次のクエリを実行します。
+
+    ```Kusto
+    StormEvents
+    | where DamageProperty > 5000
+    | take 1000
+    ```
+
+1. 右側の **[検索]** ボタンをクリックし、「*Wabash*」と入力します
+
+    :::image type="content" source="media/web-query-data/search.png" alt-text="テーブル内の検索":::
+
+1. 検索した式のすべてのメンションが、テーブルで強調表示されます。 これらの間を移動するには、*Enter* キーを押すと前方に移動し、*Shift + Enter* キーを押すと後方に移動します。検索ボックスの横にある "*上向き*" と "*下向き*" のボタンを使用することもできます。
+
+    :::image type="content" source="media/web-query-data/search-results.png" alt-text="検索結果の移動":::
 
 ## <a name="share-queries"></a>クエリを共有する
 
@@ -193,7 +211,7 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
 
 1. リンクとクエリをテキスト ファイルにコピーします。
 
-1. リンクを新しいブラウザー ウィンドウに貼り付けます。 クエリを実行した後の結果は次のようになります。
+1. リンクを新しいブラウザー ウィンドウに貼り付けます。 結果は次のようになります
 
     :::image type="content" source="media/web-query-data/shared-query.png" alt-text="共有クエリのディープ リンク":::
 
@@ -213,7 +231,7 @@ Web UI でクエリを使用してデータ探索を完了し、必要なデー�
     1. **[ピン留め]** の選択
 
     :::image type="content" source="media/web-query-data/pin-to-dashboard.png" alt-text="[ダッシュボードにピン留めする] ペイン":::
-    
+
 > [!NOTE]
 > **[ダッシュボードにピン留めする]** では、選択したクエリのみがピン留めされます。 ダッシュボードのデータ ソースを作成し、レンダリング コマンドをダッシュボードでビジュアルに変換するには、データベースの一覧で、関連するデータベースを選択する必要があります。
 
@@ -223,15 +241,53 @@ Web UI でクエリを使用してデータ探索を完了し、必要なデー�
 
 :::image type="content" source="media/web-query-data/export-results.png" alt-text="結果を CSV ファイルにエクスポートする":::
 
+## <a name="settings"></a>設定
+
+**[設定]** タブでは、次のことができます。
+
+* [環境の設定をエクスポートする](#export-environment-settings)
+* [環境の設定をインポートする](#import-environment-settings)
+* [ローカル状態をクリアする](#clean-up-resources)
+
+右上にある設定アイコン :::image type="icon" source="media/web-query-data/settings-icon.png" border="false"::: を選択して、 **[設定]** ウィンドウを開きます。
+
+:::image type="content" source="media/web-query-data/settings.png" alt-text="[設定] ウィンドウ":::
+
+### <a name="export-and-import-environment-settings"></a>環境の設定をエクスポートおよびインポートする
+
+エクスポートとインポートの操作は、作業環境を保護し、他のブラウザーやデバイスに再配置するのに役立ちます。 エクスポート操作を使用すると、すべての設定、クラスター接続、およびクエリ タブが、別のブラウザーまたはデバイスにインポートできる JSON ファイルにエクスポートされます。
+
+#### <a name="export-environment-settings"></a>環境の設定をエクスポートする
+
+1. **[設定]**  >  **[全般]** ウィンドウで、 **[エクスポート]** を選択します。
+1. **adx-export.json** ファイルがローカル ストレージにダウンロードされます。
+1. 環境を元の状態に戻すには、 **[Clear local state]\(ローカル状態のクリア\)** を選択します。 これを設定すると、すべてのクラスター接続が削除され、開いているタブが閉じられます。
+
+> [!NOTE]
+> **[エクスポート]** を使用すると、クエリ関連のデータのみがエクスポートされます。 **adx-export.json** ファイルには、ダッシュボードのデータはエクスポートされません。
+
+#### <a name="import-environment-settings"></a>環境の設定をインポートする
+
+1. **[設定]**  >  **[全般]** ウィンドウで、 **[インポート]** を選択します。 その後、 **[警告]** ポップアップで、 **[インポート]** を選択します。
+
+    :::image type="content" source="media/web-query-data/import.png" alt-text="インポートの警告":::
+
+1. ローカル ストレージから **adx-export.json** ファイルを見つけて開きます。
+1. 以前のクラスター接続と開いていたタブが使用できるようになります。
+
+> [!NOTE]
+> **[インポート]** を使用すると、既存の環境設定とデータが上書きされます。
+
 ## <a name="provide-feedback"></a>フィードバックの提供
 
-1. アプリケーションの右上にあるフィードバック アイコンを選択します ![フィードバック アイコン](media/web-query-data/icon-feedback.png).
+1. アプリケーションの右上にあるフィードバック アイコン :::image type="icon" source="media/web-query-data/icon-feedback.png" border="false"::: を選択します。
 
 1. フィードバックを入力し、 **[Submit]\(送信\)** を選択してください。
 
 ## <a name="clean-up-resources"></a>リソースをクリーンアップする
 
 このクイック スタートではリソースは何も作成しませんでしたが、アプリケーションから一方または両方のクラスターを削除したい場合は、クラスターを右クリックして、 **[Remove connection]\(接続を削除\)** を選択します。
+もう 1 つのオプションとしては、 **[設定]**  >  **[全般]** タブから、 **[Clear local state]\(ローカル状態のクリア\)** を選択します。この操作を行うと、すべてのクラスター接続が削除され、開いているすべてのクエリ タブが閉じられます。
 
 ## <a name="next-steps"></a>次のステップ
 

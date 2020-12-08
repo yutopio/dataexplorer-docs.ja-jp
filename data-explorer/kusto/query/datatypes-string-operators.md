@@ -1,6 +1,6 @@
 ---
-title: 文字列演算子-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーの文字列演算子について説明します。
+title: 文字列演算子 - Azure Data Explorer
+description: この記事では、Azure Data Explorer の文字列演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -9,40 +9,40 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/19/2020
 ms.localizationpriority: high
-ms.openlocfilehash: d7c975dcf3fb00ed1108f55957a35f494310203e
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.openlocfilehash: 845f0b5c9446f927fadf0141de4568cc28641c8d
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
-ms.locfileid: "95513235"
+ms.lasthandoff: 12/01/2020
+ms.locfileid: "96320691"
 ---
 # <a name="string-operators"></a>文字列演算子
 
-Kusto には、文字列データ型を検索するためのさまざまなクエリ演算子が用意されています。 次の記事では、文字列用語のインデックスを作成する方法について説明し、文字列クエリ演算子の一覧を示し、パフォーマンスを最適化するためのヒントを示します。
+Kusto には、文字列データ型を検索するためのさまざまなクエリ演算子が用意されています。 以下の記事では、文字列用語にインデックスを付ける方法、文字列クエリ演算子の一覧、パフォーマンスを最適化するためのヒントを示します。
 
 ## <a name="understanding-string-terms"></a>文字列用語について
 
-Kusto は、型の列を含むすべての列にインデックスを付け `string` ます。 実際のデータに応じて、このような列に対して複数のインデックスが作成されます。 これらのインデックスは直接公開されませんが `string` `has` 、、、、などの名前の一部として使用される演算子を使用したクエリで使用され `has` `!has` `hasprefix` `!hasprefix` ます。 これらの演算子のセマンティクスは、列のエンコード方法によって決まります。 これらの演算子は、"プレーンな" 部分文字列の検索ではなく、 *用語* と一致します。
+Kusto では、`string` 型の列を含むすべての列にインデックスが付けられます。 実際のデータに応じて、このような列には複数のインデックスが作成されます。 これらのインデックスは直接公開されませんが、`has`、`!has`、`hasprefix`、`!hasprefix` など、名前に `has` が含まれる `string` 演算子によるクエリで使用されます。 これらの演算子のセマンティクスは、列のエンコード方法によって決まります。 これらの演算子を使用すると、"プレーンな" 部分文字列の一致ではなく、"*用語*" の一致が行われます。
 
-### <a name="what-is-a-term"></a>用語とは何ですか。 
+### <a name="what-is-a-term"></a>用語とは 
 
-既定では、各 `string` 値は ASCII 英数字の最大シーケンスに分割され、各シーケンスは用語になります。
-たとえば、次の用語は、、、 `string` `Kusto` およびの `WilliamGates3rd` 各部分文字列で、、、、 `ad67d136` `c1db` `4f9f` `88ef` `d94f3b6b0b5a` です。
+既定では、各 `string` 値は ASCII 英数字の最大シーケンスに分割され、各シーケンスが用語になります。
+たとえば、次の `string` の場合、用語は `Kusto` と `WilliamGates3rd` で、`ad67d136`、`c1db`、`4f9f`、`88ef`、`d94f3b6b0b5a` は部分文字列です。
 
 ```
 Kusto:  ad67d136-c1db-4f9f-88ef-d94f3b6b0b5a;;WilliamGates3rd
 ```
 
-Kusto は、 *4 文字* 以上のすべての用語で構成される用語インデックスを構築します。このインデックスは、、などで使用され `has` `!has` ます。 クエリが4文字未満の語句を検索する場合、または演算子を使用する場合 `contains` 、Kusto は、一致するものが見つからない場合に、列の値のスキャンを元に戻します。 この方法は、用語インデックスで用語を検索するよりもはるかに低速です。
+Kusto の場合、"*4 文字以上*" のすべての用語で構成される用語インデックスが構築され、このインデックスは `has`、`!has` などで使用されます。 クエリで 4 文字未満の用語が検索される場合、または `contains` 演算子が使用される場合、Kusto は、一致するものが見つからない場合は、列の値のスキャンに戻ります。 この方法は、用語インデックスでの用語の検索よりはるかに低速です。
 
-## <a name="operators-on-strings"></a>文字列に対する演算子
+## <a name="operators-on-strings"></a>文字列の演算子
 
 > [!NOTE]
-> 次の表では、次の省略形が使用されています。
+> 以下の表では次の省略形が使用されています。
 > * RHS = 式の右辺
 > * LHS = 式の左辺
 > 
-> サフィックスが付いている演算子で `_cs` は大文字と小文字が区別されます。
+> `_cs` というサフィックスが付いている演算子では、大文字と小文字が区別されます。
 
 演算子        |説明                                                       |大文字と小文字の区別|例 (`true` になる)
 ----------------|------------------------------------------------------------------|--------------|-----------------------
@@ -51,17 +51,18 @@ Kusto は、 *4 文字* 以上のすべての用語で構成される用語イ�
 `=~`            |等しい                                                            |いいえ            |`"abc" =~ "ABC"`
 `!~`            |等しくない                                                        |いいえ            |`"aBc" !~ "xyz"`
 `has`           |右辺 (RHS) が左辺 (LHS) に 1 つの単語として含まれる     |いいえ            |`"North America" has "america"`
-`!has`          |RHS が LHS の完全な用語ではない                                     |いいえ            |`"North America" !has "amer"` 
-`has_cs`        |RHS は LHS の完全な用語です。                                        |はい           |`"North America" has_cs "America"`
-`!has_cs`       |RHS が LHS の完全な用語ではない                                     |はい           |`"North America" !has_cs "amer"` 
-`hasprefix`     |RHS は LHS の用語プレフィックスです                                       |いいえ            |`"North America" hasprefix "ame"`
-`!hasprefix`    |RHS が LHS の用語プレフィックスではありません                                   |いいえ            |`"North America" !hasprefix "mer"` 
-`hasprefix_cs`  |RHS は LHS の用語プレフィックスです                                       |はい           |`"North America" hasprefix_cs "Ame"`
-`!hasprefix_cs` |RHS が LHS の用語プレフィックスではありません                                   |はい           |`"North America" !hasprefix_cs "CA"` 
-`hassuffix`     |RHS は LHS の用語サフィックスです                                       |いいえ            |`"North America" hassuffix "ica"`
-`!hassuffix`    |RHS は LHS の用語サフィックスではありません                                   |いいえ            |`"North America" !hassuffix "americ"`
-`hassuffix_cs`  |RHS は LHS の用語サフィックスです                                       |はい           |`"North America" hassuffix_cs "ica"`
-`!hassuffix_cs` |RHS は LHS の用語サフィックスではありません                                   |はい           |`"North America" !hassuffix_cs "icA"`
+`!has`          |RHS が LHS に完全な用語として含まれない                                     |いいえ            |`"North America" !has "amer"` 
+[`has_any`](has-anyoperator.md)       |`has` と同じだが、任意の要素で機能する                    |いいえ            |`"North America" has_any("south", "north")`
+`has_cs`        |RHS は LHS 内の完全な用語である                                        |はい           |`"North America" has_cs "America"`
+`!has_cs`       |RHS が LHS に完全な用語として含まれない                                     |はい           |`"North America" !has_cs "amer"` 
+`hasprefix`     |RHS は LHS に用語のプレフィックスとして含まれる                                       |いいえ            |`"North America" hasprefix "ame"`
+`!hasprefix`    |RHS は LHS に用語のプレフィックスとして含まれない                                   |いいえ            |`"North America" !hasprefix "mer"` 
+`hasprefix_cs`  |RHS は LHS に用語のプレフィックスとして含まれる                                       |はい           |`"North America" hasprefix_cs "Ame"`
+`!hasprefix_cs` |RHS は LHS に用語のプレフィックスとして含まれない                                   |はい           |`"North America" !hasprefix_cs "CA"` 
+`hassuffix`     |RHS は LHS に用語のサフィックスとして含まれる                                       |いいえ            |`"North America" hassuffix "ica"`
+`!hassuffix`    |RHS は LHS に用語のサフィックスとして含まれない                                   |いいえ            |`"North America" !hassuffix "americ"`
+`hassuffix_cs`  |RHS は LHS に用語のサフィックスとして含まれる                                       |はい           |`"North America" hassuffix_cs "ica"`
+`!hassuffix_cs` |RHS は LHS に用語のサフィックスとして含まれない                                   |はい           |`"North America" !hassuffix_cs "icA"`
 `contains`      |RHS は LHS のサブシーケンスとして出現します                                |いいえ            |`"FabriKam" contains "BRik"`
 `!contains`     |RHS は LHS の中に出現しません                                         |いいえ            |`"Fabrikam" !contains "xyz"`
 `contains_cs`   |RHS は LHS のサブシーケンスとして出現します                                |はい           |`"FabriKam" contains_cs "Kam"`
@@ -75,28 +76,28 @@ Kusto は、 *4 文字* 以上のすべての用語で構成される用語イ�
 `endswith_cs`   |RHS は LHS の末尾のサブシーケンスです                               |はい           |`"Fabrikam" endswith_cs "kam"`
 `!endswith_cs`  |RHS は LHS の末尾のサブシーケンスではありません                           |はい           |`"Fabrikam" !endswith_cs "brik"`
 `matches regex` |LHS には RHS に対する一致が含まれています                                      |はい           |`"Fabrikam" matches regex "b.*k"`
-`in`            |要素のいずれかに等しい                                     |はい           |`"abc" in ("123", "345", "abc")`
-`!in`           |要素のいずれとも等しくない                                 |はい           |`"bca" !in ("123", "345", "abc")`
+[`in`](inoperator.md)            |要素のいずれかに等しい                                     |はい           |`"abc" in ("123", "345", "abc")`
+[`!in`](inoperator.md)           |要素のいずれとも等しくない                                 |はい           |`"bca" !in ("123", "345", "abc")`
 `in~`           |要素のいずれかに等しい                                     |いいえ            |`"abc" in~ ("123", "345", "ABC")`
 `!in~`          |要素のいずれとも等しくない                                 |いいえ            |`"bca" !in~ ("123", "345", "ABC")`
-`has_any`       |と同じ `has` ですが、どの要素でも機能します。                    |いいえ            |`"North America" has_any("south", "north")`
+
 
 > [!TIP]
-> `has`文字列の一致ではなく、4つ以上の文字のインデックス付き *用語* に対して検索を含むすべての演算子。 文字列を ASCII 英数字のシーケンスに分割することによって、用語が作成されます。 「 [文字列用語につい](#understanding-string-terms)て」を参照してください。
+> `has` を含むすべての演算子の場合は、インデックスが付けられた 4 文字以上の "*用語*" が検索され、部分文字列の一致は検索されません。 用語は、文字列を ASCII 英数字のシーケンスに分割することによって作成されます。 「[文字列用語について](#understanding-string-terms)」を参照してください。
 
 ## <a name="performance-tips"></a>パフォーマンスに関するヒント
 
-パフォーマンスを向上させるために、同じタスクを実行する2つの演算子がある場合は、大文字と小文字を区別してを使用します。
+パフォーマンスを向上させるには、同じタスクを実行する 2 つの演算子がある場合は、大文字と小文字が区別されるものを使用します。
 例:
 
-* で `=~` はなく、を使用します。 `==`
-* で `in~` はなく、を使用します。 `in`
-* で `contains` はなく、を使用します。 `contains_cs`
+* `=~` の代わりに `==` を使用します
+* `in~` の代わりに `in` を使用します
+* `contains` の代わりに `contains_cs` を使用します
 
-より高速な結果を得るために、英数字以外の文字でバインドされている記号や英数字の単語、またはフィールドの先頭または末尾があるかどうかをテストする場合は、またはを使用し `has` `in` ます。 
-`has` は `contains` 、、、またはより高速に動作 `startswith` `endswith` します。
+より速く結果を得るには、非英数字またはフィールドの開始か終了によって囲まれた記号または英数字の単語の存在をテストする場合は、`has` または `in` を使用します。 
+`has` は、`contains`、`startswith`、または `endswith` より速く動作します。
 
-たとえば、次のクエリの最初の方が高速に実行されます。
+たとえば、次のクエリは 1 番目の方が速く実行されます。
 
 ```kusto
 EventLog | where continent has "North" | count;

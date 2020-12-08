@@ -1,6 +1,6 @@
 ---
-title: between 演算子-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーでの演算子の違いについて説明します。
+title: between 演算子 - Azure Data Explorer
+description: この記事では、Azure Data Explorer の between 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,10 +10,10 @@ ms.topic: reference
 ms.date: 10/23/2018
 ms.localizationpriority: high
 ms.openlocfilehash: 8bb2049c7bc7c81092eb137c820f650bf88abc4e
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95512980"
 ---
 # <a name="between-operator"></a>between 演算子
@@ -25,30 +25,30 @@ Table1 | where Num1 between (1 .. 10)
 Table1 | where Time between (datetime(2017-01-01) .. datetime(2017-01-01))
 ```
 
-`between` は、任意の数値、datetime、または timespan 式で操作できます。
+`between` は、任意の数値、datetime、または timespan 式に対して操作できます。
  
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
-*T* `|` `where` *expr* `between` `(` *leftRange* ` .. ` *rightRange*`)`   
+*T* `|` `where` *expr* `between` `(`*leftRange*` .. `*rightRange*`)`   
  
-*Expr* 式が datetime の場合-別の構文の砂糖構文が提供されます。
+*expr* 式が datetime の場合 - 別の糖衣構文が用意されています。
 
-*T* `|` `where` *expr* `between` `(` *leftRangeDateTime* ` .. ` *rightRangeTimespan*`)`   
+*T* `|` `where` *expr* `between` `(`*leftRangeDateTime*` .. `*rightRangeTimespan*`)`   
 
 ## <a name="arguments"></a>引数
 
-* *T* -レコードが照合される表形式の入力。
-* *expr* -フィルター処理する式。
-* *leftRange* -左の範囲の式 (包括)。
-* *rightRange* -右側の範囲の式。
+* *T* - 照合するレコードが含まれる表形式の入力。
+* *expr* - フィルター処理する式。
+* *leftRange* -左側の範囲の式 (包含)。
+* *rightRange* -右側の範囲の式 (包含)。
 
 ## <a name="returns"></a>戻り値
 
-の述語 *T* (*expr*  >=  *leftRange* and *expr*  <=  *rightRange*) がに評価される T 内の行 `true` 。
+(*expr* >= *leftRange* および *expr* <= *rightRange*) の述語が `true` に評価される *T* 内の行。
 
 ## <a name="examples"></a>例  
 
-**' Between ' 演算子を使用した数値のフィルター処理**  
+**'between' 演算子を使用した数値のフィルター処理**  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -65,7 +65,7 @@ range x from 1 to 100 step 1
 |54|
 |55|
 
-**' Between ' 演算子を使用した datetime をフィルター処理しています**  
+**'between' 演算子を使用した datetime のフィルター処理**  
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto

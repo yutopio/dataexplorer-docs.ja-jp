@@ -1,6 +1,6 @@
 ---
-title: join 演算子-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーでの join 演算子について説明します。
+title: join 演算子 - Azure Data Explorer
+description: この記事では、Azure Data Explorer の join 演算子について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -12,99 +12,99 @@ ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
 ms.openlocfilehash: b90e5f1c95ec75a946490cd75b5dd89ad2cb1aba
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95513337"
 ---
 # <a name="join-operator"></a>join 演算子
 
-2つのテーブルの行をマージして、各テーブルの指定した列の値を照合することにより、新しいテーブルを作成します。
+各テーブルの指定した列の値を照合することにより、2 つのテーブルの行をマージして新しいテーブルを作成します。
 
 ```kusto
 Table1 | join (Table2) on CommonColumn, $left.Col1 == $right.Col2
 ```
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
-*左テーブル* `|``join`[*Joinparameters*] `(` *右テーブル* `)` `on` *属性*
+*LeftTable* `|` `join` [*JoinParameters*] `(` *RightTable* `)` `on` *Attributes*
 
 ## <a name="arguments"></a>引数
 
-* 左 *テーブル*: 行をマージする **左側** のテーブルまたは表形式の式 (**外部** テーブルとも呼ばれます)。 として表さ `$left` れます。
+* *LeftTable*: 行をマージする **左側** のテーブルまたは表形式の式。**外部** テーブルとも呼ばれます。 `$left` と示されます。
 
-* *Right table*: 行をマージする、 **右側** のテーブルまたは表形式の式 ( **内部** テーブルとも呼ばれます)。 として表さ `$right` れます。
+* *RightTable*: 行をマージする **右側** のテーブルまたは表形式の式。**内部** テーブルとも呼ばれます。 `$right` と示されます。
 
-* *属性*:*左テーブル* から行を *右テーブル* の行と照合する方法を記述する1つまたは複数のコンマで区切られた **ルール** です。 複数のルールは、論理演算子を使用して評価され `and` ます。
+* *Attributes*: *LeftTable* の行と *RightTable* の行を照合する方法が記述されている、1 つまたは複数のコンマで区切られた **ルール**。 複数のルールは、`and` 論理演算子を使用して評価されます。
 
   **ルール** には次のいずれかを指定できます。
 
-  |ルールの種類        |Syntax          |Predicate    |
+  |ルールの種類        |構文          |Predicate    |
   |-----------------|--------------|-------------------------|
-  |名前による等値 |*[ColumnName]*    |`where`*左テーブル*。*ColumnName* `==`*右テーブル*。*ColumnName*|
-  |値による等値|`$left.`*左の列* `==``$right.`*右の列*|`where``$left.`*左の列* `==` `$right.`*右の列*       |
+  |名前による等値性 |*[ColumnName]*    |`where` *LeftTable*.*ColumnName* `==` *RightTable*.*ColumnName*|
+  |値による等値性|`$left.`*LeftColumn* `==` `$right.`*RightColumn*|`where` `$left.`*LeftColumn* `==` `$right.`*RightColumn*       |
 
     > [!NOTE]
-    > "値による等値" の場合、列名はと表記で示される適用可能な所有者テーブルで修飾されて *いる必要があり* `$left` `$right` ます。
+    > "値による等値性" の場合、`$left` および `$right` の表記によって示される該当する所有者テーブルで列名を修飾する *必要があります*。
 
-* *Joinparameters*: *Name* `=` 行一致操作と実行プランの動作を制御する名前 *値* の形式で、空白で区切られた0個以上のパラメーター。 サポートされているパラメーターは次のとおりです。
+* *JoinParameters*: 行の照合操作と実行プランの動作を制御する、空白で区切られた "*名前* `=` *値*" の形式の 0 個以上のパラメーター。 サポートされているパラメーターは次のとおりです。
 
     ::: zone pivot="azuredataexplorer"
 
-    |パラメーター名           |値                                        |説明                                  |
+    |パラメーター名           |値                                        |[説明]                                  |
     |---------------|----------------------------------------------|---------------------------------------------|
-    |`kind`         |結合の種類|「[結合フレーバー](#join-flavors) 」を参照してください。|                                             |
-    |`hint.remote`  |`auto`, `left`, `local`, `right`              |[クラスター間結合を](joincrosscluster.md)参照|
-    |`hint.strategy`|実行ヒント                               |[結合ヒント](#join-hints)を確認する                |
+    |`kind`         |結合の種類|「[結合のフレーバー](#join-flavors)」を参照してください|                                             |
+    |`hint.remote`  |`auto`, `left`, `local`, `right`              |「[クラスター間の結合](joincrosscluster.md)」を参照してください|
+    |`hint.strategy`|実行のヒント                               |「[結合のヒント](#join-hints)」を参照してください                |
 
     ::: zone-end
 
     ::: zone pivot="azuremonitor"
 
-    |名前           |値                                        |説明                                  |
+    |名前           |値                                        |[説明]                                  |
     |---------------|----------------------------------------------|---------------------------------------------|
-    |`kind`         |結合の種類|「[結合フレーバー](#join-flavors) 」を参照してください。|                                             |
+    |`kind`         |結合の種類|「[結合のフレーバー](#join-flavors)」を参照してください|                                             |
     |`hint.remote`  |`auto`, `left`, `local`, `right`              |                                             |
-    |`hint.strategy`|実行ヒント                               |[結合ヒント](#join-hints)を確認する                |
+    |`hint.strategy`|実行のヒント                               |「[結合のヒント](#join-hints)」を参照してください                |
 
     ::: zone-end
 
 > [!WARNING]
-> が `kind` 指定されていない場合、既定の結合フレーバーはに `innerunique` なります。 これは `inner` 、既定のフレーバーとして機能する他の分析製品とは異なります。  違いを理解し、クエリが意図した結果を得られるようにするには、「 [結合フレーバー](#join-flavors) 」を参照してください。
+> `kind` を指定しない場合の既定の結合のフレーバーは `innerunique` です。 これは、既定のフレーバーとして `inner` が使用されている他のいくつかの分析製品とは異なります。  「[結合のフレーバー](#join-flavors)」を参照して違いを理解し、クエリによって意図した結果が得られるようにしてください。
 
 ## <a name="returns"></a>戻り値
 
-**出力スキーマは、結合フレーバーによって異なります。**
+**出力スキーマは、結合のフレーバーによって異なります。**
 
-| 結合フレーバー | 出力スキーマ |
+| 結合のフレーバー | 出力スキーマ |
 |---|---|
-|`kind=leftanti`, `kind=leftsemi`| 結果テーブルには、左側の列のみが含まれます。|
-| `kind=rightanti`, `kind=rightsemi` | 結果テーブルには、右側の列だけが含まれています。|
+|`kind=leftanti`, `kind=leftsemi`| 結果のテーブルには、左側の列のみが含まれます。|
+| `kind=rightanti`, `kind=rightsemi` | 結果のテーブルには、右側の列のみが含まれます。|
 |  `kind=innerunique`, `kind=inner`, `kind=leftouter`, `kind=rightouter`, `kind=fullouter` |  照合キーを含め、2 つのテーブルそれぞれのすべての列に対応する列。 名前が競合している場合は、右側の列の名前が自動的に変更されます。 |
    
-**出力レコードは、結合フレーバーによって異なります。**
+**出力レコードは、結合のフレーバーによって異なります。**
 
    > [!NOTE]
    > それらのフィールドの値が同じである行が複数存在する場合は、そのすべての組み合わせの行が返されます。
    > 片方のテーブルから選択された、もう一方のテーブルに含まれる 1 つの行とすべての `on` フィールドの値が同じである行です。
 
-| 結合フレーバー | 出力レコード |
+| 結合のフレーバー | 出力レコード |
 |---|---|
-|`kind=leftanti`, `kind=leftantisemi`| 左側から、一致するものがないすべてのレコードを返します。|
-| `kind=rightanti`, `kind=rightantisemi`| 右側から、一致するものがないすべてのレコードを返します。|
-| `kind` 不明 `kind=innerunique`| 左側の 1 つの行のみが `on` キーの各値に対して照合されます。 出力には、この行の一致それぞれに対応する行と、右側の行が含まれます。|
-| `kind=leftsemi`| 右側から一致するすべてのレコードを左側から返します。 |
-| `kind=rightsemi`| 左辺からの一致を持つすべてのレコードを返します。 |
-|`kind=inner`| 左右の一致する行の組み合わせごとに、出力に行を格納します。 |
-| `kind=leftouter` (あるいは `kind=rightouter` または `kind=fullouter`)| 一致するものがない場合でも、左右のすべての行の行が含まれます。 一致しない出力セルに null が含まれています。 |
+|`kind=leftanti`, `kind=leftantisemi`| 右側に一致するものがない、左側のすべてのレコードが返されます。|
+| `kind=rightanti`, `kind=rightantisemi`| 左側に一致するものがない、右側のすべてのレコードが返されます。|
+| `kind` 未指定、`kind=innerunique`| 左側の 1 つの行のみが `on` キーの各値に対して照合されます。 出力には、この行の一致それぞれに対応する行と、右側の行が含まれます。|
+| `kind=leftsemi`| 右側に一致するものがある、左側のすべてのレコードが返されます。 |
+| `kind=rightsemi`| 左側に一致するものがある、右側のすべてのレコードが返されます。 |
+|`kind=inner`| 出力には、左右の一致する行のすべての組み合わせに対応する行が含まれます。 |
+| `kind=leftouter` (あるいは `kind=rightouter` または `kind=fullouter`)| 一致するものがない場合も含めて、左右のすべての行に対応する行が含まれます。 一致しない出力セルには null が含まれます。 |
 
 > [!TIP]
-> 最適なパフォーマンスを得るために、1つのテーブルが常に他より小さい場合は、結合の左 (パイプ) 側として使用します。
+> パフォーマンスを最高にするには、一方のテーブルが他より常に小さい場合は、それを結合の左側 (パイプされる側) として使用します。
 
 ## <a name="example"></a>例
 
-`login`アクティビティの開始と終了としてマークされているエントリを含む拡張アクティビティをから取得します。
+一部のエントリがアクティビティの開始と終了としてマークされている `login` から、延長されたアクティビティを取得します。
 
 ```kusto
 let Events = MyLogTable | where type=="Event" ;
@@ -132,23 +132,23 @@ Events
 
 ## <a name="join-flavors"></a>結合の種類
 
-Join 演算子の正確なフレーバーは、 *kind* キーワードを使用して指定します。 次の種類の結合演算子がサポートされています。
+結合演算子の正確なフレーバーは、*kind* キーワードを使用して指定します。 次のフレーバーの結合演算子がサポートされています。
 
-|結合の種類/フレーバー|説明|
+|結合の種類/フレーバー|[説明]|
 |--|--|
-|[`innerunique`](#default-join-flavor) (または既定値として空)|左側の重複除去による内部結合|
-|[`inner`](#inner-join-flavor)|標準内部結合|
+|[`innerunique`](#default-join-flavor) (または既定値として空)|左側の重複を除去する内部結合|
+|[`inner`](#inner-join-flavor)|標準の内部結合|
 |[`leftouter`](#left-outer-join-flavor)|左外部結合|
 |[`rightouter`](#right-outer-join-flavor)|右外部結合|
 |[`fullouter`](#full-outer-join-flavor)|完全外部結合|
-|[`leftanti`](#left-anti-join-flavor)、 [`anti`](#left-anti-join-flavor) 、または [`leftantisemi`](#left-anti-join-flavor)|Left Anti Join|
+|[`leftanti`](#left-anti-join-flavor)、[`anti`](#left-anti-join-flavor)、または [`leftantisemi`](#left-anti-join-flavor)|Left Anti Join|
 |[`rightanti`](#right-anti-join-flavor) または [`rightantisemi`](#right-anti-join-flavor)|Right Anti Join|
 |[`leftsemi`](#left-semi-join-flavor)|左半結合|
 |[`rightsemi`](#right-semi-join-flavor)|右半結合|
 
 ### <a name="default-join-flavor"></a>既定の結合フレーバー
 
-既定の結合フレーバーは、左側の重複除去による内部結合です。 既定の結合実装は、2つのイベント (それぞれがフィルター条件に一致するもの) を同じ相関 ID で関連付けることができる、一般的なログ/トレース分析のシナリオで役立ちます。 すべての現象を元に戻し、関与するトレースレコードの複数の外観を無視します。
+既定の結合フレーバーは、左側の重複を除去する内部結合です。 結合の既定の実装は、2 つのイベント (それぞれが何らかのフィルター条件に一致するもの) を同じ相関 ID で関連付ける必要がある、一般的なログやトレースの分析のシナリオで役立ちます。 現象のすべての出現を取得し、関係するトレース レコードの複数の出現を無視します。
 
 ``` 
 X | join Y on Key
@@ -156,11 +156,11 @@ X | join Y on Key
 X | join kind=innerunique Y on Key
 ```
 
-次の2つのサンプルテーブルは、結合の操作を説明するために使用されます。
+次の 2 つのサンプル テーブルを使用して、結合の操作を説明します。
 
 **テーブル X**
 
-|キー |Value1
+|Key |Value1
 |---|---
 |a |1
 |b |2
@@ -169,20 +169,20 @@ X | join kind=innerunique Y on Key
 
 **テーブル Y**
 
-|キー |Value2
+|Key |Value2
 |---|---
 |b |10
 |c |20
 |c |30
 |d |40
 
-既定の結合では、結合キーの左側を解除した後に内部結合が行われます (重複除去では、最初のレコードが保持されます)。
+既定の結合では、結合キーの左側が重複除去されてから内部結合が行われます (重複除去では最初のレコードは維持されます)。
 
-次のステートメントを指定します。 `X | join Y on Key`
+以下のステートメントを指定します: `X | join Y on Key`
 
 結合の有効な左側 (重複除去後のテーブル X) は次のようになります。
 
-|キー |Value1
+|Key |Value1
 |---|---
 |a |1
 |b |2
@@ -208,18 +208,18 @@ let Y = datatable(Key:string, Value2:long)
 X | join Y on Key
 ```
 
-|キー|Value1|Key1|Value2|
+|Key|Value1|Key1|Value2|
 |---|---|---|---|
 |b|2|b|10|
 |c|4|c|20|
 |c|4|c|30|
 
 > [!NOTE]
-> 左右両方に一致するキーがないため、キー ' a ' と ' d ' は出力に表示されません。
+> キー "a" と "d" は、左側と右側に一致するキーがなかったため、出力には含まれません。
 
-### <a name="inner-join-flavor"></a>内部結合フレーバー
+### <a name="inner-join-flavor"></a>内部結合のフレーバー
 
-内部結合関数は、SQL ワールドからの標準の内部結合に似ています。 左側のレコードが右側のレコードと同じ結合キーを持っている場合は常に、出力レコードが生成されます。
+内部結合関数は、SQL での標準の内部結合に似ています。 左側のレコードの結合キーが右側のレコードと同じである場合、出力レコードが常に生成されます。
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -239,7 +239,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=inner Y on Key
 ```
 
-|キー|Value1|Key1|Value2|
+|Key|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -247,17 +247,17 @@ X | join kind=inner Y on Key
 |c|4|c|30|
 
 > [!NOTE]
-> * 右側から (b, 10) が2回結合されました。左側には (b, 2) と (b, 3) の両方があります。
-> * 左側に (c, 4) が2回結合されました。 (c, 20) と (c, 30) の両方が右側にあります。
+> * 右側の (b, 10) は、左側の (b, 2) および (b, 3) の両方と、2 回結合されました。
+> * 左側の (c,4) は、右側の (c,20) および (c,30) の両方と、2 回結合されました。
 
-### <a name="innerunique-join-flavor"></a>Innerunique-結合フレーバー
+### <a name="innerunique-join-flavor"></a>innerunique 結合フレーバー
  
-左端からキーを重複除去するには **、innerunique 結合フレーバー** を使用します。 結果は、重複除去左キーと右キーのすべての組み合わせからの出力の行になります。
+左側からキーの重複を除去するには、**innerunique 結合フレーバー** を使用します。 結果の出力の行は、重複除去された左側のキーと右側のキーのすべての組み合わせになります。
 
 > [!NOTE]
-> **innerunique フレーバー** は2つの出力を生成でき、両方とも正しいことがあります。
-最初の出力では、結合演算子によって t1 に表示される最初のキーがランダムに選択され、値が "val 1.1" で、t2 キーと一致しています。
-2番目の出力では、結合演算子は t1 に表示される2番目のキーをランダムに選択します。値は "val 1.2" で、t2 キーと一致します。
+> **innerunique フレーバー** では 2 つの出力が生成される可能性があり、両方とも正しいものです。
+1 つ目の出力では、join 演算子によって、t1 で出現する 1 番目のキー (値が "val1.1" のもの) がランダムに選択され、、t2 のキーと照合されます。
+2 つ目の出力では、join 演算子によって、t1 で出現する 2 番目のキー (値が "val1.2" のもの) がランダムに選択され、、t2 のキーと照合されます。
 
 ```kusto
 let t1 = datatable(key:long, value:string)  
@@ -278,8 +278,8 @@ on key
 
 |key|value|key1|value1|
 |---|---|---|---|
-|1|val 1.1|1|val 1.3|
-|1|val 1.1|1|val 1.4|
+|1|val1.1|1|val1.3|
+|1|val1.1|1|val1.4|
 
 ```kusto
 let t1 = datatable(key:long, value:string)  
@@ -300,14 +300,14 @@ on key
 
 |key|value|key1|value1|
 |---|---|---|---|
-|1|val 1.2|1|val 1.3|
-|1|val 1.2|1|val 1.4|
+|1|val1.2|1|val1.3|
+|1|val1.2|1|val1.4|
 
-* Kusto は、 `join` 可能であれば、適切な結合側 (左または右) に、の後に来るフィルターをプッシュするように最適化されています。
+* Kusto は、可能であれば、`join` の後にあるフィルターを結合の適切な側 (左または右) にプッシュするように最適化されています。
 
-* 場合によっては、使用されるフレーバーが **innerunique** で、フィルターが結合の左側に反映されることがあります。 フレーバーは自動的に反映され、そのフィルターに適用されるキーは常に出力に表示されます。
+* 使用されるフレーバーが **innerunique** で、フィルターが結合の左側に反映されることがあります。 フレーバーは自動的に反映され、そのフィルターに適用されるキーは常に出力に含まれます。
     
-* 上記の例を使用し、フィルターを追加し `where value == "val1.2" ` ます。 常に2番目の結果が得られ、データセットの最初の結果は得られません。
+* 上記の例を使用し、`where value == "val1.2" ` フィルターを追加します。 結果は常に 2 番目のものになり、データセットの最初の結果は得られません。
 
 ```kusto
 let t1 = datatable(key:long, value:string)  
@@ -329,12 +329,12 @@ on key
 
 |key|value|key1|value1|
 |---|---|---|---|
-|1|val 1.2|1|val 1.3|
-|1|val 1.2|1|val 1.4|
+|1|val1.2|1|val1.3|
+|1|val1.2|1|val1.4|
 
 ### <a name="left-outer-join-flavor"></a>左外部結合フレーバー
 
-テーブル X と Y の左外部結合の結果には、結合条件で右側のテーブル (Y) に一致するレコードが見つからない場合でも、常に左テーブル (X) のすべてのレコードが含まれます。
+テーブル X と Y に対する左外部結合の結果には、結合条件により右側のテーブル (Y) で一致するレコードが見つからない場合でも、常に左側のテーブル (X) のすべてのレコードが含まれます。
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -354,7 +354,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftouter Y on Key
 ```
 
-|キー|Value1|Key1|Value2|
+|Key|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -364,7 +364,7 @@ X | join kind=leftouter Y on Key
 
 ### <a name="right-outer-join-flavor"></a>右外部結合フレーバー
 
-右外部結合フレーバーは左外部結合に似ていますが、テーブルの処理は逆になっています。
+右外部結合フレーバーは左外部結合と似ていますが、テーブルの処理は逆になります。
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -384,7 +384,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightouter Y on Key
 ```
 
-|キー|Value1|Key1|Value2|
+|Key|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -394,7 +394,7 @@ X | join kind=rightouter Y on Key
 
 ### <a name="full-outer-join-flavor"></a>完全外部結合フレーバー
 
-完全外部結合は、左結合と右外部結合の両方を適用した場合の効果を組み合わせたものです。 結合されたテーブル内のレコードが一致しない場合、結果セットには、一致する行がない `null` テーブルのすべての列の値が含まれます。 一致するレコードについては、両方のテーブルからデータを格納するフィールドを含む1行が結果セットに生成されます。
+完全外部結合は、左と右の両方の外部結合を適用した場合の効果を組み合わせたものです。 結合されるテーブルのレコードが一致しない場合、結果セットには常に、一致する行がないテーブルのすべての列の `null` 値が含まれます。 一致するレコードがある場合、結果セットには、両方のテーブルから取り込まれたフィールドを含む単一の行が生成されます。
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -414,7 +414,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=fullouter Y on Key
 ```
 
-|キー|Value1|Key1|Value2|
+|Key|Value1|Key1|Value2|
 |---|---|---|---|
 |b|3|b|10|
 |b|2|b|10|
@@ -423,9 +423,9 @@ X | join kind=fullouter Y on Key
 |||d|40|
 |a|1|||
 
-### <a name="left-anti-join-flavor"></a>左のアンチ結合フレーバー
+### <a name="left-anti-join-flavor"></a>左反結合フレーバー
 
-左のアンチ結合では、左側から、右側のレコードと一致しないすべてのレコードが返されます。
+左反結合を使用すると、右側のレコードと一致しない、左側のレコードがすべて返されます。
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -445,16 +445,16 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftanti Y on Key
 ```
 
-|キー|Value1|
+|Key|Value1|
 |---|---|
 |a|1|
 
 > [!NOTE]
 > 反結合では "NOT IN" クエリをモデル化します。
 
-### <a name="right-anti-join-flavor"></a>右のアンチジョインフレーバー
+### <a name="right-anti-join-flavor"></a>右反結合フレーバー
 
-右のアンチ結合では、左側のレコードと一致しない右側のすべてのレコードが返されます。
+右反結合を使用すると、左側のレコードと一致しない、右側のレコードがすべて返されます。
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -474,7 +474,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightanti Y on Key
 ```
 
-|キー|Value2|
+|Key|Value2|
 |---|---|
 |d|40|
 
@@ -483,7 +483,7 @@ X | join kind=rightanti Y on Key
 
 ### <a name="left-semi-join-flavor"></a>左半結合フレーバー
 
-左半結合は、左側から、右側のレコードと一致するすべてのレコードを返します。 左側の列だけが返されます。
+左半結合を使用すると、右側のレコードと一致する、左側のレコードがすべて返されます。 左側の列だけが返されます。
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -503,7 +503,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=leftsemi Y on Key
 ```
 
-|キー|Value1|
+|Key|Value1|
 |---|---|
 |b|3|
 |b|2|
@@ -511,7 +511,7 @@ X | join kind=leftsemi Y on Key
 
 ### <a name="right-semi-join-flavor"></a>右半結合フレーバー
 
-右半結合では、左側のレコードに一致する右側のすべてのレコードが返されます。 右側の列だけが返されます。
+右半結合を使用すると、左側のレコードと一致する、右側のレコードがすべて返されます。 右側の列だけが返されます。
 
 ```kusto
 let X = datatable(Key:string, Value1:long)
@@ -531,7 +531,7 @@ let Y = datatable(Key:string, Value2:long)
 X | join kind=rightsemi Y on Key
 ```
 
-|キー|Value2|
+|Key|Value2|
 |---|---|
 |b|10|
 |c|20|
@@ -539,18 +539,18 @@ X | join kind=rightsemi Y on Key
 
 ### <a name="cross-join"></a>クロス結合
 
-Kusto は、クロス結合フレーバーをネイティブに提供しません。 演算子をでマークすることはできません `kind=cross` 。
-をシミュレートするには、ダミーキーを使用します。
+Kusto では、クロス結合フレーバーはネイティブには提供されていません。 演算子を `kind=cross` でマークすることはできません。
+シミュレートするには、ダミー キーを使用します。
 
 `X | extend dummy=1 | join kind=inner (Y | extend dummy=1) on dummy`
 
-## <a name="join-hints"></a>結合ヒント
+## <a name="join-hints"></a>結合のヒント
 
-演算子は、 `join` クエリの実行方法を制御するいくつかのヒントをサポートしています。
-これらのヒントはのセマンティックを変更しません `join` が、パフォーマンスに影響を与える可能性があります。
+`join` 演算子では、クエリの実行方法を制御するいくつかのヒントがサポートされています。
+これらのヒントによって `join` のセマンティックが変更されることはありませんが、パフォーマンスが影響を受ける可能性があります。
 
-結合ヒントについては、次の記事で説明します。
+結合のヒントについては次のセクションで説明されています。
 
-* `hint.shufflekey=<key>`と `hint.strategy=shuffle`  -  [シャッフルクエリ](shufflequery.md)
+* `hint.shufflekey=<key>`、`hint.strategy=shuffle` - [クエリのシャッフル](shufflequery.md)
 * `hint.strategy=broadcast` - [ブロードキャスト結合](broadcastjoin.md)
-* `hint.remote=<strategy>` - [クラスター間結合](joincrosscluster.md)
+* `hint.remote=<strategy>` - [クラスター間の結合](joincrosscluster.md)

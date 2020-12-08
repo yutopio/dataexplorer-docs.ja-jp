@@ -1,6 +1,6 @@
 ---
-title: Let ステートメント-Azure データエクスプローラー
-description: この記事では、Azure データエクスプローラーの Let ステートメントについて説明します。
+title: let ステートメント - Azure Data Explorer
+description: この記事では、Azure Data Explorer の let ステートメントについて説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,77 +10,77 @@ ms.topic: reference
 ms.date: 08/09/2020
 ms.localizationpriority: high
 ms.openlocfilehash: c102637adfa1fd0340d28a67b52354956b511ada
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95513315"
 ---
 # <a name="let-statement"></a>let ステートメント
 
-ステートメントを使用して、式に名前をバインドします。 Let ステートメントが出現するスコープの残りの部分では、その名前を使用してバインドされた値を参照できます。 Let ステートメントは、グローバルスコープ内、または関数本体のスコープ内にある場合があります。
-その名前が既に別の値にバインドされている場合は、"最も内側の" let ステートメントのバインドが使用されます。
+let ステートメントは、式に名前をバインドするために使用します。 let ステートメントが使用されているスコープの残りの部分では、名前を使用してそのバインドされた値を参照できます。 let ステートメントは、グローバル スコープ内または関数本体スコープ内で使用できます。
+その名前が既に別の値にバインドされている場合は、"最も内側" の let ステートメントのバインドが使用されます。
 
-ステートメントを使用すると、潜在的に複雑な式を複数の部分に分割できるため、モジュール化と再利用が向上します。
-各部分は let ステートメントを使用して名前にバインドされ、全体を構成します。 また、ユーザー定義関数およびビューを作成するために使用することもできます。 ビューは、新しいテーブルのように結果が表示されるテーブルに対する式です。
+let ステートメントを使用すると、潜在的に複雑な式を複数の部分に分割できるため、モジュール化と再利用が向上します。
+let ステートメントによって各部分が名前にバインドされ、それらをまとめたもので全体が構成されます。 また、それらを使用して、ユーザー定義の関数やビューを作成することもできます。 ビューはテーブルに対する式であり、結果は新しいテーブルのように見えます。
 
 > [!NOTE]
-> Let ステートメントでバインドされる名前は、有効なエンティティ名である必要があります。
+> let ステートメントによってバインドされる名前は、有効なエンティティ名である必要があります。
 
-Let ステートメントでバインドされた式は次のようになります。
+let ステートメントでは次の式をバインドできます。
 * スカラー型
 * 表形式の型
 * ユーザー定義関数 (ラムダ)
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
-`let`*名前* `=`*ScalarExpression*  | *TabularExpression*  | *Functiondefinitionexpression*
+`let` *Name* `=` *ScalarExpression* | *TabularExpression* | *FunctionDefinitionExpression*
 
 |フィールド  |定義  |例  |
 |---------|---------|---------|
-|*名前*   | バインドする名前。 名前は有効なエンティティ名である必要があります。    |などのエンティティ名のエスケープ `["Name with spaces"]` は許可されています。      |
-|*ScalarExpression*     |  値が名前にバインドされたスカラー結果を含む式。  | `let one=1;`  |
-|*TabularExpression*    | 値が名前にバインドされた表形式の結果を含む式。   | `Logs | where Timestamp > ago(1h)`    |
-|*FunctionDefinitionExpression*   | ラムダ (名前にバインドされる匿名関数宣言) を生成する式。   |  `let f=(a:int, b:string) { strcat(b, ":", a) }`  |
+|*名前*   | バインドする名前。 名前は有効なエンティティ名である必要があります。    |エンティティ名のエスケープ (`["Name with spaces"]` など) が許可されています。      |
+|*ScalarExpression*     |  その値が名前にバインドされるスカラーの結果になる式。  | `let one=1;`  |
+|*TabularExpression*    | その値が名前にバインドされる表形式の結果になる式。   | `Logs | where Timestamp > ago(1h)`    |
+|*FunctionDefinitionExpression*   | ラムダを生成する式。名前にバインドされる匿名の関数宣言。   |  `let f=(a:int, b:string) { strcat(b, ":", a) }`  |
 
 
 ### <a name="lambda-expressions-syntax"></a>ラムダ式の構文
 
-[ `view` ] `(` [*TabularArguments*] [ `,` ] [*ScalarArguments*] `)` `{` *functionbody*`}`
+[`view`] `(`[*TabularArguments*][`,`][*ScalarArguments*]`)` `{` *FunctionBody* `}`
 
-`TabularArguments` -[*TabularArgName* `:` `(` [*atrname* `:` *atrname*] [ `,` ...] `)` ][`,` ... ][`,`]
+`TabularArguments` - [*TabularArgName* `:` `(`[*AtrName* `:` *AtrType*] [`,` ... ]`)`] [`,` ... ][`,`]
 
  または
 
- [*TabularArgName* `:` `(``*` `)`]
+ [*TabularArgName* `:` `(` `*` `)`]
 
-`ScalarArguments` -[*Argname* `:` *argname*] [ `,` ...]
+`ScalarArguments` - [*ArgName* `:` *ArgType*] [`,` ... ]
 
 
 |フィールド  |定義  |例  |
 |---------|---------|---------|
-| **view** | は、引数を持たないパラメーターなしのラムダにのみ出現する可能性があります。 これは、"すべてのテーブル" がクエリである場合に、バインドされた名前が含まれることを示します。 | たとえば、を使用する場合 `union *` です。|
-| ***TabularArguments** _ | 正式な表形式の式の引数の一覧。 
-| 各表形式引数には次のものがあります。||
-|<ul><li> _TabularArgName *</li></ul> | 正式な表形式引数の名前。 名前は *Functionbody* に出現し、ラムダが呼び出されたときに特定の値にバインドされることがあります。 ||
-|<ul><li>テーブルスキーマ定義 </li></ul> | 属性のリストとその型| AtrName: Atrname|
-| ***ScalarArguments** _ | 正式なスカラー引数の一覧。 
-|各スカラー引数には次のものがあります。||
-|<ul><li>_ArgName *</li></ul> | 正式なスカラー引数の名前。 名前は *Functionbody* に出現し、ラムダが呼び出されたときに特定の値にバインドされることがあります。  |
-| <ul><li>*ArgType* </li></ul>| 仮引数の型。 | 現在、ラムダ引数の型としてサポートされている型は、、、、、、、およびです。また、これらの型のエイリアスについても同様 `bool` `string` `long` `datetime` `timespan` `real` `dynamic` です。
+| **view** | 引数を持たないパラメーターなしのラムダでのみ使用できます。 "すべてのテーブル" がクエリである場合に、バインドされた名前が含まれることを示します。 | たとえば、`union *` を使用する場合です。|
+| ***TabularArguments** _ | 式の表形式の仮引数のリスト。 
+| 各表形式引数には次のものが含まれます。||
+|<ul><li> _TabularArgName*</li></ul> | 表形式の仮引数の名前。 名前は *FunctionBody* で使用でき、ラムダが呼び出されると特定の値にバインドされます。 ||
+|<ul><li>テーブルのスキーマ定義 </li></ul> | それらの型である属性のリスト| AtrName :AtrType|
+| ***ScalarArguments** _ | スカラーの仮引数のリスト。 
+|各スカラー引数には次のものが含まれます。||
+|<ul><li>_ArgName*</li></ul> | スカラーの仮引数の名前。 名前は *FunctionBody* で使用でき、ラムダが呼び出されると特定の値にバインドされます。  |
+| <ul><li>*ArgType* </li></ul>| スカラーの仮引数の型。 | 現在、ラムダ引数の型としてサポートされている型は、`bool`、`string`、`long`、`datetime`、`timespan`、`real`、`dynamic` (およびこれらの型への別名) だけです。
 
 > [!NOTE]
 >ラムダ呼び出しで使用される表形式の式には、一致する型のすべての属性が含まれている必要があります (ただし、これらに限定されるわけではありません)。
 >
->`(*)` 表形式の式として使用できます。 
+>表形式の式として `(*)` を使用できます。 
 >
-> 任意の表形式の式は、ラムダ呼び出しで使用でき、そのいずれの列もラムダ式ではアクセスできません。 
+> 任意の表形式の式をラムダ呼び出しで使用でき、そのいずれの列もラムダ式ではアクセスできません。 
 >
-> すべての表形式引数は、スカラー引数の前に記述する必要があります。
+> すべての表形式の引数は、スカラー引数の前に記述する必要があります。
 
 ## <a name="multiple-and-nested-let-statements"></a>複数の入れ子になった let ステートメント
 
-次の例に示すように、複数の let ステートメントをセミコロン、、区切り記号と共に使用でき `;` ます。
+次の例に示すように、セミコロン `;` を区切り記号として使用することで、複数の let ステートメントを使用できます。
 
 > [!NOTE]
 > 最後のステートメントは、有効なクエリ式である必要があります。 
@@ -91,8 +91,8 @@ let period = 2h;
 T | where Time > start and Time < start + period | ...
 ```
 
-入れ子になった let ステートメントは許可されており、ラムダ式の内部で使用できます。
-ステートメントと引数は、関数本体の現在のスコープと内部スコープで参照できます。
+let ステートメントを入れ子にすることができ、ラムダ式の内部で使用できます。
+let ステートメントと引数は、関数本体の現在のスコープと内部のスコープで参照できます。
 
 ```kusto
 let start_time = ago(5h); 
@@ -102,16 +102,16 @@ T | where Time > start_time and Time < end_time | ...
 
 ## <a name="examples"></a>例
 
-### <a name="use-let-function-to-define-constants"></a>Let 関数を使用して定数を定義する
+### <a name="use-let-function-to-define-constants"></a>let 関数を使用して定数を定義する
 
-次の例では、名前を `x` スカラーリテラルにバインド `1` し、テーブル式ステートメントで使用します。
+次の例では、名前 `x` をスカラー リテラル `1` にバインドした後、表形式の式ステートメントでそれを使用します。
 
 ```kusto
 let x = 1;
 range y from x to x step x
 ```
 
-この例は前の例と似ていますが、let ステートメントの名前だけが概念を使用して指定されてい `['name']` ます。
+この例は前のものと似ていますが、`['name']` の概念を使用して let ステートメントの名前のみを指定しています。
 
 ```kusto
 let ['x'] = 1;
@@ -130,9 +130,9 @@ Events
 | take n
 ```
 
-### <a name="use-let-statement-with-arguments-for-scalar-calculation"></a>スカラー計算の引数と共に let ステートメントを使用する
+### <a name="use-let-statement-with-arguments-for-scalar-calculation"></a>スカラー計算の引数で let ステートメントを使用する
 
-この例では、スカラー計算の引数と共に let ステートメントを使用します。 このクエリでは、 `MultiplyByN` 2 つの数値を乗算する関数を定義します。
+この例では、スカラー計算の引数で let ステートメントを使用します。 2 つの数値を乗算する関数 `MultiplyByN` をクエリで定義します。
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -149,7 +149,7 @@ range x from 1 to 5 step 1
 |4|20|
 |5|25|
 
-次の例では、入力から先頭/末尾の 1 ( `1` ) を削除します。
+次の例では、入力の先頭と末尾から `1` を削除します。
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -170,7 +170,7 @@ range x from 10 to 15 step 1
 
 ### <a name="use-multiple-let-statements"></a>複数の let ステートメントを使用する
 
-この例では、1つのステートメント ( `foo2` ) が別の () を使用する2つの let ステートメント `foo1` を定義します。
+この例では、2 つの let ステートメントを定義し、一方のステートメント (`foo2`) で他方 (`foo1`) を使用します。
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -180,9 +180,9 @@ foo2(2) | count
 // Result: 50
 ```
 
-### <a name="use-the-view-keyword-in-a-let-statement"></a>`view`Let ステートメントでキーワードを使用する
+### <a name="use-the-view-keyword-in-a-let-statement"></a>let ステートメントで `view` キーワードを使用する
 
-この例では、let ステートメントをキーワードと共に使用する方法を示し `view` ます。
+この例では、`view` キーワードと共に let ステートメントを使用する方法を示します。
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto
@@ -197,9 +197,9 @@ search MyColumn == 5
 |Range20|5|
 
 
-### <a name="use-materialize-function"></a>具体化関数を使用する
+### <a name="use-materialize-function"></a>materialize 関数を使用する
 
-[`materialize`](materializefunction.md)関数を使用すると、クエリの実行時にサブクエリの結果をキャッシュすることができます。 
+[`materialize`](materializefunction.md) 関数を使用すると、クエリの実行時に、サブクエリの結果をキャッシュすることができます。 
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -227,6 +227,6 @@ on $left.Day1 == $right.Day
 
 |Day1|Day2|パーセント|
 |---|---|---|
-|2016-05-01 00:00: 00.0000000|2016-05-02 00:00: 00.0000000|34.0645725975255|
-|2016-05-01 00:00: 00.0000000|2016-05-03 00:00: 00.0000000|16.618368960101|
-|2016-05-02 00:00: 00.0000000|2016-05-03 00:00: 00.0000000|14.6291376489636|
+|2016-05-01 00:00:00.0000000|2016-05-02 00:00:00.0000000|34.0645725975255|
+|2016-05-01 00:00:00.0000000|2016-05-03 00:00:00.0000000|16.618368960101|
+|2016-05-02 00:00:00.0000000|2016-05-03 00:00:00.0000000|14.6291376489636|

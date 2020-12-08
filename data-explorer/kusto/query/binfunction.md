@@ -1,6 +1,6 @@
 ---
-title: bin ()-Azure データエクスプローラー |Microsoft Docs
-description: この記事では、Azure データエクスプローラーの bin () について説明します。
+title: bin() - Azure Data Explorer | Microsoft Docs
+description: この記事では、Azure Data Explorer の bin() について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -10,31 +10,31 @@ ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
 ms.openlocfilehash: 6fc2e55b43e7c7c2dc2bb537730f8f627e3e4a66
-ms.sourcegitcommit: 4e811d2f50d41c6e220b4ab1009bb81be08e7d84
-ms.translationtype: MT
+ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/24/2020
+ms.lasthandoff: 12/01/2020
 ms.locfileid: "95513116"
 ---
 # <a name="bin"></a>bin()
 
 値を切り捨てて、指定された bin サイズの倍数である整数にします。 
 
-と組み合わせて頻繁に使用され [`summarize by ...`](./summarizeoperator.md) ます。
+多くの場合、[`summarize by ...`](./summarizeoperator.md) と組み合わせて使用します。
 値が分散している場合に、特定の値ごとの小さなセットにグループ化されます。
 
-Null 値、ビンサイズが null の場合、またはビンサイズが負の場合は、null になります。 
+Null 値、ビン サイズが null、またはビン サイズが負の場合、結果は null になります。 
 
-エイリアスが `floor()` 機能します。
+`floor()` 関数のエイリアスです。
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
-`bin(`*値* `,`*roundTo*`)`
+`bin(`*value*`,`*roundTo*`)`
 
 ## <a name="arguments"></a>引数
 
-* *値*: 数値、日付、または timespan。 
-* *roundTo*: "bin サイズ"。 *値* を除算する数値または timespan。 
+* *value*:数値、日付、または期間。 
+* *roundTo*: "ビンのサイズ" です。 *value* を分割する数値または期間です。 
 
 ## <a name="returns"></a>戻り値
 

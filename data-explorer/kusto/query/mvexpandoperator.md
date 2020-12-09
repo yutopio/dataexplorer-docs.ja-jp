@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
 ms.localizationpriority: high
-ms.openlocfilehash: d9d245da4acd43eb8d5e6a0eeadfa525cbd407a3
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: f14ec4fa24765053711d60f7d2365755b45adbab
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96303307"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96774641"
 ---
 # <a name="mv-expand-operator"></a>mv-expand 演算子
 
@@ -49,8 +49,8 @@ ms.locfileid: "96303307"
 展開された列は常に動的な型を持ちます。 値を計算または集計する場合は、`todatetime()` や `tolong()` などのキャストを使います。
 
 2 つのモードのプロパティ バッグの展開がサポートされています。
-* `bagexpansion=bag`: プロパティ バッグは、単一エントリのプロパティ バッグに展開されます。 このモードが既定の展開です。
-* `bagexpansion=array`:プロパティ バッグは 2 要素 (`[`*key*`,`*value*`]`) の配列構造に展開されるため、キーと値への一貫したアクセスが可能です (プロパティ名での個別のカウントの集計など)。 
+* `bagexpansion=bag` または `kind=bag`: プロパティ バッグは、単一エントリのプロパティ バッグに展開されます。 このモードが既定の展開です。
+* `bagexpansion=array` または `kind=array`: プロパティ バッグは 2 要素 (`[`*key*`,`*value*`]`) の配列構造に展開されるため、キーと値への一貫したアクセスが可能です (プロパティ名での個別のカウントの集計など)。 
 
 ## <a name="examples"></a>例
 
@@ -123,7 +123,7 @@ ColumnName|ColumnOrdinal|DateType|[列の型]
 -|-|-|-
 a|0|System.String|string
 b|1|System.Object|動的
-c|2|System.Int32|int
+c|2|System.Int32|INT
 
 列 `b` は `dynamic` になり、`c` は `int` になることに注意してください。
 

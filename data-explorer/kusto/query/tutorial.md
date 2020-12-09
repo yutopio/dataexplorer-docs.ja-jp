@@ -11,12 +11,12 @@ ms.date: 10/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 8a47c51aa7924a28b27602056ea869bfd7a09936
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 0616c0d4dd2a44ba1d54ac83c699a1c0bac249b0
+ms.sourcegitcommit: f134d51e52504d3ca722bdf6d33baee05118173a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95783724"
+ms.lasthandoff: 12/03/2020
+ms.locfileid: "96563361"
 ---
 # <a name="tutorial-use-kusto-queries-in-azure-data-explorer-and-azure-monitor"></a>チュートリアル:Azure Data Explorer と Azure Monitor で Kusto クエリを使用する
 
@@ -61,7 +61,7 @@ StormEvents
 
 出力は次のようになります。
 
-|StartTime|EndTime|州|EventType|EpisodeNarrative|
+|StartTime|EndTime|状態|EventType|EpisodeNarrative|
 |---|---|---|---|---|
 |2007-02-19 00:00:00.0000000|2007-02-19 08:00:00.0000000|CALIFORNIA|洪水|A frontal system moving across the Southern San Joaquin Valley brought brief periods of heavy rain to western Kern County in the early morning hours of the 19th. Minor flooding was reported across State Highway 166 near Taft.|
 
@@ -78,7 +78,7 @@ StormEvents
 
 出力は次のようになります。
 
-|StartTime|EndTime|EventType|州|EventNarrative|
+|StartTime|EndTime|EventType|状態|EventNarrative|
 |---|---|---|---|---|
 |2007-09-18 20:00:00.0000000|2007-09-19 18:00:00.0000000|Heavy Rain|FLORIDA|As much as 9 inches of rain fell in a 24-hour period across parts of coastal Volusia County.|
 |2007-09-20 21:57:00.0000000|2007-09-20 22:05:00.0000000|Tornado|FLORIDA|A tornado touched down in the Town of Eustis at the northern end of West Crooked Lake. The tornado quickly intensified to EF1 strength as it moved north northwest through Eustis. The track was just under two miles long and had a maximum width of 300 yards.  The tornado destroyed 7 homes. Twenty seven homes received major damage and 81 homes reported minor damage. There were no serious injuries and property damage was set at $6.2 million.|
@@ -104,7 +104,7 @@ StormEvents
 
 出力は次のようになります。
 
-|StartTime|EndTime|EventType|州|EventNarrative|
+|StartTime|EndTime|EventType|状態|EventNarrative|
 |---|---|---|---|---|
 |2007-12-31 22:30:00.0000000|2007-12-31 23:59:00.0000000|Winter Storm|ミシガン|This heavy snow event continued into the early morning hours on New Year's Day.|
 |2007-12-31 22:30:00.0000000|2007-12-31 23:59:00.0000000|Winter Storm|ミシガン|This heavy snow event continued into the early morning hours on New Year's Day.|
@@ -136,7 +136,7 @@ StormEvents
 
 出力は次のようになります。
 
-|StartTime|EndTime|Duration|EventType|州|
+|StartTime|EndTime|Duration|EventType|状態|
 |---|---|---|---|---|
 |2007-09-18 20:00:00.0000000|2007-09-19 18:00:00.0000000|22:00:00|Heavy Rain|FLORIDA|
 |2007-09-20 21:57:00.0000000|2007-09-20 22:05:00.0000000|00:08:00|Tornado|FLORIDA|
@@ -186,7 +186,7 @@ StormEvents
 
 出力は次のようになります。
 
-|州|StormCount|TypeOfStorms|
+|状態|StormCount|TypeOfStorms|
 |---|---|---|
 |テキサス州|4701|27|
 |KANSAS|3166|21|
@@ -490,7 +490,7 @@ Logs | join cluster("TelemetryCluster").database("Telemetry").Metrics on Request
 
 1 つのクエリで複数のデータベースのデータを結合する方法の詳細については、[複数のデータベースにまたがるクエリ](cross-cluster-or-database-queries.md)に関するページを参照してください。
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 - [Kusto クエリ言語](samples.md?pivots=azuredataexplorer)のコード サンプルを確認してください。
 
@@ -555,7 +555,7 @@ AzureActivity
 
 ## <a name="show-n-rows-take"></a>*n* 行を表示する: *take*
 
-[NetworkMonitoring](/azure/azure-monitor/reference/tables/networkmonitoring) には、Azure 仮想ネットワークの監視データが格納されています。 [take](./takeoperator.md) 演算子を使用して、そのテーブル内の 5 つのランダムなサンプル行を調べてみましょう。 [take](./takeoperator.md) を使用すると、テーブルの特定数の行が特定の順序で表示されます。
+[NetworkMonitoring](/azure/azure-monitor/reference/tables/networkmonitoring) には、Azure 仮想ネットワークの監視データが格納されています。 [take](./takeoperator.md) 演算子を使用して、そのテーブル内の 10 行のランダムなサンプル行を調べてみましょう。 [take](./takeoperator.md) を使用すると、テーブルの特定数の行が特定の順序で表示されます。
 
 ```kusto
 NetworkMonitoring
@@ -699,7 +699,7 @@ PhysicalComputer
 
 :::image type="content" source="images/tutorial/azure-monitor-let-results.png" lightbox="images/tutorial/azure-monitor-let-results.png" alt-text="let 演算子の例の結果を示すスクリーンショット。":::
 
-## <a name="next-steps"></a>次のステップ
+## <a name="next-steps"></a>次の手順
 
 - [Kusto クエリ言語](samples.md?pivots=azuremonitor)のコード サンプルを確認してください。
 

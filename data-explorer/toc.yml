@@ -1366,8 +1366,6 @@
               href: ./kusto/concepts/runawayqueries.md
             - name: オーバーフロー
               href: ./kusto/concepts/overflow.md
-            - name: ネイティブ コードのエラー
-              href: ./kusto/concepts/errorsinnativecode.md
     - name: Kusto クエリ言語の参照資料
       items:
         - name: RE2 構文
@@ -1407,8 +1405,7 @@
           href: ./kusto/management/index.md
         - name: スキーマ
           items:
-            - name: スキーマ デザインのベスト プラクティス
-              displayName: management
+            - name: スキーマ管理のベスト プラクティス
               href: ./kusto/management/management-best-practices.md
             - name: データベース
               href: ./kusto/management/databases.md
@@ -1691,8 +1688,6 @@
               href: ./kusto/management/commands.md
             - name: コマンドとクエリ
               href: ./kusto/management/commands-and-queries.md
-            - name: インジェスト エラー
-              href: ./kusto/management/ingestionfailures.md
             - name: 操作
               href: ./kusto/management/operations.md
         - name: アクセス制御
@@ -1732,6 +1727,12 @@
               href: ./kusto/management/cluster-follower.md
             - name: データの消去
               href: ./kusto/concepts/data-purge.md
+        - name: エラーと障害
+          items:
+            - name: インジェスト エラー コード
+              href: error-codes.md
+            - name: インジェスト エラー
+              href: ./kusto/management/ingestionfailures.md
     - name: API
       items:
         - name: API の概要
@@ -1800,18 +1801,24 @@
                 - name: Kusto.Ingest の概要
                   href: ./kusto/api/netfx/about-kusto-ingest.md
                 - name: アクセス許可
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-permissions.md
                 - name: クライアント リファレンス
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-reference.md
                 - name: エラーと例外
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-errors.md
                 - name: 操作の状態
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-status.md
                 - name: Kusto.Ingest のベスト プラクティス
                   href: ./kusto/api/netfx/kusto-ingest-best-practices.md
                 - name: コード サンプル
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-examples.md
                 - name: REST API を使用したデータ インジェストの方法
+                  displayName: Kusto.Ingest
                   href: ./kusto/api/netfx/kusto-ingest-client-rest.md
         - name: Python SDK
           items:

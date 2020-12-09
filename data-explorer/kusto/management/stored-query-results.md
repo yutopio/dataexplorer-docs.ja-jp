@@ -8,12 +8,12 @@ ms.reviewer: mispecto
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 12/3/2020
-ms.openlocfilehash: fb998499205be7645f011fe727f5e37495ff3697
-ms.sourcegitcommit: 2804e3fe40f6cf8e65811b00b7eb6a4f59c88a99
+ms.openlocfilehash: 352f82bdb11847574807f81bc63236127900ae94
+ms.sourcegitcommit: 202357f866801aafd92e3e29a84bb312e17aebc7
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96749310"
+ms.lasthandoff: 12/09/2020
+ms.locfileid: "96933861"
 ---
 # <a name="stored-query-results-preview"></a>保存されたクエリ結果 (プレビュー)
 
@@ -29,7 +29,7 @@ ms.locfileid: "96749310"
 
 格納されているクエリ結果はテーブルのように動作しますが、レコードの順序は保持されません。 結果を改ページするには、クエリに一意の ID 列を含めることをお勧めします。 詳しくは、[例](#examples)をご覧ください。 クエリによって返される結果セットが複数ある場合、最初の結果セットだけが格納されます。 
 
-格納されているクエリ結果を使用するに `Database User` は、以上のアクセスロールが必要です。
+格納されているクエリ結果を使用するに `Database Viewer` は、以上のアクセスロールが必要です。
 
 ## <a name="store-the-results-of-a-query"></a>クエリの結果を格納する
 
@@ -43,7 +43,7 @@ ms.locfileid: "96749310"
 * *Query*: 結果が格納される、重い負荷の高い kql クエリ。
 * *PropertyName*: (すべてのプロパティは省略可能です)
     
-    | プロパティ       | 種類       | 説明       |
+    | プロパティ       | Type       | 説明       |
     |----------------|------------|-------------------------------------------------------------------------------------|
     | `expiresAfter` | `timespan` | 格納されているクエリの結果の有効期限 (最大24時間) を示す timespan リテラル。 |
     | `previewCount` | `int`      | プレビューで返す行の数。 このプロパティを `0` (既定値) に設定すると、コマンドによってすべてのクエリ結果行が返されます。 |
@@ -150,7 +150,7 @@ stored_query_result("DailyClicksByAdNetwork7Days")
 
 | StoredQueryResultId | 名前 | DatabaseName | PrincipalIdentity | SizeInBytes | RowCount | Event.manualintervention.createdon | ExpiresOn |
 | ------------------- | ---- | ------------ | ----------------- | ----------- | -------- | --------- | --------- |
-| c522ada3-e490-435a-a8b1-e10d00e7d5c2 | イベント | TestDB | aadapp = c28e9b80-2808-bed525fc0fbb | 104372 | 1000000 | 2020-10-07 14:26: 49.6971487 | 2020-10-08 14:26: 49.6971487 |
+| c522ada3-e490-435a-a8b1-e10d00e7d5c2 | events | TestDB | aadapp = c28e9b80-2808-bed525fc0fbb | 104372 | 1000000 | 2020-10-07 14:26: 49.6971487 | 2020-10-08 14:26: 49.6971487 |
 
 ### <a name="drop-stored_query_result"></a>。 drop stored_query_result
 
@@ -160,7 +160,7 @@ stored_query_result("DailyClicksByAdNetwork7Days")
 
 `.drop``stored_query_result` *StoredQueryResultName*
 
-`Database User` このコマンドを呼び出すには、アクセス許可が必要です。
+`Database Viewer` このコマンドを呼び出すには、アクセス許可が必要です。
 
 #### <a name="returns"></a>戻り値
 
@@ -168,7 +168,7 @@ stored_query_result("DailyClicksByAdNetwork7Days")
 
 | StoredQueryResultId | 名前 | DatabaseName | PrincipalIdentity | SizeInBytes | RowCount | Event.manualintervention.createdon | ExpiresOn |
 | ------------------- | ---- | ------------ | ----------------- | ----------- | -------- | --------- | --------- |
-| c522ada3-e490-435a-a8b1-e10d00e7d5c2 | イベント | TestDB | aadapp = c28e9b80-2808-bed525fc0fbb | 104372 | 1000000 | 2020-10-07 14:26: 49.6971487 | 2020-10-08 14:26: 49.6971487 |
+| c522ada3-e490-435a-a8b1-e10d00e7d5c2 | events | TestDB | aadapp = c28e9b80-2808-bed525fc0fbb | 104372 | 1000000 | 2020-10-07 14:26: 49.6971487 | 2020-10-08 14:26: 49.6971487 |
 
 ### <a name="drop-stored_query_results"></a>。 drop stored_query_results
 
@@ -193,5 +193,5 @@ stored_query_result("DailyClicksByAdNetwork7Days")
 
 | StoredQueryResultId | 名前 | DatabaseName | PrincipalIdentity | SizeInBytes | RowCount | Event.manualintervention.createdon | ExpiresOn |
 | ------------------- | ---- | ------------ | ----------------- | ----------- | -------- | --------- | --------- |
-| c522ada3-e490-435a-a8b1-e10d00e7d5c2 | イベント | TestDB | aadapp = c28e9b80-2808-bed525fc0fbb | 104372 | 1000000 | 2020-10-07 14:26: 49.6971487 | 2020-10-08 14:26: 49.6971487 |
+| c522ada3-e490-435a-a8b1-e10d00e7d5c2 | events | TestDB | aadapp = c28e9b80-2808-bed525fc0fbb | 104372 | 1000000 | 2020-10-07 14:26: 49.6971487 | 2020-10-08 14:26: 49.6971487 |
 | 571f1a76f5a9199d4-b339 ba7caac19b46 | トレース | TestDB | aadapp = c28e9b80-2808-bed525fc0fbb | 5212 | 100000 | 2020-10-07 14:31: 01.8271231| 2020-10-08 14:31: 01.8271231 |

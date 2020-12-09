@@ -7,16 +7,16 @@ ms.author: orspodek
 ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 03/29/2020
+ms.date: 12/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 5670f3f9c7aa8b3d6b10f88433d19246e2daf6d6
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 8370e69914b2bc5e141321a6bc6722bba6f1fd4d
+ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95783337"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96868605"
 ---
 # <a name="render-operator"></a>render 演算子
 
@@ -140,8 +140,6 @@ range x from 0.0 to 2*pi() step 0.01 | extend y=sin(x) | render linechart
 |`axes`    |1 つのグラフに、複数の y 軸 (系列ごとに 1 つ) が表示されます。|
 |`panels`  |`ycolumn` の値ごとに 1 つのグラフが表示されます (何らかの上限まで)。|
 
-::: zone-end
-
 > [!NOTE]
 > render 演算子のデータ モデルでは、表形式のデータは 3 種類の列があるように認識されます。
 >
@@ -167,10 +165,40 @@ range x from -2 to 2 step 0.1
 | render linechart with  (ycolumns = sin, cos, series = x_sign, sum_sign)
 ```
 
-::: zone pivot="azuredataexplorer"
-
 [チュートリアルでのレンダリングの例](./tutorial.md#displaychartortable)
 
 [Anomaly detection](./samples.md#get-more-from-your-data-by-using-kusto-with-machine-learning) (異常検出)
+
+::: zone-end
+
+::: zone pivot="azuremonitor"
+
+> [!NOTE]
+> render 演算子のデータ モデルでは、表形式のデータは 3 種類の列があるように認識されます。
+>
+> * x 軸の列 (`xcolumn` プロパティによって示されます)。
+> * 系列の列 (`series` プロパティによって示される任意の数の列)。
+> * y 軸の列 (`ycolumns` プロパティによって示される任意の数の列)。
+  レコードごとに、系列には y 軸の列と同じ数の測定値 (グラフ内の "ポイント") があります。
+
+> [!TIP]
+> 
+> * 表示する量を制限するには、`where`、`summarize`、`top` を使用します。
+> * x 軸の順序を定義するには、データを並べ替えます。
+> * クエリによって指定されていないプロパティの値は、ユーザー エージェントで自由に "推測" できます。 具体的には、結果のスキーマに "興味のない" 列があると、誤った推測に変換される可能性があります。 その場合は、そのような列に project-away を使用してみてください。 
+
+## <a name="example"></a>例
+
+<!-- csl: https://help.kusto.windows.net/Samples -->
+```kusto
+InsightsMetrics
+| where Computer == "DC00.NA.contosohotels.com"
+| where Namespace  == "Processor" and Name == "UtilizationPercentage"
+| summarize avg(Val) by Computer, bin(TimeGenerated, 1h)
+| render timechart
+```
+
+[チュートリアルでのレンダリングの例](./tutorial.md?pivots=azuremonitor#display-a-chart-or-table-render-1)
+
 
 ::: zone-end

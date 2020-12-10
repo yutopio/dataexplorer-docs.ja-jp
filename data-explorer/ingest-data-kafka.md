@@ -7,12 +7,12 @@ ms.reviewer: ankhanol
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/22/2020
-ms.openlocfilehash: 8274cd04dc2ecf588bf4771c06e3f8a760cac74d
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: cc2f10570081fec3a5762ab3f2e23b9e22839063
+ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343166"
+ms.lasthandoff: 12/07/2020
+ms.locfileid: "96774658"
 ---
 # <a name="ingest-data-from-apache-kafka-into-azure-data-explorer"></a>Apache Kafka から Azure Data Explorer にデータを取り込む
  
@@ -89,7 +89,7 @@ Azure Active Directory サービス プリンシパルは、次の例のよう�
 1. 構成可能なインジェスト待機時間用のバッチ インジェスト ポリシーをテーブルに作成します。
 
     > [!TIP]
-    > [インジェスト バッチ処理ポリシー](kusto/management/batchingpolicy.md)はパフォーマンス オプティマイザーであり、3 つのパラメーターを含みます。 最初のパラメーターが満たされると、Azure Data Explorer テーブルへのインジェストがトリガーされます。
+    > [インジェスト バッチ処理ポリシー](kusto/management/batchingpolicy.md)はパフォーマンス オプティマイザーであり、3 つのパラメーターを含みます。 最初の条件が満たされると、Azure Data Explorer テーブルへのインジェストがトリガーされます。
 
     ```kusto
     .alter table Storms policy ingestionbatching @'{"MaximumBatchingTimeSpan":"00:00:15", "MaximumNumberOfItems": 100, "MaximumRawDataSizeMB": 300}'
@@ -332,7 +332,7 @@ Kafka Connect REST 呼び出しを使用して、コネクタを開始します�
     | render columnchart
     ```
     
-    :::image type="content" source="media/ingest-data-kafka/kusto-query.png" alt-text="Azure Data Explorer ポータルでテーブルを作成する":::
+    :::image type="content" source="media/ingest-data-kafka/kusto-query.png" alt-text="Azure Data Explorer での Kafka クエリの縦棒グラフの結果":::
 
 その他のクエリの例とガイダンスについては、「[Azure Data Explorer のクエリを記述する](write-queries.md)」と [Kusto クエリ言語のドキュメント](./kusto/query/index.md)を参照してください。
 

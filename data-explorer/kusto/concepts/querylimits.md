@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: cbdebe75713bb7cd786941e7546ab477df497c20
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 3b230ea0ed8bba80741e18f24cd96cf271224f25
+ms.sourcegitcommit: e278dae04f12658d0907f7b6ba46c6a34c53dcd7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512912"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96901105"
 ---
 # <a name="query-limits"></a>クエリの制限
 
@@ -83,6 +83,13 @@ MyTable | where User=="UserId1"
 Kusto には、呼び出し元にストリーミングすることで、"非常に大規模な" 結果を処理できるようにするクライアント ライブラリが多数用意されています。 このようなライブラリのいずれかを使用して、ストリーミング モードに構成します。 たとえば、.NET Framework クライアント (Microsoft.Azure.Kusto.Data) を使用して、接続文字列のストリーミング プロパティを *true* に設定するか、*ExecuteQueryV2Async()* の呼び出しを使用して常に結果をストリーミングするようにします。
 
 結果の切り捨ては、クライアントに返される結果のストリームだけでなく、既定で適用されます。 また、既定で、あるクラスターから別のクラスターにクロスクラスター クエリで発行されるサブクエリにも適用され、同様の効果があります。
+
+### <a name="setting-multiple-result-truncation-properties"></a>複数の結果の切り捨てプロパティの設定
+
+`set` ステートメントを使用する場合、または[クライアント要求のプロパティ](../api/netfx/request-properties.md)でフラグを指定する場合は、次のことが適用されます。
+
+* `notruncation` が設定されて、`truncationmaxsize`、`truncationmaxrecords` または `query_take_max_records` のいずれかも設定されている場合、`notruncation` は無視されます。
+* `truncationmaxsize`、`truncationmaxrecords` または `query_take_max_records` が複数回設定されている場合は、各プロパティの "*小さい*" 方の値が適用されます。
 
 ## <a name="limit-on-memory-per-iterator"></a>反復子あたりのメモリに対する制限
 

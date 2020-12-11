@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 06/10/2020
-ms.openlocfilehash: 30929e63c39be10d066815333ba6b277c0aeb5c9
-ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
+ms.openlocfilehash: fdf72c8c58ec8a9fb9c64ecea6219dcc3a736d18
+ms.sourcegitcommit: 2bdb904e6253c9ceb8f1eaa2da35fcf27e13a2cd
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96321286"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97091353"
 ---
 # <a name="partitioning-policy"></a>Partitioning ポリシー
 
@@ -128,7 +128,8 @@ ms.locfileid: "96321286"
   * このプロパティは省略可能です。 指定されていない場合、ポリシーは、ポリシーが適用された後、データ取り込まれたで有効になります。
   * 保有期間のために削除される可能性のある同種でない (パーティション分割されていない) エクステントは、パーティション分割プロセスによって無視されます。 これらのエクステントは、作成時間がテーブルの有効な論理的な削除期間の90% に先行するため、無視されます。
     > [!NOTE]
-    > Datetime 値を設定して、取り込まれたデータをパーティション分割することができます。 ただし、この方法では、パーティション分割プロセスで使用されるリソースが大幅に増加する可能性があります。 
+    > Datetime 値を設定して、取り込まれたデータをパーティション分割することができます。 ただし、この方法では、パーティション分割プロセスで使用されるリソースが大幅に増加する可能性があります。
+    > ポリシーを変更するたびに、最大で数日前の手順で *EffectiveDateTime* を前の手順で設定して、段階的に実行することを検討してください `datetime` 。
 
 ### <a name="data-partitioning-example"></a>データのパーティション分割の例
 
@@ -195,7 +196,7 @@ ms.locfileid: "96321286"
     * この割合が常に90% 未満の場合は、クラスターのパーティション分割 [容量](partitioningpolicy.md#partition-capacity)を評価します。
   * `TableWithMinPartitioningPercentage`: パーティションの割合が上に表示されるテーブルの完全修飾名。
 
-[`.show commands`](commands.md)パーティション分割コマンドとそのリソースの使用を監視するには、を使用します。 例:
+[`.show commands`](commands.md)パーティション分割コマンドとそのリソースの使用を監視するには、を使用します。 次に例を示します。
 
 ```kusto
 .show commands 
@@ -222,6 +223,6 @@ ms.locfileid: "96321286"
 
 どちらの場合も、データを "修正" するか、インジェストの前または後にデータ内の不要なレコードをフィルターで除外して、クラスターでのデータのパーティション分割のオーバーヘッドを軽減します。 たとえば、 [更新ポリシー](updatepolicy.md)を使用します。
 
-## <a name="next-steps"></a>次の手順
+## <a name="next-steps"></a>次のステップ
 
 [パーティション分割ポリシー制御コマンド](../management/partitioning-policy.md)を使用して、テーブルのデータのパーティション分割ポリシーを管理します。

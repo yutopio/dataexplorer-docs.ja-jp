@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/30/2020
-ms.openlocfilehash: 8cd79b6f6531efd9621edf603b38d71bb074f6aa
-ms.sourcegitcommit: c815c6ccf33864e21e1d3daff26a4f077dff88f7
+ms.openlocfilehash: 8b549ca239dac0e88e0a8c0f0748eb86984f5cb4
+ms.sourcegitcommit: fcaf3056db2481f0e3f4c2324c4ac956a4afef38
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/21/2020
-ms.locfileid: "95012189"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97389006"
 ---
 # <a name="export-data-to-an-external-table"></a>外部テーブルへのデータのエクスポート
 
@@ -23,7 +23,7 @@ ms.locfileid: "95012189"
 
 このコマンドを実行するに [は、テーブル管理者またはデータベース管理者の権限](../access-control/role-based-authorization.md)が必要です。
 
-## <a name="syntax"></a>Syntax
+## <a name="syntax"></a>構文
 
 `.export` [ `async` ] `to` `table` *Externaltablename* <br>
 [ `with` `(` *PropertyName* `=` *PropertyValue* `,` ... `)` ] <|*クエリ*
@@ -37,15 +37,15 @@ ms.locfileid: "95012189"
     * `spread`、 `concurrency` -プロパティを変更して、書き込み操作の同時実行を減らしたり増やしたりします。 詳細については、「 [partition operator](../../query/partitionoperator.md) 」を参照してください。 これらのプロパティは、 _文字列_ パーティションによってパーティション分割された外部テーブルにエクスポートする場合にのみ関連します。 既定では、同時にエクスポートされるノードの数は、64とクラスターノードの数の最小値になります。
 
 
-## <a name="output"></a>出力
+## <a name="output"></a>Output
 
-|出力パラメーター |型 |Description
+|出力パラメーター |型 |説明
 |---|---|---
 |ExternalTableName  |String |外部テーブルの名前。
 |Path|String|出力パス。
 |NumRecords|String| Path にエクスポートされたレコードの数。
 
-## <a name="notes"></a>メモ
+## <a name="notes"></a>ノート
 
 * エクスポートクエリの出力スキーマは、パーティションで定義されているすべての列を含め、外部テーブルのスキーマと一致する必要があります。 たとえば、テーブルが *DateTime* でパーティション分割されている場合、クエリ出力スキーマには、タイムスタンプ *columnname* と一致する Timestamp 列が必要です。 この列名は、外部テーブルのパーティション分割定義で定義されています。
 
@@ -75,7 +75,7 @@ ExternalBlob は、パーティション分割されていない外部テーブ�
 .export to table ExternalBlob <| T
 ```
 
-|ExternalTableName|パス|NumRecords|
+|ExternalTableName|Path|NumRecords|
 |---|---|---|
 |ExternalBlob|http://storage1.blob.core.windows.net/externaltable1cont1/1_58017c550b384c0db0fea61a8661333e.csv|10|
 
@@ -86,9 +86,8 @@ PartitionedExternalBlob は、次のように定義された外部テーブル�
 ```kusto
 .create external table PartitionedExternalBlob (Timestamp:datetime, CustomerName:string) 
 kind=blob
-partition by 
-   "CustomerName="CustomerName,
-   bin(Timestamp, 1d)
+partition by (CustomerName:string=CustomerName, Date:datetime=startofday(Timestamp))   
+pathformat = ("CustomerName=" CustomerName "/" datetime_pattern("yyyy/MM/dd", Date))   
 dataformat=csv
 ( 
    h@'http://storageaccount.blob.core.windows.net/container1;secretKey'
@@ -99,7 +98,7 @@ dataformat=csv
 .export to table PartitionedExternalBlob <| T
 ```
 
-|ExternalTableName|パス|NumRecords|
+|ExternalTableName|Path|NumRecords|
 |---|---|---|
 |ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer1/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_1_58017c550b384c0db0fea61a8661333e.csv|10|
 |ExternalBlob|http://storageaccount.blob.core.windows.net/container1/CustomerName=customer2/2019/01/01/fa36f35c-c064-414d-b8e2-e75cf157ec35_2_b785beec2c004d93b7cd531208424dc9.csv|10|

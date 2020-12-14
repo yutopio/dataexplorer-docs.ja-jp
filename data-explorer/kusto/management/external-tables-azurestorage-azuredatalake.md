@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/24/2020
-ms.openlocfilehash: df38761d7ffebdf5e36c14ea25b0d02377bfa128
-ms.sourcegitcommit: fdc1f917621e9b7286bba23903101298cccc4c95
+ms.openlocfilehash: 6af499d97e4733d0b8e099d02bec9573da6817d3
+ms.sourcegitcommit: fcaf3056db2481f0e3f4c2324c4ac956a4afef38
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/05/2020
-ms.locfileid: "93364124"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97389023"
 ---
 # <a name="create-and-alter-external-tables-in-azure-storage-or-azure-data-lake"></a>Azure Storage または Azure Data Lake の外部テーブルを作成および変更する
 
@@ -74,7 +74,7 @@ ms.locfileid: "93364124"
 
   *PartitionName* `:``string` `=` *ColumnName*
 
-* 文字列型の列値の [ハッシュ](../query/hashfunction.md)(剰余) に基づいてパーティション *分割します* 。
+* 文字列型の列値の [ハッシュ](../query/hashfunction.md)(剰余) に基づいてパーティション *分割します*。
 
   *PartitionName* `:``long` `=` `hash``(` *ColumnName* `,` *数値*`)`
 
@@ -83,14 +83,14 @@ ms.locfileid: "93364124"
   *PartitionName* `:``datetime` `=` ( `startofyear` \| `startofmonth` \| `startofweek` \| `startofday` ) `(` *ColumnName*`)`  
   *PartitionName* `:``datetime` `=` `bin``(` *ColumnName* `,` *TimeSpan*`)`
 
-パーティション分割定義の正確性を確認するには、外部テーブルを作成するときにプロパティを使用し `sampleUris` ます。
+パーティション定義の正確性を確認するには、プロパティを使用するか、外部テーブルを作成するときにを使用し `sampleUris` `filesPreview` ます。
 
 <a name="path-format"></a>
 *PathFormat*
 
 外部データ URI ファイルパス形式。パーティションに加えて指定できます。 パスの形式は、パーティション要素とテキスト区切りのシーケンスです。
 
-&nbsp;&nbsp;[ *Stringseparator* ] *Partition* [ *stringseparator* ] [ *partition* [ *stringseparator* ]...]  
+&nbsp;&nbsp;[*Stringseparator*] *Partition* [*stringseparator*] [*partition* [*stringseparator*]...]  
 
 ここで、 *partition* は in 句で宣言されたパーティションを指し `partition` `by` 、 *stringseparator* は引用符で囲まれた任意のテキストです。 連続するパーティション要素は、 *Stringseparator* を使用して別に設定する必要があります。
 
@@ -147,8 +147,10 @@ Blob コンテナーまたは Azure Data Lake Store ファイルシステム (�
 | `namePrefix`     | `string` | 設定した場合、ファイルのプレフィックスを示します。 書き込み操作では、すべてのファイルがこのプレフィックスを使用して書き込まれます。 読み取り操作では、このプレフィックスを持つファイルだけが読み取られます。 |
 | `fileExtension`  | `string` | 設定すると、ファイルの拡張子を示します。 書き込み時には、ファイル名の末尾がこのサフィックスになります。 読み取り時には、このファイル拡張子を持つファイルのみが読み取られます。           |
 | `encoding`       | `string` | テキストのエンコード方法を示します。 `UTF8NoBOM` (既定値) または `UTF8BOM` 。             |
-| `sampleUris`     | `bool`   | 設定した場合、コマンドの結果には、外部テーブルの定義で想定される外部データファイルの URI の例がいくつか示されます (サンプルは2番目の結果テーブルに返されます)。 このオプションは、 *[パーティション](#partitions)* と *[pathformat](#path-format)* パラメーターが正しく定義されているかどうかを検証するのに役立ちます。 |
+| `sampleUris`     | `bool`   | 設定した場合、コマンドの結果には、外部テーブルの定義で想定されているように、シミュレートされた外部データファイルの URI の例がいくつか表示されます。 このオプションは、 *[パーティション](#partitions)* と *[pathformat](#path-format)* パラメーターが正しく定義されているかどうかを検証するのに役立ちます。 |
+| `filesPreview`   | `bool`   | 設定した場合、いずれかのコマンド結果テーブルに、のプレビューが含まれてい [ます。 [外部テーブルアーティファクトの表示](#show-external-table-artifacts) ] コマンド。 と同様 `sampleUri` に、オプションを使用すると、外部テーブル定義の *[パーティション](#partitions)* および *[pathformat](#path-format)* パラメーターを検証できます。 |
 | `validateNotEmpty` | `bool`   | 設定すると、接続文字列にコンテンツが含まれているかどうかが検証されます。 指定された URI の場所が存在しない場合、またはアクセスするための十分なアクセス許可がない場合、コマンドは失敗します。 |
+| `dryRun` | `bool` | 設定した場合、外部テーブルの定義は保持されません。 このオプションは、特にまたはパラメーターと組み合わせて外部テーブル定義を検証する場合に便利です `filesPreview` `sampleUris` 。 |
 
 > [!TIP]
 > `namePrefix`クエリ中のデータファイルフィルタリングでのロールおよびプロパティの詳細について `fileExtension` は、「[ファイルフィルタリングロジック](#file-filtering)」を参照してください。
@@ -229,7 +231,7 @@ external_table("ExternalTable")
 
 **サンプル出力**
 
-|TableName|TableType|Folder|DocString|Properties|ConnectionStrings|メジャー グループ|PathFormat|
+|TableName|TableType|フォルダー|DocString|プロパティ|ConnectionStrings|メジャー グループ|PathFormat|
 |---------|---------|------|---------|----------|-----------------|----------|----------|
 |ExternalTable|BLOB|ExternalTables|Docs|{"Format": "Csv", "圧縮": false, "CompressionType": null, "FileExtension": null, "IncludeHeaders": "None", "Encoding": null, "NamePrefix": null}|["https://storageaccount.blob.core.windows.net/container1;\*\*\*\*\*\*\*"]|[{"Mod":10, "Name": "CustomerId"、"ColumnName": "CustomerId"、"Ordinal": 0}、{"Function": "StartOfDay"、"Name": "Date"、"ColumnName": "Timestamp"、"Ordinal": 1}]|"customer \_ id =" CustomerId "/dt =" datetime \_ pattern ("yyyyMMdd", Date)|
 
@@ -286,17 +288,17 @@ external_table("ExternalTable")
 
 **構文 :** 
 
-`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults* ]
+`.show``external` `table` *TableName* `artifacts` [ `limit` *MaxResults*]
 
 ここで、 *MaxResults* は省略可能なパラメーターであり、結果の数を制限するように設定できます。
 
 **出力**
 
-| 出力パラメーター | Type   | 説明                       |
+| 出力パラメーター | 型   | 説明                       |
 |------------------|--------|-----------------------------------|
 | URI              | string | 外部ストレージデータファイルの URI |
 | サイズ             | long   | ファイルの長さ (バイト単位)              |
-| Partition        | 動的 | パーティション分割された外部テーブルのファイルパーティションを記述する動的オブジェクト |
+| Partition        | dynamic | パーティション分割された外部テーブルのファイルパーティションを記述する動的オブジェクト |
 
 > [!TIP]
 > 外部テーブルによって参照されるすべてのファイルに対する反復処理は、ファイルの数によっては非常にコストがかかることがあります。 `limit`URI の例をいくつか確認するだけの場合は、パラメーターを使用してください。
@@ -325,14 +327,14 @@ external_table("ExternalTable")
 
 ## <a name="create-external-table-mapping"></a>。外部テーブルマッピングを作成します。
 
-`.create``external` `table` *Externaltablename* `json` `mapping` *MappingName* *MappingInJsonFormat*
+`.create``external` `table` *Externaltablename* `mapping` *MappingName* *MappingInJsonFormat*
 
 新しいマッピングを作成します。 詳細については、「 [データのマッピング](./mappings.md#json-mapping)」を参照してください。
 
 **例** 
  
 ```kusto
-.create external table MyExternalTable json mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
+.create external table MyExternalTable mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
 ```
 
 **出力例**
@@ -343,14 +345,14 @@ external_table("ExternalTable")
 
 ## <a name="alter-external-table-mapping"></a>。外部テーブルマッピングを変更します。
 
-`.alter``external` `table` *Externaltablename* `json` `mapping` *MappingName* *MappingInJsonFormat*
+`.alter``external` `table` *Externaltablename* `mapping` *MappingName* *MappingInJsonFormat*
 
 既存のマッピングを変更します。 
  
 **例** 
  
 ```kusto
-.alter external table MyExternalTable json mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
+.alter external table MyExternalTable mapping "Mapping1" '[{"Column": "rownumber", "Properties": {"Path": "$.rownumber"}}, {"Column": "rowguid", "Properties": {"Path": "$.rowguid"}}]'
 ```
 
 **出力例**
@@ -361,18 +363,18 @@ external_table("ExternalTable")
 
 ## <a name="show-external-table-mappings"></a>。外部テーブルマッピングを表示します。
 
-`.show``external` `table` *Externaltablename* `json` `mapping` *MappingName* 
+`.show``external` `table` *Externaltablename* `mapping` *MappingName* 
 
-`.show``external` `table` *ExternalTableName* Externaltablename `json``mappings`
+`.show``external` `table` *Externaltablename*`mappings`
 
 マッピング (すべてまたは名前で指定したもの) を表示します。
  
 **例** 
  
 ```kusto
-.show external table MyExternalTable json mapping "Mapping1" 
+.show external table MyExternalTable mapping "Mapping1" 
 
-.show external table MyExternalTable json mappings 
+.show external table MyExternalTable mappings 
 ```
 
 **出力例**
@@ -383,14 +385,14 @@ external_table("ExternalTable")
 
 ## <a name="drop-external-table-mapping"></a>。外部テーブルマッピングを削除します。
 
-`.drop``external` `table` *Externaltablename* `json` `mapping` *MappingName* 
+`.drop``external` `table` *Externaltablename* `mapping` *MappingName* 
 
 データベースからマッピングを削除します。
  
 **例** 
  
 ```kusto
-.drop external table MyExternalTable json mapping "Mapping1" 
+.drop external table MyExternalTable mapping "Mapping1" 
 ```
 ## <a name="next-steps"></a>次のステップ
 

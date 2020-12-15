@@ -7,12 +7,12 @@ ms.reviewer: basaba
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/31/2019
-ms.openlocfilehash: ac73abcf1355531a3b8d9917a6f5d9a0d3965c01
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: 196d1f5a72b0b99186f4739ce6b6a25c23b6c325
+ms.sourcegitcommit: 2bdb904e6253c9ceb8f1eaa2da35fcf27e13a2cd
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902334"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97091370"
 ---
 # <a name="deploy-azure-data-explorer-cluster-into-your-virtual-network"></a>Azure Data Explorer クラスターを仮想ネットワークにデプロイする
 
@@ -30,7 +30,7 @@ Azure Data Explorer では、Virtual Network (VNet) のサブネットへのク�
 
 各サービス (エンジンとデータ管理サービス) に対して次の IP アドレスを使用して、Azure Data Explorer クラスターにアクセスできます。
 
-* **プライベート IP** :VNet 内のクラスターにアクセスするために使用されます。
+* **プライベート IP**:VNet 内のクラスターにアクセスするために使用されます。
 * **[パブリック IP]** : 管理と監視のために VNet の外部からクラスターにアクセスするため、およびクラスターから開始された送信接続の発信元アドレスとして使用されます。
 
 サービスにアクセスするために、次の DNS レコードが作成されます。 
@@ -161,7 +161,7 @@ VNet から、データ接続によって使用されるリソース (イベン�
 | オーストラリア南東部 | 191.239.160.47 |
 | ブラジル南部 | 23.98.145.105 |
 | カナダ中部 | 168.61.212.201 |
-| カナダ東部 | 168.61.212.201 |
+| カナダ東部 | 168.61.212.201、23.101.115.123 |
 | インド中部 | 23.99.5.162 |
 | 米国中部 | 168.61.212.201、23.101.115.123 |
 | 米国中部 EUAP | 168.61.212.201、23.101.115.123 |
@@ -191,7 +191,7 @@ VNet から、データ接続によって使用されるリソース (イベン�
 | USGov アリゾナ | 52.244.48.35 |
 | USGov テキサス | 52.238.116.34 |
 | USGov バージニア州 | 23.97.0.26 |
-| 米国中西部 | 168.61.212.201 |
+| 米国中西部 | 168.61.212.201、23.101.115.123 |
 | 西ヨーロッパ | 23.97.212.5、213.199.136.176 |
 | インド西部 | 23.99.5.162 |
 | 米国西部 | 23.99.5.162、13.88.13.50 |
@@ -211,7 +211,7 @@ VNet から、データ接続によって使用されるリソース (イベン�
 
 ## <a name="expressroute-setup"></a>ExpressRoute セットアップ
 
-ExpressRoute を使用して、オンプレミス ネットワークを Azure 仮想ネットワークに接続できます。 一般的なセットアップでは、Border Gateway Protocol (BGP) セッションを介して既定のルート (0.0.0.0/0) をアドバタイズします。 これにより、Virtual Network からのトラフィックが、トラフィックを破棄する可能性がある顧客のオンプレミス ネットワークに強制的に転送されるため、送信フローが中断される結果となります。 この既定の設定を解決するために、 [ユーザー定義ルート (UDR)](/azure/virtual-network/virtual-networks-udr-overview#user-defined) (0.0.0.0/0) を構成でき、次ホップは *インターネット* になります。 UDR は BGP よりも優先されるため、トラフィックはインターネットに送られます。
+ExpressRoute を使用して、オンプレミス ネットワークを Azure 仮想ネットワークに接続できます。 一般的なセットアップでは、Border Gateway Protocol (BGP) セッションを介して既定のルート (0.0.0.0/0) をアドバタイズします。 これにより、Virtual Network からのトラフィックが、トラフィックを破棄する可能性がある顧客のオンプレミス ネットワークに強制的に転送されるため、送信フローが中断される結果となります。 この既定の設定を解決するために、[ユーザー定義ルート (UDR)](/azure/virtual-network/virtual-networks-udr-overview#user-defined) (0.0.0.0/0) を構成でき、次ホップは *インターネット* になります。 UDR は BGP よりも優先されるため、トラフィックはインターネットに送られます。
 
 ## <a name="securing-outbound-traffic-with-firewall"></a>ファイアウォールを使用した送信トラフィックのセキュリティ保護
 
@@ -246,11 +246,11 @@ crl3.digicert.com:80
 
 > [!NOTE]
 > [Azure Firewall](/azure/firewall/overview) を使用している場合は、次のプロパティを使用して **ネットワーク ルール** を追加します。 <br>
-> **Protocol** :TCP <br> **[Source Type]\(ソースの種類\)** : IP アドレス <br> **送信元** : * <br> **サービス タグ** :AzureMonitor <br> **宛先ポート** :443
+> **Protocol**:TCP <br> **[Source Type]\(ソースの種類\)** : IP アドレス <br> **送信元**: * <br> **サービス タグ**:AzureMonitor <br> **宛先ポート**:443
 
 また、非対称ルートの問題を防ぐために、次ホップが *インターネット* である [管理アドレス](#azure-data-explorer-management-ip-addresses)および [正常性監視アドレス](#health-monitoring-addresses)を使用するサブネット上の [ルート テーブル](/azure/virtual-network/virtual-networks-udr-overview)を定義する必要があります。
 
-たとえば、 **米国西部** リージョンでは、次の UDR を定義する必要があります。
+たとえば、**米国西部** リージョンでは、次の UDR を定義する必要があります。
 
 | 名前 | アドレス プレフィックス | 次ホップ |
 | --- | --- | --- |

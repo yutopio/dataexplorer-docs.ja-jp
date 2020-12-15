@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/10/2020
-ms.openlocfilehash: 5fc25c64eabfb9fa27b66b47d0443178e19b4e57
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: ae5cfcbc1011022da53933d4d3552fcd1007bd79
+ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902498"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96868622"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-go-sdk"></a>Azure Data Explorer Go SDK 使用してデータを取り込む 
 
@@ -147,12 +147,12 @@ func ingestFile(kc *kusto.Client, blobStoreAccountName, blobStoreContainer, blob
 
     サンプル コードを実行すると、次のアクションが行われます。
     
-    1. **テーブルを削除する** : `StormEvents` テーブルが削除されます (存在する場合)。
-    1. **テーブルの作成** : `StormEvents` テーブルが作成されます。
-    1. **マッピングの作成** : `StormEvents_CSV_Mapping` マッピングが作成されます。
-    1. **ファイルのインジェスト** : (Azure Blob Storage 内の) CSV ファイルがインジェスト用にキューに登録されます。
+    1. **テーブルを削除する**: `StormEvents` テーブルが削除されます (存在する場合)。
+    1. **テーブルの作成**: `StormEvents` テーブルが作成されます。
+    1. **マッピングの作成**: `StormEvents_CSV_Mapping` マッピングが作成されます。
+    1. **ファイルのインジェスト**: (Azure Blob Storage 内の) CSV ファイルがインジェスト用にキューに登録されます。
 
-1. 認証用のサービス プリンシパルを作成するには、Azure CLI を使用して [az ad sp create-for-rbac](/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac) コマンドを指定します。 プログラムによって使用される環境変数の形式で、クラスター エンドポイントとデータベース名を指定してサービス プリンシパル情報を設定します。
+1. 認証用のサービス プリンシパルを作成するには、Azure CLI を使用して [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac) コマンドを指定します。 プログラムによって使用される環境変数の形式で、クラスター エンドポイントとデータベース名を指定してサービス プリンシパル情報を設定します。
 
     ```console
     export AZURE_SP_CLIENT_ID="<replace with appID>"

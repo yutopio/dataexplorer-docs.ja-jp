@@ -7,12 +7,12 @@ ms.reviewer: abhishgu
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/28/2020
-ms.openlocfilehash: 833a801e6455fd4d88fbbbab83010aea1d406f02
-ms.sourcegitcommit: 7edce9d9d20f9c0505abda67bb8cc3d2ecd60d15
+ms.openlocfilehash: 3a8133c42ad87ec7eec693be3109ce5e7aea4935
+ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/02/2020
-ms.locfileid: "96524251"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96868639"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-using-go"></a>Go を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -195,7 +195,7 @@ func deleteCluster(sub, clusterName, rgName string) {
     cd azure-data-explorer-go-cluster-management
     ```
 
-1. プログラムにより、クライアントの資格情報を使用して認証が行われます。 Azure CLI の [az ad sp create-for-rbac](/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac) コマンドを使用してサービス プリンシパルを作成します。 次の手順で使用するために、クライアント ID、クライアント シークレット、およびテナント ID の情報を保存します。
+1. プログラムにより、クライアントの資格情報を使用して認証が行われます。 Azure CLI の [az ad sp create-for-rbac](/cli/azure/ad/sp#az-ad-sp-create-for-rbac) コマンドを使用してサービス プリンシパルを作成します。 次の手順で使用するために、クライアント ID、クライアント シークレット、およびテナント ID の情報を保存します。
 
 1. サービス プリンシパル情報を含む必要な環境変数をエクスポートします。 クラスターを作成するサブスクリプション ID、リソース グループ、リージョンを入力します。
 

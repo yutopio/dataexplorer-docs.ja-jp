@@ -7,12 +7,12 @@ ms.reviewer: gunjand
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/12/2020
-ms.openlocfilehash: 43f7705170228afa3d3f5e31086d40cea73c62db
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: a8e351dc04b77a41dd7ab793581a1f464f181f4e
+ms.sourcegitcommit: 724d3a3c817867b17a5a5853b6433818cbc97cf7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92906223"
+ms.lasthandoff: 12/10/2020
+ms.locfileid: "97050520"
 ---
 # <a name="create-a-private-or-service-endpoint-to-event-hub-and-azure-storage"></a>イベントハブと Azure Storage へのプライベートまたはサービス エンドポイントを作成する
 
@@ -94,13 +94,13 @@ Azure Storage アカウントでプライベート エンドポイントを作�
 ### <a name="allow-access-to-azure-event-hub-from-azure-data-explorer-subnets-using-a-service-endpoint"></a>サービス エンドポイントを使用して Azure Data Explorer サブネットからイベント ハブにアクセスできるようにする
 
 > [!IMPORTANT]
-> 仮想ネットワークは、 **Standard** と **Dedicated** レベルの Event Hubs でサポートされています。Basic レベルではサポートされていません。 
+> 仮想ネットワークは、**Standard** と **Dedicated** レベルの Event Hubs でサポートされています。Basic レベルではサポートされていません。 
 
 ### <a name="add-a-virtual-network"></a>仮想ネットワークの追加
 
 1. Azure portal で、セキュリティで保護する **Event Hubs 名前空間** に移動します。
-1. 左側のメニューで、 **[ネットワーク]** を選択します。 このタブは、 **Standard** または **Dedicated** の名前空間にのみ表示されます。
-1. **[ファイアウォールと仮想ネットワーク]** タブを選択します。
+1. 左側のメニューで、 **[ネットワーク]** を選択します。 このタブは、**Standard** または **Dedicated** の名前空間にのみ表示されます。
+1. **[ファイアウォールと仮想ネットワーク]** タブを選択します。 
 
     :::image type="content" source="media/vnet-private-link-storage-event-hub/networking.png" alt-text="イベント ハブでのネットワーク":::
 

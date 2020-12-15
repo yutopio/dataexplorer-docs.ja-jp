@@ -7,12 +7,12 @@ ms.reviewer: radennis
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: 24ec28fee62b4633e5a5694faf731d1888858af3
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: 4098f8bd6992ce5f76bfd3f611ba4d4bad2374b3
+ms.sourcegitcommit: 79d923d7b7e8370726974e67a984183905f323ff
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902604"
+ms.lasthandoff: 12/08/2020
+ms.locfileid: "96868656"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-azure-cli"></a>Azure CLI を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -33,7 +33,7 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
 [!INCLUDE [cloud-shell-try-it.md](includes/cloud-shell-try-it.md)]
 
-Azure CLI をローカルにインストールして使用する場合、この記事では、Azure CLI バージョン 2.0.4 以降が必要です。 バージョンを確認するには `az --version` を実行します。 インストールまたはアップグレードが必要な場合は、[Azure CLI のインストール](/cli/azure/install-azure-cli?view=azure-cli-latest)に関するページを参照してください。
+Azure CLI をローカルにインストールして使用する場合、この記事では、Azure CLI バージョン 2.0.4 以降が必要です。 バージョンを確認するには `az --version` を実行します。 インストールまたはアップグレードが必要な場合は、[Azure CLI のインストール](/cli/azure/install-azure-cli)に関するページを参照してください。
 
 ## <a name="configure-the-cli-parameters"></a>CLI パラメーターを構成する
 

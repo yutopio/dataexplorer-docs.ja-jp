@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 1ea8960b8d58ed9e549e042f8a4e64164952f32d
-ms.sourcegitcommit: 4f24d68f1ae4903a2885985aa45fd15948867175
+ms.openlocfilehash: b76321fd843efe915a6fd55797bd2dc68059b004
+ms.sourcegitcommit: 8ac4717dbff679991b122b09a0c1ed700562a736
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/27/2020
-ms.locfileid: "92558191"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97488578"
 ---
 # <a name="iot-hub-data-connection"></a>IoT Hub データ接続
 
@@ -98,7 +98,7 @@ IoT Hub をまだ用意していない場合は、[IoT Hub を作成します](i
 
 ## <a name="sending-events"></a>イベントの送信
 
-デバイスをシミュレートし、データを生成する[サンプル プロジェクト](https://github.com/Azure-Samples/azure-iot-samples-csharp/tree/master/iot-hub/Quickstarts/simulated-device)を参照してください。
+デバイスをシミュレートし、データを生成する[サンプル プロジェクト](https://github.com/Azure-Samples/azure-iot-samples-csharp/tree/master/iot-hub/Quickstarts/SimulatedDevice)を参照してください。
 
 ## <a name="next-steps"></a>次の手順
 

@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 6fc2e55b43e7c7c2dc2bb537730f8f627e3e4a66
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 2a49adf8befcd7c20bd4ec1180ccf937c7bfcfff
+ms.sourcegitcommit: fcaf3056db2481f0e3f4c2324c4ac956a4afef38
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95513116"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97388989"
 ---
 # <a name="bin"></a>bin()
 
@@ -33,7 +33,7 @@ Null 値、ビン サイズが null、またはビン サイズが負の場合�
 
 ## <a name="arguments"></a>引数
 
-* *value*:数値、日付、または期間。 
+* *value*:数値、日付、または[期間](scalar-data-types/timespan.md)。 
 * *roundTo*: "ビンのサイズ" です。 *value* を分割する数値または期間です。 
 
 ## <a name="returns"></a>戻り値

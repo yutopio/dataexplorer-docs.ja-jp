@@ -8,18 +8,55 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/18/2020
-ms.openlocfilehash: e05f8204ba1e81b9391b6b63f190b81e1db73338
-ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
+ms.openlocfilehash: efa7c3237ce85938634b1c8b31b1c3e10d01a6f8
+ms.sourcegitcommit: 35236fefb52978ce9a09bc36affd5321acb039a4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96321048"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97514095"
 ---
 # <a name="cluster-follower-commands"></a>クラスターのフォロワーコマンド
 
 フォロワークラスター構成を管理するための制御コマンドを以下に示します。 これらのコマンドは同期的に実行されますが、次回の定期的なスキーマ更新に適用されます。 そのため、新しい構成が適用されるまで数分の遅延が発生する場合があります。
 
 フォロワーコマンドには、 [データベースレベルのコマンド](#database-level-commands) と [テーブルレベルのコマンド](#table-level-commands)が含まれます。
+
+## <a name="database-policy-overrides"></a>データベースポリシーの上書き
+
+フォロワークラスターがフォローしているデータベースには、 [キャッシュポリシー](#caching-policy) のデータベースレベルポリシーと、フォロワークラスターでオーバーライドされた承認された [プリンシパル](#authorized-principals) があります。
+
+### <a name="caching-policy"></a>キャッシュポリシー
+
+フォロワークラスターの既定の [キャッシュポリシー](cachepolicy.md) では、リーダークラスターデータベースとテーブルレベルのキャッシュポリシーが維持されます。
+
+|オプション             |説明                                                                                                                                                                                                           |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|**なし** (既定値) |使用されるキャッシュポリシーは、(リーダークラスター内の) ソースデータベースで定義されているものです。                                                                                                                           |
+|**replace**        |リーダークラスターデータベースのソースデータベースとテーブルレベルのキャッシュポリシーが削除されます (に設定 `null` )。 これらの属性は、データベースで定義されているものと、定義されている場合はテーブルレベルの上書きポリシーに置き換えられます。|
+|**union**          |リーダークラスターデータベースのソースデータベースとテーブルレベルのキャッシュポリシーは、データベースおよびテーブルレベルの上書きポリシーで定義されているものと和集合ます。                                              |
+
+> [!NOTE]
+>  * 上書きデータベースとテーブルレベルのキャッシュポリシーのコレクションが *空* の場合、既定では *すべて* がキャッシュされます。
+>  * データベースレベルのキャッシュポリシーのオーバーライドをに設定し `0d` て、既定ではキャッシュされないようにすることができます。
+
+### <a name="authorized-principals"></a>承認されたプリンシパル
+
+既定の [承認](access-control/index.md#authorization) されたプリンシパルは、リーダークラスターの承認されたプリンシパルのソースデータベースを保持します。
+
+|オプション             |説明                                                                                                                              |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+|**なし** (既定値) |使用される承認済みプリンシパルは、(リーダークラスター内の) ソースデータベースで定義されているプリンシパルです。                                         |
+|**replace**        |リーダークラスターの承認されたプリンシパル内のソースデータベースは、「承認されたプリンシパルのオーバーライド」で定義されているものに置き換えられます。  |
+|**union**          |リーダークラスターの承認されたプリンシパルのソースデータベースは、「許可されたプリンシパルのオーバーライド」で定義されているプリンシパルと和集合します。 |
+
+> [!NOTE]
+> [承認されたプリンシパルの上書き] のコレクションが *空* の場合、データベースレベルのプリンシパルは存在しません。
+
+## <a name="table-policy-overrides"></a>テーブルポリシーのオーバーライド
+
+フォロワークラスターをフォローしているデータベース内のテーブルでは、フォロワークラスターでテーブルレベルの [キャッシュポリシー](cachepolicy.md) を上書きできます。
+既定では、ソーステーブルのキャッシュポリシーが維持されます。 このポリシーがソースデータベースに存在する場合、そのポリシーはフォロワークラスターで有効なままになります。
+オプションはサポートされてい `replace` ます。このオプションを使用すると、ソーステーブルのキャッシュポリシーは上書きとして定義されているものに置き換えられます。
 
 ## <a name="database-level-commands"></a>データベースレベルのコマンド
 
@@ -29,13 +66,13 @@ ms.locfileid: "96321048"
 
 **構文**
 
-`.show` `follower` `database` *DatabaseName*
+`.show``follower` `database` *DatabaseName*
 
 `.show``follower` `databases` `(`*DatabaseName1* `,`...`,`*DatabaseNameN*`)`
 
 **出力** 
 
-| 出力パラメーター                     | 種類    | 説明                                                                                                        |
+| 出力パラメーター                     | Type    | 説明                                                                                                        |
 |--------------------------------------|---------|--------------------------------------------------------------------------------------------------------------------|
 | DatabaseName                         | String  | フォローされているデータベースの名前。                                                                           |
 | LeaderClusterMetadataPath            | String  | リーダークラスターのメタデータコンテナーへのパス。                                                               |
@@ -50,7 +87,7 @@ ms.locfileid: "96321048"
 
 フォロワーデータベースキャッシュポリシーを変更して、リーダークラスター内のソースデータベースで設定されているものを上書きします。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**メモ**
+**ノート**
 
 * `modification kind`キャッシュポリシーの既定値は `union` です。 を変更するには、 `modification kind` コマンドを使用し [`.alter follower database caching-policies-modification-kind`](#alter-follower-database-caching-policies-modification-kind) ます。
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
@@ -74,7 +111,7 @@ ms.locfileid: "96321048"
 フォロワーデータベースオーバーライドキャッシュポリシーを削除します。 これにより、リーダークラスターのソースデータベースで設定されたポリシーが有効になります。
 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。 
 
-**メモ**
+**ノート**
 
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
@@ -84,7 +121,7 @@ ms.locfileid: "96321048"
 
 **構文**
 
-`.delete` `follower` `database` *DatabaseName* `policy` `caching`
+`.delete``follower` `database`  DatabaseName `policy``caching`
 
 **例**
 
@@ -96,7 +133,7 @@ ms.locfileid: "96321048"
 
 承認されたプリンシパルのフォロワーデータベースコレクションに承認されたプリンシパルを追加します。 [Databaseadmin 権限](../management/access-control/role-based-authorization.md)が必要です。
 
-**メモ**
+**ノート**
 
 * `modification kind`このような承認されたプリンシパルの既定値は `none` です。 `modification kind` [Alter フォロワーデータベースプリンシパル](#alter-follower-database-principals-modification-kind)の使用を変更するには、「変更-種類」を使用します。
 * 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
@@ -119,7 +156,7 @@ ms.locfileid: "96321048"
 承認されたプリンシパルのフォロワーデータベースコレクションから承認されたプリンシパルを削除します。
 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**メモ**
+**ノート**
 
 * 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
     * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
@@ -140,7 +177,7 @@ ms.locfileid: "96321048"
 
 フォロワーデータベースの承認されたプリンシパルの変更の種類を変更します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**メモ**
+**ノート**
 
 * 次のコマンドを使用して、変更後のプリンシパルの有効なコレクションを表示でき `.show` ます。
     * [`.show database principals`](../management/security-roles.md#managing-database-security-roles)
@@ -162,7 +199,7 @@ ms.locfileid: "96321048"
 
 フォロワーデータベースおよびテーブルキャッシュポリシーの変更の種類を変更します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。
 
-**メモ**
+**ノート**
 
 * 変更後のデータベース/テーブルレベルのキャッシュポリシーの有効なコレクションを表示するには、次の標準コマンドを使用し `.show` ます。
     * [`.show tables details`](show-tables-command.md)
@@ -208,7 +245,7 @@ ms.locfileid: "96321048"
 フォロワーデータベースのテーブルレベルのキャッシュポリシーを変更して、リーダークラスターのソースデータベースで設定されているポリシーを上書きします。
 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。 
 
-**メモ**
+**ノート**
 
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
@@ -232,7 +269,7 @@ ms.locfileid: "96321048"
 
 フォロワーデータベースの上書きテーブルレベルキャッシュポリシーを削除して、リーダークラスターのソースデータベースでポリシーを設定します。 [Databaseadmin のアクセス許可](../management/access-control/role-based-authorization.md)が必要です。 
 
-**メモ**
+**ノート**
 
 * 次のコマンドを使用して、変更後のポリシーまたは有効なポリシーを表示でき `.show` ます。
     * [`.show database policy retention`](../management/retention-policy.md#show-retention-policy)
@@ -242,7 +279,7 @@ ms.locfileid: "96321048"
 
 **構文**
 
-`.delete``follower` `database` *DatabaseName* `table` *TableName* TableName `policy``caching`
+`.delete``follower` `database` *DatabaseName* `table`  TableName `policy``caching`
 
 `.delete``follower` `database` *DatabaseName* `tables` `(` *TableName1* `,` ... `,`*TableNameN* `)``policy``caching`
 
@@ -298,7 +335,7 @@ ms.locfileid: "96321048"
 |CachingPolicyOverride                | null                                                     |
 |AuthorizedPrincipalsOverride         | []                                                       |
 |AuthorizedPrincipalsModificationKind | なし                                                     |
-|IsAutoPrefetchEnabled                | False                                                    |
+|IsAutoPrefetchEnabled                | 誤                                                    |
 |TableMetadataOverrides               |                                                          |
 |CachingPoliciesModificationKind      | Union                                                    |                                                                                                                      |
 
@@ -320,7 +357,7 @@ ms.locfileid: "96321048"
 .show database MyDatabase principals
 ```
 
-| ロール                       | PrincipalType | PrincipalDisplayName                        | PrincipalObjectId                    | Principal(n)                                                                      | メモ |
+| ロール                       | PrincipalType | PrincipalDisplayName                        | PrincipalObjectId                    | Principal(n)                                                                      | Notes |
 |----------------------------|---------------|---------------------------------------------|--------------------------------------|-----------------------------------------------------------------------------------|-------|
 | データベース MyDatabase 管理者  | AAD ユーザー      | ジャック Kusto (upn: jack@contoso.com )       | 12345678-abcd-efef-1234-350bf486087b | aaduser = 87654321-efef1234-350bf486087b; 55555555-4444-3333-2222-2d7cd011db47 |       |
 | データベース MyDatabase ビューアー | AAD ユーザー      | Jill Kusto (upn: jack@contoso.com )       | abcdefab-abcd-efef-1234-350bf486087b | aaduser = 54321789氏 efef1234-350bf486087b; 55555555-4444-3333-2222-2d7cd011db47 |       |
@@ -389,6 +426,6 @@ ms.locfileid: "96321048"
 |CachingPolicyOverride                | {"Dataホットスパン": {"Value": "00:00:00"}, "Indexホットスパン": {"Value": "00:00:00"}}                                                                                                        |
 |AuthorizedPrincipalsOverride         | [{"Principal": {"FullyQualifiedName": "aaduser = 87654321234-350bf486087b",...}、{"Principal": {"FullyQualifiedName": "aaduser = 54321789 efef1234-350bf486087b",...}] |
 |AuthorizedPrincipalsModificationKind | Replace                                                                                                                                                                         |
-|IsAutoPrefetchEnabled                | False                                                                                                                                                                           |
+|IsAutoPrefetchEnabled                | 誤                                                                                                                                                                           |
 |TableMetadataOverrides               | {"MyTargetTable": {"CachingPolicyOverride": {"" MySourceTable ": {" CachingPolicyOverride ": {" Dataホットスパン ": {" Value ":" 1.00:00:00 "},...}}} のように、{" MyTargetTable ": {" CachingPolicyOverride ": {" Dataホットスパン ": {       |
 |CachingPoliciesModificationKind      | Replace                                                                                                                                                                         |

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: 25c0bb4071c74c299ab69432ffc18ad50408be46
-ms.sourcegitcommit: f7bebd245081a5cdc08e88fa4f9a769c18e13e5d
+ms.openlocfilehash: e2c84649653d6d3762a82c1e4aa3c98c9ef8119d
+ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94644725"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97371680"
 ---
 # <a name="use-one-click-ingestion-to-ingest-csv-data-from-a-container-to-a-new-table-in-azure-data-explorer"></a>ワンクリックでのインジェストを使用して Azure Data Explorer の新しいテーブルにコンテナーの CSV データを取り込む
 
@@ -22,7 +22,7 @@ ms.locfileid: "94644725"
 
 [ワンクリックでのインジェスト](ingest-data-one-click.md)を使用すると、JSON、CSV、その他の形式のデータをすばやくテーブルに取り込んで、マッピング構造を簡単に作成することができます。 データは、ストレージ、ローカル ファイル、コンテナーから、1 回限りまたは継続的なインジェスト プロセスとして取り込むことができます。  
 
-このドキュメントでは、特定のユース ケースで直感的なワンクリック ウィザードを使用して、**コンテナー** の **CSV** データを **新しいテーブル** に取り込む方法について説明します。 この同じプロセスにわずかな調整を行えば、さまざまなユース ケースに対応できます。
+このドキュメントでは、特定のユース ケースで直感的なワンクリック ウィザードを使用して、**コンテナー** の **CSV** データを **新しいテーブル** に取り込む方法について説明します。 インジェスト後、[Event Grid インジェスト パイプラインを設定](#create-continuous-ingestion-for-container)して、ソース コンテナー内の新しいファイルをリッスンし、該当するデータを新しいテーブルに取り込むことができます。 この同じプロセスにわずかな調整を行えば、さまざまなユース ケースに対応できます。
 
 ワンクリックでのインジェストの概要と一連の前提条件については、[ワンクリックでのインジェスト](ingest-data-one-click.md)に関するページを参照してください。
 Azure Data Explorer の既存のテーブルにデータを取り込む方法については、[既存のテーブルへのワンクリックでのインジェスト](one-click-ingestion-existing-table.md)に関するページを参照してください。
@@ -46,7 +46,7 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
 **[インジェストの種類]** で、次の手順を実行します。
    
-  1. **[コンテナーから]** を選択します。 
+  1. **[From container]\(コンテナーから\)** (BLOB コンテナー、ADLS Gen1 コンテナー、ADLS Gen2 コンテナー) を選択します。
   1. **[ストレージへのリンク]** フィールドにコンテナーの [SAS URL](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) を追加し、必要に応じてサンプル サイズを入力します。 このコンテナー内のフォルダーから取り込むには、「[コンテナー内のフォルダーから取り込む](#ingest-from-folder-in-a-container)」を参照してください。
 
       :::image type="content" source="media/one-click-ingestion-new-table/from-container.png" alt-text="コンテナーからのワンクリックでのインジェスト":::
@@ -96,9 +96,11 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
 :::image type="content" source="media/one-click-ingestion-new-table/from-container-with-filter.png" alt-text="ワンクリックでのインジェスト フィルター":::
 
+システムによって、いずれか 1 つのファイルがランダムに選択され、その **スキーマ定義ファイル** に基づいてスキーマが生成されます。 別のファイルを選択することもできます。
+
 ## <a name="edit-the-schema"></a>スキーマを編集する
 
-テーブル列の構成を表示および編集するには、 **[スキーマの編集]** を選択します。 このシステムでは、いずれか 1 つの BLOB がランダムに選択され、その BLOB に基づいてスキーマが生成されます。 ソースが圧縮されているかどうかは、その名前を見て自動的に識別されます。
+テーブル列の構成を表示および編集するには、 **[スキーマの編集]** を選択します。  ソースが圧縮されているかどうかは、その名前を見て自動的に識別されます。
 
 **[スキーマ]** タブ内:
 
@@ -121,14 +123,10 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
 新しいテーブルに取り込むときは、テーブルの作成時にテーブルのさまざまな側面を変更します。
 
-この表で、 
- * 編集するには、新しい列の名前をダブルクリックします。
- * 新しい列ヘッダーを選択して、次のいずれかの操作を行います。
+[!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
 
-    [!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
-
-  > [!NOTE]
-  > 表形式データの列はそれぞれ Azure Data Explorer の 1 つの列に取り込むことができます。
+> [!NOTE]
+> 表形式では、列を 2 回マップすることはできません。 既存の列にマップするには、最初に新しい列を削除します。
 
 [!INCLUDE [data-explorer-one-click-command-editor](includes/data-explorer-one-click-command-editor.md)]
 
@@ -148,7 +146,7 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
 ## <a name="create-continuous-ingestion-for-container"></a>コンテナー用の継続的なインジェストを作成する
 
-継続的なインジェストを使用すると、ソース コンテナー内の新しいファイルをリッスンするイベント グリッドを作成できます。 あらかじめ定義されたパラメーターの条件 (プレフィックス、サフィックスなど) を満たす新しいファイルがすべて自動的にターゲット テーブルに取り込まれます。 
+継続的なインジェストを使用すると、ソース コンテナー内の新しいファイルをリッスンする Event Grid を作成できます。 あらかじめ定義されたパラメーターの条件 (プレフィックス、サフィックスなど) を満たす新しいファイルがすべて自動的にターゲット テーブルに取り込まれます。 
 
 1. **[継続的なインジェスト]** タイルで **[Event Grid]** を選択して、Azure portal を開きます。 イベント グリッドのデータ コネクタが開いた状態で [データ接続] ページが表示されます。ソース パラメーターとターゲット パラメーターは既に入力されています (ソース コンテナー、テーブル、マッピング)。
     

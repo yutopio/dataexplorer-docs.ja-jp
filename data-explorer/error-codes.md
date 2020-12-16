@@ -7,16 +7,16 @@ ms.reviewer: vladikbr
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/11/2020
-ms.openlocfilehash: aeef0c9295fbb22c225068fb240670fb7d637a98
-ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
+ms.openlocfilehash: 18ac718edd50c804f71b9b82cbffb5b2b7bb2e24
+ms.sourcegitcommit: 202357f866801aafd92e3e29a84bb312e17aebc7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96776554"
+ms.lasthandoff: 12/09/2020
+ms.locfileid: "96933777"
 ---
 # <a name="ingestion-error-codes-in-azure-data-explorer"></a>Azure Data Explorer のインジェスト エラー コード
 
-次の一覧に、[インジェスト](ingest-data-overview.md)中に発生する可能性のあるエラー コードを示します。 クラスターで、失敗したインジェストの [診断ログ](using-diagnostic-logs.md#ingestion-logs-schema)を有効にすると、**失敗したインジェスト** の操作ログにエラー コードが表示されます。 または、**インジェストの結果** の [メトリック](using-metrics.md#ingestion-metrics)を監視して、インジェスト エラーの **カテゴリ** を確認できますが、特定のエラー コードは確認できません。 以下のエラーは、そのカテゴリ別に分類されています。 
+次の一覧に、[インジェスト](ingest-data-overview.md)中に発生する可能性のあるエラー コードを示します。 クラスターで、失敗したインジェストの [診断ログ](using-diagnostic-logs.md#ingestion-logs-schema)を有効にすると、**失敗したインジェスト** の操作ログにエラー コードが表示されます。 また、**インジェストの結果** の [メトリック](using-metrics.md#ingestion-metrics)を監視して、インジェスト エラーの **カテゴリ** を確認することもできますが、特定のエラー コードは確認できません。 以下のエラーは、これらのカテゴリ別に分類されています。 
 
 > [!NOTE]
 > エラーが一時的なものである場合は、インジェストの再試行が成功する可能性があります。

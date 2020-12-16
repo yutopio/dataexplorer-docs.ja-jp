@@ -7,12 +7,12 @@ ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/26/2020
-ms.openlocfilehash: 3c8aaf6f4a6a876707a362ac163de146630a86cb
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 0f77782b5174683d091685064afa7debff7ae777
+ms.sourcegitcommit: 202357f866801aafd92e3e29a84bb312e17aebc7
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92003018"
+ms.lasthandoff: 12/09/2020
+ms.locfileid: "96933903"
 ---
 # <a name="configure-customer-managed-keys-using-the-azure-portal"></a>Azure portal を使用してカスタマー マネージド キーを構成する
 
@@ -29,26 +29,31 @@ ms.locfileid: "92003018"
 
 この記事では、Azure portal を使用してカスタマー マネージド キーによる暗号化を有効にする方法について説明します。 既定では、Azure Data Explorer の暗号化では Microsoft のマネージド キーが使用されます。 カスタマー マネージド キーを使用するように Azure Data Explorer クラスターを構成し、そのクラスターに関連付けるキーを指定します。
 
-1. [Azure portal](https://portal.azure.com/) で、[Azure Data Explorer クラスター](create-cluster-database-portal.md#create-a-cluster) リソースに移動します。 
+1. [Azure portal](https://portal.azure.com/) で、[Azure Data Explorer クラスター](create-cluster-database-portal.md#create-a-cluster) リソースに移動します。
 1. portal の左側のウィンドウで、 **[設定]**  >  **[暗号化]** を選択します。
 1. **[暗号化]** ウィンドウの **[顧客が管理するキー]** 設定で、 **[オン]** を選択します。
 1. **[キーを選択します]** をクリックします。
 
-    ![顧客管理キーの構成](media/customer-managed-keys-portal/cmk-encryption-setting.png)
+    :::image type="content" source="media/customer-managed-keys-portal/customer-managed-key-encryption-setting.png" alt-text="顧客管理キーの構成":::
 
-1. **[Azure Key Vault からのキーの選択]** ウィンドウで、ドロップダウン リストから既存の **Key Vault** を選択します。 **[新規作成]** を選択して[新しい Key Vault を作成する](/azure/key-vault/quick-create-portal#create-a-vault)場合は、 **[Key Vault の作成]** 画面にルーティングされます。
+1. **[Azure Key Vault からのキーの選択]** ウィンドウで、ドロップダウン リストから既存の **Key Vault** を選択します。 **[新規作成]** を選択して [新しい Key Vault を作成する](/azure/key-vault/quick-create-portal#create-a-vault)場合は、 **[Key Vault の作成]** 画面にルーティングされます。
 
 1. **[キー]** を選択します。
 1. **[バージョン]** を選択します。
 1. **[選択]** をクリックします。
 
-    ![Azure Key Vault からキーを選択する](media/customer-managed-keys-portal/cmk-key-vault.png)
+    :::image type="content" source="media/customer-managed-keys-portal/customer-managed-key-key-vault.png" alt-text="Azure Key Vault からキーを選択する":::
+
+1. **[ID の種類]** で、 **[システム割り当て済み]** または **[ユーザー割り当て済み]** を選択します。
+1. **[ユーザー割り当て済み]** を選択する場合は、ドロップダウンからユーザー割り当て ID を選択します。
+
+    :::image type="content" source="media/customer-managed-keys-portal/customer-managed-key-select-user-type.png" alt-text="マネージド ID の種類を選択":::
 
 1. キーが含まれている **[暗号化]** ウィンドウで、 **[保存]** を選択します。 CMK の作成に成功すると、 **[通知]** に成功メッセージが表示されます。
 
-    ![カスタマー マネージド キーを保存する](media/customer-managed-keys-portal/cmk-encryption-setting.png)
+    :::image type="content" source="media/customer-managed-keys-portal/customer-managed-key-before-save.png" alt-text="カスタマー マネージド キーを保存する":::
 
-Azure Data Explorer クラスターに対してカスタマー マネージド キーを有効にしたら、システムによって割り当てられた ID がクラスターに存在しない場合は ID を作成します。 また、選択した Key Vault の Azure Data Explorer クラスターに対して必要な get、wrapKey、unwarpKey の各アクセス許可を提供し、Key Vault のプロパティを取得します。 
+Azure Data Explorer クラスターに対してカスタマー マネージド キーを有効にするときにシステム割り当て ID を選択した場合、システム割り当て ID がクラスターに存在しない場合は ID を作成します。 また、選択した Key Vault の Azure Data Explorer クラスターに対して必要な get、wrapKey、unwarpKey の各アクセス許可を提供し、Key Vault のプロパティを取得します。
 
 > [!NOTE]
 > カスタマー マネージド キーを作成した後に削除するには、 **[オフ]** を選択します。
@@ -59,5 +64,3 @@ Azure Data Explorer クラスターに対してカスタマー マネージド �
 * 保存時の暗号化を有効にすることで、[Azure Data Explorer のディスク暗号化を使用してクラスターをセキュリティで保護する - Azure portal](cluster-disk-encryption.md)。
 * [Azure Resource Manager テンプレートを使用してカスタマー マネージド キーを構成する](customer-managed-keys-resource-manager.md)
 * [C# を使用してカスタマー マネージド キーを構成する](customer-managed-keys-csharp.md)
-
-

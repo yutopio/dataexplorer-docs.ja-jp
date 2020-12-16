@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 99a35b03a171147d5bb511a9eab657903e917d01
-ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
+ms.openlocfilehash: fde0e79fbe8a8080fa6e21dde12434de5c92353f
+ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96444128"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97371460"
 ---
 # <a name="event-grid-data-connection"></a>Event Grid データ接続
 
 Event Grid インジェストは、Azure ストレージをリッスンし、サブスクライブしたイベントが発生したときに情報をプルするように Azure Data Explorer を更新するパイプラインです。 Azure Data Explorer では、BLOB 作成または BLOB 名前変更の通知に対する [Azure Event Grid](/azure/event-grid/overview) サブスクリプションを使用して Azure Storage (Blob Storage と ADLSv2) からの継続的なインジェストが提供され、イベント ハブを介してそれらの通知が Azure Data Explorer にストリーミングされます。
 
-Event Grid のインジェスト パイプラインでは、いくつかの手順が実行されます。 [特定の形式のデータ](#data-format)が取り込まれるターゲット テーブルを Azure Data Explorer に作成します。 次に、Azure Data Explorer で Event Grid データ接続を作成します。 Event Grid データ接続では、データを送信するテーブルやテーブルのマッピングなど、[イベントのルーティング](#events-routing)情報を把握している必要があります。 また、取り込まれるデータ、ターゲット テーブル、およびマッピングを記述する[インジェスト プロパティ](#ingestion-properties)も指定します。 サンプル データを生成し、[BLOB にアップロード](#upload-blobs)して、接続をテストすることができます。 インジェスト後、[BLOB を削除](#delete-blobs-using-storage-lifecycle)します。 このプロセスは、[Azure portal](ingest-data-event-grid.md)、[C#](data-connection-event-grid-csharp.md) または [Python](data-connection-event-grid-python.md) によるプログラム、または [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)を使用して管理できます。
+Event Grid のインジェスト パイプラインでは、いくつかの手順が実行されます。 [特定の形式のデータ](#data-format)が取り込まれるターゲット テーブルを Azure Data Explorer に作成します。 次に、Azure Data Explorer で Event Grid データ接続を作成します。 Event Grid データ接続では、データを送信するテーブルやテーブルのマッピングなど、[イベントのルーティング](#events-routing)情報を把握している必要があります。 また、取り込まれるデータ、ターゲット テーブル、およびマッピングを記述する[インジェスト プロパティ](#ingestion-properties)も指定します。 サンプル データを生成し、[BLOB にアップロード](#upload-blobs)して、接続をテストすることができます。 インジェスト後、[BLOB を削除](#delete-blobs-using-storage-lifecycle)します。 このプロセスは、[Azure portal](ingest-data-event-grid.md)、[ワンクリック インジェスト](one-click-ingestion-new-table.md)、[C#](data-connection-event-grid-csharp.md) または [Python](data-connection-event-grid-python.md) によるプログラム、または [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)を使用して管理できます。 
 
 Azure Data Explorer でのデータ インジェストに関する一般的な情報については、「[Azure Data Explorer のデータ インジェスト概要](ingest-data-overview.md)」を参照してください。
 

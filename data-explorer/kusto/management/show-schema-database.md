@@ -47,11 +47,11 @@ ms.locfileid: "97513971"
 
 **出力**
 
-|DatabaseName|TableName|ColumnName|[列の型]|IsDefaultTable|IsDefaultColumn|"この名前"|Version
+|DatabaseName|TableName|ColumnName|[列の型]|IsDefaultTable|IsDefaultColumn|"この名前"|バージョン
 |---|---|---|---|---|---|---|--- 
 |TestDB||||False|False||v1.1       
 |TestDB|イベント|||正|誤||       
-|TestDB|イベント| 名前|System.String|正|誤||     
+|TestDB|イベント| Name|System.String|正|誤||     
 |TestDB|イベント| StartTime|  System.DateTime|正|誤||    
 |TestDB|イベント| EndTime|    System.DateTime|正|誤||        
 |TestDB|イベント| City|   System.String|正| 誤||     
@@ -67,11 +67,11 @@ ms.locfileid: "97513971"
 
 **出力**
 
-|DatabaseName|TableName|ColumnName|[列の型]|IsDefaultTable|IsDefaultColumn|"この名前"|Version
+|DatabaseName|TableName|ColumnName|[列の型]|IsDefaultTable|IsDefaultColumn|"この名前"|バージョン
 |---|---|---|---|---|---|---|--- 
 |TestDB||||False|False||v1.1       
 |TestDB|イベント|||正|誤||       
-|TestDB|イベント| 名前|System.String|正|誤||     
+|TestDB|イベント| Name|System.String|正|誤||     
 |TestDB|イベント| StartTime|  System.DateTime|正|誤||    
 |TestDB|イベント| EndTime|    System.DateTime|正|誤||        
 |TestDB|イベント| City|   System.String|正| 誤||     

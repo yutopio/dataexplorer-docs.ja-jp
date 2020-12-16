@@ -7,12 +7,12 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: 47a18e8b8a2ec34207acacfd508114955f28953f
-ms.sourcegitcommit: 88f8ad67711a4f614d65d745af699d013d01af32
+ms.openlocfilehash: 2abdc80a261980723b9f4535fed26758c4895ce6
+ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/16/2020
-ms.locfileid: "94639007"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97371494"
 ---
 # <a name="best-practices-for-using-power-bi-to-query-and-visualize-azure-data-explorer-data"></a>Power BI を使用して Azure Data Explorer データのクエリと視覚化を行う場合のベスト プラクティス
 
@@ -26,7 +26,7 @@ Azure Data Explorer は、ログと利用統計情報データのための高速
 
 * **複合モデル** - [複合モデル](/power-bi/desktop-composite-models)を使用して、トップレベルのダッシュボードの集計データとフィルター処理された運用の生データを組み合わせます。 生データを使用するタイミングと、集計ビューを使用するタイミングを明確に定義できます。 
 
-* **Import モードと DirectQuery モード** - 小規模なデータ セットの操作には **Import** モードを使用します。 大規模で頻繁に更新されるデータ セットには **DirectQuery** モードを使用します。 たとえば、ディメンション テーブルは、サイズが小さく、頻繁に変更されないため、**Import** モードを使用して作成します。 予想されるデータ更新の速度に応じて、更新間隔を設定します。 ファクト テーブルは、サイズが大きく、生データが含まれているため、**DirectQuery** モードを使用して作成します。 これらのテーブルを使用し、Power BI の [drillthrough](/power-bi/desktop-drillthrough) を使用してフィルター処理されたデータを表示します。
+* **Import モードと [DirectQuery](/power-bi/connect-data/desktop-directquery-about) モード** - 小規模なデータ セットの操作には **Import** モードを使用します。 大規模で頻繁に更新されるデータ セットには **DirectQuery** モードを使用します。 たとえば、ディメンション テーブルは、サイズが小さく、頻繁に変更されないため、**Import** モードを使用して作成します。 予想されるデータ更新の速度に応じて、更新間隔を設定します。 ファクト テーブルは、サイズが大きく、生データが含まれているため、**DirectQuery** モードを使用して作成します。 これらのテーブルを使用し、Power BI の [drillthrough](/power-bi/desktop-drillthrough) を使用してフィルター処理されたデータを表示します。 **DirectQuery** を使用するときは、[**クエリの削減**](/power-bi/connect-data/desktop-directquery-about#report-design-guidance)を使用して、準備が整う前にレポートにデータが読み込まれないようにすることができます。
 
 * **並列性** - Azure Data Explorer は、直線的にスケーラブルなデータ プラットフォームです。そのため、次のようにエンドツーエンド フローの並列性を高めることで、ダッシュボード レンダリングのパフォーマンスを向上させることができます。
 

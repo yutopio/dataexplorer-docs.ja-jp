@@ -7,12 +7,12 @@ ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 10/11/2020
-ms.openlocfilehash: e018e8ae6b25437a8665a5b5eb90fc2bac4ce9b9
-ms.sourcegitcommit: 3d9b4c3c0a2d44834ce4de3c2ae8eb5aa929c40f
+ms.openlocfilehash: 133f01498d4cf430d7fdc2649df88186610b3954
+ms.sourcegitcommit: fcaf3056db2481f0e3f4c2324c4ac956a4afef38
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/13/2020
-ms.locfileid: "92003277"
+ms.lasthandoff: 12/14/2020
+ms.locfileid: "97388972"
 ---
 # <a name="enginev3---preview"></a>EngineV3 - プレビュー
 
@@ -33,34 +33,28 @@ EngineV3 モードで実行される Azure Data Explorer クラスターは、En
 
 EngineV3 は、既存の列ストア (EngineV2) および行ストア (ストリーミング インジェストに使用される) と並行して実行される追加の列ストア ストレージ エンジンです。 テーブルには、3 つすべてのストアのデータを一度に組み込むことができます。そして、この "フェデレーション" データは、ユーザーの観点からは見えません。
 
-:::image type="content" source="media\engine-v3\engine-v3-architecture.png" alt-text="Azure Data Explorer/Kusto EngineV3 アーキテクチャの概略図&quot;:::
+:::image type="content" source="media\engine-v3\engine-v3-architecture.png" alt-text="Azure Data Explorer/Kusto EngineV3 アーキテクチャの概略図":::
 
 テーブルに取り込まれたすべてのデータは、テーブルの水平スライスであるシャードにパーティション分割されます。 通常、各シャードには数百万のレコードが含まれ、他のシャードとは別にエンコードされて、インデックスが作成されます。 この機能により、エンジンはインジェスト スループットの線形スケールを実現できます。
 
 シャードはクラスター ノード間で均等に分散され、ローカル SSD とメモリの両方にキャッシュされます。 クエリ プランナーとクエリ エンジンにより、このシャード ディストリビューションとキャッシュの利点を活用する、高度に分散された並列クエリが作成されて実行されます。
 
-EngineV3 では、分散クエリのこの &quot;下部" を最適化することに重点が置かれます。
+EngineV3 では、分散クエリのこの "下部" を最適化することに重点が置かれます。
 
 ## <a name="performance"></a>パフォーマンス
 
 パフォーマンスの改善とクエリ速度の向上は、このエンジンにおける 2 つの主要な変更点によるものです。
 
-* 新しく改良されたシャード ストレージ形式。
-* 低レベルのシャード クエリ エンジンの再設計。
+* **新しく改良されたシャード ストレージ形式。** EngineV2 と同様に、ストレージ形式は、非構造化 (テキスト) と半構造化のデータ型に特化した圧縮列ストアです。 EngineV3 では、これらの異なるデータ型のエンコードが向上しています。 インデックスは、粒度を上げるために再設計されており、データをスキャンせずにインデックスに基づいてクエリの一部を評価できます。
+* **低レベルのシャード クエリ エンジンの再設計。** 新しいシャード クエリは、Just-In-Time で非常に効率的なマシン コードにコンパイルされるため、高速で効率的な結合クエリの評価ロジックが得られます。 クエリのコンパイルは、すべてのシャードから収集されたデータ統計を基にしており、列エンコードの詳細に合わせて調整されます。
 
 EngineV3 のパフォーマンスへの影響は、使用されているデータセット、クエリ パターン、コンカレンシー、VM SKU によって異なります。 パフォーマンス テストでは、100 TB のデータセットが使用され、構造化、非構造化、半構造化データに対する分析を含むさまざまなシナリオが調査されました。 同じレベルのコンカレンシーで、同じハードウェア構成を使用した場合、パフォーマンスの向上は平均で約 8 倍でした。 実際のパフォーマンスの向上は、クエリとデータセットによって異なります。
 
 ## <a name="create-an-enginev3-cluster"></a>EngineV3 クラスターを作成する
 
-EngineV3 を使用して[新しいクラスターを作成](create-cluster-database-portal.md)するには、クラスター作成画面の **[基本]** タブで、 **[Use Engine V3 preview]\(Engine V3 プレビューを使用する\)** チェックボックスを選択します。
+EngineV3 を使用して [新しいクラスターを作成](create-cluster-database-portal.md)するには、クラスター作成画面の **[基本]** タブで、 **[Use Engine V3 preview]\(Engine V3 プレビューを使用する\)** チェックボックスを選択します。
 
-:::image type="content" source="media/engine-v3/create-new-cluster-v3.png" alt-text="Azure Data Explorer/Kusto EngineV3 アーキテクチャの概略図&quot;:::
-
-テーブルに取り込まれたすべてのデータは、テーブルの水平スライスであるシャードにパーティション分割されます。 通常、各シャードには数百万のレコードが含まれ、他のシャードとは別にエンコードされて、インデックスが作成されます。 この機能により、エンジンはインジェスト スループットの線形スケールを実現できます。
-
-シャードはクラスター ノード間で均等に分散され、ローカル SSD とメモリの両方にキャッシュされます。 クエリ プランナーとクエリ エンジンにより、このシャード ディストリビューションとキャッシュの利点を活用する、高度に分散された並列クエリが作成されて実行されます。
-
-EngineV3 では、分散クエリのこの &quot;下部":::
+:::image type="content" source="media/engine-v3/create-new-cluster-v3.png" alt-text="クラスター作成時の [Use Engine V3 preview]\(Engine V3 プレビューを使用する\) チェックボックスを示すスクリーンショット":::
 
 ## <a name="next-steps"></a>次のステップ
 

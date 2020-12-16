@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/04/2020
-ms.openlocfilehash: 8f19606a75c388917a5195d0ac5cbb0ecf4335f9
-ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
+ms.openlocfilehash: 166d5f4f4d81957c49fb3fdedd3b2654985648ab
+ms.sourcegitcommit: 35236fefb52978ce9a09bc36affd5321acb039a4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96321133"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97514067"
 ---
 # <a name="update-policy-overview"></a>更新ポリシーの概要
 
@@ -40,6 +40,7 @@ ms.locfileid: "96321133"
 * `Source` `Query` ポリシーの一部またはパートによって参照される関数内のテーブルを参照する場合 `Query` :
    * テーブルの修飾名は使用しないでください。 代わりに `TableName` を使用してください。 
    * またはを使用しないで `database("DatabaseName").TableName` `cluster("ClusterName").database("DatabaseName").TableName` ください。
+* ストリーミングインジェストの更新ポリシーの制限事項については、「 [ストリーミングインジェストの制限](../../ingest-data-streaming.md#limitations)」を参照してください。 
 
 > [!WARNING]
 > 更新ポリシーで正しくないクエリを定義すると、データがソーステーブルに取り込まれたされるのを防ぐことができます。

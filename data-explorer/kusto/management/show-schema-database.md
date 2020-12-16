@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
-ms.openlocfilehash: b77fe78ec43bce775774ae95c1ea713d03873cf4
-ms.sourcegitcommit: c351c2c8ab6e184827c4702eb0ec8bf783c7bbd3
+ms.openlocfilehash: 4f3639aeb6e401aa37703bbef929af2275960a91
+ms.sourcegitcommit: 35236fefb52978ce9a09bc36affd5321acb039a4
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/18/2020
-ms.locfileid: "94874799"
+ms.lasthandoff: 12/15/2020
+ms.locfileid: "97513971"
 ---
 # <a name="show-database-schema-commands"></a>。データベーススキーマコマンドを表示します。
 
@@ -50,12 +50,12 @@ ms.locfileid: "94874799"
 |DatabaseName|TableName|ColumnName|[列の型]|IsDefaultTable|IsDefaultColumn|"この名前"|Version
 |---|---|---|---|---|---|---|--- 
 |TestDB||||False|False||v1.1       
-|TestDB|events|||True|False||       
-|TestDB|events| 名前|System.String|True|False||     
-|TestDB|events| StartTime|  System.DateTime|True|False||    
-|TestDB|events| EndTime|    System.DateTime|True|False||        
-|TestDB|events| City|   System.String|True| False||     
-|TestDB|events| SessionId|  System.Int32|True|  True|| 
+|TestDB|イベント|||正|誤||       
+|TestDB|イベント| 名前|System.String|正|誤||     
+|TestDB|イベント| StartTime|  System.DateTime|正|誤||    
+|TestDB|イベント| EndTime|    System.DateTime|正|誤||        
+|TestDB|イベント| City|   System.String|正| 誤||     
+|TestDB|イベント| SessionId|  System.Int32|True|  True|| 
 
 **例** 
 
@@ -70,12 +70,12 @@ ms.locfileid: "94874799"
 |DatabaseName|TableName|ColumnName|[列の型]|IsDefaultTable|IsDefaultColumn|"この名前"|Version
 |---|---|---|---|---|---|---|--- 
 |TestDB||||False|False||v1.1       
-|TestDB|events|||True|False||       
-|TestDB|events| 名前|System.String|True|False||     
-|TestDB|events| StartTime|  System.DateTime|True|False||    
-|TestDB|events| EndTime|    System.DateTime|True|False||        
-|TestDB|events| City|   System.String|True| False||     
-|TestDB|events| SessionId|  System.Int32|True|  True||  
+|TestDB|イベント|||正|誤||       
+|TestDB|イベント| 名前|System.String|正|誤||     
+|TestDB|イベント| StartTime|  System.DateTime|正|誤||    
+|TestDB|イベント| EndTime|    System.DateTime|正|誤||        
+|TestDB|イベント| City|   System.String|正| 誤||     
+|TestDB|イベント| SessionId|  System.Int32|True|  True||  
 
 現在のデータベースバージョンよりも古いバージョンが指定されたため、' TestDB ' スキーマが返されました。 等しいまたはそれ以降のバージョンを指定すると、空の結果が生成されます。
 
@@ -112,25 +112,23 @@ ms.locfileid: "94874799"
 
 **構文**
 
-`.show``database` *DatabaseName* `schema` DatabaseName `as``csl` `script` [ `with(` *オプション* `)` ]
+`.show``database`  `schema` DatabaseName `as``csl` `script` [ `with(` *オプション* `)` ]
 
 **引数**
 
 次の *オプション* はすべて省略可能です。
 
-* `IncludeEncodingPolicies`: ( `true`  |  `false` )-の場合 `true` 、データベース/テーブル/列レベルでのエンコードポリシーが含まれます。 既定値は `false` です。 
+* `IncludeEncodingPolicies`: ( `true`  |  `false` )-の場合 `true` 、データベース/テーブル/列レベルでのエンコードポリシーが含まれます。 既定値は、`false` です。 
 * `IncludeSecuritySettings`: ( `true`  |  `false` )-既定値 `false` はです。 の場合 `true` 、次のオプションが含まれます。
   * データベース/テーブルレベルで承認されたプリンシパル。
   * テーブルレベルの行レベルのセキュリティポリシー。
   * テーブルレベルでの制限付きビューアクセスポリシー。
-* `IncludeIngestionMappings`: ( `true`  |  `false` )-の場合 `true` 、テーブルレベルでのインジェストマッピングが含まれます。 既定値は `false` です。 
+* `IncludeIngestionMappings`: ( `true`  |  `false` )-の場合 `true` 、テーブルレベルでのインジェストマッピングが含まれます。 既定値は、`false` です。 
 
 **戻り値**
 
 文字列として返されるスクリプトには、次のものが含まれます。
 
-* データベースを作成し、その名前を設定するコマンド (存在する場合)。
-  * 生成されたコマンドは揮発性データベースを作成し、スクリプトに追加されるとコメントアウトされます。
 * コマンドを作成して、データベース内のすべてのテーブルを作成します。
 * すべてのデータベース/テーブル/列ポリシーを元のポリシーと一致するように設定するコマンド。
 * データベース内のすべてのユーザー定義関数を作成または変更するコマンド。

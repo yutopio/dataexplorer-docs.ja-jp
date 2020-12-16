@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 11/29/2020
 no-loc: LOWESS
-ms.openlocfilehash: da384b1a907e4b524fc40f1c4133be5cf8e21c9c
-ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
+ms.openlocfilehash: 9a72905820a55f2fbd6f200514cac69450aa9277
+ms.sourcegitcommit: 335e05864e18616c10881db4ef232b9cda285d6a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96469754"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97596805"
 ---
 # <a name="series_fit_lowess_fl"></a>series_fit_lowess_fl()
 
@@ -35,7 +35,7 @@ ms.locfileid: "96469754"
 * *x_series*: [独立変数](https://www.wikipedia.org/wiki/Dependent_and_independent_variables)、つまり x または時間軸を含む列の名前。 このパラメーターは省略可能であり、均等の [時系列](https://www.wikipedia.org/wiki/Unevenly_spaced_time_series)に対してのみ必要です。 既定値は空の文字列です。 x は均等に並んだ系列の回帰に対して冗長です。
 * *x_istime*: このブール型パラメーターは、 *x_series* が指定されていて、それが datetime のベクターである場合にのみ必要です。 このパラメーターは省略可能で、既定値は *False* です。
 
-## <a name="usage"></a>使用
+## <a name="usage"></a>使用法
 
 `series_fit_lowess_fl()` は、ユーザー定義関数の [表形式関数](../query/functions/user-defined-functions.md#tabular-function)であり、 [invoke 演算子](../query/invokeoperator.md)を使用して適用されます。 クエリにコードを埋め込むか、データベースにインストールすることができます。 使用方法には、アドホックと永続的な2つの方法があります。 例については、以下のタブを参照してください。
 
@@ -137,7 +137,7 @@ series_fit_lowess_fl(tbl:(*), y_series:string, y_fit_series:string, fit_size:int
 }
 ```
 
-### <a name="usage"></a>使用
+### <a name="usage"></a>使用法
 
 <!-- csl: https://help.kusto.windows.net:443/Samples -->
 ```kusto
@@ -163,39 +163,39 @@ demo_make_series1
 ### <a name="test-irregular-time-series"></a>不規則な時系列をテストする
 
 次の例では、不規則 (均等間隔) の時系列をテストします。
-    
-    <!-- csl: https://help.kusto.windows.net:443/Samples -->
-    ```kusto
-    let max_t = datetime(2016-09-03);
-    demo_make_series1
-    | where TimeStamp between ((max_t-1d)..max_t)
-    | summarize num=count() by bin(TimeStamp, 5m), OsVer
-    | order by TimeStamp asc
-    | where hourofday(TimeStamp) % 6 != 0   //  delete every 6th hour to create irregular time series
-    | summarize TimeStamp=make_list(TimeStamp), num=make_list(num) by OsVer
-    | extend fnum = dynamic(null)
-    | invoke series_fit_lowess_fl('num', 'fnum', 9, 'TimeStamp', True)
-    | render timechart 
-    ```
-    
-    :::image type="content" source="images/series-fit-lowess-fl/lowess-irregular-time-series.png" alt-text="Graph showing nine points LOWESS fit to an irregular time series" border="false":::
+
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
+```kusto
+let max_t = datetime(2016-09-03);
+demo_make_series1
+| where TimeStamp between ((max_t-1d)..max_t)
+| summarize num=count() by bin(TimeStamp, 5m), OsVer
+| order by TimeStamp asc
+| where hourofday(TimeStamp) % 6 != 0   //  delete every 6th hour to create irregular time series
+| summarize TimeStamp=make_list(TimeStamp), num=make_list(num) by OsVer
+| extend fnum = dynamic(null)
+| invoke series_fit_lowess_fl('num', 'fnum', 9, 'TimeStamp', True)
+| render timechart 
+```
+
+:::image type="content" source="images/series-fit-lowess-fl/lowess-irregular-time-series.png" alt-text="Graph showing nine points :::no loc (LOWESS)::: 不規則なタイムシリーズに適合する "border =" false ":::
 
 比較と LOWESS 多項式フィット
 
 次の例には、x 軸と y 軸にノイズがある5番目の注文多項式が含まれています。 と多項式適合の比較を参照してください LOWESS 。 
 
-    <!-- csl: https://help.kusto.windows.net:443/Samples -->
-    ```kusto
-    range x from 1 to 200 step 1
-    | project x = rand()*5 - 2.3
-    | extend y = pow(x, 5)-8*pow(x, 3)+10*x+6
-    | extend y = y + (rand() - 0.5)*0.5*y
-    | summarize x=make_list(x), y=make_list(y)
-    | extend y_lowess = dynamic(null)
-    | invoke series_fit_lowess_fl('y', 'y_lowess', 15, 'x')
-    | extend series_fit_poly(y, x, 5)
-    | project x, y, y_lowess, y_polynomial=series_fit_poly_y_poly_fit
-    | render linechart
-    ```
-        
-    :::image type="content" source="images/series-fit-lowess-fl/lowess-vs-poly-fifth-order-noise.png" alt-text="Graphs of LOWESS vs polynomial fit for a fifth order polynomial with noise on x & y axes":::
+<!-- csl: https://help.kusto.windows.net:443/Samples -->
+```kusto
+range x from 1 to 200 step 1
+| project x = rand()*5 - 2.3
+| extend y = pow(x, 5)-8*pow(x, 3)+10*x+6
+| extend y = y + (rand() - 0.5)*0.5*y
+| summarize x=make_list(x), y=make_list(y)
+| extend y_lowess = dynamic(null)
+| invoke series_fit_lowess_fl('y', 'y_lowess', 15, 'x')
+| extend series_fit_poly(y, x, 5)
+| project x, y, y_lowess, y_polynomial=series_fit_poly_y_poly_fit
+| render linechart
+```
+
+:::image type="content" source="images/series-fit-lowess-fl/lowess-vs-poly-fifth-order-noise.png" alt-text="Graphs of :::x & y 軸でのノイズを含む5番目の注文多項式に対して、loc (LOWESS)::: vs の多項式フィットが発生する場合::::

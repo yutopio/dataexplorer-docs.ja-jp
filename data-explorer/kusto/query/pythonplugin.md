@@ -10,19 +10,19 @@ ms.topic: reference
 ms.date: 04/01/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 98888ddd5dd6155c9476163337e7c031e0f84a1e
-ms.sourcegitcommit: afc369ab4c4bcc74f2dce22b397a340572db8ecf
+ms.openlocfilehash: 918d0f2f7fa8667a4cf90b2813bb3b80dd49fa78
+ms.sourcegitcommit: 335e05864e18616c10881db4ef232b9cda285d6a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87528148"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97596857"
 ---
 # <a name="python-plugin"></a>Python プラグイン
 
 ::: zone pivot="azuredataexplorer"
 
 Python プラグインは、Python スクリプトを使用してユーザー定義関数 (UDF) を実行します。 Python スクリプトは、入力として表形式のデータを取得し、表形式の出力を生成することが想定されています。
-プラグインのランタイムは、クラスターのノード上で実行される[サンド](../concepts/sandboxes.md)ボックスでホストされます。
+プラグインのランタイムは、クラスターのノード上で実行される [サンド](../concepts/sandboxes.md)ボックスでホストされます。
 
 ## <a name="syntax"></a>構文
 
@@ -32,17 +32,17 @@ Python プラグインは、Python スクリプトを使用してユーザー定
 
 * *output_schema*: `type` Python コードによって返される表形式データの出力スキーマを定義するリテラル。
     * 形式は、 `typeof(` *ColumnName* `:` *ColumnType*[,...] `)` です。たとえば、のように `typeof(col1:string, col2:long)` なります。
-    * 入力スキーマを拡張するには、次の構文を使用します。`typeof(*, col1:string, col2:long)`
+    * 入力スキーマを拡張するには、次の構文を使用します。 `typeof(*, col1:string, col2:long)`
 * *script*: `string` 実行する有効な Python スクリプトであるリテラル。
-* *script_parameters*: 省略可能な `dynamic` リテラルです。 これは、予約済みの辞書として Python スクリプトに渡される名前と値のペアのプロパティバッグ `kargs` です。 詳細については、「[予約済みの Python 変数](#reserved-python-variables)」を参照してください。
+* *script_parameters*: 省略可能な `dynamic` リテラルです。 これは、予約済みの辞書として Python スクリプトに渡される名前と値のペアのプロパティバッグ `kargs` です。 詳細については、「 [予約済みの Python 変数](#reserved-python-variables)」を参照してください。
 * *ヒント: distribution*: プラグインの実行を複数のクラスターノードに分散するための省略可能なヒントです。
   * 既定値は `single` です。
   * `single`: スクリプトの1つのインスタンスがクエリデータ全体で実行されます。
   * `per_node`: Python ブロックの前にクエリが分散されている場合、スクリプトのインスタンスは、そのスクリプトに含まれているデータの各ノードで実行されます。
 * *external_artifacts*: `dynamic` クラウドストレージからアクセスできるアーティファクトの名前と URL のペアのプロパティバッグである省略可能なリテラルです。 スクリプトを実行時に使用できるようにすることができます。
   * このプロパティバッグで参照される Url は、次のようにする必要があります。
-    * クラスターの[コールアウトポリシー](../management/calloutpolicy.md)に含まれています。
-    * パブリックに使用可能な場所に保存するか、「[ストレージ接続文字列](../api/connection-strings/storage.md)」で説明されているように、必要な資格情報を指定します。
+    * クラスターの [コールアウトポリシー](../management/calloutpolicy.md)に含まれています。
+    * パブリックに使用可能な場所に保存するか、「 [ストレージ接続文字列](../api/connection-strings/storage.md)」で説明されているように、必要な資格情報を指定します。
   * アーティファクトは、スクリプトがローカル一時ディレクトリ () から使用できるようになり `.\Temp` ます。 プロパティバッグに指定された名前は、ローカルファイル名として使用されます。 [例](#examples)を参照してください。
   * 詳細については、「 [Python プラグインのパッケージのインストール](#install-packages-for-the-python-plugin)」を参照してください。 
 
@@ -51,35 +51,35 @@ Python プラグインは、Python スクリプトを使用してユーザー定
 次の変数は、Kusto クエリ言語と Python コード間のやり取りのために予約されています。
 
 * `df`: 入力表形式のデータ (上記の値) は、 `T` データフレームとして指定し `pandas` ます。
-* `kargs`: Python ディクショナリとしての*script_parameters*引数の値。
+* `kargs`: Python ディクショナリとしての *script_parameters* 引数の値。
 * `result`: `pandas` Python スクリプトによって作成されたデータフレーム。その値は、プラグインに従う Kusto クエリ演算子に送信される表形式のデータになります。
 
 ## <a name="enable-the-plugin"></a>プラグインの有効化
 
 * プラグインは既定で無効になっています。
-* プラグインを有効にするには、[前提条件](../concepts/sandboxes.md#prerequisites)の一覧を参照してください。
-* クラスターの [[構成] タブ](../../language-extensions.md)で、Azure portal のプラグインを有効または無効にします。
+* プラグインを有効にするには、 [前提条件](../concepts/sandboxes.md#prerequisites)の一覧を参照してください。
+* クラスターの [ [構成] タブ](../../language-extensions.md)で、Azure portal のプラグインを有効または無効にします。
 
 ## <a name="python-sandbox-image"></a>Python sandbox イメージ
 
-* Python sandbox イメージは、 *python 3.6*エンジンを使用した*Anaconda 5.2.0*ディストリビューションに基づいています。
+* Python sandbox イメージは、 *python 3.6* エンジンを使用した *Anaconda 5.2.0* ディストリビューションに基づいています。
   [Anaconda パッケージ](http://docs.anaconda.com/anaconda/packages/old-pkg-lists/5.2.0/py3.6_win-64/)の一覧を参照してください。
   
   > [!NOTE]
   > パッケージの小さな割合は、プラグインが実行されるサンドボックスによって適用される制限と互換性がない場合があります。
   
 * Python イメージには、共通の ML パッケージ、、、、、 `tensorflow` `keras` `torch` `hdbscan` `xgboost` およびその他の便利なパッケージも含まれています。
-* このプラグインは、既定で*numpy* (as) `np` &*パンダ*(as) をインポートし `pd` ます。  必要に応じて、他のモジュールをインポートできます。
+* このプラグインは、既定で *numpy* (as) `np` & *パンダ* (as) をインポートし `pd` ます。  必要に応じて、他のモジュールをインポートできます。
 
 ## <a name="use-ingestion-from-query-and-update-policy"></a>クエリおよび更新ポリシーからインジェストを使用する
 
 * 次のクエリでプラグインを使用します。
-  * [更新ポリシー](../management/updatepolicy.md)の一部として定義され、ソーステーブルが*非ストリーミング*インジェストを使用するように取り込まれたます。
-  * などの[クエリから取り込み](../management/data-ingestion/ingest-from-query.md)するコマンドの一部として実行し `.set-or-append` ます。
-    どちらの場合も、インジェストのボリュームと頻度、および Python ロジックで使用される複雑さとリソースについて、[サンドボックスの制限](../concepts/sandboxes.md#limitations)とクラスターの使用可能なリソースについて確認してください。 この操作を行わないと、[調整エラー](../concepts/sandboxes.md#errors)が発生する可能性があります。
-* 更新ポリシーの一部として定義されているクエリでプラグインを使用することはできません。このクエリでは、[ストリーミングインジェスト](../../ingest-data-streaming.md)を使用してソーステーブルを取り込まれたします。
+  * [更新ポリシー](../management/updatepolicy.md)の一部として定義され、ソーステーブルが *非ストリーミング* インジェストを使用するように取り込まれたます。
+  * などの [クエリから取り込み](../management/data-ingestion/ingest-from-query.md)するコマンドの一部として実行し `.set-or-append` ます。
+    どちらの場合も、インジェストのボリュームと頻度、および Python ロジックで使用される複雑さとリソースについて、 [サンドボックスの制限](../concepts/sandboxes.md#limitations) とクラスターの使用可能なリソースについて確認してください。 この操作を行わないと、 [調整エラー](../concepts/sandboxes.md#errors)が発生する可能性があります。
+* 更新ポリシーの一部として定義されているクエリでプラグインを使用することはできません。このクエリでは、 [ストリーミングインジェスト](../../ingest-data-streaming.md)を使用してソーステーブルを取り込まれたします。
 
-## <a name="examples"></a>使用例
+## <a name="examples"></a>例
 
 ```kusto
 range x from 1 to 360 step 1
@@ -131,10 +131,10 @@ print "This is an example for using 'external_artifacts'"
     * 可能であれば、ソースデータセットのフィルターを Kusto のクエリ言語で使用します。
     * ソース列のサブセットに対して計算を実行するには、プラグインを呼び出す前に、その列だけをプロジェクトに含めます。
 * `hint.distribution = per_node`スクリプト内のロジックが再頒布可能な場合は常にを使用します。
-    * 入力データセットをパーティション分割するために、 [partition 演算子](partitionoperator.md)を使用することもできます。
+    * 入力データセットをパーティション分割するために、 [partition 演算子](partitionoperator.md) を使用することもできます。
 * Python スクリプトのロジックを実装するには、可能な限り Kusto のクエリ言語を使用します。
 
-    ## <a name="example"></a>例
+    ### <a name="example"></a>例
 
     ```kusto    
     .show operations
@@ -150,16 +150,16 @@ print "This is an example for using 'external_artifacts'"
 
 ## <a name="usage-tips"></a>使用上のヒント
 
-* で Python スクリプトを含む複数行の文字列を生成するに `Kusto.Explorer` は、使い慣れた python エディター (*Jupyter*、 *Visual Studio Code*、 *PyCharm*など) から python スクリプトをコピーします。 
+* で Python スクリプトを含む複数行の文字列を生成するに `Kusto.Explorer` は、使い慣れた python エディター (*Jupyter*、 *Visual Studio Code*、 *PyCharm* など) から python スクリプトをコピーします。 
   次のいずれかの操作を行います。
-    * **F2**キーを押して、[ *Python で編集*] ウィンドウを開きます。 スクリプトをこのウィンドウに貼り付けます。 **[OK]** を選択します。 スクリプトは引用符と改行で修飾されるので、Kusto で有効であり、自動的に [クエリ] タブに貼り付けられます。
-    * Python コードを [クエリ] タブに直接貼り付けます。これらの行を選択し、 **ctrl + K**キー、 **ctrl + S**キーを押して、上記のように装飾します。 逆にするには、 **ctrl + K**キー、 **ctrl + M**キーの順に押します。 [クエリエディターのショートカット](../tools/kusto-explorer-shortcuts.md#query-editor)の完全な一覧を参照してください。
+    * **F2** キーを押して、[ *Python で編集*] ウィンドウを開きます。 スクリプトをこのウィンドウに貼り付けます。 **[OK]** を選択します。 スクリプトは引用符と改行で修飾されるので、Kusto で有効であり、自動的に [クエリ] タブに貼り付けられます。
+    * Python コードを [クエリ] タブに直接貼り付けます。これらの行を選択し、 **ctrl + K** キー、 **ctrl + S** キーを押して、上記のように装飾します。 逆にするには、 **ctrl + K** キー、 **ctrl + M** キーの順に押します。 [クエリエディターのショートカット](../tools/kusto-explorer-shortcuts.md#query-editor)の完全な一覧を参照してください。
 * Kusto 文字列の区切り記号と Python 文字列リテラルの間の競合を回避するには、次のように使用します。
      * Kusto `'` クエリの kusto 文字列リテラル用の単一引用符 ()
      * Python `"` スクリプトでの python 文字列リテラルの二重引用符文字 ()
 * [ `externaldata` オペレーター](externaldata-operator.md)を使用して、Azure Blob storage などの外部の場所に格納したスクリプトの内容を取得します。
   
-    ## <a name="example"></a>例
+    ### <a name="example"></a>例
 
     ```kusto
     let script = 
@@ -186,8 +186,8 @@ print "This is an example for using 'external_artifacts'"
 ### <a name="prerequisites"></a>前提条件
 
   1. パッケージをホストする blob コンテナーを作成します (可能であれば、クラスターと同じ場所に作成します)。 たとえば、 `https://artifcatswestus.blob.core.windows.net/python` クラスターが米国西部にあるとします。
-  1. クラスターの[コールアウトポリシー](../management/calloutpolicy.md)を変更して、その場所にアクセスできるようにします。
-        * この変更には、 [Alldatabasesadmin](../management/access-control/role-based-authorization.md)のアクセス許可が必要です。
+  1. クラスターの [コールアウトポリシー](../management/calloutpolicy.md) を変更して、その場所にアクセスできるようにします。
+        * この変更には、 [Alldatabasesadmin](../management/access-control/role-based-authorization.md) のアクセス許可が必要です。
 
         * たとえば、にある blob へのアクセスを有効にするには、 `https://artifcatswestus.blob.core.windows.net/python` 次のコマンドを実行します。
 
@@ -223,7 +223,7 @@ print "This is an example for using 'external_artifacts'"
 
 ### <a name="example"></a>例
 
-偽のデータを生成する[Faker](https://pypi.org/project/Faker/)パッケージをインストールします。
+偽のデータを生成する [Faker](https://pypi.org/project/Faker/) パッケージをインストールします。
 
 ```kusto
 range ID from 1 to 3 step 1 
@@ -239,7 +239,7 @@ range ID from 1 to 3 step 1
     external_artifacts=pack('faker.zip', 'https://artifacts.blob.core.windows.net/kusto/Faker.zip?...'))
 ```
 
-| ID | 名前         |
+| id | 名前         |
 |----|--------------|
 |   1| Gary Tapia   |
 |   2| Emma Evans   |

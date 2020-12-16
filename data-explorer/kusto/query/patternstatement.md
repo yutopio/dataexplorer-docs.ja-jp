@@ -10,18 +10,18 @@ ms.topic: reference
 ms.date: 02/13/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 1fa4c303624c62b7c43d2ddd0de58977ed6e42aa
-ms.sourcegitcommit: 608539af6ab511aa11d82c17b782641340fc8974
+ms.openlocfilehash: f8ae6bc55df90dc27fc329e9b49f63430cd77aba
+ms.sourcegitcommit: 335e05864e18616c10881db4ef232b9cda285d6a
 ms.translationtype: MT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/20/2020
-ms.locfileid: "92241344"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97596823"
 ---
 # <a name="pattern-statement"></a>pattern ステートメント
 
 ::: zone pivot="azuredataexplorer"
 
-**パターン**とは、定義済みの文字列の組をパラメーターなしの関数本体にマップする、名前付きビューのような構造です。 パターンは、次の2つの側面で一意です。
+**パターン** とは、定義済みの文字列の組をパラメーターなしの関数本体にマップする、名前付きビューのような構造です。 パターンは、次の2つの側面で一意です。
 
 * パターンは、スコープテーブル参照に似た構文を使用することによって呼び出されます。
 * パターンには、マップ可能な制御されたクローズ終了の引数値のセットがあり、マッププロセスは Kusto によって行われます。 パターンが宣言されていても定義されていない場合、Kusto は、パターンへのすべての呼び出しをエラーとして識別し、フラグを設定します。 この id を使用すると、中間層アプリケーションでこれらのパターンを "解決" できます。
@@ -46,7 +46,7 @@ app("ApplicationX").StartEvents
 
 このクエリでは、Kusto から次のパターン呼び出しを解決できないことを示すエラーが生成され `app("ApplicationX")["StartEvents"]` ます。 `app("ApplicationX")["StopEvents"]`
 
-## <a name="syntax"></a>構文
+## <a name="syntax-of-pattern-declaration"></a>パターン宣言の構文
 
 `declare``pattern`*パターン名*
 
@@ -67,7 +67,7 @@ app("ApplicationX").StartEvents
 
 一致する各パターンに対して指定される式は、テーブル名か [let ステートメント](letstatement.md)への参照のいずれかです。
 
-## <a name="syntax"></a>構文
+## <a name="syntax-of-pattern-definition"></a>パターン定義の構文
 
 `declare``pattern`*パターン*  =  名 `(`*Argname* `:`*Argtype* [ `,` ...] `)`[ `[` *パス名* `:` *pathargtype* `]` ]`{`
 &nbsp;&nbsp;&nbsp;&nbsp;`(` *ArgValue1* [ `,` *ArgValue2* ...] `)` [ `.[` * pathvalue `]` ] `=` `{` *式* `};` &nbsp; &nbsp; &nbsp; &nbsp; [ &nbsp; &nbsp; &nbsp; &nbsp; `(` *ArgValue1_2* [ `,` *ArgValue2_2* ...] `)` [ `.[` *PathValue_2* `]` ] `=` `{` *expression_2* `};` &nbsp; &nbsp; &nbsp; &nbsp; ... &nbsp; &nbsp; &nbsp; &nbsp; ]        `}`
@@ -88,7 +88,7 @@ app("ApplicationX").StartEvents
 * *パターン名* `(`*ArgValue1* [ `,` *ArgValue2* ...] `).`*Pathvalue*
 * *パターン名* `(`*ArgValue1* [ `,` *ArgValue2* ...] `).["`*Pathvalue*`"]`
 
-## <a name="notes"></a>メモ
+## <a name="notes"></a>Notes
 
 **シナリオ**
 

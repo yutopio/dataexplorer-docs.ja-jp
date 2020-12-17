@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 3b230ea0ed8bba80741e18f24cd96cf271224f25
-ms.sourcegitcommit: e278dae04f12658d0907f7b6ba46c6a34c53dcd7
+ms.openlocfilehash: be8d6e9172364d4177e7421e524cc067e4d58d18
+ms.sourcegitcommit: 66577436bcd1106f10fc9c0f233ee17b94478323
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/08/2020
-ms.locfileid: "96901105"
+ms.lasthandoff: 12/16/2020
+ms.locfileid: "97532189"
 ---
 # <a name="query-limits"></a>クエリの制限
 
@@ -128,6 +128,9 @@ T | where rand() < 0.1 | ...
 T | where hash(UserId, 10) == 1 | ...
 ```
 
+`maxmemoryconsumptionperiterator` が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、"*低い方*" の値が適用されます。
+
+
 ## <a name="limit-on-memory-per-node"></a>ノードあたりのメモリに対する制限
 
 **ノードあたりのクエリあたりの最大メモリ** は、"暴走" クエリから保護するために使用されるもう 1 つの制限です。 この制限は要求オプション `max_memory_consumption_per_query_per_node` で表され、特定のクエリに対して 1 つノードで使用できるメモリ量の上限が設定されます。
@@ -136,6 +139,8 @@ T | where hash(UserId, 10) == 1 | ...
 set max_memory_consumption_per_query_per_node=68719476736;
 MyTable | ...
 ```
+
+`max_memory_consumption_per_query_per_node`が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、"*低い方*" の値が適用されます。
 
 ## <a name="limit-on-accumulated-string-sets"></a>累積文字列セットに対する制限
 
@@ -176,10 +181,19 @@ Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too
 Kusto を使用すると、クエリを実行して、クラスターと同じ数の CPU リソースを使用できます。 複数のクエリが実行されている場合は、クエリ間で公平なラウンド ロビンが試行されます。 この方法では、アドホック クエリで最高のパフォーマンスが得られます。
 また、特定のクエリに使用される CPU リソースを制限する場合もあります。 たとえば、"バックグラウンド ジョブ" を実行する場合、システムによって高い待機時間が許容され、同時アドホック クエリの優先度が高くなる可能性があります。
 
-Kusto は、クエリの実行時に 2 つの[クライアント要求プロパティ](../api/netfx/request-properties.md)を指定することをサポートしています。 そのプロパティは、*query_fanout_threads_percent* と *query_fanout_nodes_percent* です。
-どちらのプロパティも既定値は最大値 (100) の整数ですが、クエリによっては他の値に減らすこともできます。 
+Kusto は、クエリの実行時に 2 つの[クライアント要求プロパティ](../api/netfx/request-properties.md)を指定することをサポートしています。
+そのプロパティは、*query_fanout_threads_percent* と *query_fanout_nodes_percent* です。
+どちらのプロパティも既定値は最大値 (100) の整数ですが、クエリによっては他の値に減らすこともできます。
 
-1 つ目 *query_fanout_threads_percent* を使用すると、スレッドの使用に対するファンアウト係数を制御できます。 100% の場合、クラスターによって各ノードにすべての CPU が割り当てられます。 たとえば、Azure D14 ノードにデプロイされたクラスター上の 16 個の CPU です。 50% の場合は CPU の半分が使用されます。その他の値も同様です。 数値は CPU 全体に切り上げられるため、0 に設定しても問題ありません。 2 つ目の *query_fanout_nodes_percent* を使用すると、サブクエリの分散演算ごとに使用するクラスター内のクエリ ノード数を制御できます。 機能は同様です。
+1 つ目 *query_fanout_threads_percent* を使用すると、スレッドの使用に対するファンアウト係数を制御できます。
+100% の場合、クラスターによって各ノードにすべての CPU が割り当てられます。 たとえば、Azure D14 ノードにデプロイされたクラスター上の 16 個の CPU です。
+50% の場合は CPU の半分が使用されます。その他の値も同様です。
+数値は CPU 全体に切り上げられるため、0 に設定しても問題ありません。
+
+2 つ目の *query_fanout_nodes_percent* を使用すると、サブクエリの分散演算ごとに使用するクラスター内のクエリ ノード数を制御できます。
+機能は同様です。
+
+`query_fanout_nodes_percent` または `query_fanout_threads_percent` が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、"*低い方*" の値が適用されます。
 
 ## <a name="limit-on-query-complexity"></a>クエリの複雑さに対する制限
 

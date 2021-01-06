@@ -47,7 +47,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: セキュリティ
+    - name: Security
       items:
         - name: セキュリティの概要
           href: security.md
@@ -365,11 +365,11 @@
               href: dealing-with-duplicates.md
     - name: モニター
       items:
-        - name: 診断ログを使用してインジェスト、コマンド、クエリを監視する
-          href: using-diagnostic-logs.md
         - name: メトリックを使用して Azure Data Explorer を監視する
           displayName: 'health, performance'
           href: using-metrics.md
+        - name: 診断ログを使用してインジェスト、コマンド、クエリを監視する
+          href: using-diagnostic-logs.md
         - name: リソースの正常性を使用してクラスターの正常性を監視する
           href: monitor-with-resource-health.md
     - name: データの共有
@@ -1444,6 +1444,8 @@
                   href: ./kusto/management/show-ingestion-mapping-command.md
                 - name: .create テーブル
                   href: ./kusto/management/create-table-command.md
+                - name: .create table based-on
+                  href: ./kusto/management/create-table-based-on-command.md
                 - name: .create テーブル
                   href: ./kusto/management/create-tables-command.md
                 - name: .create-merge table

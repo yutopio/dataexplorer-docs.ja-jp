@@ -11,12 +11,12 @@ ms.date: 02/13/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: b8ad39e8c1233acc2df6c30059a6926cea85f37a
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 449a5043d26013c8a41ab6fafe0b3c907a22686b
+ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512810"
+ms.lasthandoff: 12/30/2020
+ms.locfileid: "97822765"
 ---
 # <a name="union-operator"></a>union 演算子
 
@@ -65,6 +65,10 @@ Table1 | union Table2, Table3
     *  `Events` などのテーブルの名前
     *  `(Events | where id==42)` など、かっこで囲む必要のあるクエリ式
     *  ワイルドカードで指定されたテーブルのセット。 たとえば、`E*` を使用すると、名前が `E` で始まるデータベース内のすべてのテーブルの和集合が形成されます。
+
+> [!NOTE]
+> テーブルのリストが分かっている場合は必ず、ワイルドカードを使用して調整してください。 ワークスペースに、非効率的な実行につながる膨大な数のテーブルが含まれている場合もあります。 時間の経過とともにテーブルが追加され、予想外の結果につながる可能性もあります。
+    
 * `kind`: 
     * `inner` - 結果には、すべての入力テーブルに共通する列のサブセットが含まれます。
     * `outer` - (既定値)。 結果には、入力のいずれかに存在するすべての列が含まれます。 入力行で定義されていなかったセルは `null` に設定されます。

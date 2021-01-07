@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 08/09/2020
 ms.localizationpriority: high
-ms.openlocfilehash: c102637adfa1fd0340d28a67b52354956b511ada
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 7723a3ccd06963596744db9c73f499a882b54c3e
+ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95513315"
+ms.lasthandoff: 12/30/2020
+ms.locfileid: "97822782"
 ---
 # <a name="let-statement"></a>let ステートメント
 
@@ -52,15 +52,15 @@ let ステートメントでは次の式をバインドできます。
 
  または
 
- [*TabularArgName* `:` `(` `*` `)`]
+ [*TabularArgName* `:` `(` `*` `)`] - 変数および不明な列を含む、表形式の式を示します。
 
 `ScalarArguments` - [*ArgName* `:` *ArgType*] [`,` ... ]
 
 
 |フィールド  |定義  |例  |
 |---------|---------|---------|
-| **view** | 引数を持たないパラメーターなしのラムダでのみ使用できます。 "すべてのテーブル" がクエリである場合に、バインドされた名前が含まれることを示します。 | たとえば、`union *` を使用する場合です。|
-| ***TabularArguments** _ | 式の表形式の仮引数のリスト。 
+| **view** | 引数を持たないパラメーターなしの let ステートメントでのみ使用できます。 'view' キーワードが使用されている場合、`union` 演算子とテーブルまたはビューのワイルドカードでの選択が使用されているクエリに、let ステートメントが含められます。 |  |
+| **_TabularArguments_* _ | 式の表形式の仮引数のリスト。 
 | 各表形式引数には次のものが含まれます。||
 |<ul><li> _TabularArgName*</li></ul> | 表形式の仮引数の名前。 名前は *FunctionBody* で使用でき、ラムダが呼び出されると特定の値にバインドされます。 ||
 |<ul><li>テーブルのスキーマ定義 </li></ul> | それらの型である属性のリスト| AtrName :AtrType|

@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 07/09/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 582683a9261d84fa24d819b5234e58effaf90a97
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 2ef75f2249466a9796fb0313186546bd9088ff07
+ms.sourcegitcommit: 28f18c3500992fd7dcfd95dffe2bae0161a22ca3
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512028"
+ms.lasthandoff: 12/28/2020
+ms.locfileid: "97792933"
 ---
 # <a name="the-dynamic-data-type"></a>動的なデータ型
 
@@ -163,6 +163,8 @@ CAST 関数は次のとおりです。
 * [make_set_if()](../makesetif-aggfunction.md) は、すべての一意の値を保持する配列を (述語を使用して) 返します。
 
 ## <a name="operators-and-functions-over-dynamic-types"></a>動的な型に対する演算子と関数
+
+スカラーの動的/配列関数の完全なリストについては、「[動的/配列関数](../scalarfunctions.md#dynamicarray-functions)」を参照してください。
 
 |演算子または関数|動的データ型の使用方法|
 |---|---|

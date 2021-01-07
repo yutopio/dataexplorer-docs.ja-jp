@@ -9,21 +9,21 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: be8d6e9172364d4177e7421e524cc067e4d58d18
-ms.sourcegitcommit: 66577436bcd1106f10fc9c0f233ee17b94478323
+ms.openlocfilehash: 455b3cfc3976566d9c4383890bbd4c20c775cf15
+ms.sourcegitcommit: 4c6bd4cb1eb1f64d84f844d4e7aff2de3a46b009
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/16/2020
-ms.locfileid: "97532189"
+ms.lasthandoff: 12/23/2020
+ms.locfileid: "97756366"
 ---
 # <a name="query-limits"></a>クエリの制限
 
 Kusto は、大規模なデータ セットをホストし、関連するすべてのデータをメモリ内に保持することでクエリを満たすことを試行するアドホック クエリ エンジンです。
-クエリによってサービス リソースが際限なく独占されるという固有のリスクがあります。 Kusto には、既定のクエリ制限という形で組み込みの保護機能が多数用意されています。 これらの制限を削除することを検討している場合は、まず、その結果として実際に何かメリットがあるかどうかを判断してください。
+クエリによってサービス リソースが際限なく独占されるという固有のリスクがあります。 Kusto には、既定のクエリ制限という形でいくつかの組み込みの保護が用意されています。 これらの制限を削除することを検討している場合は、まず、その結果として実際に何かメリットがあるかどうかを判断してください。
 
 ## <a name="limit-on-query-concurrency"></a>クエリの同時実行に対する制限
 
-**クエリの同時実行** は、クラスターによって、同時に実行されるクエリ数に課される制限です。
+**クエリの同時実行** は、クラスターによって、同時に実行される複数のクエリに課される制限です。
 
 * クエリの同時実行制限の既定値は、実行されている SKU クラスターによって変わり、`Cores-Per-Node x 10` として計算されます。
   * たとえば、各マシンに 16 個の仮想コアがある D14v2 SKU 上に設定されたクラスターの場合、既定のクエリ同時実行制限は `16 cores x10 = 160` です。
@@ -44,10 +44,10 @@ The Kusto DataEngine has failed to execute a query: 'Query result set has exceed
 The Kusto DataEngine has failed to execute a query: 'Query result set has exceeded the internal record count limit 500000 (E_QUERY_RESULT_SET_TOO_LARGE).'
 ```
 
-このエラーを処理するには、さまざまな方法があります。
+このエラーを処理するには、いくつかの方法があります。
 
 * 必要なデータのみを返すようにクエリを変更することで、結果セットのサイズを小さくします。 この戦略は、最初に失敗したクエリが "広範" である場合に役立ちます。 たとえば、不要なデータ列がクエリに反映されていない場合です。
-* 集計など、クエリ後の処理をクエリ自体に移動することで、結果セットのサイズを小さくします。 この戦略は、クエリの出力が別の処理システムに送られ、そこで追加の集計が行われるシナリオで役立ちます。
+* 集計など、クエリ後の処理をクエリ自体に移動することで、結果セットのサイズを小さくします。 この戦略は、クエリの出力が別の処理システムに送られ、そこで他の集計が行われるシナリオで役立ちます。
 * サービスから大量のデータ セットをエクスポートする場合は、クエリから[データのエクスポート](../management/data-export/index.md)の使用に切り替えます。
 * 次に示す `set` ステートメントまたは[クライアント要求プロパティ](../api/netfx/request-properties.md)のフラグを使用して、このクエリ制限を抑制するようにサービスに指示します。
 
@@ -68,7 +68,7 @@ set notruncation;
 MyTable | take 1000000
 ```
 
-`truncationmaxsize` (バイト単位の最大データ サイズ、既定値は 64 MB) と `truncationmaxrecords` (最大レコード数、既定値は 500,000) の値を設定することで、結果の切り捨てをより細かく制御することもできます。 たとえば、次のクエリを使用すると、1,105 レコードまたは 1 MB のいずれかを超えたときに結果の切り捨てが発生するように設定できます。
+`truncationmaxsize` (バイト単位の最大データ サイズ、既定値は 64 MB) と `truncationmaxrecords` (最大レコード数、既定値は 500,000) の値を設定することで、結果の切り捨てをより細かく制御することもできます。 たとえば、次のクエリでは、1,105 件のレコードまたは 1 MB のいずれかを超えたときに結果の切り捨てが発生するように設定されます。
 
 ```kusto
 set truncationmaxsize=1048576;
@@ -88,7 +88,7 @@ Kusto には、呼び出し元にストリーミングすることで、"非常�
 
 `set` ステートメントを使用する場合、または[クライアント要求のプロパティ](../api/netfx/request-properties.md)でフラグを指定する場合は、次のことが適用されます。
 
-* `notruncation` が設定されて、`truncationmaxsize`、`truncationmaxrecords` または `query_take_max_records` のいずれかも設定されている場合、`notruncation` は無視されます。
+* `notruncation` が設定されて、`truncationmaxsize`、`truncationmaxrecords`、`query_take_max_records` のいずれかも設定されている場合、`notruncation` は無視されます。
 * `truncationmaxsize`、`truncationmaxrecords` または `query_take_max_records` が複数回設定されている場合は、各プロパティの "*小さい*" 方の値が適用されます。
 
 ## <a name="limit-on-memory-per-iterator"></a>反復子あたりのメモリに対する制限
@@ -128,7 +128,7 @@ T | where rand() < 0.1 | ...
 T | where hash(UserId, 10) == 1 | ...
 ```
 
-`maxmemoryconsumptionperiterator` が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、"*低い方*" の値が適用されます。
+`maxmemoryconsumptionperiterator` が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、低い方の値が適用されます。
 
 
 ## <a name="limit-on-memory-per-node"></a>ノードあたりのメモリに対する制限
@@ -140,7 +140,7 @@ set max_memory_consumption_per_query_per_node=68719476736;
 MyTable | ...
 ```
 
-`max_memory_consumption_per_query_per_node`が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、"*低い方*" の値が適用されます。
+`max_memory_consumption_per_query_per_node` が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、低い方の値が適用されます。
 
 ## <a name="limit-on-accumulated-string-sets"></a>累積文字列セットに対する制限
 
@@ -186,14 +186,14 @@ Kusto は、クエリの実行時に 2 つの[クライアント要求プロパ�
 どちらのプロパティも既定値は最大値 (100) の整数ですが、クエリによっては他の値に減らすこともできます。
 
 1 つ目 *query_fanout_threads_percent* を使用すると、スレッドの使用に対するファンアウト係数を制御できます。
-100% の場合、クラスターによって各ノードにすべての CPU が割り当てられます。 たとえば、Azure D14 ノードにデプロイされたクラスター上の 16 個の CPU です。
-50% の場合は CPU の半分が使用されます。その他の値も同様です。
-数値は CPU 全体に切り上げられるため、0 に設定しても問題ありません。
+このプロパティが 100% に設定されている場合、クラスターによって各ノードにすべての CPU が割り当てられます。 たとえば、Azure D14 ノードにデプロイされたクラスター上の 16 個の CPU です。
+このプロパティが 50% に設定されている場合は CPU の半分が使用されます。その他の値も同様です。
+数値は CPU 全体に切り上げられるため、プロパティ値を 0 に設定しても問題ありません。
 
 2 つ目の *query_fanout_nodes_percent* を使用すると、サブクエリの分散演算ごとに使用するクラスター内のクエリ ノード数を制御できます。
 機能は同様です。
 
-`query_fanout_nodes_percent` または `query_fanout_threads_percent` が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、"*低い方*" の値が適用されます。
+`query_fanout_nodes_percent` または `query_fanout_threads_percent` が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、各プロパティの低い方の値が適用されます。
 
 ## <a name="limit-on-query-complexity"></a>クエリの複雑さに対する制限
 

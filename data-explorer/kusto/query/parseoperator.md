@@ -9,17 +9,16 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/13/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 2b034719fa7c2f3714020c722b5717f5cf8590ff
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: a9da3735df9299b387188157bbae3d561f5de631
+ms.sourcegitcommit: f20619fac91f9bb2e6507cac10d41fb8425218e0
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512963"
+ms.lasthandoff: 12/29/2020
+ms.locfileid: "97811771"
 ---
 # <a name="parse-operator"></a>parse 演算子
 
-文字列式が評価され、その値が 1 つまたは複数の計算列に解析されます。 解析が失敗した文字列の計算列には null が含まれます。
-詳細については、「[parse-where 演算子](parsewhereoperator.md)」を参照してください。
+文字列式が評価され、その値が 1 つまたは複数の計算列に解析されます。 解析が失敗した文字列の計算列には null が含まれます。 解析が成功しない行を使用する必要がない場合は、[parse-where 演算子](parsewhereoperator.md)を使用してください。
 
 ```kusto
 T | parse Text with "ActivityName=" name ", ActivityType=" type
@@ -87,7 +86,7 @@ T | parse Text with "ActivityName=" name ", ActivityType=" type
 `parse` 演算子を使用すると、同じ `string` 式で複数の `extract` アプリケーションを使用して、テーブルを簡単に `extend` できます。 この結果は、個別の列に分割する複数の値を含む `string` 列がテーブルに含まれている場合に便利です。 たとえば、開発者トレース ("`printf`"/"`Console.WriteLine`") ステートメントによって生成された列です。
 
 次の例では、テーブル `Traces` の列 `EventText` に `Event: NotifySliceRelease (resourceName={0}, totalSlices= {1}, sliceNumber={2}, lockTime={3}, releaseTime={4}, previousLockTime={5})` 形式の文字列が含まれているとします。
-このテーブルが、操作によって、`resourceName`、`totalSlices`、`sliceNumber`、`lockTime `、`releaseTime`、`previousLockTime`、`Month`、および `Day` の 6 つの列があるテーブルに拡張されます。 
+このテーブルが、操作によって、`resourceName`、`totalSlices`、`sliceNumber`、`lockTime `、`releaseTime`、`previousLockTime` の 6 つの列を含むように拡張されます。 
 
 <!-- csl: https://help.kusto.windows.net/Samples -->
 ```kusto

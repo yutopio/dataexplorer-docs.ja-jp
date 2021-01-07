@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 11/22/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 38b67a0843cc38c2cbce7d5a41a8eff85b25ebd5
-ms.sourcegitcommit: 7edce9d9d20f9c0505abda67bb8cc3d2ecd60d15
+ms.openlocfilehash: b20d9a3e6c01f59a9cde44d6462ffeb0072473ed
+ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/02/2020
-ms.locfileid: "96524302"
+ms.lasthandoff: 12/30/2020
+ms.locfileid: "97822884"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>クイック スタート:Azure Data Explorer の Web UI でデータのクエリを実行する
 
@@ -88,7 +88,8 @@ Azure Data Explorer は、大量のデータのリアルタイム分析を実現
 1. 次のクエリをコピーし、クエリ ウィンドウの最初のクエリの下に貼り付けます。 最初のクエリのように異なる行に書式設定されていないことに注意してください。
 
     ```kusto
-    StormEvents | sort by StartTime desc | project StartTime, EndTime, State, EventType, DamageProperty, EpisodeNarrative | take 10
+    StormEvents | sort by StartTime desc 
+    | project StartTime, EndTime, State, EventType, DamageProperty, EpisodeNarrative | take 10
     ```
 
 1. 新しいクエリを選択します。 *Shift + Alt + F* キーを押して、クエリを次のように書式設定します。
@@ -247,6 +248,7 @@ Web UI でクエリを使用してデータ探索を完了し、必要なデー�
 
 * [環境の設定をエクスポートする](#export-environment-settings)
 * [環境の設定をインポートする](#import-environment-settings)
+* [エラーのレベルで強調表示する](#highlight-error-levels)
 * [ローカル状態をクリアする](#clean-up-resources)
 
 右上にある設定アイコン :::image type="icon" source="media/web-query-data/settings-icon.png" border="false"::: を選択して、 **[設定]** ウィンドウを開きます。
@@ -277,6 +279,21 @@ Web UI でクエリを使用してデータ探索を完了し、必要なデー�
 
 > [!NOTE]
 > **[インポート]** を使用すると、既存の環境設定とデータが上書きされます。
+
+### <a name="highlight-error-levels"></a>エラーのレベルで強調表示する
+
+Kusto では、結果パネルの各行の重大度または詳細レベルを解釈し、それに応じて色の設定を試みます。 これは、各列の個別の値を一連の既知のパターン ("警告"、"エラー" など) と照合することによって行われます。 
+
+エラーのレベルでの強調表示を有効にするには、以下を行います。
+
+1. ユーザー名の隣にある **[設定]** アイコンを選択します。
+1. **[表示]** タブを選択し、 **[エラーのレベルでの強調表示を有効にする]** オプションを右に切り替えます。 
+
+:::image type="content" source="media/web-query-data/enable-error-highlighting.gif" alt-text="設定でエラーのレベルでの強調表示を有効にする方法を示しているアニメーション GIF":::
+
+**ライト** モードでのエラー レベルの配色 | **ダーク** モードでのエラー レベルの配色
+|---|---|
+:::image type="content" source="media/web-query-data/light-mode.png" alt-text="ライト モードでの色の凡例のスクリーン ショット"::: | :::image type="content" source="media/web-query-data/dark-mode.png" alt-text="ダーク モードでの色の凡例のスクリーン ショット":::
 
 ## <a name="provide-feedback"></a>フィードバックの提供
 

@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 05/19/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 0086fb9f649d7bb3b7031521812c1dff0ca532f7
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 2c23633c13c2a58f3c6e6e9b9daf001942117bfb
+ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95513065"
+ms.lasthandoff: 12/30/2020
+ms.locfileid: "97822833"
 ---
 # <a name="kustoexplorer-installation-and-user-interface"></a>Kusto.Explorer のインストールとユーザー インターフェイス
 
@@ -325,6 +325,11 @@ Kusto.Explorer では、結果パネルの各行の重大度または詳細レ�
 出力の配色を変更する、またはこの動作を無効にするには、 **[ツール]** メニューから、 **[オプション]**  >  **[結果ビューアー]**  >  **[Verbosity color scheme]\(配色の詳細\)** を選択します。
 
 :::image type="content" source="images/kusto-explorer/ke-color-scheme.png" alt-text="Kusto.Explorer の配色の変更":::
+
+
+**[Excel]** 配色の凡例| **[鮮やか]** 配色の凡例
+|---|---
+| :::image type="content" source="images/kusto-explorer/excel-color-scheme.png" alt-text="Kusto Explorer での [Excel] 配色の凡例に関するスクリーン ショット" border="false"::: |:::image type="content" source="images/kusto-explorer/vivid-color-scheme.png" alt-text="Kusto Explorer での [鮮やか] 配色の凡例に関するスクリーン ショット" border="false":::
 
 ## <a name="next-steps"></a>次のステップ
 

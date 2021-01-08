@@ -372,6 +372,8 @@
           href: using-diagnostic-logs.md
         - name: リソースの正常性を使用してクラスターの正常性を監視する
           href: monitor-with-resource-health.md
+        - name: Azure Monitor の分析情報を使用する
+          href: /azure/azure-monitor/insights/data-explorer?toc=/azure/data-explorer/toc.json&bc=/azure/data-explorer/breadcrumb/toc.json
     - name: データの共有
       items:
         - name: Azure Data Share の使用
@@ -414,7 +416,7 @@
                   href: /sql/azure-data-studio/notebooks/notebooks-kusto-kernel?context=/azure/data-explorer/context/context
                 - name: Kqlmagic を使用する
                   displayName: Azure Data Studio
-                  href: /sql/azure-data-studio/notebooks/notebooks-kqlmagic?context=%252fazure%252fdata-explorer%252fcontext%252fcontext
+                  href: /sql/azure-data-studio/notebooks/notebooks-kqlmagic?context=/azure/data-explorer/context/context
         - name: Azure Pipelines
           href: devops.md
         - name: Kusto の同期

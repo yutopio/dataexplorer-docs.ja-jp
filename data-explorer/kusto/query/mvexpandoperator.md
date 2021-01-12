@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/24/2019
 ms.localizationpriority: high
-ms.openlocfilehash: f14ec4fa24765053711d60f7d2365755b45adbab
-ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
+ms.openlocfilehash: e439fff119e005e44a0649fe22cadf3614ce036d
+ms.sourcegitcommit: 555f3da35fe250fabd35fcc6014bf055ef8405db
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96774641"
+ms.lasthandoff: 01/07/2021
+ms.locfileid: "97972500"
 ---
 # <a name="mv-expand-operator"></a>mv-expand 演算子
 
@@ -33,7 +33,7 @@ ms.locfileid: "96774641"
 * *ColumnName:* 結果では、指定された列内の配列が複数の行に展開されます。 
 * *ArrayExpression:* 配列を生成する式。 この形式を使用した場合は、新しい列が追加され、既存の列は保持されます。
 * *Name:* 新しい列の名前。
-* *Typename:* 配列の要素の基になる型を示します。これは、`mv-apply` 演算子によって生成される列の型になります。 型を適用する操作はキャストのみであり、解析や型変換は含まれません。 宣言されている型に準拠しない配列要素は `null` 値になります。
+* *Typename:* 配列の要素の基になる型を示します。これは、`mv-expand` 演算子によって生成される列の型になります。 型を適用する操作はキャストのみであり、解析や型変換は含まれません。 宣言されている型に準拠しない配列要素は `null` 値になります。
 * *RowLimit:* 元の各行から生成される行の最大数。 既定値は 2147483647 です。 
 
   > [!NOTE]

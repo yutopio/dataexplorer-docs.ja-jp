@@ -368,7 +368,7 @@
         - name: メトリックを使用して Azure Data Explorer を監視する
           displayName: 'health, performance'
           href: using-metrics.md
-        - name: 診断ログを使用してインジェスト、コマンド、クエリを監視する
+        - name: 診断ログを使用してインジェスト、コマンド、クエリ、テーブルを監視する
           href: using-diagnostic-logs.md
         - name: リソースの正常性を使用してクラスターの正常性を監視する
           href: monitor-with-resource-health.md

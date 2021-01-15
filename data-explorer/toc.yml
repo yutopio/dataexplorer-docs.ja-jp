@@ -47,7 +47,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: Security
+    - name: セキュリティ
       items:
         - name: セキュリティの概要
           href: security.md
@@ -86,7 +86,7 @@
             - name: ワンクリックでのインジェストの概要
               href: ingest-data-one-click.md
             - name: コンテナーから新しいテーブルへの CSV データ
-              displayName: 'ingest data, ingestion, one click'
+              displayName: 'Event Grid, ingest data, ingestion, one click'
               href: one-click-ingestion-new-table.md
             - name: ローカル ファイルから既存のテーブルへの JSON データ
               displayName: 'ingest data, ingestion, one click'

@@ -47,7 +47,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: セキュリティ
+    - name: Security
       items:
         - name: セキュリティの概要
           href: security.md
@@ -1713,24 +1713,28 @@
               href: ./kusto/management/access-control/how-to-authenticate-with-aad.md
         - name: 詳細なデータ管理
           items:
-            - name: エクステント (データ シャード) の概要
-              href: ./kusto/management/extents-overview.md
-            - name: エクステント コマンド
+            - name: エクステント (データ シャード)
               items:
-                - name: .alter extent
-                  href: ./kusto/management/alter-extent.md
-                - name: .drop extents
-                  href: ./kusto/management/drop-extents.md
-                - name: .drop extent tags
-                  href: ./kusto/management/drop-extent-tags.md
-                - name: .merge extents
-                  href: ./kusto/management/merge-extents.md
-                - name: .move extents
-                  href: ./kusto/management/move-extents.md
-                - name: .replace extents
-                  href: ./kusto/management/replace-extents.md
-                - name: .show extents
-                  href: ./kusto/management/show-extents.md
+                - name: エクステントの概要
+                  href: ./kusto/management/extents-overview.md
+                - name: エクステント コマンド
+                  items:
+                    - name: .alter extent
+                      href: ./kusto/management/alter-extent.md
+                    - name: .drop extents
+                      href: ./kusto/management/drop-extents.md
+                    - name: .drop extent tags
+                      href: ./kusto/management/drop-extent-tags.md
+                    - name: .merge extents
+                      href: ./kusto/management/merge-extents.md
+                    - name: .move extents
+                      href: ./kusto/management/move-extents.md
+                    - name: .replace extents
+                      href: ./kusto/management/replace-extents.md
+                    - name: .show extents
+                      href: ./kusto/management/show-extents.md
+                - name: エクステント コンテナーのクリーン コマンド
+                  href: ./kusto/management/clean-extent-containers.md
             - name: クラスター フォロワー
               href: ./kusto/management/cluster-follower.md
             - name: データの消去

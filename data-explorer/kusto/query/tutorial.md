@@ -11,12 +11,12 @@ ms.date: 10/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 930936bd9839730ccb0c438cc96a67334ea7ac71
-ms.sourcegitcommit: 64b7b320875950dfee8eb1a23d36aa95e27d7297
+ms.openlocfilehash: 90c1f09710bcfcf9394113a9eca4764fa51c696e
+ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/14/2021
-ms.locfileid: "98207807"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98636026"
 ---
 # <a name="tutorial-use-kusto-queries-in-azure-data-explorer-and-azure-monitor"></a>チュートリアル:Azure Data Explorer と Azure Monitor で Kusto クエリを使用する
 
@@ -416,7 +416,7 @@ StormEvents
 
 * 嵐の 5% の期間は 5 分未満である。
 * 嵐の 50% の継続時間は 1 時間 25 分未満であった。
-* 嵐の 95% は少なくとも 2 時間 50 分続いた。
+* 嵐の 95% の継続時間は 2 時間 50 分未満であった。
 
 州ごとの個別の内訳を取得するには、両方の `summarize` 演算子で `state` 列を個別に使用します。
 

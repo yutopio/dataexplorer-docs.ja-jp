@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: quickstart
 ms.date: 11/22/2020
 ms.localizationpriority: high
-ms.openlocfilehash: b20d9a3e6c01f59a9cde44d6462ffeb0072473ed
-ms.sourcegitcommit: 1530a38181ec92ed1c2c1f3aa2a75f69bd3e9045
+ms.openlocfilehash: e2c6a54e675c85d31b44b031f78629fd1afcf8a5
+ms.sourcegitcommit: 8c0674d2bc3c2e10eace5314c30adc7c9e4b3d44
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/30/2020
-ms.locfileid: "97822884"
+ms.lasthandoff: 01/19/2021
+ms.locfileid: "98571790"
 ---
 # <a name="quickstart-query-data-in-azure-data-explorer-web-ui"></a>クイック スタート:Azure Data Explorer の Web UI でデータのクエリを実行する
 
@@ -284,6 +284,8 @@ Web UI でクエリを使用してデータ探索を完了し、必要なデー�
 
 Kusto では、結果パネルの各行の重大度または詳細レベルを解釈し、それに応じて色の設定を試みます。 これは、各列の個別の値を一連の既知のパターン ("警告"、"エラー" など) と照合することによって行われます。 
 
+#### <a name="enable-error-level-highlighting"></a>エラーのレベルでの強調表示を有効にする
+
 エラーのレベルでの強調表示を有効にするには、以下を行います。
 
 1. ユーザー名の隣にある **[設定]** アイコンを選択します。
@@ -295,6 +297,22 @@ Kusto では、結果パネルの各行の重大度または詳細レベルを�
 |---|---|
 :::image type="content" source="media/web-query-data/light-mode.png" alt-text="ライト モードでの色の凡例のスクリーン ショット"::: | :::image type="content" source="media/web-query-data/dark-mode.png" alt-text="ダーク モードでの色の凡例のスクリーン ショット":::
 
+#### <a name="column-requirements-for-highlighting"></a>強調表示のため列の要件
+
+強調表示のエラーのレベルの場合、列の型は int、long、または string である必要があります。
+
+* 列の型が `long` または `int` の場合は、次のようになります。
+   * 列名は *Level* である必要があります。
+   * 値には 1 から 5 までの数字のみを含めることができます。
+* 列の型が `string` の場合は、次のようになります。 
+   * パフォーマンスを向上させるために、必要に応じて列名を *Level* にすることができます。 
+   * 列には、次の値のみを含めることができます。
+       * critical、crit、fatal、assert、high
+       * error、e
+       * warning、w、monitor
+       * 情報
+       * verbose、verb、d
+   
 ## <a name="provide-feedback"></a>フィードバックの提供
 
 1. アプリケーションの右上にあるフィードバック アイコン :::image type="icon" source="media/web-query-data/icon-feedback.png" border="false"::: を選択します。

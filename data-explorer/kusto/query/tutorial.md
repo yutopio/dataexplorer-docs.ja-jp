@@ -11,12 +11,12 @@ ms.date: 10/08/2020
 ms.localizationpriority: high
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 90c1f09710bcfcf9394113a9eca4764fa51c696e
-ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
+ms.openlocfilehash: bb9df9abc14d26d5c9a6faebe9c9d619ec75262b
+ms.sourcegitcommit: d77e52909001f885d14c4d421098a2c492b8c8ac
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/21/2021
-ms.locfileid: "98636026"
+ms.lasthandoff: 01/26/2021
+ms.locfileid: "98772512"
 ---
 # <a name="tutorial-use-kusto-queries-in-azure-data-explorer-and-azure-monitor"></a>チュートリアル:Azure Data Explorer と Azure Monitor で Kusto クエリを使用する
 
@@ -527,7 +527,7 @@ InsightsMetrics | count
 
 [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity) テーブルに含まれる Azure アクティビティ ログのエントリにより、Azure で発生したサブスクリプション レベルまたは管理グループ レベルのイベントに関する分析情報が提供されます。 特定の週の `Critical` エントリだけを表示してみましょう。
 
-[where](/azure/data-explorer/kusto/query/whereoperator) 演算子は Kusto クエリ言語でよく使用されます。 `where` によってテーブルがフィルター処理され、特定の条件に一致する行だけになります。 次の例では、複数のコマンドを使用します。 最初に、クエリでテーブルのすべてのレコードを取得します。 次に、データをフィルター処理し、ある時間範囲内のレコードだけを取得します。 最後に、それらの結果をフィルター処理して、`Critical` レベルのレコードのみを取得します。
+[where](./whereoperator.md) 演算子は Kusto クエリ言語でよく使用されます。 `where` によってテーブルがフィルター処理され、特定の条件に一致する行だけになります。 次の例では、複数のコマンドを使用します。 最初に、クエリでテーブルのすべてのレコードを取得します。 次に、データをフィルター処理し、ある時間範囲内のレコードだけを取得します。 最後に、それらの結果をフィルター処理して、`Critical` レベルのレコードのみを取得します。
 
 > [!NOTE]
 > `TimeGenerated` 列を使用してクエリでフィルターを指定するだけでなく、Log Analytics で時間の範囲を指定することもできます。 詳細については、「[Azure Monitor Log Analytics のログ クエリのスコープと時間範囲](/azure/azure-monitor/log-query/scope)」を参照してください。
@@ -661,11 +661,11 @@ InsightsMetrics
 
 ## <a name="join-data-from-two-tables"></a>2 つのテーブルのデータを結合する
 
-1 つのクエリで 2 つのテーブルからデータを取得する必要がある場合はどうすればよいでしょうか。 [join](/azure/data-explorer/kusto/query/joinoperator?pivots=azuremonitor) 演算子を使用すると、複数のテーブルの行を 1 つの結果セットに結合できます。 join で一致させる行がわかるように、各テーブルに一致する値を持つ列が含まれる必要があります。
+1 つのクエリで 2 つのテーブルからデータを取得する必要がある場合はどうすればよいでしょうか。 [join](./joinoperator.md?pivots=azuremonitor) 演算子を使用すると、複数のテーブルの行を 1 つの結果セットに結合できます。 join で一致させる行がわかるように、各テーブルに一致する値を持つ列が含まれる必要があります。
 
 [VMComputer](/azure/azure-monitor/reference/tables/vmcomputer) は、監視対象の仮想マシンに関する詳細を格納するために Azure Monitor で VM に使用されるテーブルです。 [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) には、それらの仮想マシンから収集されたパフォーマンス データが格納されます。 *InsightsMetrics* に収集される 1 つの値は使用可能なメモリであり、使用可能なメモリの割合ではありません。 割合を計算するには、各仮想マシンの物理メモリが必要です。 その値は `VMComputer` にあります。
 
-次のクエリ例では、join を使用してこの計算を実行します。 詳細は各コンピューターから定期的に収集されるため、[distinct](/azure/data-explorer/kusto/query/distinctoperator) 演算子が `VMComputer` で使用されています。 その結果、テーブルのコンピューターごとに複数の行が作成されます。 2 つのテーブルは、`Computer` 列を使用して結合されます。 `VMComputer` の `Computer` 列の値と一致する `Computer` の値を使用して、`InsightsMetrics` の行ごとに両方のテーブルの列を含む行が結果セットに作成されます。
+次のクエリ例では、join を使用してこの計算を実行します。 詳細は各コンピューターから定期的に収集されるため、[distinct](./distinctoperator.md) 演算子が `VMComputer` で使用されています。 その結果、テーブルのコンピューターごとに複数の行が作成されます。 2 つのテーブルは、`Computer` 列を使用して結合されます。 `VMComputer` の `Computer` 列の値と一致する `Computer` の値を使用して、`InsightsMetrics` の行ごとに両方のテーブルの列を含む行が結果セットに作成されます。
 
 ```kusto
 VMComputer

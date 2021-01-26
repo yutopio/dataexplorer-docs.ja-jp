@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 455b3cfc3976566d9c4383890bbd4c20c775cf15
-ms.sourcegitcommit: 4c6bd4cb1eb1f64d84f844d4e7aff2de3a46b009
+ms.openlocfilehash: 0a25e0a4354798780b652861ba93494135b6d581
+ms.sourcegitcommit: fd034cf3e3440dcbbbb8494eb4914572055afcee
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/23/2020
-ms.locfileid: "97756366"
+ms.lasthandoff: 01/25/2021
+ms.locfileid: "98759713"
 ---
 # <a name="query-limits"></a>クエリの制限
 
@@ -27,7 +27,7 @@ Kusto は、大規模なデータ セットをホストし、関連するすべ�
 
 * クエリの同時実行制限の既定値は、実行されている SKU クラスターによって変わり、`Cores-Per-Node x 10` として計算されます。
   * たとえば、各マシンに 16 個の仮想コアがある D14v2 SKU 上に設定されたクラスターの場合、既定のクエリ同時実行制限は `16 cores x10 = 160` です。
-* 既定値は、[クエリ調整ポリシー](../management/query-throttling-policy.md)を構成することで変更できます。 
+* `default` ワークロード グループの[要求レート制限ポリシー](../management/request-rate-limit-policy.md)を構成すると、既定値を変更できます。
   * クラスター上で同時に実行できるクエリの実際の数は、さまざまな要因によって変わります。 最も重要な要因は、クラスター SKU、クラスターの使用可能なリソース、クエリ パターンです。 クエリ調整ポリシーは、運用環境に似たクエリ パターンで実行される負荷テストに基づいて構成できます。
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>結果セット サイズに対する制限 (結果の切り捨て)

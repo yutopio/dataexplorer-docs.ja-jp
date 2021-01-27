@@ -1405,6 +1405,22 @@
         - name: 制御コマンドの概要
           displayName: Management
           href: ./kusto/management/index.md
+        - name: ワークロード グループ (プレビュー)
+          items:
+            - name: ワークロード グループの概要
+              href: ./kusto/management/workload-groups.md
+            - name: ワークロードグループの管理
+              href: ./kusto/management/workload-groups-commands.md
+            - name: 要求分類ポリシー
+              items:
+                - name: 要求分類ポリシー
+                  href: ./kusto/management/request-classification-policy.md
+                - name: 要求分類ポリシーのコマンド
+                  href: ./kusto/management/request-classification-policy-commands.md
+            - name: 要求制限ポリシー
+              href: ./kusto/management/request-limits-policy.md
+            - name: 要求レート制限ポリシー
+              href: ./kusto/management/request-rate-limit-policy.md
         - name: スキーマ
           items:
             - name: スキーマ管理のベスト プラクティス
@@ -1565,12 +1581,6 @@
                   href: ./kusto/management/partitioningpolicy.md
                 - name: パーティション分割ポリシー コマンド
                   href: ./kusto/management/partitioning-policy.md
-            - name: クエリ調整
-              items:
-                - name: クエリ調整ポリシー
-                  href: ./kusto/management/query-throttling-policy.md
-                - name: クエリ調整ポリシー コマンド
-                  href: ./kusto/management/query-throttling-policy-commands.md
             - name: 保持
               items:
                 - name: Retention ポリシー

@@ -1,34 +1,36 @@
 ---
-title: parse_json() - Azure Data Explorer
-description: この記事では、Azure Data Explorer の parse_json() について説明します。
+title: todynamic()、parse_json() 関数 - Azure Data Explorer
+description: この記事では、Azure Data Explorer の todynamic()、parse_json() 関数について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
 ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-ms.date: 02/13/2020
+ms.date: 01/25/2021
 ms.localizationpriority: high
-ms.openlocfilehash: 3125a51733f6672d041e6c1522ea755e5677cb0c
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 680ce93ec2a3b39d14475689ac80793a02d86547
+ms.sourcegitcommit: 8468c6886dc097032ef6db86992a5e8c9b18786e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512861"
+ms.lasthandoff: 01/27/2021
+ms.locfileid: "98911946"
 ---
-# <a name="parse_json"></a>parse_json()
+# <a name="todynamic-parse_json"></a>todynamic()、parse_json()
 
-`string` を JSON 値として解釈し、値を `dynamic` として返します。
+`string` を JSON 値として解釈し、値を `dynamic` として返します。 
 
-JSON 複合オブジェクトの複数の要素を抽出する必要がある場合は、この関数の方が [extractjson() 関数](./extractjsonfunction.md)より優れています。
+> [!NOTE]
+> `todynamic()` と `parse_json()` の関数は同等に解釈されます。
+
+JSON 複合オブジェクトの複数の要素を抽出する必要がある場合は、この関数の方が [extractjson() 関数](./extractjsonfunction.md)より優れています。 可能な場合は [dynamic()](./scalar-data-types/dynamic.md) を使用することをお勧めします。
 
 ## <a name="syntax"></a>構文
 
 `parse_json(`*json*`)`
+`todynamic(`*json*`)`
 
-別名:
-- [todynamic()](./todynamicfunction.md)
-- [toobject()](./todynamicfunction.md)
+<!-- deprecated aliases: `toobject()` and parsejson() -->
 
 ## <a name="arguments"></a>引数
 

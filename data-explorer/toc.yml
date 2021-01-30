@@ -47,12 +47,14 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: Security
+    - name: セキュリティ
       items:
         - name: セキュリティの概要
           href: security.md
         - name: セキュリティ ベースライン
           href: security-baseline.md
+        - name: Azure Policy によるセキュリティ制御
+          href: ./security-controls-policy.md
     - name: ビジネス継続性
       items:
         - name: 概要

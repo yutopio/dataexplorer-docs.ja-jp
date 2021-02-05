@@ -1,6 +1,6 @@
 ---
-title: ユーザー定義関数 - Azure Data Explorer | Microsoft Docs
-description: この記事では、Azure Data Explorer のユーザー定義関数について説明します。
+title: ユーザー定義関数 - Azure Data Explorer
+description: この記事では、Azure Data Explorer のユーザー定義関数 (スカラーとビュー) について説明します。
 services: data-explorer
 author: orspod
 ms.author: orspodek
@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 92627b3325a7a2ba8e2e4d58a82ebf6db3977221
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: c85fd5dc784747314fe843d8f2325db76ee18d2c
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512878"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554665"
 ---
 # <a name="user-defined-functions"></a>ユーザー定義関数
 
@@ -23,7 +23,7 @@ ms.locfileid: "95512878"
 ユーザー定義関数は、次の 2 つのカテゴリのいずれかに属します。
 
 * スカラー関数 
-* 表形式関数 
+* 表形式関数 (ビューとも呼ばれます)
 
 関数の入力引数と出力によってスカラーか表形式かが決まり、それによって使用方法も決まります。 
 

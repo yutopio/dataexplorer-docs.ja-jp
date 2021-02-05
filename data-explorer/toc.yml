@@ -47,7 +47,7 @@
           href: kql-quick-reference.md
     - name: データ視覚化の概要
       href: viz-overview.md
-    - name: Security
+    - name: セキュリティ
       items:
         - name: セキュリティの概要
           href: security.md
@@ -507,6 +507,7 @@
         - name: 関数の種類
           href: ./kusto/query/functions/index.md
         - name: ユーザー定義関数
+          displayName: 'Kusto view, views, Kusto function'
           href: ./kusto/query/functions/user-defined-functions.md
     - name: クエリ ステートメント
       items:

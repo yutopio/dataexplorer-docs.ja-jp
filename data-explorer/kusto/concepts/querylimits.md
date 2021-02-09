@@ -9,26 +9,26 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 0a25e0a4354798780b652861ba93494135b6d581
-ms.sourcegitcommit: fd034cf3e3440dcbbbb8494eb4914572055afcee
+ms.openlocfilehash: 615b2f681c22237f9d14ad92e285a564c249857e
+ms.sourcegitcommit: d1c2433df183d0cfbfae4d3b869ee7f9cbf00fe4
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/25/2021
-ms.locfileid: "98759713"
+ms.lasthandoff: 02/05/2021
+ms.locfileid: "99586376"
 ---
 # <a name="query-limits"></a>クエリの制限
 
 Kusto は、大規模なデータ セットをホストし、関連するすべてのデータをメモリ内に保持することでクエリを満たすことを試行するアドホック クエリ エンジンです。
 クエリによってサービス リソースが際限なく独占されるという固有のリスクがあります。 Kusto には、既定のクエリ制限という形でいくつかの組み込みの保護が用意されています。 これらの制限を削除することを検討している場合は、まず、その結果として実際に何かメリットがあるかどうかを判断してください。
 
-## <a name="limit-on-query-concurrency"></a>クエリの同時実行に対する制限
+## <a name="limit-on-request-concurrency"></a>要求の同時実行に対する制限
 
-**クエリの同時実行** は、クラスターによって、同時に実行される複数のクエリに課される制限です。
+**要求の同時実行** は、クラスターによって、同時に実行される複数の要求に対して課される制限です。
 
-* クエリの同時実行制限の既定値は、実行されている SKU クラスターによって変わり、`Cores-Per-Node x 10` として計算されます。
-  * たとえば、各マシンに 16 個の仮想コアがある D14v2 SKU 上に設定されたクラスターの場合、既定のクエリ同時実行制限は `16 cores x10 = 160` です。
+* この制限の既定値は、クラスターが実行されている SKU によって変わり、`Cores-Per-Node x 10` として計算されます。
+  * たとえば、各マシンに 16 個の仮想コアがある D14v2 SKU 上に設定されたクラスターの場合、既定の制限は `16 cores x10 = 160` です。
 * `default` ワークロード グループの[要求レート制限ポリシー](../management/request-rate-limit-policy.md)を構成すると、既定値を変更できます。
-  * クラスター上で同時に実行できるクエリの実際の数は、さまざまな要因によって変わります。 最も重要な要因は、クラスター SKU、クラスターの使用可能なリソース、クエリ パターンです。 クエリ調整ポリシーは、運用環境に似たクエリ パターンで実行される負荷テストに基づいて構成できます。
+  * クラスター上で同時に実行できる要求の実際の数は、さまざまな要因によって変わります。 最も重要な要因は、クラスター SKU、クラスターの使用可能なリソース、使用パターンです。 ポリシーは、運用環境に似た使用パターンで実行される負荷テストに基づいて構成できます。
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>結果セット サイズに対する制限 (結果の切り捨て)
 
@@ -167,7 +167,7 @@ Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too
 
 既定では、クエリのタイムアウトは 4 分、制御コマンドでは 10 分に設定されています。 この値は、必要に応じて増やすことができます (上限は 1 時間)。
 
-* Kusto.Explorer を使用してクエリを実行する場合は、 **[Tools]\(ツール\)** &gt; **[Options]\(オプション\)** _ &gt; _ *[Connections]\(接続\)* * &gt; **[Query Server Timeout]\(クエリ サーバーのタイムアウト\)** を使用します。
+* Kusto.Explorer を使用してクエリを実行する場合は、 **[Tools]\(ツール\)** &gt; **[Options]\(オプション\)** *  &gt; **[Connections]\(接続\)** &gt; **[Query Server Timeout]\(クエリ サーバーのタイムアウト\)** を使用します。
 * プログラムによって、`servertimeout` クライアント要求プロパティ (型 `System.TimeSpan` の値) を最大 1 時間に設定します。
 
 **タイムアウトに関する注意事項**

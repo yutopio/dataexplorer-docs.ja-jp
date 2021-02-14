@@ -3,16 +3,16 @@ title: Azure Data Explorer の Python ライブラリを使用してデータを
 description: この記事では、Python を使用して Azure Data Explorer にデータを取り込む (読み込む) 方法について説明します。
 author: orspod
 ms.author: orspodek
-ms.reviewer: mblythe
+ms.reviewer: vladikbr
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: 4d47dfb17935cbb6c26e1da4c690d24801066015
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: b635d882284ce2bba465904d536b23410afd7719
+ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902649"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98635907"
 ---
 # <a name="ingest-data-using-the-azure-data-explorer-python-library"></a>Azure Data Explorer の Python ライブラリを使用してデータを取り込む
 
@@ -27,7 +27,6 @@ ms.locfileid: "92902649"
 
 まず、クラスター内にテーブルとデータ マッピングを作成します。 その後、クラスターに対するインジェストをキューに入れて、結果を検証します。
 
-この記事は [Azure Notebook](https://notebooks.azure.com/ManojRaheja/libraries/KustoPythonSamples/html/QueuedIngestSingleBlob.ipynb) でも利用できます。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -56,7 +55,7 @@ from azure.kusto.data.exceptions import KustoServiceError
 from azure.kusto.data.helpers import dataframe_from_result_table
 ```
 
-Azure Data Explorer では、アプリケーションを認証するために Azure Active Directory テナント ID が使用されます。 テナント ID を検索するには、 *YourDomain* をお使いのドメインに置き換えて、次の URL を使用します。
+Azure Data Explorer では、アプリケーションを認証するために Azure Active Directory テナント ID が使用されます。 テナント ID を検索するには、*YourDomain* をお使いのドメインに置き換えて、次の URL を使用します。
 
 ```http
 https://login.windows.net/<YourDomain>/.well-known/openid-configuration/
@@ -97,7 +96,7 @@ DESTINATION_TABLE_COLUMN_MAPPING = "StormEvents_CSV_Mapping"
 他のクラスをインポートし、データ ソース ファイルに対する定数を設定します。 この例では、Azure Blob Storage でホストされているサンプル ファイルを使います。 **StormEvents** サンプル データ セットには､ [National Centers for Environmental Information から入手した気象関連データが含まれています](https://www.ncdc.noaa.gov/stormevents/)｡
 
 ```python
-from azure.kusto.ingest import KustoIngestClient, IngestionProperties, FileDescriptor, BlobDescriptor, DataFormat, ReportLevel, ReportMethod
+from azure.kusto.ingest import QueuedIngestClient, IngestionProperties, FileDescriptor, BlobDescriptor, DataFormat, ReportLevel, ReportMethod
 
 CONTAINER = "samplefiles"
 ACCOUNT_NAME = "kustosamplefiles"
@@ -111,7 +110,7 @@ BLOB_PATH = "https://" + ACCOUNT_NAME + ".blob.core.windows.net/" + \
 
 ## <a name="create-a-table-on-your-cluster"></a>クラスターにテーブルを作成する
 
-StormEvents.csv ファイル内のデータのスキーマと一致するテーブルを作成します。 このコードを実行すると、次のようなメッセージが返されます: " *サインインするには、Web ブラウザーを使用して https://microsoft.com/devicelogin ページを開き、認証するためのコード F3W4VWZDM を入力します* 。" この手順に従ってサインインし、元のページに戻って次のコード ブロックを実行します。 接続を行う後続のコード ブロックでは、再びサインインする必要があります。
+StormEvents.csv ファイル内のデータのスキーマと一致するテーブルを作成します。 このコードを実行すると、次のようなメッセージが返されます: "*サインインするには、Web ブラウザーを使用して https://microsoft.com/devicelogin ページを開き、認証するためのコード F3W4VWZDM を入力します*。" この手順に従ってサインインし、元のページに戻って次のコード ブロックを実行します。 接続を行う後続のコード ブロックでは、再びサインインする必要があります。
 
 ```python
 KUSTO_CLIENT = KustoClient(KCSB_DATA)
@@ -139,11 +138,11 @@ dataframe_from_result_table(RESPONSE.primary_results[0])
 BLOB ストレージからデータをプルし、そのデータを Azure Data Explorer に取り込むために、メッセージをキューに入れます。
 
 ```python
-INGESTION_CLIENT = KustoIngestClient(KCSB_INGEST)
+INGESTION_CLIENT = QueuedIngestClient(KCSB_INGEST)
 
 # All ingestion properties are documented here: https://docs.microsoft.com/azure/kusto/management/data-ingest#ingestion-properties
-INGESTION_PROPERTIES = IngestionProperties(database=KUSTO_DATABASE, table=DESTINATION_TABLE, dataFormat=DataFormat.CSV,
-                                           mappingReference=DESTINATION_TABLE_COLUMN_MAPPING, additionalProperties={'ignoreFirstRecord': 'true'})
+INGESTION_PROPERTIES = IngestionProperties(database=KUSTO_DATABASE, table=DESTINATION_TABLE, data_format=DataFormat.CSV,
+                                           ingestion_mapping_reference=DESTINATION_TABLE_COLUMN_MAPPING, additional_properties={'ignoreFirstRecord': 'true'})
 # FILE_SIZE is the raw size of the data in bytes
 BLOB_DESCRIPTOR = BlobDescriptor(BLOB_PATH, FILE_SIZE)
 INGESTION_CLIENT.ingest_from_blob(

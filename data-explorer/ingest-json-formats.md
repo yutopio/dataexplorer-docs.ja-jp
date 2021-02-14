@@ -7,12 +7,12 @@ ms.reviewer: kerend
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/19/2020
-ms.openlocfilehash: 7132542b4387c9146c337a2440b2211d2977ec72
-ms.sourcegitcommit: 3eabd78305d32cd9b8a6bd1d76877ddc19d8ac63
+ms.openlocfilehash: 5c0de46e6b6b14be7076533204e63504368e71ad
+ms.sourcegitcommit: d77e52909001f885d14c4d421098a2c492b8c8ac
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/12/2020
-ms.locfileid: "94548922"
+ms.lasthandoff: 01/26/2021
+ms.locfileid: "98772485"
 ---
 # <a name="ingest-json-formatted-sample-data-into-azure-data-explorer"></a>Azure Data Explorer に JSON 書式付きサンプル データを取り込む
 
@@ -79,7 +79,7 @@ Kusto クエリ言語を使用して、未加工の JSON 形式でデータを�
 1. `RawEvents` テーブルにデータを取り込みます。
 
     ```kusto
-    .ingest into table RawEvents ('https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json') with '{"format":json, "ingestionMappingReference":"DiagnosticRawRecordsMapping"}'
+    .ingest into table RawEvents ('https://kustosamplefiles.blob.core.windows.net/jsonsamplefiles/simple.json') with '{"format":"json", "ingestionMappingReference":"DiagnosticRawRecordsMapping"}'
     ```
 
 # <a name="c"></a>[C#](#tab/c-sharp)
@@ -304,7 +304,7 @@ Python を使用して、未加工の JSON 形式でデータを取り込みま�
 1. JSON 入力データに類似したスキーマを使用して、新しいテーブルを作成します。 このテーブルは、次のすべての例とインジェスト コマンドで使用します。 
 
     ```python
-    TABLE = "RawEvents"
+    TABLE = "Events"
     CREATE_TABLE_COMMAND = ".create table " + TABLE + " (Time: datetime, Device: string, MessageId: string, Temperature: double, Humidity: double)"
     RESPONSE = KUSTO_CLIENT.execute_mgmt(DATABASE, CREATE_TABLE_COMMAND)
     dataframe_from_result_table(RESPONSE.primary_results[0])

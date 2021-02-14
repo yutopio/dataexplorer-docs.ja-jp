@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 06/03/2019
-ms.openlocfilehash: 91d0f6e399cc2b392e62a202cb5df16edb732f92
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: 494df2c610329da0f31621e293fe652b2fb3a911
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902527"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554623"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-python"></a>Python を使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -93,7 +93,7 @@ pip install azure-mgmt-kusto
    | resource_group_name | *testrg* | クラスターが作成されるリソース グループの名前。 |
 
     > [!NOTE]
-    > **クラスターの作成** は、実行時間の長い操作となります。 メソッド **create_or_update** は LROPoller インスタンスを返します。詳細については、 [LROPoller クラス](/python/api/msrest/msrest.polling.lropoller?view=azure-python)を参照してください。
+    > **クラスターの作成** は、実行時間の長い操作となります。 メソッド **create_or_update** は LROPoller インスタンスを返します。詳細については、[LROPoller クラス](/python/api/msrest/msrest.polling.lropoller)を参照してください。
 
 1. クラスターが正常に作成されたかどうかを確認するには、次のコマンドを実行します。
 

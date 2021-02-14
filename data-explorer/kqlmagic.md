@@ -7,12 +7,12 @@ ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/20/2020
-ms.openlocfilehash: 857c654c70a2170a42902514718a52fbf7b02944
-ms.sourcegitcommit: 455d902bad0aae3e3d72269798c754f51442270e
+ms.openlocfilehash: 2d3f81b897f264d9f804f545a2155958606dfc79
+ms.sourcegitcommit: 2b0156fc244757e62aaef5d4782c4abebaf09754
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/04/2020
-ms.locfileid: "93349462"
+ms.lasthandoff: 02/08/2021
+ms.locfileid: "99808662"
 ---
 # <a name="use-a-jupyter-notebook-and-kqlmagic-extension-to-analyze-data-in-azure-data-explorer"></a>Jupyter Notebook と Kqlmagic 拡張機能を使用して Azure Data Explorer 内のデータを分析する
 
@@ -22,7 +22,7 @@ Jupyter Notebook はオープン ソースの Web アプリケーションであ
 ## <a name="prerequisites"></a>前提条件
 
 - Azure Active Directory (Azure AD) のメンバーである、組織の電子メール アカウント。
-- ローカル コンピューターにインストールされている Jupyter Notebook。または、[Azure Data Studio](/sql/azure-data-studio/notebooks/notebooks-kqlmagic?view=sql-server-ver15) を使用。
+- ローカル コンピューターにインストールされている Jupyter Notebook。または、[Azure Data Studio](/sql/azure-data-studio/notebooks/notebooks-kqlmagic) を使用。
 
 ## <a name="install-kqlmagic-library"></a>Kqlmagic ライブラリをインストールする
 
@@ -42,7 +42,7 @@ Jupyter Notebook はオープン ソースの Web アプリケーションであ
     
 ## <a name="connect-to-the-azure-data-explorer-help-cluster"></a>Azure Data Explorer のヘルプ クラスターに接続する
 
-次のコマンドを使用して、 *Help* クラスターでホストされている *Samples* データベースに接続します。 Microsoft 以外の Azure AD ユーザーの場合は、テナント名 `Microsoft.com` をお使いの Azure AD テナントに置き換えてください。
+次のコマンドを使用して、*Help* クラスターでホストされている *Samples* データベースに接続します。 Microsoft 以外の Azure AD ユーザーの場合は、テナント名 `Microsoft.com` をお使いの Azure AD テナントに置き換えてください。
 
 ```python
 %kql AzureDataExplorer://tenant="Microsoft.com";code;cluster='help';database='Samples'
@@ -50,7 +50,7 @@ Jupyter Notebook はオープン ソースの Web アプリケーションであ
 
 > [!Note]
 > 独自の ADX クラスターを使用している場合は、次のように、接続文字列にリージョンを含める必要があります。   
-   ```%kql azuredataexplorer://tenant="youecompany.com";code;cluster='mycluster.westus';database='mykustodb'```
+   ```%kql azuredataexplorer://tenant="yourcompany.com";code;cluster='mycluster.westus';database='mykustodb'```
 
 ## <a name="query-and-visualize"></a>クエリと視覚化を実行する
 

@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 11/10/2020
-ms.openlocfilehash: 6f7b33941ca38f80249808d14514faa2378c61fb
-ms.sourcegitcommit: 574296b9a84084de031684a65f32b6c1bd1a4858
+ms.openlocfilehash: 983b9c59e6130c58d04e1d4f1a7042a3aa73bba7
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94714983"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554936"
 ---
 # <a name="use-one-click-ingestion-to-create-an-event-hub-data-connection-for-azure-data-explorer"></a>ワンクリックでのインジェストを使用して、Azure Data Explorer 用にイベント ハブ データ接続を作成する
 
@@ -63,7 +63,7 @@ Azure データ エクスプローラーには、Event Hubs からの取り込�
     | Event Hub 名前空間 |  | 名前空間を識別する名前。 |
     | イベント ハブ |  | 使用するイベント ハブ。 |
     | コンシューマー グループ |  | イベント ハブに定義されているコンシューマー グループ。 |
-    | データ形式 | | データは [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet) オブジェクトの形式でイベント ハブから読み取られます。 サポートされている形式は、CSV、JSON、PSV、SCsv、SOHsv、TSV、TSVE です。 |
+    | データ形式 | | データは [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) オブジェクトの形式でイベント ハブから読み取られます。 サポートされている形式は、CSV、JSON、PSV、SCsv、SOHsv、TSV、TSVE です。 |
     | イベント システム プロパティ | 関連するプロパティを選択する | [イベント ハブのシステム プロパティ](/azure/service-bus-messaging/service-bus-amqp-protocol-guide#message-annotations)。 1 つのイベント メッセージに複数のレコードがある場合、システム プロパティは最初のものに追加されます。 システム プロパティを追加する場合は、テーブル スキーマと[マッピング](kusto/management/mappings.md)を[作成](kusto/management/create-table-command.md)または[更新](kusto/management/alter-table-command.md)して、選択したプロパティを含めます。 |
 
 1. **[スキーマの編集]** を選択します。

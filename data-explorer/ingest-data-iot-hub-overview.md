@@ -8,12 +8,12 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: b76321fd843efe915a6fd55797bd2dc68059b004
-ms.sourcegitcommit: 8ac4717dbff679991b122b09a0c1ed700562a736
+ms.openlocfilehash: 448f6a75223fe4415bae00d145db199aac6f08f1
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/15/2020
-ms.locfileid: "97488578"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554650"
 ---
 # <a name="iot-hub-data-connection"></a>IoT Hub データ接続
 
@@ -25,7 +25,7 @@ Azure Data Explorer でのデータ インジェストに関する一般的な�
 
 ## <a name="data-format"></a>データ形式
 
-* データは [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata?view=azure-dotnet) オブジェクトの形式でイベント ハブ エンドポイントから読み取られます。
+* データは [EventData](/dotnet/api/microsoft.servicebus.messaging.eventdata) オブジェクトの形式でイベント ハブ エンドポイントから読み取られます。
 * [サポートされる形式](ingestion-supported-formats.md)を確認してください。
     > [!NOTE]
     > IoT Hub では、.raw 形式はサポートされていません。
@@ -34,14 +34,14 @@ Azure Data Explorer でのデータ インジェストに関する一般的な�
 
 ## <a name="ingestion-properties"></a>インジェストのプロパティ
 
-インジェストのプロパティは、インジェスト プロセスに、データのルーティング先と処理方法を指示します。 [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties) を使用して、イベントの[インジェスト プロパティ](ingestion-properties.md)を指定できます。 以下のプロパティを設定できます。
+インジェストのプロパティは、インジェスト プロセスに、データのルーティング先と処理方法を指示します。 [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties#Microsoft_ServiceBus_Messaging_EventData_Properties) を使用して、イベントの[インジェスト プロパティ](ingestion-properties.md)を指定できます。 以下のプロパティを設定できます。
 
 |プロパティ |説明|
 |---|---|
 | テーブル | 既存のターゲット テーブルの名前 (大文字と小文字の区別あり)。 [`Data Connection`] ペインで設定された `Table` をオーバーライドします。 |
 | 形式 | データ形式。 [`Data Connection`] ペインで設定された `Data format` をオーバーライドします。 |
 | IngestionMappingReference | 使用する既存の[インジェスト マッピング](kusto/management/create-ingestion-mapping-command.md)の名前。 [`Data Connection`] ペインで設定された `Column mapping` をオーバーライドします。|
-| エンコード |  データ エンコード (既定値は UTF8)。 [.NET でサポートされているエンコード](/dotnet/api/system.text.encoding?view=netframework-4.8#remarks)のいずれかを指定できます。 |
+| エンコード |  データ エンコード (既定値は UTF8)。 [.NET でサポートされているエンコード](/dotnet/api/system.text.encoding#remarks)のいずれかを指定できます。 |
 
 > [!NOTE]
 > データ接続の作成後にエンキューされたイベントのみが取り込まれたます。
@@ -49,7 +49,7 @@ Azure Data Explorer でのデータ インジェストに関する一般的な�
 ## <a name="events-routing"></a>イベント ルーティング
 
 Azure Data Explorer クラスターへの IoT Hub 接続を設定するときに、ターゲット テーブルのプロパティ (テーブル名、データ形式、マッピング) を指定します。 この設定はデータの既定のルーティングで、静的ルーティングとも呼ばれます。
-イベント プロパティを使用して、各イベントのターゲット テーブルのプロパティを指定することもできます。 [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties?view=azure-dotnet#Microsoft_ServiceBus_Messaging_EventData_Properties) の指定に従って、接続でデータが動的にルーティングされ、このイベントの静的プロパティがオーバーライドされます。
+イベント プロパティを使用して、各イベントのターゲット テーブルのプロパティを指定することもできます。 [EventData.Properties](/dotnet/api/microsoft.servicebus.messaging.eventdata.properties#Microsoft_ServiceBus_Messaging_EventData_Properties) の指定に従って、接続でデータが動的にルーティングされ、このイベントの静的プロパティがオーバーライドされます。
 
 > [!Note]
 > **[データにはルーティング情報が含まれています]** が選択されている場合は、必要なルーティング情報をイベントのプロパティの一部として指定する必要があります。

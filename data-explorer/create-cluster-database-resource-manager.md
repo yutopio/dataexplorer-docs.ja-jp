@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/26/2019
-ms.openlocfilehash: e083303d3d8270f0d673199c3547bff13001174e
-ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
+ms.openlocfilehash: 880c6114001795f26193e9f16d3d696402e7f3ef
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96774675"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554808"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-an-azure-resource-manager-template"></a>Azure Resource Manager テンプレートを使用して Azure Data Explorer クラスターとデータベースを作成する
 
@@ -72,7 +72,7 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
               "tier": "Standard",
               "capacity": 2
           },
-          "apiVersion": "2019-09-07",
+          "apiVersion": "2020-18-09",
           "location": "[parameters('location')]",
           "tags": {
             "Created By": "GitHub quickstart template"
@@ -104,7 +104,7 @@ Azure サブスクリプションをお持ちでない場合は、開始する�
       {
           "name": "[concat(parameters('clusters_kustocluster_name'), '/', parameters('databases_kustodb_name'))]",
           "type": "Microsoft.Kusto/clusters/databases",
-          "apiVersion": "2019-09-07",
+          "apiVersion": "2020-18-09",
           "location": "[parameters('location')]",
           "dependsOn": [
               "[resourceId('Microsoft.Kusto/clusters', parameters('clusters_kustocluster_name'))]"
@@ -166,7 +166,7 @@ Azure Data Explorer クラスターとデータベースの作成には数分か
 
 #### <a name="verify-the-deployment-using-powershell"></a>PowerShell を使用してデプロイを確認する
 
-デプロイを確認するには、次の Azure PowerShell スクリプトを使用します。  Cloud Shell がまだ開いている場合は、最初の行 (Read-Host) をコピー/実行する必要はありません。 PowerShell での Azure Data Explorer リソースの管理の詳細については、[Az.Kusto](/powershell/module/az.kusto/?view=azps-2.7.0) を参照してください。 
+デプロイを確認するには、次の Azure PowerShell スクリプトを使用します。  Cloud Shell がまだ開いている場合は、最初の行 (Read-Host) をコピー/実行する必要はありません。 PowerShell での Azure Data Explorer リソースの管理の詳細については、[Az.Kusto](/powershell/module/az.kusto/) を参照してください。 
 
 ```azurepowershell-interactive
 $projectName = Read-Host -Prompt "Enter the same project name that you used in the last procedure"

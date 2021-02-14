@@ -8,19 +8,19 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 05/05/2019
-ms.openlocfilehash: 14ba0226efc5f38ef3d549f38b2a6224da7c201e
-ms.sourcegitcommit: 80f0c8b410fa4ba5ccecd96ae3803ce25db4a442
+ms.openlocfilehash: e64d348387e18d9421632d3ebf6a4772fcf2d82a
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/30/2020
-ms.locfileid: "96320725"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554897"
 ---
 # <a name="azure-devops-task-for-azure-data-explorer"></a>Azure Data Explorer の Azure DevOps タスク
 
 [Azure DevOps Services](https://azure.microsoft.com/services/devops/) は、高性能パイプライン、無料のプライベート Git リポジトリ、構成可能なかんばんボード、広範囲で自動化された継続的テスト機能など、開発向け共同作業ツールを提供します。 [Azure Pipelines](https://azure.microsoft.com/services/devops/pipelines/) は Azure DevOps の機能であり、あらゆる言語、プラットフォーム、クラウドと連動する高性能パイプラインでコードをデプロイするよう、CI/CD を管理できます。
 [Azure Data Explorer - Admin Commands](https://marketplace.visualstudio.com/items?itemName=Azure-Kusto.PublishToADX) は the Azure Pipelines のタスクであり、リリース パイプラインを作成し、データベースの変更を Azure Data Explorer データベースにデプロイできます。 [Visual Studio Marketplace](https://marketplace.visualstudio.com/) から無料で入手できます。
 
-このドキュメントでは、**Azure Data Explorer – Admin Commands** タスクを使用し、スキーマの変更をデータベースにデプロイする簡単な例について説明します。 完全な CI/CD パイプラインについては、[Azure DevOps ドキュメント](/azure/devops/user-guide/what-is-azure-devops?view=azure-devops#vsts)を参照してください。
+このドキュメントでは、**Azure Data Explorer – Admin Commands** タスクを使用し、スキーマの変更をデータベースにデプロイする簡単な例について説明します。 完全な CI/CD パイプラインについては、[Azure DevOps ドキュメント](/azure/devops/user-guide/what-is-azure-devops#vsts)を参照してください。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -30,10 +30,10 @@ ms.locfileid: "96320725"
     * [Azure AD アプリケーションをプロビジョニングする](./provision-azure-ad-app.md)ことによって、Azure Active Directory (Azure AD) アプリを作成します。
     * [Azure Data Explorer データベースのアクセス許可を管理すること](manage-database-permissions.md)で、Azure Data Explorer データベースの Azure AD アプリへのアクセスを付与します。
 * Azure DevOps セットアップ:
-    * [無料組織の新規登録](/azure/devops/user-guide/sign-up-invite-teammates?view=azure-devops)
-    * [組織の作成](/azure/devops/organizations/accounts/create-organization?view=azure-devops)
-    * [Azure DevOps でのプロジェクトの作成](/azure/devops/organizations/projects/create-project?view=azure-devops)
-    * [Git を使用したコード](/azure/devops/user-guide/code-with-git?view=azure-devops)
+    * [無料組織の新規登録](/azure/devops/user-guide/sign-up-invite-teammates)
+    * [組織の作成](/azure/devops/organizations/accounts/create-organization)
+    * [Azure DevOps でのプロジェクトの作成](/azure/devops/organizations/projects/create-project)
+    * [Git を使用したコード](/azure/devops/user-guide/code-with-git)
 
 ## <a name="create-folders"></a>フォルダーを作成します。
 

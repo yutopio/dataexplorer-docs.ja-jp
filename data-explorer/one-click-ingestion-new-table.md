@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: e2c84649653d6d3762a82c1e4aa3c98c9ef8119d
-ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
+ms.openlocfilehash: 3ac9788eda7a75173778ce0533f59820cfd7e7dd
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/14/2020
-ms.locfileid: "97371680"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528234"
 ---
 # <a name="use-one-click-ingestion-to-ingest-csv-data-from-a-container-to-a-new-table-in-azure-data-explorer"></a>ワンクリックでのインジェストを使用して Azure Data Explorer の新しいテーブルにコンテナーの CSV データを取り込む
 
@@ -33,9 +33,11 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
     :::image type="content" source="media/one-click-ingestion-new-table/one-click-ingestion-in-web-ui.png" alt-text="新しいデータの取り込み":::
 
-1. **[Ingest new data]\(新しいデータの取り込み\)** ウィンドウの **[ソース]** タブが選択されます。 
+1. **[Ingest new data]\(新しいデータの取り込み\)** ウィンドウの **[ソース]** タブが選択されます。 **[クラスター]** と **[データベース]** の各フィールドには、自動的に値が設定されます。
 
-1. **[新しいテーブルの作成]** を選択し、新しいテーブルの名前を入力します。 英数字、ハイフン、アンダースコアを使用できます。 特殊文字はサポートされていません。
+    [!INCLUDE [one-click-cluster](includes/one-click-cluster.md)]
+
+1. **[テーブル]**  >  **[新規作成]** を選択し、新しいテーブルの名前を入力します。 英数字、ハイフン、アンダースコアを使用できます。 特殊文字はサポートされていません。
 
     > [!NOTE]
     > テーブル名は、1 から 1024 文字にする必要があります。
@@ -44,9 +46,9 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
 ## <a name="select-an-ingestion-type"></a>インジェストの種類を選択する
 
-**[インジェストの種類]** で、次の手順を実行します。
+**[ソースの種類]** で、次の手順を実行します。
    
-  1. **[From container]\(コンテナーから\)** (BLOB コンテナー、ADLS Gen1 コンテナー、ADLS Gen2 コンテナー) を選択します。
+  1. **[From blob container]\(BLOB コンテナーから\)** (BLOB コンテナー、ADLS Gen1 コンテナー、ADLS Gen2 コンテナー) を選択します。 1 つのコンテナーから最大 1000 個の BLOB を取り込むことができます。
   1. **[ストレージへのリンク]** フィールドにコンテナーの [SAS URL](/azure/vs-azure-tools-storage-explorer-blobs#get-the-sas-for-a-blob-container) を追加し、必要に応じてサンプル サイズを入力します。 このコンテナー内のフォルダーから取り込むには、「[コンテナー内のフォルダーから取り込む](#ingest-from-folder-in-a-container)」を参照してください。
 
       :::image type="content" source="media/one-click-ingestion-new-table/from-container.png" alt-text="コンテナーからのワンクリックでのインジェスト":::
@@ -56,7 +58,7 @@ Azure Data Explorer の既存のテーブルにデータを取り込む方法に
 
 ### <a name="ingest-from-folder-in-a-container"></a>コンテナー内のフォルダーから取り込む
 
-コンテナー内の特定のフォルダーから取り込むには、次の形式の文字列を生成します。
+コンテナー内の特定のフォルダーから取り込むには、[次の形式の文字列を生成します](kusto/api/connection-strings/storage.md#azure-data-lake-store)。
 
 *container_path*`/`*folder_path*`;`*access_key_1*
 

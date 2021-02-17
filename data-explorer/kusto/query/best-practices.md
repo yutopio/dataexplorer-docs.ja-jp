@@ -9,12 +9,13 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 02/03/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 762c3075c162ba35bdba539d0e86460c78f3297e
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+adobe-target: true
+ms.openlocfilehash: 87154368a033afe1da7669e71e269081865b689d
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95511790"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359915"
 ---
 # <a name="query-best-practices"></a>クエリのベスト プラクティス
 
@@ -28,7 +29,8 @@ ms.locfileid: "95511790"
 | | `in` を使用します | `in~` は使用しません|
 |  | `contains_cs` を使用します         | `contains` は使用しません        | `has`/`has_cs` を使用でき、`contains`/`contains_cs` を使用しないのであれば、その方が望ましいです。 |
 | **検索テキスト**    |    特定の列を検索します     |    `*` は使用しません    |   `*` によって、すべての列に対してフル テキスト検索が行われます。    |
-| **何百万行にわたる[動的オブジェクト](./scalar-data-types/dynamic.md)からフィールドを抽出する**    |  ほとんどのクエリによって、何百万行にわたる動的オブジェクトからフィールドが抽出される場合に、取り込み時に列を具体化します。      |         | この場合、列の抽出に対する支払いは一度だけになります。    |
+| **何百万行にわたる [動的オブジェクト](./scalar-data-types/dynamic.md)からフィールドを抽出する**    |  ほとんどのクエリによって、何百万行にわたる動的オブジェクトからフィールドが抽出される場合に、取り込み時に列を具体化します。      |         | この場合、列の抽出に対する支払いは一度だけになります。    |
+| **[動的オブジェクト](./scalar-data-types/dynamic.md)のまれなキーおよび値の検索**    |  `MyTable | where DynamicColumn has "Rare value" | where DynamicColumn.SomeKey == "Rare value"` を使用します | `MyTable | where DynamicColumn.SomeKey == "Rare value"` を使用しないでください | これにより、ほとんどのレコードをフィルターで除外し、残りの部分のみの JSON 解析を実行します。 |
 | **複数回使用する値を指定した `let` ステートメント** | [materialize() 関数](./materializefunction.md)を使用します |  |   `materialize()` の使用方法の詳細については、「[materialize()](materializefunction.md)」を参照してください。|
 | **10 億件を超えるレコードに変換を適用する**| 変換に取り込まれるデータ量を減らすために、クエリを再形成します。| 避けられる場合は、大量のデータを変換しないでください。 | |
 | **新しいクエリ** | `limit [small number]` または `count` を末尾に使用します。 | |     不明なデータ セットに対してバインドされていないクエリを実行すると、クライアントに返される結果がギガバイト規模で生じ、応答速度が低下して、ビジー状態のクラスターが発生する可能性があります。|

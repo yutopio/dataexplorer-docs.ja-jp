@@ -7,13 +7,13 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 09/19/2020
-ms.custom: contperfq1
-ms.openlocfilehash: e92717e68794b21a0c991806aa7319e528433afb
-ms.sourcegitcommit: c6cb2b1071048daa872e2fe5a1ac7024762c180e
+ms.custom: contperf-fy21q1
+ms.openlocfilehash: fb428e443559b579bab4764283ce124f9d9ec192
+ms.sourcegitcommit: 62eff65b320ce4ca53eabed6156eb9fe5b77f548
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/07/2020
-ms.locfileid: "96774522"
+ms.lasthandoff: 02/01/2021
+ms.locfileid: "99224215"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>メトリックを使用した Azure Data Explorer のパフォーマンス、正常性、および使用状況の監視
 
@@ -92,18 +92,31 @@ Azure Data Explorer 用の Azure Monitor のメトリックのアルファベッ
 
 インジェストのメトリックは、インジェスト操作の全般的な正常性とパフォーマンス (待機時間、結果、量など) を追跡します。
 
+> [!NOTE]
+> * [グラフにフィルターを適用して](/azure/azure-monitor/platform/metrics-charts#apply-filters-to-charts)、ディメンション別に部分的なデータをプロットします。 たとえば、特定の `Database` へのインジェストを調べます。
+> * [グラフに分割を適用して](/azure/azure-monitor/platform/metrics-charts#apply-splitting-to-a-chart)、各種コンポーネント別にデータを視覚化します。 このプロセスは、`Blobs received` など、インジェスト パイプラインの各ステップによって報告されるメトリックを分析するのに役立ちます。
+
 |**メトリック** | **単位** | **集計** | **メトリックの説明** | **Dimensions** |
 |---|---|---|---|---|
-| Batch blob count (バッチ BLOB 数) | Count | Avg、Max、Min | 完了したインジェスト バッチ内のデータ ソースの数。 | データベース |
-| Batch duration (バッチ期間) | Seconds | Avg、Max、Min | インジェスト フロー内のバッチ処理フェーズの期間  | データベース |
-| バッチ サイズ | バイト | Avg、Max、Min | インジェスト用に集計されたバッチで、予想される非圧縮のデータ サイズ | データベース |
-| Batches processed (処理されたバッチ) | Count | Avg、Max、Min | インジェスト用に完了したバッチの数。 `Batching Type`: バッチがバッチ処理時間、データ サイズ、または[バッチ処理ポリシー](./kusto/management/batchingpolicy.md)によって設定されたファイル数の上限に達したかどうか。 | データベース、バッチ処理の種類 |
-| 検出の待機時間 | Seconds | Avg、Max、Min | データのエンキューから、データ接続によって検出されるまでの時間。 この時間は、**Azure Data Explorer の合計インジェスト期間** および **KustoEventAge (インジェスト待機時間)** には含まれません。 | データベース、テーブル、データ接続の種類、データ接続名 |
-| (Event/IoT Hubs の) 処理されたイベント | Count | Max、Min、Sum | イベント ハブから読み取られ、クラスターによって処理されたイベントの数。 イベントは、クラスター エンジンによって拒否されたイベントと受け入れられたイベントに分類されます。 | EventStatus |
+| Batch blob count (バッチ BLOB 数)  | Count | Avg、Max、Min | 完了したインジェスト バッチ内のデータ ソースの数。 | データベース |
+| Batch duration (バッチ期間)    | Seconds | Avg、Max、Min | インジェスト フロー内のバッチ処理フェーズの期間。  | データベース |
+| バッチ サイズ        | バイト | Avg、Max、Min | インジェスト用に集計されたバッチで、予想される非圧縮のデータ サイズ | データベース |
+| Batches processed (処理されたバッチ) | Count | Sum、Max、Min | インジェスト用に完了したバッチの数。 <br> `Batching Type`: バッチの完了が、[バッチ処理ポリシー](./kusto/management/batchingpolicy.md)によって設定されたバッチ処理時間、データ サイズ、またはファイル数の上限に基づいていたかどうか。 | データベース、バッチ処理の種類 |
+| Blobs received (受信した BLOB)    | Count | Sum、Max、Min | コンポーネントによって入力ストリームから受信した BLOB の数。 <br> <br> **[apply splitting]\(分割の適用\)** を使用して各コンポーネントを分析します。 | データベース、コンポーネントの種類、コンポーネント名 |
+| Blobs processed (処理された BLOB)   | Count | Sum、Max、Min | コンポーネントによって処理された BLOB の数。 <br> <br> **[apply splitting]\(分割の適用\)** を使用して各コンポーネントを分析します。 | データベース、コンポーネントの種類、コンポーネント名 |
+| Blobs dropped (破棄された BLOB)     | Count | Sum、Max、Min | コンポーネントによって永久に破棄された BLOB の数。 このような BLOB ごとに、エラーの理由を含む `Ingestion result` メトリックが送信されます。 <br> <br> **[apply splitting]\(分割の適用\)** を使用して各コンポーネントを分析します。 | データベース、コンポーネントの種類、コンポーネント名 |
+| 検出の待機時間 | Seconds | Avg | データのエンキューから、データ接続によって検出されるまでの時間。 この時間は、**Stage latency (ステージの待機時間)** または **Ingestion latency (インジェストの待ち時間)** メトリックには含まれません。 | コンポーネントの種類、コンポーネント名 |
+| Events received (受信したイベント)   | Count | Sum、Max、Min | 入力ストリームからのデータ接続によって受信されたイベントの数。 | コンポーネントの種類、コンポーネント名 |
+| Events processed (処理されたイベント)  | Count | Sum、Max、Min | データ接続によって処理されたイベントの数。 | コンポーネントの種類、コンポーネント名 | 
+| Events dropped (破棄されたイベント)    | Count | Sum、Max、Min | データ接続によって永久に破棄されたイベントの数。 | コンポーネントの種類、コンポーネント名 | 
+| (Event/IoT Hubs の) 処理されたイベント | Count | Max、Min、Sum | Event Hubs から読み取られ、クラスターによって処理されたイベントの合計数。 これらのイベントは、2 つのグループ (クラスター エンジンによって拒否されたイベントと受け入れられたイベント) に分類されます。 | Status |
 | インジェストの待ち時間 | Seconds | Avg、Max、Min | クラスターでデータが受信された時点からクエリー用に準備できるまでの、取り込まれたデータの待ち時間。 インジェストの待ち時間の長さは、インジェストのシナリオに応じて異なります。 | なし |
-| インジェストの結果 | Count | Count | 失敗および成功したインジェスト操作の合計数。 <br> <br> **[Apply Splitting]\(分割の適用\)** を使用して、成功および失敗した結果のバケットを作成し、ディメンションを分析します ( **[値]**  >  **[状態]** )。| Status |
+| インジェストの結果  | Count | SUM | 失敗または成功したインジェスト操作の合計数。 <br> <br> **[apply splitting]\(分割の適用\)** を使用して、成功および失敗した結果のバケットを作成し、ディメンションを分析します ( **[値]**  >  **[状態]** )。 <br>起こりえる失敗の結果の詳細については、「[Azure Data Explorer のインジェスト エラー コード](error-codes.md)」を参照してください。| Status |
 | インジェストの量 (MB 単位) | Count | Max、Sum | 圧縮前にクラスターにインジェストされたデータの合計サイズ (MB 単位)。 | データベース |
-| ステージの待機時間 | Seconds | Avg、Max、Min | 特定のコンポーネントがこのデータのバッチを処理するための期間。 データのバッチの全コンポーネントに対する合計ステージ待機時間は、インジェストの待機時間と等しくなります。 | データベース、データ接続の種類、データ接続名|
+| Queue length | Count | Avg | コンポーネントの入力キュー内の保留中のメッセージの数。 | コンポーネントの種類 |
+| Queue oldest message (キューの最も古いメッセージ) | Seconds | Avg | コンポーネントの入力キュー内に最も古いメッセージが挿入されてからの経過時間 (秒)。 | コンポーネントの種類 | 
+| Received data size bytes (受信したデータ サイズ (バイト単位)) | バイト | Avg、Sum | 入力ストリームからのデータ接続によって受信されたデータのサイズ。 | コンポーネントの種類、コンポーネント名 |
+| ステージの待機時間 | Seconds | Avg | メッセージが Azure Data Explorer によって検出されてから、そのコンテンツが処理のためにインジェスト コンポーネントによって受信されるまでの時間。 <br> <br> **[フィルターを適用する]** を使用し、 **[コンポーネントの種類] > [EngineStorage]** を選択して、インジェストの合計待機時間を表示します。| データベース、コンポーネントの種類 | 
 
 ## <a name="streaming-ingest-metrics"></a>ストリーミング インジェスト メトリック
 
@@ -124,7 +137,7 @@ Azure Data Explorer 用の Azure Monitor のメトリックのアルファベッ
 |---|---|---|---|---|
 | クエリ実行時間 | ミリ秒 | Avg、Min、Max、Sum | クエリ結果を受け取るまでの合計時間 (ネットワーク待ち時間は含まれません)。 | QueryStatus |
 | 同時クエリの合計数 | Count | Avg、Max、Min、Sum | クラスターで並列実行されるクエリの数。 このメトリックは、クラスターの負荷を見積もるのに適した方法です。 | なし |
-| スロットルされたクエリの合計数 | Count | Avg、Max、Min、Sum | クラスター内のスロットルされた (拒否された) クエリの数。 許可される同時 (並列) クエリの最大数は、同時クエリ ポリシーで定義されます。 | なし |
+| スロットルされたクエリの合計数 | Count | Avg、Max、Min、Sum | クラスター内のスロットルされた (拒否された) クエリの数。 許可される同時 (並列) クエリの最大数は、要求レート制限ポリシーで定義されます。 | なし |
 
 ## <a name="materialized-view-metrics"></a>具体化されたビューのメトリック
 

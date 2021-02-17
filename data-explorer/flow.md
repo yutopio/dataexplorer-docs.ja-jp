@@ -7,12 +7,12 @@ ms.reviewer: dorcohen
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/25/2020
-ms.openlocfilehash: 72d092683b490c7b58335abc59fd5e3aea2f3e26
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 9f537011cb8030b7d82189df169b0447de488430
+ms.sourcegitcommit: 2605250764561a295291b2862cd145572e0036c8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342945"
+ms.lasthandoff: 12/21/2020
+ms.locfileid: "97708281"
 ---
 # <a name="azure-data-explorer-connector-to-power-automate-preview"></a>Power Automate に接続する Azure Data Explorer コネクタ (プレビュー)
 
@@ -81,7 +81,7 @@ Power Automate コネクタを使用するには、最初にトリガーを追�
     ![[フロー名] オプションが強調表示されている、[予定フローを作成] ページのスクリーンショット](./media/flow/flow-build-scheduled-flow.png)
 
 1. **[作成]**  >  **[新しいステップ]** の順に選択します。
-1. 検索ボックスに「 *Kusto* 」と入力し、 **[Azure Data Explorer]** を選択します。
+1. 検索ボックスに「*Kusto*」と入力し、 **[Azure Data Explorer]** を選択します。
 
     ![検索ボックスと Azure Data Explorer が強調表示されている、アクション オプション選択のスクリーンショット](./media/flow/flow-actions.png)
 
@@ -144,7 +144,7 @@ Azure Data Explorer コネクタを開くと、フローに追加可能な 3 つ
 任意のフローにステップを含めて、レポートを、任意のメールアドレスにメールで送信できます。 
 
 1. 新しいステップをフローに追加するには、 **[+ 新規のステップ]** を選択します。
-1. 検索ボックスに「 *Office 365* 」と入力し、 **[Office 365 Outlook]** を選択します。
+1. 検索ボックスに「*Office 365*」と入力し、 **[Office 365 Outlook]** を選択します。
 1. **[メールの送信 (V2)]** を選択します。
 1. レポートの送信先のメール アドレスを入力します。
 1. メールの件名を入力します。
@@ -186,7 +186,7 @@ Azure Data Explorer コネクタを開くと、フローに追加可能な 3 つ
 
 ## <a name="timeout-exceptions"></a>タイムアウト例外
 
-フローが 7 分以上実行されると、そのフローは失敗し、「リクエスト タイムアウト」の例外が返されます。
+フローは、90 秒よりも長く実行されると失敗し、"RequestTimeout" 例外が返される場合があります。
     
 ![フローの要求タイムアウト例外エラーのスクリーンショット](./media/flow/flow-requesttimeout.png)
 
@@ -196,7 +196,7 @@ Azure Data Explorer で、同じクエリが正常に実行される場合があ
 
 ## <a name="limitations"></a>制限事項
 
-* クライアントに返される結果は、500,000レコードが上限です。 これらのレコードの合計メモリの上限は 64 MB、実行時間の上限は 7 分です。
+* クライアントに返される結果は、500,000レコードが上限です。 これらのレコードの合計メモリの上限は 64 MB、実行時間の上限は 90 秒です。
 * コネクタは、[フォーク](kusto/query/forkoperator.md)演算子と[ファセット](kusto/query/facetoperator.md)演算子をサポートしていません。
 * Microsoft Edge または Google Chrome で Flow を使用することをお勧めします。
 

@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 615b2f681c22237f9d14ad92e285a564c249857e
-ms.sourcegitcommit: d1c2433df183d0cfbfae4d3b869ee7f9cbf00fe4
+ms.openlocfilehash: a50900a5ea0f0c3d8f25e68a606572093af07432
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "99586376"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359609"
 ---
 # <a name="query-limits"></a>クエリの制限
 
@@ -120,7 +120,9 @@ set maxmemoryconsumptionperiterator=68719476736;
 MyTable | ...
 ```
 
-多くの場合、データ セットをサンプリングすることで、この制限を超えないようにすることができます。 次の 2 つのクエリは、サンプリングの実行方法を示しています。 1 つ目は統計サンプリングです。これには乱数ジェネレーターが使用されます。 2 つ目は決定論的サンプリングです。これは、データ セットの何らかの列 (通常は ID) をハッシュするという方法で行われます。
+クエリで `summarize`、`join`、または `make-series` 演算子が使用されている場合は、[クエリのシャッフル](../query/shufflequery.md)戦略を使用して、1 台のコンピューターのメモリの負荷を軽減できます。
+
+それ以外の場合は、この制限を超えないようにデータ セットをサンプリングすることができます。 次の 2 つのクエリは、サンプリングの実行方法を示しています。 1 つ目のクエリは、乱数ジェネレーターを使用した統計サンプリングです。 2 つ目のクエリは決定論的サンプリングです。これは、データ セットの何らかの列 (通常は ID) をハッシュするという方法で行われます。
 
 ```kusto
 T | where rand() < 0.1 | ...
@@ -142,19 +144,7 @@ MyTable | ...
 
 `max_memory_consumption_per_query_per_node` が複数回設定されている場合 (たとえばクライアント要求のプロパティと `set` ステートメントの両方を使用)、低い方の値が適用されます。
 
-## <a name="limit-on-accumulated-string-sets"></a>累積文字列セットに対する制限
-
-さまざまなクエリ演算では、Kusto を使用して文字列値を "収集" し、結果の生成を開始する前にそれらを内部的にバッファーする必要があります。 このような累積文字列セットは、保持できる項目のサイズと数に制限があります。 さらに、個々の文字列には超えることができない特定の制限があります。
-このような制限のいずれかを超えると、次のいずれかのエラーが発生します。
-
-```
-Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the limit of ...GB (see https://aka.ms/kustoquerylimits)')
-
-Runaway query (E_RUNAWAY_QUERY). (message: 'Accumulated string array getting too large and exceeds the maximum count of ..GB items (see http://aka.ms/kustoquerylimits)')
-```
-
-現在、文字列セットの最大サイズを大きくするスイッチはありません。
-回避策として、バッファーする必要のあるデータ量を減らすようにクエリを書き換えてください。 結合や集計などの演算子に使用する前に、不要な列を除外することができます。 または、[クエリのシャッフル](../query/shufflequery.md)戦略を使用できます。
+クエリで `summarize`、`join`、または `make-series` 演算子が使用されている場合は、[クエリのシャッフル](../query/shufflequery.md)戦略を使用して、1 台のコンピューターのメモリの負荷を軽減できます。
 
 ## <a name="limit-execution-timeout"></a>実行タイムアウトの制限
 

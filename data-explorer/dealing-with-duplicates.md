@@ -7,12 +7,12 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 12/19/2018
-ms.openlocfilehash: fd277cd46a183606e35219f733dbf86b094d62f8
-ms.sourcegitcommit: 4b061374c5b175262d256e82e3ff4c0cbb779a7b
+ms.openlocfilehash: 9f5e6ce09fb6d0f7c41162505fe3d124ff901030
+ms.sourcegitcommit: d640e9c54e6b7baa9f999b957a76076bbbcd56d6
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/09/2020
-ms.locfileid: "94373801"
+ms.lasthandoff: 02/10/2021
+ms.locfileid: "100088331"
 ---
 # <a name="handle-duplicate-data-in-azure-data-explorer"></a>Azure Data Explorer で重複データを処理する
 
@@ -68,9 +68,18 @@ DeviceEventsAll
 }
 ```
 
-### <a name="solution-3-filter-duplicates-during-the-ingestion-process"></a>対応策 #3:取り込みプロセスの最中にフィルター処理により重複を除去する
+### <a name="solution-3-use-materialized-views-to-deduplicate"></a>対応策 #3:具体化されたビューを使用して重複を除去する
 
-取り込みプロセスの最中にフィルター処理を使って重複を除去するという方法もあります。 Kusto テーブルへの取り込みの際に、重複したデータが無視されます。 データはステージング テーブルに取り込まれ、重複した行が削除された後、別のテーブルにコピーされます。 この方法のメリットは、1 つ前の方法よりもクエリのパフォーマンスが劇的に高まるという点です。 デメリットとしては、取り込みにかかる時間が増えるほか、データのストレージに追加のコストが発生することが挙げられます。 さらに、このソリューションは、重複が同時に取り込まれない場合にのみ機能します。 重複するレコードを含む複数の取り込みが同時実行される場合、重複除去プロセスによってテーブル内の既存の一致レコードが検出されないため、すべて取り込まれる可能性があります。    
+[any()](kusto/query/any-aggfunction.md)/[arg_min()](kusto/query/arg-min-aggfunction.md)/[arg_max()](kusto/query/arg-max-aggfunction.md) の集計関数を使用することで、重複除去のために[具体化されたビュー](kusto/management/materialized-views/materialized-view-overview.md)を使用できます ([具体化されたビューの作成コマンド](kusto/management/materialized-views/materialized-view-create.md#examples)に関する記事の例 #4 を参照)。 
+
+> [!NOTE]
+> 具体化されたビューでは、クラスターのリソースを消費するというコストが発生し、それが無視できるほどではない場合があります。 詳細については、具体化されたビューの「[パフォーマンスに関する考慮事項](kusto/management/materialized-views/materialized-view-overview.md#performance-considerations)」を参照してください。
+
+### <a name="solution-4-filter-duplicates-during-the-ingestion-process"></a>対応策 #4:取り込みプロセスの最中にフィルター処理により重複を除去する
+
+インジェスト プロセスの最中にフィルター処理によって重複を除去すると、システムは、Kusto テーブルへのインジェスト中に重複するデータを無視します。 データはステージング テーブルに取り込まれ、重複した行が削除された後、別のテーブルにコピーされます。 この対応策では、クエリ時にレコードの重複が既に除去されているため、クエリのパフォーマンスを向上させることができます。 
+
+ただし、このオプションでは、インジェスト時間が増え、追加のデータ ストレージ コストが発生します。 さらに、この対応策は、重複が同時に取り込まれない場合にのみ機能します。 重複するレコードを含む複数のインジェストが同時に実行される場合、重複除去プロセスでは、テーブル内の既存の一致レコードが検出されないため、すべてのレコードが取り込まれる可能性があります。
 
 次の例では、この方法を説明します。
 

@@ -7,12 +7,12 @@ ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/26/2020
-ms.openlocfilehash: 0f77782b5174683d091685064afa7debff7ae777
-ms.sourcegitcommit: 202357f866801aafd92e3e29a84bb312e17aebc7
+ms.openlocfilehash: dc94b3712b51336b8ef069329a2f1aa48aae0bb2
+ms.sourcegitcommit: ab318bcb8f40c9d10395d1dc3e0cf7a1be1a549f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/09/2020
-ms.locfileid: "96933903"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98625567"
 ---
 # <a name="configure-customer-managed-keys-using-the-azure-portal"></a>Azure portal を使用してカスタマー マネージド キーを構成する
 
@@ -39,7 +39,9 @@ ms.locfileid: "96933903"
 1. **[Azure Key Vault からのキーの選択]** ウィンドウで、ドロップダウン リストから既存の **Key Vault** を選択します。 **[新規作成]** を選択して [新しい Key Vault を作成する](/azure/key-vault/quick-create-portal#create-a-vault)場合は、 **[Key Vault の作成]** 画面にルーティングされます。
 
 1. **[キー]** を選択します。
-1. **[バージョン]** を選択します。
+1. バージョン:
+    * このキーで常に最新のキー バージョンが使用されるようにするには、 **[Always use current key version]\(常に現在のキー バージョンを使用する\)** チェックボックスをオンにします。
+    * それ以外の場合は、 **[バージョン]** を選択します。
 1. **[選択]** をクリックします。
 
     :::image type="content" source="media/customer-managed-keys-portal/customer-managed-key-key-vault.png" alt-text="Azure Key Vault からキーを選択する":::

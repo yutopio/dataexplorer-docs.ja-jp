@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: bf6dced9b0df0b90b0b1ff87389c9dab31ebe7c0
-ms.sourcegitcommit: f7bebd245081a5cdc08e88fa4f9a769c18e13e5d
+ms.openlocfilehash: 5ebd3ee711baa24c6f73facfdab361e2de5ada20
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/17/2020
-ms.locfileid: "94644639"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528150"
 ---
 # <a name="what-is-one-click-ingestion"></a>ワンクリックでのインジェストとは
 
@@ -26,7 +26,7 @@ ms.locfileid: "94644639"
 * さまざまな[形式](#file-formats)のデータの取り込み
 * 新規または既存のテーブルへのデータの取り込み
 * テーブル マッピングとスキーマが推奨されており、簡単に変更できる
-* Event Grid でコンテナーから簡単かつ迅速に取り込みを続ける
+* [Event Grid](one-click-ingestion-new-table.md#create-continuous-ingestion-for-container) でコンテナーから簡単かつ迅速にインジェストを続ける
 
 データの初回取り込み時やデータのスキーマに不慣れな場合に、ワンクリックでのインジェストは特に効果的です。
 
@@ -40,13 +40,19 @@ ms.locfileid: "94644639"
 
 ワンクリックでのインジェスト ウィザードを使用すると、ワンクリックでのデータ取り込み手順を画面の指示に従って行うことができます。
 
+* [Azure Data Explorer の Web UI](https://dataexplorer.azure.com/) からウィザードにアクセスするには、次のいずれかの方法を使用します。
+    * 左側のペインで、 **[データ]** を選択します。 **[データ管理]** ページで、インジェストの種類を選択し、 **[取り込む]** をクリックします。 
+      
+      :::image type="content" source="media/ingest-data-one-click/data-management.png" alt-text="Web UI インターフェイスの [データ管理] ウィンドウからデータを取り込む - Azure Data Explorer" lightbox="media/ingest-data-one-click/data-management.png":::
+   
+     * Azure Data Explorer の Web UI の左側のメニューで **データベース** または **テーブル** の行を右クリックし、 **[Ingest new data]\(新しいデータの取り込み\)** を選択します。
+        
+        :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Web UI 上でのワンクリックでのインジェストの選択":::
+
 * クラスターの **[Welcome to Azure Data Explorer]\(Azure Data Explorer へようこそ\)** ホーム画面からワンクリックでのインジェスト ウィザードにアクセスするには、最初の 2 つの手順 ([クラスターの作成とデータベースの作成](#prerequisites)) を完了してから、 **[新しいデータの取り込み]** を選択します。
 
     :::image type="content" source="media/ingest-data-one-click/welcome-ingestion.png" alt-text="[Welcome to Azure Data Explorer]\(Azure Data Explorer へようこそ\) からの新しいデータの取り込み":::
 
-* [Azure Data Explorer の Web UI](https://dataexplorer.azure.com/) からウィザードにアクセスするには、Azure Data Explorer の Web UI の左側のメニューで **データベース** または **テーブル** の行を右クリックし、 **[Ingest new data]\(新しいデータの取り込み\)** を選択します。
-
-    :::image type="content" source="media/ingest-data-one-click/one-click-ingestion-in-webui.png" alt-text="Web UI 上でのワンクリックでのインジェストの選択":::
 
 * Azure portal からウィザードにアクセスするには、左側のメニューから **[クエリ]** を選択し、**データベース** または **テーブル** を右クリックして、 **[Ingest new data]\(新しいデータの取り込み\)** を選択します。
 
@@ -65,10 +71,9 @@ ms.locfileid: "94644639"
    * [既存のテーブル](one-click-ingestion-existing-table.md)への取り込み
    * [新しいテーブル](one-click-ingestion-new-table.md)への取り込み
    * 次の場所からのデータの取り込み:
-      * BLOB ストレージ
-      * [ローカル ファイル](one-click-ingestion-existing-table.md)
-      * [コンテナー](one-click-ingestion-new-table.md)
-
+      * BLOB ストレージ: 最大 10 個の BLOB
+      * [ローカル ファイル](one-click-ingestion-existing-table.md): 最大 10 個のファイル
+      * [コンテナー](one-click-ingestion-new-table.md) (BLOB コンテナー、ADLS Gen1 コンテナー、ADLS Gen2 コンテナー)
 
 ### <a name="schema-mapping"></a>スキーマ マッピング
 
@@ -77,6 +82,7 @@ ms.locfileid: "94644639"
 **[スキーマ]** タブで、次の操作を行います。
    * 自動生成された圧縮の種類を確認します。
    * [データの形式](#file-formats)を選択します。 異なる形式を使用すると、さらに変更を加えることができます。
+   * [[エディター] ウィンドウ](#editor-window)でマッピングを変更します。
 
 #### <a name="file-formats"></a>ファイル形式
 
@@ -84,12 +90,9 @@ ms.locfileid: "94644639"
 
 ### <a name="editor-window"></a>エディター ウィンドウ
 
-**エディター** ウィンドウでは、必要に応じてデータ テーブルの列を調整できます。 
+**[スキーマ]** タブの **[エディター]** ウィンドウで、必要に応じてデータ テーブルの列を調整できます。 
 
-|テーブルの種類です。  |使用可能な列の調整  |
-|---------|---------|
-|新規     | 新しい列、列の削除、列の更新、昇順で並べ替え、降順で並べ替え  |
-|Existing     | 新しい列、列の更新、昇順で並べ替え、降順で並べ替え  |
+[!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
 
 >[!NOTE]
 > **[エディター]** ペインの上にある [コマンド エディター](one-click-ingestion-new-table.md#command-editor)をいつでも開くことができます。 コマンド エディターでは、ご自分の入力から生成された自動コマンドを表示およびコピーできます。
@@ -104,7 +107,7 @@ ms.locfileid: "94644639"
 * DateTimeFromUnixMicroseconds
 * DateTimeFromUnixNanoseconds
 
-詳細については、[マッピング変換に関するページ](kusto/management/mappings.md#mapping-transformations)を参照してください。
+詳細については、[マッピング変換に関するページ](#mapping-transformations)を参照してください。
 
 ### <a name="data-ingestion"></a>データ インジェスト
 

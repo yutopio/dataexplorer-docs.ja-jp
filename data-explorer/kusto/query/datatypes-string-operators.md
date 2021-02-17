@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/19/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 13dac735127815c00ac8c1128c710e26208406d7
-ms.sourcegitcommit: d4b359e817e002fba7320132732ce6d9cee97415
+ms.openlocfilehash: 0dffa044ff47748d46b3ab4758bb61684bb8bb10
+ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/18/2021
-ms.locfileid: "98541497"
+ms.lasthandoff: 02/14/2021
+ms.locfileid: "100359728"
 ---
 # <a name="string-operators"></a>文字列演算子
 
@@ -55,6 +55,7 @@ Kusto の場合、"*4 文字以上*" のすべての用語で構成される用�
 `!~`            |等しくない                                                        |いいえ            |`"aBc" !~ "xyz"`
 `has`           |右辺 (RHS) が左辺 (LHS) に 1 つの単語として含まれる     |いいえ            |`"North America" has "america"`
 `!has`          |RHS が LHS に完全な用語として含まれない                                     |いいえ            |`"North America" !has "amer"` 
+[`has_all`](has-all-operator.md)       |`has` と同じだが、すべての要素で機能する                    |いいえ            |`"North and South America" has_all("south", "north")`
 [`has_any`](has-anyoperator.md)       |`has` と同じだが、任意の要素で機能する                    |いいえ            |`"North America" has_any("south", "north")`
 `has_cs`        |RHS は LHS 内の完全な用語である                                        |はい           |`"North America" has_cs "America"`
 `!has_cs`       |RHS が LHS に完全な用語として含まれない                                     |はい           |`"North America" !has_cs "amer"` 

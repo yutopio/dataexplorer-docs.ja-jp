@@ -8,12 +8,12 @@ ms.reviewer: jasonh
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/15/2019
-ms.openlocfilehash: c38a55294ba26ed130cac2c57b2ae12abe70526e
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 2af70ec7905a89b5a3f7caf5a60e05d150c722e5
+ms.sourcegitcommit: 18092550a9f55de314dd337b7ee7e00e8733a35f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88873357"
+ms.lasthandoff: 01/06/2021
+ms.locfileid: "97941280"
 ---
 # <a name="copy-data-to-azure-data-explorer-by-using-azure-data-factory"></a>Azure Data Factory を使用して Azure Data Explorer にデータをコピーする 
 
@@ -165,12 +165,13 @@ Azure Data Explorer のリンクされたサービスを作成するには、以
 
    b. **[Account selection method]\(アカウントの選択方法\)** で、次のいずれかのオプションを選択します。 
 
-    * **[From Azure subscription]\(Azure サブスクリプションから\)** を選択し、ドロップダウン リストでお使いの **Azure サブスクリプション**と**クラスター**を選択します。 
+    * **[From Azure subscription]\(Azure サブスクリプションから\)** を選択し、ドロップダウン リストでお使いの **Azure サブスクリプション** と **クラスター** を選択します。 
 
         > [!NOTE]
-        > **[クラスター]** ボックスの一覧には、お使いのサブスクリプションに関連付けられているクラスターのみが表示されます。
+        > * **[クラスター]** ボックスの一覧には、お使いのサブスクリプションに関連付けられているクラスターのみが表示されます。
+        > * [最高のパフォーマンス](data-factory-integration.md#performance)を得るために、クラスターには適切な [SKU](manage-cluster-choose-sku.md) が必要です。
 
-    * **[手動で入力]** を選択し、お使いの**エンドポイント**を入力します。
+    * **[手動で入力]** を選択し、お使いの **エンドポイント** を入力します。
 
    c. **[テナント]** ボックスにテナント名を入力します。
 
@@ -211,7 +212,7 @@ Azure Data Explorer のリンクされたサービスを作成するには、以
 
     * (省略可能) **[Azure Data Explorer (Kusto) sink properties]\(Azure Data Explorer (Kusto) シンク プロパティ\)** で、列マッピングを使用できるように、関連する **[Ingestion mapping name]\(インジェスト マッピング名\)** を追加します。
 
-    * **[Ingestion mapping name]\(インジェスト マッピング名\)** が指定されていない場合は、 **[列マッピング]** セクションで定義されている *by-name* マッピング順序が使用されます。 *by-name* マッピングが失敗すると、Azure Data Explorer では、*by-column position*順 (つまり、既定では位置によるマップ) でデータの取り込みが試行されます。
+    * **[Ingestion mapping name]\(インジェスト マッピング名\)** が指定されていない場合は、 **[列マッピング]** セクションで定義されている *by-name* マッピング順序が使用されます。 *by-name* マッピングが失敗すると、Azure Data Explorer では、*by-column position* 順 (つまり、既定では位置によるマップ) でデータの取り込みが試行されます。
 
     * **[次へ]** を選択します。
 

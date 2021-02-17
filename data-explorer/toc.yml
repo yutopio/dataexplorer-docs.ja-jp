@@ -712,6 +712,8 @@
               href: ./kusto/query/datatypes-string-operators.md
             - name: in および !in 演算子
               href: ./kusto/query/inoperator.md
+            - name: has_all 演算子
+              href: ./kusto/query/has-all-operator.md
             - name: has_any 演算子
               href: ./kusto/query/has-anyoperator.md
         - name: between 演算子
@@ -1427,6 +1429,8 @@
               href: ./kusto/management/request-limits-policy.md
             - name: 要求レート制限ポリシー
               href: ./kusto/management/request-rate-limit-policy.md
+            - name: 要求キュー ポリシー
+              href: ./kusto/management/request-queuing-policy.md
         - name: スキーマ
           items:
             - name: スキーマ管理のベスト プラクティス
@@ -1506,12 +1510,26 @@
                   href: ./kusto/management/materialized-views/materialized-view-create.md
                 - name: .alter materialized-view
                   href: ./kusto/management/materialized-views/materialized-view-alter.md
+                - name: .create-or-alter materialized-view
+                  href: ./kusto/management/materialized-views/materialized-view-create-or-alter.md
+                - name: .alter materialized-view docstring
+                  href: ./kusto/management/materialized-views/materialized-view-alter-docstring.md
+                - name: .alter materialized-view folder
+                  href: ./kusto/management/materialized-views/materialized-view-alter-folder.md
+                - name: .alter materialized-view lookback
+                  href: ./kusto/management/materialized-views/materialized-view-alter-lookback.md
+                - name: .alter materialized-view autoUpdateSchema
+                  href: ./kusto/management/materialized-views/materialized-view-alter-autoUpdateSchema.md
                 - name: .show materialized-view commands
                   href: ./kusto/management/materialized-views/materialized-view-show-commands.md
                 - name: .drop materialized-view
                   href: ./kusto/management/materialized-views/materialized-view-drop.md
                 - name: .disable | .enable materialized-view
                   href: ./kusto/management/materialized-views/materialized-view-enable-disable.md
+                - name: 具体化されたビューのポリシー
+                  href: ./kusto/management/materialized-views/materialized-view-policies.md
+                - name: 具体化されたビューのデータ消去
+                  href: ./kusto/management/materialized-views/materialized-view-purge.md
             - name: 格納されたクエリ結果
               displayName: '.set stored query, .show stored query, .drop stored query'
               href: ./kusto/management/stored-query-results.md
@@ -1895,6 +1913,9 @@
         - name: quantize_fl()
           displayName: functions library
           href: kusto/functions-library/quantize-fl.md
+        - name: series_dbl_exp_smoothing_fl()
+          displayName: functions library
+          href: kusto/functions-library/series-dbl-exp-smoothing-fl.md
         - name: series_dot_product_fl()
           displayName: functions library
           href: kusto/functions-library/series-dot-product-fl.md

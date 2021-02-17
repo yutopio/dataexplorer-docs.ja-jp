@@ -6,17 +6,17 @@ ms.author: orspodek
 ms.reviewer: guregini
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 09/16/2020
-ms.openlocfilehash: 5dbd1aeb777b067e0c7bee15be838eb2f306086f
-ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
+ms.date: 01/07/2021
+ms.openlocfilehash: 5142b6abfb5a7898fe58cd6264251e57dc95ae81
+ms.sourcegitcommit: e37f52d6a4f6e782471b44ce21f978e2d83ffc28
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/14/2020
-ms.locfileid: "97371477"
+ms.lasthandoff: 01/11/2021
+ms.locfileid: "98068706"
 ---
-# <a name="monitor-azure-data-explorer-ingestion-commands-and-queries-using-diagnostic-logs"></a>診断ログを使用して Azure Data Explorer のインジェスト、コマンド、およびクエリを監視する
+# <a name="monitor-azure-data-explorer-ingestion-commands-queries-and-tables-using-diagnostic-logs"></a>診断ログを使用して Azure Data Explorer のインジェスト、コマンド、クエリ、テーブルを監視する
 
-Azure Data Explorer は、アプリケーション、Web サイト、IoT デバイスなどからの大量のデータ ストリーミングをリアルタイムに分析するためのフル マネージドのデータ分析サービスです。 [Azure Monitor 診断ログ](/azure/azure-monitor/platform/diagnostic-logs-overview)は、Azure リソースの動作状況に関するデータを提供します。 Azure Data Explorer は、診断ログを使用して、インジェストの成功、インジェストの失敗、コマンド、およびクエリ操作に関する分析情報を取得します。 操作ログを Azure Storage、イベント ハブ、または Log Analytics にエクスポートして、インジェスト、コマンド、およびクエリの状態を監視することができます。 Azure Storage と Azure イベント ハブからのログを Azure Data Explorer クラスター内のテーブルにルーティングして詳細な分析を行うことができます。
+Azure Data Explorer は、アプリケーション、Web サイト、IoT デバイスなどからの大量のデータ ストリーミングをリアルタイムに分析するためのフル マネージドのデータ分析サービスです。 [Azure Monitor 診断ログ](/azure/azure-monitor/platform/diagnostic-logs-overview)は、Azure リソースの動作状況に関するデータを提供します。 Azure Data Explorer は、診断ログを使用して、インジェスト、コマンド、クエリ、テーブルの分析情報を取得します。 操作ログを Azure Storage、イベント ハブ、または Log Analytics にエクスポートして、インジェスト、コマンド、およびクエリの状態を監視することができます。 Azure Storage と Azure イベント ハブからのログを Azure Data Explorer クラスター内のテーブルにルーティングして詳細な分析を行うことができます。
 
 > [!IMPORTANT] 
 > 診断ログ データには機密データが含まれている場合があります。 監視のニーズに応じて、ログの出力先のアクセス許可を制限します。 
@@ -39,7 +39,7 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 > インジェスト ログは、ストリーミング インジェスト、エンジンへの直接インジェスト、クエリからのインジェスト、および set-or-append コマンドではサポートされていません。
 
 > [!NOTE]
-> 失敗したインジェストのログは、取り込み操作の最終状態についてのみ報告されます。これは (インジェストの結果)[using-metrics#ingestion-metrics] メトリックとは異なります。これは、内部で再試行される一時的なエラーに対して生成されます。
+> 失敗したインジェストのログは、取り込み操作の最終状態についてのみ報告されます。これは、内部で再試行される一時的なエラーに対して生成される[インジェストの結果](using-metrics.md#ingestion-metrics)メトリックとは異なります。
 
 * **成功したインジェスト操作**:ログには、正常に完了したインジェスト操作に関する情報が含まれています。
 * **失敗したインジェスト操作**:ログには、失敗したインジェスト操作に関する詳細情報 (エラーの詳細を含む) が含まれています。 
@@ -52,6 +52,15 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
     > [!NOTE]
     > クエリ ログのデータには、クエリのテキストは含まれていません。
+    
+# <a name="tables"></a>[テーブル](#tab/tables)
+
+* **TableUsageStatistics**:これらのログには、最終的な状態に達したコマンドおよびクエリの使用状況に関する詳細情報が含まれます。
+
+    > [!NOTE]
+    > `TableUsageStatistics` ログのデータには、コマンドまたはクエリのテキストは含まれません。
+
+* **TableDetails**:これらのログには、クラスターのテーブルに関する詳細情報が含まれます。
 
 ---
 
@@ -73,14 +82,14 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 
     1. **診断設定の名前** を入力します。
     1. Log Analytics ワークスペース、ストレージ アカウント、イベント ハブから 1 つ以上のターゲットを選択します。
-    1. 収集するログ (`SucceededIngestion`、`FailedIngestion`、`Command`、`Query`、`TableUsageStatistics`、または `TableDetails`) を選択します。
+    1. 収集するログ (`SucceededIngestion`、`FailedIngestion`、`IngestionBatching`、`Command`、`Query`、`TableUsageStatistics`、または `TableDetails`) を選択します。
     1. 収集する [[メトリック]](using-metrics.md#supported-azure-data-explorer-metrics) を選択します (省略可能)。  
     1. **[保存]** を選択して、新しい診断ログの設定とメトリックを保存します。
 
 新しい設定は数分で設定されます。 ログは、構成したアーカイブ ターゲット (ストレージ アカウント、イベント ハブ、Log Analytics) に表示されます。 
 
 > [!NOTE]
-> Log Analytics にログを送信すると、`SucceededIngestion`、`FailedIngestion`、`Command`、`Query` の各ログは、それぞれ `SucceededIngestion`、`FailedIngestion`、`ADXIngestionBatching`、`ADXCommand`、`ADXQuery` という名前の Log Analytics テーブルに格納されます。
+> Log Analytics にログを送信すると、`SucceededIngestion`、`FailedIngestion`、`IngestionBatching`、`Command`、`Query`、`TableUsageStatistics`、および `TableDetails` の各ログは、それぞれ `SucceededIngestion`、`FailedIngestion`、`ADXIngestionBatching`、`ADXCommand`、`ADXQuery`、`ADXTableUsageStatistics`、`ADXTableDetails` という名前の Log Analytics テーブルに格納されます。
 
 ## <a name="diagnostic-logs-schema"></a>診断ログのスキーマ
 
@@ -397,6 +406,117 @@ Azure Data Explorer は、アプリケーション、Web サイト、IoT デバ�
 |TablesStatistics        |結果セット テーブルの統計情報を含む
 |RowCount        | 結果セット テーブルの行数
 |TableSize        |結果セット テーブルの行数
+
+
+# <a name="tables"></a>[テーブル](#tab/tables)
+
+### <a name="tableusagestatistics-and-tabledetails-logs-schema"></a>TableUsageStatistics および TableDetails ログ スキーマ
+
+ログの JSON 文字列には、次の表に示す要素が含まれます。
+
+|名前               |説明
+|---                |---
+|time               |レポートされた時刻
+|resourceId         |Azure Resource Manager リソース ID
+|operationName      |操作の名前:'MICROSOFT.KUSTO/CLUSTERS/DATABASE/SCHEMA/READ'。 TableUsageStatistics と TableDetails では、プロパティは同じです。
+|operationVersion   |スキーマのバージョン:'1.0' 
+|properties         |操作の詳細情報
+
+#### <a name="tableusagestatistics-log"></a>TableUsageStatistics ログ
+
+**例:**
+
+```json
+{
+    "resourceId": "/SUBSCRIPTIONS/0571b364-eeeb-4f28-ba74-90a8b4132b53/RESOURCEGROUPS/MYRG/PROVIDERS/MICROSOFT.KUSTO/CLUSTERS/MYKUSTOCLUSTER",
+    "time": "08-04-2020 16:42:29",
+    "operationName": "MICROSOFT.KUSTO/CLUSTERS/DATABASE/SCHEMA/READ",
+    "correlationId": "MyApp.Kusto.DM.MYKUSTOCLUSTER.ShowTableUsageStatistics.e10fe80b-6f4d-4b7e-9756-b87720f88901",
+    "properties": {
+        "RootActivityId": "3e6e8814-e64f-455a-926d-bf16229f6d2d",
+        "StartedOn": "2020-08-19T11:51:41.1258308Z",
+        "Database": "MyDB",
+        "Table": "MyTable",
+        "MinCreatedOn": "2020-07-20T09:16:00.9906347Z",
+        "MaxCreatedOn": "2020-08-19T11:50:37.1233374Z",
+        "Application": "MyApp",
+        "User": "AAD app id=0571b364-eeeb-4f28-ba74-90a8b4132b53",
+        "Principal": "aadapp=0571b364-eeeb-4f28-ba74-90a8b4132b53;5c823e4d-c927-4010-a2d8-6dda2449b6cf"
+    }
+}
+```
+
+**TableUsageStatistics 診断ログのプロパティ**
+
+|名前               |説明
+|---                |---
+|RootActivityId |ルート アクティビティ ID
+|StartedOn        |このコマンドが開始された時刻 (UTC)
+|データベース          |データベースの名前
+|TableName              |テーブルの名前
+|MinCreatedOn  |テーブルの最も古いエクステント時間
+|MaxCreatedOn |テーブルの最も新しいエクステント時間
+|ApplicationName     |コマンドを呼び出したアプリケーションの名前
+|User     |クエリを呼び出したユーザー
+|プリンシパル     |クエリを呼び出したプリンシパル
+
+#### <a name="tabledetails-log"></a>TableDetails ログ
+
+**例:**
+
+```json
+{
+    "resourceId": "/SUBSCRIPTIONS/0571b364-eeeb-4f28-ba74-90a8b4132b53/RESOURCEGROUPS/MYRG/PROVIDERS/MICROSOFT.KUSTO/CLUSTERS/MYKUSTOCLUSTER",
+    "time": "08-04-2020 16:42:29",
+    "operationName": "MICROSOFT.KUSTO/CLUSTERS/DATABASE/SCHEMA/READ",
+    "correlationId": "MyApp.Kusto.DM.MYKUSTOCLUSTER.ShowTableUsageStatistics.e10fe80b-6f4d-4b7e-9756-b87720f88901",
+    "properties": {
+        "RootActivityId": "3e6e8814-e64f-455a-926d-bf16229f6d2d",
+        "TableName": "MyTable",
+        "DatabaseName": "MyDB",
+        "TotalExtentSize": 9632.0,
+        "TotalOriginalSize": 4143.0,
+        "HotExtentSize": 0.0,
+        "RetentionPolicyOrigin": "table",
+        "RetentionPolicy": "{\"SoftDeletePeriod\":\"90.00:00:00\",\"Recoverability\":\"Disabled\"}",
+        "CachingPolicyOrigin": "database",
+        "CachingPolicy": "{\"DataHotSpan\":\"7.00:00:00\",\"IndexHotSpan\":\"7.00:00:00\",\"ColumnOverrides\":[]}",
+        "MaxExtentsCreationTime": "2020-08-30T02:44:43.9824696Z",
+        "MinExtentsCreationTime": "2020-08-30T02:38:42.3031288Z",
+        "TotalExtentCount": 1164,
+        "TotalRowCount": 223325,
+        "HotExtentCount": 29,
+        "HotOriginalSize": 1388213,
+        "HotRowCount": 5117
+  }
+}
+```
+
+**TableDetails 診断ログのプロパティ**
+
+|名前               |説明
+|---                |---
+|RootActivityId |ルート アクティビティ ID
+|TableName        |テーブルの名前
+|DatabaseName           |データベースの名前
+|TotalExtentSize              |テーブル内のデータの元の合計サイズ (バイト単位)
+|HotExtentSize  |ホット キャッシュに格納された、テーブル内のエクステントのバイト単位の合計サイズ (圧縮サイズとインデックス サイズ)。
+|RetentionPolicyOrigin |保持ポリシーの元のエンティティ (テーブル/データベース/クラスター)
+|RetentionPolicy     |JSON としてシリアル化された、テーブルの有効なエンティティ保持ポリシー
+|CachingPolicyOrigin            |キャッシュ ポリシーの元のエンティティ (テーブル/データベース/クラスター)
+|CachingPolicy          |JSON としてシリアル化された、テーブルの有効なエンティティ キャッシュ ポリシー
+|MaxExtentsCreationTime      |テーブル内のエクステントの最大作成時間 (エクステントがない場合は null)
+|MinExtentsCreationTime |テーブル内のエクステントの最小作成時間 (エクステントがない場合は null)
+|TotalExtentCount        |テーブル内のエクステントの合計数
+|TotalRowCount        |テーブル内の行の合計数
+|MinDataScannedTime        |最小データ スキャン時間
+|MaxDataScannedTime        |最大データ スキャン時間
+|TotalExtentsCount        |合計エクステント数
+|ScannedExtentsCount        |スキャンされたエクステント数
+|TotalRowsCount        |合計行数
+|HotExtentCount        |ホット キャッシュに格納された、テーブル内のエクステントの合計数
+|HotOriginalSize        |ホット キャッシュに格納された、テーブル内のデータの元の合計サイズ (バイト単位)
+|HotRowCount        |ホット キャッシュに格納された、テーブル内の行の合計数
 
 ---
 

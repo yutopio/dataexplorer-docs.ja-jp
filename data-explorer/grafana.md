@@ -6,13 +6,13 @@ ms.author: orspodek
 ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: how-to
-ms.date: 09/09/2020
-ms.openlocfilehash: 08093fd06fed1facc1d8e55d98785abb952632c8
-ms.sourcegitcommit: 95527c793eb873f0135c4f0e9a2f661ca55305e3
+ms.date: 01/05/2021
+ms.openlocfilehash: 523fc2d9fcde2ec0626225c3179676a9cc2d653d
+ms.sourcegitcommit: 18092550a9f55de314dd337b7ee7e00e8733a35f
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 09/15/2020
-ms.locfileid: "90534074"
+ms.lasthandoff: 01/06/2021
+ms.locfileid: "97941306"
 ---
 # <a name="visualize-data-from-azure-data-explorer-in-grafana"></a>Grafana で Azure Data Explorer のデータを視覚化する
 
@@ -52,7 +52,7 @@ Grafana の Azure Data Explorer プラグインを使用し、Azure Data Explore
 
     ![接続名と種類](media/grafana/connection-name-type.png)
 
-1. https://{クラスター名}.{リージョン}.kusto.windows.net の形式でクラスターの名前を入力します。 Azure portal または CLI で取得した他の値を入力します。 マッピングについては、次の画像の下の表をご覧ください。
+1. **[設定]**  >  **[接続の詳細]** に、 https://{クラスター名}.{リージョン}.kusto.windows.net という形式でクラスターの名前を入力します。 Azure portal または CLI で取得した他の値を入力します。 マッピングについては、次の画像の下の表をご覧ください。
 
     ![接続のプロパティ](media/grafana/connection-properties.png)
 
@@ -67,6 +67,31 @@ Grafana の Azure Data Explorer プラグインを使用し、Azure Data Explore
 1. **[Save & Test]\(保存してテスト\)** を選択します。
 
     テストが成功した場合は、次のセクションに進みます。 問題が発生した場合は、Grafana で指定した値を確認し、これまでの手順を見直します。
+
+### <a name="optimize-queries"></a>クエリの最適化
+
+クエリの最適化には、2 つの機能を使用できます。
+* [ダッシュボードのクエリ レンダリングのパフォーマンスを最適化する](#optimize-dashboard-query-rendering-performance-using-query-results-caching)
+* [弱い整合性を有効にする](#enable-weak-consistency)
+
+最適化を実行するには、 **[データ ソース]**  >  **[設定]**  >  **[Query Optimizations]\(クエリ最適化\)** で、必要な変更を行います。
+
+:::image type="content" source="media/grafana/query-optimization.PNG" alt-text="[Query optimization]\(クエリ最適化\) ペイン":::
+
+#### <a name="optimize-dashboard-query-rendering-performance-using-query-results-caching"></a>クエリ結果のキャッシュを使用してダッシュボードのクエリ レンダリングのパフォーマンスを最適化する 
+
+ダッシュボードまたはビジュアルが 1 人以上のユーザーによって複数回レンダリングされると、Grafana は既定で、少なくとも 1 つのクエリを Azure Data Explorer に送信します。 [クエリ結果のキャッシュ](kusto/query/query-results-cache.md)を有効にすると、ダッシュボードのレンダリング パフォーマンスが向上し、Azure Data Explorer クラスターの負荷が軽減されます。 Azure Data Explorer は、指定された時間範囲内で、結果キャッシュを使用して前の結果を取得し、不要なクエリを実行しません。 この機能は、複数のユーザーが同じダッシュボードを使用している場合に、リソースの負荷を軽減し、パフォーマンスを向上させるために特に有効です。
+
+結果キャッシュ レンダリングを有効にするには、 **[Query Optimizations]\(クエリ最適化\)** ペインで次のことを行います。
+1. **[Use dynamic caching]\(動的キャッシュを使用する\)** を無効にします。 
+1. **[Cache Max Age]\(最大キャッシュ時間\)** に、キャッシュされた結果を使用する時間を分単位で入力します。
+
+#### <a name="enable-weak-consistency"></a>弱い整合性を有効にする
+
+クラスターは、強い整合性を使用して構成されます。 これにより、クエリ結果が、確実にクラスター内のすべての変更を含む最新の状態になります。
+弱い整合性を有効にすると、クエリ結果に、クラスター変更後に 1 分から 2 分の遅延が発生する場合があります。 一方、弱い整合性により、ビジュアル レンダリングの時間が短縮される可能性があります。 したがって、即時の整合性が重要ではなく、パフォーマンスに限界がある場合は、弱い整合性を有効にしてパフォーマンスを向上させます。 クエリの整合性の詳細については、[クエリの整合性](kusto/concepts/queryconsistency.md)に関するページを参照してください。
+
+弱い整合性を有効にするには、 **[Query Optimizations]\(クエリ最適化\)** ペイン > **[Data consistency]\(データ整合性\)** で、 **[Weak]\(弱い\)** を選択します。
 
 ## <a name="visualize-data"></a>データの視覚化
 
@@ -173,7 +198,7 @@ raw モードを使用してクエリを編集します。
 
     ![アラートのプロパティ](media/grafana/alert-properties.png)
 
-1. **ダッシュボードの保存**アイコンを選択して、変更を保存します。
+1. **ダッシュボードの保存** アイコンを選択して、変更を保存します。
 
 ## <a name="next-steps"></a>次のステップ
 

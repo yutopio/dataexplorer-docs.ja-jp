@@ -8,18 +8,18 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: fde0e79fbe8a8080fa6e21dde12434de5c92353f
-ms.sourcegitcommit: d9e203a54b048030eeb6d05b01a65902ebe4e0b8
+ms.openlocfilehash: 009c7cbfd458af33a5d38a3907720d8aff1f203a
+ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/14/2020
-ms.locfileid: "97371460"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98635924"
 ---
 # <a name="event-grid-data-connection"></a>Event Grid データ接続
 
 Event Grid インジェストは、Azure ストレージをリッスンし、サブスクライブしたイベントが発生したときに情報をプルするように Azure Data Explorer を更新するパイプラインです。 Azure Data Explorer では、BLOB 作成または BLOB 名前変更の通知に対する [Azure Event Grid](/azure/event-grid/overview) サブスクリプションを使用して Azure Storage (Blob Storage と ADLSv2) からの継続的なインジェストが提供され、イベント ハブを介してそれらの通知が Azure Data Explorer にストリーミングされます。
 
-Event Grid のインジェスト パイプラインでは、いくつかの手順が実行されます。 [特定の形式のデータ](#data-format)が取り込まれるターゲット テーブルを Azure Data Explorer に作成します。 次に、Azure Data Explorer で Event Grid データ接続を作成します。 Event Grid データ接続では、データを送信するテーブルやテーブルのマッピングなど、[イベントのルーティング](#events-routing)情報を把握している必要があります。 また、取り込まれるデータ、ターゲット テーブル、およびマッピングを記述する[インジェスト プロパティ](#ingestion-properties)も指定します。 サンプル データを生成し、[BLOB にアップロード](#upload-blobs)して、接続をテストすることができます。 インジェスト後、[BLOB を削除](#delete-blobs-using-storage-lifecycle)します。 このプロセスは、[Azure portal](ingest-data-event-grid.md)、[ワンクリック インジェスト](one-click-ingestion-new-table.md)、[C#](data-connection-event-grid-csharp.md) または [Python](data-connection-event-grid-python.md) によるプログラム、または [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)を使用して管理できます。 
+Event Grid のインジェスト パイプラインでは、いくつかの手順が実行されます。 [特定の形式のデータ](#data-format)が取り込まれるターゲット テーブルを Azure Data Explorer に作成します。 次に、Azure Data Explorer で Event Grid データ接続を作成します。 Event Grid データ接続では、データを送信するテーブルやテーブルのマッピングなど、[イベントのルーティング](#events-routing)情報を把握している必要があります。 また、取り込まれるデータ、ターゲット テーブル、およびマッピングを記述する[インジェスト プロパティ](#ingestion-properties)も指定します。 サンプル データを生成し、[BLOB をアップロード](#upload-blobs)するか、[BLOB を名前変更](#rename-blobs)して、接続をテストできます。 インジェスト後、[BLOB を削除](#delete-blobs-using-storage-lifecycle)します。 このプロセスは、[Azure portal](ingest-data-event-grid.md)、[ワンクリック インジェスト](one-click-ingestion-new-table.md)、[C#](data-connection-event-grid-csharp.md) または [Python](data-connection-event-grid-python.md) によるプログラム、または [Azure Resource Manager テンプレート](data-connection-event-grid-resource-manager.md)を使用して管理できます。
 
 Azure Data Explorer でのデータ インジェストに関する一般的な情報については、「[Azure Data Explorer のデータ インジェスト概要](ingest-data-overview.md)」を参照してください。
 
@@ -73,6 +73,14 @@ blob.UploadFromFile(jsonCompressedLocalFileName);
 > Data Lake Gen2 SDK の正しい使用方法の詳細な例については、「[Azure Data Lake SDK を使用してファイルをアップロードする](data-connection-event-grid-csharp.md#upload-file-using-azure-data-lake-sdk)」を参照してください。
 > * イベント ハブ エンドポイントでイベントの受信が認識されない場合、Azure Event Grid によって再試行メカニズムがアクティブ化されます。 この再試行配信に失敗した場合、配信されなかったイベントは Event Grid の "*配信不能*" プロセスを使用してストレージ アカウントに配信できます。 詳細については、[Event Grid のメッセージの配信と再試行](/azure/event-grid/delivery-and-retry#retry-schedule-and-duration)に関する記事を参照してください。
 
+## <a name="rename-blobs"></a>BLOB を名前変更する
+
+ADLSv2 を使用する場合、BLOB を名前変更して、Azure Data Explorer への BLOB インジェストをトリガーできます。 例については、「[Event Grid の通知をサブスクライブすることで Azure Data Explorer に BLOB を取り込む](ingest-data-event-grid.md#generate-sample-data)」を参照してください。
+
+> [!NOTE]
+> * ディレクトリの名前変更は ADLSv2 で実行できますが、"*名前変更された BLOB*" イベントおよびディレクトリ内への BLOB のインジェストはトリガーされません。 名前変更後に BLOB を取り込むには、目的の BLOB を直接名前変更します。
+> * [データ接続を作成](ingest-data-event-grid.md#create-an-event-grid-data-connection-in-azure-data-explorer)するとき、または [Event Grid リソースを手動で](ingest-data-event-grid-manual.md#create-an-event-grid-subscription)作成するときに、特定のサブジェクトを追跡するフィルターを定義した場合、これらのフィルターは対象のファイル パスに適用されます。
+
 ## <a name="delete-blobs-using-storage-lifecycle"></a>ストレージ ライフサイクルを使用した BLOB の削除
 
 Azure Data Explorer では、取り込み後に BLOB は削除されません。 [Azure Blob Storage のライフサイクル](/azure/storage/blobs/storage-lifecycle-management-concepts?tabs=azure-portal)を使用して、BLOB の削除を管理してください。 BLOB は 3 日から 5 日間保持することをお勧めします。
@@ -89,3 +97,4 @@ Azure Data Explorer では、取り込み後に BLOB は削除されません。
 * [C# を使用して Azure Data Explorer 用に Event Grid データ接続を作成する](data-connection-event-grid-csharp.md)
 * [Python を使用して Azure Data Explorer 用に Event Grid データ接続を作成する](data-connection-event-grid-python.md)
 * [Azure Resource Manager テンプレートを使用して Azure Data Explorer 用に Event Grid データ接続を作成する](data-connection-event-grid-resource-manager.md)
+* [ワンクリックでのインジェストを使用して Azure Data Explorer の新しいテーブルにコンテナーの CSV データを取り込む](one-click-ingestion-new-table.md)

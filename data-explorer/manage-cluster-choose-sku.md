@@ -7,12 +7,12 @@ ms.reviewer: avnera
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/13/2020
-ms.openlocfilehash: 44c115cd509b72d5f83b1c1109ae09dc050d1a74
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 930271d2d7c2b46b3ac873449338dda98472c36d
+ms.sourcegitcommit: c11e3871d600ecaa2824ad78bce9c8fc5226eef9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92337450"
+ms.lasthandoff: 02/04/2021
+ms.locfileid: "99554863"
 ---
 # <a name="select-the-correct-compute-sku-for-your-azure-data-explorer-cluster"></a>Azure Data Explorer クラスターに適したコンピューティング SKU を選択する 
 
@@ -31,7 +31,7 @@ ms.locfileid: "92337450"
 
 Azure Data Explorer には、次の 2 種類のクラスターが用意されています。
 
-* **運用** : 運用クラスターには、エンジン クラスターとデータ管理クラスター用の 2 つのノードが含まれており、Azure Data Explorer の [SLA](https://azure.microsoft.com/support/legal/sla/data-explorer/v1_0/) のもとで運用されます。
+* **運用**: 運用クラスターには、エンジン クラスターとデータ管理クラスター用の 2 つのノードが含まれており、Azure Data Explorer の [SLA](https://azure.microsoft.com/support/legal/sla/data-explorer/v1_0/) のもとで運用されます。
 
 * **Dev/Test (SLA なし)** : Dev/Test クラスターには、エンジンとデータ管理クラスター用の 1 つのノードがあります。 このクラスターの種類は、インスタンスの数が少なく、エンジン マークアップ料金が必要ないため、最も低いコスト構成です。 冗長性がないため、このクラスター構成には SLA がありません。
 
@@ -94,31 +94,32 @@ Azure Data Explorer クラスター VM の技術仕様を次の表で説明し�
 |**名前**| **カテゴリ** | **SSD サイズ** | **コア** | **RAM** | **Premium Storage ディスク (1&nbsp;TB)**| **クラスターあたりの最小インスタンス数** | **クラスターあたりの最大インスタンス数**
 |---|---|---|---|---|---|---|---
 |Dev(No SLA) Standard_D11_v2| コンピューティング最適化 | 75&nbsp;GB    | 1 | 14&nbsp;GB | 0 | 1 | 1
-|Dev(No SLA) Standard_E2a_v4| コンピューティング最適化 | 18&nbsp;GB    | 1 | 14&nbsp;GB | 0 | 1 | 1
+|Dev(No SLA) Standard_E2a_v4| コンピューティング最適化 | 18&nbsp;GB    | 1 | 16&nbsp;GB | 0 | 1 | 1
 |Standard_D11_v2| コンピューティング最適化 | 75&nbsp;GB    | 2 | 14&nbsp;GB | 0 | 2 | 8 
 |Standard_D12_v2| コンピューティング最適化 | 150&nbsp;GB   | 4 | 28&nbsp;GB | 0 | 2 | 16
 |Standard_D13_v2| コンピューティング最適化 | 307&nbsp;GB   | 8 | 56&nbsp;GB | 0 | 2 | 1,000
 |Standard_D14_v2| コンピューティング最適化 | 614&nbsp;GB   | 16| 112&nbsp;GB | 0 | 2 | 1,000
-|Standard_E2a_v4| 高負荷のコンピューティング | 18&nbsp;GB    | 2 | 14&nbsp;GB | 0 | 2 | 8 
-|Standard_E4a_v4| 高負荷のコンピューティング | 54&nbsp;GB   | 4 | 28&nbsp;GB | 0 | 2 | 16
-|Standard_E8a_v4| 高負荷のコンピューティング | 127&nbsp;GB   | 8 | 56&nbsp;GB | 0 | 2 | 1,000
-|Standard_E16a_v4| 高負荷のコンピューティング | 273&nbsp;GB   | 16| 112&nbsp;GB | 0 | 2 | 1,000
+|Standard_E2a_v4| 高負荷のコンピューティング | 18&nbsp;GB    | 2 | 16&nbsp;GB | 0 | 2 | 8 
+|Standard_E4a_v4| 高負荷のコンピューティング | 54&nbsp;GB   | 4 | 32&nbsp;GB | 0 | 2 | 16
+|Standard_E8a_v4| 高負荷のコンピューティング | 127&nbsp;GB   | 8 | 64&nbsp;GB | 0 | 2 | 1,000
+|Standard_E16a_v4| 高負荷のコンピューティング | 273&nbsp;GB   | 16| 128&nbsp;GB | 0 | 2 | 1,000
 |Standard_DS13_v2 + 1&nbsp;TB&nbsp;PS| ストレージ最適化 | 1&nbsp;TB | 8 | 56&nbsp;GB | 1 | 2 | 1,000
 |Standard_DS13_v2 + 2&nbsp;TB&nbsp;PS| ストレージ最適化 | 2&nbsp;TB | 8 | 56&nbsp;GB | 2 | 2 | 1,000
 |Standard_DS14_v2 + 3&nbsp;TB&nbsp;PS| ストレージ最適化 | 3&nbsp;TB | 16 | 112&nbsp;GB | 2 | 2 | 1,000
 |Standard_DS14_v2 + 4&nbsp;TB&nbsp;PS| ストレージ最適化 | 4&nbsp;TB | 16 | 112&nbsp;GB | 4 | 2 | 1,000
-|Standard_E8as_v4 + 1&nbsp;TB&nbsp;PS| ストレージ最適化 | 1&nbsp;TB | 8 | 56&nbsp;GB | 1 | 2 | 1,000
-|Standard_E8as_v4 + 2&nbsp;TB&nbsp;PS| ストレージ最適化 | 2&nbsp;TB | 8 | 56&nbsp;GB | 2 | 2 | 1,000
-|Standard_E16as_v4 + 3&nbsp;TB&nbsp;PS| ストレージ最適化 | 3&nbsp;TB | 16 | 112&nbsp;GB | 3 | 2 | 1,000
-|Standard_E16as_v4 + 4&nbsp;TB&nbsp;PS| ストレージ最適化 | 4&nbsp;TB | 16 | 112&nbsp;GB | 4 | 2 | 1,000
+|Standard_E8as_v4 + 1&nbsp;TB&nbsp;PS| ストレージ最適化 | 1&nbsp;TB | 8 | 64&nbsp;GB | 1 | 2 | 1,000
+|Standard_E8as_v4 + 2&nbsp;TB&nbsp;PS| ストレージ最適化 | 2&nbsp;TB | 8 | 64&nbsp;GB | 2 | 2 | 1,000
+|Standard_E16as_v4 + 3&nbsp;TB&nbsp;PS| ストレージ最適化 | 3&nbsp;TB | 16 | 128&nbsp;GB | 3 | 2 | 1,000
+|Standard_E16as_v4 + 4&nbsp;TB&nbsp;PS| ストレージ最適化 | 4&nbsp;TB | 16 | 128&nbsp;GB | 4 | 2 | 1,000
 |Standard_L4s| ストレージ最適化 | 650&nbsp;GB | 4 | 32&nbsp;GB | 0 | 2 | 16
 |Standard_L8s| ストレージ最適化 | 1.3&nbsp;TB | 8 | 64&nbsp;GB | 0 | 2 | 1,000
 |Standard_L16s| ストレージ最適化 | 2.6&nbsp;TB | 16| 128&nbsp;GB | 0 | 2 | 1,000
 |Standard_L8s_v2| ストレージ最適化 | 1.7&nbsp;TB | 8 | 64&nbsp;GB | 0 | 2 | 1,000
 |Standard_L16s_v2| ストレージ最適化 | 3.5&nbsp;TB | 16| 128&nbsp;GB | 0 | 2 | 1,000
-|Standard_E64i1_v3| 分離コンピューティング | 1.1&nbsp;TB | 16| 128&nbsp;GB | 0 | 2 | 1,000
+|Standard_E64i_v3| 分離コンピューティング | 1.1&nbsp;TB | 64 | 432&nbsp;GB | 0 | 2 | 1,000
+|Standard_E80ids_v4| 分離コンピューティング | 1.8&nbsp;TB | 80 | 504&nbsp;GB | 0 | 2 | 1,000
 
-* Azure Data Explorer [ListSkus API](/dotnet/api/microsoft.azure.management.kusto.clustersoperationsextensions.listskus?view=azure-dotnet) を使用して、リージョンごとの更新されたコンピューティング SKU の一覧を表示できます。 
+* Azure Data Explorer [ListSkus API](/dotnet/api/microsoft.azure.management.kusto.clustersoperationsextensions.listskus) を使用して、リージョンごとの更新されたコンピューティング SKU の一覧を表示できます。 
 * [さまざまな SKU](/azure/virtual-machines/windows/sizes) の詳細について参照してください。 
 
 ## <a name="next-steps"></a>次のステップ

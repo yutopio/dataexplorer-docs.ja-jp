@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 03/29/2020
-ms.openlocfilehash: 41e0e50b2e91280c79941340ebfc855ef6cab27e
-ms.sourcegitcommit: f71801764fdccb061f3cf1e3cfe43ec1557e4e0f
+ms.openlocfilehash: b5b6c199c1b374caa40a07e277a06591edccdd59
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 11/03/2020
-ms.locfileid: "93293348"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528427"
 ---
 # <a name="use-one-click-ingestion-to-ingest-json-data-from-a-local-file-to-an-existing-table-in-azure-data-explorer"></a>ワンクリックでのインジェストを使用して Azure Data Explorer の既存のテーブルにローカル ファイルの JSON データを取り込む
 
@@ -38,53 +38,35 @@ Web UI の左側のメニューで、"*データベース*" または "*テー�
 
 1. **[Ingest new data]\(新しいデータの取り込み\)** ウィンドウの **[ソース]** タブが選択されます。
 
+1. **[クラスター]** と **[データベース]** の各フィールドが自動的に入力されない場合は、ドロップダウン メニューから既存のクラスターとデータベース名を選択します。
+    
+    [!INCLUDE [one-click-cluster](includes/one-click-cluster.md)]
+
 1. **[テーブル]** フィールドの内容が自動的に設定されない場合は、ドロップダウン メニューから既存のテーブル名を選択します。
 
-    > [!NOTE]
-    > "*テーブル*" の行で **[Ingest new data]\(新しいデータの取り込み\)** を選択した場合は、選択したテーブル名が **[プロジェクトの詳細]** に表示されます。
-
-1. **[インジェストの種類]** で、次の手順を実行します。
+1. **[ソースの種類]** で、次の手順を実行します。
 
    1. **[ファイルから]** を選択します  
-   1. **[参照]** を選択してファイルを見つけるか、ファイルをフィールドにドラッグします。
+   1. **[参照]** を選択して最大 10 個のファイルを見つけるか、ファイルをフィールドにドラッグします。 スキーマ定義ファイルは、青い星を使用して選択できます。
     
       :::image type="content" source="media/one-click-ingestion-existing-table/from-file.png" alt-text="ファイルからのワンクリックでのインジェスト":::
 
- 1. データのサンプルが表示されます。 データをフィルター処理して、特定の文字で始まる、または終わるファイルだけを取り込みます。 
-
-    >[!NOTE] 
-    >フィルターを調整すると、プレビューが自動的に更新されます。
-  
-> [!TIP]
-> **コンテナーから** のインジェストについては、[ワンクリックでのインジェストを使用した、Azure Data Explorer の新しいテーブルへのコンテナーの CSV データの取り込み](one-click-ingestion-new-table.md#select-an-ingestion-type)に関するページを参照してください
-
 ## <a name="edit-the-schema"></a>スキーマを編集する
 
-テーブル列の構成を表示および編集するには、 **[スキーマの編集]** を選択します。
+テーブル列の構成を表示および編集するには、 **[スキーマの編集]** を選択します。 **[スキーマ]** タブ内:
 
-### <a name="map-columns"></a>列のマップ 
-
-1. **[Map columns]\(列のマップ\)** ダイアログが開きます。 1 つ以上のソース列または属性を Azure Data Explorer の列にアタッチします。
-    * 新しいマッピングが自動的に設定されます。または、既存のマッピングを使用します。 
-    * **[Source columns]\(ソース列\)** の各フィールドに、 **[Target columns]\(ターゲット列\)** とマップする列名を入力します。
-    * マッピングから列を削除するには、ごみ箱アイコンを選択します。
-
-      :::image type="content" source="media/one-click-ingestion-existing-table/map-columns.png" alt-text="[列のマップ] ウィンドウ"::: 
-    
-1. **[Update]\(更新\)** を選択します。
-1. **[スキーマ]** タブ内:
-    * **[圧縮の種類]** は、ソース ファイルの名前に基づいて自動的に選択されます。 この場合、圧縮の種類は **JSON** です
+   * **[圧縮の種類]** は、ソース ファイルの名前に基づいて自動的に選択されます。 この場合、圧縮の種類は **JSON** です
         
-    * **JSON** を選択する場合、1 から 10 の **[JSON レベル]** も選択する必要があります。 レベルによって、テーブル列のデータ区分が異なります。
+   * **JSON** を選択する場合、1 から 10 の **[Nested levels]\(入れ子のレベル\)** も選択する必要があります。 レベルによって、テーブル列のデータ区分が異なります。
 
-        :::image type="content" source="media/one-click-ingestion-existing-table/json-levels.png" alt-text="JSON レベルの選択":::
+        :::image type="content" source="media/one-click-ingestion-existing-table/json-levels.png" alt-text="[Nested levels]\(入れ子のレベル\)の選択":::
     
        > [!TIP]
        > **CSV** ファイルを使用する場合、[ワンクリックでのインジェストを使用した、Azure Data Explorer の新しいテーブルへのコンテナーの CSV データの取り込み](one-click-ingestion-new-table.md#edit-the-schema)に関するページを参照してください
 
-#### <a name="add-nested-json-data"></a>入れ子になった JSON データを追加する 
+### <a name="add-nested-json-data"></a>入れ子になった JSON データを追加する 
 
-上で選択したメインの **JSON レベル** とは異なる JSON レベルから列を追加するには、次の手順を実行します。
+上で選択したメインの **[Nested levels]\(入れ子のレベル\)** とは異なる JSON レベルから列を追加するには、次の手順を実行します。
 
 1. ​任意の列名の横にある矢印をクリックし、 **[新しい列]** を選択します。
 
@@ -105,13 +87,11 @@ Web UI の左側のメニューで、"*データベース*" または "*テー�
 
 ### <a name="edit-the-table"></a>テーブルを編集する 
 
-既存のテーブルにデータを取り込む場合、テーブルに対して行うことができる変更は、より制限されます。
-
-この表で、 
-* 新しい列ヘッダーを選択して **新しい列** の追加、**列の削除**、**昇順での並べ替え**、**降順での並べ替え** を実行できます。 
-* 既存の列で選択できるのは、データの並べ替えのみです。
-
 [!INCLUDE [data-explorer-one-click-column-table](includes/data-explorer-one-click-column-table.md)]
+
+> [!NOTE]
+> * 表形式では、列を 2 回マップすることはできません。 既存の列にマップするには、最初に新しい列を削除します。
+> * 既存の列の型を変更することはできません。 異なる形式の列にマップしようとすると、空の列になってしまう場合があります。
 
 [!INCLUDE [data-explorer-one-click-command-editor](includes/data-explorer-one-click-command-editor.md)]
 

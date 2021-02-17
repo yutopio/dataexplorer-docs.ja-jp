@@ -7,12 +7,12 @@ ms.reviewer: herauch
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 04/01/2020
-ms.openlocfilehash: 5cffee705c6a9225112e7ada8154084de40035c4
-ms.sourcegitcommit: f354accde64317b731f21e558c52427ba1dd4830
+ms.openlocfilehash: 4a8c3cbceb4fa16b8f1ddefc53447ad52f0166f7
+ms.sourcegitcommit: 6e2fb2d7284c9b260034454236e669b2358383fb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88875023"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "99522991"
 ---
 # <a name="create-an-azure-active-directory-application-registration-in-azure-data-explorer"></a>Azure Data Explorer で Azure Active Directory アプリケーションの登録を作成する
 
@@ -83,7 +83,7 @@ Azure AD アプリケーションの認証では、Azure AD でアプリケー�
 
 ## <a name="grant-the-service-principal-access-to-an-azure-data-explorer-database"></a>サービス プリンシパルに Azure Data Explorer データベースへのアクセスを許可する
 
-サービス プリンシパル アプリケーションの登録が作成されたので、対応するサービス プリンシパルに Azure Data Explorer データベースへのアクセス権を付与する必要があります。 
+サービス プリンシパル アプリケーションの登録が作成されたので、対応するサービス プリンシパルに Azure Data Explorer データベースへのアクセス権を付与する必要があります。 次の例では、ビューアーのアクセス権を付与します。 その他のロールについては、「[Azure Data Explorer のデータベース アクセス許可を管理する](manage-database-permissions.md)」を参照してください。 
 
 1. [Web UI](https://dataexplorer.azure.com/) で、データベースに接続し、クエリ ウィンドウを開きます。
 

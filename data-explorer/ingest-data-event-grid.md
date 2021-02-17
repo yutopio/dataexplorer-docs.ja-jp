@@ -7,12 +7,12 @@ ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 08/13/2020
-ms.openlocfilehash: 2c5c5cbb15e55b585bae632a960909070c724eb8
-ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
+ms.openlocfilehash: 2881bbf1397aaf8aeb410598fbf080d8b9d3fbda
+ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96444215"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98636002"
 ---
 # <a name="ingest-blobs-into-azure-data-explorer-by-subscribing-to-event-grid-notifications"></a>Event Grid の通知をサブスクライブすることで Azure Data Explorer に BLOB を取り込む
 
@@ -83,7 +83,7 @@ Azure Data Explorer で、Event Hubs のデータの送信先となるテーブ�
     | データ接続名 | *test-grid-connection* | Azure Data Explorer で作成する接続の名前。|
     | ストレージ アカウントのサブスクリプション | サブスクリプション ID | ストレージ アカウントが存在するサブスクリプション ID。|
     | ストレージ アカウント | *gridteststorage1* | 作成済みのストレージ アカウントの名前。|
-    | イベントの種類 | "*作成された BLOB*" または "*名前変更された BLOB*" | インジェストをトリガーするイベントの種類。 |
+    | イベントの種類 | "*作成された BLOB*" または "*名前変更された BLOB*" | インジェストをトリガーするイベントの種類。 "*名前変更された BLOB*" は、ADLSv2 ストレージに対してのみサポートされています。 サポートされる種類は、Microsoft.Storage.BlobCreated または Microsoft.Storage.BlobRenamed。 |
     | リソースの作成 | *自動* | Azure Data Explorer で Event Grid サブスクリプション、イベント ハブの名前空間、イベント ハブを自動作成するかどうかを定義します。 リソースを手動で作成するには、「[Event Grid インジェスト用のリソースを手動で作成する](ingest-data-event-grid-manual.md)」をご覧ください。|
 
 1. 特定のサブジェクトを追跡するには、 **[Filter settings]\(フィルターの設定\)** を選択します。 次のように、通知用のフィルターを設定します。
@@ -131,7 +131,9 @@ Azure Data Explorer で、Event Hubs のデータの送信先となるテーブ�
 
 ## <a name="generate-sample-data"></a>サンプル データを作成する
 
-Azure Data Explorer とストレージ アカウントが接続されたので、サンプル データを作成してストレージ コンテナーにアップロードできます。
+Azure Data Explorer とストレージ アカウントが接続されたので、サンプル データを作成できます。
+
+### <a name="upload-blob-to-the-storage-container"></a>BLOB をストレージ コンテナーにアップロードする
 
 Azure Storage リソースを操作するいくつかの基本的な Azure CLI コマンドを発行する、簡単なシェル スクリプトを使用します。 このスクリプトでは、次のアクションを実行します。 
 1. ストレージ アカウントに新しいコンテナーを作成する。
@@ -172,6 +174,12 @@ Azure Storage リソースを操作するいくつかの基本的な Azure CLI �
 
 > [!NOTE]
 > インジェストのパフォーマンスを最高にするには、インジェストのために送信される圧縮された BLOB の "*圧縮されていない状態*" でのサイズを伝える必要があります。 Event Grid の通知には基本情報しか含まれていないため、サイズ情報は明示的に伝達する必要があります。 圧縮されていないサイズの情報は、BLOB メタデータの `rawSizeBytes` プロパティに "*圧縮されていない*" データ サイズ (バイト単位) を設定することで提供できます。
+
+### <a name="rename-blob"></a>BLOB を名前変更する
+
+ADLSv2 ストレージからデータを取り込み、データ接続のイベントの種類として "*名前変更された BLOB*" を定義した場合、BLOB インジェストのトリガーは BLOB の名前変更です。 BLOB を名前変更するには、Azure portal で BLOB に移動し、その BLOB を右クリックして、 **[名前の変更]** を選択します。
+
+   :::image type="content" source="media/ingest-data-event-grid/rename-blob-in-the-portal.png" alt-text="Azure portal での BLOB の名前変更":::
 
 ### <a name="ingestion-properties"></a>インジェストのプロパティ
 

@@ -8,12 +8,12 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 ms.date: 10/05/2020
-ms.openlocfilehash: e8ec0a07549a8db4027beab8d512f58e3ab6a780
-ms.sourcegitcommit: 4d5628b52b84f7564ea893f621bdf1a45113c137
+ms.openlocfilehash: 5ea03b982a42232eb1dda728e1df04952fc1183d
+ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "96444165"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98635941"
 ---
 # <a name="manually-create-resources-for-event-grid-ingestion"></a>Event Grid インジェスト用のリソースを手動で作成する
 
@@ -54,10 +54,10 @@ Azure Data Explorer では、[Event Grid インジェスト パイプライン](
     |---|---|---|
     | 名前 | *test-grid-connection* | 作成するイベント グリッド サブスクリプションの名前。|
     | イベント スキーマ | *イベント グリッド スキーマ* | イベント グリッドで使用するスキーマ。 |
-    | トピックの種類 | *ストレージ アカウント* | Event Grid トピックの種類。 自動的に設定されます。|
+    | トピックの種類 | *ストレージ アカウント* | イベント グリッド トピックの種類。 自動的に設定されます。|
     | ソース リソース | *gridteststorage1* | ご利用のストレージ アカウントの名前。 自動的に設定されます。|
     | [システム トピック名] | *gridteststorage1...* | Azure Storage によってイベントが発行されるシステム トピック。 次に、このシステム トピックにより、イベントを受信して処理するサブスクライバーにイベントが転送されます。 自動的に設定されます。|
-    | イベントの種類のフィルター | *作成された BLOB* | 通知を取得する特定のイベント。 サブスクリプションを作成するときに、現在サポートされている種類である Microsoft.Storage.BlobCreated または Microsoft.Storage.BlobRenamed のいずれかを選択します。|
+    | イベントの種類のフィルター | *作成された BLOB* | 通知を取得する特定のイベント。 サブスクリプションを作成する場合、サポートされている種類のいずれかを選択します。Microsoft.Storage.BlobCreated または Microsoft.Storage.BlobRenamed。 BLOB の名前変更は、ADLSv2 ストレージに対してのみサポートされています。 |
 
 1. **[エンドポイントの詳細]** で、 **[イベント ハブ]** を選択します。
 

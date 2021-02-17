@@ -7,12 +7,12 @@ ms.reviewer: lugoldbe
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/07/2019
-ms.openlocfilehash: c031b97e620be5b3ed6e3e26f7c509cfd4359f20
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 1c81f68c8892df9a066fd22d3c5ddae2f30c9e1b
+ms.sourcegitcommit: 3a2d2def8d6bf395bbbb3b84935bc58adae055b8
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92343047"
+ms.lasthandoff: 01/21/2021
+ms.locfileid: "98635975"
 ---
 # <a name="create-an-event-grid-data-connection-for-azure-data-explorer-by-using-python"></a>Python を使用して Azure Data Explorer 用に Event Grid データ接続を作成する
 
@@ -76,11 +76,13 @@ location = "Central US"
 table_name = "StormEvents"
 mapping_rule_name = "StormEvents_CSV_Mapping"
 data_format = "csv"
+blob_storage_event_type = "Microsoft.Storage.BlobCreated"
 
 #Returns an instance of LROPoller, check https://docs.microsoft.com/python/api/msrest/msrest.polling.lropoller?view=azure-python
 poller = kusto_management_client.data_connections.create_or_update(resource_group_name=resource_group_name, cluster_name=cluster_name, database_name=database_name, data_connection_name=data_connection_name,
                                             parameters=EventGridDataConnection(storage_account_resource_id=storage_account_resource_id, event_hub_resource_id=event_hub_resource_id, 
-                                                                                consumer_group=consumer_group, table_name=table_name, location=location, mapping_rule_name=mapping_rule_name, data_format=data_format))
+                                                                                consumer_group=consumer_group, table_name=table_name, location=location, mapping_rule_name=mapping_rule_name, data_format=data_format,
+                                                                                blob_storage_event_type=blob_storage_event_type))
 ```
 |**設定** | **推奨値** | **フィールドの説明**|
 |---|---|---|
@@ -99,5 +101,6 @@ poller = kusto_management_client.data_connections.create_or_update(resource_grou
 | storage_account_resource_id | *リソース ID* | インジェスト用のデータを保持しているストレージ アカウントのリソース ID。 |
 | consumer_group | *$Default* | ご利用のイベント ハブのコンシューマー グループ。|
 | location | *米国中部* | データ接続リソースの場所。|
+| blob_storage_event_type | *Microsoft.Storage.BlobCreated* | インジェストをトリガーするイベントの種類。 サポートされているイベントは次のとおりです。Microsoft.Storage.BlobCreated または Microsoft.Storage.BlobRenamed。 BLOB の名前変更は、ADLSv2 ストレージに対してのみサポートされています。|
 
 [!INCLUDE [data-explorer-data-connection-clean-resources-python](includes/data-explorer-data-connection-clean-resources-python.md)]

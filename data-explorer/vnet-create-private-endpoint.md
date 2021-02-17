@@ -7,12 +7,12 @@ ms.reviewer: elbirnbo
 ms.service: data-explorer
 ms.topic: conceptual
 ms.date: 08/09/2020
-ms.openlocfilehash: 42203d1a7a89cc86a83ed94e03b1505b21476e83
-ms.sourcegitcommit: a7458819e42815a0376182c610aba48519501d92
+ms.openlocfilehash: de07600bc775abcf149b89e2858907915aa997ec
+ms.sourcegitcommit: c4ab6f07e2e5363e331ccd4ecfb6ed813edfbc48
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/28/2020
-ms.locfileid: "92902445"
+ms.lasthandoff: 12/21/2020
+ms.locfileid: "97706381"
 ---
 # <a name="create-a-private-endpoint-in-your-azure-data-explorer-cluster-in-your-virtual-network-preview"></a>仮想ネットワーク内の Azure Data Explorer クラスターにプライベート エンドポイントを作成する (プレビュー)
 
@@ -55,20 +55,20 @@ Private Link をプライベート エンドポイントと共に使用して、
 
     |**設定** | **推奨値** | **フィールドの説明**
     |---|---|---|
-    | Load Balancer | エンジンまたは " *データ管理* " のロード バランサー | クラスター エンジンに対して作成されたロード バランサー、エンジンのパブリック IP を指すロード バランサーを選択します。  ロード バランサーのエンジン名は、次の形式になります: kucompute-{clustername}-elb <br> " *ロード バランサーのデータ管理名は、次の形式になります: kudatamgmt-{clustername}-elb* "|
-    | ロード バランサーのフロントエンド IP アドレス | エンジンまたはデータ管理のパブリック IP。 | ロード バランサーのパブリック IP アドレスを選択します。 |
+    | Load Balancer | エンジンまたは "*データ管理*" のロード バランサー | お使いのクラスター エンジン用に作成されたロード バランサーを選択します。 外部または内部のロード バランサーを使用できます。  <br> **ロード バランサーのエンジン名は、次の形式になります。** <br> 外部ロード バランサー: *kucompute-{clustername}-elb* <br> 内部ロード バランサー: *kucompute-{clustername}-ilb* <br> **ロード バランサーのデータ管理名は、次の形式になります。** <br> kudatamgmt-{clustername}-elb <br> kudatamgmt-{clustername}-ilb*|
+    | ロード バランサーのフロントエンド IP アドレス | エンジンまたはデータ管理の IP。 | ロード バランサーの IP アドレスを選択します。 |
     | ソース NAT サブネット | クラスターのサブネット | クラスターがデプロイされているサブネット。
     
 1. **[アクセス セキュリティ]** ペインで、Private Link サービスへのアクセスを要求できるユーザーを選択します。
 1. **[Review + create]\(確認と作成\)** を選択して、Private Link サービスの構成を確認します。 **[作成]** を選択して、Private Link サービスを作成します。
-1. Private Link サービスを作成した後、リソースを開き、次の手順である「 **プライベート エンドポイントの作成** 」のために、Private Link のエイリアスを保存します。 エイリアスの例: *AzureDataExplorerPLS.111-222-333.westus.azure.privatelinkservice*
+1. Private Link サービスを作成した後、リソースを開き、次の手順である「**プライベート エンドポイントの作成**」のために、Private Link のエイリアスを保存します。 エイリアスの例:*AzureDataExplorerPLS.111-222-333.westus.azure.privatelinkservice*
 
 ## <a name="create-private-endpoint"></a>プライベート エンドポイントの作成
 
 クラスター上のすべてのサービスに安全にリンクするには、[プライベート エンドポイント](/azure/private-link/private-endpoint-overview)を 2 回作成する必要があります。1 回はクエリ (エンジン) 用で、もう 1 回はインジェスト (データ管理) 用です。
 
 1. ポータルの左上隅にある **[+ リソースの作成]** ボタンを選択します。
-1. " *プライベート エンドポイント* " を検索します。
+1. "*プライベート エンドポイント*" を検索します。
 1. **[プライベート エンドポイント]** で、 **[作成]** を選択します。
 1. **[プライベート エンドポイントの作成]** ペインで、次のフィールドに入力します。
 
@@ -88,7 +88,7 @@ Private Link をプライベート エンドポイントと共に使用して、
     **設定** | **Value**
     |---|---|
     | 接続方法 | Private Link サービスのエイリアス |
-    | リソース ID またはエイリアス | エンジンの Private Link サービスのエイリアス。 エイリアスの例: *AzureDataExplorerPLS.111-222-333.westus.azure.privatelinkservice*  |
+    | リソース ID またはエイリアス | エンジンの Private Link サービスのエイリアス。 エイリアスの例:*AzureDataExplorerPLS.111-222-333.westus.azure.privatelinkservice*  |
     
 1. **[Review + create]\(確認と作成\)** を選択して、プライベート エンドポイントの構成を確認し、プライベート エンドポイント サービスを **作成** します。
 1. インジェスト (データ管理) 用のプライベート エンドポイントを作成するには、同じ手順を次の変更を加えて実行します。
@@ -100,7 +100,7 @@ Private Link をプライベート エンドポイントと共に使用して、
 ## <a name="approve-your-private-endpoint"></a>プライベート エンドポイントの承認
 
 > [!NOTE]
-> Private Link サービスを作成するときに **[アクセス セキュリティ]** ウィンドウで " *自動承認* " オプションを選択した場合、この手順は必須ではありません。
+> Private Link サービスを作成するときに **[アクセス セキュリティ]** ウィンドウで "*自動承認*" オプションを選択した場合、この手順は必須ではありません。
 
 1. Private Link サービスの設定で、 **[プライベート エンドポイント接続]** を選択します。
 1. 接続の一覧からプライベート エンドポイントを選択し、 **[承認]** を選択します。
@@ -113,19 +113,19 @@ Azure Data Explorer クラスターを仮想ネットワークにデプロイす
 
 たとえば、エンジンの DNS 名が myadx.westus.kusto.windows.net の場合、名前解決は次のようになります。
 
-* **name** : myadx.westus.kusto.windows.net   <br> **type** : CNAME   <br> **value** : myadx.privatelink.westus.kusto.windows.net
-* **name** : myadx.privatelink.westus.kusto.windows.net   <br> **type** : A   <br> **value** :40.122.110.154
+* **name**: myadx.westus.kusto.windows.net   <br> **type**: CNAME   <br> **value**: myadx.privatelink.westus.kusto.windows.net
+* **name**: myadx.privatelink.westus.kusto.windows.net   <br> **type**: A   <br> **value**:40.122.110.154
     > [!NOTE]
     > この値は、クエリ (エンジン) のパブリック IP アドレスです。これは、クラスターの作成時にユーザーが指定したものです。
 
 プライベート DNS サーバーまたは Azure プライベート DNS ゾーンを設定します。 テストの場合は、テスト マシンのホスト エントリを変更できます。
 
-次の DNS ゾーンを作成します: **privatelink.region.kusto.windows.net** 。 この例の DNS ゾーンは次のとおりです: *privatelink.westus.kusto.windows.net* 。 A レコードとプライベート エンドポイント IP を使用して、エンジンのレコードを登録します。
+次の DNS ゾーンを作成します: **privatelink.region.kusto.windows.net**。 この例の DNS ゾーンは次のとおりです: *privatelink.westus.kusto.windows.net*。 A レコードとプライベート エンドポイント IP を使用して、エンジンのレコードを登録します。
 
 たとえば、名前解決は次のようになります。
 
-* **name** : myadx.westus.kusto.windows.net   <br>**type** : CNAME   <br>**value** : myadx.privatelink.westus.kusto.windows.net
-* **name** : myadx.privatelink.westus.kusto.windows.net   <br>**type** : A   <br>**value** :10.3.0.9
+* **name**: myadx.westus.kusto.windows.net   <br>**type** : CNAME   <br>**value**: myadx.privatelink.westus.kusto.windows.net
+* **name**: myadx.privatelink.westus.kusto.windows.net   <br>**type**: A   <br>**value**:10.3.0.9
     > [!NOTE]
     > この値は、プライベート エンドポイント IP です。 既にこの IP をクエリ (エンジン) の Private Link サービスに接続しています。
 

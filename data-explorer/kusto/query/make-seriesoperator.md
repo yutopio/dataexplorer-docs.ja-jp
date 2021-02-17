@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/16/2020
 ms.localizationpriority: high
-ms.openlocfilehash: 6357afeb0a5673584e27b84a231e3c65f897b8fc
-ms.sourcegitcommit: f49e581d9156e57459bc69c94838d886c166449e
+ms.openlocfilehash: 29fdacc9483c21c4a8a148d2134f4082d439bb89
+ms.sourcegitcommit: ee49cd8186d4aecd5de1ed6d24db6c7b7a079ac4
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/01/2020
-ms.locfileid: "95512368"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100549005"
 ---
 # <a name="make-series-operator"></a>make-series 演算子
 
@@ -32,7 +32,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 
 * *Column:* 結果列の省略可能な名前。 既定値は式から派生した名前です。
 * *DefaultValue:* 値が存在しない場合に使用される既定値。 *AxisColumn* と *GroupExpression* の特定の値を持つ行がない場合、結果では、配列の対応する要素に *DefaultValue* が割り当てられます。 *DefaultValue* を省略した場合は 0 が想定されます。 
-* *集計:* 引数として列名が指定された `count()` や `avg()` などの[集計関数](make-seriesoperator.md#list-of-aggregation-functions)の呼び出し。 [集計関数のリスト](make-seriesoperator.md#list-of-aggregation-functions)を参照してください。 `make-series` 演算子と共に使用できるのは、数値の結果を返す集計関数のみです。
+* *集計:* 引数として列名が指定された `count()` や `avg()` などの [集計関数](make-seriesoperator.md#list-of-aggregation-functions)の呼び出し。 [集計関数のリスト](make-seriesoperator.md#list-of-aggregation-functions)を参照してください。 `make-series` 演算子と共に使用できるのは、数値の結果を返す集計関数のみです。
 * *AxisColumn:* 系列が並べ替えられる列。 これはタイムラインと考えることができますが、`datetime` 以外の任意の数値型も指定できます。
 * *start*: (省略可能) 構築する各系列の *AxisColumn* の下限値。 *start*、*end*、および *step* は、指定された範囲内で、指定した *step* を使用して、*AxisColumn* 値の配列を作成するために使用されます。 すべての *Aggregation* 値は、この配列にそれぞれ並べ替えられます。 この *AxisColumn* 配列は、*AxisColumn* と同じ名前を持つ出力の最後の出力列でもあります。 *start* 値が指定されていない場合、start は各系列のデータを持つ最初のビン (ステップ) です。
 * *end*: (省略可能) *AxisColumn* の上限値 (非包含)。 時系列の最後のインデックスはこの値よりも小さくなります (*start* に *step* の整数倍を加えた、*end* 未満の値です)。 *end* 値が指定されていない場合、各系列のデータを持つ最後のビン (ステップ) の上限になります。
@@ -87,6 +87,7 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 |[maxif()](maxif-aggfunction.md)|グループの述語を使用して最大値を返します|
 |[min()](min-aggfunction.md)|グループ全体の最小値を返します|
 |[minif()](minif-aggfunction.md)|グループの述語を使用して最小値を返します|
+|[percentile()](percentiles-aggfunction.md)|グループ全体のパーセンタイル値を返します|
 |[stdev()](stdev-aggfunction.md)|グループ全体の標準偏差を返します|
 |[sum()](sum-aggfunction.md)|グループ内の要素の合計を返します|
 |[sumif()](sumif-aggfunction.md)|グループの述語を使用して要素の合計を返します|
@@ -107,7 +108,9 @@ T | make-series sum(amount) default=0, avg(price) default=0 on timestamp from da
 |[series_periods_validate()](series-periods-validatefunction.md)|時系列に特定の長さの周期的なパターンが含まれているかどうかを確認します|
 |[series_stats_dynamic()](series-stats-dynamicfunction.md)|一般的な統計情報 (最小、最大、分散、標準偏差、平均) を含む複数の列を返します|
 |[series_stats()](series-statsfunction.md)|一般的な統計情報 (最小、最大、分散、標準偏差、平均) を含む動的な値を生成します|
-  
+
+系列分析関数の完全な一覧については、次を参照してください。[系列処理関数](scalarfunctions.md#series-processing-functions)
+
 ## <a name="list-of-series-interpolation-functions"></a>系列補間関数の一覧
 
 |機能|[説明]|

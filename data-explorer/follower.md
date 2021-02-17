@@ -7,16 +7,16 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/06/2020
-ms.openlocfilehash: 4d8574e0b68c234f1cef0ba49b37eb869e61c142
-ms.sourcegitcommit: 898f67b83ae8cf55e93ce172a6fd3473b7c1c094
+ms.openlocfilehash: 359758cfc8a394aa7c9d9d7a3db3e6a62d84120a
+ms.sourcegitcommit: 4c6bd4cb1eb1f64d84f844d4e7aff2de3a46b009
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 10/21/2020
-ms.locfileid: "92342605"
+ms.lasthandoff: 12/23/2020
+ms.locfileid: "97756417"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>フォロワー データベースを使用して Azure Data Explorer にデータベースをアタッチする
 
-**フォロワー データベース** 機能を使うと、別のクラスターにあるデータベースを Azure Data Explorer クラスターにアタッチできます。 **フォロワー データベース** は " *読み取り専用* " モードでアタッチされるため、データを表示したり、 **リーダー データベース** に取り込まれたデータに対してクエリを実行したりできます。 フォロワー データベースには、リーダー データベースの変更が同期されます。 この同期により、データが利用可能になるまでに数秒から数分の遅延が発生します。 遅延の長さは、リーダー データベースのメタデータ全体のサイズに応じて異なります。 リーダー データベースとフォロワー データベースでは、データをフェッチするために同じストレージ アカウントが使用されます。 ストレージを所有するのはリーダー データベースです。 フォロワー データベースでは、データを取り込むことなくデータを表示できます。 アタッチされたデータベースは読み取り専用のデータベースであるため、データベース内のデータ、テーブル、およびポリシーの変更はできませんが、[キャッシュ ポリシー](#configure-caching-policy)、[プリンシパル](#manage-principals)、および[アクセス許可](#manage-permissions)の変更は可能です。 アタッチされたデータベースは削除できません。 これらは、リーダーまたはフォロワーによってデタッチされた後にのみ、削除できます。 
+**フォロワー データベース** 機能を使うと、別のクラスターにあるデータベースを Azure Data Explorer クラスターにアタッチできます。 **フォロワー データベース** は "*読み取り専用*" モードでアタッチされるため、データを表示したり、**リーダー データベース** に取り込まれたデータに対してクエリを実行したりできます。 フォロワー データベースには、リーダー データベースの変更が同期されます。 この同期により、データが利用可能になるまでに数秒から数分のデータ遅延が発生します。 遅延の長さは、リーダー データベースのメタデータ全体のサイズに応じて異なります。 リーダー データベースとフォロワー データベースでは、データをフェッチするために同じストレージ アカウントが使用されます。 ストレージを所有するのはリーダー データベースです。 フォロワー データベースでは、データを取り込むことなくデータを表示できます。 アタッチされたデータベースは読み取り専用のデータベースであるため、データベース内のデータ、テーブル、およびポリシーの変更はできませんが、[キャッシュ ポリシー](#configure-caching-policy)、[プリンシパル](#manage-principals)、および[アクセス許可](#manage-permissions)の変更は可能です。 アタッチされたデータベースは削除できません。 これらは、リーダーまたはフォロワーによってデタッチされた後にのみ、削除できます。 
 
 フォロワー機能を使った別のクラスターへのデータベースのアタッチは、組織とチームの間でデータを共有するためのインフラストラクチャとして使用されます。 この機能は、非運用環境のユース ケースから運用環境を保護するためにコンピューティング リソースを分離するのに役立ちます。 また、フォロワーを使うことで、Azure Data Explorer クラスターのコストを、そのデータに対してクエリを実行するパーティーに関連付けることができます。
 
@@ -34,7 +34,7 @@ ms.locfileid: "92342605"
 
 ## <a name="attach-a-database"></a>データベースのアタッチ
 
-データベースのアタッチにはさまざまな方法があります。 この記事では、C#、Python、Powershell、または Azure Resource Manager テンプレートを使用してデータベースをアタッチする方法について説明します。 データベースをアタッチするには、リーダー クラスターとフォロワー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。 [Azure portal](/azure/role-based-access-control/role-assignments-portal)、[PowerShell](/azure/role-based-access-control/role-assignments-powershell)、[Azure CLI](/azure/role-based-access-control/role-assignments-cli) および [Resource Manager テンプレート](/azure/role-based-access-control/role-assignments-template)を使用して、ロールの割り当てを追加または削除することができます。 詳細については、「[Azure のロールベースのアクセス制御 (Azure RBAC)](/azure/role-based-access-control/overview)」および[各種ロール](/azure/role-based-access-control/rbac-and-directory-admin-roles)に関する記事をご覧ください。 
+データベースのアタッチにはさまざまな方法があります。 この記事では、C#、Python、PowerShell、または Azure Resource Manager テンプレートを使用してデータベースをアタッチする方法について説明します。 データベースをアタッチするには、リーダー クラスターとフォロワー クラスターに対して少なくとも共同作成者ロールを持つユーザー、グループ、サービス プリンシパル、またはマネージド ID が必要です。 [Azure portal](/azure/role-based-access-control/role-assignments-portal)、[PowerShell](/azure/role-based-access-control/role-assignments-powershell)、[Azure CLI](/azure/role-based-access-control/role-assignments-cli)、[ARM テンプレート](/azure/role-based-access-control/role-assignments-template)を使用して、ロールの割り当てを追加または削除できます。 詳細については、「[Azure のロールベースのアクセス制御 (Azure RBAC)](/azure/role-based-access-control/overview)」および[各種ロール](/azure/role-based-access-control/rbac-and-directory-admin-roles)に関する記事をご覧ください。 
 
 
 # <a name="c"></a>[C#](#tab/csharp)
@@ -130,7 +130,7 @@ attached_database_configuration_properties = AttachedDatabaseConfiguration(clust
 poller = kusto_management_client.attached_database_configurations.create_or_update(follower_resource_group_name, follower_cluster_name, attached_database_Configuration_name, attached_database_configuration_properties)
 ```
 
-# <a name="powershell"></a>[Powershell](#tab/azure-powershell)
+# <a name="powershell"></a>[PowerShell](#tab/azure-powershell)
 
 ### <a name="attach-a-database-using-powershell"></a>PowerShell を使用してデータベースをアタッチする
 
@@ -246,7 +246,7 @@ New-AzKustoAttachedDatabaseConfiguration -ClusterName $FollowerClustername `
 
 ### <a name="deploy-the-template"></a>テンプレートのデプロイ 
 
-[Azure portal を使用](https://portal.azure.com)するか PowerShell を使用して、Azure Resource Manager テンプレートをデプロイできます。
+[Azure portal を使用して](https://portal.azure.com)、または PowerShell を使用して、Azure Resource Manager テンプレートをデプロイできます。
 
    ![テンプレートのデプロイ](media/follower/template-deployment.png)
 
@@ -412,9 +412,9 @@ cluster_resource_id = "/subscriptions/" + follower_subscription_id + "/resourceG
 poller = kusto_management_client.clusters.detach_follower_databases(resource_group_name = leader_resource_group_name, cluster_name = leader_cluster_name, cluster_resource_id = cluster_resource_id, attached_database_configuration_name = attached_database_configuration_name)
 ```
 
-# <a name="powershell"></a>[Powershell](#tab/azure-powershell)
+# <a name="powershell"></a>[PowerShell](#tab/azure-powershell)
 
-### <a name="detach-a-database-using-powershell"></a>Powershell を使用してデータベースをデタッチする
+### <a name="detach-a-database-using-powershell"></a>PowerShell を使用してデータベースをデタッチする
 
 #### <a name="needed-modules"></a>必要なモジュール
 
@@ -451,9 +451,9 @@ C#、Python、または PowerShell を使用して[フォロワー データベ�
 
 |**種類** |**説明**  |
 |---------|---------|
-|**Union (結合)**     |   アタッチされたデータベース プリンシパルには常に、元のデータベース プリンシパルと、フォロワー データベースに追加された追加の新しいプリンシパルが含まれます。      |
+|**Union (結合)**     |   アタッチされたデータベース プリンシパルには、元のデータベース プリンシパルと、フォロワー データベースに追加されたその他の新しいプリンシパルが常に含まれます。      |
 |**Replace**   |    元のデータベースから継承されるプリンシパルはありません。 アタッチされたデータベース用に新しいプリンシパルを作成する必要があります。     |
-|**なし**   |   アタッチされたデータベース プリンシパルには、元のデータベースのプリンシパルのみが含まれます。追加のプリンシパルはありません。      |
+|**なし**   |   アタッチされたデータベース プリンシパルには、元のデータベースのプリンシパルのみが含まれます。その他のプリンシパルはありません。      |
 
 管理コマンドを使用して承認されたプリンシパルを構成する方法について詳しくは、「[フォロワー クラスターを管理するための管理コマンド](kusto/management/cluster-follower.md)」をご覧ください。
 
@@ -465,11 +465,19 @@ C#、Python、または PowerShell を使用して[フォロワー データベ�
 
 フォロワー データベースの管理者は、ホスティング クラスター上でアタッチされたデータベースまたはその任意のテーブルの[キャッシュ ポリシー](kusto/management/cache-policy.md) を変更できます。 既定では、リーダー データベースのデータベース コレクションとテーブル レベルのキャッシュ ポリシーが保持されます。 たとえば、リーダー データベースでは月次レポートを実行するために 30 日間のキャッシュ ポリシーを設定し、フォロワー データベースでは、トラブルシューティング用に最新のデータのみのクエリを実行するため、3 日間のキャッシュ ポリシーを設定することができます。 管理コマンドを使用してフォロワー データベースまたはテーブルのキャッシュ ポリシーを構成する方法について詳しくは、「[フォロワー クラスターを管理するための管理コマンド](kusto/management/cluster-follower.md)」をご覧ください。
 
+## <a name="notes"></a>注
+
+* リーダー/フォロワー クラスターのデータベース間に競合がある場合、フォロワー クラスターがすべてのデータベースをフォローすると、次のように解決されます。
+  * フォロワー クラスターで作成された *DB* という名前のデータベースは、リーダー クラスターで作成された同じ名前のデータベースよりも優先されます。 そのため、フォロワー クラスターでリーダーのデータベース *DB* を含めるために、フォロワー クラスターのデータベース *DB* を削除または名前変更する必要があります。
+  * 2 つ以上のリーダー クラスターからフォローされる *DB* という名前のデータベースは、リーダー クラスターの "*いずれか*" から任意に選択され、複数回フォローされなくなります。
+* [クラスターのアクティビティ ログと履歴](kusto/management/systeminfo.md)を表示するためのコマンドをフォロワー クラスターで実行すると、フォロワー クラスターのアクティビティと履歴が表示され、その結果セットには、1 つ以上のリーダー クラスターのそれらの結果は含まれません。
+  * たとえば、`.show queries` コマンドをフォロワー クラスターで実行すると、フォロワー クラスターがフォローするデータベースで実行されたクエリのみが表示され、リーダー クラスター内の同じデータベースに対して実行されたクエリは表示されません。
+  
 ## <a name="limitations"></a>制限事項
 
 * フォロワー クラスターとリーダー クラスターは、同じリージョンに存在する必要があります。
 * [ストリーミング インジェスト](ingest-data-streaming.md)は、フォローされているデータベースでは使用できません。
-* [カスタマー マネージド キー](security.md#customer-managed-keys-with-azure-key-vault)を使用したデータ暗号化は、リーダー クラスターとフォロワー クラスターの両方でサポートされていません。 
+* [カスタマー マネージド キー](security.md#customer-managed-keys-with-azure-key-vault)を使用したデータ暗号化は、リーダーとフォロワーの両方のクラスターでサポートされていません。 
 * 別のクラスターにアタッチされているデータベースは、デタッチ前に削除することはできません。
 * 別のクラスターにアタッチされているデータベースを持つクラスターは、デタッチ前に削除することはできません。
 

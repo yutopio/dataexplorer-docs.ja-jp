@@ -7,12 +7,12 @@ ms.reviewer: gabilehner
 ms.service: data-explorer
 ms.topic: how-to
 ms.date: 10/06/2020
-ms.openlocfilehash: 359758cfc8a394aa7c9d9d7a3db3e6a62d84120a
-ms.sourcegitcommit: 4c6bd4cb1eb1f64d84f844d4e7aff2de3a46b009
+ms.openlocfilehash: 218d4962c1b7317f4ed94fb86c576da336ba93ee
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 12/23/2020
-ms.locfileid: "97756417"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528124"
 ---
 # <a name="use-follower-database-to-attach-databases-in-azure-data-explorer"></a>フォロワー データベースを使用して Azure Data Explorer にデータベースをアタッチする
 
@@ -25,6 +25,7 @@ ms.locfileid: "97756417"
 * クラスターでは、1 つのデータベース、複数のデータベース、またはリーダー クラスターのすべてのデータベースをフォローできます。 
 * 単一のクラスターでは、複数のリーダー クラスターのデータベースをフォローできます。 
 * クラスターには、フォロワー データベースとリーダー データベースの両方を含めることができます。
+* EngineV3 クラスターがフォローできるのは EngineV3 クラスターのみです。同様に、EngineV2 クラスターがフォローできるのは V2 クラスターのみです。
 
 ## <a name="prerequisites"></a>前提条件
 
@@ -465,7 +466,7 @@ C#、Python、または PowerShell を使用して[フォロワー データベ�
 
 フォロワー データベースの管理者は、ホスティング クラスター上でアタッチされたデータベースまたはその任意のテーブルの[キャッシュ ポリシー](kusto/management/cache-policy.md) を変更できます。 既定では、リーダー データベースのデータベース コレクションとテーブル レベルのキャッシュ ポリシーが保持されます。 たとえば、リーダー データベースでは月次レポートを実行するために 30 日間のキャッシュ ポリシーを設定し、フォロワー データベースでは、トラブルシューティング用に最新のデータのみのクエリを実行するため、3 日間のキャッシュ ポリシーを設定することができます。 管理コマンドを使用してフォロワー データベースまたはテーブルのキャッシュ ポリシーを構成する方法について詳しくは、「[フォロワー クラスターを管理するための管理コマンド](kusto/management/cluster-follower.md)」をご覧ください。
 
-## <a name="notes"></a>注
+## <a name="notes"></a>Notes
 
 * リーダー/フォロワー クラスターのデータベース間に競合がある場合、フォロワー クラスターがすべてのデータベースをフォローすると、次のように解決されます。
   * フォロワー クラスターで作成された *DB* という名前のデータベースは、リーダー クラスターで作成された同じ名前のデータベースよりも優先されます。 そのため、フォロワー クラスターでリーダーのデータベース *DB* を含めるために、フォロワー クラスターのデータベース *DB* を削除または名前変更する必要があります。

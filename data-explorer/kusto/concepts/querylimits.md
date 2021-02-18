@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 ms.date: 03/12/2020
 ms.localizationpriority: high
-ms.openlocfilehash: a50900a5ea0f0c3d8f25e68a606572093af07432
-ms.sourcegitcommit: db99b9d0b5f34341ad3be38cc855c9b80b3c0b0e
+ms.openlocfilehash: 160846f1f543b5c5ae3e156c410551bd8d59a627
+ms.sourcegitcommit: abbcb27396c6d903b608e7b19edee9e7517877bb
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 02/14/2021
-ms.locfileid: "100359609"
+ms.lasthandoff: 02/15/2021
+ms.locfileid: "100528056"
 ---
 # <a name="query-limits"></a>クエリの制限
 
@@ -29,6 +29,10 @@ Kusto は、大規模なデータ セットをホストし、関連するすべ�
   * たとえば、各マシンに 16 個の仮想コアがある D14v2 SKU 上に設定されたクラスターの場合、既定の制限は `16 cores x10 = 160` です。
 * `default` ワークロード グループの[要求レート制限ポリシー](../management/request-rate-limit-policy.md)を構成すると、既定値を変更できます。
   * クラスター上で同時に実行できる要求の実際の数は、さまざまな要因によって変わります。 最も重要な要因は、クラスター SKU、クラスターの使用可能なリソース、使用パターンです。 ポリシーは、運用環境に似た使用パターンで実行される負荷テストに基づいて構成できます。
+
+要求の同時実行の制限を超えると、次の動作が発生します。
+* 要求レート制限ポリシーが原因で拒否されたコマンドは、`ControlCommandThrottledException` (エラー コード = 429) になります。
+* 要求レート制限ポリシーが原因で拒否されたクエリは、`QueryThrottledException` (エラー コード = 429) になります。
 
 ## <a name="limit-on-result-set-size-result-truncation"></a>結果セット サイズに対する制限 (結果の切り捨て)
 

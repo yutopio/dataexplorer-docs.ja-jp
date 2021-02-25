@@ -68,7 +68,7 @@ StormEvents
 | project StartTime, EndTime , State , EventType , EpisodeNarrative
 ```
 
-|StartTime|EndTime|状態|EventType|EpisodeNarrative|
+|StartTime|EndTime|State|EventType|EpisodeNarrative|
 |---|---|---|---|---|
 |2007-02-19 00:00: 00.0000000|2007-02-19 08:00: 00.0000000|カリフォルニア|洪水|南のサンホアキンバレーで正面システムを移動すると、午前19時の午前1時に、雨の雨を西洋のに簡単に移行できます。 軽微なフラッディングは、Taft 付近の州幹線道路166で報告されています。|
 
@@ -83,7 +83,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|EventType|状態|EventNarrative|
+|StartTime|EndTime|EventType|State|EventNarrative|
 |---|---|---|---|---|
 |2007-09-18 20:00: 00.0000000|2007-09-19 18:00: 00.0000000|重い雨|フロリダ|Coastal Volusia 郡の一部にわたって24時間のうち9インチの雨がいます。|
 |2007-09-20 21:57: 00.0000000|2007-09-20 22:05: 00.0000000|Tornado|フロリダ|Eustis 町で触れた tornado は、西 Crooked Lake の北端にあります。 Tornado は、北北西を Eustis 移動したときに EF1 の強さをすばやく極めるします。 このトラックは、長さが2マイル未満で、最大幅が300ヤードになっています。  Tornado は7本の自宅を破壊しています。 20個の自宅が、大きなダメージを受け、81の自宅が軽微な損害を報告しました。 重大な負傷や、プロパティの破損は $620万に設定されていました。|
@@ -108,7 +108,7 @@ StormEvents
 | project  StartTime, EndTime, EventType, State, EventNarrative  
 ```
 
-|StartTime|EndTime|EventType|状態|EventNarrative|
+|StartTime|EndTime|EventType|State|EventNarrative|
 |---|---|---|---|---|
 |2007-12-31 22:30: 00.0000000|2007-12-31 23:59: 00.0000000|冬の嵐|ミシガン|この大きな雪のイベントは、新年の朝に続きます。|
 |2007-12-31 22:30: 00.0000000|2007-12-31 23:59: 00.0000000|冬の嵐|ミシガン|この大きな雪のイベントは、新年の朝に続きます。|
@@ -138,7 +138,7 @@ StormEvents
 | project StartTime, EndTime, Duration, EventType, State
 ```
 
-|StartTime|EndTime|期間|EventType|状態|
+|StartTime|EndTime|Duration|EventType|State|
 |---|---|---|---|---|
 |2007-09-18 20:00: 00.0000000|2007-09-19 18:00: 00.0000000|22:00:00|重い雨|フロリダ|
 |2007-09-20 21:57: 00.0000000|2007-09-20 22:05: 00.0000000|00:08:00|Tornado|フロリダ|
@@ -184,7 +184,7 @@ StormEvents
 | top 5 by StormCount desc
 ```
 
-|状態|StormCount|TypeOfStorms|
+|State|StormCount|TypeOfStorms|
 |---|---|---|
 |テキサス州|4701|27|
 |カンザス|3166|21|
